@@ -1,10 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Index page should match the snapshot 1`] = `
-<main>
-  <h1>
-    Checkout documentation
-  </h1>
+<div>
   <div
     onClick={[Function]}
     onMouseEnter={[Function]}
@@ -13,8 +10,5 @@ exports[`Index page should match the snapshot 1`] = `
       title
     </a>
   </div>
-  <p>
-    Will come soon...
-  </p>
-</main>
+</div>
 `;
