@@ -1,0 +1,26 @@
+.mainWrapper {
+  margin: 0 auto;
+  max-width: 1360px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .headerWrapper {
+    flex-grow: 0;
+  }
+  .contentWrapper {
+    flex-grow: 1;
+    display: flex;
+    .sideBarWrapper {
+      width: 336px;
+      flex-grow: 0;
+    }
+    .content {
+      flex-grow: 1;
+    }
+  }
+  .footerWrapper {
+    flex-grow: 0;
+  }
+}

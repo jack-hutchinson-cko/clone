@@ -1,13 +1,17 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { Post } from '../../../types/posts'
 import { getPostById, getPosts } from '../../../lib/posts'
-import PostComponent from '../../../components/Post'
 
 interface PostProps {
   postData: Post
 }
 
-const PostPage: NextPage<PostProps> = ({ postData }) => <PostComponent {...postData} />
+const PostPage: NextPage<PostProps> = ({ postData }) => (
+  <div>
+    <h3>{postData.title}</h3>
+    <p>{postData.body}</p>
+  </div>
+)
 
 export default PostPage
 

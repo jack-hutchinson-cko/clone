@@ -9,8 +9,7 @@ interface HomePageProps {
 
 const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   return (
-    <main>
-      <h1>Checkout documentation</h1>
+    <div>
       {posts.map(({ id, title }) => (
         <Link key={id} href={`/posts/${id}`}>
           <div>
@@ -18,8 +17,7 @@ const HomePage: NextPage<HomePageProps> = ({ posts }) => {
           </div>
         </Link>
       ))}
-      <p>Will come soon...</p>
-    </main>
+    </div>
   )
 }
 export default HomePage
@@ -28,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<HomePageProps> = async () =>
   const posts = await getPosts()
   return {
     props: {
-      posts,
+      posts: posts.slice(0, 10),
     },
   }
 }
