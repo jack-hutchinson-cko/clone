@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
+import { DocContentItem } from 'types/content'
 import DocContentBuilder from '../DocContentBuilder'
-import { DocContentItem } from '../../types/content'
 
 type Props = {
   content: Array<DocContentItem>

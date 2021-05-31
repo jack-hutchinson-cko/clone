@@ -1,4 +1,4 @@
-import { DocContentItem } from '../types/content'
+import { DocContentItem } from 'types/content'
 
 const getDefaultContent = (name: string): Array<DocContentItem> => [
   {

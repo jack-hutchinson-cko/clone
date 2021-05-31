@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
-import MainLayout from '../components/MainLayout'
+import MainLayout from 'components/MainLayout'
+import { getSideBarLinks } from 'lib/docsItems'
 import '../styles/globals.css'
-import { getSideBarLinks } from '../lib/docsItems'
 
 type Props = {
   sideBarLinks: Array<{ link: string; name: string }>

@@ -1,11 +1,11 @@
 import { last } from 'lodash'
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
-import { getDocsPathUrl, getPostByUrlId } from '../../lib/docsItems'
-import BreadCrumbs from '../../components/BreadCrumbs'
-import DocBody from '../../components/DocBody'
-import AnchorNavigation from '../../components/AnchorNavigation'
+import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems'
+import BreadCrumbs from 'components/BreadCrumbs'
+import DocBody from 'components/DocBody'
+import AnchorNavigation from 'components/AnchorNavigation'
+import { BreadCrumbsItems, DocContentItem } from 'types/content'
 import styles from './docPost.module.scss'
-import { BreadCrumbsItems, DocContentItem } from '../../types/content'
 
 type Props = {
   name: string

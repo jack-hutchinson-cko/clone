@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { DocContentItem } from '../../../types/content'
+import { DocContentItem } from 'types/content'
 
 type Props = Omit<DocContentItem, 'type'>
 

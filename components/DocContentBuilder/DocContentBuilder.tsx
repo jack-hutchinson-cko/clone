@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
+import { DocContentItem } from 'types/content'
 import Anchor from './DocBodyComponents/Anchor'
 import Text from './DocBodyComponents/Text'
-import { DocContentItem } from '../../types/content'
 
 const ComponentMap = {
   TEXT: Text,

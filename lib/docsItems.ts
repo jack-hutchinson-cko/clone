@@ -1,5 +1,5 @@
-import { docsItems } from '../mocks/docs'
-import { DocItem, DocItemWithParentNodes } from '../types/content'
+import { docsItems } from 'mocks/docs'
+import { DocItem, DocItemWithParentNodes } from 'types/content'
 
 type findAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem }
 const findAllParentsNodes = ({

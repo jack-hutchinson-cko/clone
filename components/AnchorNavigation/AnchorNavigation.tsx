@@ -1,6 +1,6 @@
 import { get } from 'lodash'
 import { FunctionComponent, useState } from 'react'
-import { DocContentItem } from '../../types/content'
+import { DocContentItem } from 'types/content'
 import styles from './anchorNavigation.module.scss'
 
 type Props = {
