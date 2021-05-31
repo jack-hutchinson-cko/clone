@@ -15,6 +15,7 @@
     .sideBarWrapper {
       width: 336px;
       flex-grow: 0;
+      min-width: 336px;
     }
     .content {
       flex-grow: 1;

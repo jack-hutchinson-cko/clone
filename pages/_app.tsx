@@ -1,14 +1,26 @@
 import { NextPage } from 'next'
-import type { AppProps } from 'next/app'
 import MainLayout from '../components/MainLayout'
 import '../styles/globals.css'
+import { getSideBarLinks } from '../lib/docsItems'
 
-const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
+type Props = {
+  sideBarLinks: Array<{ link: string; name: string }>
+  Component?: any
+  pageProps?: any
+}
+
+const MyApp: NextPage<Props> = ({ sideBarLinks, Component, pageProps }) => {
   return (
-    <MainLayout>
+    <MainLayout sideBarLinks={sideBarLinks}>
       <Component {...pageProps} />
     </MainLayout>
   )
+}
+
+MyApp.getInitialProps = async () => {
+  return {
+    sideBarLinks: getSideBarLinks(),
+  }
 }
 
 export default MyApp
