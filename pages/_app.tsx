@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { ThemeDefaultProvider } from '@cko/primitives'
 import MainLayout from 'components/MainLayout'
 import { getSideBarLinks } from 'lib/docsItems'
 import '../styles/globals.css'
@@ -11,9 +12,11 @@ type Props = {
 
 const MyApp: NextPage<Props> = ({ sideBarLinks, Component, pageProps }) => {
   return (
-    <MainLayout sideBarLinks={sideBarLinks}>
-      <Component {...pageProps} />
-    </MainLayout>
+    <ThemeDefaultProvider>
+      <MainLayout sideBarLinks={sideBarLinks}>
+        <Component {...pageProps} />
+      </MainLayout>
+    </ThemeDefaultProvider>
   )
 }
 
