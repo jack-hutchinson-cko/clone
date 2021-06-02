@@ -3,6 +3,7 @@ import { ThemeDefaultProvider } from '@cko/primitives'
 import MainLayout from 'components/MainLayout'
 import { DocItem } from 'types/content'
 import { getSidebarDocs } from 'lib/docsItems'
+import { defaultTheme } from 'constants/theme'
 import '../styles/globals.css'
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 
 const MyApp: NextPage<Props> = ({ sideBarDocs, Component, pageProps }) => {
   return (
-    <ThemeDefaultProvider>
+    <ThemeDefaultProvider theme={defaultTheme}>
       <MainLayout sideBarDocs={sideBarDocs}>
         <Component {...pageProps} />
       </MainLayout>
