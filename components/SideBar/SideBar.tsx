@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { IconActionAlert } from '@cko/icons'
 import { PrimaryButton } from '@cko/primitives'
 
+import { IconArrowDown } from 'components/Icons'
+
 type Props = {
   sideBarLinks: { link: string; name: string }[]
 }
@@ -11,7 +13,7 @@ const SideBar: FC<Props> = ({ sideBarLinks }) => {
   return (
     <aside>
       <h1>
-        SideBar <IconActionAlert />
+        SideBar <IconActionAlert /> <IconArrowDown />
       </h1>
       <PrimaryButton onClick={() => alert('👻')}>Primary button</PrimaryButton>
       {sideBarLinks.map(({ link, name }) => (
