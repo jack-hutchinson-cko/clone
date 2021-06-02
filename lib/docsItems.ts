@@ -46,10 +46,4 @@ export const getDocsPathUrl = (): getDocsPathUrlReturnType =>
 export const getPostByUrlId = (url: string): DocItemWithParentNodes | undefined =>
   getDocsWithParentItems().find((docsData) => docsData.url === url)
 
-type getSideBarLinksReturnType = Array<{ link: string; name: string }>
-
-export const getSideBarLinks = (): getSideBarLinksReturnType =>
-  getDocsWithParentItems().map(({ parentsNodes, name, url }) => ({
-    link: `/${[...parentsNodes.map((parent) => parent.url), url].join('/')}`,
-    name: [...parentsNodes.map((parent) => parent.name), name].join(' / '),
-  }))
+export const getSidebarDocs = (): Promise<DocItem[]> => new Promise((resolve) => resolve(docsItems))

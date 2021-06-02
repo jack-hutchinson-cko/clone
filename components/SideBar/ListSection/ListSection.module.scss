@@ -1,0 +1,19 @@
+
+.listSection {
+  padding-left: 15px;
+  margin-top: 10px;
+
+  .listSectionHeader {
+    display: flex;
+    align-items: center;
+  }
+
+  .headerIcon {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .sectionContent {
+    padding-left: 15px;
+  }
+}

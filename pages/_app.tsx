@@ -1,19 +1,20 @@
 import { NextPage } from 'next'
 import { ThemeDefaultProvider } from '@cko/primitives'
 import MainLayout from 'components/MainLayout'
-import { getSideBarLinks } from 'lib/docsItems'
+import { DocItem } from 'types/content'
+import { getSidebarDocs } from 'lib/docsItems'
 import '../styles/globals.css'
 
 type Props = {
-  sideBarLinks: Array<{ link: string; name: string }>
+  sideBarDocs: DocItem[]
   Component?: any
   pageProps?: any
 }
 
-const MyApp: NextPage<Props> = ({ sideBarLinks, Component, pageProps }) => {
+const MyApp: NextPage<Props> = ({ sideBarDocs, Component, pageProps }) => {
   return (
     <ThemeDefaultProvider>
-      <MainLayout sideBarLinks={sideBarLinks}>
+      <MainLayout sideBarDocs={sideBarDocs}>
         <Component {...pageProps} />
       </MainLayout>
     </ThemeDefaultProvider>
@@ -21,9 +22,9 @@ const MyApp: NextPage<Props> = ({ sideBarLinks, Component, pageProps }) => {
 }
 
 MyApp.getInitialProps = async () => {
-  return {
-    sideBarLinks: getSideBarLinks(),
-  }
+  const sideBarDocs = await getSidebarDocs()
+
+  return { sideBarDocs }
 }
 
 export default MyApp

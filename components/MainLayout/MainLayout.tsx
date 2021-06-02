@@ -4,18 +4,20 @@ import Footer from '../Footer'
 import SideBar from '../SideBar'
 import styles from './mainLayout.module.scss'
 
+import { DocItem } from 'types/content'
+
 type Props = {
-  sideBarLinks: Array<{ link: string; name: string }>
+  sideBarDocs: DocItem[]
 }
 
-const MainLayout: FunctionComponent<Props> = ({ children, sideBarLinks }) => (
+const MainLayout: FunctionComponent<Props> = ({ children, sideBarDocs }) => (
   <div className={styles.mainWrapper}>
     <div className={styles.headerWrapper}>
       <Header />
     </div>
     <div className={styles.contentWrapper}>
       <div className={styles.sideBarWrapper}>
-        <SideBar sideBarLinks={sideBarLinks} />
+        <SideBar sideBarDocs={sideBarDocs} />
       </div>
       <main className={styles.content}>{children}</main>
     </div>

@@ -74,4 +74,32 @@ export const docsItems = [
     parentId: 2,
     content: getDefaultContent('Use an existing card'),
   },
+  {
+    name: 'Hot sale',
+    url: 'hot-sale',
+    id: 5,
+    parentId: null,
+    content: getDefaultContent('Hot sale'),
+  },
+  {
+    name: 'Best deals',
+    url: 'best-deals',
+    id: 6,
+    parentId: 5,
+    content: getDefaultContent('Best deals'),
+  },
+  {
+    name: 'Only today',
+    url: 'today-offer',
+    id: 7,
+    parentId: 5,
+    content: getDefaultContent('Only today'),
+  },
+  {
+    name: 'News',
+    url: 'news',
+    id: 8,
+    parentId: null,
+    content: getDefaultContent('News'),
+  },
 ]
