@@ -1,5 +1,12 @@
 
 .listItem {
-  padding-left: 15px;
+  padding: 0 0 0 45px;
   margin-top: 10px;
+  font-weight: 300;
+  font-size: 14px;
+
+  &.large {
+    font-size: 16px;
+    font-weight: 500;
+  }
 }

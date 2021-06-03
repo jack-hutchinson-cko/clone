@@ -1,20 +1,22 @@
 import { FC, useState, useCallback, ReactNode } from 'react'
 import { IconActionChevronRight, IconActionChevronDown } from '@cko/icons'
+import cn from 'classnames'
 
 import styles from './ListSection.module.scss'
 
 type Props = {
   link: ReactNode
+  isRoot: boolean
 }
 
-export const ListSection: FC<Props> = ({ link, children }) => {
+export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
   const [opened, setOpened] = useState(true)
   const onToggleHandler = useCallback(() => {
     setOpened(!opened)
   }, [opened])
   return (
     <div className={styles.listSection}>
-      <div className={styles.listSectionHeader}>
+      <div className={cn(styles.listSectionHeader, { [styles.large]: isRoot })}>
         <div className={styles.headerIcon} onClick={onToggleHandler}>
           {opened ? <IconActionChevronDown /> : <IconActionChevronRight />}
         </div>
