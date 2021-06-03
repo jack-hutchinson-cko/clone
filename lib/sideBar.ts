@@ -1,4 +1,4 @@
-import { TreeElement, TreeNode } from 'types/tree';
+import { TreeElement, TreeNode } from 'types/tree'
 
 export const mapToTree = <T>(arr: T[] = [], mapElement: (e: T) => TreeElement): TreeNode<T>[] => {
   const map: { [key: string]: number } = {}

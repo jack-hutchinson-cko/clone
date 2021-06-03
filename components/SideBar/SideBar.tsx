@@ -44,7 +44,6 @@ const SideBar: FC<{ sideBarDocs: DocItem[] }> = ({ sideBarDocs }) => {
   }, [sideBarDocs])
   return (
     <aside>
-      <h1>SideBar</h1>
       <ListItem
         isRoot
         link={
