@@ -1,17 +1,25 @@
-.mainWrapper {
-  margin: 0 auto;
-  max-width: 1360px;
+$border: #E6E7EC;
+
+$color-primary: #0c1142;
+$color-link:rgb(182, 184, 198);
+$color-link-special:rgb(43, 212, 219);
+$white:#FFFFFF;
+
+.mainWrapper {  
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   .headerWrapper {
+    border-bottom: 1px solid $border;
     flex-grow: 0;
   }
   .contentWrapper {
     flex-grow: 1;
     display: flex;
+    max-width: 1360px;
+    margin: 0 auto;
     .sideBarWrapper {
       width: 336px;
       flex-grow: 0;
