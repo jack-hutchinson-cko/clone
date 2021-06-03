@@ -1,8 +1,12 @@
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
+import { Text } from '@cko/primitives'
 import { DocContentItem } from 'types/content'
+import styles from './docBodyComponents.module.scss'
 
 type Props = Omit<DocContentItem, 'type'>
 
-const FooterComponent: FunctionComponent<Props> = ({ data }) => <p>{data}</p>
+const DocumentText: FC<Props> = ({ data }) => {
+  return <Text className={styles.documentText}>{data}</Text>
+}
 
-export default FooterComponent
+export default DocumentText

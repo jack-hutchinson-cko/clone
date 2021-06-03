@@ -2,7 +2,7 @@ export const defaultTheme = {
   colors: {
     success: '#0c1142',
     successDark: '#0c1142',
-    successLight: '#EFF9F6',
+    successLight: '#FFFFFF',
     danger: '#CA4A4A',
     dangerDark: '#990C0C',
     dangerLight: '#F6E3E3',
@@ -82,7 +82,7 @@ export const defaultTheme = {
     ],
     success: ['0 1px 3px 0 rgba(61,65,104,0.45)', '0 2px 5px 0 rgba(61,65,104,0.45)'],
     danger: ['0 1px 3px 0 rgba(202,74,74,0.45)', '0 2px 5px 0 rgba(202,74,74,0.45)'],
-    focus: '0 0 0 3px rgba(13,165,220,0.5)',
+    focus: '0 0 0 3px rgba(12,17,66,0.5)',
   },
   lineHeights: ['16px', '24px', '32px'],
   fontSizes: ['13px', '16px', '16px', '24px', '40px'],

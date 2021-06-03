@@ -5,6 +5,7 @@ import BreadCrumbs from 'components/BreadCrumbs'
 import DocBody from 'components/DocBody'
 import AnchorNavigation from 'components/AnchorNavigation'
 import { BreadCrumbsItems, DocContentItem } from 'types/content'
+import { TextHeadingOne } from '@cko/primitives'
 import styles from './docPost.module.scss'
 
 type Props = {
@@ -17,11 +18,13 @@ type Props = {
 const DocPost: NextPage<Props> = ({ name, breadCrumbsItem, content, anchors }) => {
   return (
     <div className={styles.mainWrapper}>
-      <div className={styles.content}>
-        <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-        <h1>{name}</h1>
+      <article className={styles.content}>
+        <header>
+          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+          <TextHeadingOne className={styles.title}>{name}</TextHeadingOne>
+        </header>
         <DocBody content={content} />
-      </div>
+      </article>
       <div className={styles.navigation}>
         <AnchorNavigation anchors={anchors} />
       </div>
