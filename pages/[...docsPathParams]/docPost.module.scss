@@ -1,6 +1,5 @@
 .mainWrapper {
   display: flex;
-  gap: 20px;
   .content {
     flex-grow: 1;
 
@@ -16,5 +15,7 @@
     position: sticky;
     height: 100%;
     top: 0;
+    padding: 0 26px 0 52px;
+    box-sizing: content-box;
   }
 }

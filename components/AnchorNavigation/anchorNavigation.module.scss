@@ -4,6 +4,7 @@
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .linkWrapper {
@@ -11,6 +12,7 @@
   flex-direction: column;
   border-left: 1px solid $grey-light;
   width: 100%;
+  margin: 16px 0;
 }
 
 .link{
