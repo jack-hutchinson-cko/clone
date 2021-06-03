@@ -1,21 +1,44 @@
-import { last } from 'lodash'
+import { useState, useCallback, useEffect } from 'react'
+import { last, get } from 'lodash'
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { getHashValue, updateNavigationHash } from 'lib/url'
 import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems'
 import BreadCrumbs from 'components/BreadCrumbs'
 import DocBody from 'components/DocBody'
 import AnchorNavigation from 'components/AnchorNavigation'
-import { BreadCrumbsItems, DocContentItem } from 'types/content'
+import { BreadCrumbsItems, DocContentItem, DocContentItemType } from 'types/content'
 import { TextHeadingOne } from '@cko/primitives'
 import styles from './docPost.module.scss'
 
 type Props = {
   name: string
   breadCrumbsItem: BreadCrumbsItems
-  content: Array<DocContentItem>
-  anchors: Array<DocContentItem>
+  content: DocContentItem[]
+  anchors: DocContentItem[]
 }
 
 const DocPost: NextPage<Props> = ({ name, breadCrumbsItem, content, anchors }) => {
+  const { asPath } = useRouter()
+  const [selectedId, setSelectedId] = useState<number>(get(anchors, '[0].id'))
+
+  useEffect(() => {
+    const slug = getHashValue(asPath)
+    const anchor = anchors.find((a) => a.params.anchorHref === slug)
+
+    if (anchor) {
+      setSelectedId(anchor.id)
+    }
+  }, [asPath, anchors])
+
+  const onUpdateAnchor = useCallback(
+    (anchorId: number, slug?: string) => {
+      setSelectedId(anchorId)
+      if (slug) updateNavigationHash(slug)
+    },
+    [anchors]
+  )
+
   return (
     <div className={styles.mainWrapper}>
       <article className={styles.content}>
@@ -23,10 +46,10 @@ const DocPost: NextPage<Props> = ({ name, breadCrumbsItem, content, anchors }) =
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           <TextHeadingOne className={styles.title}>{name}</TextHeadingOne>
         </header>
-        <DocBody content={content} />
+        <DocBody content={content} onUpdateAnchor={onUpdateAnchor} />
       </article>
       <div className={styles.navigation}>
-        <AnchorNavigation anchors={anchors} />
+        <AnchorNavigation anchors={anchors} selectedId={selectedId} />
       </div>
     </div>
   )
@@ -46,7 +69,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
   const targetUrl = last(docsPathParams) || ''
   const { name, url, parentsNodes = [], content = [] } = getPostByUrlId(targetUrl) || {}
   const breadCrumbsItem = [...parentsNodes, { name, url }]
-  const anchors = content.filter(({ type }) => type === 'ANCHOR')
+  const anchors = content.filter(({ type }) => type === DocContentItemType.ANCHOR)
   return {
     props: {
       name,

@@ -1,18 +1,32 @@
 import { FC } from 'react'
-import { DocContentItem } from 'types/content'
+import { DocContentItem, DocContentItemType } from 'types/content'
 import DocContentBuilder from '../DocContentBuilder'
+import Holder from './AnchorWrapper'
 import styles from './docBody.module.scss'
 
 type Props = {
-  content: Array<DocContentItem>
+  content: DocContentItem[]
+  onUpdateAnchor?: (id: number, slug?: string) => void
 }
 
-const DocBody: FC<Props> = ({ content }) => (
-  <div className={styles.docBodyWrapper}>
-    {content.map(({ type, data, params, id }) => (
-      <DocContentBuilder key={id} type={type} data={data} params={params} id={id} />
-    ))}
-  </div>
-)
+const DocBody: FC<Props> = ({ content, onUpdateAnchor }) => {
+  return (
+    <div className={styles.docBodyWrapper}>
+      {content.map(({ id, type, data, params }) => {
+        const docElement = (
+          <DocContentBuilder key={id} type={type} data={data} params={params} id={id} />
+        )
+        if (type === DocContentItemType.ANCHOR) {
+          return (
+            <Holder key={id} id={id} slug={params.anchorHref} onSelect={onUpdateAnchor}>
+              {docElement}
+            </Holder>
+          )
+        }
+        return docElement
+      })}
+    </div>
+  )
+}
 
 export default DocBody

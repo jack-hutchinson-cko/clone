@@ -1,5 +1,7 @@
-export type DocContentItemType = 'TEXT' | 'ANCHOR'
-
+export enum DocContentItemType {
+  TEXT = 'TEXT',
+  ANCHOR = 'ANCHOR',
+}
 export type DocContentItem = {
   data: string
   params: { anchorHref?: string }

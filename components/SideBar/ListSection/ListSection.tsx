@@ -22,9 +22,7 @@ export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
         </div>
         {link}
       </div>
-      <div className={styles.sectionContent} style={{ display: opened ? 'block' : 'none' }}>
-        {children}
-      </div>
+      <div style={{ display: opened ? 'block' : 'none' }}>{children}</div>
     </div>
   )
 }

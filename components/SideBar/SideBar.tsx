@@ -27,14 +27,14 @@ const renderSegment = (
 
   if (children.length) {
     return (
-      <ListSection isRoot={isRoot} link={link}>
+      <ListSection key={data.id} isRoot={isRoot} link={link}>
         {children.map((n) =>
           renderSegment(n, activeLink, baseUrl ? baseUrl + '/' + data.url : data.url)
         )}
       </ListSection>
     )
   }
-  return <ListItem link={link} isRoot={isRoot} />
+  return <ListItem key={data.id} link={link} isRoot={isRoot} />
 }
 
 const SideBar: FC<{ sideBarDocs: DocItem[] }> = ({ sideBarDocs }) => {

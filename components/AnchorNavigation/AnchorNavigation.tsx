@@ -1,28 +1,23 @@
-import { get } from 'lodash'
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent } from 'react'
+import cn from 'classnames'
+import Link from 'next/link'
 import { DocContentItem } from 'types/content'
 import styles from './anchorNavigation.module.scss'
 
 type Props = {
-  anchors: Array<DocContentItem>
+  anchors: DocContentItem[]
+  selectedId: number
 }
 
-const AnchorNavigation: FunctionComponent<Props> = ({ anchors }) => {
-  const [selectedAnchor, setSelectedAnchor] = useState(get(anchors, '[0].id'))
-
+const AnchorNavigation: FunctionComponent<Props> = ({ anchors, selectedId }) => {
   return (
     <div>
-      <h3>On this page</h3>
-      <div>
+      <h3 className={styles.navigationHeader}>On this page</h3>
+      <div className={styles.linkWrapper}>
         {anchors.map(({ id, data, params }) => (
-          <div
-            className={selectedAnchor === id ? styles.selected : ''}
-            key={id}
-            onClick={() => setSelectedAnchor(id)}
-            role="presentation"
-          >
-            <a href={`#${params.anchorHref}`}>{data}</a>
-          </div>
+          <Link key={id} href={`#${params.anchorHref}`} passHref replace>
+            <a className={cn(styles.link, { [styles.active]: selectedId === id })}>{data}</a>
+          </Link>
         ))}
       </div>
     </div>
