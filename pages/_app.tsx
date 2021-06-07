@@ -4,7 +4,7 @@ import MainLayout from 'components/MainLayout'
 import { DocItem } from 'types/content'
 import { getSidebarDocs } from 'lib/docsItems'
 import { defaultTheme } from 'constants/theme'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 type Props = {
   sideBarDocs: DocItem[]

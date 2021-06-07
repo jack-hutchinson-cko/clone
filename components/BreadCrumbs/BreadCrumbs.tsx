@@ -1,6 +1,8 @@
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
 
+import styles from './BreadCrumb.module.scss'
+
 type Props = {
   breadCrumbsItem: Array<{ name: string; url: string }>
 }
@@ -18,18 +20,19 @@ const getTotalLink = ({
     .join('/')}`
 
 const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
-  <div>
+  <div className={styles.container}>
     {breadCrumbsItem.map((parentNode, index) => (
-      <span key={parentNode.url}>
+      <span key={parentNode.url} className={styles.linkContainer}>
+        {index !== 0 ? ' / ' : ''}
         <Link
           href={getTotalLink({
             parentsNodes: breadCrumbsItem.slice(0, index),
             url: parentNode.url,
           })}
+          passHref
         >
-          <a>{parentNode.name}</a>
+          <a className={styles.link}>{parentNode.name}</a>
         </Link>
-        {index !== breadCrumbsItem.length - 1 ? ' / ' : ''}
       </span>
     ))}
   </div>
