@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { DocItem } from 'types/content'
 import { TreeNode } from 'types/tree'
 import { mapToTree } from 'lib/sideBar'
+import { getPathValue } from 'lib/url'
 
 import ListSection from './ListSection'
 import ListItem from './ListItem'
@@ -39,6 +40,7 @@ const renderSegment = (
 
 const SideBar: FC<{ sideBarDocs: DocItem[] }> = ({ sideBarDocs }) => {
   const { asPath } = useRouter()
+  const activeLink = useMemo(() => getPathValue(asPath), [asPath])
   const categoriesTreeNodes: TreeNode<DocItem>[] = useMemo(() => {
     return mapToTree<DocItem>(sideBarDocs, ({ id, parentId }) => ({ id, parentId }))
   }, [sideBarDocs])
@@ -47,12 +49,12 @@ const SideBar: FC<{ sideBarDocs: DocItem[] }> = ({ sideBarDocs }) => {
       <ListItem
         isRoot
         link={
-          <ListItemLink href={'/'} active={'/' === asPath}>
+          <ListItemLink href={'/'} active={'/' === activeLink}>
             Home
           </ListItemLink>
         }
       />
-      {categoriesTreeNodes.map((c) => renderSegment(c, asPath))}
+      {categoriesTreeNodes.map((c) => renderSegment(c, activeLink))}
     </aside>
   )
 }

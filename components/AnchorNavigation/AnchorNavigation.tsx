@@ -6,7 +6,7 @@ import styles from './anchorNavigation.module.scss'
 
 type Props = {
   anchors: DocContentItem[]
-  selectedId: number
+  selectedId?: number
 }
 
 const AnchorNavigation: FunctionComponent<Props> = ({ anchors, selectedId }) => {

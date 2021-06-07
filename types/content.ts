@@ -9,12 +9,14 @@ export type DocContentItem = {
   id: number
 }
 
+export type DocContent<T = unknown> = Omit<DocContentItem, 'type'> & T
+
 export type DocItem = {
   name: string
   url: string
   id: number
   parentId: number | null
-  content: Array<DocContentItem>
+  content: DocContentItem[]
 }
 
 export type DocItemWithParentNodes = DocItem & {

@@ -1,7 +1,6 @@
-import { FC } from 'react'
-import { DocContentItem, DocContentItemType } from 'types/content'
+import { FC, useMemo } from 'react'
+import { DocContentItem } from 'types/content'
 import DocContentBuilder from '../DocContentBuilder'
-import Holder from './AnchorWrapper'
 import styles from './docBody.module.scss'
 
 type Props = {
@@ -10,21 +9,20 @@ type Props = {
 }
 
 const DocBody: FC<Props> = ({ content, onUpdateAnchor }) => {
+  const extraProps = useMemo(() => ({ onUpdateAnchor }), [onUpdateAnchor])
+
   return (
     <div className={styles.docBodyWrapper}>
-      {content.map(({ id, type, data, params }) => {
-        const docElement = (
-          <DocContentBuilder key={id} type={type} data={data} params={params} id={id} />
-        )
-        if (type === DocContentItemType.ANCHOR) {
-          return (
-            <Holder key={id} id={id} slug={params.anchorHref} onSelect={onUpdateAnchor}>
-              {docElement}
-            </Holder>
-          )
-        }
-        return docElement
-      })}
+      {content.map(({ id, type, data, params }) => (
+        <DocContentBuilder
+          key={id}
+          type={type}
+          data={data}
+          params={params}
+          id={id}
+          {...extraProps}
+        />
+      ))}
     </div>
   )
 }

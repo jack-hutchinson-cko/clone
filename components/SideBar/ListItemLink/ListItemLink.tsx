@@ -10,7 +10,7 @@ type Props = {
 }
 
 const ListItemLink: FC<Props> = ({ children, href, active }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <a className={cn(styles.link, { [styles.active]: active })}>{children}</a>
   </Link>
 )

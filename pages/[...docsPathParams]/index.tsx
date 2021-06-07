@@ -19,25 +19,19 @@ type Props = {
 }
 
 const DocPost: NextPage<Props> = ({ name, breadCrumbsItem, content, anchors }) => {
-  const { asPath } = useRouter()
-  const [selectedId, setSelectedId] = useState<number>(get(anchors, '[0].id'))
+  const router = useRouter()
+  const [selectedId, setSelectedId] = useState<number>()
 
   useEffect(() => {
-    const slug = getHashValue(asPath)
-    const anchor = anchors.find((a) => a.params.anchorHref === slug)
+    const slug = getHashValue(router.asPath)
+    const anchor = anchors.find((a) => a.params.anchorHref === slug) ?? get(anchors, '[0]')
+    setSelectedId(anchor.id)
+  }, [router, anchors])
 
-    if (anchor) {
-      setSelectedId(anchor.id)
-    }
-  }, [asPath, anchors])
-
-  const onUpdateAnchor = useCallback(
-    (anchorId: number, slug?: string) => {
-      setSelectedId(anchorId)
-      if (slug) updateNavigationHash(slug)
-    },
-    [anchors]
-  )
+  const onUpdateAnchor = useCallback((anchorId: number, slug?: string) => {
+    setSelectedId(anchorId)
+    if (slug) updateNavigationHash(slug)
+  }, [])
 
   return (
     <div className={styles.mainWrapper}>
