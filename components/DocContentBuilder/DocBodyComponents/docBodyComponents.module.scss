@@ -6,6 +6,11 @@
 
   a {
     font-size: inherit;
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
   }
 }
 
