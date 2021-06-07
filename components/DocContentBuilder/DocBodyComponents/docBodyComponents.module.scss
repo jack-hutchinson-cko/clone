@@ -1,0 +1,19 @@
+@import 'styles/variables/colors';
+
+.subTitle {
+  padding-top: 32px;
+  border-top: 1px solid $grey-light;
+
+  a {
+    font-size: inherit;
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.documentText {
+  padding: 15px 0;
+}
