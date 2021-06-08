@@ -1,17 +1,17 @@
 import { FC, ReactNode } from 'react'
-import cn from 'classnames'
 
-import styles from './ListItem.module.scss'
+import { StyledListItem } from './ListItem.styles'
 
 type Props = {
   link: ReactNode
-  isRoot: boolean
+  icon?: ReactNode
+  isRoot?: boolean
 }
 
-const ListItem: FC<Props> = ({ link, isRoot }) => (
-  <div className={cn(styles.listItem, { [styles.large]: isRoot })}>
-      {link}
-  </div>
+const ListItem: FC<Props> = ({ link, icon, isRoot }) => (
+  <StyledListItem isRoot={isRoot}>
+    {icon} {link}
+  </StyledListItem>
 )
 
 export default ListItem

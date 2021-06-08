@@ -1,30 +1,42 @@
-import { FunctionComponent } from 'react'
+import { FC, useMemo } from 'react'
+import { useRouter } from 'next/router'
 import Header from '../Header'
 import Footer from '../Footer'
 import SideBar from '../SideBar'
 import styles from './mainLayout.module.scss'
 
-import { DocItem } from 'types/content'
+import { NavTreeElement } from 'types/sideBar'
+import { getPathValue } from 'lib/url'
 
 type Props = {
-  sideBarDocs: DocItem[]
+  navTreeLinks: NavTreeElement[]
 }
 
-const MainLayout: FunctionComponent<Props> = ({ children, sideBarDocs }) => (
-  <div className={styles.mainWrapper}>
-    <div className={styles.headerWrapper}>
-      <Header />
-    </div>
-    <div className={styles.contentWrapper}>
-      <div className={styles.sideBarWrapper}>
-        <SideBar sideBarDocs={sideBarDocs} />
+const MainLayout: FC<Props> = ({ children, navTreeLinks }) => {
+  const { asPath } = useRouter()
+  const activeLink = useMemo(() => getPathValue(asPath), [asPath])
+
+  return (
+    <div className={styles.mainWrapper}>
+      <div className={styles.headerWrapper}>
+        <Header />
       </div>
-      <main className={styles.content}>{children}</main>
+      <div className={styles.contentWrapper}>
+        <div className={styles.sideBarWrapper}>
+          <SideBar
+            navTreeLinks={navTreeLinks}
+            activeLink={activeLink}
+            homeLink="/"
+            homeLinkTitle="Home"
+          />
+        </div>
+        <main className={styles.content}>{children}</main>
+      </div>
+      <div className={styles.footerWrapper}>
+        <Footer />
+      </div>
     </div>
-    <div className={styles.footerWrapper}>
-      <Footer />
-    </div>
-  </div>
-)
+  )
+}
 
 export default MainLayout

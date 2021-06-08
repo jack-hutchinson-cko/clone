@@ -1,8 +1,7 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import Link from 'next/link'
 
-import styles from './ListItemLink.module.scss'
+import { StyledLink } from './ListItem.styles'
 
 type Props = {
   href: string
@@ -11,7 +10,7 @@ type Props = {
 
 const ListItemLink: FC<Props> = ({ children, href, active }) => (
   <Link href={href} passHref>
-    <a className={cn(styles.link, { [styles.active]: active })}>{children}</a>
+    <StyledLink isActive={active}>{children}</StyledLink>
   </Link>
 )
 

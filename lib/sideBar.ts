@@ -1,22 +1,24 @@
-import { TreeElement, TreeNode } from 'types/tree'
+import { NavTreeElement } from 'types/sideBar'
 
-export const mapToTree = <T>(arr: T[] = [], mapElement: (e: T) => TreeElement): TreeNode<T>[] => {
+export const mapToNavTree = <T>(
+  arr: T[] = [],
+  mapElement: (e: T) => NavTreeElement & { parentId?: number }
+): NavTreeElement[] => {
+  const parentsMap: { [key: string]: number } = {}
   const map: { [key: string]: number } = {}
-  const nodes: TreeNode<T>[] = []
-  const result: TreeNode<T>[] = []
+  const nodes: NavTreeElement[] = []
+  const result: NavTreeElement[] = []
 
   arr.forEach((data, i) => {
-    const { id, parentId } = mapElement(data)
-    map[id] = i
-    nodes.push({ data, id, parentId, children: [] })
+    const { parentId, ...navTreeElement } = mapElement(data)
+    map[navTreeElement.id] = i
+    if (parentId) parentsMap[navTreeElement.id] = parentId
+    nodes.push(navTreeElement)
   })
 
   nodes.forEach((node) => {
-    if (node.parentId !== null) {
-      nodes[map[node.parentId]]?.children?.push(node)
-    } else {
-      result.push(node)
-    }
+    if (parentsMap[node.id]) nodes[map[parentsMap[node.id]]]?.children?.push(node)
+    else result.push(node)
   })
   return result
 }

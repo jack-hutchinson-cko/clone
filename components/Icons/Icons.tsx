@@ -1,37 +1,27 @@
-import { FC, CSSProperties } from 'react'
-import cn from 'classnames'
-import styles from './Icons.module.scss'
+import { FC, CSSProperties, MouseEventHandler } from 'react'
+
+import { StyledIcon } from './Icons.styles'
 
 type Props = {
+  onClick?: MouseEventHandler<SVGSVGElement>
   className?: string
   style?: CSSProperties
 }
 
-export const IconArrowDown: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.iconArrowDown, className)} {...rest}>
-    <path
-      d="M2.5 4.5l3.5 3 3.5-3"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-export const HeaderLogo: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.HeaderLogo, className)} {...rest}>
+export const HeaderLogo: FC<Props> = (props) => (
+  <StyledIcon width={25} height={28} {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="#0c1142"
       d="M17.6895 14.0285L24.8618 1.25458C25.0299 0.96945 25.0299 0.684318 24.8618 0.399185C24.6937 0.171079 24.4136 0 24.1334 0H9.34039C9.06022 0 8.78005 0.171079 8.61195 0.399185L0.991311 13.5723C0.823209 13.8574 0.823209 14.1996 0.991311 14.4277L8.61195 27.6008C8.78005 27.8859 9.06022 28 9.34039 28H24.1334C24.4136 28 24.6937 27.8289 24.8618 27.6008C25.0299 27.3157 25.0299 27.0306 24.8618 26.7454L17.6895 14.0285ZM16.7369 12.3177L10.7973 1.71079H22.7325L16.7369 12.3177ZM9.28436 2.56619L15.7283 14.0285L9.28436 25.4908L2.67233 14.0285L9.28436 2.56619ZM10.7973 26.2892L16.7369 15.6823L22.6765 26.2892H10.7973Z"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const FooterLogo: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.FooterLogo, className)} {...rest}>
+export const FooterLogo: FC<Props> = (props) => (
+  <StyledIcon width={180} height={24} {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
@@ -123,91 +113,120 @@ export const FooterLogo: FC<Props> = ({ className, ...rest }) => (
       d="M12.6832 9.9662L17.6679 0.891286C17.7847 0.688721 17.7847 0.486156 17.6679 0.283591C17.5511 0.121539 17.3564 0 17.1616 0H6.8808C6.68608 0 6.49137 0.121539 6.37454 0.283591L1.07834 9.6421C0.961516 9.84466 0.961516 10.0877 1.07834 10.2498L6.37454 19.6083C6.49137 19.8109 6.68608 19.8919 6.8808 19.8919H17.1616C17.3564 19.8919 17.5511 19.7704 17.6679 19.6083C17.7847 19.4057 17.7847 19.2032 17.6679 19.0006L12.6832 9.9662ZM12.0212 8.75081L7.8933 1.21539H16.1881L12.0212 8.75081ZM6.84185 1.82309L11.3203 9.9662L6.84185 18.1093L2.24662 9.9662L6.84185 1.82309ZM7.8933 18.6765L12.0212 11.1411L16.1491 18.6765H7.8933Z"
       fill="white"
     />
-  </svg>
+  </StyledIcon>
 )
 
-export const IconFacebook: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconFacebook, className)} {...rest}>
+export const IconFacebook: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M6 5.33H4V8h2v8h3.33V8h2.43L12 5.33H9.33v-1.1c0-.64.14-.9.75-.9H12V0H9.47C7.07 0 6 1.05 6 3.08v2.25z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const IconTwitter: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconTwitter, className)} {...rest}>
+export const IconTwitter: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M16 2.9c-.6.28-1.23.46-1.88.54.69-.43 1.2-1.09 1.44-1.86-.65.39-1.35.67-2.1.82a3.2 3.2 0 00-4.97.23 3.35 3.35 0 00-.61 2.83 9.21 9.21 0 01-6.76-3.51 3.39 3.39 0 001.01 4.48 3.13 3.13 0 01-1.49-.41 3.35 3.35 0 002.67 3.33c-.5.12-1 .12-1.5 0a3.32 3.32 0 003.06 2.39A6.56 6.56 0 010 13.14a9.17 9.17 0 0011.85-1.46 9.41 9.41 0 002.51-7.01A6.56 6.56 0 0016 2.9z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const IconInstagram: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconInstagram, className)} {...rest}>
-    <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z"></path>
+export const IconInstagram: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
+    <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z" />
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M16 4.7A4.41 4.41 0 0011.3 0H4.7A4.41 4.41 0 000 4.7v6.6A4.43 4.43 0 004.7 16h6.6a4.41 4.41 0 004.7-4.7V8 4.7zm-8 7.4a4.1 4.1 0 110-8.2 4.1 4.1 0 010 8.2zM13.33 4H12V2.67h1.33V4z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const IconYoutube: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconYoutube, className)} {...rest}>
-    <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z"></path>
+export const IconYoutube: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
+    <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z" />
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M13.08 1.47a99.32 99.32 0 00-10.16 0C.32 1.67 0 3.4 0 8c0 4.6.32 6.3 2.92 6.5 3.38.2 6.78.2 10.16 0C15.68 14.3 16 12.57 16 8c0-4.56-.32-6.33-2.92-6.53zm-7.75 9.2V5.33L12 8l-6.67 2.67z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const IconGlassdoor: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconGlassdoor, className)} {...rest}>
+export const IconGlassdoor: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M11.6 0c1.32 0 2.4.74 2.4 2H4v10H2V2.29A2.35 2.35 0 014.4 0h7.2zm0 14H2c0 1.26 1.08 2 2.4 2h7.2c1.32 0 2.4-.74 2.4-2V4h-2v10h-.4z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const IconCheckout: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconCheckout, className)} {...rest}>
+export const IconCheckout: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M4.33 13.84a2.17 2.17 0 11-4.34 0 2.17 2.17 0 014.34 0zM0 5.46v3.2A7.43 7.43 0 017.35 16h3.21A10.67 10.67 0 000 5.46zm0-2.24A12.81 12.81 0 0112.79 16H16A16 16 0 000 0v3.22z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
 )
 
-export const IconLinkedin: FC<Props> = ({ className, ...rest }) => (
-  <svg className={cn(styles.icon, styles.IconLinkedin, className)} {...rest}>
+export const IconLinkedin: FC<Props> = (props) => (
+  <StyledIcon width={20} height={20} color="#fff" {...props}>
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M3.32 1.74a1.7 1.7 0 01-1.65 1.74A1.7 1.7 0 010 1.74 1.7 1.7 0 011.67 0a1.7 1.7 0 011.65 1.74zm0 3.13H0V16h3.33L3.32 4.87zm5.33 0H5.33V16h3.32v-5.84c0-3.25 4-3.52 4 0V16H16V8.95a4 4 0 00-7.35-2.57V4.87z"
       fill="#fff"
-    ></path>
-  </svg>
+    />
+  </StyledIcon>
+)
+
+export const IconEarth: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} {...props}>
+    <path
+      d="M14.5 5.5c-.6.4-.3 1.3-1 1.5-.8.2-1-1.4-1.6-1.2-.5.2-.9 1-.9 1s-.2.6 0 .7c.2 0 .6.3.9.6.7 1.2-.7 1.6-1.2 2.5-.6 1.2-.7 2.9-1.2 2.9s-1-1.3-1-1.5v-1.5c0-.3 0-1.3-.7-1.6-.3-.2-.5-.5-.8-.4-.7 0-1.5.6-2 0-.6-.8-.6-2.7.5-3h1c.9.1 1.4.6 2 .5.6 0 .9 0 1-.5.2-.7 0-1-.5-1.5-.5-.6-1.5-.7-1.5-1.5 0-.7.5-1.2 1.2-1.3M1 6.5c1.1.7 2.5 2 2.5 3 .5 1 .2 2.7 0 4"
+      stroke="#0C1142"
+      strokeMiterlimit="10"
+      strokeWidth="1"
+    />
+    <path
+      d="M8 15.5c3.9 0 7.5-3.6 7.5-7.5S11.9.5 8 .5A7.9 7.9 0 00.5 8c0 3.9 3.6 7.5 7.5 7.5z"
+      stroke="#0C1142"
+      strokeMiterlimit="10"
+      strokeWidth="1"
+    />
+  </StyledIcon>
+)
+
+export const IconActionChevronDown: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} {...props}>
+    <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
+  </StyledIcon>
+)
+
+export const IconActionChevronRight: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} {...props}>
+    <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
+  </StyledIcon>
 )

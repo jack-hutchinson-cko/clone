@@ -1,62 +1,59 @@
-import { FC, useMemo, ReactNode } from 'react'
-import { useRouter } from 'next/router'
+import { FC, ReactNode } from 'react'
 
-import { DocItem } from 'types/content'
-import { TreeNode } from 'types/tree'
-import { mapToTree } from 'lib/sideBar'
-import { getPathValue } from 'lib/url'
-
+import { NavTreeElement } from 'types/sideBar'
 import ListSection from './ListSection'
 import ListItem from './ListItem'
 import ListItemLink from './ListItemLink'
-
-const resolveUrl = (slug: string, baseUrl?: string): string =>
-  `/${baseUrl ? baseUrl + `/${slug}` : slug}`
+import { IconEarth } from '../Icons'
+import { StyledNavigation } from './SideBar.styles'
 
 const renderSegment = (
-  { data, children }: TreeNode<DocItem>,
+  { id, title, path, children }: NavTreeElement,
   activeLink: string,
-  baseUrl?: string
+  isRoot?: boolean
 ): ReactNode => {
-  const isRoot = data.parentId === null
-  const path = resolveUrl(data.url, baseUrl)
   const link = (
     <ListItemLink href={path} active={path === activeLink}>
-      {data.name}
+      {title}
     </ListItemLink>
   )
 
-  if (children.length) {
+  if (children?.length) {
     return (
-      <ListSection key={data.id} isRoot={isRoot} link={link}>
-        {children.map((n) =>
-          renderSegment(n, activeLink, baseUrl ? baseUrl + '/' + data.url : data.url)
-        )}
+      <ListSection key={id} isRoot={isRoot} link={link}>
+        {children.map((n) => renderSegment(n, activeLink))}
       </ListSection>
     )
   }
-  return <ListItem key={data.id} link={link} isRoot={isRoot} />
+  return <ListItem key={id} link={link} isRoot={isRoot} />
 }
 
-const SideBar: FC<{ sideBarDocs: DocItem[] }> = ({ sideBarDocs }) => {
-  const { asPath } = useRouter()
-  const activeLink = useMemo(() => getPathValue(asPath), [asPath])
-  const categoriesTreeNodes: TreeNode<DocItem>[] = useMemo(() => {
-    return mapToTree<DocItem>(sideBarDocs, ({ id, parentId }) => ({ id, parentId }))
-  }, [sideBarDocs])
-  return (
-    <aside>
-      <ListItem
-        isRoot
-        link={
-          <ListItemLink href={'/'} active={'/' === activeLink}>
-            Home
-          </ListItemLink>
-        }
-      />
-      {categoriesTreeNodes.map((c) => renderSegment(c, activeLink))}
-    </aside>
-  )
+export type Props = {
+  homeLink?: string
+  homeLinkTitle?: string
+  activeLink: string
+  navTreeLinks: NavTreeElement[]
 }
+
+const SideBar: FC<Props> = ({ navTreeLinks, activeLink, homeLink, homeLinkTitle }) => (
+  <aside>
+    {homeLink && (
+      <StyledNavigation>
+        <ListItem
+          isRoot
+          icon={<IconEarth />}
+          link={
+            <ListItemLink href={homeLink} active={homeLink === activeLink}>
+              {homeLinkTitle}
+            </ListItemLink>
+          }
+        />
+      </StyledNavigation>
+    )}
+    <StyledNavigation>
+      {navTreeLinks.map((c) => renderSegment(c, activeLink, true))}
+    </StyledNavigation>
+  </aside>
+)
 
 export default SideBar
