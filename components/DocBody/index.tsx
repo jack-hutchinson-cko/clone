@@ -1,3 +1,3 @@
-import DocBody from './DocBody'
+import DocBody from './DocBody';
 
-export default DocBody
+export default DocBody;

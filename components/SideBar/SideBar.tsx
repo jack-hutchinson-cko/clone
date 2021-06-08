@@ -16,14 +16,14 @@ const renderSegment = (
     <ListItemLink href={path} active={path === activeLink}>
       {title}
     </ListItemLink>
-  )
+  );
 
   if (children?.length) {
     return (
       <ListSection key={id} isRoot={isRoot} link={link}>
         {children.map((n) => renderSegment(n, activeLink))}
       </ListSection>
-    )
+    );
   }
   return <ListItem key={id} link={link} isRoot={isRoot} />
 }

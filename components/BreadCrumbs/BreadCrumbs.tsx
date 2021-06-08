@@ -10,13 +10,13 @@ const getTotalLink = ({
   parentsNodes,
   url,
 }: {
-  parentsNodes: Array<{ name: string; url: string }>
-  url: string
+  parentsNodes: Array<{ name: string; url: string }>;
+  url: string;
 }): string =>
   `/${parentsNodes
     .map((parentItem) => parentItem.url)
     .concat(url)
-    .join('/')}`
+    .join('/')}`;
 
 const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
   <StyledContainer>
@@ -37,4 +37,4 @@ const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
   </StyledContainer>
 )
 
-export default BreadCrumbs
+export default BreadCrumbs;

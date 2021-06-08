@@ -1,3 +1,3 @@
-import AnchorNavigation from './AnchorNavigation'
+import AnchorNavigation from './AnchorNavigation';
 
-export default AnchorNavigation
+export default AnchorNavigation;

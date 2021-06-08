@@ -20,12 +20,12 @@ const MyApp: NextPage<Props> = ({ sidebarDocLinks, Component, pageProps }) => {
         <Component {...pageProps} />
       </MainLayout>
     </ThemeDefaultProvider>
-  )
-}
+  );
+};
 
 MyApp.getInitialProps = async () => {
   const sidebarDocLinks = await getSidebarDocLinks()
   return { sidebarDocLinks }
 }
 
-export default MyApp
+export default MyApp;

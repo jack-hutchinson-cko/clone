@@ -14,4 +14,4 @@ const ListItem: FC<Props> = ({ link, icon, isRoot }) => (
   </StyledListItem>
 )
 
-export default ListItem
+export default ListItem;

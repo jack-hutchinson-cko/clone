@@ -26,7 +26,7 @@ const HeaderComponent: FC = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default HeaderComponent
+export default HeaderComponent;

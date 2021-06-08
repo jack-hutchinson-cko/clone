@@ -1,11 +1,11 @@
-import { FunctionComponent } from 'react'
-import Link from 'next/link'
-import styles from './footer.module.scss'
-import footerList from '../../mocks/footerSection'
+import { FunctionComponent } from 'react';
+import Link from 'next/link';
+import styles from './footer.module.scss';
+import footerList from '../../mocks/footerSection';
 
 const appendSpecialLink = (link) => {
-  if (link === 'Careers') return <span className={styles.footerLinkSpecial}>WE`RE HIRING</span>
-}
+  if (link === 'Careers') return <span className={styles.footerLinkSpecial}>WE`RE HIRING</span>;
+};
 const FooterLinksComponent: FunctionComponent = () => {
   return (
     <>
@@ -26,18 +26,18 @@ const FooterLinksComponent: FunctionComponent = () => {
                             </Link>
                             {appendSpecialLink(sectionLink.name)}
                           </li>
-                        )
+                        );
                       })}
                     </ul>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
-        )
+        );
       })}
     </>
-  )
-}
+  );
+};
 
-export default FooterLinksComponent
+export default FooterLinksComponent;

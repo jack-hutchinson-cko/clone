@@ -1,6 +1,6 @@
-import { GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+import { GetStaticProps, NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   Box,
   Flex,
@@ -11,13 +11,13 @@ import {
   List,
   ListItem,
   Link as PrimitiveLink,
-} from '@cko/primitives'
-import { IconActionArrowRight } from '@cko/icons'
-import { getHomePageContent } from 'lib/homePageContent'
-import { HomePageContent } from 'types/homepage'
-import styles from './index.module.scss'
+} from '@cko/primitives';
+import { IconActionArrowRight } from '@cko/icons';
+import { getHomePageContent } from 'lib/homePageContent';
+import { HomePageContent } from 'types/homepage';
+import styles from './index.module.scss';
 
-type Props = HomePageContent
+type Props = HomePageContent;
 
 const HomePage: NextPage<Props> = ({ intro, blocks }) => {
   return (
@@ -56,18 +56,18 @@ const HomePage: NextPage<Props> = ({ intro, blocks }) => {
         ))}
       </Flex>
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { intro, blocks } = await getHomePageContent()
+  const { intro, blocks } = await getHomePageContent();
 
   return {
     props: {
       intro,
       blocks,
     },
-  }
-}
+  };
+};

@@ -39,4 +39,4 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks }) => {
   )
 }
 
-export default MainLayout
+export default MainLayout;

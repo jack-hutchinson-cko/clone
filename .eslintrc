@@ -1,0 +1,57 @@
+{
+    "extends": [
+      "airbnb-typescript",
+      "airbnb/hooks",
+      "plugin:jest/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "tsconfig.json"
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "jest/no-conditional-expect": "off",
+      "import/prefer-default-export": "off",
+      "import/order": [
+        "warn",
+        {
+          "groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
+        }
+      ],
+      "react/prop-types": "off",
+      "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "tsx": "never"
+        }
+      ],
+      "import/no-cycle": ["error", { "ignoreExternal": true }]
+    },
+    "settings": {
+      "react": {
+        "version": "17.0.1"
+      },
+      "import/resolver": {
+        "typescript": {},
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"],
+          "moduleDirectory": ["node_modules", "src/"]
+        }
+      }
+    }
+  }

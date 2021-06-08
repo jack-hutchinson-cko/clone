@@ -10,8 +10,8 @@ type Props = {
 export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
   const [opened, setOpened] = useState(false)
   const onToggleHandler = useCallback(() => {
-    setOpened(!opened)
-  }, [opened])
+    setOpened(!opened);
+  }, [opened]);
   return (
     <div>
       <StyledHeader isRoot={isRoot}>
@@ -20,7 +20,7 @@ export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
       </StyledHeader>
       <StyledContent isShown={opened}>{children}</StyledContent>
     </div>
-  )
-}
+  );
+};
 
-export default ListSection
+export default ListSection;
