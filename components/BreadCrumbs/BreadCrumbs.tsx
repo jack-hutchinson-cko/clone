@@ -1,9 +1,8 @@
 import { FunctionComponent } from 'react'
+import { StyledContainer, StyledLinkContainer, StyledLink } from './breadCrumbsStyles'
 import Link from 'next/link'
 
-import styles from './BreadCrumb.module.scss'
-
-type Props = {
+export type Props = {
   breadCrumbsItem: Array<{ name: string; url: string }>
 }
 
@@ -20,9 +19,9 @@ const getTotalLink = ({
     .join('/')}`
 
 const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
-  <div className={styles.container}>
+  <StyledContainer>
     {breadCrumbsItem.map((parentNode, index) => (
-      <span key={parentNode.url} className={styles.linkContainer}>
+      <StyledLinkContainer key={parentNode.url}>
         {index !== 0 ? ' / ' : ''}
         <Link
           href={getTotalLink({
@@ -31,11 +30,11 @@ const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
           })}
           passHref
         >
-          <a className={styles.link}>{parentNode.name}</a>
+          <StyledLink>{parentNode.name}</StyledLink>
         </Link>
-      </span>
+      </StyledLinkContainer>
     ))}
-  </div>
+  </StyledContainer>
 )
 
 export default BreadCrumbs

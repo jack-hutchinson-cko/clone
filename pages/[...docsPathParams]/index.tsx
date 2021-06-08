@@ -62,7 +62,10 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
   const { docsPathParams = [] } = params
   const targetUrl = last(docsPathParams) || ''
   const { name, url, parentsNodes = [], content = [] } = getPostByUrlId(targetUrl) || {}
-  const breadCrumbsItem = [...parentsNodes, { name, url }]
+  const breadCrumbsItem = [
+    ...parentsNodes.map((item) => ({ name: item.name, url: item.url })),
+    { name, url },
+  ]
   const anchors = content.filter(({ type }) => type === DocContentItemType.ANCHOR)
   return {
     props: {
