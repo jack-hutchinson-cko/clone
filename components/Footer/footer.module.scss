@@ -1,32 +1,36 @@
-@import "../MainLayout/mainLayout.module";
+@import "styles/variables/colors";
 
 %dflex {
    display: flex;
-   justify-content: space-between; 
- }
- %border-bottom {
-   border-bottom: 0.5px solid $color-link;
- }
+   justify-content: space-between;
+}
+
 .footerBackground {
    background: $color-primary;
+
    .footerMain {
       max-width: 1360px;
-      margin: 0px auto;
+      margin: 0 auto;
       padding: 80px 64px;
+
       .footerLogo {
          height: 50px;
          display: flex;
          align-items: center;
       }
+
       .footerLogoWrapper {
          flex: 1 1 0%;
       }
+
       .footerLinkListContainer {
          @extend %dflex;
       }
+
       .footerList {
          margin-top: 40px;
       }
+
       .footerListTitle {
          font-weight: 500;
          font-size: 12px;
@@ -34,53 +38,64 @@
          letter-spacing: 0.11em;
          color: $white;
       }
+
       .footerColumnContainer {
          @extend %dflex;
          gap: 60px;
       }
+
       .footerColumnSubContainer{
          padding: 0;
       }
+
       .footerLink {
          font-size: 14px;
          line-height: 40px;
-         color: $color-link;
+         color: $grey-dark;
+
          & a:hover {
-            @extend %border-bottom;
+            border-bottom: 0.5px solid $grey-dark;
             transition: border-bottom 0.2s, color 0.5s;
             padding-bottom: 4px;
          } 
       }
+
       .footerLinkSpecial {
          font-weight: 500;
          font-size: 10px;
          line-height: 16px;
          color: $color-primary;
-         background: $color-link-special;
+         background: $blue-light;
          border-radius: 4px;
          margin-left: 8px;
          padding: 4px;
       }
+
       .subFooter {
          display: flex;
          flex-direction: column;
          margin-top: 70px;
+
          .subfooterGridItem {
             @extend %dflex;
          }
+
          .subfooterTitle {
             font-weight: 500;
             font-size: 14px;
             color: $white;
          }
+
          .subfooterWrapper {
             display: flex;
          }
+
          .subfooterLink {
             font-size: 14px;
             line-height: 15px;
-            color: $color-link;
+            color: $grey-dark;
             padding-left: 40px;
+
             & a:hover{
                text-decoration: underline;
                padding-bottom: 4px;
@@ -89,23 +104,28 @@
          .subfooterDescription {
             font-size: 10px;
             line-height: 20px;
-            color:  $color-link;
+            color:  $grey-dark;
             margin-top: 16px;
             width: 38%;
+
             & p {
                margin: 0;
             }
          }
+
          .subfooterSocialLinks {
             text-align: right;
             margin-top: 25px;
             width: 60%;
          }
+
          .subfooterLogo {
             padding-left: 24px;
          }
+
          .containerSubfooterLink {
             display: flex;
+
             & .descriptionLink:hover{
                text-decoration: underline;
             }

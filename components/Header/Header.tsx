@@ -1,9 +1,9 @@
+import { FC } from 'react'
 import Link from 'next/link'
+import { HeaderLogo } from 'components/Icons/Icons'
 import styles from './header.module.scss'
-import { FunctionComponent } from 'react'
-import { HeaderLogo } from '../Icons/Icons'
 
-const HeaderComponent: FunctionComponent = () => {
+const HeaderComponent: FC = () => {
   return (
     <nav className={styles.headerbar}>
       <div className={styles.headerbarContainer}>
