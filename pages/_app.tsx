@@ -1,16 +1,16 @@
-import { NextPage } from 'next'
-import { ThemeDefaultProvider } from '@cko/primitives'
-import MainLayout from 'components/MainLayout'
-import { DocItem } from 'types/content'
-import { getSidebarDocs } from 'lib/docsItems'
-import { defaultTheme } from 'constants/theme'
-import '../styles/globals.scss'
+import { NextPage } from 'next';
+import { ThemeDefaultProvider } from '@cko/primitives';
+import MainLayout from 'components/MainLayout';
+import { DocItem } from 'types/content';
+import { getSidebarDocs } from 'lib/docsItems';
+import { defaultTheme } from 'constants/theme';
+import '../styles/globals.scss';
 
 type Props = {
-  sideBarDocs: DocItem[]
-  Component?: any
-  pageProps?: any
-}
+  sideBarDocs: DocItem[];
+  Component?: any;
+  pageProps?: any;
+};
 
 const MyApp: NextPage<Props> = ({ sideBarDocs, Component, pageProps }) => {
   return (
@@ -19,13 +19,13 @@ const MyApp: NextPage<Props> = ({ sideBarDocs, Component, pageProps }) => {
         <Component {...pageProps} />
       </MainLayout>
     </ThemeDefaultProvider>
-  )
-}
+  );
+};
 
 MyApp.getInitialProps = async () => {
-  const sideBarDocs = await getSidebarDocs()
+  const sideBarDocs = await getSidebarDocs();
 
-  return { sideBarDocs }
-}
+  return { sideBarDocs };
+};
 
-export default MyApp
+export default MyApp;

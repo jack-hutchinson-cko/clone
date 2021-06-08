@@ -1,23 +1,23 @@
-import { FunctionComponent } from 'react'
-import Link from 'next/link'
+import { FunctionComponent } from 'react';
+import Link from 'next/link';
 
-import styles from './BreadCrumb.module.scss'
+import styles from './BreadCrumb.module.scss';
 
 type Props = {
-  breadCrumbsItem: Array<{ name: string; url: string }>
-}
+  breadCrumbsItem: Array<{ name: string; url: string }>;
+};
 
 const getTotalLink = ({
   parentsNodes,
   url,
 }: {
-  parentsNodes: Array<{ name: string; url: string }>
-  url: string
+  parentsNodes: Array<{ name: string; url: string }>;
+  url: string;
 }): string =>
   `/${parentsNodes
     .map((parentItem) => parentItem.url)
     .concat(url)
-    .join('/')}`
+    .join('/')}`;
 
 const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
   <div className={styles.container}>
@@ -36,6 +36,6 @@ const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
       </span>
     ))}
   </div>
-)
+);
 
-export default BreadCrumbs
+export default BreadCrumbs;

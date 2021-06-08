@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'react'
-import Link from 'next/link'
-import styles from './footer.module.scss'
-import footerList from '../../mocks/footerSection'
+import { FunctionComponent } from 'react';
+import Link from 'next/link';
+import styles from './footer.module.scss';
+import footerList from '../../mocks/footerSection';
 
 const SubfooterLinksComponent: FunctionComponent = () => {
   return (
@@ -17,11 +17,11 @@ const SubfooterLinksComponent: FunctionComponent = () => {
                 </a>
               </Link>
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default SubfooterLinksComponent
+export default SubfooterLinksComponent;

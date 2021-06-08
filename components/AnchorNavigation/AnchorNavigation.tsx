@@ -1,13 +1,13 @@
-import { FunctionComponent } from 'react'
-import cn from 'classnames'
-import Link from 'next/link'
-import { DocContentItem } from 'types/content'
-import styles from './anchorNavigation.module.scss'
+import { FunctionComponent } from 'react';
+import cn from 'classnames';
+import Link from 'next/link';
+import { DocContentItem } from 'types/content';
+import styles from './anchorNavigation.module.scss';
 
 type Props = {
-  anchors: DocContentItem[]
-  selectedId?: number
-}
+  anchors: DocContentItem[];
+  selectedId?: number;
+};
 
 const AnchorNavigation: FunctionComponent<Props> = ({ anchors, selectedId }) => {
   return (
@@ -21,7 +21,7 @@ const AnchorNavigation: FunctionComponent<Props> = ({ anchors, selectedId }) => 
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AnchorNavigation
+export default AnchorNavigation;

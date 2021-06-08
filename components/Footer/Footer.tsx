@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'react'
-import Link from 'next/link'
-import styles from './footer.module.scss'
-import { FooterLogo } from '../Icons/Icons'
-import FooterLinksComponent from './FooterLinks'
-import SubfooterLinksComponent from './SubfooterLinks'
-import SubfooterSocialLinksComponent from './SubfooterSocialLinks'
+import { FunctionComponent } from 'react';
+import Link from 'next/link';
+import styles from './footer.module.scss';
+import { FooterLogo } from '../Icons/Icons';
+import FooterLinksComponent from './FooterLinks';
+import SubfooterLinksComponent from './SubfooterLinks';
+import SubfooterSocialLinksComponent from './SubfooterSocialLinks';
 
 const FooterComponent: FunctionComponent = () => {
   return (
@@ -48,6 +48,6 @@ const FooterComponent: FunctionComponent = () => {
         </div>
       </div>
     </footer>
-  )
-}
-export default FooterComponent
+  );
+};
+export default FooterComponent;

@@ -6,7 +6,7 @@ import {
   IconGlassdoor,
   IconCheckout,
   IconLinkedin,
-} from '../components/Icons/Icons'
+} from '../components/Icons/Icons';
 
 const footerList: any = {
   policies: [
@@ -180,6 +180,6 @@ const footerList: any = {
       ],
     },
   ],
-}
+};
 
-export default footerList
+export default footerList;

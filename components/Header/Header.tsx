@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import styles from './header.module.scss'
-import { FunctionComponent } from 'react'
-import { HeaderLogo } from '../Icons/Icons'
+import Link from 'next/link';
+import styles from './header.module.scss';
+import { FunctionComponent } from 'react';
+import { HeaderLogo } from '../Icons/Icons';
 
 const HeaderComponent: FunctionComponent = () => {
   return (
@@ -26,7 +26,7 @@ const HeaderComponent: FunctionComponent = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default HeaderComponent
+export default HeaderComponent;

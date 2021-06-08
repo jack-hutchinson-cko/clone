@@ -1,3 +1,3 @@
-import DocContentBuilder from './DocContentBuilder'
+import DocContentBuilder from './DocContentBuilder';
 
-export default DocContentBuilder
+export default DocContentBuilder;

@@ -1,4 +1,4 @@
-import { HomePageContent, HomePageBlockLinksData } from 'types/homepage'
+import { HomePageContent, HomePageBlockLinksData } from 'types/homepage';
 
 const homePageBlockLinks: HomePageBlockLinksData = {
   payments: [
@@ -35,7 +35,7 @@ const homePageBlockLinks: HomePageBlockLinksData = {
       url: '/#6',
     },
   ],
-}
+};
 
 export const homePageContent: HomePageContent = {
   intro: {
@@ -63,4 +63,4 @@ export const homePageContent: HomePageContent = {
       links: homePageBlockLinks['the-hub'],
     },
   ],
-}
+};

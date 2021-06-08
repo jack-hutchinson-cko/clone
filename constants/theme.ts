@@ -87,4 +87,4 @@ export const defaultTheme = {
   lineHeights: ['16px', '24px', '32px'],
   fontSizes: ['13px', '16px', '16px', '24px', '40px'],
   space: [0, 0, '8px', '16px', '24px', '32px'],
-}
+};

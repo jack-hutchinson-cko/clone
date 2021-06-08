@@ -1,23 +1,23 @@
-import { docsItems } from 'mocks/docs'
-import { DocItem, DocItemWithParentNodes } from 'types/content'
+import { docsItems } from 'mocks/docs';
+import { DocItem, DocItemWithParentNodes } from 'types/content';
 
-type findAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem }
+type findAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem };
 const findAllParentsNodes = ({
   docsItemsMapById,
   docsItem,
 }: findAllParentsNodesType): Array<DocItem> => {
-  const parentNodes = []
+  const parentNodes = [];
 
-  let currentParentId = docsItem.parentId
+  let currentParentId = docsItem.parentId;
   do {
     if (currentParentId && docsItemsMapById[currentParentId]) {
-      parentNodes.push(docsItemsMapById[currentParentId])
-      currentParentId = docsItemsMapById[currentParentId].parentId
+      parentNodes.push(docsItemsMapById[currentParentId]);
+      currentParentId = docsItemsMapById[currentParentId].parentId;
     }
-  } while (currentParentId)
+  } while (currentParentId);
 
-  return parentNodes.reverse()
-}
+  return parentNodes.reverse();
+};
 
 export const getDocsWithParentItems = (): Array<DocItemWithParentNodes> => {
   const docsItemsMapById = docsItems.reduce(
@@ -25,25 +25,26 @@ export const getDocsWithParentItems = (): Array<DocItemWithParentNodes> => {
       ...result,
       [docItemData.id]: docItemData,
     }),
-    {}
-  )
+    {},
+  );
 
   return docsItems.map((docsItem) => ({
     ...docsItem,
     parentsNodes: findAllParentsNodes({ docsItemsMapById, docsItem }),
-  }))
-}
+  }));
+};
 
-type getDocsPathUrlReturnType = Array<{ params: { docsPathParams: Array<string> } }>
+type getDocsPathUrlReturnType = Array<{ params: { docsPathParams: Array<string> } }>;
 
 export const getDocsPathUrl = (): getDocsPathUrlReturnType =>
   getDocsWithParentItems().map(({ parentsNodes, url }) => ({
     params: {
       docsPathParams: [...parentsNodes.map((parent) => parent.url), url],
     },
-  }))
+  }));
 
 export const getPostByUrlId = (url: string): DocItemWithParentNodes | undefined =>
-  getDocsWithParentItems().find((docsData) => docsData.url === url)
+  getDocsWithParentItems().find((docsData) => docsData.url === url);
 
-export const getSidebarDocs = (): Promise<DocItem[]> => new Promise((resolve) => resolve(docsItems))
+export const getSidebarDocs = (): Promise<DocItem[]> =>
+  new Promise((resolve) => resolve(docsItems));

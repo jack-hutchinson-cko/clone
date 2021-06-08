@@ -1,15 +1,15 @@
-import { FC, useMemo } from 'react'
-import { DocContentItem } from 'types/content'
-import DocContentBuilder from '../DocContentBuilder'
-import styles from './docBody.module.scss'
+import { FC, useMemo } from 'react';
+import { DocContentItem } from 'types/content';
+import DocContentBuilder from '../DocContentBuilder';
+import styles from './docBody.module.scss';
 
 type Props = {
-  content: DocContentItem[]
-  onUpdateAnchor?: (id: number, slug?: string) => void
-}
+  content: DocContentItem[];
+  onUpdateAnchor?: (id: number, slug?: string) => void;
+};
 
 const DocBody: FC<Props> = ({ content, onUpdateAnchor }) => {
-  const extraProps = useMemo(() => ({ onUpdateAnchor }), [onUpdateAnchor])
+  const extraProps = useMemo(() => ({ onUpdateAnchor }), [onUpdateAnchor]);
 
   return (
     <div className={styles.docBodyWrapper}>
@@ -24,7 +24,7 @@ const DocBody: FC<Props> = ({ content, onUpdateAnchor }) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default DocBody
+export default DocBody;
