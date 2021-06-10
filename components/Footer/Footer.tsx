@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import styles from './footer.module.scss';
 import { FooterLogo } from '../Icons/Icons';
+import styles from './footer.module.scss';
 import FooterLinksComponent from './FooterLinks';
 import SubfooterLinksComponent from './SubfooterLinks';
 import SubfooterSocialLinksComponent from './SubfooterSocialLinks';

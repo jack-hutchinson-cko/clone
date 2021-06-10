@@ -11,7 +11,7 @@ import ListItem from './ListItem';
 import ListItemLink from './ListItemLink';
 
 const resolveUrl = (slug: string, baseUrl?: string): string =>
-  `/${baseUrl ? baseUrl + `/${slug}` : slug}`;
+  `/${baseUrl ? `${baseUrl}/${slug}` : slug}`;
 
 const renderSegment = (
   { data, children }: TreeNode<DocItem>,
@@ -30,7 +30,7 @@ const renderSegment = (
     return (
       <ListSection key={data.id} isRoot={isRoot} link={link}>
         {children.map((n) =>
-          renderSegment(n, activeLink, baseUrl ? baseUrl + '/' + data.url : data.url),
+          renderSegment(n, activeLink, baseUrl ? `${baseUrl}/${data.url}` : data.url),
         )}
       </ListSection>
     );
@@ -49,7 +49,7 @@ const SideBar: FC<{ sideBarDocs: DocItem[] }> = ({ sideBarDocs }) => {
       <ListItem
         isRoot
         link={
-          <ListItemLink href={'/'} active={'/' === activeLink}>
+          <ListItemLink href="/" active={activeLink === '/'}>
             Home
           </ListItemLink>
         }

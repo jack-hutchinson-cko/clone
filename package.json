@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
-    "lint": "eslint --ext ts --ext tsx",
+    "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
     "postinstall": "husky install",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""

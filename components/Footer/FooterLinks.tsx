@@ -1,8 +1,8 @@
+import { type } from 'os';
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import styles from './footer.module.scss';
 import footerList from '../../mocks/footerSection';
-import { type } from 'os';
+import styles from './footer.module.scss';
 
 const appendSpecialLink = (link: string) => {
   if (link === 'Careers') return <span className={styles.footerLinkSpecial}>WE`RE HIRING</span>;

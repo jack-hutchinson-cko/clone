@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import styles from './header.module.scss';
 import { FunctionComponent } from 'react';
 import { HeaderLogo } from '../Icons/Icons';
+import styles from './header.module.scss';
 
 const HeaderComponent: FunctionComponent = () => {
   return (

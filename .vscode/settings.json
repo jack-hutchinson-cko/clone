@@ -14,5 +14,12 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "eslint.workingDirectories": [
+    "./components", 
+    "./constants",
+    "./pages",
+    "./lib",
+    "./mocks"
+],
 }

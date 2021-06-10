@@ -1,10 +1,9 @@
 import { FunctionComponent } from 'react';
+import { DocItem } from 'types/content';
 import Header from '../Header';
 import Footer from '../Footer';
 import SideBar from '../SideBar';
 import styles from './mainLayout.module.scss';
-
-import { DocItem } from 'types/content';
 
 type Props = {
   sideBarDocs: DocItem[];
