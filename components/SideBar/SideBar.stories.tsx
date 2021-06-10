@@ -1,9 +1,9 @@
-import { Story, Meta } from '@storybook/react'
-import SideBar, { Props } from './SideBar'
+import { Story, Meta } from '@storybook/react';
+import SideBar, { Props } from './SideBar';
 
-const Template: Story<Props> = (args) => <SideBar {...args} />
+const Template: Story<Props> = (args) => <SideBar {...args} />;
 
-export const SideBarStory = Template.bind({})
+export const SideBarStory = Template.bind({});
 
 SideBarStory.args = {
   homeLink: '/',
@@ -30,9 +30,9 @@ SideBarStory.args = {
       ],
     },
   ],
-}
+};
 
 export default {
   title: 'SideBar',
   component: SideBar,
-} as Meta
+} as Meta;

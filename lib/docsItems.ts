@@ -1,7 +1,7 @@
-import { docsItems } from 'mocks/docs'
-import { DocItem, DocItemWithParentNodes } from 'types/content'
-import { NavTreeElement } from 'types/sideBar'
-import { mapToNavTree } from 'lib/sideBar'
+import { docsItems } from 'mocks/docs';
+import { DocItem, DocItemWithParentNodes } from 'types/content';
+import { NavTreeElement } from 'types/sideBar';
+import { mapToNavTree } from 'lib/sideBar';
 
 type findAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem };
 const findAllParentsNodes = ({
@@ -49,13 +49,13 @@ export const getPostByUrlId = (url: string): DocItemWithParentNodes | undefined 
   getDocsWithParentItems().find((docsData) => docsData.url === url);
 
 export const getSidebarDocs = (): Promise<DocItem[]> => {
-  return new Promise((resolve) => resolve(docsItems))
-}
+  return new Promise((resolve) => resolve(docsItems));
+};
 
 export const getSidebarDocLinks = async (): Promise<NavTreeElement[]> => {
   const docsWithUrl: DocItem[] = getDocsWithParentItems().map(({ parentsNodes, ...doc }) => {
-    return { ...doc, url: `/${[...parentsNodes.map((parent) => parent.url), doc.url].join('/')}` }
-  })
+    return { ...doc, url: `/${[...parentsNodes.map((parent) => parent.url), doc.url].join('/')}` };
+  });
 
   return mapToNavTree<DocItem>(docsWithUrl, ({ id, parentId, name, url }) => ({
     id,
@@ -63,5 +63,5 @@ export const getSidebarDocLinks = async (): Promise<NavTreeElement[]> => {
     title: name,
     path: url,
     children: [],
-  }))
-}
+  }));
+};

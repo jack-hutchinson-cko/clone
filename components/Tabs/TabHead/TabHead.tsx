@@ -1,22 +1,22 @@
-import { FC, MouseEvent } from 'react'
-import { StyledTabHead, StyledTabHeadLink } from './TabHead.styles'
+import { FC, MouseEvent } from 'react';
+import { StyledTabHead, StyledTabHeadLink } from './TabHead.styles';
 
 export type Props = {
-  headers: string[]
-  activeTab?: number | undefined
-  setActiveTab?: (tabIndex: number) => void
-}
+  headers: string[];
+  activeTab?: number | undefined;
+  setActiveTab?: (tabIndex: number) => void;
+};
 
 const TabHead: FC<Props> = ({ headers = [], activeTab = 0, setActiveTab }) => {
   const onClickHandler = (event: MouseEvent<HTMLAnchorElement>): void => {
-    const tabIndex = Number(event.currentTarget?.dataset?.tabIndex)
+    const tabIndex = Number(event.currentTarget?.dataset?.tabIndex);
 
-    event.preventDefault()
+    event.preventDefault();
 
     if (!Number.isNaN(tabIndex) && tabIndex !== activeTab) {
-      setActiveTab && setActiveTab(tabIndex)
+      setActiveTab && setActiveTab(tabIndex);
     }
-  }
+  };
 
   return (
     <StyledTabHead>
@@ -32,7 +32,7 @@ const TabHead: FC<Props> = ({ headers = [], activeTab = 0, setActiveTab }) => {
         </li>
       ))}
     </StyledTabHead>
-  )
-}
+  );
+};
 
-export default TabHead
+export default TabHead;

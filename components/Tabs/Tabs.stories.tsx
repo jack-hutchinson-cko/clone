@@ -1,8 +1,8 @@
-import { Story, Meta } from '@storybook/react'
-import Tabs from './Tabs'
-import TabHead, { Props } from './TabHead'
-import TabBody from './TabBody'
-import TabRow from './TabRow'
+import { Story, Meta } from '@storybook/react';
+import Tabs from './Tabs';
+import TabHead, { Props } from './TabHead';
+import TabBody from './TabBody';
+import TabRow from './TabRow';
 
 export const TabsStory: Story<Props & { tabItems: JSX.Element[] | string[] }> = ({
   headers,
@@ -18,8 +18,8 @@ export const TabsStory: Story<Props & { tabItems: JSX.Element[] | string[] }> = 
         ))}
       </TabBody>
     </Tabs>
-  )
-}
+  );
+};
 
 export default {
   title: 'Tabs',
@@ -50,4 +50,4 @@ export default {
       dolorem eos veritatis iste!`,
     ],
   },
-} as Meta
+} as Meta;

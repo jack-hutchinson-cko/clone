@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import Link from 'next/link'
-import { HeaderLogo } from 'components/Icons/Icons'
-import styles from './header.module.scss'
+import { FC } from 'react';
+import Link from 'next/link';
+import { HeaderLogo } from 'components/Icons/Icons';
+import styles from './header.module.scss';
 
 const HeaderComponent: FC = () => {
   return (

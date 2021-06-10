@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'react'
-import { StyledContainer, StyledLinkContainer, StyledLink } from './breadCrumbsStyles'
-import Link from 'next/link'
+import { FunctionComponent } from 'react';
+import { StyledContainer, StyledLinkContainer, StyledLink } from './breadCrumbsStyles';
+import Link from 'next/link';
 
 export type Props = {
-  breadCrumbsItem: Array<{ name: string; url: string }>
-}
+  breadCrumbsItem: Array<{ name: string; url: string }>;
+};
 
 const getTotalLink = ({
   parentsNodes,
@@ -35,6 +35,6 @@ const BreadCrumbs: FunctionComponent<Props> = ({ breadCrumbsItem }) => (
       </StyledLinkContainer>
     ))}
   </StyledContainer>
-)
+);
 
 export default BreadCrumbs;

@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 5px;
-`
+`;
 
 export const StyledLinkContainer = styled.span`
   font-size: 14px;
@@ -14,7 +14,7 @@ export const StyledLinkContainer = styled.span`
   &:last-child {
     font-weight: 500;
   }
-`
+`;
 
 export const StyledLink = styled.a`
   text-decoration: none;
@@ -22,4 +22,4 @@ export const StyledLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
-`
+`;

@@ -1,16 +1,16 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react';
 
-import { NavTreeElement } from 'types/sideBar'
-import ListSection from './ListSection'
-import ListItem from './ListItem'
-import ListItemLink from './ListItemLink'
-import { IconEarth } from '../Icons'
-import { StyledNavigation } from './SideBar.styles'
+import { NavTreeElement } from 'types/sideBar';
+import ListSection from './ListSection';
+import ListItem from './ListItem';
+import ListItemLink from './ListItemLink';
+import { IconEarth } from '../Icons';
+import { StyledNavigation } from './SideBar.styles';
 
 const renderSegment = (
   { id, title, path, children }: NavTreeElement,
   activeLink: string,
-  isRoot?: boolean
+  isRoot?: boolean,
 ): ReactNode => {
   const link = (
     <ListItemLink href={path} active={path === activeLink}>
@@ -25,15 +25,15 @@ const renderSegment = (
       </ListSection>
     );
   }
-  return <ListItem key={id} link={link} isRoot={isRoot} />
-}
+  return <ListItem key={id} link={link} isRoot={isRoot} />;
+};
 
 export type Props = {
-  homeLink?: string
-  homeLinkTitle?: string
-  activeLink: string
-  navTreeLinks: NavTreeElement[]
-}
+  homeLink?: string;
+  homeLinkTitle?: string;
+  activeLink: string;
+  navTreeLinks: NavTreeElement[];
+};
 
 const SideBar: FC<Props> = ({ navTreeLinks, activeLink, homeLink, homeLinkTitle }) => (
   <aside>
@@ -54,6 +54,6 @@ const SideBar: FC<Props> = ({ navTreeLinks, activeLink, homeLink, homeLinkTitle 
       {navTreeLinks.map((c) => renderSegment(c, activeLink, true))}
     </StyledNavigation>
   </aside>
-)
+);
 
-export default SideBar
+export default SideBar;

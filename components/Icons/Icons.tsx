@@ -1,12 +1,12 @@
-import { FC, CSSProperties, MouseEventHandler } from 'react'
+import { FC, CSSProperties, MouseEventHandler } from 'react';
 
-import { StyledIcon } from './Icons.styles'
+import { StyledIcon } from './Icons.styles';
 
 type Props = {
-  onClick?: MouseEventHandler<SVGSVGElement>
-  className?: string
-  style?: CSSProperties
-}
+  onClick?: MouseEventHandler<SVGSVGElement>;
+  className?: string;
+  style?: CSSProperties;
+};
 
 export const HeaderLogo: FC<Props> = (props) => (
   <StyledIcon width={25} height={28} {...props}>
@@ -18,7 +18,7 @@ export const HeaderLogo: FC<Props> = (props) => (
       d="M17.6895 14.0285L24.8618 1.25458C25.0299 0.96945 25.0299 0.684318 24.8618 0.399185C24.6937 0.171079 24.4136 0 24.1334 0H9.34039C9.06022 0 8.78005 0.171079 8.61195 0.399185L0.991311 13.5723C0.823209 13.8574 0.823209 14.1996 0.991311 14.4277L8.61195 27.6008C8.78005 27.8859 9.06022 28 9.34039 28H24.1334C24.4136 28 24.6937 27.8289 24.8618 27.6008C25.0299 27.3157 25.0299 27.0306 24.8618 26.7454L17.6895 14.0285ZM16.7369 12.3177L10.7973 1.71079H22.7325L16.7369 12.3177ZM9.28436 2.56619L15.7283 14.0285L9.28436 25.4908L2.67233 14.0285L9.28436 2.56619ZM10.7973 26.2892L16.7369 15.6823L22.6765 26.2892H10.7973Z"
     />
   </StyledIcon>
-)
+);
 
 export const FooterLogo: FC<Props> = (props) => (
   <StyledIcon width={180} height={24} {...props}>
@@ -114,7 +114,7 @@ export const FooterLogo: FC<Props> = (props) => (
       fill="white"
     />
   </StyledIcon>
-)
+);
 
 export const IconFacebook: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -126,7 +126,7 @@ export const IconFacebook: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconTwitter: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -138,7 +138,7 @@ export const IconTwitter: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconInstagram: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -151,7 +151,7 @@ export const IconInstagram: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconYoutube: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -164,7 +164,7 @@ export const IconYoutube: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconGlassdoor: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -176,7 +176,7 @@ export const IconGlassdoor: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconCheckout: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -188,7 +188,7 @@ export const IconCheckout: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconLinkedin: FC<Props> = (props) => (
   <StyledIcon width={20} height={20} color="#fff" {...props}>
@@ -200,7 +200,7 @@ export const IconLinkedin: FC<Props> = (props) => (
       fill="#fff"
     />
   </StyledIcon>
-)
+);
 
 export const IconEarth: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} {...props}>
@@ -217,16 +217,16 @@ export const IconEarth: FC<Props> = (props) => (
       strokeWidth="1"
     />
   </StyledIcon>
-)
+);
 
 export const IconActionChevronDown: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} {...props}>
     <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
   </StyledIcon>
-)
+);
 
 export const IconActionChevronRight: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} {...props}>
     <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
   </StyledIcon>
-)
+);

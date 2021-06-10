@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledLink = styled.a<{ isActive?: boolean }>`
   border-top: 2px solid transparent;
@@ -7,4 +7,4 @@ export const StyledLink = styled.a<{ isActive?: boolean }>`
   &:hover {
     text-decoration: ${({ isActive }) => (isActive ? 'none' : 'underline')};
   }
-`
+`;

@@ -1,20 +1,20 @@
-import { FC, useMemo } from 'react'
-import { useRouter } from 'next/router'
-import Header from '../Header'
-import Footer from '../Footer'
-import SideBar from '../SideBar'
-import styles from './mainLayout.module.scss'
+import { FC, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import Header from '../Header';
+import Footer from '../Footer';
+import SideBar from '../SideBar';
+import styles from './mainLayout.module.scss';
 
-import { NavTreeElement } from 'types/sideBar'
-import { getPathValue } from 'lib/url'
+import { NavTreeElement } from 'types/sideBar';
+import { getPathValue } from 'lib/url';
 
 type Props = {
-  navTreeLinks: NavTreeElement[]
-}
+  navTreeLinks: NavTreeElement[];
+};
 
 const MainLayout: FC<Props> = ({ children, navTreeLinks }) => {
-  const { asPath } = useRouter()
-  const activeLink = useMemo(() => getPathValue(asPath), [asPath])
+  const { asPath } = useRouter();
+  const activeLink = useMemo(() => getPathValue(asPath), [asPath]);
 
   return (
     <div className={styles.mainWrapper}>
@@ -36,7 +36,7 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks }) => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default MainLayout;

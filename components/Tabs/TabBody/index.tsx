@@ -1,1 +1,1 @@
-export { default } from './TabBody'
+export { default } from './TabBody';

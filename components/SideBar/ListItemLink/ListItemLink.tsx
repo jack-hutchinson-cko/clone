@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import Link from 'next/link'
+import { FC } from 'react';
+import Link from 'next/link';
 
-import { StyledLink } from './ListItem.styles'
+import { StyledLink } from './ListItem.styles';
 
 type Props = {
   href: string;

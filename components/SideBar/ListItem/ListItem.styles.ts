@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledListItem = styled.div<{ isRoot?: boolean }>`
   display: flex;
@@ -6,4 +6,4 @@ export const StyledListItem = styled.div<{ isRoot?: boolean }>`
   gap: 16px;
   font-weight: ${({ isRoot }) => (isRoot ? 500 : 300)};
   font-size: ${({ isRoot }) => (isRoot ? '16px' : '14px')};
-`
+`;

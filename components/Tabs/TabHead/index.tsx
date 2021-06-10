@@ -1,4 +1,4 @@
-import TabHead, { Props } from './TabHead'
+import TabHead, { Props } from './TabHead';
 
-export type { Props }
-export default TabHead
+export type { Props };
+export default TabHead;

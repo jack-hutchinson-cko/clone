@@ -1,5 +1,5 @@
-import { Story, Meta } from '@storybook/react'
-import { Table, TableHead, TableHeadSticky, TableBody, TableRow, TableCell } from '@cko/primitives'
+import { Story, Meta } from '@storybook/react';
+import { Table, TableHead, TableHeadSticky, TableBody, TableRow, TableCell } from '@cko/primitives';
 
 export const TableStory: Story = () => {
   return (
@@ -28,16 +28,16 @@ export const TableStory: Story = () => {
         </TableRow>
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
-TableStory.storyName = 'Table'
+TableStory.storyName = 'Table';
 TableStory.argTypes = {
   tableLayout: {
     description: `
     "inherit" | "initial" | "auto" | "fixed" | undefined`,
   },
-}
+};
 
 export const TableHeadStory: Story = (args) => {
   return (
@@ -55,19 +55,19 @@ export const TableHeadStory: Story = (args) => {
         </TableRow>
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
-TableHeadStory.storyName = 'TableHead'
+TableHeadStory.storyName = 'TableHead';
 TableHeadStory.args = {
   headers: ['Some title 1', 'Some title 2'],
-}
+};
 TableHeadStory.argTypes = {
   headers: {
     description: `
     string[] | undefined`,
   },
-}
+};
 
 export const TableHeadStickyStory: Story = (args) => {
   return (
@@ -98,16 +98,16 @@ export const TableHeadStickyStory: Story = (args) => {
         </TableBody>
       </Table>
     </div>
-  )
-}
-TableHeadStickyStory.storyName = 'TableHeadSticky'
-TableHeadStickyStory.args = TableHeadStory.args
+  );
+};
+TableHeadStickyStory.storyName = 'TableHeadSticky';
+TableHeadStickyStory.args = TableHeadStory.args;
 TableHeadStickyStory.argTypes = {
   headers: {
     description: `
     string[] | undefined`,
   },
-}
+};
 
 export const TableBodyStory: Story = () => {
   return (
@@ -125,9 +125,9 @@ export const TableBodyStory: Story = () => {
         </TableRow>
       </TableBody>
     </Table>
-  )
-}
-TableBodyStory.storyName = 'TableBody'
+  );
+};
+TableBodyStory.storyName = 'TableBody';
 
 export const TableRowStory: Story = () => {
   const tableItems: Array<{ id: number; active: boolean; data: string[] }> = [
@@ -135,7 +135,7 @@ export const TableRowStory: Story = () => {
     { id: 2, active: false, data: ['Value for 1', 'Value for 2', 'Value for 3'] },
     { id: 3, active: true, data: ['Value for 1', 'Value for 2', 'Value for 3'] },
     { id: 4, active: false, data: ['Value for 1', 'Value for 2', 'Value for 3'] },
-  ]
+  ];
 
   return (
     <Table>
@@ -148,13 +148,13 @@ export const TableRowStory: Story = () => {
                 <TableCell key={ind}>{cell}</TableCell>
               ))}
             </TableRow>
-          )
+          );
         })}
       </TableBody>
     </Table>
-  )
-}
-TableRowStory.storyName = 'TableRow'
+  );
+};
+TableRowStory.storyName = 'TableRow';
 TableRowStory.argTypes = {
   active: {
     description: `
@@ -164,7 +164,7 @@ TableRowStory.argTypes = {
     description: `
     Function | undefined`,
   },
-}
+};
 
 export const TableCellStory: Story = () => {
   return (
@@ -182,19 +182,19 @@ export const TableCellStory: Story = () => {
         </TableRow>
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
-TableCellStory.storyName = 'TableCell'
+TableCellStory.storyName = 'TableCell';
 TableCellStory.argTypes = {
   as: {
     defaultValue: 'th',
     description: `
     td" | "th" | undefined`,
   },
-}
+};
 
 export default {
   title: 'Table',
   component: Table,
-} as Meta
+} as Meta;

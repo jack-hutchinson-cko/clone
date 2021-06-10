@@ -1,14 +1,14 @@
-import { FC, useState, useCallback, ReactNode } from 'react'
+import { FC, useState, useCallback, ReactNode } from 'react';
 
-import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles'
+import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles';
 
 type Props = {
-  link: ReactNode
-  isRoot?: boolean
-}
+  link: ReactNode;
+  isRoot?: boolean;
+};
 
 export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(false);
   const onToggleHandler = useCallback(() => {
     setOpened(!opened);
   }, [opened]);

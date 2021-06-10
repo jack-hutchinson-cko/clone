@@ -1,4 +1,4 @@
-import { Table, TableHead, TableHeadSticky, TableBody, TableCell, TableRow } from './Table'
+import { Table, TableHead, TableHeadSticky, TableBody, TableCell, TableRow } from './Table';
 
-export default Table
-export { TableHead, TableHeadSticky, TableBody, TableCell, TableRow }
+export default Table;
+export { TableHead, TableHeadSticky, TableBody, TableCell, TableRow };

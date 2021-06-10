@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledNavigation = styled.nav`
   display: flex;
@@ -14,4 +14,4 @@ export const StyledNavigation = styled.nav`
   &:not(:last-child) {
     margin-bottom: 20px;
   }
-`
+`;

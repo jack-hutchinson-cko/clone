@@ -1,8 +1,8 @@
-import { FC } from 'react'
-import { StyledTabRow } from './TabRow.styles'
+import { FC } from 'react';
+import { StyledTabRow } from './TabRow.styles';
 
 const TabRow: FC = ({ children }) => {
-  return <StyledTabRow>{children}</StyledTabRow>
-}
+  return <StyledTabRow>{children}</StyledTabRow>;
+};
 
-export default TabRow
+export default TabRow;
