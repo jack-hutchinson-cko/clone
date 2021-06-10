@@ -16,6 +16,8 @@ export const defaultTheme = {
     focus: '#0c1142',
     focusLight: '#354C55',
     blueLight: '#D7E4FD',
+    greyLight: '#E6E7EC',
+    cometLight: '#55587b',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
