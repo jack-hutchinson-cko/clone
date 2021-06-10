@@ -2,13 +2,13 @@ import { useState, useCallback, useEffect } from 'react';
 import { last, get } from 'lodash';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { TextHeadingOne } from '@cko/primitives';
 import { getHashValue, updateNavigationHash } from 'lib/url';
 import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems';
 import BreadCrumbs from 'components/BreadCrumbs';
 import DocBody from 'components/DocBody';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems, DocContentItem, DocContentItemType } from 'types/content';
-import { TextHeadingOne } from '@cko/primitives';
 import styles from './docPost.module.scss';
 
 type Props = {

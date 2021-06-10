@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react';
 
 import { NavTreeElement } from 'types/sideBar';
+import { IconEarth } from '../Icons';
 import ListSection from './ListSection';
 import ListItem from './ListItem';
 import ListItemLink from './ListItemLink';
-import { IconEarth } from '../Icons';
 import { StyledNavigation } from './SideBar.styles';
 
 const renderSegment = (

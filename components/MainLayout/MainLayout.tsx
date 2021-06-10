@@ -1,12 +1,11 @@
 import { FC, useMemo } from 'react';
 import { useRouter } from 'next/router';
+import { NavTreeElement } from 'types/sideBar';
+import { getPathValue } from 'lib/url';
 import Header from '../Header';
 import Footer from '../Footer';
 import SideBar from '../SideBar';
 import styles from './mainLayout.module.scss';
-
-import { NavTreeElement } from 'types/sideBar';
-import { getPathValue } from 'lib/url';
 
 type Props = {
   navTreeLinks: NavTreeElement[];

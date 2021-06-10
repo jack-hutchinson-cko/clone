@@ -3,11 +3,12 @@ import { DocItem, DocItemWithParentNodes } from 'types/content';
 import { NavTreeElement } from 'types/sideBar';
 import { mapToNavTree } from 'lib/sideBar';
 
-type findAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem };
+type FindAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem };
+
 const findAllParentsNodes = ({
   docsItemsMapById,
   docsItem,
-}: findAllParentsNodesType): Array<DocItem> => {
+}: FindAllParentsNodesType): Array<DocItem> => {
   const parentNodes = [];
 
   let currentParentId = docsItem.parentId;
@@ -36,9 +37,9 @@ export const getDocsWithParentItems = (): Array<DocItemWithParentNodes> => {
   }));
 };
 
-type getDocsPathUrlReturnType = Array<{ params: { docsPathParams: Array<string> } }>;
+type GetDocsPathUrlReturnType = Array<{ params: { docsPathParams: Array<string> } }>;
 
-export const getDocsPathUrl = (): getDocsPathUrlReturnType =>
+export const getDocsPathUrl = (): GetDocsPathUrlReturnType =>
   getDocsWithParentItems().map(({ parentsNodes, url }) => ({
     params: {
       docsPathParams: [...parentsNodes.map((parent) => parent.url), url],

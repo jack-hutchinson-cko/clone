@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import styles from './footer.module.scss';
 import footerList from '../../mocks/footerSection';
+import styles from './footer.module.scss';
 
 const SubfooterSocialLinksComponent: FC = () => {
   return (
