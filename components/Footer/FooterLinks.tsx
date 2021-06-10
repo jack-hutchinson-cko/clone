@@ -1,10 +1,15 @@
+/* eslint-disable react/no-array-index-key */
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import footerList from '../../mocks/footerSection';
 import styles from './footer.module.scss';
 
 const appendSpecialLink = (link: string) => {
-  if (link === 'Careers') return <span className={styles.footerLinkSpecial}>WE`RE HIRING</span>;
+  if (link === 'Careers') {
+    return <span className={styles.footerLinkSpecial}>WE`RE HIRING</span>;
+  }
+
+  return null;
 };
 
 type FooterNavigationItemType = {
@@ -27,9 +32,7 @@ const FooterLinksComponent: FunctionComponent = () => {
                       {containerSection.map((sectionLink, sectionLinkIndex: number) => {
                         return (
                           <li className={styles.footerLink} key={sectionLinkIndex}>
-                            <Link href={sectionLink.link}>
-                              <a>{sectionLink.name}</a>
-                            </Link>
+                            <Link href={sectionLink.link}>{sectionLink.name}</Link>
                             {appendSpecialLink(sectionLink.name)}
                           </li>
                         );

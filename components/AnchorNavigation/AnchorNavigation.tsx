@@ -16,7 +16,12 @@ const AnchorNavigation: FunctionComponent<Props> = ({ anchors, selectedId }) => 
       <div className={styles.linkWrapper}>
         {anchors.map(({ id, data, params }) => (
           <Link key={id} href={`#${params.anchorHref}`} passHref replace>
-            <a className={cn(styles.link, { [styles.active]: selectedId === id })}>{data}</a>
+            <a
+              href={`#${params.anchorHref}`}
+              className={cn(styles.link, { [styles.active]: selectedId === id })}
+            >
+              {data}
+            </a>
           </Link>
         ))}
       </div>

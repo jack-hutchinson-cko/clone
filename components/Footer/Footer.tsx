@@ -14,9 +14,9 @@ const FooterComponent: FunctionComponent = () => {
           <div className={styles.footerLogo}>
             <div className={styles.footerLogoWrapper}>
               <Link href="/">
-                <a title="Checkout.com home">
+                <div>
                   <FooterLogo />
-                </a>
+                </div>
               </Link>
             </div>
           </div>
@@ -34,11 +34,18 @@ const FooterComponent: FunctionComponent = () => {
                 <div className={styles.containerSubfooterLink}>
                   <span>Powered by&nbsp;</span>
                   <Link href="https://www.atlassian.com">
-                    <a className={styles.descriptionLink}>Atlassian Confluence</a>
+                    <a href="https://www.atlassian.com" className={styles.descriptionLink}>
+                      Atlassian Confluence
+                    </a>
                   </Link>
                   <span>&nbsp;and&nbsp;</span>
                   <Link href="https://www.k15t.com/go/scroll-viewport">
-                    <a className={styles.descriptionLink}>Scroll Viewport</a>
+                    <a
+                      href="https://www.k15t.com/go/scroll-viewport"
+                      className={styles.descriptionLink}
+                    >
+                      Scroll Viewport
+                    </a>
                   </Link>
                 </div>
               </div>

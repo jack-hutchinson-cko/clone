@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { Story, Meta } from '@storybook/react';
 import { Table, TableHead, TableHeadSticky, TableBody, TableRow, TableCell } from '@cko/primitives';
 

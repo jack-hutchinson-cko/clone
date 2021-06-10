@@ -13,14 +13,15 @@ const TabHead: FC<Props> = ({ headers = [], activeTab = 0, setActiveTab }) => {
 
     event.preventDefault();
 
-    if (!Number.isNaN(tabIndex) && tabIndex !== activeTab) {
-      setActiveTab && setActiveTab(tabIndex);
+    if (!Number.isNaN(tabIndex) && tabIndex !== activeTab && setActiveTab) {
+      setActiveTab(tabIndex);
     }
   };
 
   return (
     <StyledTabHead>
       {headers.map((header, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <li key={index}>
           <StyledTabHeadLink
             data-tab-index={index}

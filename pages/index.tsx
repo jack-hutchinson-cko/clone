@@ -41,11 +41,11 @@ const HomePage: NextPage<Props> = ({ intro, blocks }) => {
             <TextHeadingTwo className={styles.blockTitle}>{title}</TextHeadingTwo>
             <Text className={styles.blockDescription}>{description}</Text>
             <List className={styles.blockList}>
-              {links.map(({ id, name, url }) => (
-                <ListItem key={id}>
-                  <Link href={url}>
+              {links.map((linkItem) => (
+                <ListItem key={linkItem.id}>
+                  <Link href={linkItem.url}>
                     <PrimitiveLink className={styles.blockLink}>
-                      {name}
+                      {linkItem.name}
                       <IconActionArrowRight />
                     </PrimitiveLink>
                   </Link>

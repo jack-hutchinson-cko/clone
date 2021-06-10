@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import { StyledContainer, StyledLinkContainer, StyledLink } from './breadCrumbsStyles';
 import Link from 'next/link';
+import { StyledContainer, StyledLinkContainer, StyledLink } from './breadCrumbsStyles';
 
 export type Props = {
   breadCrumbsItem: Array<{ name: string; url: string }>;

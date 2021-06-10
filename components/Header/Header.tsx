@@ -9,20 +9,18 @@ const HeaderComponent: FC = () => {
       <div className={styles.headerbarContainer}>
         <div className={styles.sectionLogo}>
           <Link href="/">
-            <a className={styles.headerLogo}>
+            <div className={styles.headerLogo}>
               <div className={styles.logo}>
                 <HeaderLogo />
               </div>
               <h3 className={styles.docLabel}>Documentation</h3>
-            </a>
+            </div>
           </Link>
         </div>
         <div className={styles.headerbarRight}>
-          <Link href="/">
-            <a className={styles.testAccountLink} rel="noreferrer">
-              Get test account
-            </a>
-          </Link>
+          <a href="/" className={styles.testAccountLink} rel="noreferrer">
+            Get test account
+          </a>
         </div>
       </div>
     </nav>

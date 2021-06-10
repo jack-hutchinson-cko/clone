@@ -13,7 +13,8 @@ export const TabsStory: Story<Props & { tabItems: JSX.Element[] | string[] }> = 
     <Tabs>
       <TabHead headers={headers} activeTab={activeTab} />
       <TabBody>
-        {tabItems.map((tabItem, index) => (
+        {tabItems.map((tabItem, index: number) => (
+          // eslint-disable-next-line react/no-array-index-key
           <TabRow key={index}>{tabItem}</TabRow>
         ))}
       </TabBody>
