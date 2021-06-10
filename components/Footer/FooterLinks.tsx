@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import footerList from '../../mocks/footerSection';
