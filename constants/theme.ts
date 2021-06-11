@@ -6,7 +6,7 @@ export const defaultTheme = {
     danger: '#CA4A4A',
     dangerDark: '#990C0C',
     dangerLight: '#F6E3E3',
-    warning: '#D98E50',
+    warning: '#EE6D5F',
     warningDark: '#A55A00',
     warningLight: '#FBEFD8',
     white: '#FFFFFF',
@@ -18,6 +18,9 @@ export const defaultTheme = {
     blueLight: '#D7E4FD',
     greyLight: '#E6E7EC',
     cometLight: '#55587b',
+    tip: '#70c9b7',
+    note: '#f3c25d',
+    information: '#80e5e9',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -90,3 +93,5 @@ export const defaultTheme = {
   fontSizes: ['13px', '16px', '16px', '24px', '40px'],
   space: [0, 0, '8px', '16px', '24px', '32px'],
 };
+
+export type ThemeType = typeof defaultTheme;

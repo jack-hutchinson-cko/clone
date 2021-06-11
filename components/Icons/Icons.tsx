@@ -230,3 +230,56 @@ export const IconActionChevronRight: FC<Props> = (props) => (
     <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
   </StyledIcon>
 );
+
+export const IconApprove: FC<Props> = (props) => (
+  <StyledIcon width={24} height={24} {...props}>
+    <rect x=".5" y=".5" width="23" height="23" rx="11.5" stroke="#0C1142" />
+    <path d="M7 12.3l4.2 3.7L18 9" stroke="#0C1142" />
+  </StyledIcon>
+);
+
+export const IconInfo: FC<Props> = (props) => (
+  <StyledIcon width={24} height={24} {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M11.5 6c.3 0 .7 0 .9.2l.1.3.1.3v.3l-.2.3-.6.2h-.3a.6.6 0 01-.3-.2l-.1-.3-.1-.3v-.3l.2-.3.3-.1zm-.5 4a.8.8 0 011.6 0v6.4a.8.8 0 01-1.6 0V10zm1 13a11 11 0 110-22 11 11 0 010 22zm0-23a12 12 0 100 24 12 12 0 000-24z"
+      fill="#0C1142"
+    />
+  </StyledIcon>
+);
+
+export const IconNote: FC<Props> = (props) => (
+  <StyledIcon width={24} height={22} {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12.1 18.1c-.3.2-.7 0-.9-.1l-.1-.3-.1-.3v-.3l.2-.3.6-.2h.3l.3.2.1.3.1.3v.3l-.2.3-.3.1zm.5-3.9a.8.8 0 01-1.6 0V7.8a.8.8 0 011.6 0v6.4z"
+      fill="#0C1142"
+    />
+    <path
+      d="M14.2 2.8a2.5 2.5 0 00-4.4 0L1.3 17.4c-1 1.7.2 3.8 2.2 3.8h17c2 0 3.2-2.1 2.2-3.8L14.2 2.7z"
+      stroke="#0C1142"
+    />
+  </StyledIcon>
+);
+
+export const IconWarning: FC<Props> = (props) => (
+  <StyledIcon width={28} height={28} {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M14.6 18.7c-.3 0-.6 0-.8-.2l-.2-.3V18v-.3l.2-.3.5-.2h.3l.3.2.1.3v.5l-.1.3-.3.2zm.5-3.8a.8.8 0 01-1.5 0V9A.8.8 0 0115 9v6z"
+      fill="#0C1142"
+    />
+    <rect
+      x=".7"
+      y="14"
+      width="18.8"
+      height="18.8"
+      rx="1.5"
+      transform="rotate(-45 .7 14)"
+      stroke="#0C1142"
+    />
+  </StyledIcon>
+);
