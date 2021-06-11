@@ -1,6 +1,6 @@
 import { docsItems } from 'mocks/docs';
 import { DocItem, DocItemWithParentNodes } from 'types/content';
-import { NavTreeElement } from 'types/sideBar';
+import { NavTreeElement } from 'types/navTree';
 import { mapToNavTree } from 'lib/sideBar';
 
 type FindAllParentsNodesType = { docsItemsMapById: Record<string, DocItem>; docsItem: DocItem };

@@ -1,4 +1,4 @@
-import { NavTreeElement } from 'types/sideBar';
+import { NavTreeElement } from 'types/navTree';
 
 export const mapToNavTree = <T>(
   arr: T[] = [],

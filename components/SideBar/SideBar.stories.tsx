@@ -9,7 +9,7 @@ SideBarStory.args = {
   homeLink: '/',
   homeLinkTitle: 'Home',
   activeLink: '/section1',
-  navTreeLinks: [
+  docsTreeLinks: [
     { id: 1, title: 'Section 1', path: '/section1' },
     { id: 3, title: 'Section 3', path: '/section3' },
     {

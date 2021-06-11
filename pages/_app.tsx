@@ -2,9 +2,10 @@ import { NextPage } from 'next';
 import { ThemeDefaultProvider } from '@cko/primitives';
 import MainLayout from 'components/MainLayout';
 
-import { NavTreeElement } from 'types/sideBar';
+import { NavTreeElement } from 'types/navTree';
 import { getSidebarDocLinks } from 'lib/docsItems';
 import { defaultTheme } from 'constants/theme';
+
 import '../styles/globals.scss';
 
 type Props = {
