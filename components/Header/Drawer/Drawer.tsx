@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import { Container, Content, Background } from './Drawer.styles';
 
-export type Props = {
-  onClose?: () => void;
+type Props = {
+  onClose: () => void;
   autoSize?: boolean;
 };
 

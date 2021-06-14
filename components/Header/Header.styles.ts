@@ -66,16 +66,6 @@ export const NavigationDrawers = styled.div`
   z-index: 2;
 `;
 
-export const Logo = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 500;
-  font-size: 24px;
-  letter-spacing: 1px;
-  color: #0c1142;
-`;
-
 export const NavigationItem = styled.div<{ withHover?: boolean; isSelected?: boolean }>`
   display: flex;
   height: 80px;
@@ -120,45 +110,6 @@ export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
   transition: transform 150ms;
 `;
 
-export const Extra = styled.div<{ isMobile?: boolean }>`
-  border: 1px solid ${({ theme }) => theme.colors.baseLight};
-
-  ${({ isMobile }) =>
-    isMobile
-      ? css`
-          width: 100%;
-          font-size: 18px;
-          line-height: 24px;
-        `
-      : css`
-          width: 420px;
-          font-size: 14px;
-          line-height: 24px;
-        `}
-`;
-export const ExtraContent = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  margin: 0;
-  padding: 24px 32px;
-  background: ${({ theme }) => theme.colors.white};
-`;
-
-export const ExtraFooter = styled(ExtraContent)`
-  background: ${({ theme }) => theme.colors.greyLight};
-`;
-
-export const ExtraItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  color: ${({ theme }) => theme.colors.base};
-  font-weight: 400;
-`;
-
 export const ExtraItemActions = styled.span<{ gap?: number }>`
   display: inline-flex;
   align-items: center;
@@ -177,5 +128,5 @@ export const ButtonLogin = styled(OutlineButton)`
 
 export const SearchFieldWrapper = styled.div`
   display: inline-block;
-  width: 380px;
+  width: 370px;
 `;

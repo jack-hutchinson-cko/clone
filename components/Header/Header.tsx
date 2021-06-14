@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import {
-  HeaderLogo,
   IconSourceCode,
   IconChat,
   IconDocSearch,
@@ -15,9 +14,11 @@ import {
 import { Breakpoints } from 'constants/screen';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
-import Drawer from './Drawer/Drawer';
+import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
+import ExtraLinks, { ExtraItem } from './ExtraLinks';
 import SearchField from './SearchField';
+import Logo from './HeaderLogo';
 
 import {
   Navigation,
@@ -26,11 +27,6 @@ import {
   NavigationItem,
   NavigationLink,
   ToggleIcon,
-  Logo,
-  Extra,
-  ExtraContent,
-  ExtraFooter,
-  ExtraItem,
   ExtraItemActions,
   ButtonLogin,
   NavigationDrawers,
@@ -55,72 +51,52 @@ const Header: FC = () => {
     setShowSearch(false);
   }, [showMenu]);
 
-  const logo = (
-    <Link href="/">
-      <Logo>
-        <HeaderLogo />
-        <div>Documentation</div>
-      </Logo>
-    </Link>
-  );
-
   const contentGuides: ReactNode = (
-    <Extra isMobile={isMobile}>
-      <ExtraContent>
-        <ExtraItem>
-          <Link href="/" passHref>
-            <NavigationLink>
-              <IconSourceCode /> Api Reference
-            </NavigationLink>
-          </Link>
-          Our reference library for integrating with our API
-        </ExtraItem>
-        <ExtraItem>
-          <Link href="/" passHref>
-            <NavigationLink>
-              <IconChat /> FAQ
-            </NavigationLink>
-          </Link>
-          Find answers to our most frequently asked questions
-        </ExtraItem>
-        <ExtraItem>
-          <Link href="/" passHref>
-            <NavigationLink>
-              <IconDocSearch /> Classic Docs
-            </NavigationLink>
-          </Link>
-          Documentation for our Classic API
-        </ExtraItem>
-      </ExtraContent>
-    </Extra>
+    <ExtraLinks isMobile={isMobile}>
+      <ExtraItem
+        href="/"
+        title={
+          <NavigationLink>
+            <IconSourceCode /> Api Reference
+          </NavigationLink>
+        }
+      >
+        Our reference library for integrating with our API
+      </ExtraItem>
+      <ExtraItem
+        href="/"
+        title={
+          <NavigationLink>
+            <IconChat /> FAQ
+          </NavigationLink>
+        }
+      >
+        Find answers to our most frequently asked questions
+      </ExtraItem>
+      <ExtraItem
+        href="/"
+        title={
+          <NavigationLink>
+            <IconDocSearch /> Classic Docs
+          </NavigationLink>
+        }
+      >
+        Documentation for our Classic API
+      </ExtraItem>
+    </ExtraLinks>
   );
 
   const contentLogin = (
-    <Extra>
-      <ExtraContent>
-        <ExtraItem>
-          <NavigationLink>
-            <IconAccount /> The Hub
-          </NavigationLink>
-          Monitor transactions, business performance and customer trends.
-          <ExtraItemActions gap={12}>
-            <ButtonLogin>Log In</ButtonLogin>
-            or
-            <Link href="/">
-              <NavigationLink>
-                Apply for an account <IconActionArrowRight />
-              </NavigationLink>
-            </Link>
-          </ExtraItemActions>
-        </ExtraItem>
-      </ExtraContent>
-      <ExtraFooter>
-        <ExtraItem>
-          <Link href="/" passHref>
+    <ExtraLinks
+      footerChildren={
+        <ExtraItem
+          href="/"
+          title={
             <NavigationLink>
               <IconTestAccount /> Test Account
             </NavigationLink>
-          </Link>
+          }
+        >
           <ExtraItemActions>
             <Link href="/" passHref>
               <NavigationLink underline>Log in</NavigationLink>
@@ -131,21 +107,48 @@ const Header: FC = () => {
             </Link>
           </ExtraItemActions>
         </ExtraItem>
-      </ExtraFooter>
-    </Extra>
+      }
+    >
+      <ExtraItem
+        title={
+          <NavigationLink>
+            <IconAccount /> The Hub
+          </NavigationLink>
+        }
+      >
+        Monitor transactions, business performance and customer trends.
+        <ExtraItemActions gap={12}>
+          <ButtonLogin>Log In</ButtonLogin>
+          or
+          <Link href="/">
+            <NavigationLink>
+              Apply for an account <IconActionArrowRight />
+            </NavigationLink>
+          </Link>
+        </ExtraItemActions>
+      </ExtraItem>
+    </ExtraLinks>
   );
 
   return (
     <Navigation>
       <NavigationContent isMobile={isMobile}>
         <NavigationSection isMobile={isMobile}>
+          {isMobile && (
+            <NavigationItem>
+              <MenuButton isActive={showMenu} onClick={onToggleMenuDrawer} />
+            </NavigationItem>
+          )}
           <NavigationItem>
-            {isMobile && <MenuButton isActive={showMenu} onClick={onToggleMenuDrawer} />}
+            <Link href="/">
+              <Logo />
+            </Link>
           </NavigationItem>
-          <NavigationItem>{logo}</NavigationItem>
-          <NavigationItem>
-            {isMobile && <SearchButton isActive={showSearch} onClick={onToggleSearchDrawer} />}
-          </NavigationItem>
+          {isMobile && (
+            <NavigationItem>
+              <SearchButton isActive={showSearch} onClick={onToggleSearchDrawer} />
+            </NavigationItem>
+          )}
         </NavigationSection>
         <NavigationSection isMobile={isMobile}>
           <NavigationItemHolder isMobile={isMobile} content={contentGuides}>
