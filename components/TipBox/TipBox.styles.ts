@@ -43,7 +43,5 @@ export const TipBoxHeader = styled.h3`
 `;
 
 export const TipBoxContent = styled.div`
-  padding: 18px 0;
   color: ${({ theme }) => theme.colors.base};
-  font-size: 16px;
 `;

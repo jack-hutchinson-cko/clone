@@ -21,6 +21,7 @@ export const defaultTheme = {
     tip: '#70c9b7',
     note: '#f3c25d',
     information: '#80e5e9',
+    codeLabelBackground: '#f5f5fc',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -92,6 +93,10 @@ export const defaultTheme = {
   lineHeights: ['16px', '24px', '32px'],
   fontSizes: ['13px', '16px', '16px', '24px', '40px'],
   space: [0, 0, '8px', '16px', '24px', '32px'],
+  padding: {
+    sm: '16px',
+    md: '24px',
+  },
 };
 
 export type ThemeType = typeof defaultTheme;

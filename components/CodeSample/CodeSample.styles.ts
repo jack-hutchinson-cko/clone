@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Pre = styled.pre`
-  background: ${({ theme }) => theme.colors.ghostWhite};
+  background: ${({ theme }) => theme.colors.codeLabelBackground};
   line-height: ${({ theme }) => theme.lineHeights[1]};
   padding: ${({ theme }) => theme.space[3]};
-  border-radius: ${({ theme }) => theme.space[2]};
   overflow: auto;
+  margin: 0;
 `;
 
 export const Line = styled.div`

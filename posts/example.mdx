@@ -1,0 +1,87 @@
+---
+title: Sender data for Card Payouts
+---
+
+If you're sending a card payout on behalf of another person (a money transfer),
+or a business/government entity (a third-party funds disbursement),
+you must include the details of that person or entity in the `processing.senderInformation`
+object in your payout request. You can see example payout requests with sender data on our [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
+
+## Visa
+
+### Sender data for Visa money transfers
+
+Fund transfer type = AA, PP, FT
+
+The following table outlines the fields which should be included in the `processing.senderInformation` object.
+
+<TipBox title="Example Title" variant="tip">
+
+For more details about sender data requirements, please contact your implementation manager.
+
+</TipBox>
+
+<TipBox variant="warning">
+
+For more details about sender data requirements, please contact your implementation manager.
+
+</TipBox>
+
+## Request a card payment
+
+### The POST request
+
+Card tokens (`tok_`) are single use and only have a 15-minute lifespan.
+Once youve successfully sent your request, youll receive a response containing a
+permanent card source ID (`src_`) which can be used in subsequent payment requests.
+
+<Tabs>
+<TabHead activeTab={0} headers={['Title 1', 'Title 2']} />
+<TabBody>
+<TabRow>
+<Box horizontal="sm">
+
+Use the approved field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful,
+it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
+
+</Box>
+</TabRow>
+<TabRow>
+
+```
+{
+  "source": {
+    "type": "token",
+    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+  },
+  "amount": 6500,
+  "currency": "USD",
+  "reference": "ORD-5023-4E89",
+  "metadata": {
+    "udf1": "TEST123",
+    "coupon_code": "NY2018",
+    "partner_id": 123989
+  }
+}
+```
+
+</TabRow>
+</TabBody>
+</Tabs>
+
+```
+{
+  "source": {
+    "type": "token",
+    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+  },
+  "amount": 6500,
+  "currency": "USD",
+  "reference": "ORD-5023-4E89",
+  "metadata": {
+    "udf1": "TEST123",
+    "coupon_code": "NY2018",
+    "partner_id": 123989
+  }
+}
+```
