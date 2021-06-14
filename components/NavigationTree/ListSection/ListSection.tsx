@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState<boolean>(false);
   const onToggleHandler = useCallback(() => {
     setOpened(!opened);
   }, [opened]);

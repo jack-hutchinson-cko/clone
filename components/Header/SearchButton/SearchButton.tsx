@@ -5,7 +5,7 @@ import { Button } from './SearchButton.styles';
 const buttonStyles = { width: '26', height: '26px' };
 
 type Props = {
-  onClick?: () => void;
+  onClick: () => void;
   isActive?: boolean;
 };
 

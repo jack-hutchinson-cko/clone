@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Button } from './MenuButton.styles';
 
 type Props = {
-  onClick?: () => void;
+  onClick: () => void;
   isActive?: boolean;
 };
 

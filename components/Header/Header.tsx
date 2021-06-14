@@ -2,14 +2,9 @@ import { FC, useState, useCallback, ReactNode } from 'react';
 import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
-import {
-  IconSourceCode,
-  IconChat,
-  IconDocSearch,
-  IconAccount,
-  IconTestAccount,
-  IconActionArrowRight,
-} from 'components/Icons';
+import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
+
+import { HeaderGuid } from 'types/header';
 
 import { Breakpoints } from 'constants/screen';
 import MenuButton from './MenuButton';
@@ -18,7 +13,7 @@ import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
 import ExtraLinks, { ExtraItem } from './ExtraLinks';
 import SearchField from './SearchField';
-import Logo from './HeaderLogo';
+import HeaderLogo from './HeaderLogo';
 
 import {
   Navigation,
@@ -33,7 +28,11 @@ import {
   SearchFieldWrapper,
 } from './Header.styles';
 
-const Header: FC = () => {
+type Props = {
+  headerGuides: HeaderGuid[];
+};
+
+const Header: FC<Props> = ({ headerGuides }) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
@@ -53,36 +52,19 @@ const Header: FC = () => {
 
   const contentGuides: ReactNode = (
     <ExtraLinks isMobile={isMobile}>
-      <ExtraItem
-        href="/"
-        title={
-          <NavigationLink>
-            <IconSourceCode /> Api Reference
-          </NavigationLink>
-        }
-      >
-        Our reference library for integrating with our API
-      </ExtraItem>
-      <ExtraItem
-        href="/"
-        title={
-          <NavigationLink>
-            <IconChat /> FAQ
-          </NavigationLink>
-        }
-      >
-        Find answers to our most frequently asked questions
-      </ExtraItem>
-      <ExtraItem
-        href="/"
-        title={
-          <NavigationLink>
-            <IconDocSearch /> Classic Docs
-          </NavigationLink>
-        }
-      >
-        Documentation for our Classic API
-      </ExtraItem>
+      {headerGuides.map(({ title, description, url, Icon }, i) => (
+        <ExtraItem
+          key={title}
+          href={url}
+          title={
+            <NavigationLink>
+              {Icon} {title}
+            </NavigationLink>
+          }
+        >
+          {description}
+        </ExtraItem>
+      ))}
     </ExtraLinks>
   );
 
@@ -140,8 +122,8 @@ const Header: FC = () => {
             </NavigationItem>
           )}
           <NavigationItem>
-            <Link href="/">
-              <Logo />
+            <Link href="/" passHref>
+              <HeaderLogo />
             </Link>
           </NavigationItem>
           {isMobile && (
