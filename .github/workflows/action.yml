@@ -3,7 +3,7 @@ name: Node.js CI
 on: [pull_request]
 
 env:
-  MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
+  MYGET_NPM_TOKEN: ""
   CI: true
 jobs:
   build:
@@ -16,6 +16,8 @@ jobs:
           node-version: 14.x
 
       - name: Install node modules
+        env:
+          MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
         run: npm ci --ignore-scripts
 
       - name: Run all unit tests
