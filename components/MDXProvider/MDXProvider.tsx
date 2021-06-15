@@ -11,6 +11,16 @@ import LineCode from 'components/LineCode';
 import TextLink from 'components/TextLink';
 import Box from 'components/Box';
 import Pre from 'components/Pre';
+import { RequestTag, StatusTag, TypeTag } from 'components/Tag';
+import InfoBox from 'components/InfoBox';
+import LineCodeWrapper from 'components/LineCodeWrapper';
+import Table, {
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadSticky,
+  TableRow,
+} from 'components/Table';
 
 const components = {
   TipBox: withBlockMargin(TipBox),
@@ -18,7 +28,14 @@ const components = {
   TabHead,
   TabRow,
   Tabs: withBlockMargin(Tabs),
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadSticky,
+  TableRow,
+  Table: withBlockMargin(Table),
   code: MDXCodeSample,
+  LineCodeWrapper,
   h1: withAnchor(TextHeadingOne),
   h2: withAnchor(TextHeadingTwo),
   h3: withAnchor(TextHeadingThree),
@@ -27,6 +44,10 @@ const components = {
   a: TextLink,
   Box,
   pre: Pre,
+  RequestTag,
+  StatusTag,
+  TypeTag,
+  InfoBox,
 };
 
 type Props = {

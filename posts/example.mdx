@@ -41,8 +41,9 @@ permanent card source ID (`src_`) which can be used in subsequent payment reques
 <TabRow>
 <Box horizontal="sm">
 
-Use the approved field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful,
-it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
+Use the approved field to check whether or not the authorization was successful (`"approved": true`).
+If your authorization was not successful, it's possible the payment used an invalid/expired card, or
+a valid card with an insufficient available balance.
 
 </Box>
 </TabRow>
@@ -85,3 +86,75 @@ it's possible the payment used an invalid/expired card, or a valid card with an 
   }
 }
 ```
+
+# Request a payment using full card details
+
+## The POST request
+
+Use the details below to set up your request.
+
+
+
+### Endpoints
+
+<Tabs>
+<TabHead headers={['Live', 'SandBox']} />
+<TabBody>
+<TabRow>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</TabRow>
+<TabRow>
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</TabRow>
+</TabBody>
+</Tabs>
+
+### Headers parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<TypeTag type="string" />
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<TypeTag type="object" />
+<StatusTag type="optional" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
