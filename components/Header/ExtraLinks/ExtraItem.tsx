@@ -10,12 +10,7 @@ type Props = {
 
 export const ExtraItem: FC<Props> = ({ href, title, children }) => {
   const withLink = (child: ReactNode) => {
-    if (href)
-      return (
-        <Link href={href} passHref>
-          {child}
-        </Link>
-      );
+    if (href) return <Link href={href}>{child}</Link>;
     return child;
   };
   return (

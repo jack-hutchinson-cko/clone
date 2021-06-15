@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-export type HeaderGuid = {
-  Icon: FC<unknown>;
-  url: string;
+export type HeaderLink = {
   title: string;
-  description: string;
+  Icon: FC<unknown>;
+  url?: string;
+  description?: string;
 };
 
 export type HeaderContent = {
-  guides: HeaderGuid[];
+  guides: HeaderLink[];
 };

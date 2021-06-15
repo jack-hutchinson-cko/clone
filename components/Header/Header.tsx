@@ -1,19 +1,18 @@
-import { FC, useState, useCallback, ReactNode } from 'react';
+import { FC, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
-import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
-
-import { HeaderGuid } from 'types/header';
-
+import { HeaderLink } from 'types/header';
 import { Breakpoints } from 'constants/screen';
+import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
 import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
-import ExtraLinks, { ExtraItem } from './ExtraLinks';
 import SearchField from './SearchField';
 import HeaderLogo from './HeaderLogo';
+import GuidesLinks from './GuidesLinks';
+import SignInLinks from './SignInLinks';
 
 import {
   Navigation,
@@ -29,10 +28,10 @@ import {
 } from './Header.styles';
 
 type Props = {
-  headerGuides: HeaderGuid[];
+  guides: HeaderLink[];
 };
 
-const Header: FC<Props> = ({ headerGuides }) => {
+const Header: FC<Props> = ({ guides }) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
@@ -50,66 +49,16 @@ const Header: FC<Props> = ({ headerGuides }) => {
     setShowSearch(false);
   }, [showMenu]);
 
-  const contentGuides: ReactNode = (
-    <ExtraLinks isMobile={isMobile}>
-      {headerGuides.map(({ title, description, url, Icon }, i) => (
-        <ExtraItem
-          key={title}
-          href={url}
-          title={
-            <NavigationLink>
-              {Icon} {title}
-            </NavigationLink>
-          }
-        >
-          {description}
-        </ExtraItem>
-      ))}
-    </ExtraLinks>
-  );
-
-  const contentLogin = (
-    <ExtraLinks
-      footerChildren={
-        <ExtraItem
-          href="/"
-          title={
-            <NavigationLink>
-              <IconTestAccount /> Test Account
-            </NavigationLink>
-          }
-        >
-          <ExtraItemActions>
-            <Link href="/" passHref>
-              <NavigationLink underline>Log in</NavigationLink>
-            </Link>
-            or
-            <Link href="/" passHref>
-              <NavigationLink underline>apply for an account</NavigationLink>
-            </Link>
-          </ExtraItemActions>
-        </ExtraItem>
-      }
-    >
-      <ExtraItem
-        title={
-          <NavigationLink>
-            <IconAccount /> The Hub
-          </NavigationLink>
-        }
-      >
-        Monitor transactions, business performance and customer trends.
-        <ExtraItemActions gap={12}>
-          <ButtonLogin>Log In</ButtonLogin>
-          or
-          <Link href="/">
-            <NavigationLink>
-              Apply for an account <IconActionArrowRight />
-            </NavigationLink>
-          </Link>
-        </ExtraItemActions>
-      </ExtraItem>
-    </ExtraLinks>
+  const signInButtons = (
+    <ExtraItemActions gap={12}>
+      <ButtonLogin>Log In</ButtonLogin>
+      or
+      <Link href="/">
+        <NavigationLink underlineOnHover>
+          Apply for an account <IconActionArrowRight />
+        </NavigationLink>
+      </Link>
+    </ExtraItemActions>
   );
 
   return (
@@ -133,7 +82,20 @@ const Header: FC<Props> = ({ headerGuides }) => {
           )}
         </NavigationSection>
         <NavigationSection isMobile={isMobile}>
-          <NavigationItemHolder isMobile={isMobile} content={contentGuides}>
+          <NavigationItemHolder
+            isMobile={isMobile}
+            content={
+              <GuidesLinks
+                isMobile={isMobile}
+                guides={guides}
+                mapTitle={(title, Icon) => (
+                  <NavigationLink underlineOnHover>
+                    {Icon} {title}
+                  </NavigationLink>
+                )}
+              />
+            }
+          >
             {(open) => (
               <NavigationItem withHover isSelected={open}>
                 Guides <ToggleIcon isOpen={open} />
@@ -152,7 +114,36 @@ const Header: FC<Props> = ({ headerGuides }) => {
           <NavigationSection>
             {isDesktop && (
               <>
-                <NavigationItemHolder contentAlign={ContentAlign.RIGHT} content={contentLogin}>
+                <NavigationItemHolder
+                  contentAlign={ContentAlign.RIGHT}
+                  content={
+                    <SignInLinks
+                      headerTitle={
+                        <NavigationLink>
+                          <IconAccount /> The Hub
+                        </NavigationLink>
+                      }
+                      headerDescription="Monitor transactions, business performance and customer trends."
+                      extraContent={signInButtons}
+                      footerTitle={
+                        <NavigationLink>
+                          <IconTestAccount /> Test Account
+                        </NavigationLink>
+                      }
+                      footerExtraContent={
+                        <ExtraItemActions>
+                          <Link href="/">
+                            <NavigationLink underlineAlways>Log in</NavigationLink>
+                          </Link>
+                          or
+                          <Link href="/">
+                            <NavigationLink underlineAlways>apply for an account</NavigationLink>
+                          </Link>
+                        </ExtraItemActions>
+                      }
+                    />
+                  }
+                >
                   {(open) => (
                     <NavigationItem withHover isSelected={open}>
                       Log In <ToggleIcon isOpen={open} />
@@ -161,7 +152,9 @@ const Header: FC<Props> = ({ headerGuides }) => {
                 </NavigationItemHolder>
                 <NavigationItem>
                   <Link href="/" passHref>
-                    <NavigationLink light>Get test account</NavigationLink>
+                    <NavigationLink light underlineOnHover>
+                      Get test account
+                    </NavigationLink>
                   </Link>
                 </NavigationItem>
               </>

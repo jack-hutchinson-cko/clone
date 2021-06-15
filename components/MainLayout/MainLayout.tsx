@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { NavTreeElement } from 'types/navTree';
-import { HeaderGuid } from 'types/header';
+import { HeaderLink } from 'types/header';
 import { getPathValue } from 'lib/url';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -18,17 +18,17 @@ import {
 
 type Props = {
   navTreeLinks: NavTreeElement[];
-  headerGuides: HeaderGuid[];
+  headerGuidesLinks: HeaderLink[];
 };
 
-const MainLayout: FC<Props> = ({ children, navTreeLinks, headerGuides }) => {
+const MainLayout: FC<Props> = ({ children, navTreeLinks, headerGuidesLinks }) => {
   const { asPath } = useRouter();
   const activeLink = useMemo(() => getPathValue(asPath), [asPath]);
 
   return (
     <MainWrapper>
       <HeaderWrapper>
-        <Header headerGuides={headerGuides} />
+        <Header guides={headerGuidesLinks} />
       </HeaderWrapper>
       <ContentWrapper>
         <SideBarWrapper>

@@ -1,13 +1,11 @@
-import { FC } from 'react'
-
-import { HeaderGuid } from 'types/header'
+import { HeaderLink } from 'types/header'
 import {
   IconSourceCode,
   IconChat,
   IconDocSearch,
 } from 'components/Icons/Icons';
 
-export const guidesList: HeaderGuid[] = [
+export const guidesList: HeaderLink[] = [
   {
     url: '/',
     title: 'Api Reference',
@@ -26,4 +24,4 @@ export const guidesList: HeaderGuid[] = [
     description: 'Documentation for our Classic API',
     Icon: IconDocSearch,
   },
-]
+];

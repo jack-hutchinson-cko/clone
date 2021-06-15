@@ -85,28 +85,38 @@ export const NavigationItem = styled.div<{ withHover?: boolean; isSelected?: boo
     `}
 `;
 
-export const NavigationLink = styled.a<{ light?: boolean; underline?: boolean }>`
+export const NavigationLink = styled.a<{
+  light?: boolean;
+  underlineOnHover?: boolean;
+  underlineAlways?: boolean;
+}>`
   display: inline-flex;
   align-items: center;
   gap: 10px;
   font-weight: ${({ light }) => (light ? 400 : 600)};
-  cursor: pointer;
 
-  ${({ underline }) =>
-    underline
-      ? css`
-          text-decoration: underline;
-        `
-      : css`
-          &:hover {
-            text-decoration: underline;
-          }
-        `};
+  ${({ underlineAlways }) =>
+    underlineAlways &&
+    css`
+      cursor: pointer;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    `};
+  ${({ underlineOnHover }) =>
+    underlineOnHover &&
+    css`
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    `}
 `;
 
 export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
   margin-left: 10px;
-  transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0')});
+  transform: rotate(${({ isOpen }) => (isOpen ? 180 : 0)}deg);
   transition: transform 150ms;
 `;
 
