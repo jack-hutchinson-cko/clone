@@ -7,8 +7,7 @@ import { HeaderLink } from 'types/header';
 import { getSidebarDocLinks } from 'lib/docsItems';
 import { getHeaderContent } from 'lib/headerContent';
 import { defaultTheme } from 'constants/theme';
-
-import '../styles/globals.scss';
+import GlobalStyle from '../styles/globalStyles';
 
 type Props = {
   sidebarDocLinks: NavTreeElement[];
@@ -20,6 +19,7 @@ type Props = {
 const MyApp: NextPage<Props> = ({ sidebarDocLinks, headerGuidesLinks, Component, pageProps }) => {
   return (
     <ThemeDefaultProvider theme={defaultTheme}>
+      <GlobalStyle />
       <MainLayout navTreeLinks={sidebarDocLinks} headerGuidesLinks={headerGuidesLinks}>
         <Component {...pageProps} />
       </MainLayout>

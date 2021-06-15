@@ -1,59 +1,68 @@
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import { FooterLogo } from '../Icons/Icons';
-import styles from './footer.module.scss';
 import FooterLinksComponent from './FooterLinks';
 import SubfooterLinksComponent from './SubfooterLinks';
 import SubfooterSocialLinksComponent from './SubfooterSocialLinks';
+import {
+  FooterBackground,
+  FooterMain,
+  FooterIcon,
+  FooterLogoWrapper,
+  FooterLinkListContainer,
+  SubFooter,
+  SubfooterGridItem,
+  SubfooterDescription,
+  SubfooterDescriptionText,
+  ContainerSubfooterLink,
+  DescriptionLink,
+} from './Footer.styles';
 
 const FooterComponent: FunctionComponent = () => {
   return (
     <footer>
-      <div className={styles.footerBackground}>
-        <div className={styles.footerMain}>
-          <div className={styles.footerLogo}>
-            <div className={styles.footerLogoWrapper}>
+      <FooterBackground>
+        <FooterMain>
+          <FooterIcon>
+            <FooterLogoWrapper>
               <Link href="/">
                 <div>
                   <FooterLogo />
                 </div>
               </Link>
-            </div>
-          </div>
-          <div className={styles.footerLinkListContainer}>
+            </FooterLogoWrapper>
+          </FooterIcon>
+          <FooterLinkListContainer>
             <FooterLinksComponent />
-          </div>
-          <div className={styles.subFooter}>
+          </FooterLinkListContainer>
+          <SubFooter>
             <SubfooterLinksComponent />
-            <div className={styles.subfooterGridItem}>
-              <div className={styles.subfooterDescription}>
-                <p>
+            <SubfooterGridItem>
+              <SubfooterDescription>
+                <SubfooterDescriptionText>
                   Authorised and regulated as an electronic money institution by the UK Financial
                   Conduct Authority under number 900816.
-                </p>
-                <div className={styles.containerSubfooterLink}>
+                </SubfooterDescriptionText>
+                <ContainerSubfooterLink>
                   <span>Powered by&nbsp;</span>
                   <Link href="https://www.atlassian.com">
-                    <a href="https://www.atlassian.com" className={styles.descriptionLink}>
+                    <DescriptionLink href="https://www.atlassian.com">
                       Atlassian Confluence
-                    </a>
+                    </DescriptionLink>
                   </Link>
                   <span>&nbsp;and&nbsp;</span>
                   <Link href="https://www.k15t.com/go/scroll-viewport">
-                    <a
-                      href="https://www.k15t.com/go/scroll-viewport"
-                      className={styles.descriptionLink}
-                    >
+                    <DescriptionLink href="https://www.k15t.com/go/scroll-viewport">
                       Scroll Viewport
-                    </a>
+                    </DescriptionLink>
                   </Link>
-                </div>
-              </div>
+                </ContainerSubfooterLink>
+              </SubfooterDescription>
               <SubfooterSocialLinksComponent />
-            </div>
-          </div>
-        </div>
-      </div>
+            </SubfooterGridItem>
+          </SubFooter>
+        </FooterMain>
+      </FooterBackground>
     </footer>
   );
 };

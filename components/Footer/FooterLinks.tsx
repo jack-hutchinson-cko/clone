@@ -2,11 +2,18 @@
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import footerList from '../../mocks/footerSection';
-import styles from './footer.module.scss';
+import {
+  FooterList,
+  FooterListTitle,
+  FooterColumnContainer,
+  FooterColumnSubContainer,
+  FooterLink,
+  FooterLinkSpecial,
+} from './Footer.styles';
 
 const appendSpecialLink = (link: string) => {
   if (link === 'Careers') {
-    return <span className={styles.footerLinkSpecial}>WE`RE HIRING</span>;
+    return <FooterLinkSpecial>WE`RE HIRING</FooterLinkSpecial>;
   }
 
   return null;
@@ -22,27 +29,27 @@ const FooterLinksComponent: FunctionComponent = () => {
     <>
       {footerList.navigation.map((item: FooterNavigationItemType, index: number) => {
         return (
-          <div className={styles.footerList} key={index}>
-            <p className={styles.footerListTitle}>{item.navigationTitle}</p>
-            <div className={styles.footerColumnContainer}>
+          <FooterList key={index}>
+            <FooterListTitle>{item.navigationTitle}</FooterListTitle>
+            <FooterColumnContainer>
               {item.items.map((containerSection, containerIndex) => {
                 return (
                   <div key={containerIndex}>
-                    <ul className={styles.footerColumnSubContainer}>
+                    <FooterColumnSubContainer>
                       {containerSection.map((sectionLink, sectionLinkIndex: number) => {
                         return (
-                          <li className={styles.footerLink} key={sectionLinkIndex}>
+                          <FooterLink key={sectionLinkIndex}>
                             <Link href={sectionLink.link}>{sectionLink.name}</Link>
                             {appendSpecialLink(sectionLink.name)}
-                          </li>
+                          </FooterLink>
                         );
                       })}
-                    </ul>
+                    </FooterColumnSubContainer>
                   </div>
                 );
               })}
-            </div>
-          </div>
+            </FooterColumnContainer>
+          </FooterList>
         );
       })}
     </>

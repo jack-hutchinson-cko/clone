@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import footerList from '../../mocks/footerSection';
-import styles from './footer.module.scss';
+import { SubfooterSocialLinks, SubfooterLogo } from './Footer.styles';
 
 export type SocialItemType = {
   link: string;
@@ -10,21 +10,15 @@ export type SocialItemType = {
 
 const SubfooterSocialLinksComponent: FC = () => {
   return (
-    <div className={styles.subfooterSocialLinks}>
+    <SubfooterSocialLinks>
       {footerList.social.map(({ link, title, Icon }: SocialItemType) => {
         return (
-          <a
-            href={link}
-            key={link}
-            className={styles.subfooterLogo}
-            title={title}
-            rel="noopener noreferrer"
-          >
+          <SubfooterLogo href={link} key={link} title={title} rel="noopener noreferrer">
             <Icon />
-          </a>
+          </SubfooterLogo>
         );
       })}
-    </div>
+    </SubfooterSocialLinks>
   );
 };
 

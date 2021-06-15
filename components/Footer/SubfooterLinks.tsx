@@ -1,24 +1,29 @@
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import footerList from '../../mocks/footerSection';
-import styles from './footer.module.scss';
+import {
+  SubfooterGridItem,
+  SubfooterTitle,
+  SubfooterWrapper,
+  SubfooterLink,
+} from './Footer.styles';
 
 const SubfooterLinksComponent: FunctionComponent = () => {
   return (
-    <div className={styles.subfooterGridItem}>
-      <p className={styles.subfooterTitle}>© 2021 Checkout.com</p>
-      <ul className={styles.subfooterWrapper}>
+    <SubfooterGridItem>
+      <SubfooterTitle>© 2021 Checkout.com</SubfooterTitle>
+      <SubfooterWrapper>
         {footerList.policies.map((sectionLink: { link: string; name: string }) => (
-          <li className={styles.subfooterLink} key={sectionLink.link}>
+          <SubfooterLink key={sectionLink.link}>
             <Link href={sectionLink.link}>
               <a href={sectionLink.link} target="_blank" rel="noreferrer">
                 {sectionLink.name}
               </a>
             </Link>
-          </li>
+          </SubfooterLink>
         ))}
-      </ul>
-    </div>
+      </SubfooterWrapper>
+    </SubfooterGridItem>
   );
 };
 

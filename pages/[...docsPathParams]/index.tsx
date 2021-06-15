@@ -2,13 +2,12 @@ import { last } from 'lodash';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDXProvider from 'components/MDXProvider';
-import { TextHeadingOne } from 'components/TextHeading';
 import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
 import { getFileNameFromPath, getDocArticleData } from 'lib/fileParser';
-import styles from './docPost.module.scss';
+import { MainWrapper, Content, Title, Navigation } from '../../styles/index.styles';
 
 type Props = {
   breadCrumbsItem: BreadCrumbsItems;
@@ -21,18 +20,18 @@ type Props = {
 
 const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatter, source }) => {
   return (
-    <div className={styles.mainWrapper}>
-      <article className={styles.content}>
+    <MainWrapper>
+      <Content>
         <header>
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-          <TextHeadingOne className={styles.title}>{frontMatter.title}</TextHeadingOne>
+          <Title>{frontMatter.title}</Title>
         </header>
         <MDXProvider source={source} />
-      </article>
-      <div className={styles.navigation}>
+      </Content>
+      <Navigation>
         <AnchorNavigation anchors={anchorsNavItems} />
-      </div>
-    </div>
+      </Navigation>
+    </MainWrapper>
   );
 };
 

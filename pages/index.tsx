@@ -1,60 +1,61 @@
 import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Box,
-  Flex,
-  PrimaryButton,
-  TextHeadingOne,
-  TextHeadingTwo,
-  Text,
-  List,
-  ListItem,
-  Link as PrimitiveLink,
-} from '@cko/primitives';
+import { ListItem } from '@cko/primitives';
 import { IconActionArrowRight } from '@cko/icons';
 import { getHomePageContent } from 'lib/homePageContent';
 import { HomePageContent } from 'types/homepage';
-import styles from './index.module.scss';
+import {
+  IntroWrapper,
+  ContentBlock,
+  IntroTitle,
+  IntroDescription,
+  GetStartedLink,
+  BlocksWrapper,
+  BlockTitle,
+  BlockDescription,
+  BlockList,
+  BlockLink,
+} from '../styles/index.styles';
 
 type Props = HomePageContent;
 
 const HomePage: NextPage<Props> = ({ intro, blocks }) => {
   return (
     <>
-      <Flex justifyContent="space-between" className={styles.introWrapper}>
-        <Box className={styles.contentBlock}>
-          <TextHeadingOne className={styles.introTitle}>{intro.title}</TextHeadingOne>
-          <Text className={styles.introDescription}>{intro.description}</Text>
+      <IntroWrapper>
+        <ContentBlock>
+          <IntroTitle>{intro.title}</IntroTitle>
+          <IntroDescription>{intro.description}</IntroDescription>
           <Link href={intro.getStartedUrl}>
-            <PrimaryButton className={styles.getStartedLink}>Get started</PrimaryButton>
+            <GetStartedLink>Get started</GetStartedLink>
           </Link>
-        </Box>
-        <Box className={styles.contentBlock}>
+        </ContentBlock>
+        <ContentBlock>
           <Image src={intro.imageUrl} width={480} height={335} />
-        </Box>
-      </Flex>
-      <Flex justifyContent="space-between" className={styles.blocksWrapper}>
+        </ContentBlock>
+      </IntroWrapper>
+      <BlocksWrapper>
         {blocks.map(({ id, title, imageUrl, description, links = [] }) => (
-          <Box key={id} className={styles.contentBlock}>
+          <ContentBlock key={id}>
             <Image src={imageUrl} width={465} height={190} alt={title} />
-            <TextHeadingTwo className={styles.blockTitle}>{title}</TextHeadingTwo>
-            <Text className={styles.blockDescription}>{description}</Text>
-            <List className={styles.blockList}>
+            <BlockTitle>{title}</BlockTitle>
+            <BlockDescription>{description}</BlockDescription>
+            <BlockList>
               {links.map((linkItem) => (
                 <ListItem key={linkItem.id}>
                   <Link href={linkItem.url}>
-                    <PrimitiveLink className={styles.blockLink}>
+                    <BlockLink>
                       {linkItem.name}
                       <IconActionArrowRight />
-                    </PrimitiveLink>
+                    </BlockLink>
                   </Link>
                 </ListItem>
               ))}
-            </List>
-          </Box>
+            </BlockList>
+          </ContentBlock>
         ))}
-      </Flex>
+      </BlocksWrapper>
     </>
   );
 };
