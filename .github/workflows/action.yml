@@ -15,7 +15,7 @@ jobs:
           node-version: 14.x
           
       - name: Install node modules
-        run: npm i
+        run: npm i --ignore-scripts
           
       - name: Run all unit tests
         run: npm run test
