@@ -3,7 +3,7 @@ import { ThemeDefaultProvider } from '@cko/primitives';
 import MainLayout from 'components/MainLayout';
 
 import { NavTreeElement } from 'types/navTree';
-import { HeaderLink } from 'types/header';
+import { HeaderContent } from 'types/header';
 import { getSidebarDocLinks } from 'lib/docsItems';
 import { getHeaderContent } from 'lib/headerContent';
 import { defaultTheme } from 'constants/theme';
@@ -11,16 +11,16 @@ import GlobalStyle from '../styles/globalStyles';
 
 type Props = {
   sidebarDocLinks: NavTreeElement[];
-  headerGuidesLinks: HeaderLink[];
+  headerContent: HeaderContent;
   Component?: any;
   pageProps?: any;
 };
 
-const MyApp: NextPage<Props> = ({ sidebarDocLinks, headerGuidesLinks, Component, pageProps }) => {
+const MyApp: NextPage<Props> = ({ sidebarDocLinks, headerContent, Component, pageProps }) => {
   return (
     <ThemeDefaultProvider theme={defaultTheme}>
       <GlobalStyle />
-      <MainLayout navTreeLinks={sidebarDocLinks} headerGuidesLinks={headerGuidesLinks}>
+      <MainLayout navTreeLinks={sidebarDocLinks} headerContent={headerContent}>
         <Component {...pageProps} />
       </MainLayout>
     </ThemeDefaultProvider>
@@ -29,8 +29,8 @@ const MyApp: NextPage<Props> = ({ sidebarDocLinks, headerGuidesLinks, Component,
 
 MyApp.getInitialProps = async () => {
   const sidebarDocLinks = await getSidebarDocLinks();
-  const { guides } = await getHeaderContent();
-  return { sidebarDocLinks, headerGuidesLinks: guides };
+  const headerContent = await getHeaderContent();
+  return { sidebarDocLinks, headerContent };
 };
 
 export default MyApp;

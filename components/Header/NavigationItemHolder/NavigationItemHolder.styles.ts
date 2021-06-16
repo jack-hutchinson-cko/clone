@@ -15,12 +15,12 @@ export const Container = styled.div<{ isMobile?: boolean }>`
 
 export const Content = styled.div<{
   align: 'left' | 'right';
-  isOpen?: boolean;
+  isShown?: boolean;
   offset?: number;
   isMobile?: boolean;
 }>`
   position: absolute;
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   top: 100%;
   ${({ isMobile, align, offset }) =>
     isMobile

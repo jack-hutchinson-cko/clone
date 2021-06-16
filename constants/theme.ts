@@ -19,6 +19,7 @@ export const defaultTheme = {
     blueTertiary: '#2BD4DB',
     blueDark: '#3D415C',
     greyLight: '#E6E7EC',
+    grayFaded: '#8688a0',
     greyDark: '#B6B8C6',
     cometLight: '#55587b',
     tip: '#70c9b7',

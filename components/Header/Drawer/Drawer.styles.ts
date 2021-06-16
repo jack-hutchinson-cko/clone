@@ -13,6 +13,7 @@ export const Background = styled.span`
   width: 100%;
   height: 100%;
 `;
+
 export const Content = styled.aside<{ autoSize?: boolean }>`
   display: flex;
   flex-direction: column;
@@ -22,5 +23,5 @@ export const Content = styled.aside<{ autoSize?: boolean }>`
   background: ${({ theme }) => theme.colors.white};
   border-left: 1px solid ${({ theme }) => theme.colors.greyLight};
   filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
-  padding: 20px 30px;
+  padding: 40px;
 `;

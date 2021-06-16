@@ -2,14 +2,14 @@ import { FC, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
-import { HeaderLink } from 'types/header';
+import { HeaderLink, SearchResultLink } from 'types/header';
 import { Breakpoints } from 'constants/screen';
 import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
 import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
-import SearchField from './SearchField';
+import QuickSearch from './QuickSearch';
 import HeaderLogo from './HeaderLogo';
 import GuidesLinks from './GuidesLinks';
 import SignInLinks from './SignInLinks';
@@ -29,9 +29,21 @@ import {
 
 type Props = {
   guides: HeaderLink[];
+  popularSearches: SearchResultLink[];
+  emptySearchResult: string;
+  popularSearchesTitle: string;
+  loginUrl: string;
+  testAccountUrl: string;
 };
 
-const Header: FC<Props> = ({ guides }) => {
+const Header: FC<Props> = ({
+  guides,
+  popularSearches,
+  emptySearchResult,
+  popularSearchesTitle,
+  loginUrl,
+  testAccountUrl,
+}) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
@@ -51,14 +63,27 @@ const Header: FC<Props> = ({ guides }) => {
 
   const signInButtons = (
     <ExtraItemActions gap={12}>
-      <ButtonLogin>Log In</ButtonLogin>
+      <Link href={loginUrl} passHref>
+        <NavigationLink target="_blank">
+          <ButtonLogin>Log In</ButtonLogin>
+        </NavigationLink>
+      </Link>
       or
-      <Link href="/">
-        <NavigationLink underlineOnHover>
+      <Link href={testAccountUrl} passHref>
+        <NavigationLink target="_blank" underlineOnHover>
           Apply for an account <IconActionArrowRight />
         </NavigationLink>
       </Link>
     </ExtraItemActions>
+  );
+
+  const search = (
+    <QuickSearch
+      isMobile={isMobile}
+      popularSearches={popularSearches}
+      emptySearchResult={emptySearchResult}
+      popularSearchesTitle={popularSearchesTitle}
+    />
   );
 
   return (
@@ -72,7 +97,9 @@ const Header: FC<Props> = ({ guides }) => {
           )}
           <NavigationItem>
             <Link href="/" passHref>
-              <HeaderLogo />
+              <NavigationLink>
+                <HeaderLogo />
+              </NavigationLink>
             </Link>
           </NavigationItem>
           {isMobile && (
@@ -89,7 +116,7 @@ const Header: FC<Props> = ({ guides }) => {
                 isMobile={isMobile}
                 guides={guides}
                 mapTitle={(title, Icon) => (
-                  <NavigationLink underlineOnHover>
+                  <NavigationLink target="_blank" underlineOnHover>
                     {Icon} {title}
                   </NavigationLink>
                 )}
@@ -104,9 +131,7 @@ const Header: FC<Props> = ({ guides }) => {
           </NavigationItemHolder>
           {(isDesktop || isTablet) && (
             <NavigationItem>
-              <SearchFieldWrapper>
-                <SearchField />
-              </SearchFieldWrapper>
+              <SearchFieldWrapper>{search}</SearchFieldWrapper>
             </NavigationItem>
           )}
         </NavigationSection>
@@ -132,12 +157,16 @@ const Header: FC<Props> = ({ guides }) => {
                       }
                       footerExtraContent={
                         <ExtraItemActions>
-                          <Link href="/">
-                            <NavigationLink underlineAlways>Log in</NavigationLink>
+                          <Link href={loginUrl} passHref>
+                            <NavigationLink target="_blank" underlineAlways>
+                              Log in
+                            </NavigationLink>
                           </Link>
                           or
-                          <Link href="/">
-                            <NavigationLink underlineAlways>apply for an account</NavigationLink>
+                          <Link href={testAccountUrl} passHref>
+                            <NavigationLink target="_blank" underlineAlways>
+                              apply for an account
+                            </NavigationLink>
                           </Link>
                         </ExtraItemActions>
                       }
@@ -151,8 +180,8 @@ const Header: FC<Props> = ({ guides }) => {
                   )}
                 </NavigationItemHolder>
                 <NavigationItem>
-                  <Link href="/" passHref>
-                    <NavigationLink light underlineOnHover>
+                  <Link href={testAccountUrl} passHref>
+                    <NavigationLink target="_blank" light underlineOnHover>
                       Get test account
                     </NavigationLink>
                   </Link>
@@ -175,7 +204,7 @@ const Header: FC<Props> = ({ guides }) => {
         )}
         {isMobile && showSearch && (
           <Drawer autoSize={isMobile} onClose={onToggleSearchDrawer}>
-            <SearchField />
+            {search}
           </Drawer>
         )}
       </NavigationDrawers>

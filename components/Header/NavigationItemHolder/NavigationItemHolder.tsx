@@ -1,5 +1,6 @@
 import { FC, ReactNode, useState, useCallback } from 'react';
 
+import Outside from 'components/Outside';
 import { Container, Content, Trigger } from './NavigationItemHolder.styles';
 
 export enum ContentAlign {
@@ -24,15 +25,19 @@ const NavigationItemHolder: FC<Props> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const onClickHandler = useCallback(() => setOpen(!open), [open]);
-  const onBlurHandler = useCallback(() => setOpen(false), []);
+  const onClickOutside = useCallback(() => setOpen(false), []);
 
   return (
-    <Container isMobile={isMobile} tabIndex={0} onBlur={onBlurHandler}>
-      <Trigger onClick={onClickHandler}>{children(open)}</Trigger>
-      <Content align={contentAlign} isMobile={isMobile} offset={offset} isOpen={open}>
-        {content}
-      </Content>
-    </Container>
+    <Outside onOutsideClick={onClickOutside}>
+      {(refToElement) => (
+        <Container ref={refToElement} isMobile={isMobile}>
+          <Trigger onClick={onClickHandler}>{children(open)}</Trigger>
+          <Content align={contentAlign} isMobile={isMobile} offset={offset} isShown={open}>
+            {content}
+          </Content>
+        </Container>
+      )}
+    </Outside>
   );
 };
 

@@ -7,6 +7,16 @@ export type HeaderLink = {
   description?: string;
 };
 
+export type SearchResultLink = {
+  url: string;
+  title: string;
+};
+
 export type HeaderContent = {
   guides: HeaderLink[];
+  popularSearches: SearchResultLink[];
+  popularSearchesTitle: string;
+  emptySearchResult: string;
+  testAccountUrl: string;
+  loginUrl: string;
 };

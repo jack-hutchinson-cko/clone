@@ -94,6 +94,7 @@ export const NavigationLink = styled.a<{
   align-items: center;
   gap: 10px;
   font-weight: ${({ light }) => (light ? 400 : 600)};
+  outline: none;
 
   ${({ underlineAlways }) =>
     underlineAlways &&
