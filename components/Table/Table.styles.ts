@@ -26,17 +26,18 @@ export const TableBody = styled.tbody`
 export const TableCell = styled.td`
   padding: 0 16px;
   vertical-align: top;
+  font-size: 14px;
 
   & > div,
   & > p {
     margin: 14px 0;
+    font-size: 14px;
   }
 `;
 
 export const TableRow = styled.tr`
   min-width: 8px;
   background-color: ${({ theme }) => theme.colors.white};
-  font-weight: 500;
 
   & > th:first-child {
     border-radius: 8px 0 0 0;
@@ -47,8 +48,9 @@ export const TableRow = styled.tr`
   }
 `;
 
-export const StyledTR = styled.th`
+export const StyledTH = styled.th`
   padding: 10px 16px;
   border: none;
   background: ${({ theme }) => theme.colors.greyLight};
+  font-weight: 500;
 `;

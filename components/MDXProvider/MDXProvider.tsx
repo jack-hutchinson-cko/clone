@@ -21,6 +21,7 @@ import Table, {
   TableHeadSticky,
   TableRow,
 } from 'components/Table';
+import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
 
 const components = {
   TipBox: withBlockMargin(TipBox),
@@ -48,6 +49,13 @@ const components = {
   StatusTag,
   TypeTag,
   InfoBox,
+  ul: withBlockMargin(UnorderedList),
+  ol: withBlockMargin(OrderedList),
+  li: ListItem,
+  UnorderedList: withBlockMargin(UnorderedList),
+  OrderedList: withBlockMargin(OrderedList),
+  ListItem,
+  List: withBlockMargin(List),
 };
 
 type Props = {

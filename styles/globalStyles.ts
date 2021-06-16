@@ -8,7 +8,8 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
       padding: 0;
       font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      color: ${({ theme }) => theme.colors.base}
+      color: ${({ theme }) => theme.colors.base};
+      font-weight: 400;
    };
    * {
       box-sizing: border-box;
