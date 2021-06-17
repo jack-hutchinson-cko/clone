@@ -1,9 +1,11 @@
 import { last } from 'lodash';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
+
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDXProvider from 'components/MDXProvider';
 import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems';
 import BreadCrumbs from 'components/BreadCrumbs';
+import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
 import { getFileNameFromPath, getDocArticleData } from 'lib/fileParser';
@@ -20,18 +22,20 @@ type Props = {
 
 const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatter, source }) => {
   return (
-    <MainWrapper>
-      <Content>
-        <header>
-          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-          <Title>{frontMatter.title}</Title>
-        </header>
-        <MDXProvider source={source} />
-      </Content>
-      <Navigation>
-        <AnchorNavigation anchors={anchorsNavItems} />
-      </Navigation>
-    </MainWrapper>
+    <AnchorsProvider>
+      <MainWrapper>
+        <Content>
+          <header>
+            <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+            <Title>{frontMatter.title}</Title>
+          </header>
+          <MDXProvider source={source} />
+        </Content>
+        <Navigation>
+          <AnchorNavigation anchors={anchorsNavItems} />
+        </Navigation>
+      </MainWrapper>
+    </AnchorsProvider>
   );
 };
 

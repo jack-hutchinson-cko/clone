@@ -1,4 +1,4 @@
-export const getHashValue = (url: string): string | null => url.split('#')[1] || null;
+export const getHashValue = (url: string): string => url.split('#')[1];
 
 export const getPathValue = (url: string): string => url.split('#')[0];
 

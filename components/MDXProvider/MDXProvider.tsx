@@ -1,8 +1,13 @@
 import { FC } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import withAnchor from 'hoc/withAnchor';
+import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
-import { TextHeadingOne, TextHeadingTwo, TextHeadingThree } from 'components/TextHeading';
+import {
+  TextHeadingOne,
+  TextHeadingTwo,
+  TextHeadingThree,
+  TextHeadingFour,
+} from 'components/TextHeading';
 import TipBox from 'components/TipBox';
 import Tabs, { TabBody, TabHead, TabRow } from 'components/Tabs';
 import { Text } from 'components/Text';
@@ -41,6 +46,7 @@ const components = {
   h1: withAnchor(TextHeadingOne),
   h2: withAnchor(TextHeadingTwo),
   h3: withAnchor(TextHeadingThree),
+  h4: withAnchor(TextHeadingFour),
   p: Text,
   inlineCode: LineCode,
   a: TextLink,

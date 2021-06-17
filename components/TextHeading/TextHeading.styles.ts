@@ -17,3 +17,9 @@ export const TextHeadingThree = styled.h3`
   font-size: 24px;
   margin: 16px 0;
 `;
+
+export const TextHeadingFour = styled.h4`
+  color: ${({ theme }) => theme.colors.base};
+  font-size: 18px;
+  margin: 16px 0;
+`;
