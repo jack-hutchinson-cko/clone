@@ -26,11 +26,11 @@ export const popularSearches: SearchResultLink[] = [
   { title: 'Payment', url: '/payment' },
   { title: 'Card Verification ', url: '/card-v' },
   { title: '3D secure', url: '/3d-secure' },
-]
+];
 
-export const popularSearchesTitle: string = 'Popular searches'
+export const popularSearchesTitle: string = 'Popular searches';
 
-export const emptySearchResult: string = 'We couldn\'t find a match. Please try another term.'
+export const emptySearchResult: string = "We couldn't find a match. Please try another term.";
 
 export const loginUrl: string = '/login';
 

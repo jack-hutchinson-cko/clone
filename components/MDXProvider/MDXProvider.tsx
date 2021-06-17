@@ -14,6 +14,7 @@ import Pre from 'components/Pre';
 import { RequestTag, StatusTag, TypeTag } from 'components/Tag';
 import InfoBox from 'components/InfoBox';
 import LineCodeWrapper from 'components/LineCodeWrapper';
+import Accordion, { AccordionHead, AccordionBody } from 'components/Accordion';
 import Table, {
   TableBody,
   TableCell,
@@ -56,6 +57,9 @@ const components = {
   OrderedList: withBlockMargin(OrderedList),
   ListItem,
   List: withBlockMargin(List),
+  Accordion,
+  AccordionHead,
+  AccordionBody,
 };
 
 type Props = {

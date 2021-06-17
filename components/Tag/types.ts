@@ -4,7 +4,7 @@ export interface Tag<Type> {
 
 export type RequestTagProps = Tag<'post' | 'get' | 'delete'>;
 
-export type StatusTagProps = Tag<'optional' | 'required' | 'recommended'>;
+export type StatusTagProps = Tag<'optional' | 'required' | 'recommended' | 'conditional'>;
 
 export type TypeTagProps = Tag<string>;
 

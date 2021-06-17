@@ -10,6 +10,7 @@ const getColorWithType = ({ type, theme }: { type: StatusTagProps['type']; theme
     case 'recommended':
       return theme.colors.recommendedTag;
 
+    case 'conditional':
     case 'optional':
     default:
       return theme.colors.optionalTag;

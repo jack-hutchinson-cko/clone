@@ -23,5 +23,11 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
       color: inherit;
       text-decoration: none;
    }
+
+   hr {
+      margin: 16px 0;
+      border: 0;
+      border-top: 1px solid rgba(0,0,0,.1);
+   }
 `;
 export default GlobalStyle;
