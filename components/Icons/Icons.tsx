@@ -404,6 +404,15 @@ export const IconActionArrowRight: FC<Props> = (props) => (
   </StyledIcon>
 );
 
+export const IconArrowRight: FC<Props> = (props) => (
+  <StyledIcon width={30} height={24} viewBox="0 0 30 24" {...props}>
+    <path
+      d="M0 11.7654L28.75 11.7654M28.75 11.7654L17.4846 23.0307M28.75 11.7654L17.4846 0.5"
+      stroke="currentColor"
+    />
+  </StyledIcon>
+);
+
 export const IconBurger: FC<Props> = (props) => (
   <StyledIcon width={18} height={12} viewBox="0 0 18 12" {...props}>
     <g id="Icons" stroke="none" strokeWidth="1" fillRule="evenodd">
