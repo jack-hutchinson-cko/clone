@@ -1,17 +1,21 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-import { Container, Content, Background } from './Drawer.styles';
+import { Container, Background, Content, Top, Bottom } from './Drawer.styles';
 
 type Props = {
   onClose: () => void;
-  autoSize?: boolean;
+  isMobile?: boolean;
+  bottomContent?: ReactNode;
 };
 
-const Drawer: FC<Props> = ({ children, autoSize, onClose }) => {
+const Drawer: FC<Props> = ({ children, isMobile, onClose, bottomContent }) => {
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       <Background onClick={onClose} />
-      <Content autoSize={autoSize}>{children}</Content>
+      <Content>
+        <Top>{children}</Top>
+        {bottomContent && <Bottom>{bottomContent}</Bottom>}
+      </Content>
     </Container>
   );
 };

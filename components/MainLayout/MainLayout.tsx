@@ -30,6 +30,10 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent }) => {
     <MainWrapper>
       <HeaderWrapper>
         <Header
+          docsTreeLinks={navTreeLinks}
+          homeLink="/"
+          homeLinkTitle="Home"
+          activeLink={activeLink}
           guides={headerContent.guides}
           popularSearches={headerContent.popularSearches}
           popularSearchesTitle={headerContent.popularSearchesTitle}

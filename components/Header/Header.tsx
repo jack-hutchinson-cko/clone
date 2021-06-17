@@ -3,13 +3,16 @@ import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import { HeaderLink, SearchResultLink } from 'types/header';
+import { NavTreeElement } from 'types/navTree';
 import { Breakpoints } from 'constants/screen';
 import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
 import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
-import QuickSearch from './QuickSearch';
+import SearchWidget from './SearchWidget';
+import TreeMenuWidget from './TreeMenuWidget';
+import LoginWidget from './LoginWidget';
 import HeaderLogo from './HeaderLogo';
 import GuidesLinks from './GuidesLinks';
 import SignInLinks from './SignInLinks';
@@ -21,13 +24,16 @@ import {
   NavigationItem,
   NavigationLink,
   ToggleIcon,
-  ExtraItemActions,
   ButtonLogin,
   NavigationDrawers,
   SearchFieldWrapper,
 } from './Header.styles';
 
 type Props = {
+  docsTreeLinks: NavTreeElement[];
+  homeLink: string;
+  homeLinkTitle: string;
+  activeLink: string;
   guides: HeaderLink[];
   popularSearches: SearchResultLink[];
   emptySearchResult: string;
@@ -37,6 +43,10 @@ type Props = {
 };
 
 const Header: FC<Props> = ({
+  docsTreeLinks,
+  homeLink,
+  homeLinkTitle,
+  activeLink,
   guides,
   popularSearches,
   emptySearchResult,
@@ -61,24 +71,30 @@ const Header: FC<Props> = ({
     setShowSearch(false);
   }, [showMenu]);
 
-  const signInButtons = (
-    <ExtraItemActions gap={12}>
-      <Link href={loginUrl} passHref>
-        <NavigationLink target="_blank">
-          <ButtonLogin>Log In</ButtonLogin>
-        </NavigationLink>
-      </Link>
-      or
-      <Link href={testAccountUrl} passHref>
-        <NavigationLink target="_blank" underlineOnHover>
-          Apply for an account <IconActionArrowRight />
-        </NavigationLink>
-      </Link>
-    </ExtraItemActions>
+  const loginWidget = (
+    <LoginWidget
+      isMobile={!isDesktop}
+      gap={12}
+      dividerText="or"
+      link={
+        <Link href={loginUrl} passHref>
+          <ButtonLogin fullWidth={!isDesktop} target="_blank">
+            Log in
+          </ButtonLogin>
+        </Link>
+      }
+      alternativeLink={
+        <Link href={testAccountUrl} passHref>
+          <NavigationLink light={!isDesktop} underlineOnHover target="_blank">
+            Apply for an account <IconActionArrowRight />
+          </NavigationLink>
+        </Link>
+      }
+    />
   );
 
-  const search = (
-    <QuickSearch
+  const searchWidget = (
+    <SearchWidget
       isMobile={isMobile}
       popularSearches={popularSearches}
       emptySearchResult={emptySearchResult}
@@ -87,9 +103,9 @@ const Header: FC<Props> = ({
   );
 
   return (
-    <Navigation>
-      <NavigationContent isMobile={isMobile}>
-        <NavigationSection isMobile={isMobile}>
+    <Navigation isMobile={isMobile}>
+      <NavigationContent>
+        <NavigationSection>
           {isMobile && (
             <NavigationItem>
               <MenuButton isActive={showMenu} onClick={onToggleMenuDrawer} />
@@ -108,7 +124,7 @@ const Header: FC<Props> = ({
             </NavigationItem>
           )}
         </NavigationSection>
-        <NavigationSection isMobile={isMobile}>
+        <NavigationSection>
           <NavigationItemHolder
             isMobile={isMobile}
             content={
@@ -131,7 +147,7 @@ const Header: FC<Props> = ({
           </NavigationItemHolder>
           {(isDesktop || isTablet) && (
             <NavigationItem>
-              <SearchFieldWrapper>{search}</SearchFieldWrapper>
+              <SearchFieldWrapper>{searchWidget}</SearchFieldWrapper>
             </NavigationItem>
           )}
         </NavigationSection>
@@ -149,26 +165,30 @@ const Header: FC<Props> = ({
                         </NavigationLink>
                       }
                       headerDescription="Monitor transactions, business performance and customer trends."
-                      extraContent={signInButtons}
+                      extraContent={loginWidget}
                       footerTitle={
                         <NavigationLink>
                           <IconTestAccount /> Test Account
                         </NavigationLink>
                       }
                       footerExtraContent={
-                        <ExtraItemActions>
-                          <Link href={loginUrl} passHref>
-                            <NavigationLink target="_blank" underlineAlways>
-                              Log in
-                            </NavigationLink>
-                          </Link>
-                          or
-                          <Link href={testAccountUrl} passHref>
-                            <NavigationLink target="_blank" underlineAlways>
-                              apply for an account
-                            </NavigationLink>
-                          </Link>
-                        </ExtraItemActions>
+                        <LoginWidget
+                          dividerText="or"
+                          link={
+                            <Link href={loginUrl} passHref>
+                              <NavigationLink target="_blank" underlineAlways>
+                                Log in
+                              </NavigationLink>
+                            </Link>
+                          }
+                          alternativeLink={
+                            <Link href={testAccountUrl} passHref>
+                              <NavigationLink target="_blank" underlineAlways>
+                                apply for an account
+                              </NavigationLink>
+                            </Link>
+                          }
+                        />
                       }
                     />
                   }
@@ -198,13 +218,18 @@ const Header: FC<Props> = ({
       </NavigationContent>
       <NavigationDrawers>
         {!isDesktop && showMenu && (
-          <Drawer autoSize={isMobile} onClose={onToggleMenuDrawer}>
-            Navigation content
+          <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer} bottomContent={loginWidget}>
+            <TreeMenuWidget
+              docsTreeLinks={docsTreeLinks}
+              activeLink={activeLink}
+              homeLink={homeLink}
+              homeLinkTitle={homeLinkTitle}
+            />
           </Drawer>
         )}
         {isMobile && showSearch && (
-          <Drawer autoSize={isMobile} onClose={onToggleSearchDrawer}>
-            {search}
+          <Drawer isMobile onClose={onToggleSearchDrawer}>
+            {searchWidget}
           </Drawer>
         )}
       </NavigationDrawers>

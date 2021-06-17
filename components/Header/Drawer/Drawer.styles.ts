@@ -1,11 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Content = styled.aside`
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  max-height: 100%;
+  overflow-y: auto;
+  border-left: 1px solid ${({ theme }) => theme.colors.greyLight};
+  filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
+`;
+
+export const Container = styled.div<{ isMobile?: boolean }>`
   position: relative;
   display: flex;
   justify-content: flex-end;
-  flex: 1;
   pointer-events: auto;
+  flex: 1;
+
+  ${({ isMobile }) =>
+    isMobile &&
+    css`
+      ${Content} {
+        width: 100%;
+      }
+    `}
 `;
 
 export const Background = styled.span`
@@ -14,14 +32,17 @@ export const Background = styled.span`
   height: 100%;
 `;
 
-export const Content = styled.aside<{ autoSize?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  width: ${({ autoSize }) => (autoSize ? '100%' : '340px')};
-  max-height: 100%;
-  overflow-y: auto;
+export const Top = styled.div`
   background: ${({ theme }) => theme.colors.white};
-  border-left: 1px solid ${({ theme }) => theme.colors.greyLight};
-  filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
   padding: 40px;
+  width: 100%;
+
+  &:only-child {
+    flex: 1;
+  }
+`;
+
+export const Bottom = styled(Top)`
+  background: ${({ theme }) => theme.colors.greyLight};
+  flex: 1;
 `;

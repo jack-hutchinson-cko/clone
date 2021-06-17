@@ -15,7 +15,7 @@ import {
   PopularSearches,
   PopularSearchesTitle,
   PopularSearchesItem,
-} from './QuickSearch.styles';
+} from './SearchWidget.styles';
 
 type Props = {
   isMobile?: boolean;
@@ -24,7 +24,7 @@ type Props = {
   popularSearchesTitle: string;
 };
 
-const QuickSearch: FC<Props> = ({
+const SearchWidget: FC<Props> = ({
   isMobile,
   popularSearches,
   emptySearchResult,
@@ -76,4 +76,4 @@ const QuickSearch: FC<Props> = ({
   );
 };
 
-export default QuickSearch;
+export default SearchWidget;

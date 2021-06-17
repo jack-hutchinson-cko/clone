@@ -1,14 +1,7 @@
 import styled, { css } from 'styled-components';
-import { OutlineButton } from '@cko/primitives';
 import { IconActionChevronDown } from 'components/Icons';
 
-export const Navigation = styled.header`
-  display: block;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
-  box-sizing: content-box;
-`;
-
-export const NavigationContent = styled.nav<{ isMobile?: boolean }>`
+export const NavigationContent = styled.nav`
   position: relative;
   display: flex;
   max-width: 1360px;
@@ -17,40 +10,46 @@ export const NavigationContent = styled.nav<{ isMobile?: boolean }>`
   padding: 0 26px;
   background: ${({ theme }) => theme.colors.white};
   z-index: 1;
-
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      justify-content: flex-start;
-      flex-direction: column;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      font-size: 24px;
-      line-height: 32px;
-      font-weight: 300;
-    `}
 `;
 
 export const NavigationSection = styled.div<{ isMobile?: boolean }>`
   display: inline-flex;
   gap: 30px;
+`;
+
+export const Navigation = styled.header<{ isMobile?: boolean }>`
+  display: block;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+  box-sizing: content-box;
 
   ${({ isMobile }) =>
     isMobile &&
     css`
-      display: flex;
-      justify-content: center;
-      flex: 1;
-      gap: 0;
-
-      &:first-child {
-        justify-content: space-between;
+      ${NavigationContent} {
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 300;
       }
 
-      &:not(:last-child) {
-        padding: 0 26px;
-        border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+      ${NavigationSection} {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+        gap: 0;
+
+        &:first-child {
+          justify-content: space-between;
+        }
+
+        &:not(:last-child) {
+          padding: 0 26px;
+          border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+        }
       }
     `}
 `;
@@ -87,6 +86,7 @@ export const NavigationItem = styled.div<{ withHover?: boolean; isSelected?: boo
 
 export const NavigationLink = styled.a<{
   light?: boolean;
+  fullWidth?: boolean;
   underlineOnHover?: boolean;
   underlineAlways?: boolean;
 }>`
@@ -105,6 +105,7 @@ export const NavigationLink = styled.a<{
         text-decoration: none;
       }
     `};
+
   ${({ underlineOnHover }) =>
     underlineOnHover &&
     css`
@@ -115,19 +116,8 @@ export const NavigationLink = styled.a<{
     `}
 `;
 
-export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
-  margin-left: 10px;
-  transform: rotate(${({ isOpen }) => (isOpen ? 180 : 0)}deg);
-  transition: transform 150ms;
-`;
-
-export const ExtraItemActions = styled.span<{ gap?: number }>`
-  display: inline-flex;
-  align-items: center;
-  gap: ${({ gap }) => gap ?? 6}px;
-`;
-
-export const ButtonLogin = styled(OutlineButton)`
+export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
+  display: inline-block;
   padding: 12px 24px;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.base};
@@ -135,6 +125,20 @@ export const ButtonLogin = styled(OutlineButton)`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  text-align: center;
+
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      display: block;
+      width: 100%;
+    `}
+`;
+
+export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
+  margin-left: 10px;
+  transform: rotate(${({ isOpen }) => (isOpen ? 180 : 0)}deg);
+  transition: transform 150ms;
 `;
 
 export const SearchFieldWrapper = styled.div`
