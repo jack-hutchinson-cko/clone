@@ -10,6 +10,23 @@ export const Content = styled.aside`
   filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
 `;
 
+export const Top = styled.div`
+  background: ${({ theme }) => theme.colors.white};
+  padding: 30px;
+  width: 100%;
+
+  &:only-child {
+    flex: 1;
+  }
+`;
+
+export const Bottom = styled.div`
+  background: ${({ theme }) => theme.colors.greyLight};
+  padding: 30px;
+  width: 100%;
+  flex: 1;
+`;
+
 export const Container = styled.div<{ isMobile?: boolean }>`
   position: relative;
   display: flex;
@@ -30,19 +47,4 @@ export const Background = styled.span`
   position: absolute;
   width: 100%;
   height: 100%;
-`;
-
-export const Top = styled.div`
-  background: ${({ theme }) => theme.colors.white};
-  padding: 40px;
-  width: 100%;
-
-  &:only-child {
-    flex: 1;
-  }
-`;
-
-export const Bottom = styled(Top)`
-  background: ${({ theme }) => theme.colors.greyLight};
-  flex: 1;
 `;

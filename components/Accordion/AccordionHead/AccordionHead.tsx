@@ -1,21 +1,27 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { FC, MouseEvent, useRef } from 'react';
 import { IconActionChevronDown } from '@cko/icons';
 import { AccordionHeadProps } from '../types';
 import { StyledAccordionHead } from './AccordionHead.styles';
 
-const AccordionHead: FC<AccordionHeadProps> = ({ isOpen, setOpen, children, ...props }) => {
-  const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-
-    if (setOpen) {
-      setOpen(!isOpen);
+const AccordionHead: FC<AccordionHeadProps> = ({
+  isOpen,
+  setOpen,
+  children,
+  clickableTitle = true,
+  ...props
+}) => {
+  const iconRef = useRef(null);
+  const onClickHandler = (evt: MouseEvent<HTMLButtonElement>) => {
+    if (clickableTitle || evt.target === iconRef.current) {
+      evt.preventDefault();
+      setOpen?.(!isOpen);
     }
   };
 
   return (
     <StyledAccordionHead onClick={onClickHandler} isOpen={isOpen} {...props}>
       <div>{children}</div>
-      <IconActionChevronDown />
+      <IconActionChevronDown ref={iconRef} />
     </StyledAccordionHead>
   );
 };

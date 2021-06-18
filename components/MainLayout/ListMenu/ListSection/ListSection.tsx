@@ -1,14 +1,10 @@
-import { FC, useState, useCallback, ReactNode } from 'react';
+import { FC, useState, useCallback } from 'react';
 
+import { NavigationSectionProps } from 'components/NavigationTreeMenu';
 import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles';
 
-type Props = {
-  link: ReactNode;
-  isRoot?: boolean;
-};
-
-export const ListSection: FC<Props> = ({ link, isRoot, children }) => {
-  const [opened, setOpened] = useState(false);
+export const ListSection: FC<NavigationSectionProps> = ({ link, isRoot, children }) => {
+  const [opened, setOpened] = useState<boolean>(false);
   const onToggleHandler = useCallback(() => {
     setOpened(!opened);
   }, [opened]);

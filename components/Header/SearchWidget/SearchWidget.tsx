@@ -1,10 +1,12 @@
 import { FC, useState, useCallback, useEffect } from 'react';
+import { useMatchMedia } from '@cko/primitives';
 import Link from 'next/link';
 
 import useDebouncedState from 'hooks/useDebouncedState';
 import { IconActionArrowRight } from 'components/Icons';
 import Outside from 'components/Outside';
 import { SearchResultLink } from 'types/header';
+import { Breakpoints } from 'constants/screen';
 import {
   TextField,
   TextFieldHolder,
@@ -24,12 +26,8 @@ type Props = {
   popularSearchesTitle: string;
 };
 
-const SearchWidget: FC<Props> = ({
-  isMobile,
-  popularSearches,
-  emptySearchResult,
-  popularSearchesTitle,
-}) => {
+const SearchWidget: FC<Props> = ({ popularSearches, emptySearchResult, popularSearchesTitle }) => {
+  const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const [value, setValue] = useState<string>('');
   const [query, setQuery] = useDebouncedState<string>(value);
   const [showResults, setShowResults] = useState<boolean>(false);

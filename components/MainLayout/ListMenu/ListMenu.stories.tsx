@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react';
-import SideBar, { Props } from './SideBar';
+import ListMenu, { Props } from './ListMenu';
 
-const Template: Story<Props> = (args) => <SideBar {...args} />;
+const Template: Story<Props> = (args) => <ListMenu {...args} />;
 
 export const SideBarStory = Template.bind({});
 
@@ -33,6 +33,6 @@ SideBarStory.args = {
 };
 
 export default {
-  title: 'SideBar',
-  component: SideBar,
+  title: 'ListMenu',
+  component: ListMenu,
 } as Meta;

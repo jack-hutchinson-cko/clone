@@ -13,5 +13,6 @@ export type AccordionBodyProps = {
 export type AccordionHeadProps = {
   isOpen?: boolean;
   setOpen?: Dispatch<SetStateAction<boolean>>;
+  clickableTitle?: boolean;
   children: ReactNode;
 };

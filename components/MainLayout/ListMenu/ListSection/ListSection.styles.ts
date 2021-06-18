@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { IconActionChevronDown } from '../../Icons';
+import { IconActionChevronDown } from 'components/Icons';
 
 export const StyledHeader = styled.div<{ isRoot?: boolean }>`
   display: flex;

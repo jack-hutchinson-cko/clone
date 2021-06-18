@@ -1,9 +1,8 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, ReactNode } from 'react';
 import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import { HeaderLink, SearchResultLink } from 'types/header';
-import { NavTreeElement } from 'types/navTree';
 import { Breakpoints } from 'constants/screen';
 import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
 import MenuButton from './MenuButton';
@@ -11,7 +10,6 @@ import SearchButton from './SearchButton';
 import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
 import SearchWidget from './SearchWidget';
-import TreeMenuWidget from './TreeMenuWidget';
 import LoginWidget from './LoginWidget';
 import HeaderLogo from './HeaderLogo';
 import GuidesLinks from './GuidesLinks';
@@ -30,10 +28,7 @@ import {
 } from './Header.styles';
 
 type Props = {
-  docsTreeLinks: NavTreeElement[];
-  homeLink: string;
-  homeLinkTitle: string;
-  activeLink: string;
+  menuWidget?: ReactNode;
   guides: HeaderLink[];
   popularSearches: SearchResultLink[];
   emptySearchResult: string;
@@ -43,10 +38,7 @@ type Props = {
 };
 
 const Header: FC<Props> = ({
-  docsTreeLinks,
-  homeLink,
-  homeLinkTitle,
-  activeLink,
+  menuWidget,
   guides,
   popularSearches,
   emptySearchResult,
@@ -219,12 +211,7 @@ const Header: FC<Props> = ({
       <NavigationDrawers>
         {!isDesktop && showMenu && (
           <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer} bottomContent={loginWidget}>
-            <TreeMenuWidget
-              docsTreeLinks={docsTreeLinks}
-              activeLink={activeLink}
-              homeLink={homeLink}
-              homeLinkTitle={homeLinkTitle}
-            />
+            {menuWidget}
           </Drawer>
         )}
         {isMobile && showSearch && (
