@@ -12,6 +12,7 @@ import GlobalStyle from '../styles/globalStyles';
 type Props = {
   sidebarDocLinks: NavTreeElement[];
   headerContent: HeaderContent;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   Component?: any;
   pageProps?: any;
 };

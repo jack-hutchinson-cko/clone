@@ -14,7 +14,7 @@ const SubfooterLinksComponent: FunctionComponent = () => {
       <SubfooterTitle>© 2021 Checkout.com</SubfooterTitle>
       <SubfooterWrapper>
         {footerList.policies.map((sectionLink: { link: string; name: string }) => (
-          <SubfooterLink key={sectionLink.link}>
+          <SubfooterLink key={sectionLink.link + sectionLink.name}>
             <Link href={sectionLink.link}>
               <a href={sectionLink.link} target="_blank" rel="noreferrer">
                 {sectionLink.name}
