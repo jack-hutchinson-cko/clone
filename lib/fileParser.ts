@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import systemPath from 'path';
 import { get, lowerCase } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import matter from 'gray-matter';
@@ -8,6 +7,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
 import { getAnchorUrl } from 'lib/url';
+import { ABCDocsPath } from 'constants/filePath';
 
 const getAnchorsNavItems = ({ content = '' }: { content: string }) =>
   (content.match(/^#+ (.*$)/gim) || []).map((headerItem) => {
@@ -56,9 +56,9 @@ type ArticleSettingsType = {
   docsPathUrl: DocsPathItem[];
 };
 
-export const getDocArticlesSettings = (): ArticleSettingsType => {
+export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSettingsType => {
   const root = {
-    filePath: systemPath.join(process.cwd(), 'docs/ABC'),
+    filePath: rootFilePath,
     path: '',
     children: [] as NavTreeElementWithFilePatch[],
   };
