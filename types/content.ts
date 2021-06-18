@@ -25,3 +25,9 @@ export type DocItemWithParentNodes = DocItem & {
 };
 
 export type BreadCrumbsItems = Array<{ name: string; url: string }>;
+
+export type DocsPathItem = {
+  params: {
+    docsPathParams: string[];
+  };
+};

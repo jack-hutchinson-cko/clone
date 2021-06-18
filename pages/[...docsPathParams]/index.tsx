@@ -1,16 +1,20 @@
-import { last } from 'lodash';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useMatchMedia } from '@cko/primitives';
 
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDXProvider from 'components/MDXProvider';
 import { Breakpoints } from 'constants/screen';
-import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
-import { getFileNameFromPath, getDocArticleData } from 'lib/fileParser';
+import {
+  getFileNameFromPath,
+  getDocArticleData,
+  getDocsPathUrl,
+  getBreadCrumbsItem,
+} from 'lib/fileParser';
+
 import { MainWrapper, Content, Title, Navigation } from '../../styles/index.styles';
 
 type Props = {
@@ -54,15 +58,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
-  const { docsPathParams = [] } = params;
-  const targetUrl = last(docsPathParams) || '';
-  const { name, url, parentsNodes = [] } = getPostByUrlId(targetUrl) || {};
-  const breadCrumbsItem = [
-    ...parentsNodes.map((item) => ({ name: item.name, url: item.url })),
-    { name, url },
-  ];
-
-  const filePath = getFileNameFromPath();
+  const { docsPathParams = [] as string[] } = params;
+  const breadCrumbsItem = getBreadCrumbsItem(docsPathParams as string[]);
+  const filePath = getFileNameFromPath(docsPathParams as string[]);
   const { anchorsNavItems, frontMatter, source } = await getDocArticleData({ filePath });
 
   return {

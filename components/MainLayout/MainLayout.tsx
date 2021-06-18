@@ -59,7 +59,7 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent }) => {
           testAccountUrl={headerContent.testAccountUrl}
         />
       </HeaderWrapper>
-      <ContentWrapper>
+      <ContentWrapper isDesktop={isDesktop}>
         {isDesktop && (
           <SideBarWrapper>
             <SideBar menuWidget={menu} />

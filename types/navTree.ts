@@ -1,6 +1,14 @@
 export type NavTreeElement = {
-  id: number;
+  id: string;
   title: string;
   path: string;
   children?: NavTreeElement[];
+};
+
+export type NavTreeElementWithFilePatch = {
+  id: string;
+  title: string;
+  path: string;
+  filePath: string;
+  children: NavTreeElementWithFilePatch[];
 };

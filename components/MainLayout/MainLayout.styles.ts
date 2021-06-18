@@ -14,10 +14,11 @@ export const HeaderWrapper = styled.div`
   z-index: 1;
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div<{ isDesktop?: boolean }>`
   flex-grow: 1;
   display: flex;
   max-width: 1360px;
+  width: ${({ isDesktop }) => (isDesktop ? '1360px' : '100%')};
   margin: 0 auto;
 `;
 

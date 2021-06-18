@@ -1,23 +1,19 @@
 import { NextPage } from 'next';
 import { ThemeDefaultProvider } from '@cko/primitives';
 import MainLayout from 'components/MainLayout';
-
-import { NavTreeElement } from 'types/navTree';
-import { HeaderContent } from 'types/header';
-import { getSidebarDocLinks } from 'lib/docsItems';
-import { getHeaderContent } from 'lib/headerContent';
 import { defaultTheme } from 'constants/theme';
+import useAppInitState from 'hooks/useAppInitState';
 import GlobalStyle from '../styles/globalStyles';
 
 type Props = {
-  sidebarDocLinks: NavTreeElement[];
-  headerContent: HeaderContent;
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   Component?: any;
   pageProps?: any;
 };
 
-const MyApp: NextPage<Props> = ({ sidebarDocLinks, headerContent, Component, pageProps }) => {
+const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
+  const { sidebarDocLinks, headerContent } = useAppInitState();
+
   return (
     <ThemeDefaultProvider theme={defaultTheme}>
       <GlobalStyle />
@@ -26,12 +22,6 @@ const MyApp: NextPage<Props> = ({ sidebarDocLinks, headerContent, Component, pag
       </MainLayout>
     </ThemeDefaultProvider>
   );
-};
-
-MyApp.getInitialProps = async () => {
-  const sidebarDocLinks = await getSidebarDocLinks();
-  const headerContent = await getHeaderContent();
-  return { sidebarDocLinks, headerContent };
 };
 
 export default MyApp;
