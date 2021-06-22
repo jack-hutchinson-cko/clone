@@ -9,7 +9,7 @@ import {
   TextHeadingFour,
 } from 'components/TextHeading';
 import TipBox from 'components/TipBox';
-import Tabs, { TabBody, TabHead, TabRow } from 'components/Tabs';
+import Tabs, { Tab } from 'components/Tabs';
 import { Text } from 'components/Text';
 import { MDXCodeSample } from 'components/CodeSample';
 import LineCode from 'components/LineCode';
@@ -26,22 +26,26 @@ import Table, {
   TableHead,
   TableHeadSticky,
   TableRow,
+  StyledTH,
 } from 'components/Table';
 import ImageBox from 'components/ImageBox';
 import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
 
 const components = {
   TipBox: withBlockMargin(TipBox),
-  TabBody,
-  TabHead,
-  TabRow,
-  Tabs: withBlockMargin(Tabs),
+  tabs: withBlockMargin(Tabs),
+  tab: Tab,
   TableBody,
   TableCell,
   TableHead,
   TableHeadSticky,
   TableRow,
   Table: withBlockMargin(Table),
+  table: withBlockMargin(Table),
+  tbody: TableBody,
+  tr: TableRow,
+  th: StyledTH,
+  td: TableCell,
   code: MDXCodeSample,
   LineCodeWrapper,
   h1: withAnchor(TextHeadingOne),

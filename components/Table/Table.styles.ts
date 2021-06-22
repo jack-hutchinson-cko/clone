@@ -11,6 +11,14 @@ export const Table = styled.table`
   line-height: 24px;
   border-spacing: 1px;
   background-color: ${({ theme }) => theme.colors.greyLight};
+
+  & tr th p {
+    margin: 0;
+    padding: 0;
+    color: ${({ theme }) => theme.colors.success};
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 export const TableBody = styled.tbody`

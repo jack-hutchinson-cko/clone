@@ -1,6 +1,6 @@
 import { FC, useState, useCallback } from 'react';
 
-import { NavigationSectionProps } from 'components/NavigationTreeMenu';
+import { NavigationSectionProps } from '../../../NavigationTreeMenu';
 import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles';
 
 export const ListSection: FC<NavigationSectionProps> = ({ link, isRoot, children }) => {

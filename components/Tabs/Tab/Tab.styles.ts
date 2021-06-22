@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const StyledTabRow = styled.div`
+export const Container = styled.div`
   color: ${({ theme }) => theme.colors.base};
 `;

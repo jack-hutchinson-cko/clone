@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 
 import { NavTreeElement } from 'types/navTree';
-import NavigationTreeMenu, { NavigationTree } from 'components/NavigationTreeMenu';
+import NavigationTreeMenu, { NavigationTree } from '../../NavigationTreeMenu';
 
 import ListSection from './ListSection';
 import ListItem from './ListItem';

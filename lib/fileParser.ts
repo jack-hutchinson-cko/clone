@@ -34,7 +34,8 @@ export const getDocArticleData = async ({
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [],
+      // eslint-disable-next-line global-require
+      remarkPlugins: [require('remark-grid-tables')],
       rehypePlugins: [],
     },
     scope: data,

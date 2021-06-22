@@ -37,10 +37,8 @@ Card tokens (`tok_`) are single use and only have a 15-minute lifespan.
 Once youve successfully sent your request, youll receive a response containing a
 permanent card source ID (`src_`) which can be used in subsequent payment requests.
 
-<Tabs>
-<TabHead activeTab={0} headers={['Title 1', 'Title 2']} />
-<TabBody>
-<TabRow>
+<tabs>
+<tab title="Title 1">
 <Box horizontal="sm">
 
 Use the approved field to check whether or not the authorization was successful (`"approved": true`).
@@ -48,8 +46,8 @@ If your authorization was not successful, it's possible the payment used an inva
 a valid card with an insufficient available balance.
 
 </Box>
-</TabRow>
-<TabRow>
+</tab>
+<tab title="Title 2">
 
 ```
 {
@@ -68,9 +66,8 @@ a valid card with an insufficient available balance.
 }
 ```
 
-</TabRow>
-</TabBody>
-</Tabs>
+</tab>
+</tabs>
 
 ```
 {
@@ -99,25 +96,22 @@ Use the details below to set up your request.
 
 ### Endpoints
 
-<Tabs>
-<TabHead headers={['Live', 'SandBox']} />
-<TabBody>
-<TabRow>
+<tabs>
+<tab title="Live">
 <LineCodeWrapper type="post">
 
 `https://api.checkout.com/payments`
 
 </LineCodeWrapper>
-</TabRow>
-<TabRow>
+</tab>
+<tab title="SandBox" active>
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/payments`
 
 </LineCodeWrapper>
-</TabRow>
-</TabBody>
-</Tabs>
+</tab>
+</tabs>
 
 ### Headers parameters
 
@@ -288,9 +282,9 @@ will determine the compliance requirements for each merchant.
 </TableCell>
 <TableCell>
 
-- Visa: If the payment is being made with a VISA card, then provide the first six digits and the last four digits
+- **Visa:** If the payment is being made with a VISA card, then provide the first six digits and the last four digits
   of the primary recipient’s card, without any spaces. Or, the first 10 digits of the primary recipient’s account number.
-- Mastercard: If the payment is being made with a Mastercard card, then provide the primary recipient's full card number.
+- **Mastercard:** If the payment is being made with a Mastercard card, then provide the primary recipient's full card number.
 
 </TableCell>
 <TableCell>
@@ -300,8 +294,8 @@ will determine the compliance requirements for each merchant.
 </TableCell>
 <TableCell>
 
-1. Visa: 10
-2. Mastercard: Full
+1. **Visa:** 10
+2. **Mastercard:** Full
 
 </TableCell>
 </TableRow>
@@ -362,7 +356,44 @@ The first six characters of the primary recipient’s surname.
 </TableBody>
 </Table>
 
-<hr />
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+| Field name                       | Description                                              | Example      | Length                  |
++==================================+==========================================================+==============+=========================+
+| `account_number`                 |  - **Visa:** If the payment is being made with           | `8573498821` | 1. **Visa:** 10         | 
+|                                  |  a VISA card, then provide the first six digits          |              | 2. **Mastercard:** Full |
+| <TypeTag type="string" />        |  and the last four digits of the primary recipient’s     |              |                         |
+|                                  |  card, without any spaces. Or, the first 10 digits of    |              |                         |
+| <StatusTag type="required" />    |  the primary recipient’s account number.                 |              |                         |
+|                                  | - **Mastercard:** If the payment is being made with      |              |                         |
+|                                  | a Mastercard card, then provide the primary recipient's  |              |                         |
+|                                  | full card number.                                        |              |                         |
+|                                  |                                                          |              |                         | 
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         |         
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+| `dob`                            | The date of birth of the primary recipient in the        | `1991-12-30` | 8                       |
+|                                  | following format: `yyyy-mm-dd`                           |              |                         |
+| <TypeTag type="object" />        |                                                          |              |                         |
+|                                  |                                                          |              |                         |
+| <StatusTag type="recommended" /> |                                                          |              |                         |
+|                                  |                                                          |              |                         |       
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+| `last_name`                      | <InfoBox>                                                | `Smith`      | 6                       |
+| <TypeTag type="string" />        |                                                          |              |                         |
+| <StatusTag type="option" />      | Only alphabetic characters are allowed.                  |              |                         |
+|                                  |                                                          |              |                         |
+|                                  | </InfoBox>                                               |              |                         |
+|                                  |                                                          |              |                         |
+|                                  | The first six characters of the primary recipient’s      |              |                         |
+|                                  | surname.                                                 |              |                         |
+|                                  |                                                          |              |                         | 
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         | 
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+
+---
 
 # Non-3DS enabled cards
 
