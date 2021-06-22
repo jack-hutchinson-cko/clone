@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { StyledImage } from './ImageBoxStyles';
+import { ImgWrapper, StyledImage } from './ImageBoxStyles';
 
 export type Props = {
   src: string;
@@ -13,7 +13,15 @@ export type Props = {
 };
 
 const ImageBox: FC<Props> = ({ src, ...props }) => {
-  return <StyledImage src={src} {...props} />;
+  return (
+    <ImgWrapper>
+      <StyledImage src={src} {...props} />
+    </ImgWrapper>
+  );
+};
+
+ImageBox.defaultProps = {
+  layout: 'fill',
 };
 
 export default ImageBox;

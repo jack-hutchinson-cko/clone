@@ -27,6 +27,7 @@ import Table, {
   TableHeadSticky,
   TableRow,
 } from 'components/Table';
+import ImageBox from 'components/ImageBox';
 import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
 
 const components = {
@@ -66,6 +67,7 @@ const components = {
   Accordion,
   AccordionHead,
   AccordionBody,
+  img: withBlockMargin(ImageBox),
 };
 
 type Props = {
