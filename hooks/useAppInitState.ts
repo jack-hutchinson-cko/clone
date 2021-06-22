@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { abcFilePath } from 'constants/filePath';
 import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
 import { getHeaderContent } from 'lib/headerContent';
@@ -19,7 +20,7 @@ const useAppInitState = (): {
   const [sidebarDocLinks, setSidebarDocLinks] = useState<NavTreeElement[]>([]);
   const [headerContent, setHeaderContent] = useState<HeaderContent>(initHeaderContent);
   useEffect(() => {
-    fetch(`${window.location.origin}/api/docsTree`)
+    fetch(`${window.location.origin}/api/docsTree?filePath=${abcFilePath}`)
       .then((response) => response.json())
       .then((result) => setSidebarDocLinks(result));
 
