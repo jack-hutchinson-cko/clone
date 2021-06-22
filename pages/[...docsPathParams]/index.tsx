@@ -1,51 +1,50 @@
-import { useState, useCallback, useEffect } from 'react';
-import { last, get } from 'lodash';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { getHashValue, updateNavigationHash } from 'lib/url';
-import { getDocsPathUrl, getPostByUrlId } from 'lib/docsItems';
+import { useMatchMedia } from '@cko/primitives';
+
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import MDXProvider from 'components/MDXProvider';
+import { Breakpoints } from 'constants/screen';
 import BreadCrumbs from 'components/BreadCrumbs';
-import DocBody from 'components/DocBody';
+import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
-import { BreadCrumbsItems, DocContentItem, DocContentItemType } from 'types/content';
-import { TextHeadingOne } from '@cko/primitives';
-import styles from './docPost.module.scss';
+import { BreadCrumbsItems } from 'types/content';
+import {
+  getFileNameFromPath,
+  getDocArticleData,
+  getDocsPathUrl,
+  getBreadCrumbsItem,
+} from 'lib/fileParser';
+
+import { MainWrapper, Content, Title, Navigation } from '../../styles/index.styles';
 
 type Props = {
-  name: string;
   breadCrumbsItem: BreadCrumbsItems;
-  content: DocContentItem[];
-  anchors: DocContentItem[];
+  frontMatter: {
+    title: string;
+  };
+  source: MDXRemoteSerializeResult;
+  anchorsNavItems: { title: string; href: string }[];
 };
 
-const DocPost: NextPage<Props> = ({ name, breadCrumbsItem, content, anchors }) => {
-  const router = useRouter();
-  const [selectedId, setSelectedId] = useState<number>();
-
-  useEffect(() => {
-    const slug = getHashValue(router.asPath);
-    const anchor = anchors.find((a) => a.params.anchorHref === slug) ?? get(anchors, '[0]');
-    setSelectedId(anchor.id);
-  }, [router, anchors]);
-
-  const onUpdateAnchor = useCallback((anchorId: number, slug?: string) => {
-    setSelectedId(anchorId);
-    if (slug) updateNavigationHash(slug);
-  }, []);
-
+const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatter, source }) => {
+  const isMobile = useMatchMedia(Breakpoints.MOBILE);
   return (
-    <div className={styles.mainWrapper}>
-      <article className={styles.content}>
-        <header>
-          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-          <TextHeadingOne className={styles.title}>{name}</TextHeadingOne>
-        </header>
-        <DocBody content={content} onUpdateAnchor={onUpdateAnchor} />
-      </article>
-      <div className={styles.navigation}>
-        <AnchorNavigation anchors={anchors} selectedId={selectedId} />
-      </div>
-    </div>
+    <AnchorsProvider>
+      <MainWrapper>
+        <Content>
+          <header>
+            <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+            <Title>{frontMatter.title}</Title>
+          </header>
+          <MDXProvider source={source} />
+        </Content>
+        {!isMobile && (
+          <Navigation>
+            <AnchorNavigation anchors={anchorsNavItems} />
+          </Navigation>
+        )}
+      </MainWrapper>
+    </AnchorsProvider>
   );
 };
 
@@ -59,17 +58,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
-  const { docsPathParams = [] } = params;
-  const targetUrl = last(docsPathParams) || '';
-  const { name, url, parentsNodes = [], content = [] } = getPostByUrlId(targetUrl) || {};
-  const breadCrumbsItem = [...parentsNodes, { name, url }];
-  const anchors = content.filter(({ type }) => type === DocContentItemType.ANCHOR);
+  const { docsPathParams = [] as string[] } = params;
+  const breadCrumbsItem = getBreadCrumbsItem(docsPathParams as string[]);
+  const filePath = getFileNameFromPath(docsPathParams as string[]);
+  const { anchorsNavItems, frontMatter, source } = await getDocArticleData({ filePath });
+
   return {
     props: {
-      name,
       breadCrumbsItem,
-      content,
-      anchors,
+      anchorsNavItems,
+      frontMatter,
+      source,
     },
   };
 };

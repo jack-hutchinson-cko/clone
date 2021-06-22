@@ -1,11 +1,10 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import { TextHeadingTwo } from '@cko/primitives';
+import { TextHeadingTwo, Link as PrimitiveLink } from '@cko/primitives';
 import { DocContent } from 'types/content';
-import { Link as PrimitiveLink } from '@cko/primitives';
 
-import AnchorWrapper from './AnchorWrapper';
 import styles from '../docBodyComponents.module.scss';
+import AnchorWrapper from './AnchorWrapper';
 
 type Props = DocContent<{
   onUpdateAnchor?: (id: number, slug?: string) => void;

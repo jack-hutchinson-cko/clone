@@ -1,30 +1,86 @@
-import { FunctionComponent } from 'react';
+import { FC, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import { useMatchMedia } from '@cko/primitives';
+
+import { Breakpoints } from 'constants/screen';
+import { NavTreeElement } from 'types/navTree';
+import { HeaderContent } from 'types/header';
+import { FooterContent } from 'types/footer';
+import { getPathValue } from 'lib/url';
+import { IconEarth } from 'components/Icons';
+import MenuStateProvider from 'components/MenuStateProvider';
+
 import Header from '../Header';
 import Footer from '../Footer';
 import SideBar from '../SideBar';
-import styles from './mainLayout.module.scss';
 
-import { DocItem } from 'types/content';
+import AccordionMenu from './AccordionMenu';
+import ListMenu from './ListMenu';
+
+import {
+  MainWrapper,
+  HeaderWrapper,
+  ContentWrapper,
+  SideBarWrapper,
+  FooterWrapper,
+  Content,
+} from './MainLayout.styles';
 
 type Props = {
-  sideBarDocs: DocItem[];
+  navTreeLinks: NavTreeElement[];
+  headerContent: HeaderContent;
+  footerContent: FooterContent;
 };
 
-const MainLayout: FunctionComponent<Props> = ({ children, sideBarDocs }) => (
-  <div className={styles.mainWrapper}>
-    <div className={styles.headerWrapper}>
-      <Header />
-    </div>
-    <div className={styles.contentWrapper}>
-      <div className={styles.sideBarWrapper}>
-        <SideBar sideBarDocs={sideBarDocs} />
-      </div>
-      <main className={styles.content}>{children}</main>
-    </div>
-    <div className={styles.footerWrapper}>
-      <Footer />
-    </div>
-  </div>
-);
+const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerContent }) => {
+  const { asPath } = useRouter();
+  const activeLink = useMemo(() => getPathValue(asPath), [asPath]);
+  const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
+  const isMobile = useMatchMedia(Breakpoints.MOBILE);
+
+  const Menu = isMobile ? AccordionMenu : ListMenu;
+  const menu = (
+    <Menu
+      docsTreeLinks={navTreeLinks}
+      homeLink="/"
+      homeLinkTitle="Home"
+      homeLinkIcon={<IconEarth />}
+      activeLink={activeLink}
+    />
+  );
+
+  return (
+    <MenuStateProvider>
+      <MainWrapper>
+        <HeaderWrapper>
+          <Header
+            menuWidget={menu}
+            guides={headerContent.guides}
+            popularSearches={headerContent.popularSearches}
+            popularSearchesTitle={headerContent.popularSearchesTitle}
+            emptySearchResult={headerContent.emptySearchResult}
+            loginUrl={headerContent.loginUrl}
+            testAccountUrl={headerContent.testAccountUrl}
+          />
+        </HeaderWrapper>
+        <ContentWrapper isDesktop={isDesktop}>
+          {isDesktop && (
+            <SideBarWrapper>
+              <SideBar menuWidget={menu} />
+            </SideBarWrapper>
+          )}
+          <Content>{children}</Content>
+        </ContentWrapper>
+        <FooterWrapper>
+          <Footer
+            navigation={footerContent.navigation}
+            social={footerContent.social}
+            policies={footerContent.policies}
+          />
+        </FooterWrapper>
+      </MainWrapper>
+    </MenuStateProvider>
+  );
+};
 
 export default MainLayout;

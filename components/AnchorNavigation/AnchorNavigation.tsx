@@ -1,27 +1,57 @@
-import { FunctionComponent } from 'react';
-import cn from 'classnames';
+import { useRouter } from 'next/router';
+import { useState, useEffect, FC } from 'react';
+import { get } from 'lodash';
 import Link from 'next/link';
-import { DocContentItem } from 'types/content';
-import styles from './anchorNavigation.module.scss';
+
+import { withAnchorListener, WithAnchorListenerProps } from 'components/AnchorsProvider';
+import { getHashValue, updateNavigationHash } from 'lib/url';
+
+import { NavigationHeader, LinkWrapper, AnchorLink } from './AnchorNavigation.styles';
+
+type Anchor = { title: string; href: string };
 
 type Props = {
-  anchors: DocContentItem[];
-  selectedId?: number;
+  anchors: Anchor[];
 };
 
-const AnchorNavigation: FunctionComponent<Props> = ({ anchors, selectedId }) => {
+const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, shownAnchors }) => {
+  const router = useRouter();
+  const [initialized, setInitialized] = useState<boolean>(false);
+  const [selectedHref, setSelectedHref] = useState<string>();
+
+  useEffect(() => {
+    const slug = getHashValue(router.asPath);
+    const anchor = anchors.find(({ href }) => href === `#${slug}`) ?? get(anchors, '[0]');
+    setSelectedHref(anchor.href);
+    setInitialized(true);
+  }, [router, anchors]);
+
+  useEffect(() => {
+    if (initialized) {
+      const set = new Set<string>(shownAnchors);
+      const selectedAnchor = anchors.find(({ href }) => set.has(href));
+
+      if (selectedAnchor) {
+        updateNavigationHash(selectedAnchor.href);
+        setSelectedHref(selectedAnchor.href);
+      }
+    }
+  }, [shownAnchors, anchors, initialized]);
+
   return (
     <div>
-      <h3 className={styles.navigationHeader}>On this page</h3>
-      <div className={styles.linkWrapper}>
-        {anchors.map(({ id, data, params }) => (
-          <Link key={id} href={`#${params.anchorHref}`} passHref replace>
-            <a className={cn(styles.link, { [styles.active]: selectedId === id })}>{data}</a>
+      <NavigationHeader>On this page</NavigationHeader>
+      <LinkWrapper>
+        {anchors.map(({ title, href }) => (
+          <Link key={href} href={href} passHref replace>
+            <AnchorLink href={href} isActive={href === selectedHref}>
+              {title}
+            </AnchorLink>
           </Link>
         ))}
-      </div>
+      </LinkWrapper>
     </div>
   );
 };
 
-export default AnchorNavigation;
+export default withAnchorListener<Props>(AnchorNavigation);

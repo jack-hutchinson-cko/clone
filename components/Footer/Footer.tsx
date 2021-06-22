@@ -1,53 +1,33 @@
-import { FunctionComponent } from 'react';
-import Link from 'next/link';
-import styles from './footer.module.scss';
-import { FooterLogo } from '../Icons/Icons';
-import FooterLinksComponent from './FooterLinks';
-import SubfooterLinksComponent from './SubfooterLinks';
-import SubfooterSocialLinksComponent from './SubfooterSocialLinks';
+import { FC } from 'react';
+import { useMatchMedia } from '@cko/primitives';
 
-const FooterComponent: FunctionComponent = () => {
+import { NavigationList, PoliciesList, SocialList } from 'types/footer';
+import { Breakpoints } from 'constants/screen';
+import FooterLogo from './FooterLogo';
+import FooterLinks from './FooterLinks';
+import SubFooter from './SubFooter';
+
+import { FooterWrapper, FooterContainer } from './Footer.styles';
+
+type Props = {
+  navigation: NavigationList;
+  social: SocialList;
+  policies: PoliciesList;
+};
+
+const Footer: FC<Props> = ({ navigation, policies, social }) => {
+  const isMobile = useMatchMedia(Breakpoints.MOBILE);
+  const isTablet = useMatchMedia(Breakpoints.TABLET);
+
   return (
-    <footer>
-      <div className={styles.footerBackground}>
-        <div className={styles.footerMain}>
-          <div className={styles.footerLogo}>
-            <div className={styles.footerLogoWrapper}>
-              <Link href="/">
-                <a title="Checkout.com home">
-                  <FooterLogo />
-                </a>
-              </Link>
-            </div>
-          </div>
-          <div className={styles.footerLinkListContainer}>
-            <FooterLinksComponent />
-          </div>
-          <div className={styles.subFooter}>
-            <SubfooterLinksComponent />
-            <div className={styles.subfooterGridItem}>
-              <div className={styles.subfooterDescription}>
-                <p>
-                  Authorised and regulated as an electronic money institution by the UK Financial
-                  Conduct Authority under number 900816.
-                </p>
-                <div className={styles.containerSubfooterLink}>
-                  <span>Powered by&nbsp;</span>
-                  <Link href="https://www.atlassian.com">
-                    <a className={styles.descriptionLink}>Atlassian Confluence</a>
-                  </Link>
-                  <span>&nbsp;and&nbsp;</span>
-                  <Link href="https://www.k15t.com/go/scroll-viewport">
-                    <a className={styles.descriptionLink}>Scroll Viewport</a>
-                  </Link>
-                </div>
-              </div>
-              <SubfooterSocialLinksComponent />
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <FooterWrapper>
+      <FooterContainer isMobile={isMobile}>
+        <FooterLogo />
+        <FooterLinks navigation={navigation} isMobile={isMobile} />
+        <SubFooter policies={policies} social={social} isTablet={isTablet} isMobile={isMobile} />
+      </FooterContainer>
+    </FooterWrapper>
   );
 };
-export default FooterComponent;
+
+export default Footer;

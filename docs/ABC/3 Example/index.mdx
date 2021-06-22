@@ -1,0 +1,489 @@
+---
+title: Sender data for Card Payouts
+---
+
+If you're sending a card payout on behalf of another person (a money transfer),
+or a business/government entity (a third-party funds disbursement),
+you must include the details of that person or entity in the `processing.senderInformation`
+object in your payout request. You can see example payout requests with sender data on our [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
+
+![title](/docs/Card+token.png)
+
+## Visa
+
+### Sender data for Visa money transfers
+
+Fund transfer type = AA, PP, FT
+
+The following table outlines the fields which should be included in the `processing.senderInformation` object.
+
+<TipBox title="Example Title" variant="tip">
+
+For more details about sender data requirements, please contact your implementation manager.
+
+</TipBox>
+
+<TipBox variant="warning">
+
+For more details about sender data requirements, please contact your implementation manager.
+
+</TipBox>
+
+## Request a card payment
+
+### The POST request
+
+Card tokens (`tok_`) are single use and only have a 15-minute lifespan.
+Once youve successfully sent your request, youll receive a response containing a
+permanent card source ID (`src_`) which can be used in subsequent payment requests.
+
+<tabs>
+<tab title="Title 1">
+<Box horizontal="sm">
+
+Use the approved field to check whether or not the authorization was successful (`"approved": true`).
+If your authorization was not successful, it's possible the payment used an invalid/expired card, or
+a valid card with an insufficient available balance.
+
+</Box>
+</tab>
+<tab title="Title 2">
+
+```
+{
+  "source": {
+    "type": "token",
+    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+  },
+  "amount": 6500,
+  "currency": "USD",
+  "reference": "ORD-5023-4E89",
+  "metadata": {
+    "udf1": "TEST123",
+    "coupon_code": "NY2018",
+    "partner_id": 123989
+  }
+}
+```
+
+</tab>
+</tabs>
+
+```
+{
+  "source": {
+    "type": "token",
+    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+  },
+  "amount": 6500,
+  "currency": "USD",
+  "reference": "ORD-5023-4E89",
+  "metadata": {
+    "udf1": "TEST123",
+    "coupon_code": "NY2018",
+    "partner_id": 123989
+  }
+}
+```
+
+# Request a payment using full card details
+
+## The POST request 2
+
+Use the details below to set up your request.
+
+<br />
+
+### Endpoints
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox" active>
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+### Headers parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<TypeTag type="string" />
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<TypeTag type="object" />
+<StatusTag type="optional" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+## Verify a card
+
+### The request
+
+To verify a card, simply set up a payment request using one of the following endpoints, with the `amount` field omitted or set to `0`.
+
+- [Request a card payment](https://docs.checkout.com/payments/accept-payments/request-a-card-payment)
+- [Payment with full card details](https://docs.checkout.com/integrate/full-card-details-api)
+
+<br />
+
+<TipBox variant="warning">
+
+Some issuing banks do not support card verification and reject the charge request even if all card
+details are accurate. If the issuing bank refuses the card verification request, a follow-up
+request will be sent automatically with a $1 total amount (or the equivalent in the submitted
+processing currency).
+
+</TipBox>
+
+#### Request example
+
+```
+{
+  "source": {
+    "type": "token",
+    "token": "tok_yo2zfqgdnn4u7gswjbjmqt5mza"
+  },
+  "currency": "USD"
+}
+```
+
+## What are the requirements?
+
+There are four levels of PCI compliance that merchants are organized under, based upon their card
+transaction count over a 12-month period. The PCI level in combination with the integration method
+will determine the compliance requirements for each merchant.
+
+<br />
+
+<Table>
+<TableHead headers={['PCI level', 'Transactions processed / year', 'Key requirements']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+1
+
+</TableCell>
+<TableCell>
+
+- More than 6 million Visa, MasterCard (combined with Maestro) or Discover transactions. -
+  More than 2.5 million American Express transactions. - More than 1 million JCB transactions.
+- Any merchant who has had a data incident. - Any merchant identified as Level one by one of
+  the schemes.
+
+</TableCell>
+<TableCell>
+
+- On-site assessment using the PCI DSS requirements and Security Assessment Procedures
+  conducted by an approved [Quality Security Assessor](https://www.pcisecuritystandards.org/assessors_and_solutions/qualified_security_assessors) (QSA) or
+  a qualified [Internal Security Assessor](https://www.pcisecuritystandards.org/program_training_and_qualification/internal_security_assessor_certification) (ISA).
+- Quarterly network scan by an [Approved Scan Vendor](https://www.pcisecuritystandards.org/assessors_and_solutions/approved_scanning_vendors) (ASV).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+2
+
+</TableCell>
+<TableCell>
+
+- 1 to 6 million Visa, MasterCard (combined with Maestro) or Discover transactions.
+- 50,000 to 2.5 million American Express transactions.
+
+</TableCell>
+<TableCell rowSpan="3">
+
+- Annual self-assessment using the applicable PCI DSS Self-Assessment Questionnaire (SAQ).
+- Quarterly network scan by an [Approved Scan Vendor](https://www.pcisecuritystandards.org/assessors_and_solutions/approved_scanning_vendors) (ASV) where applicable.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+3
+
+</TableCell>
+<TableCell>
+
+- 1 to 6 million Visa, MasterCard (combined with Maestro) or Discover transactions.
+- 50,000 to 2.5 million American Express transactions.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+4
+
+</TableCell>
+<TableCell>
+
+- 1 to 6 million Visa, MasterCard (combined with Maestro) or Discover transactions.
+- 50,000 to 2.5 million American Express transactions.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Field name', 'Description', 'Example', 'Length']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`account_number`
+
+<TypeTag type="string" />
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+- **Visa:** If the payment is being made with a VISA card, then provide the first six digits and the last four digits
+  of the primary recipient’s card, without any spaces. Or, the first 10 digits of the primary recipient’s account number.
+- **Mastercard:** If the payment is being made with a Mastercard card, then provide the primary recipient's full card number.
+
+</TableCell>
+<TableCell>
+
+`8573498821`
+
+</TableCell>
+<TableCell>
+
+1. **Visa:** 10
+2. **Mastercard:** Full
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`dob`
+
+<TypeTag type="object" />
+<StatusTag type="recommended" />
+</TableCell>
+<TableCell>
+
+The date of birth of the primary recipient in the following format: `yyyy-mm-dd`
+
+</TableCell>
+<TableCell>
+
+`1991-12-30`
+
+</TableCell>
+<TableCell>
+
+8
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`last_name`
+
+<TypeTag type="string" />
+<StatusTag type="option" />
+</TableCell>
+<TableCell>
+
+<InfoBox>
+
+Only alphabetic characters are allowed.
+
+</InfoBox>
+
+The first six characters of the primary recipient’s surname.
+
+</TableCell>
+<TableCell>
+
+`Smith`
+
+</TableCell>
+<TableCell>
+
+6
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+| Field name                       | Description                                              | Example      | Length                  |
++==================================+==========================================================+==============+=========================+
+| `account_number`                 |  - **Visa:** If the payment is being made with           | `8573498821` | 1. **Visa:** 10         | 
+|                                  |  a VISA card, then provide the first six digits          |              | 2. **Mastercard:** Full |
+| <TypeTag type="string" />        |  and the last four digits of the primary recipient’s     |              |                         |
+|                                  |  card, without any spaces. Or, the first 10 digits of    |              |                         |
+| <StatusTag type="required" />    |  the primary recipient’s account number.                 |              |                         |
+|                                  | - **Mastercard:** If the payment is being made with      |              |                         |
+|                                  | a Mastercard card, then provide the primary recipient's  |              |                         |
+|                                  | full card number.                                        |              |                         |
+|                                  |                                                          |              |                         | 
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         |         
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+| `dob`                            | The date of birth of the primary recipient in the        | `1991-12-30` | 8                       |
+|                                  | following format: `yyyy-mm-dd`                           |              |                         |
+| <TypeTag type="object" />        |                                                          |              |                         |
+|                                  |                                                          |              |                         |
+| <StatusTag type="recommended" /> |                                                          |              |                         |
+|                                  |                                                          |              |                         |       
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+| `last_name`                      | <InfoBox>                                                | `Smith`      | 6                       |
+| <TypeTag type="string" />        |                                                          |              |                         |
+| <StatusTag type="option" />      | Only alphabetic characters are allowed.                  |              |                         |
+|                                  |                                                          |              |                         |
+|                                  | </InfoBox>                                               |              |                         |
+|                                  |                                                          |              |                         |
+|                                  | The first six characters of the primary recipient’s      |              |                         |
+|                                  | surname.                                                 |              |                         |
+|                                  |                                                          |              |                         | 
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         |
+|                                  |                                                          |              |                         | 
++----------------------------------+----------------------------------------------------------+--------------+-------------------------+
+
+---
+
+# Non-3DS enabled cards
+
+To simulate a non-3DS enabled card payment, select the drop-down that applies to you.
+
+<TipBox variant="info">
+
+If you want to test a card payment without 3D Secure authentication, use one of the following cards with a transaction value of `5000` or `5029`.
+
+</TipBox>
+
+<Accordion title="3DS1 and 3DS2 enabled">
+<Table>
+<TableHead headers={['Card type', 'Number', 'CVV']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+Visa
+
+</TableCell>
+<TableCell>
+
+`4532432452900131`
+
+</TableCell>
+<TableCell>
+
+`257`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Mastercard
+
+</TableCell>
+<TableCell>
+
+`5352151570003404`
+
+</TableCell>
+<TableCell>
+
+`100`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+</Accordion>
+<Accordion title="3DS2 only">
+<Table>
+<TableHead headers={['Card type', 'Number', 'CVV']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+Visa
+
+</TableCell>
+<TableCell>
+
+`4484070000035519`
+
+</TableCell>
+<TableCell>
+
+`257`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Mastercard
+
+</TableCell>
+<TableCell>
+
+`5352151570003404`
+
+</TableCell>
+<TableCell>
+
+`100`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+</Accordion>
