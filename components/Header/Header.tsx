@@ -1,10 +1,12 @@
-import { FC, useState, useCallback, ReactNode } from 'react';
+import { FC, useCallback, ReactNode } from 'react';
 import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import { HeaderLink, SearchResultLink } from 'types/header';
 import { Breakpoints } from 'constants/screen';
+import useScrollDisabled from 'hooks/useScrollDisabled';
 import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
+import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
 import Drawer from './Drawer';
@@ -37,7 +39,7 @@ type Props = {
   testAccountUrl: string;
 };
 
-const Header: FC<Props> = ({
+const Header: FC<WithMenuStateProps<Props>> = ({
   menuWidget,
   guides,
   popularSearches,
@@ -45,23 +47,28 @@ const Header: FC<Props> = ({
   popularSearchesTitle,
   loginUrl,
   testAccountUrl,
+  menuState,
+  onChangeMenuState,
+  searchState,
+  onChangeSearchState,
 }) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
 
-  const [showSearch, setShowSearch] = useState<boolean>(false);
-  const [showMenu, setShowMenu] = useState<boolean>(false);
+  useScrollDisabled((searchState || menuState) && isMobile);
 
   const onToggleSearchDrawer = useCallback(() => {
-    setShowSearch(!showSearch);
-    setShowMenu(false);
-  }, [showSearch]);
+    onChangeSearchState(!searchState);
+  }, [searchState, onChangeSearchState]);
 
   const onToggleMenuDrawer = useCallback(() => {
-    setShowMenu(!showMenu);
-    setShowSearch(false);
-  }, [showMenu]);
+    onChangeMenuState(!menuState);
+  }, [menuState, onChangeMenuState]);
+
+  const onClickLogo = useCallback(() => {
+    onChangeMenuState(false);
+  }, [onChangeMenuState]);
 
   const loginWidget = (
     <LoginWidget
@@ -100,19 +107,19 @@ const Header: FC<Props> = ({
         <NavigationSection>
           {isMobile && (
             <NavigationItem>
-              <MenuButton isActive={showMenu} onClick={onToggleMenuDrawer} />
+              <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
             </NavigationItem>
           )}
           <NavigationItem>
             <Link href="/" passHref>
               <NavigationLink>
-                <HeaderLogo />
+                <HeaderLogo onClick={onClickLogo} />
               </NavigationLink>
             </Link>
           </NavigationItem>
           {isMobile && (
             <NavigationItem>
-              <SearchButton isActive={showSearch} onClick={onToggleSearchDrawer} />
+              <SearchButton isActive={searchState} onClick={onToggleSearchDrawer} />
             </NavigationItem>
           )}
         </NavigationSection>
@@ -202,19 +209,19 @@ const Header: FC<Props> = ({
             )}
             {isTablet && (
               <NavigationItem>
-                <MenuButton isActive={showMenu} onClick={onToggleMenuDrawer} />
+                <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
               </NavigationItem>
             )}
           </NavigationSection>
         )}
       </NavigationContent>
       <NavigationDrawers>
-        {!isDesktop && showMenu && (
+        {!isDesktop && menuState && (
           <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer} bottomContent={loginWidget}>
             {menuWidget}
           </Drawer>
         )}
-        {isMobile && showSearch && (
+        {isMobile && searchState && (
           <Drawer isMobile onClose={onToggleSearchDrawer}>
             {searchWidget}
           </Drawer>
@@ -224,4 +231,4 @@ const Header: FC<Props> = ({
   );
 };
 
-export default Header;
+export default withMenuState(Header) as FC<Props>;

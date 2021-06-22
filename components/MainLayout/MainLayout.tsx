@@ -8,6 +8,7 @@ import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
 import { getPathValue } from 'lib/url';
 import { IconEarth } from 'components/Icons';
+import MenuStateProvider from 'components/MenuStateProvider';
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -49,34 +50,36 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerCo
   );
 
   return (
-    <MainWrapper>
-      <HeaderWrapper>
-        <Header
-          menuWidget={menu}
-          guides={headerContent.guides}
-          popularSearches={headerContent.popularSearches}
-          popularSearchesTitle={headerContent.popularSearchesTitle}
-          emptySearchResult={headerContent.emptySearchResult}
-          loginUrl={headerContent.loginUrl}
-          testAccountUrl={headerContent.testAccountUrl}
-        />
-      </HeaderWrapper>
-      <ContentWrapper isDesktop={isDesktop}>
-        {isDesktop && (
-          <SideBarWrapper>
-            <SideBar menuWidget={menu} />
-          </SideBarWrapper>
-        )}
-        <Content>{children}</Content>
-      </ContentWrapper>
-      <FooterWrapper>
-        <Footer
-          navigation={footerContent.navigation}
-          social={footerContent.social}
-          policies={footerContent.policies}
-        />
-      </FooterWrapper>
-    </MainWrapper>
+    <MenuStateProvider>
+      <MainWrapper>
+        <HeaderWrapper>
+          <Header
+            menuWidget={menu}
+            guides={headerContent.guides}
+            popularSearches={headerContent.popularSearches}
+            popularSearchesTitle={headerContent.popularSearchesTitle}
+            emptySearchResult={headerContent.emptySearchResult}
+            loginUrl={headerContent.loginUrl}
+            testAccountUrl={headerContent.testAccountUrl}
+          />
+        </HeaderWrapper>
+        <ContentWrapper isDesktop={isDesktop}>
+          {isDesktop && (
+            <SideBarWrapper>
+              <SideBar menuWidget={menu} />
+            </SideBarWrapper>
+          )}
+          <Content>{children}</Content>
+        </ContentWrapper>
+        <FooterWrapper>
+          <Footer
+            navigation={footerContent.navigation}
+            social={footerContent.social}
+            policies={footerContent.policies}
+          />
+        </FooterWrapper>
+      </MainWrapper>
+    </MenuStateProvider>
   );
 };
 

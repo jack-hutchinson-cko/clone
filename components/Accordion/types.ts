@@ -3,6 +3,7 @@ import { ReactNode, Dispatch, SetStateAction } from 'react';
 export type AccordionProps = {
   title?: string;
   children: ReactNode;
+  isExpanded?: boolean;
 };
 
 export type AccordionBodyProps = {

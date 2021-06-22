@@ -9,6 +9,7 @@ export type NavigationItemProps<T = unknown> = {
 export type NavigationSectionProps<T = unknown> = {
   link: ReactNode;
   isRoot?: boolean;
+  isOpen?: boolean;
 } & T;
 
 export type NavigationLinkProps<T = unknown> = {
@@ -34,8 +35,9 @@ const NavigationTree: FC<Props> = ({ docsTreeLinks, activeLink, NavSection, NavI
     );
 
     if (children?.length) {
+      const isOpen = activeLink.includes(path) && !activeLink.endsWith(path);
       return (
-        <NavSection key={id} isRoot={isRoot} link={link}>
+        <NavSection key={id} isRoot={isRoot} link={link} isOpen={isOpen}>
           {children.map((n) => renderSegment(n, isActiveLink))}
         </NavSection>
       );

@@ -5,13 +5,12 @@ import { StyledAccordionHead } from './AccordionHead';
 import { StyledAccordion } from './Accordion.styles';
 import { AccordionProps } from './types';
 
-const Accordion: FC<AccordionProps> = ({ title = null, children, ...props }) => {
-  const [isOpen, setOpen] = useState<boolean>(false);
+const Accordion: FC<AccordionProps> = ({ title = null, isExpanded, children, ...props }) => {
+  const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
 
   const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
-    setOpen((prevStatus) => !prevStatus);
+    setOpen(!isOpen);
   };
 
   if (title) {

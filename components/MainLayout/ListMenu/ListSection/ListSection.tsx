@@ -3,8 +3,8 @@ import { FC, useState, useCallback } from 'react';
 import { NavigationSectionProps } from '../../../NavigationTreeMenu';
 import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles';
 
-export const ListSection: FC<NavigationSectionProps> = ({ link, isRoot, children }) => {
-  const [opened, setOpened] = useState<boolean>(false);
+export const ListSection: FC<NavigationSectionProps> = ({ link, isRoot, isOpen, children }) => {
+  const [opened, setOpened] = useState<boolean>(isOpen ?? false);
   const onToggleHandler = useCallback(() => {
     setOpened(!opened);
   }, [opened]);
