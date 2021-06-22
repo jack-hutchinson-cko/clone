@@ -12,12 +12,16 @@ type Props = {
 };
 
 const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
-  const { sidebarDocLinks, headerContent } = useAppInitState();
+  const { sidebarDocLinks, headerContent, footerContent } = useAppInitState();
 
   return (
     <ThemeDefaultProvider theme={defaultTheme}>
       <GlobalStyle />
-      <MainLayout navTreeLinks={sidebarDocLinks} headerContent={headerContent}>
+      <MainLayout
+        navTreeLinks={sidebarDocLinks}
+        headerContent={headerContent}
+        footerContent={footerContent}
+      >
         <Component {...pageProps} />
       </MainLayout>
     </ThemeDefaultProvider>

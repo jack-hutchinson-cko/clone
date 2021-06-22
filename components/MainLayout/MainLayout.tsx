@@ -5,6 +5,7 @@ import { useMatchMedia } from '@cko/primitives';
 import { Breakpoints } from 'constants/screen';
 import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
+import { FooterContent } from 'types/footer';
 import { getPathValue } from 'lib/url';
 import { IconEarth } from 'components/Icons';
 
@@ -27,9 +28,10 @@ import {
 type Props = {
   navTreeLinks: NavTreeElement[];
   headerContent: HeaderContent;
+  footerContent: FooterContent;
 };
 
-const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent }) => {
+const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerContent }) => {
   const { asPath } = useRouter();
   const activeLink = useMemo(() => getPathValue(asPath), [asPath]);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
@@ -68,7 +70,11 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent }) => {
         <Content>{children}</Content>
       </ContentWrapper>
       <FooterWrapper>
-        <Footer />
+        <Footer
+          navigation={footerContent.navigation}
+          social={footerContent.social}
+          policies={footerContent.policies}
+        />
       </FooterWrapper>
     </MainWrapper>
   );

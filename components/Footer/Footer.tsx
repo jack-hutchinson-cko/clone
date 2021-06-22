@@ -1,69 +1,33 @@
-import { FunctionComponent } from 'react';
-import Link from 'next/link';
-import { FooterLogo } from '../Icons/Icons';
-import FooterLinksComponent from './FooterLinks';
-import SubfooterLinksComponent from './SubfooterLinks';
-import SubfooterSocialLinksComponent from './SubfooterSocialLinks';
-import {
-  FooterBackground,
-  FooterMain,
-  FooterIcon,
-  FooterLogoWrapper,
-  FooterLinkListContainer,
-  SubFooter,
-  SubfooterGridItem,
-  SubfooterDescription,
-  SubfooterDescriptionText,
-  ContainerSubfooterLink,
-  DescriptionLink,
-} from './Footer.styles';
+import { FC } from 'react';
+import { useMatchMedia } from '@cko/primitives';
 
-const FooterComponent: FunctionComponent = () => {
+import { NavigationList, PoliciesList, SocialList } from 'types/footer';
+import { Breakpoints } from 'constants/screen';
+import FooterLogo from './FooterLogo';
+import FooterLinks from './FooterLinks';
+import SubFooter from './SubFooter';
+
+import { FooterWrapper, FooterContainer } from './Footer.styles';
+
+type Props = {
+  navigation: NavigationList;
+  social: SocialList;
+  policies: PoliciesList;
+};
+
+const Footer: FC<Props> = ({ navigation, policies, social }) => {
+  const isMobile = useMatchMedia(Breakpoints.MOBILE);
+  const isTablet = useMatchMedia(Breakpoints.TABLET);
+
   return (
-    <footer>
-      <FooterBackground>
-        <FooterMain>
-          <FooterIcon>
-            <FooterLogoWrapper>
-              <Link href="/">
-                <div>
-                  <FooterLogo />
-                </div>
-              </Link>
-            </FooterLogoWrapper>
-          </FooterIcon>
-          <FooterLinkListContainer>
-            <FooterLinksComponent />
-          </FooterLinkListContainer>
-          <SubFooter>
-            <SubfooterLinksComponent />
-            <SubfooterGridItem>
-              <SubfooterDescription>
-                <SubfooterDescriptionText>
-                  Authorised and regulated as an electronic money institution by the UK Financial
-                  Conduct Authority under number 900816.
-                </SubfooterDescriptionText>
-                <ContainerSubfooterLink>
-                  <span>Powered by&nbsp;</span>
-                  <Link href="https://www.atlassian.com">
-                    <DescriptionLink href="https://www.atlassian.com">
-                      Atlassian Confluence
-                    </DescriptionLink>
-                  </Link>
-                  <span>&nbsp;and&nbsp;</span>
-                  <Link href="https://www.k15t.com/go/scroll-viewport">
-                    <DescriptionLink href="https://www.k15t.com/go/scroll-viewport">
-                      Scroll Viewport
-                    </DescriptionLink>
-                  </Link>
-                </ContainerSubfooterLink>
-              </SubfooterDescription>
-              <SubfooterSocialLinksComponent />
-            </SubfooterGridItem>
-          </SubFooter>
-        </FooterMain>
-      </FooterBackground>
-    </footer>
+    <FooterWrapper>
+      <FooterContainer isMobile={isMobile}>
+        <FooterLogo />
+        <FooterLinks navigation={navigation} isMobile={isMobile} />
+        <SubFooter policies={policies} social={social} isTablet={isTablet} isMobile={isMobile} />
+      </FooterContainer>
+    </FooterWrapper>
   );
 };
-export default FooterComponent;
+
+export default Footer;

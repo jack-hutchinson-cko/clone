@@ -3,7 +3,9 @@ import { Wrapper } from './styles';
 
 const withBlockMargin =
   // eslint-disable-next-line
-  (Component: FC<any>): FC =>
+
+
+    (Component: FC<any>): FC =>
     (props) =>
       (
         <Wrapper>
