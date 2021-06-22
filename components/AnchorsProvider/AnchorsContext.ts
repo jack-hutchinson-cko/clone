@@ -1,9 +1,8 @@
 import { createContext } from 'react';
 
 export type Props = {
-  onSelect?: (hash: string) => void;
-  selectedHref?: string;
-  areaHeight?: number;
+  onUpdateState?: (hash: string, state: boolean) => void;
+  shownAnchors?: string[];
   offsetTop?: number;
 };
 

@@ -8,26 +8,35 @@ import { getHashValue, updateNavigationHash } from 'lib/url';
 
 import { NavigationHeader, LinkWrapper, AnchorLink } from './AnchorNavigation.styles';
 
+type Anchor = { title: string; href: string };
+
 type Props = {
-  anchors: { title: string; href: string }[];
+  anchors: Anchor[];
 };
 
-const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, selectedAnchorHref }) => {
+const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, shownAnchors }) => {
   const router = useRouter();
+  const [initialized, setInitialized] = useState<boolean>(false);
   const [selectedHref, setSelectedHref] = useState<string>();
 
   useEffect(() => {
     const slug = getHashValue(router.asPath);
     const anchor = anchors.find(({ href }) => href === `#${slug}`) ?? get(anchors, '[0]');
     setSelectedHref(anchor.href);
+    setInitialized(true);
   }, [router, anchors]);
 
   useEffect(() => {
-    if (selectedAnchorHref) {
-      updateNavigationHash(selectedAnchorHref);
-      setSelectedHref(selectedAnchorHref);
+    if (initialized) {
+      const set = new Set<string>(shownAnchors);
+      const selectedAnchor = anchors.find(({ href }) => set.has(href));
+
+      if (selectedAnchor) {
+        updateNavigationHash(selectedAnchor.href);
+        setSelectedHref(selectedAnchor.href);
+      }
     }
-  }, [selectedAnchorHref]);
+  }, [shownAnchors, anchors, initialized]);
 
   return (
     <div>

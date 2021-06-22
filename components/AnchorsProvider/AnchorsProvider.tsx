@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useRef, useState } from 'react';
 import { useMatchMedia } from '@cko/primitives';
 
 import { Breakpoints } from 'constants/screen';
@@ -13,18 +13,27 @@ type Props = {
   areaHeight?: number;
 };
 
-const AnchorsProvider: FC<Props> = ({ children, areaHeight }) => {
-  const [selectedHref, setSelectedHref] = useState<string>();
+const AnchorsProvider: FC<Props> = ({ children }) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
+  const selectedMapRef = useRef<Map<string, boolean>>(new Map<string, boolean>());
+  const [shownAnchors, setShownAnchors] = useState<string[]>([]);
 
-  const onSelect = useCallback((href: string) => {
-    setSelectedHref(href);
+  const onUpdateState = useCallback((href: string, state: boolean) => {
+    selectedMapRef.current.set(href, state);
+
+    const selected = [...selectedMapRef.current.entries()].reduce<string[]>(
+      (arr, [hash, shown]) => {
+        if (shown) arr.push(hash);
+        return arr;
+      },
+      [],
+    );
+    setShownAnchors(selected);
   }, []);
 
   const props: ContextProps = {
-    onSelect,
-    areaHeight,
-    selectedHref,
+    onUpdateState,
+    shownAnchors,
     offsetTop: isMobile ? Offset.MOBILE : Offset.DESKTOP,
   };
 
