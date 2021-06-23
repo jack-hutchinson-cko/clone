@@ -21,9 +21,12 @@ const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, shownAn
 
   useEffect(() => {
     const slug = getHashValue(router.asPath);
-    const anchor = anchors.find(({ href }) => href === `#${slug}`) ?? get(anchors, '[0]');
-    setSelectedHref(anchor.href);
-    setInitialized(true);
+    const selectedAnchor = anchors.find(({ href }) => href === `#${slug}`) ?? get(anchors, '[0]');
+
+    if (selectedAnchor) {
+      setSelectedHref(selectedAnchor.href);
+      setInitialized(true);
+    }
   }, [router, anchors]);
 
   useEffect(() => {
@@ -37,6 +40,8 @@ const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, shownAn
       }
     }
   }, [shownAnchors, anchors, initialized]);
+
+  console.log(anchors);
 
   return (
     <div>
