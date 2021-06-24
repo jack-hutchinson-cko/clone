@@ -25,5 +25,6 @@ export const OrderedList = styled.ol`
 export const ListItem = styled.li`
   color: ${({ theme }) => theme.colors.base};
   margin: 5px 0;
+  line-height: 24px;
   list-style-type: inherit;
 `;

@@ -359,25 +359,18 @@ The first six characters of the primary recipient’s surname.
 +----------------------------------+----------------------------------------------------------+--------------+-------------------------+
 | Field name                       | Description                                              | Example      | Length                  |
 +==================================+==========================================================+==============+=========================+
-| `account_number`                 |  - **Visa:** If the payment is being made with           | `8573498821` | 1. **Visa:** 10         | 
-|                                  |  a VISA card, then provide the first six digits          |              | 2. **Mastercard:** Full |
-| <TypeTag type="string" />        |  and the last four digits of the primary recipient’s     |              |                         |
+| `account_number`                 |  - **Visa:** If the payment is being made with           | `8573498821` | 1. **Visa:** 10         |
+| <TypeTag type="string" />        |  a VISA card, then provide the first six digits          |              | 2. **Mastercard:** Full |
+| <StatusTag type="required" />    |  and the last four digits of the primary recipient’s     |              |                         |
 |                                  |  card, without any spaces. Or, the first 10 digits of    |              |                         |
-| <StatusTag type="required" />    |  the primary recipient’s account number.                 |              |                         |
+|                                  |  the primary recipient’s account number.                 |              |                         |
 |                                  | - **Mastercard:** If the payment is being made with      |              |                         |
 |                                  | a Mastercard card, then provide the primary recipient's  |              |                         |
 |                                  | full card number.                                        |              |                         |
-|                                  |                                                          |              |                         | 
-|                                  |                                                          |              |                         |
-|                                  |                                                          |              |                         |
-|                                  |                                                          |              |                         |         
 +----------------------------------+----------------------------------------------------------+--------------+-------------------------+
 | `dob`                            | The date of birth of the primary recipient in the        | `1991-12-30` | 8                       |
-|                                  | following format: `yyyy-mm-dd`                           |              |                         |
-| <TypeTag type="object" />        |                                                          |              |                         |
-|                                  |                                                          |              |                         |
+| <TypeTag type="object" />        | following format: `yyyy-mm-dd`                           |              |                         |
 | <StatusTag type="recommended" /> |                                                          |              |                         |
-|                                  |                                                          |              |                         |       
 +----------------------------------+----------------------------------------------------------+--------------+-------------------------+
 | `last_name`                      | <InfoBox>                                                | `Smith`      | 6                       |
 | <TypeTag type="string" />        |                                                          |              |                         |
@@ -387,10 +380,6 @@ The first six characters of the primary recipient’s surname.
 |                                  |                                                          |              |                         |
 |                                  | The first six characters of the primary recipient’s      |              |                         |
 |                                  | surname.                                                 |              |                         |
-|                                  |                                                          |              |                         | 
-|                                  |                                                          |              |                         |
-|                                  |                                                          |              |                         |
-|                                  |                                                          |              |                         | 
 +----------------------------------+----------------------------------------------------------+--------------+-------------------------+
 
 ---
