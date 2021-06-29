@@ -31,7 +31,7 @@ import Table, {
 import ImageBox from 'components/ImageBox';
 import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
 
-const components = {
+export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
   tabs: withBlockMargin(Tabs),
   tab: Tab,
@@ -78,6 +78,6 @@ type Props = {
   source: MDXRemoteSerializeResult;
 };
 
-const MDXProvider: FC<Props> = ({ source }) => <MDXRemote {...source} components={components} />;
+const MDXProvider: FC<Props> = ({ source }) => <MDXRemote {...source} components={mdxComponents} />;
 
 export default MDXProvider;

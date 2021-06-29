@@ -1,3 +1,4 @@
-import MDXProvider from './MDXProvider';
+import MDXProvider, { mdxComponents } from './MDXProvider';
 
 export default MDXProvider;
+export { mdxComponents };
