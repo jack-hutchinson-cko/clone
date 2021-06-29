@@ -374,3 +374,14 @@ export const IconBurger: FC<Props> = (props) => (
     </g>
   </StyledIcon>
 );
+
+export const IconActionCopy: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      fill="currentColor"
+      d="M5.5 2c-.3 0-.5.2-.5.5a.5.5 0 01-1 0C4 1.7 4.7 1 5.5 1h8c.8 0 1.5.7 1.5 1.5v8c0 .8-.7 1.5-1.5 1.5a.5.5 0 010-1c.3 0 .5-.2.5-.5v-8c0-.3-.2-.5-.5-.5h-8zM2 13.5c0 .3.2.5.5.5h8c.3 0 .5-.2.5-.5v-8c0-.3-.2-.5-.5-.5h-8c-.3 0-.5.2-.5.5v8zm10-8v8c0 .8-.7 1.5-1.5 1.5h-8c-.8 0-1.5-.7-1.5-1.5v-8C1 4.7 1.7 4 2.5 4h8c.8 0 1.5.7 1.5 1.5z"
+    />
+  </StyledIcon>
+);

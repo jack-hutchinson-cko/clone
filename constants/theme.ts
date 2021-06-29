@@ -30,6 +30,9 @@ export const defaultTheme = {
     getTag: '#2DB388',
     optionalTag: '#00b48f',
     recommendedTag: '#ffab00',
+    primaryYellow: '#FFFFC8',
+    tokenString: '#6964b3',
+    tokenNumber: '#0082d9',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
