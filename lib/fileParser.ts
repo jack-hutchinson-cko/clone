@@ -10,7 +10,7 @@ import { ABCDocsPath } from 'constants/filePath';
 import { getAnchorUrl } from 'lib/url';
 
 const getAnchorsNavItems = ({ content = '' }: { content: string }) =>
-  (content.match(/^#+ (.*$)/gim) || []).map((headerItem) => {
+  (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
     return {
       title,
