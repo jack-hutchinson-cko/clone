@@ -17,6 +17,7 @@ export const defaultTheme = {
     focusLight: '#354C55',
     blueLight: '#D7E4FD',
     blueTertiary: '#2BD4DB',
+    turquoise: '#C0F2F4',
     blueDark: '#3D415C',
     greyLight: '#E6E7EC',
     grayFaded: '#8688a0',

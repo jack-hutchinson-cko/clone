@@ -7,6 +7,7 @@ export const StyledHeader = styled.div<{ isRoot?: boolean }>`
   align-items: center;
   font-size: ${({ isRoot }) => (isRoot ? '16px' : '14px')};
   font-weight: 500;
+  line-height: 24px;
   gap: 15px;
 `;
 export const StyledContent = styled.div<{ isShown: boolean }>`
