@@ -4,7 +4,7 @@ import { Container, Navigation } from './NavigationTreeMenu.styles';
 
 type Props = {
   isMobile?: boolean;
-  topLinks: ReactNode;
+  topLinks?: ReactNode;
 };
 
 const NavigationTreeMenu: FC<Props> = ({ isMobile, children, topLinks }) => (

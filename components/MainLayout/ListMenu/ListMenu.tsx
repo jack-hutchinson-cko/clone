@@ -22,19 +22,16 @@ const ListMenu: FC<Props> = ({
   homeLinkTitle,
   homeLinkIcon,
 }) => (
-  <NavigationTreeMenu
-    topLinks={
-      <ListItem
-        isRoot
-        icon={homeLinkIcon}
-        link={
-          <ListItemLink href={homeLink} isActive={homeLink === activeLink}>
-            {homeLinkTitle}
-          </ListItemLink>
-        }
-      />
-    }
-  >
+  <NavigationTreeMenu>
+    <ListItem
+      isRoot
+      icon={homeLinkIcon}
+      link={
+        <ListItemLink href={homeLink} isActive={homeLink === activeLink}>
+          {homeLinkTitle}
+        </ListItemLink>
+      }
+    />
     <NavigationTree
       docsTreeLinks={docsTreeLinks}
       activeLink={activeLink}
