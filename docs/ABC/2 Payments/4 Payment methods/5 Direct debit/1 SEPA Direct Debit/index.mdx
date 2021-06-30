@@ -1,0 +1,1203 @@
+
+---
+title: SEPA Direct Debit
+account: ABC
+---
+
+You can accept SEPA Direct Debit (SDD) payments from customers in countries within the Single Euro Payments Area.
+
+The [SEPA](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area) initiative aims to facilitate seamless, quick, and cost-effective direct debits across 36 (as of March 2019) European countries. Banks participating in SEPA are not permitted to charge higher fees for cross-border SEPA Direct Debits than they would for direct debits within their home country.
+
+<TipBox variant="info">
+
+To accept payments by SEPA Direct Debit, please contact your Customer Success Manager.
+
+</TipBox>
+
+---
+
+## Overview
+
+First, you need to collect your customers' euro-denominated bank account details, including their IBAN. The bank account holder is then required to accept a mandate to authorize you to debit their account. Once the mandate is approved, submit the mandate details to Checkout.com and we'll provide you with a source object with which you can request a payment.
+
+*   [Issue the mandate](#SEPADirectDebit-issuethemandate)
+*   [Pre-notify the customer](#SEPADirectDebit-pre-notifythecustomer)
+*   [Create an SDD payment source](#SEPADirectDebit-createpaymentsource)
+*   [Request a payment](#SEPADirectDebit-requestapayment)
+
+---
+
+## Issue the mandate
+
+Before any payment can occur, your customer must authorize the payment by accepting the terms of the mandate. By accepting, they are authorizing you to collect the specified amount from their bank account using SEPA Direct Debit.
+
+There are two types of mandates:
+
+*   One-off: allows a single payment to be made against the mandate. It can only be used once.
+*   Recurring: allows multiple payments to be made against the mandate. It can be reused.
+
+The mandate is accepted using ‘click’ acceptance. This method requires that the mandate’s terms are set out on the same page as where the customer enters their bank account details. The mandate should make it clear that if the customer submits their bank account details to the merchant, they are implicitly agreeing to the mandate.
+
+Once the mandate is approved, you can submit the customer’s information to us, and we'll return the mandate reference to you. You should then present the mandate reference to your customer as confirmation that the mandate has been created.
+
+<TipBox variant="info">
+
+For details about the mandate and more, please read the [SEPA Direct Debit core rulebook](https://www.europeanpaymentscouncil.eu/what-we-do/sepa-direct-debit/sepa-direct-debit-core-rulebook).
+
+</TipBox>
+
+---
+
+## Pre-notify the customer
+
+Before debiting a customer's account with SEPA Direct Debits, it is mandatory that the customer is informed of the debit by the merchant in an agreed timeframe before the payment. We recommend you include details of this timeframe in your terms and conditions.
+
+Notifications are sent to enable the customer to make sure they have the necessary funds available in their bank account and also to make them aware of the payment so they recognize it in their statement.
+
+Funds will be removed from the customer’s account one or two days after the transaction is submitted. It is a SEPA requirement that you make sure your customers are aware of this.
+
+<TipBox variant="info">
+
+For additional information about pre-notifications, please read the [SEPA Direct Debit core rulebook](https://www.europeanpaymentscouncil.eu/what-we-do/sepa-direct-debit/sepa-direct-debit-core-rulebook).
+
+</TipBox>
+
+---
+
+## Create a new SDD payment source
+
+Create a new SEPA payment source that can be used to make one or more payments. Creating a source will automatically create a new mandate as well. You'll receive the mandate `reference` in the response, and you can use this if you ever need to [cancel a mandate](#SEPADirectDebit-cancelmandate).
+
+<TipBox variant="info">
+
+Payment sources are linked to a specific customer and cannot be shared between customers.
+
+</TipBox>
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/sources`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/sources`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+#### Body parameters
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of payment. Set this to `sepa`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`reference`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+A reference that you can later use to identify the source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source_data`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Additional data required to create SEPA payment sources.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source_data.first_name`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The account holder's first name.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source_data.last_name`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The account holder's last name.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source_data.account_iban`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The account's IBAN.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source_data.billing_descriptor`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The billing descriptor.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source_data.mandate_type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of mandate. Set to `single` for one-off payments or `recurring` for recurring payments.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+The account owner's billing address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address.address_line1`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Line 1 of the billing address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address.address_line2`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Line 2 of the billing address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address.city`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The city of the billing address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address.state`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The state of the billing address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address.zip`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The zip/postal code.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_address.country`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The country of the billing address, using the two-letter ISO code (e.g., `GB` for the United Kingdom).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`phone`
+
+<StatusTag type="optional" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+The account holder's phone number.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`phone.country_code`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The valid country code for the phone number (e.g., `+44` for the United Kingdom).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`phone.number`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The phone number.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`customer`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Details about the customer associated with the source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`customer_id`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The identifier of an existing customer. If neither customer `id` nor `email` is provided, we will automatically create a new customer profile and return the customer `id` in the response.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`customer.email`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The customer's email address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`customer.name`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The customer's name. This will only set the name for new customers.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request examples
+
+<tabs>
+  <tab title="Recurring mandate request" active>
+
+    {
+      "type": "sepa",
+      "reference": "X-080957-N34",
+      "source_data": {
+        "first_name": "Sophie",
+        "last_name": "Bonneville",
+        "account_iban": "DE25100100101234567893",
+        "billing_descriptor": "Thanks for shopping",
+        "mandate_type": "recurring"
+      },
+      "billing_address": {
+      "address_line1": "101 Avenue de Gaulle",
+      "city": "Paris",
+      "zip": "75013",
+      "country": "FR"
+    },
+      "phone": {
+      "country_code": "+33",
+      "number": "6 78 91 01 11"
+    },
+      "customer": {
+        "email": "sophie.bonneville@ckomail.com"
+      }
+    }
+
+  </tab>
+  <tab title="One-off mandate request">
+
+    {
+      "type": "sepa",
+      "reference": "X-080957-N34",
+      "source_data": {
+        "first_name": "Sophie",
+        "last_name": "Bonneville",
+        "account_iban": "DE25100100101234567893",
+        "billing_descriptor": "Thanks for shopping!",
+        "mandate_type": "single"
+      },
+      "billing_address": {
+        "address_line1": "101 Avenue de Gaulle",
+        "city": "Paris",
+        "zip": "75013",
+        "country": "FR"
+      },
+      "phone": {
+        "country_code": "+33",
+        "number": "6 78 91 01 11"
+      },
+      "customer": {
+        "email": "sophie.bonneville@ckomail.com"
+      }
+    }
+
+  </tab>
+</tabs>
+
+<TipBox variant="info">
+
+The soft descriptor value will be prepended to the mandate reference when it appears on a customer's bank statement. For example, `Thanks for shopping - Mandate: 1017424`.
+
+</TipBox>
+
+### The POST response
+
+    {
+      "id": "src_a3wfgafsyedefaobbqadqw34vy",
+      "type": "Sepa",
+      "response_code": "10000",
+      "response_data": {
+        "mandate_reference": "2476225"
+      },
+      "customer": {
+        "id": "cus_uhpsey6culvuln3zfzfme7w5ea"
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.checkout.com/sources/src_a3wfgafsyedefaobbqadqw34vy"
+        },
+        "sepa:mandate-cancel": {
+          "href": "https://api.checkout.com/sepa-external/mandates/src_a3wfgafsyedefaobbqadqw34vy/cancel"
+        },
+        "sepa:mandate-get": {
+          "href": "https://api.checkout.com/sepa-external/mandates/src_a3wfgafsyedefaobbqadqw34vy"
+        }
+      }
+    }
+
+---
+
+## Request a payment
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+#### Body parameters
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Details about the payment source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of payment source. Set this to `id`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.id`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The source ID (received in the response above).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="required" />
+<TypeTag type="integer" />
+</TableCell>
+<TableCell>
+
+The payment amount.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The payment currency (three-letter ISO 4217 code).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`reference`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+A reference with which you can later identify the payment.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+    {
+      "source": {
+        "type": "id",
+        "id": "src_a3wfgafsyedefaobbqadqw34vy"
+      },
+      "amount": 5600,
+      "currency": "EUR",
+      "reference": "X-080957-N34"
+    }
+
+<TipBox variant="info">
+
+Use the provided source ID in the payments endpoint to create a payment for a particular customer. For recurring payments, the source ID can be used multiple times.
+
+</TipBox>
+
+### The POST response
+
+#### Response example
+
+    {
+      "id": "pay_6thh5vhggyjudgzfznx2fkuede",
+      "status": "Pending",
+      "reference": "X-080957-N34",
+      "customer": {
+        "id": "cus_uhpsey6culvuln3zfzfme7w5ea",
+        "email": "sophie.bonneville@ckomail.com"
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.checkout.com/payments/pay_6thh5vhggyjudgzfznx2fkuede"
+        }
+      }
+    }
+
+---
+
+## Cancel a mandate
+
+If your customer requests to cancel a SDD mandate, you can do so by using our cancel mandate endpoint. Once canceled, you will no longer be able to create payments using the mandate or its source object.
+
+<TipBox variant="note">
+
+This action is only available for recurring SDD payments; you cannot cancel one-off payments.
+
+</TipBox>
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/sepa/mandates/{source_id}/cancel`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/sepa/mandates/{source_id}/cancel`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The source ID (you'll find this in the response of the source creation).
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<TipBox variant="info">
+
+Mandates automatically expire after 36 months of inactivity.
+
+</TipBox>
+
+---
+
+## Refund a payment
+
+A captured SEPA charge can be refunded by passing the original payment ID (of the SEPA payment) through our [refund endpoint](/display/DOCS/Refund+a+payment). Refunds must be claimed within eight weeks, starting from the date on which the account was debited.
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments/{payment_id}/refunds`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payments/{payment_id}/refunds`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment ID found in the response of the initial payment.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+    {
+      "amount": 6540,
+      "reference": "ORD-5023-4E89",
+    }
+
+### The POST response
+
+If your refund request is successful, you will receive a `payment_refund_pending` webhook notification. Once the refund has been processed, you will receive a `payment_refunded` webhook and the payment status will change to `refunded`.
+
+<TipBox variant="info">
+
+Refunds can take up to four days to be processed.
+
+</TipBox>
+
+#### Response example
+
+    {
+      "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
+      "reference": "ORD-5023-4E89",
+      "_links": {
+        "payment": {
+          "href": "https://api.checkout.com/payments/pay_y3oqhf46pyzuxjbcn2giaqnb44"
+        }
+      }
+    }
+
+---
+
+## Retrieve a payment source
+
+Use this request to get more information on an SDD payment source, based on its `id`.
+
+### The GET request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/sources/{id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/sources/{id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The source ID (you'll find this in the response of the source creation).
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+### The GET response
+
+#### Response example
+
+    {
+      "id": "src_y3oqhf46pyzuxjbcn2giaqnb44",
+      "type": "sepa",
+      "_links": {
+        "self": {
+          "href": "https://api.checkout.com/sources/src_y3oqhf46pyzuxjbcn2giaqnb44"
+        },
+        "sepa:mandate": {
+          "href": "https://api.checkout.com/sepa/mandates/src_y3oqhf46pyzuxjbcn2giaqnb44"
+        }
+      }
+    }
+
+<TipBox variant="info">
+
+If the source cannot be found, you will get a `404 - Payment source not found` error.
+
+</TipBox>
+
+---
+
+## Chargebacks
+
+A customer can dispute an SDD payment with their bank when they believe that they did not authorize the payment. However, owing to the asynchronous nature of SDDs, the reasons for a chargeback go beyond the traditional customer-initiated chargebacks. SDD chargebacks may be caused by the IBAN being incorrect, the customer having insufficient funds, or the customer's bank account being closed. If a chargeback occurs, we will let you know through a `payment_chargeback` webhook notification.
+
+If you and your customer did not agree upon the mandate, then the chargeback cannot be represented. You must handle representing an SDD chargeback directly with the customer.
+
+<TipBox variant="info">
+
+Chargebacks can be initiated by the customer up to 13 months after a payment was first processed.
+
+</TipBox>
+
+---
+
+## Testing SDD
+
+<TipBox variant="note">
+
+To start testing, you'll need to:
+
+*   [create a test account](https://www.checkout.com/get-test-account), and
+*   contact your Customer Success Manager or Integrations engineer to activate SEPA payments in the sandbox environment.
+
+</TipBox>
+
+If you want to test the different use cases for SDD payment results, please use the following test IBANs. These IBANs have a valid checksum and should be supplied when creating a new mandate.
+
+<Table>
+<TableHead headers={['IBAN', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`DE09100100101234567890`
+
+</TableCell>
+<TableCell>
+
+The customer's mandate and payment can't be set up because their bank details are invalid. Payment not accepted.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE79100100101234567891`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is accepted, but not collected yet. The mandate is marked as activated. The payment will remain on Status 1 (accepted).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE52100100101234567892`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is accepted, but then canceled before collection. The mandate is marked as activated. The payment is marked as Status 1 (accepted), then Status 2 (canceled).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE25100100101234567893`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is collected successfully and paid out to you. The mandate is marked as activated. The payment is marked as Status 1 (accepted), then Status 3 (paid).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE95100100101234567894`
+
+</TableCell>
+<TableCell>
+
+The customer’s payment is provided to the bank successfully, but is then charged back due to a request by a merchant. The mandate is marked as activated. The payment is marked as Status 1 (accepted), then Status 3 (paid). Finally, the payment is marked as Status 4 (charge-back) with Token (RFND).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE68100100101234567895`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is collected successfully, but is then charged back by the customer disputing it with their bank (actively initiated by the customer). The mandate is marked as activated. The payment is marked as status 1 (accepted), then status 3 (paid). Finally, the payment is marked as status 4 (chargeback) with token (ACT).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE41100100101234567896`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is provided to the bank successfully, but is then charged back by their bank due to no sufficient funds. The mandate is marked as activated. The payment is marked as Status 1 (accepted), then Status 3 (paid). Finally, the payment is marked as Status 4 (chargeback) with Token (NSF).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE14100100101234567897`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is provided to the bank successfully, but is then charged back by the bank due to other reasons (no bank account, saving account). The mandate is marked as activated. The payment is marked as Status 1 (accepted), then Status 3 (paid). Finally, the payment is marked as Status 4 (chargeback) with Token (OTHR).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`DE84100100101234567898`
+
+</TableCell>
+<TableCell>
+
+The customer's payment is provided to the bank successfully, but is then charged back by the bank due to format errors. The mandate is marked as activated. The payment is marked as Status 1 (accepted), then Status 3 (paid). Finally, the payment is marked as Status 4 (chargeback) with Token (FRM).
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>

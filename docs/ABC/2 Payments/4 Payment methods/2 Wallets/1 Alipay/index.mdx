@@ -1,0 +1,349 @@
+---
+title: Alipay
+account: ABC
+---
+
+Start accepting payments using Alipay, a favorite payment method in China.
+
+Alipay provides a method to make purchases online through quick and easy bank transfers that are not only secure but guaranteed.
+
+<TipBox variant="info">
+
+To start accepting Alipay payments, please contact your Customer Success Manager.
+
+</TipBox>
+
+---
+
+## Overview
+
+Alipay payments follow a two-step process:
+
+1.  [Request an Alipay payment](#Alipay-requestapayment)
+2.  [Redirect the customer](#Alipay-redirectthecustomer)
+
+---
+
+## Request a payment
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+#### Body parameters
+
+The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Details about the payment source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of payment source. Set this to `alipay`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="optional" />
+<TypeTag type="integer" />
+</TableCell>
+<TableCell>
+
+The payment amount.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The currency in which the payment is being made (three-letter ISO 4217 code).
+
+Currently, we only support USD.
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+#### Request example
+
+    {
+      "source": {
+        "type": "alipay"
+      },
+     "amount": 2000,
+     "currency": "USD"
+    }
+
+
+<TipBox variant="info">
+
+If a customer ID or email is not provided in the request, then we automatically create a customer profile and return the customer `id` in the response.
+
+</TipBox>
+
+### The POST response
+
+If a payment `id` is returned, then your request was successful.
+
+#### Response example
+
+    {
+      "id": "pay_wu2hdjkzookuji3i2xai2ienlm",
+      "status": "Pending",
+      "customer": {
+        "id": "cus_j4o4tigv4vaebednks3gafrwk4"
+      },
+      "_links": {
+        "self": {
+          "href": "https://sandbox.checkout.com/api2/payments/pay_wu2hdjkzookuji3i2xai2ienlm"
+        },
+        "redirect": {
+          "href": "https://sandbox.checkout.com/LP.Core/api/payment/108674"
+        }
+      }
+    }
+
+### Redirect the customer
+
+Redirect your customer to the `redirect` link’s href in the response. The redirect transfers the customer to their bank's website where they are required to enter their authorization details; if successful, the payment can be approved.
+
+Once completed, the customer is transferred to your predefined success or failure URL. Confirmation of an Alipay payment is communicated only through webhooks. When you receive a `payment_captured` webhook notification, the transaction has been completed successfully. Until the `payment_captured` webhook is received (response code `10000`), all payments are labeled as _Pending_.
+
+---
+
+## Get details about a payment
+
+You can retrieve details about an existing Alipay payment.
+
+### The GET request
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment ID found in the response of the initial response.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+### The GET response
+
+#### Response example
+
+    {
+      "id": "pay_wu2hdjkzookuji3i2xai2ienlm",
+      "requested_on": "2018-11-22T15:02:13Z",
+      "source": {
+        "type": "alipay"
+      },
+      "amount": 1,
+      "currency": "USD",
+      "payment_type": "Regular",
+      "status": "Pending",
+      "risk": {
+        "flagged": false
+      },
+      "customer": {
+        "id": "cus_j4o4tigv4vaebednks3gafrwk4"
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_wu2hdjkzookuji3i2xai2ienlm"
+        }
+      }
+    }
+
+---
+
+## Refund a payment
+
+Alipay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/display/DOCS/Refund+a+payment).
+
+---
+
+## Cancel a payment
+
+If the customer cancels or fails to complete the transaction at any point after the payment is created, it will automatically be voided, and we'll send you a `payment_voided` webhook.
+
+---
+
+## Testing Alipay
+
+<TipBox variant="note">
+
+To start testing, you'll need to:
+
+*   [create a test account](https://www.checkout.com/get-test-account), and
+*   contact your Customer Success Manager or Integrations engineer to activate Alipay payments in the sandbox environment.
+
+</TipBox>
+
+1.  Create an Alipay transaction as above, following the redirect link in the response to Alipay's website.
+2.  Click the button on the right and log in with the following details:
+*   **Username**: `alipaytest20091@gmail.com`
+*   **Password**: `111111`
+3.  Solve the captcha and then click the blue button at the bottom of the form to continue.
+4.  Enter `111111` into the box and then click the blue button to complete the payment. You should then be redirected to your predefined success URL.

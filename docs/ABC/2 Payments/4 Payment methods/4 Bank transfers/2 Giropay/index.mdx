@@ -1,0 +1,403 @@
+---
+title: Giropay
+account: ABC
+---
+
+Start accepting payments using Giropay, a favorite payment method in Germany.
+
+Giropay provides a method to make purchases online through quick and easy bank transfers that are not only secure but guaranteed.
+
+<TipBox variant="info">
+
+To start accepting Giropay payments, please contact your Customer Success Manager.
+
+</TipBox>
+
+---
+
+## Overview
+
+Giropay payments follow a two-step process:
+
+1.  [Request a payment](#Giropay-requestapayment)
+2.  [Redirect the customer](#Giropay-redirectthecustomer)
+
+## Request a payment
+
+### The POST request
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+#### Body parameters
+
+The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Details about the payment source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of payment source. Set this to `giropay`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.purpose`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+A description of the payment. Maximum characters: 27
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="required" />
+<TypeTag type="integer" />
+</TableCell>
+<TableCell>
+
+The payment amount.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `EUR`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`success_url`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+For redirect payment methods, overrides the default success redirect URL configured on your account.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`failure_url`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+For redirect payment methods, overrides the default failure redirect URL configured on your account.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+    {
+      "source": {
+        "type": "giropay",
+        "purpose":"Mens black t-shirt L"
+      },
+     "amount": 1914,
+     "currency": "EUR",
+     "success_url": "http://example.com/payments/success",
+     "failure_url": "http://example.com/payments/fail"
+    }
+
+<TipBox variant="info">
+
+If a customer ID or email is not provided in the request, then we automatically create a customer profile and return the customer `id` in the response.
+
+</TipBox>
+
+### The POST response
+
+If you receive a `202 Success` response containing a `status` field set to `Pending`, then your request was successful.
+
+#### Response example
+
+    {
+      "id": "pay_d3ohhwwu3qderfjlzitknc26sq",
+      "status": "Pending",
+      "customer": {
+        "id": "cus_hfgq4ctsnr6e3cfhq5ctwb5gtu"
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_d3ohhwwu3qderfjlzitknc26sq"
+        },
+        "redirect": {
+          "href": "https://ftg-customer-integration.giropay.de/ftgbank/b/bankselection/219499703994809788;jsessionid=8ECFE1809F9BAB6635EC9D37D98A1CAE.sf-testapp01tom21?op=001"
+        }
+      }
+    }
+
+---
+
+## Redirect the customer
+
+Redirect your customer to the `redirect` link’s href in the response. This will send them to a Giropay bank selection page where they will select their bank before being transferred to that bank's page to enter their authorization details. If successful, the payment can be approved.
+
+Once they've completed this step, the customer is transferred to your predefined success or failure URL. Confirmation of a Giropay payment is **communicated only through webhooks**. When you receive a `payment_captured` webhook notification, the transaction has been completed successfully. Until the `payment_captured` webhook is received (response code `10000`), all payments are labeled as _Pending_.
+
+---
+
+## Get details about a payment
+
+Retrieve details about an existing Giropay payment with the following endpoint.
+
+### The GET request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+The payment ID found in the response of the initial payment.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+### The GET response
+
+#### Response example
+
+    {
+      "id": "pay_iilqeu2rsdqedkvkjhl2rxgbvy",
+      "created_on": "2018-03-28T14:50:26Z",
+      "source": {
+        "type": "giropay",
+        "purpose": "Set of three masks",
+        "bic": "TESTDETT421",
+        "iban": "DE46940594210000012345",
+        "account_holder_name": "Test GmbH & Co. KG"
+      },
+      "amount": 1914,
+      "currency": "EUR",
+      "payment_type": "Regular",
+      "status": "Captured",
+      "flagged": false,
+      "_links": {
+        "self": {
+          "href": "http://api.checkout.com/gateway/payments/pay_iilqeu2rsdqedkvkjhl2rxgbvy"
+        }
+      }
+    }
+
+---
+
+## Refund a payment
+
+Giropay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/display/DOCS/Refund+a+payment).
+
+---
+
+## Cancel a payment
+
+If the customer fails to complete their payment, we will automatically void the payment and send a `payment_expired webhook`.
+
+If the customer cancels their payment, we will send a `payment_canceled` webhook.
+
+---
+
+## Testing Giropay
+
+<TipBox variant="note">
+
+To start testing, you'll need to:
+
+*   [create a test account](https://www.checkout.com/get-test-account), and
+*   contact your Customer Success Manager or Integrations engineer to activate Giropay payments in the sandbox environment.
+
+</TipBox>
+
+1.  Create a Giropay transaction as above, following the redirect link in the response to Giropay's bank selection page.
+2.  Select the bank ("Wählen Sie Ihre Bank aus"):
+*   **BIC:** TESTDETT421
+*   **Name**: Sparkasse Testinstitut-421 94059421 TESTDETT421.
+3.  Click **Weiter zu meiner Bank** and await redirection to the bank's page.
+4.  Log in with the following details:
+*   **Anmeldename oder Legitimations-ID**: `chiptanscatest2`
+*   **PIN**: `12345`
+5.  Click **Jetzt bezahlen** to continue.
+6.  Scroll to the end of the next page, select **Optischer TAN** and then click **Jetzt bezahlen**.
+7.  Scroll to the end of the next page, enter `123456` in the _TAN_ field and click **Login**.
+8.  On the next page, click **Weiter**.
+9.  You will then again need to enter `123456` in the _TAN_ field before clicking **Jetzt bezahlen**. You should then be redirected to your predefined success URL.

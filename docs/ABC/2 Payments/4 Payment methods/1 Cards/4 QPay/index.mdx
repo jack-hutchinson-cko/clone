@@ -1,0 +1,449 @@
+---
+title: QPay
+account: ABC
+---
+
+Start accepting payments using QPay, a favorite payment method in Qatar.
+
+<TipBox variant="info">
+
+To start accepting QPay payments, please contact your Customer Success Manager.
+
+</TipBox>
+
+---
+
+## Overview
+
+QPay payments follow a two-step process:
+
+1.  [Request a QPay payment](#QPay-requestapayment)
+2.  [Redirect the customer](https://docs.checkout.com/payment-methods/cards/qpay#QPay-Redirectthecustomerredirectthecustomer)
+
+---
+
+## Request a payment
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Body parameters
+
+The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="required" />
+<TypeTag type="integer" />
+</TableCell>
+<TableCell>
+
+The payment amount.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `QAR`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Details about the payment source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of payment source. Set this to `qpay`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.description`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+A description of the transaction.
+
+Maximum of 255 characters (after UTF-8 URL encoding).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.language`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The customer's preferred language (2-letter ISO code). Set this to either `ar` (Arabic) or `en` (English).
+
+Defaults to `en` if not specified.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.quantity`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The quantity (minimum value of `1`) of the purchased item.
+
+Used for display purposes only; does not affect the total amount of the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.national_id`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The national ID of the customer.
+
+Maximum of 32 characters.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+    {
+      "amount": 100,
+      "currency": "QAR",
+      "source": {
+        "type": "qpay",
+        "description": "QPay Demo Payment",
+        "language": "en",
+        "quantity": "1",
+        "national_id": "070AYY010BU234M"
+      }
+    }
+
+
+### The POST response
+
+If you receive a `202 Success` response with a `status` field set to `Pending`, your request was successful.
+
+#### Response example
+
+    {
+      "id": "pay_7eil5osdlcdehe62et5aihec4q",
+      "status": "Pending",
+      "customer": {
+        "id": "cus_mydbq4wrfp3excwlexeefsv3be"
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_7eil5osdlcdehe62et5aihec4q"
+        },
+        "redirect": {
+          "href": "https://sbapi.ckotech.co/qpay-external/redirect-to-qpay?pun=52h7saoi5edthll6ceec"
+        }
+      }
+    }
+
+---
+
+## Redirect the customer
+
+Redirect your customer to the `redirect` link’s href in the response. This will allow the customer to authorize the payment, before they are transferred to your predefined success or failure URL.
+
+---
+
+## Get details about a payment
+
+You can use the `payment_id` found in the payment response, or the `cko-session-id` from the success/failure URL (e.g., `https://www.checkout.com/order/succeeded?cko-session-id=sid_vii64oquze5u3h2x6hh4rurc4y`) to retrieve details about the payment.
+
+<TipBox variant="note">
+
+The `cko-session-id` expires 15 minutes after being created.
+
+</TipBox>
+
+### The GET request
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="GET">
+
+`https://api.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="GET">
+
+`https://api.sandbox.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment ID found in the response of the initial response.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+### The GET response
+
+#### Response example
+
+    {
+      "id": "pay_7eil5osdlcdehe62et5aihec4q",
+      "requested_on": "2019-06-20T10:03:42Z",
+      "source": {
+        "type": "qpay",
+        "description": "QPay Demo Payment",
+    	"pun": "skqewp72qqxpuckrdf2c"
+      },
+      "amount": 100,
+      "currency": "QAR",
+      "payment_type": "Regular",
+      "status": "Captured",
+      "approved": true,
+      "risk": {
+        "flagged": false
+      },
+      "customer": {
+        "id": "cus_mydbq4wrfp3excwlexeefsv3be"
+      },
+      "_links": {
+        "redirect": {
+          "href": "https://sbapi.ckotech.co/qpay-external/redirect-to-qpay?pun=52h7saoi5edthll6ceec"
+        },
+        "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_7eil5osdlcdehe62et5aihec4q"
+        },
+        "actions": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_7eil5osdlcdehe62et5aihec4q/actions"
+        },
+        "refund": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_7eil5osdlcdehe62et5aihec4q/refunds"
+        }
+      }
+    }
+
+---
+
+## Refund a payment
+
+QPay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or by using the [refund API](/display/DOCS/Refund+a+payment).
+
+---
+
+## Cancel a payment
+
+If the customer fails to complete their payment, we will automatically void the payment and send a `payment_expired` webhook.
+
+If the customer cancels their payment, we will send a `payment_canceled` webhook.
+
+---
+
+## Testing QPay
+
+<TipBox variant="info">
+
+To start testing, you'll need to:
+
+*   [create a test account](https://www.checkout.com/get-test-account), and
+*   contact your Customer Success Manager or Integrations engineer to activate QPay payments in the sandbox environment.
+
+</TipBox>
+
+1.  Create a QPay transaction as above, following the redirect link in the response to QPay's website.
+2.  Enter the details of one of our test cards:
+
+<Table>
+<TableHead headers={['Card number', 'Expiry date', 'PIN']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`4166 3904 1957 0368`
+
+</TableCell>
+<TableCell>
+
+`06/2022`
+
+</TableCell>
+<TableCell>
+
+(any PIN)
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`4215 3755 0088 3243`
+
+</TableCell>
+<TableCell>
+
+(any future date)
+
+</TableCell>
+<TableCell>
+
+`123456`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+3.  Click **Pay**. You should then be redirected to your predefined success URL.
