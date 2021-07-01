@@ -10,6 +10,7 @@ export type Props = {
   loader?: () => string;
   priority?: boolean;
   loading?: 'lazy' | 'eager';
+  width?: '100%';
 };
 
 const ImageBox: FC<Props> = ({ src, ...props }) => {

@@ -35,6 +35,9 @@ export const defaultTheme = {
     primaryYellow: '#FFFFC8',
     tokenString: '#6964b3',
     tokenNumber: '#0082d9',
+    yellowFrimaryFont: '#ffffc8',
+    catskillWhite: '#f0f3f7',
+    athensGray: '#e6e7ec',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],

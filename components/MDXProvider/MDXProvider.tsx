@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import ButtonLink from 'components/ButtonLink';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
 import {
@@ -30,6 +31,7 @@ import Table, {
 } from 'components/Table';
 import ImageBox from 'components/ImageBox';
 import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
+import Iframe from 'components/Iframe';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -72,6 +74,8 @@ export const mdxComponents = {
   AccordionHead,
   AccordionBody,
   img: withBlockMargin(ImageBox),
+  Iframe: withBlockMargin(Iframe),
+  ButtonLink,
 };
 
 type Props = {
