@@ -8,7 +8,6 @@ export const NavigationContent = styled.nav`
   margin: 0 auto;
   justify-content: space-between;
   padding: 0 26px;
-  background: ${({ theme }) => theme.colors.white};
   z-index: 1;
 `;
 
@@ -19,6 +18,7 @@ export const NavigationSection = styled.div<{ isMobile?: boolean }>`
 
 export const Navigation = styled.header<{ isMobile?: boolean }>`
   display: block;
+  background: ${({ theme }) => theme.colors.white};
   border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
   box-sizing: content-box;
 
