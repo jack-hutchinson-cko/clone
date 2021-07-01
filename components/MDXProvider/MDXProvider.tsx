@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 import ButtonLink from 'components/ButtonLink';
+import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
 import {
@@ -76,6 +78,7 @@ export const mdxComponents = {
   img: withBlockMargin(ImageBox),
   Iframe: withBlockMargin(Iframe),
   ButtonLink,
+  ContentPanel,
 };
 
 type Props = {
