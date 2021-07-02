@@ -7,21 +7,23 @@ export const Pre = styled.pre<{
   isOpen: boolean;
   isCollapsible: boolean;
   checkLengthWithCollabsible: boolean;
+  withBorder: boolean;
 }>`
   background: ${({ theme }) => theme.colors.codeLabelBackground};
   line-height: 24px;
   padding: 24px;
   overflow-y: hidden;
   margin: 0;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
+  border: ${({ withBorder, theme }) =>
+    withBorder ? `1px solid ${theme.colors.greyLight}` : 'none'};
   height: ${({ isOpen, lineToShow }) => (isOpen ? 'auto' : `${lineToShow * 24}px`)};
   &:after {
     content: '';
     width: 100%;
     height: ${({ isOpen, lineToShow }) => (isOpen ? 'auto' : `${lineToShow * 24}px`)};
     display: ${({ isCollapsible, checkLengthWithCollabsible }) =>
-      isCollapsible && checkLengthWithCollabsible ? 'block' : `none`};
+      isCollapsible && checkLengthWithCollabsible ? 'block' : 'none'};
     position: absolute;
     top: 0;
     left: 0;
@@ -37,13 +39,17 @@ export const Pre = styled.pre<{
 export const Line = styled.div`
   display: table-row;
   & > .property,
-  & > .operator {
+  & > .operator,
+  & > .selector,
+  & > .tag {
     color: ${({ theme }) => theme.colors.base} !important;
   }
-  & > .string {
+  & > .string,
+  & > .atrule {
     color: ${({ theme }) => theme.colors.tokenString} !important;
   }
-  & > .number {
+  & > .number,
+  & > .unit {
     color: ${({ theme }) => theme.colors.tokenNumber} !important;
   }
   & > .punctuation {

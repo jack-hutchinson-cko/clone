@@ -9,7 +9,12 @@ import PreLine from './PreLine';
 
 const timeout = 3000;
 
-const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible = true }) => {
+const CodeSample: FC<CodeSampleProps> = ({
+  code,
+  language,
+  isCollapsible = false,
+  withBorder = true,
+}) => {
   const [isCopied, setIsCopied] = useState(true);
 
   const onToggleHandler = useCallback(() => {
@@ -34,6 +39,7 @@ const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible = true 
             getLineProps={getLineProps}
             getTokenProps={getTokenProps}
             isCollapsible={isCollapsible}
+            withBorder={withBorder}
           />
         )}
       </Highlight>

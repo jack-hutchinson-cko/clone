@@ -4,6 +4,7 @@ export type CodeSampleProps = {
   code: string;
   language: Language;
   isCollapsible: boolean;
+  withBorder: boolean;
 };
 
 type Token = {
@@ -17,4 +18,5 @@ export type PreLineProps = {
   getLineProps: Highlight['getLineProps'];
   getTokenProps: Highlight['getTokenProps'];
   isCollapsible: boolean;
+  withBorder: boolean;
 };

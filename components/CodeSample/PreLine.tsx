@@ -5,7 +5,13 @@ import { PreLineProps } from './type';
 
 const defaultLengthWithCollapsible = 7;
 
-const PreLine: FC<PreLineProps> = ({ tokens, getLineProps, getTokenProps, isCollapsible }) => {
+const PreLine: FC<PreLineProps> = ({
+  tokens,
+  getLineProps,
+  getTokenProps,
+  isCollapsible,
+  withBorder,
+}) => {
   const [lineToShow, setLineToShow] = useState<number>(
     isCollapsible ? defaultLengthWithCollapsible : tokens.length,
   );
@@ -37,6 +43,7 @@ const PreLine: FC<PreLineProps> = ({ tokens, getLineProps, getTokenProps, isColl
         isOpen={isOpen}
         isCollapsible={isCollapsible}
         checkLengthWithCollabsible={checkLengthWithCollabsible}
+        withBorder={withBorder}
       >
         {resultTokens.map((line, i: number) => {
           return (
