@@ -7,10 +7,11 @@ import matter from 'gray-matter';
 import striptags from 'striptags';
 import MDX from '@mdx-js/runtime';
 import algoliasearch from 'algoliasearch';
-import { mdxComponents } from '../components/MDXProvider';
-import { defaultTheme } from '../constants/theme';
-import { forEachFileTree } from '../lib/fileParser';
-import { unescape } from '../lib/unescape';
+import { mdxComponents } from 'components/MDXProvider';
+import { defaultTheme } from 'constants/theme';
+import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
+import { forEachFileTree } from 'lib/fileParser';
+import { unescape } from 'lib/unescape';
 
 type IndexItemType = {
   title: string;
@@ -26,10 +27,6 @@ type GetIndexArticleItemParams = {
   filePath: string;
   parentArticles: string[];
 };
-
-const ApplicationID = 'D6FWKRYK7X';
-const AdminAPIKey = 'a0116b26609a439f830a0fb9c8e7c000';
-const ABC_DOCS_INDEX_NAME = 'ABC_DOCS';
 
 const getIndexArticleItem = ({
   title: name,

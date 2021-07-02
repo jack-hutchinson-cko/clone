@@ -41,8 +41,6 @@ const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, shownAn
     }
   }, [shownAnchors, anchors, initialized]);
 
-  console.log(anchors);
-
   return (
     <div>
       <NavigationHeader>On this page</NavigationHeader>
