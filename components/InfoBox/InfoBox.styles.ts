@@ -4,7 +4,7 @@ export const StyledInfoBox = styled.div`
   position: relative;
   bottom: -4px;
   display: flex;
-  font-size: 12px !important;
+  font-size: 12px;
   font-weight: 300;
   line-height: 18px;
   vertical-align: baseline;

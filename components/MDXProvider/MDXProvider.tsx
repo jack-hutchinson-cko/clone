@@ -28,9 +28,11 @@ import Table, {
   TableHeadSticky,
   TableRow,
   StyledTH,
+  TableSubhead,
+  TableTicCell,
 } from 'components/Table';
 import ImageBox from 'components/ImageBox';
-import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
+import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
 import Iframe from 'components/Iframe';
 
 export const mdxComponents = {
@@ -39,9 +41,11 @@ export const mdxComponents = {
   tab: Tab,
   TableBody,
   TableCell,
+  TableTicCell,
   TableHead,
   TableHeadSticky,
   TableRow,
+  TableSubhead,
   Table: withBlockMargin(Table),
   table: withBlockMargin(Table),
   tbody: TableBody,
@@ -63,13 +67,14 @@ export const mdxComponents = {
   StatusTag,
   TypeTag,
   InfoBox,
+  List: withBlockMargin(List),
+  ListIconItem,
   ul: withBlockMargin(UnorderedList),
   ol: withBlockMargin(OrderedList),
   li: ListItem,
   UnorderedList: withBlockMargin(UnorderedList),
   OrderedList: withBlockMargin(OrderedList),
   ListItem,
-  List: withBlockMargin(List),
   Accordion,
   AccordionHead,
   AccordionBody,

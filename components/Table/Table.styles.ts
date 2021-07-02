@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { ThemeType } from 'constants/theme';
+
+import { SubheadBackgroundColor } from './types';
 
 export const Table = styled.table`
   table-layout: fixed;
@@ -36,6 +39,8 @@ export const TableCell = styled.td`
   vertical-align: top;
   font-size: 14px;
 
+  ${({ align = 'left' }) => `text-align: ${align};`}
+
   & > div,
   & > p {
     margin: 14px 0;
@@ -61,4 +66,30 @@ export const StyledTH = styled.th`
   border: none;
   background: ${({ theme }) => theme.colors.greyLight};
   font-weight: 500;
+`;
+
+export const StyledTableTicCell = styled(TableCell)`
+  padding: 14px 16px;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+const getBackgroundColorForSubhead = ({
+  color,
+  theme,
+}: {
+  color: SubheadBackgroundColor;
+  theme: ThemeType;
+}) => {
+  switch (color) {
+    case 'blue':
+      return theme.colors.information;
+
+    default:
+      return 'transparent';
+  }
+};
+
+export const StyledTableCell = styled(TableCell)<{ color: SubheadBackgroundColor }>`
+  background-color: ${getBackgroundColorForSubhead};
 `;

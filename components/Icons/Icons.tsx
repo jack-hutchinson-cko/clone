@@ -385,3 +385,30 @@ export const IconActionCopy: FC<Props> = (props) => (
     />
   </StyledIcon>
 );
+
+export const IconCheck: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <g fill="none" fillRule="evenodd">
+      <circle fill="#00875A" cx="8" cy="8" r="8" />
+      <path
+        d="M10.242 4.474a.941.941 0 0 1 1.634.934L8.11 11.996a.941.941 0 0 1-1.54.136L4.218 9.308a.941.941 0 1 1 1.446-1.205L7.15 9.886l3.093-5.412z"
+        stroke="#FFF"
+        strokeWidth=".2"
+        fill="#FFF"
+        fillRule="nonzero"
+      />
+    </g>
+  </StyledIcon>
+);
+
+export const IconError: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <g fill="none" fillRule="evenodd">
+      <circle fill="#DE350B" cx="8" cy="8" r="8" />
+      <path
+        d="M9.485 8.071l2.122 2.121a1 1 0 1 1-1.415 1.415l-2.12-2.122-2.122 2.122a1 1 0 1 1-1.414-1.415l2.12-2.12-2.12-2.122A1 1 0 1 1 5.95 4.536l2.121 2.12 2.121-2.12a1 1 0 1 1 1.415 1.414L9.485 8.07z"
+        fill="#FFF"
+      />
+    </g>
+  </StyledIcon>
+);
