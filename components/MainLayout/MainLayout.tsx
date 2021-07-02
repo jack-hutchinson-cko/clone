@@ -23,7 +23,6 @@ import {
   ContentWrapper,
   SideBarWrapper,
   FooterWrapper,
-  Content,
 } from './MainLayout.styles';
 
 type Props = {
@@ -69,7 +68,7 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerCo
               <SideBar menuWidget={menu} />
             </SideBarWrapper>
           )}
-          <Content>{children}</Content>
+          {children}
         </ContentWrapper>
         <FooterWrapper>
           <Footer

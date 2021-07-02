@@ -5,6 +5,7 @@ import { InstantSearch } from 'react-instantsearch-dom';
 import { DocsHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'components/Search';
 import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
 import { QueryType } from 'components/Search/types';
+import { PageContent } from 'styles/index.styles';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
 
@@ -17,16 +18,18 @@ const SearchPage: FC = () => {
   }, [router.query]);
 
   return (
-    <InstantSearch
-      searchState={searchState}
-      searchClient={searchClient}
-      indexName={ABC_DOCS_INDEX_NAME}
-    >
-      <SearchResultHeader searchResult={searchState.query || ''} />
-      <HiddenSearchInput />
-      <DocsHits mode="page" />
-      <Pagination searchState={searchState} />
-    </InstantSearch>
+    <PageContent>
+      <InstantSearch
+        searchState={searchState}
+        searchClient={searchClient}
+        indexName={ABC_DOCS_INDEX_NAME}
+      >
+        <SearchResultHeader searchResult={searchState.query || ''} />
+        <HiddenSearchInput />
+        <DocsHits mode="page" />
+        <Pagination searchState={searchState} />
+      </InstantSearch>
+    </PageContent>
   );
 };
 

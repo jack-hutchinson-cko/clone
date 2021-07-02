@@ -16,6 +16,6 @@ export const Mark = styled.mark`
 
 export const HeaderContainer = styled.div`
   margin: 0 16px 16px 16px;
-  padding: 16px 0 32px 0;
+  padding-bottom: 32px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight} !important;
 `;

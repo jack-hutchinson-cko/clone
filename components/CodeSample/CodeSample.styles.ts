@@ -17,16 +17,16 @@ export const Pre = styled.pre<{
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
   border: ${({ withBorder, theme }) =>
     withBorder ? `1px solid ${theme.colors.greyLight}` : 'none'};
-  height: ${({ isOpen, lineToShow }) => (isOpen ? 'auto' : `${lineToShow * 24}px`)};
   &:after {
     content: '';
     width: 100%;
-    height: ${({ isOpen, lineToShow }) => (isOpen ? 'auto' : `${lineToShow * 24}px`)};
-    display: ${({ isCollapsible, checkLengthWithCollabsible }) =>
-      isCollapsible && checkLengthWithCollabsible ? 'block' : 'none'};
+    display: ${({ isCollapsible, checkLengthWithCollabsible, isOpen }) =>
+      isCollapsible && checkLengthWithCollabsible && !isOpen ? 'block' : 'none'};
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,

@@ -16,13 +16,14 @@ import {
   BlockDescription,
   BlockList,
   BlockLink,
+  PageContent,
 } from '../styles/index.styles';
 
 type Props = HomePageContent;
 
 const HomePage: NextPage<Props> = ({ intro, blocks }) => {
   return (
-    <>
+    <PageContent>
       <IntroWrapper>
         <ContentBlock>
           <IntroTitle>{intro.title}</IntroTitle>
@@ -56,7 +57,7 @@ const HomePage: NextPage<Props> = ({ intro, blocks }) => {
           </ContentBlock>
         ))}
       </BlocksWrapper>
-    </>
+    </PageContent>
   );
 };
 
