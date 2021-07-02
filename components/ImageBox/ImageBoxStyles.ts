@@ -10,7 +10,8 @@ export const StyledImage = styled(Image)`
   height: unset !important;
 `;
 
-export const ImgWrapper = styled.div`
+export const ImgWrapper = styled.div<{ maxWidth?: number }>`
+  ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}px; margin: auto;` : '')}
   width: 100%;
   & > div {
     position: unset !important;
