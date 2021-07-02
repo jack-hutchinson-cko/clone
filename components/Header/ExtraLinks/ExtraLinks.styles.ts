@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div<{ isMobile?: boolean }>`
   border: 1px solid ${({ theme }) => theme.colors.baseLight};
+  box-shadow: 0 3px 5px rgba(12, 17, 66, 0.15);
 
   ${({ isMobile }) =>
     isMobile
@@ -22,7 +23,7 @@ export const Content = styled.ul`
   gap: 20px;
   width: 100%;
   margin: 0;
-  padding: 24px 32px;
+  padding: 32px;
   background: ${({ theme }) => theme.colors.white};
 `;
 

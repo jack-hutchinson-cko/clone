@@ -336,7 +336,7 @@ export const IconTestAccount: FC<Props> = (props) => (
 );
 
 export const IconActionArrowRight: FC<Props> = (props) => (
-  <StyledIcon width={16} height={16} {...props}>
+  <StyledIcon width={16} height={16} color="#6D708E" {...props}>
     <path
       d="M2 7.50615L13.5 7.50615M13.5 7.50615L8.99385 12.0123M13.5 7.50615L8.99385 3"
       stroke="currentColor"

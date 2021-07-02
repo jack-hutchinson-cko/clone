@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const StyledLink = styled.a<{ isActive?: boolean }>`
   mark {
     background: transparent;
+    color: inherit;
   }
 
   ${({ isActive, theme }) =>

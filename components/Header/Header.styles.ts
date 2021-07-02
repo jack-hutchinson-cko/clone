@@ -73,6 +73,8 @@ export const NavigationItem = styled.div<{ withHover?: boolean; isSelected?: boo
   border-bottom: 4px solid
     ${({ isSelected, theme }) => (isSelected ? theme.colors.focus : 'transparent')};
   transition: border-bottom 100ms;
+  font-size: 16px;
+  line-height: 24px;
   cursor: pointer;
 
   ${({ withHover }) =>
@@ -89,12 +91,19 @@ export const NavigationLink = styled.a<{
   fullWidth?: boolean;
   underlineOnHover?: boolean;
   underlineAlways?: boolean;
+  large?: boolean;
 }>`
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-weight: ${({ light }) => (light ? 400 : 600)};
+  font-weight: ${({ light }) => (light ? 400 : 500)};
   outline: none;
+
+  ${({ large }) =>
+    large &&
+    css`
+      font-size: 16px;
+    `};
 
   ${({ underlineAlways }) =>
     underlineAlways &&

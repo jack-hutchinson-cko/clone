@@ -131,7 +131,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                 isMobile={isMobile}
                 guides={guides}
                 mapTitle={(title, Icon) => (
-                  <NavigationLink target="_blank" underlineOnHover>
+                  <NavigationLink target="_blank" large underlineOnHover>
                     {Icon} {title}
                   </NavigationLink>
                 )}
@@ -159,15 +159,15 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                   content={
                     <SignInLinks
                       headerTitle={
-                        <NavigationLink>
-                          <IconAccount /> The Hub
+                        <NavigationLink large>
+                          <IconTestAccount /> Test Account
                         </NavigationLink>
                       }
                       headerDescription="Monitor transactions, business performance and customer trends."
                       extraContent={loginWidget}
                       footerTitle={
-                        <NavigationLink>
-                          <IconTestAccount /> Test Account
+                        <NavigationLink large>
+                          <IconAccount /> The Hub
                         </NavigationLink>
                       }
                       footerExtraContent={
@@ -175,14 +175,14 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                           dividerText="or"
                           link={
                             <Link href={loginUrl} passHref>
-                              <NavigationLink target="_blank" underlineAlways>
+                              <NavigationLink target="_blank" light underlineAlways>
                                 Log in
                               </NavigationLink>
                             </Link>
                           }
                           alternativeLink={
                             <Link href={testAccountUrl} passHref>
-                              <NavigationLink target="_blank" underlineAlways>
+                              <NavigationLink target="_blank" light underlineAlways>
                                 apply for an account
                               </NavigationLink>
                             </Link>

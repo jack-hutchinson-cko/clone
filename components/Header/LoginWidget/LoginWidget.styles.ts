@@ -10,6 +10,7 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: ${({ gap }) => gap ?? 6}px;
+  padding-top: 12px;
 
   ${({ isMobile }) =>
     isMobile &&
@@ -17,6 +18,7 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+      padding-top: 0;
 
       ${Divider} {
         display: none;
