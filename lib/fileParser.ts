@@ -9,8 +9,16 @@ import { NavTreeElementWithFilePatch } from 'types/navTree';
 import { ABCDocsPath } from 'constants/filePath';
 import { getAnchorUrl } from 'lib/url';
 
-const getAnchorsNavItems = ({ content = '' }: { content: string }) =>
-  (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
+type ChildArticlesType = { title: string; href: string; description: string }[];
+
+const getAnchorsNavItems = ({
+  content = '',
+  childrenArticles = [],
+}: {
+  content: string;
+  childrenArticles: ChildArticlesType;
+}) => {
+  const contentAnchors = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
     return {
       title,
@@ -18,10 +26,20 @@ const getAnchorsNavItems = ({ content = '' }: { content: string }) =>
     };
   });
 
+  const childArticlesAnchors = childrenArticles.map(({ title }) => ({
+    title,
+    href: getAnchorUrl(title),
+  }));
+
+  return contentAnchors.concat(childArticlesAnchors);
+};
+
 export const getDocArticleData = async ({
   filePath,
+  childrenArticles,
 }: {
   filePath: string;
+  childrenArticles: ChildArticlesType;
 }): Promise<{
   source: MDXRemoteSerializeResult;
   frontMatter: { [key: string]: string };
@@ -41,7 +59,7 @@ export const getDocArticleData = async ({
     scope: data,
   });
 
-  const anchorsNavItems = getAnchorsNavItems({ content });
+  const anchorsNavItems = getAnchorsNavItems({ content, childrenArticles });
 
   return {
     source: mdxSource,
@@ -56,6 +74,9 @@ type ArticleSettingsType = {
   sidebarDocLinks: NavTreeElementWithFilePatch[];
   docsPathUrl: DocsPathItem[];
 };
+
+const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[1-9]+ /, '');
+const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
 
 export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSettingsType => {
   const root = {
@@ -80,8 +101,8 @@ export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSetti
         const filePath = `${parentFilePath}/${child}`;
 
         if (fs.statSync(filePath).isDirectory()) {
-          const title = child.replace(/^[1-9]+ /, '');
-          const currentSlug = lowerCase(title).replace(/ /g, '-');
+          const title = getTitleFromFileName(child);
+          const currentSlug = getSlugFromTitle(title);
           const path = `${parentPath}/${currentSlug}`;
           const docsPathParams = path.slice(1).split('/');
 
@@ -98,6 +119,39 @@ export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSetti
   }
 
   return { sidebarDocLinks: root.children, docsPathUrl, slugToFilePathMap, slugToArticleNameMap };
+};
+
+export const getChildrenArticle = (
+  filePath: string,
+  docsPathParams: string[],
+): ChildArticlesType => {
+  const folderPath = filePath.replace('/index.mdx', '');
+
+  const children = fs.readdirSync(folderPath);
+
+  const result = [];
+
+  for (const child of children) {
+    const childFilePath = `${folderPath}/${child}`;
+
+    if (fs.statSync(childFilePath).isDirectory()) {
+      const title = getTitleFromFileName(child);
+      const currentSlug = getSlugFromTitle(title);
+      const source = fs.readFileSync(`${childFilePath}/index.mdx`);
+      const { data } = matter(source);
+      const description = get(data, 'description');
+
+      if (description) {
+        result.push({
+          title,
+          href: [...docsPathParams, currentSlug].join('/'),
+          description,
+        });
+      }
+    }
+  }
+
+  return result;
 };
 
 export const docksArticleSettings = getDocArticlesSettings();
@@ -147,8 +201,8 @@ export const forEachFileTree = (
     const filePath = `${parentFilePath}/${child}`;
 
     if (fs.statSync(filePath).isDirectory()) {
-      const title = child.replace(/^[1-9]+ /, '');
-      const currentSlug = lowerCase(title).replace(/ /g, '-');
+      const title = getTitleFromFileName(child);
+      const currentSlug = getSlugFromTitle(title);
       const path = `${parentPath}/${currentSlug}`;
 
       const childNode = { title, path, filePath, parentArticles };

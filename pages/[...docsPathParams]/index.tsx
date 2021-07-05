@@ -8,11 +8,13 @@ import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
+import ChildDocArticles from 'components/ChildDocArticles';
 import {
   getFileNameFromPath,
   getDocArticleData,
   getDocsPathUrl,
   getBreadCrumbsItem,
+  getChildrenArticle,
 } from 'lib/fileParser';
 
 import { PageContent, Title, Navigation } from '../../styles/index.styles';
@@ -24,9 +26,16 @@ type Props = {
   };
   source: MDXRemoteSerializeResult;
   anchorsNavItems: { title: string; href: string }[];
+  childrenArticles: { title: string; href: string; description: string }[];
 };
 
-const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatter, source }) => {
+const DocPost: NextPage<Props> = ({
+  breadCrumbsItem,
+  anchorsNavItems,
+  frontMatter,
+  source,
+  childrenArticles,
+}) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   return (
     <AnchorsProvider>
@@ -36,12 +45,13 @@ const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatte
           <Title>{frontMatter.title}</Title>
         </header>
         <MDXProvider source={source} />
+        <ChildDocArticles childrenArticles={childrenArticles} isMobile={isMobile} />
       </PageContent>
-      {!isMobile && (
+      {!isMobile && anchorsNavItems.length ? (
         <Navigation>
           <AnchorNavigation anchors={anchorsNavItems} />
         </Navigation>
-      )}
+      ) : null}
     </AnchorsProvider>
   );
 };
@@ -56,10 +66,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
-  const { docsPathParams = [] as string[] } = params;
+  const { docsPathParams = [] } = params;
   const breadCrumbsItem = getBreadCrumbsItem(docsPathParams as string[]);
   const filePath = getFileNameFromPath(docsPathParams as string[]);
-  const { anchorsNavItems, frontMatter, source } = await getDocArticleData({ filePath });
+  const childrenArticles = getChildrenArticle(filePath, docsPathParams as string[]);
+  const { anchorsNavItems, frontMatter, source } = await getDocArticleData({
+    filePath,
+    childrenArticles,
+  });
 
   return {
     props: {
@@ -67,6 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       anchorsNavItems,
       frontMatter,
       source,
+      childrenArticles,
     },
   };
 };

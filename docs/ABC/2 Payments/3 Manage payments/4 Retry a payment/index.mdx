@@ -1,6 +1,7 @@
 ---
 title: Retry a payment
 account: ABC
+description: Safely retry a payment or payment action, with no risk of duplicate requests.
 ---
 
 Occasionally, you may need to retry a payment or payment action (e.g., void) due to a disrupted API call owing to a network error or timeout. Our payments endpoint supports idempotency, so you can safely retry requests without a duplicate payment taking place or a payment action being performed twice.
