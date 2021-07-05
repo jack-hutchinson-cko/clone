@@ -8,7 +8,8 @@ import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
-import ChildDocArticles from 'components/ChildDocArticles';
+import Card from 'components/Card';
+import CardWrapper from 'components/CardWrapper';
 import {
   getFileNameFromPath,
   getDocArticleData,
@@ -29,6 +30,11 @@ type Props = {
   childrenArticles: { title: string; href: string; description: string }[];
 };
 
+const ChildArticlesPerRow = {
+  desktop: 2,
+  mobile: 1,
+};
+
 const DocPost: NextPage<Props> = ({
   breadCrumbsItem,
   anchorsNavItems,
@@ -45,7 +51,13 @@ const DocPost: NextPage<Props> = ({
           <Title>{frontMatter.title}</Title>
         </header>
         <MDXProvider source={source} />
-        <ChildDocArticles childrenArticles={childrenArticles} isMobile={isMobile} />
+        <CardWrapper cardsInRow={ChildArticlesPerRow}>
+          {childrenArticles.map((childItem) => (
+            <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
+              {childItem.description}
+            </Card>
+          ))}
+        </CardWrapper>
       </PageContent>
       {!isMobile && anchorsNavItems.length ? (
         <Navigation>
