@@ -144,7 +144,7 @@ export const getChildrenArticle = (
       if (description) {
         result.push({
           title,
-          href: [...docsPathParams, currentSlug].join('/'),
+          href: `/${[...docsPathParams, currentSlug].join('/')}`,
           description,
         });
       }
