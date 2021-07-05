@@ -255,6 +255,7 @@ A serialized JSON string containing the `encryptedMessage`, `ephemeralPublicKey`
 
 #### Request example
 
+```json
     {
       "type": "googlepay",
       "token_data": {
@@ -263,16 +264,19 @@ A serialized JSON string containing the `encryptedMessage`, `ephemeralPublicKey`
         "signedMessage": "{\"encryptedMessage\": \"ZW5jcnlwdGVkTWVzc2FnZQ==\", \"ephemeralPublicKey\": \"ZXBoZW1lcmFsUHVibGljS2V5\", \"tag\": \"c2lnbmF0dXJl\"}"
       }
     }
+```
 
 ### The POST response
 
 #### Response example
 
+```json
     {
       "type": "googlepay",
       "token": "tok_ubfj2q76miwundwlk72vxt2i7q",
       "expires_on": "2018-10-22T15:44:03Z"
     }
+```
 
 ---
 

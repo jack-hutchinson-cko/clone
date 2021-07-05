@@ -249,6 +249,7 @@ The three-letter currency code (ISO 4217). Set this to `ARS`.
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "rapipago",
@@ -263,6 +264,7 @@ The three-letter currency code (ISO 4217). Set this to `ARS`.
       "amount": 100,
       "currency": "ARS"
     }
+```
 
 ### The POST response
 
@@ -270,6 +272,7 @@ You should get a `202` response with the `status` field set to `Pending`. This m
 
 #### Response example
 
+```json
     {
       "id": "pay_274nqq3v2vqura6oirwlupvpuu",
       "status": "Pending",
@@ -291,6 +294,7 @@ You should get a `202` response with the `status` field set to `Pending`. This m
         }
       }
     }
+```
 
 ### Step 2: Redirect the customer
 
@@ -444,8 +448,9 @@ The payment ID found in the response of the initial payment.
 #### Response examples
 
 <tabs>
-  <tab title="Payment pending" active>
+<tab title="Payment pending" active>
 
+```json
     {
       "id": "pay_274nqq3v2vqura6oirwlupvpuu",
       "requested_on": "2020-04-27T15:26:15Z",
@@ -481,11 +486,12 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
+</tab>
+<tab title="Payment captured">
 
-  </tab>
-  <tab title="Payment captured">
-
+```json
     {
       "id": "pay_274nqq3v2vqura6oirwlupvpuu",
       "requested_on": "2020-04-27T15:26:15Z",
@@ -519,8 +525,9 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 ---

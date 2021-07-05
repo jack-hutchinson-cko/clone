@@ -153,6 +153,8 @@ The currency in which the payment is being made (three-letter ISO 4217 code).
 
 #### Request example
 
+```json
+
     {
       "source": {
         "type": "poli"
@@ -160,6 +162,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code).
       "amount": 111,
       "currency": "AUD"
     }
+```
 
 <TipBox variant="info">
 
@@ -173,6 +176,7 @@ If a payment `id` is returned, then your request was successful.
 
 #### Response example
 
+```json
     {
       "id": "pay_nlj7cdwepelutidihyaeexyzae",
       "status": "Pending",
@@ -188,6 +192,7 @@ If a payment `id` is returned, then your request was successful.
         }
       }
     }
+```
 
 ---
 
@@ -292,6 +297,7 @@ The payment ID found in the response of the initial payment.
 
 #### Response example
 
+```json
     {
       "id": "pay_nlj7cdwepelutidihyaeexyzae",
       "requested_on": "2018-12-14T11:43:41Z",
@@ -314,6 +320,7 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
 ---
 

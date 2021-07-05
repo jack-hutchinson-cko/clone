@@ -303,6 +303,7 @@ When sending a payment request that includes `source.card_token`, the option to 
 
 #### Request example
 
+```json
     {
       "amount": 1000,
       "currency": "KWD",
@@ -316,7 +317,7 @@ When sending a payment request that includes `source.card_token`, the option to 
         "ptlf": "96033587c7b5"
       }
     }
-
+```
 
 ### The POST response
 
@@ -324,6 +325,7 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
 
 #### Response example
 
+```json
     {
       "id": "pay_4gubyq2w335upc54dx7a4257lq",
       "status": "Pending",
@@ -339,8 +341,7 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
         }
       }
     }
-
----
+```
 
 ---
 
@@ -439,6 +440,7 @@ The payment ID found in the response of the initial response.
 
 #### Response example
 
+```json
     {
       "id": "pay_4gubyq2w335upc54dx7a4257lq",
       "requested_on": "2019-05-23T17:04:05Z",
@@ -478,6 +480,7 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
 ---
 

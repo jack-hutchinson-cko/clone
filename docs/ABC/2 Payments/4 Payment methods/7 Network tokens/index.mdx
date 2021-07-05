@@ -169,6 +169,7 @@ For more information, see [stored card details](/display/DOCS/Requirements+for+s
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "network_token",
@@ -182,6 +183,7 @@ For more information, see [stored card details](/display/DOCS/Requirements+for+s
       "amount": 1000,
       "currency": "USD"
     }
+```
 
 ### The POST response
 
@@ -197,6 +199,7 @@ If you received a `202` response, the payment requires a redirect. For example, 
 
 #### Response example
 
+```json
     {
       "id": "pay_k7yuyhvad5vujdl7zcb6de2qmm",
       "action_id": "act_k7yuyhvad5vujdl7zcb6de2qmm",
@@ -254,3 +257,4 @@ If you received a `202` response, the payment requires a redirect. For example, 
         }
       }
     }
+```

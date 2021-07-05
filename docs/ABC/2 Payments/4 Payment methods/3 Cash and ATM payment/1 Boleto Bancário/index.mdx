@@ -261,40 +261,44 @@ The three-letter currency code (ISO 4217). Should be `BRL` or `USD`.
 <tabs>
 <tab title="Redirect" active>
 
-        {
-          "source": {
-            "type": "boleto",
-            "integration_type": "redirect",
-            "country": "BR",
-              "payer": {
-              "name": "John Doe",
-              "email": "john@doe-enterprises.com",
-              "document": "53033315550"
-            },
-            "description": "boleto payment"
+```json
+      {
+        "source": {
+          "type": "boleto",
+          "integration_type": "redirect",
+          "country": "BR",
+            "payer": {
+            "name": "John Doe",
+            "email": "john@doe-enterprises.com",
+            "document": "53033315550"
           },
-          "amount": 100,
-          "currency": "BRL"
-        }
+          "description": "boleto payment"
+        },
+        "amount": 100,
+        "currency": "BRL"
+      }
+```
 
 </tab>
 <tab title="Direct">
 
-        {
-          "source": {
-            "type": "boleto",
-            "integration_type": "direct",
-            "country": "BR",
-              "payer": {
-              "name": "John Doe",
-              "email": "john@doe-enterprises.com",
-              "document": "53033315550"
-            },
-            "description": "boleto payment"
+```json
+      {
+        "source": {
+          "type": "boleto",
+          "integration_type": "direct",
+          "country": "BR",
+            "payer": {
+            "name": "John Doe",
+            "email": "john@doe-enterprises.com",
+            "document": "53033315550"
           },
-          "amount": 100,
-          "currency": "BRL"
-        }
+          "description": "boleto payment"
+        },
+        "amount": 100,
+        "currency": "BRL"
+      }
+```
 
 </tab>
 </tabs>
@@ -308,6 +312,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
 <tabs>
 <tab title="Redirect" active>
 
+```json
     {
       "id": "pay_hcklpcd45ymepcr7thciirbdaa",
       "status": "Pending",
@@ -323,10 +328,12 @@ Whether you used the direct or redirect method, you should get a `202` response 
         }
       }
     }
+```
 
 </tab>
 <tab title="Direct">
 
+```json
     {
       "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
       "status": "Pending",
@@ -339,7 +346,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
         }
       }
     }
-
+```
   </tab>
 </tabs>
 
@@ -398,10 +405,11 @@ To get the components necessary to render the ticket, use the ['get payment deta
 
 Here's an example:
 
-<img alt="Boleto ticket render example" src="/docs/boleto_ticket_render_example.png" layout="fill" />
+<img src="/docs/Payments/boleto_ticket_render_example.png" alt="Boleto ticket render example" maxWidth={356} />
 
-Get details about a payment
----------------------------
+---
+
+## Get details about a payment
 
 Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45ymepcr7thciirbdaa`) from the payment response to get details about the payment.
 
@@ -499,76 +507,80 @@ The response will differ depending on which integration type (`redirect` or `dir
 <tabs>
 <tab title="Payment pending" active>
 
-        {
-          "id": "pay_hcklpcd45ymepcr7thciirbdaa",
-          "requested_on": "2020-03-17T09:13:18Z",
-          "source": {
-            "type": "boleto",
-            "dlocal_order_id": "430fa151c1034a8788950dcaf061c6b8",
-            "dlocal_payment_id": "D-30150-39d14a21-f598-4163-b8d0-2befaf9acc29"
+```json
+      {
+        "id": "pay_hcklpcd45ymepcr7thciirbdaa",
+        "requested_on": "2020-03-17T09:13:18Z",
+        "source": {
+          "type": "boleto",
+          "dlocal_order_id": "430fa151c1034a8788950dcaf061c6b8",
+          "dlocal_payment_id": "D-30150-39d14a21-f598-4163-b8d0-2befaf9acc29"
+        },
+        "amount": 100,
+        "currency": "BRL",
+        "payment_type": "Regular",
+        "status": "Pending",
+        "risk": {
+          "flagged": false
+        },
+        "customer": {
+          "id": "cus_kh6eqv276rou7ae5s3uwj4emnq"
+        },
+        "_links": {
+          "redirect": {
+            "href": "https://sandbox.dlocal.com/collect/pay/pay/M-8aaf7e50-682f-11ea-ab15-cd9dd592717d?xtid=CATH-ST-1584436398-2076616064"
           },
-          "amount": 100,
-          "currency": "BRL",
-          "payment_type": "Regular",
-          "status": "Pending",
-          "risk": {
-            "flagged": false
-          },
-          "customer": {
-            "id": "cus_kh6eqv276rou7ae5s3uwj4emnq"
-          },
-          "_links": {
-            "redirect": {
-              "href": "https://sandbox.dlocal.com/collect/pay/pay/M-8aaf7e50-682f-11ea-ab15-cd9dd592717d?xtid=CATH-ST-1584436398-2076616064"
-            },
-            "self": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_hcklpcd45ymepcr7thciirbdaa"
-            }
+          "self": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_hcklpcd45ymepcr7thciirbdaa"
           }
         }
-
+      }
+```
 </tab>
 <tab title="Payment captured">
 
-        {
-          "id": "pay_wflckd47jlwetk6zbm472m7vjm",
-          "requested_on": "2020-04-27T12:59:26Z",
-          "source": {
-            "type": "boleto",
-            "dlocal_order_id": "33f1ab1423b24d70baee5aea9207ee97",
-            "dlocal_payment_id": "D-30150-e017ac0d-4f42-43d2-a12b-60f2322367bb",
-            "integration_type": "redirect",
-            "description": "simulate Boleto Bancário Demo Payment"
+```json
+      {
+        "id": "pay_wflckd47jlwetk6zbm472m7vjm",
+        "requested_on": "2020-04-27T12:59:26Z",
+        "source": {
+          "type": "boleto",
+          "dlocal_order_id": "33f1ab1423b24d70baee5aea9207ee97",
+          "dlocal_payment_id": "D-30150-e017ac0d-4f42-43d2-a12b-60f2322367bb",
+          "integration_type": "redirect",
+          "description": "simulate Boleto Bancário Demo Payment"
+        },
+        "amount": 100,
+        "currency": "BRL",
+        "payment_type": "Regular",
+        "status": "Captured",
+        "approved": true,
+        "risk": {
+          "flagged": false
+        },
+        "customer": {
+          "id": "cus_cjdi2jubn2gevguvki3qsl5zby"
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm"
           },
-          "amount": 100,
-          "currency": "BRL",
-          "payment_type": "Regular",
-          "status": "Captured",
-          "approved": true,
-          "risk": {
-            "flagged": false
+          "actions": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/actions"
           },
-          "customer": {
-            "id": "cus_cjdi2jubn2gevguvki3qsl5zby"
-          },
-          "_links": {
-            "self": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm"
-            },
-            "actions": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/actions"
-            },
-            "refund": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/refunds"
-            }
+          "refund": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/refunds"
           }
         }
+      }
+```
 
 </tab>
 </tabs>
 
 ##### Direct
 
+```json
     {
       "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
       "requested_on": "2020-03-17T09:14:17Z",
@@ -604,6 +616,7 @@ The response will differ depending on which integration type (`redirect` or `dir
         }
       }
     }
+```
 
 ---
 

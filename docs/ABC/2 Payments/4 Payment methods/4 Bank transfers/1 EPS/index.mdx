@@ -199,6 +199,7 @@ For redirect payment methods, overrides the default failure redirect URL configu
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "eps",
@@ -209,6 +210,7 @@ For redirect payment methods, overrides the default failure redirect URL configu
      "success_url": "http://example.com/payments/success",
      "failure_url": "http://example.com/payments/fail",
     }
+```
 
 If a customer ID or email is not provided in the request, then we automatically create a customer profile and return the customer `id` in the response.
 
@@ -218,6 +220,7 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
 
 #### Response example
 
+```json
     {
       "id": "pay_wqvd2nukz5dujnmokm7ljhymwa",
       "status": "Pending",
@@ -233,6 +236,7 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
         }
       }
     }
+```
 
 ---
 
@@ -332,6 +336,7 @@ The payment ID found in the response of the initial response.
 
 #### Response example
 
+```json
     {
       "id": "pay_iilqeu2rsdqedkvkjhl2rxgbvy",
       "created_on": "2018-03-28T14:50:26Z",
@@ -353,6 +358,7 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
 ---
 

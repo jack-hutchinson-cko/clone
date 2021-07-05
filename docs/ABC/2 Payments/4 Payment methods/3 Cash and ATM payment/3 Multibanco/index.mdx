@@ -198,6 +198,7 @@ Typically, the trading name of your company or the name of your service.
 
 #### Request example
 
+```json
     {
       "amount": 100,
       "currency": "EUR",
@@ -208,6 +209,7 @@ Typically, the trading name of your company or the name of your service.
         "billing_descriptor": "Multibanco Demo Payment"
       }
     }
+```
 
 ### The POST response
 
@@ -215,6 +217,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
 
 #### Response example
 
+```json
     {
       "id": "pay_cdv64cky2neeljlss37yjpofzu",
       "status": "Pending",
@@ -230,6 +233,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
         }
       }
     }
+```
 
 ---
 
@@ -338,6 +342,7 @@ The payment ID found in the response of the initial payment.
 
 #### Response example
 
+```
     {
       "id": "pay_cdv64cky2neeljlss37yjpofzu",
       "requested_on": "2019-09-25T06:05:22Z",
@@ -377,6 +382,7 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
 ---
 

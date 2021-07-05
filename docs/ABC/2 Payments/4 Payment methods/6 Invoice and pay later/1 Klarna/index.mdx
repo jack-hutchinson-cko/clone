@@ -200,6 +200,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
 
 #### Request example
 
+```json
     {
       "purchase_country": "GB",
       "currency": "GBP",
@@ -217,12 +218,14 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
         }
       ]
     }
+```
 
 #### Response examples
 
 <tabs>
-  <tab title="201 Successfully created Klarna session" active>
+<tab title="201 Successfully created Klarna session" active>
 
+```json
     {
       "session_id": "kcs_55xomnyd3ftujckeoyuvtkx2ue",
       "client_token": "eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICI1MGEzYTNiOS02NGE5LTYwNjMtODNmNC1hMzRlM2Q4MjRiNGIiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9rbGFybmEtcGF5bWVudHMtZXUucGxheWdyb3VuZC5rbGFybmEuY29tIiwKICAiZGVzaWduIiA6ICJrbGFybmEiLAogICJsYW5ndWFnZSIgOiAiZW4iLAogICJwdXJjaGFzZV9jb3VudHJ5IiA6ICJHQiIsCiAgImFuYWx5dGljc19wcm9wZXJ0eV9pZCIgOiAiVUEtMzYwNTMxMzctMTEiLAogICJ0cmFjZV9mbG93IiA6IGZhbHNlLAogICJlbnZpcm9ubWVudCIgOiAicGxheWdyb3VuZCIsCiAgIm1lcmNoYW50X25hbWUiIDogIlBsYXlncm91bmQgRGVtbyBNZXJjaGFudCIsCiAgInNlc3Npb25fdHlwZSIgOiAiUEFZTUVOVFMiLAogICJjbGllbnRfZXZlbnRfYmFzZV91cmwiIDogImh0dHBzOi8vZXZ0LnBsYXlncm91bmQua2xhcm5hLmNvbSIKfQ.",
@@ -250,10 +253,12 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
         }
       }
     }
+```
 
-  </tab>
-  <tab title="422 Request could not be accepted">
+</tab>
+<tab title="422 Request could not be accepted">
 
+```json
     {
       "request_id": "0HLK56US9BH1E:0000005B",
       "error_type": "request_invalid",
@@ -261,8 +266,9 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
       "purchase_country_required"
       ]
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 <TipBox variant="info">
@@ -281,7 +287,7 @@ Next, load the widget on your page so your customer can choose one of the Klarna
 
 To do so, you first need to insert the below code into your page to load the Klarna Payments Library in your client.
 
-
+```javascript
       window.klarnaAsyncCallback = function () {
 
         // This is where you start calling Klarna's JS SDK functions
@@ -289,13 +295,13 @@ To do so, you first need to insert the below code into your page to load the Kla
         // Klarna.Payments.init({ ... })
 
       };
-
-
+```
 
 #### Initialize the SDK
 
 Then initialize the Klarna Payments Library. To do this, call `init` and pass the `client_token` that you got in the response when you created the session in the first step.
 
+```javascript
     try {
         Klarna.Payments.init(
             {
@@ -305,12 +311,15 @@ Then initialize the Klarna Payments Library. To do this, call `init` and pass th
     } catch (e) {
         // Handle error
     }
+```
 
 #### Add a container to your page
 
 Next, specify where you want the widget by adding a container to your checkout page with the following snippet.
 
+```html
     <div id="klarna_container"></div>
+```
 
 <TipBox variant="note">
 
@@ -322,6 +331,7 @@ The Klarna Payments iframe requires a minimum width of 280px.
 
 To show your customer the Klarna payment options open to them (i.e. _Pay later_ and _Slice it_), use the following `payment_method_categories` array, which you'll find in the response you received when you created the session in step one.
 
+```json
     {
       // ...
       "payment_method_categories": [
@@ -344,6 +354,7 @@ To show your customer the Klarna payment options open to them (i.e. _Pay later_ 
       ]
       // ...
     }
+```
 
 ### Load the Klarna widget
 
@@ -580,6 +591,7 @@ Catches the response from `Klarna.Payments.load()` for further processing.
 
 #### Example
 
+```javascript
     try {
       Klarna.Payments.load(
         // options
@@ -650,32 +662,39 @@ Catches the response from `Klarna.Payments.load()` for further processing.
       // Handle error. The load~callback will have been called
       // with "{ show_form: false }" at this point.
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Positive response: Klarna offered" active>
 
+```json
       {
         show_form: true
       }
+```
 
 </tab>
 <tab title="Adjust and try again">
 
+```json
       {
         show_form: true,
         error: {
           invalid_fields: ["billing_address.email"]
         }
       }
+```
 
 </tab>
 <tab title="Klarna not offered">
 
+```json
       {
         show_form: false
       }
+```
 
 </tab>
 </tabs>
@@ -758,6 +777,7 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
 
 #### Example
 
+```javascript
     try {
       Klarna.Payments.authorize(
         // options
@@ -779,21 +799,25 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
       // Handle error. The authorize~callback will have been called
       // with "{ show_form: false, approved: false }" at this point.
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Successful" active>
 
+```json
     {
       authorization_token: "b4bd3423-24e3",
       approved: true,
       show_form: true
     }
+```
 
 </tab>
 <tab title="Rejected with solvable errors">
 
+```json
     {
       approved: false,
       show_form: true,
@@ -801,14 +825,17 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
         invalid_fields: ["billing_address.email"]
       }
     }
+```
 
 </tab>
 <tab title="Rejected">
 
+```json
     {
       approved: false,
       show_form: false
     }
+```
 
 </tab>
 </tabs>
@@ -1184,6 +1211,7 @@ This object is passed directly to Klarna as `attachment`. See [Klarna's document
 
 #### Request example
 
+```json
     {
       "amount": 1000,
       "currency": "GBP",
@@ -1222,6 +1250,7 @@ This object is passed directly to Klarna as `attachment`. See [Klarna's document
         ]
       }
     }
+```
 
 #### Response example
 
@@ -1231,6 +1260,7 @@ Unlike the other payment method supports, Klarna is always synchronous. The redi
 
 </TipBox>
 
+```json
     {
       "id": "pay_y3oqhf46pyzuxjbcn2giaqnb44",
       "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
@@ -1266,6 +1296,7 @@ Unlike the other payment method supports, Klarna is always synchronous. The redi
         }
       }
     }
+```
 
 <TipBox variant="info">
 
@@ -1482,6 +1513,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
 
 #### Request example
 
+```json
     {
       "amount": 1000,
       "reference": "ORD-5023-4E89",
@@ -1513,19 +1545,23 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
         "shipping_delay": 0
       }
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Capture accepted" active>
 
+```json
     {
       "action_id": "act_4sz4seltcrzuvcgaetumnlamq4"
     }
+```
 
 </tab>
 <tab title="Invalid data was sent">
 
+```json
     {
       "request_id": "beug8y83h978yh",
       "error_type": "request_invalid",
@@ -1534,6 +1570,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
         "given_name_exceed_length"
         ]
     }
+```
 
 </tab>
 </tabs>
@@ -1666,23 +1703,28 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 
 #### Request example
 
+```json
     {
       "reference": "ORD-5023-4E89",
       "metadata": {}
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Void accepted" active>
 
+```json
     {
       "action_id": "act_v6572a7elpuupbaljmoi4tk3ma"
     }
+```
 
 </tab>
 <tab title="Invalid data was sent">
 
+```json
     {
       "request_id": "0HL80RJLS76I7",
       "error_type": "request_invalid",
@@ -1690,6 +1732,7 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
       "payment_source_required"
       ]
     }
+```
 
 </tab>
 </tabs>

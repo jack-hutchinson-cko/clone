@@ -195,7 +195,7 @@ Typically, the trading name of your company or the name of your service.
 </Table>
 
 #### Request example
-
+```json
     {
       "amount": 100,
       "currency": "EUR",
@@ -206,13 +206,13 @@ Typically, the trading name of your company or the name of your service.
         "billing_descriptor": "CKO Demo - bancontact"
       }
     }
-
+```
 ### The POST response
 
 If you receive a `202 Success` response, with a `status` field set to `Pending`, your request was successful. You now need to redirect your customer as described below.
 
 #### Response example
-
+```json
     {
       "id": "pay_scoqartlkpzerp45c5ujmj6uue",
       "status": "Pending",
@@ -231,7 +231,7 @@ If you receive a `202 Success` response, with a `status` field set to `Pending`,
         }
       }
     }
-
+```
 ---
 
 ## Redirect the customer
@@ -336,7 +336,7 @@ The payment ID found in the response of the initial payment.
 ### The GET response
 
 #### Response example
-
+```json
     {
       "id": "pay_zvamjy6rl3pehdeufoqaygbjzm",
       "requested_on": "2019-05-17T15:17:06Z",
@@ -366,7 +366,7 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
-
+```
 ---
 
 ## Refund a payment

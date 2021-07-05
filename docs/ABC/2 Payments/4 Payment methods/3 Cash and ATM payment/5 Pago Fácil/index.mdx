@@ -274,8 +274,9 @@ The three-letter currency code (ISO 4217). Set this to `ARS`.
 #### Request examples
 
 <tabs>
-  <tab title="Redirect" active>
+<tab title="Redirect" active>
 
+```json
     {
       "source": {
         "type": "pagofacil",
@@ -290,9 +291,12 @@ The three-letter currency code (ISO 4217). Set this to `ARS`.
       "amount": 100,
       "currency": "ARS"
     }
-  </tab>
-  <tab title="Direct">
+```
 
+</tab>
+<tab title="Direct">
+
+```json
     {
       "source": {
         "type": "pagofacil",
@@ -307,7 +311,9 @@ The three-letter currency code (ISO 4217). Set this to `ARS`.
       "amount": 100,
       "currency": "ARS"
     }
-  </tab>
+```
+
+</tab>
 </tabs>
 
 ### The POST response
@@ -317,8 +323,9 @@ Whether you used the direct or redirect `integration_type`, you should get a `20
 #### Response examples
 
 <tabs>
-  <tab title="Redirect" active>
+<tab title="Redirect" active>
 
+```json
     {
       "id": "pay_edov5e5m4zreda7hs4mnzgusze",
       "status": "Pending",
@@ -340,10 +347,12 @@ Whether you used the direct or redirect `integration_type`, you should get a `20
         }
       }
     }
+```
 
-  </tab>
-  <tab title="Direct">
+</tab>
+<tab title="Direct">
 
+```json
     {
       "id": "pay_mnayvzqceh7e3oriqgtiuwdfpa",
       "status": "Pending",
@@ -362,8 +371,9 @@ Whether you used the direct or redirect `integration_type`, you should get a `20
         }
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 ---
@@ -424,7 +434,7 @@ To get the components necessary to render the ticket, use the ['get payment deta
 
 Here's an example:
 
-<img maxWidth={300} src="/docs/fago_pacil_ticket_example.png" alt="Fago pacil ticket example" />
+<img src="/docs/Payments/fago_pacil_ticket_example.png" alt="Fago pacil ticket example" maxWidth={356}/>
 
 ---
 
@@ -524,8 +534,9 @@ The response will differ depending on which `integration_type` (`redirect` or `d
 #### Response examples
 
 <tabs>
-  <tab title="Redirect" active>
+<tab title="Redirect" active>
 
+```json
     {
       "id": "pay_edov5e5m4zreda7hs4mnzgusze",
       "requested_on": "2020-04-27T14:54:56Z",
@@ -561,10 +572,12 @@ The response will differ depending on which `integration_type` (`redirect` or `d
         }
       }
     }
+```
 
-  </tab>
-  <tab title="Direct">
+</tab>
+<tab title="Direct">
 
+```json
     {
       "id": "pay_mnayvzqceh7e3oriqgtiuwdfpa",
       "requested_on": "2020-04-27T14:57:08Z",
@@ -607,8 +620,9 @@ The response will differ depending on which `integration_type` (`redirect` or `d
         }
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 ---

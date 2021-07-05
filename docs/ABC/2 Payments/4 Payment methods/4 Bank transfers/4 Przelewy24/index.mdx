@@ -209,6 +209,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code). Se
 
 #### Request example
 
+```json
     {
       "amount": 100,
       "currency": "PLN",
@@ -220,6 +221,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code). Se
         "billing_descriptor": "P24 Demo Payment"
       }
     }
+```
 
 ### The POST response
 
@@ -227,6 +229,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
 
 #### Response example
 
+```json
     {
       "id": "pay_yo7mr2qvrj5ubirhehlbjr4yda",
       "status": "Pending",
@@ -242,6 +245,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
         }
       }
     }
+```
 
 ---
 
@@ -350,6 +354,7 @@ The payment ID found in the response of the initial payment.
 
 #### Response example
 
+```json
     {
       "id": "pay_yo7mr2qvrj5ubirhehlbjr4yda",
       "requested_on": "2019-08-08T06:48:21Z",
@@ -380,6 +385,7 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
 ---
 

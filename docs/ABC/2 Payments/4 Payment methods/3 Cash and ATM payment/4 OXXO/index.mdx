@@ -305,6 +305,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
 <tabs>
 <tab title="Redirect" active>
 
+  ```json
     {
       "id": "pay_r2vanwtizkeedc5fesx7ydvdzu",
       "status": "Pending",
@@ -326,10 +327,12 @@ Whether you used the direct or redirect method, you should get a `202` response 
         }
       }
     }
+  ```
 
 </tab>
 <tab title="Direct">
 
+```json
     {
       "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
       "status": "Pending",
@@ -342,7 +345,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
         }
       }
     }
-
+```
 </tab>
 </tabs>
 
@@ -504,6 +507,7 @@ The response will differ depending on which `integration_type` (`redirect` or `d
 <tabs>
 <tab title="Payment pending" active>
 
+```json
     {
       "id": "pay_r2vanwtizkeedc5fesx7ydvdzu",
       "requested_on": "2020-04-27T14:13:49Z",
@@ -539,10 +543,12 @@ The response will differ depending on which `integration_type` (`redirect` or `d
         }
       }
     }
+```
 
 </tab>
 <tab title="Payment captured">
 
+```json
     {
       "id": "pay_r2vanwtizkeedc5fesx7ydvdzu",
       "requested_on": "2020-04-27T14:13:49Z",
@@ -576,6 +582,7 @@ The response will differ depending on which `integration_type` (`redirect` or `d
         }
       }
     }
+```
 
 </tab>
 </tabs>
@@ -585,6 +592,7 @@ The response will differ depending on which `integration_type` (`redirect` or `d
 <tabs>
 <tab title="Payment pending">
 
+```json
   {
     "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
     "requested_on": "2020-03-17T09:14:17Z",
@@ -615,6 +623,7 @@ The response will differ depending on which `integration_type` (`redirect` or `d
       }
     }
   }
+```
 
 </tab>
 </tabs>

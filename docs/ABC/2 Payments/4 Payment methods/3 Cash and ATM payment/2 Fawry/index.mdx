@@ -309,6 +309,7 @@ Less than or equal to 265 characters.
 
 #### Request example
 
+```json
     {
       "amount": 1000,
       "currency": "EGP",
@@ -327,6 +328,7 @@ Less than or equal to 265 characters.
         ]
       }
     }
+```
 
 ### The POST response
 
@@ -336,6 +338,7 @@ In addition, you will receive `payment_pending` and `payment_capture_pending` we
 
 #### Response example
 
+```json
     {
       "id": "pay_xksrrfuzksge5gyyqubpgbn7gy",
       "status": "Pending",
@@ -348,6 +351,7 @@ In addition, you will receive `payment_pending` and `payment_capture_pending` we
         }
       }
     }
+```
 
 <TipBox variant="info" title="Payment capture, expiration and cancellation">
 
@@ -447,6 +451,7 @@ If successful, you will receive a `payment_canceled` webhook notification.
 
 #### Response example
 
+```json
     {
       "id": "pay_xksrrfuzksge5gyyqubpgbn7gy",
       "requested_on": "2019-05-27T14:10:32Z",
@@ -471,6 +476,7 @@ If successful, you will receive a `payment_canceled` webhook notification.
         }
       }
     }
+```
 
 ---
 

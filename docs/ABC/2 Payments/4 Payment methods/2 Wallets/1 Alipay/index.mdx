@@ -158,6 +158,7 @@ Currently, we only support USD.
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "alipay"
@@ -165,7 +166,7 @@ Currently, we only support USD.
      "amount": 2000,
      "currency": "USD"
     }
-
+```
 
 <TipBox variant="info">
 
@@ -179,6 +180,7 @@ If a payment `id` is returned, then your request was successful.
 
 #### Response example
 
+```json
     {
       "id": "pay_wu2hdjkzookuji3i2xai2ienlm",
       "status": "Pending",
@@ -194,6 +196,7 @@ If a payment `id` is returned, then your request was successful.
         }
       }
     }
+```
 
 ### Redirect the customer
 
@@ -293,6 +296,7 @@ The payment ID found in the response of the initial response.
 
 #### Response example
 
+```json
     {
       "id": "pay_wu2hdjkzookuji3i2xai2ienlm",
       "requested_on": "2018-11-22T15:02:13Z",
@@ -315,6 +319,7 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
 ---
 

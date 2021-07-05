@@ -215,6 +215,7 @@ These details are used by PayPal to perform a pre-transaction risk management ev
 
 #### Request example
 
+```json
     {
       "amount": 100,
       "currency": "EUR",
@@ -229,6 +230,7 @@ These details are used by PayPal to perform a pre-transaction risk management ev
         }
       }
     }
+```
 
 ### The POST response
 
@@ -236,6 +238,7 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
 
 #### Response example
 
+```json
     {
       "id": "pay_ks2zlgzmff7ejnbvkpdw5n4liq",
       "status": "Pending",
@@ -251,6 +254,7 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
         }
       }
     }
+```
 
 ---
 
@@ -356,6 +360,7 @@ The payment ID found in the response of the initial response
 
 #### Response example
 
+```json
     {
       "id": "pay_ks2zlgzmff7ejnbvkpdw5n4liq",
       "requested_on": "2019-07-17T07:24:12Z",
@@ -385,6 +390,7 @@ The payment ID found in the response of the initial response
         }
       }
     }
+```
 
 ### Testing PayPal
 

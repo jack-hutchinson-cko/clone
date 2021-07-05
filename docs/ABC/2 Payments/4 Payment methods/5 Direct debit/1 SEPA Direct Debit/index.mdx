@@ -1,4 +1,3 @@
-
 ---
 title: SEPA Direct Debit
 account: ABC
@@ -454,8 +453,9 @@ The customer's name. This will only set the name for new customers.
 #### Request examples
 
 <tabs>
-  <tab title="Recurring mandate request" active>
+<tab title="Recurring mandate request" active>
 
+```json
     {
       "type": "sepa",
       "reference": "X-080957-N34",
@@ -480,10 +480,12 @@ The customer's name. This will only set the name for new customers.
         "email": "sophie.bonneville@ckomail.com"
       }
     }
+```
 
-  </tab>
-  <tab title="One-off mandate request">
+</tab>
+<tab title="One-off mandate request">
 
+```json
     {
       "type": "sepa",
       "reference": "X-080957-N34",
@@ -508,8 +510,9 @@ The customer's name. This will only set the name for new customers.
         "email": "sophie.bonneville@ckomail.com"
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 <TipBox variant="info">
@@ -520,6 +523,7 @@ The soft descriptor value will be prepended to the mandate reference when it app
 
 ### The POST response
 
+```json
     {
       "id": "src_a3wfgafsyedefaobbqadqw34vy",
       "type": "Sepa",
@@ -542,6 +546,7 @@ The soft descriptor value will be prepended to the mandate reference when it app
         }
       }
     }
+```
 
 ---
 
@@ -702,6 +707,7 @@ A reference with which you can later identify the payment.
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "id",
@@ -711,6 +717,7 @@ A reference with which you can later identify the payment.
       "currency": "EUR",
       "reference": "X-080957-N34"
     }
+```
 
 <TipBox variant="info">
 
@@ -722,6 +729,7 @@ Use the provided source ID in the payments endpoint to create a payment for a pa
 
 #### Response example
 
+```json
     {
       "id": "pay_6thh5vhggyjudgzfznx2fkuede",
       "status": "Pending",
@@ -736,6 +744,7 @@ Use the provided source ID in the payments endpoint to create a payment for a pa
         }
       }
     }
+```
 
 ---
 
@@ -923,10 +932,12 @@ The payment ID found in the response of the initial payment.
 
 #### Request example
 
+```json
     {
       "amount": 6540,
       "reference": "ORD-5023-4E89",
     }
+```
 
 ### The POST response
 
@@ -940,6 +951,7 @@ Refunds can take up to four days to be processed.
 
 #### Response example
 
+```json
     {
       "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
       "reference": "ORD-5023-4E89",
@@ -949,6 +961,7 @@ Refunds can take up to four days to be processed.
         }
       }
     }
+```
 
 ---
 
@@ -1040,6 +1053,7 @@ The source ID (you'll find this in the response of the source creation).
 
 #### Response example
 
+```json
     {
       "id": "src_y3oqhf46pyzuxjbcn2giaqnb44",
       "type": "sepa",
@@ -1052,6 +1066,7 @@ The source ID (you'll find this in the response of the source creation).
         }
       }
     }
+```
 
 <TipBox variant="info">
 

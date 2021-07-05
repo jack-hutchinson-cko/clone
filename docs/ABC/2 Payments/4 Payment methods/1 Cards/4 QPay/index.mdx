@@ -216,6 +216,7 @@ Maximum of 32 characters.
 
 #### Request example
 
+```json
     {
       "amount": 100,
       "currency": "QAR",
@@ -227,7 +228,7 @@ Maximum of 32 characters.
         "national_id": "070AYY010BU234M"
       }
     }
-
+```
 
 ### The POST response
 
@@ -235,6 +236,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
 
 #### Response example
 
+```json
     {
       "id": "pay_7eil5osdlcdehe62et5aihec4q",
       "status": "Pending",
@@ -250,6 +252,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
         }
       }
     }
+```
 
 ---
 
@@ -341,6 +344,7 @@ The payment ID found in the response of the initial response.
 
 #### Response example
 
+```json
     {
       "id": "pay_7eil5osdlcdehe62et5aihec4q",
       "requested_on": "2019-06-20T10:03:42Z",
@@ -375,6 +379,7 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
 ---
 

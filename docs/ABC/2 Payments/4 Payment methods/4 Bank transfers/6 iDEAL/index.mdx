@@ -205,6 +205,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code). Se
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "ideal",
@@ -215,6 +216,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code). Se
       "amount": 2000,
       "currency": "EUR"
     }
+```
 
 <TipBox variant="info">
 
@@ -228,6 +230,7 @@ If a payment id is returned, then your request was successful.
 
 #### Example response
 
+```json
     {
       "id": "pay_yndlioum4gau3oizxihvzdgp4i",
       "status": "Pending",
@@ -243,6 +246,7 @@ If a payment id is returned, then your request was successful.
         }
       }
     }
+```
 
 ---
 
@@ -354,6 +358,7 @@ The payment ID found in the response of the initial response.
 
 #### Response example
 
+```json
     {
       "id": "pay_gx2pyzir3nzuhfmz7djlrxuhre",
       "requested_on": "2019-03-01T09:21:08Z",
@@ -387,6 +392,7 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
 ---
 
@@ -471,6 +477,7 @@ Use the valid public key of your Checkout.com account. You can find this in the 
 
 #### Response example
 
+```json
     {
       "countries": [
         {
@@ -493,6 +500,7 @@ Use the valid public key of your Checkout.com account. You can find this in the 
           }
         }
     }
+```
 
 ---
 

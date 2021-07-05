@@ -522,6 +522,7 @@ The number of payments in the [installment payment plan](#dLocal-installments).
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "card",
@@ -552,6 +553,7 @@ The number of payments in the [installment payment plan](#dLocal-installments).
         }
       }
     }
+```
 
 ### The response
 
@@ -561,6 +563,7 @@ If you received a `202` response, the payment requires a redirect. For example, 
 
 #### Response example
 
+```json
     {
       "id": "pay_z7mylvkcalbedkvjxidz2wt7ea",
       "action_id": "act_z7mylvkcalbedkvjxidz2wt7ea",
@@ -619,6 +622,7 @@ If you received a `202` response, the payment requires a redirect. For example, 
         }
       }
     }
+```
 
 ---
 
@@ -705,6 +709,7 @@ Because Latin American card numbers vary in length and structure, they cannot be
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "dlocal",
@@ -735,6 +740,7 @@ Because Latin American card numbers vary in length and structure, they cannot be
         }
       }
     }
+```
 
 ---
 

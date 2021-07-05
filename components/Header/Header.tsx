@@ -132,7 +132,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                 guides={guides}
                 mapTitle={(title, Icon) => (
                   <NavigationLink target="_blank" large underlineOnHover>
-                    {Icon} {title}
+                    <Icon /> {title}
                   </NavigationLink>
                 )}
               />

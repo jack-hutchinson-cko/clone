@@ -204,6 +204,7 @@ Additional version-dependent information used to decrypt and verify the payment.
 
 #### Request example
 
+```json
     {
       "type": "applepay",
       "token_data": {
@@ -217,11 +218,13 @@ Additional version-dependent information used to decrypt and verify the payment.
         }
       }
     }
+```
 
 ### The POST response
 
 #### Response example
 
+```json
     {
       "type": 'applepay',
       "token": 'tok_ymu4qlccztkedmd6b7c3hcf6ae',
@@ -238,6 +241,7 @@ Additional version-dependent information used to decrypt and verify the payment.
       "product_id": 'F',
       "product_type": 'Visa Classic'
     }
+```
 
 Supporting Mada cards
 
@@ -395,6 +399,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code).
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "token",
@@ -403,6 +408,7 @@ The currency in which the payment is being made (three-letter ISO 4217 code).
       "amount": 6500,
       "currency": "USD"
     }
+```
 
 ### The POST response
 

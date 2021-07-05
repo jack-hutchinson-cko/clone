@@ -252,6 +252,7 @@ The three-letter currency code (ISO 4217). Set this to `COP`.
 
 ### Request example
 
+```json
     {
       "source": {
         "type": "baloto",
@@ -266,6 +267,7 @@ The three-letter currency code (ISO 4217). Set this to `COP`.
       "amount": 100000,
       "currency": "COP"
     }
+```
 
 ### The POST response
 
@@ -273,6 +275,7 @@ You should get a `202` response with the `status` field set to `Pending`. This m
 
 #### Response example
 
+```json
     {
       "id": "pay_fkn75nbpzfxeze6dkdv2pguv5i",
       "status": "Pending",
@@ -294,6 +297,7 @@ You should get a `202` response with the `status` field set to `Pending`. This m
         }
       }
     }
+```
 
 ### Step 2: Redirect the customer
 
@@ -410,8 +414,9 @@ The payment ID found in the response of the initial response.
 #### Response examples
 
 <tabs>
-  <tab title="Payment pending" active>
+<tab title="Payment pending" active>
 
+```json
     {
       "id": "pay_fkn75nbpzfxeze6dkdv2pguv5i",
       "requested_on": "2020-04-27T15:35:29Z",
@@ -447,10 +452,12 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
-  </tab>
-  <tab title="Payment captured">
+</tab>
+<tab title="Payment captured">
 
+```json
     {
       "id": "pay_fkn75nbpzfxeze6dkdv2pguv5i",
       "requested_on": "2020-04-27T15:35:29Z",
@@ -484,8 +491,9 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 ---

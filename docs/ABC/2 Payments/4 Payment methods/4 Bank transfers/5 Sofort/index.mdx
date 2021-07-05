@@ -155,6 +155,7 @@ The three-letter ISO currency code. Set this to `EUR`.
 
 #### Request example
 
+```json
     {
       "source": {
         "type": "sofort"
@@ -162,6 +163,7 @@ The three-letter ISO currency code. Set this to `EUR`.
       "amount": 1000,
       "currency": "EUR"
     }
+```
 
 <TipBox variant="info">
 
@@ -175,6 +177,7 @@ If a payment `id` is returned, your request was successful.
 
 #### Response example
 
+```json
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "status": "Pending",
@@ -190,6 +193,7 @@ If a payment `id` is returned, your request was successful.
         }
       }
     }
+```
 
 ---
 
@@ -292,8 +296,9 @@ The payment ID found in the response of the initial response.
 #### Response example
 
 <tabs>
-  <tab title="Pending" active>
+<tab title="Pending" active>
 
+```json
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "requested_on": "2018-11-22T15:58:35Z",
@@ -316,10 +321,12 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
-  </tab>
-  <tab title="Pending capture">
+</tab>
+<tab title="Pending capture">
 
+```json
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "requested_on": "2018-11-22T15:58:35Z",
@@ -345,10 +352,12 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
-  </tab>
-  <tab title="Captured">
+</tab>
+<tab title="Captured">
 
+```json
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "requested_on": "2018-11-22T16:04:35Z",
@@ -381,8 +390,9 @@ The payment ID found in the response of the initial response.
         }
       }
     }
-
-  </tab>
+```
+  
+</tab>
 </tabs>
 
 ---
