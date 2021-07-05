@@ -36,6 +36,7 @@ import Table, {
 import ImageBox from 'components/ImageBox';
 import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
 import Iframe from 'components/Iframe';
+import CardLink from 'components/CardLink';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -84,6 +85,7 @@ export const mdxComponents = {
   Iframe: withBlockMargin(Iframe),
   ButtonLink,
   ContentPanel,
+  CardLink,
 };
 
 type Props = {
