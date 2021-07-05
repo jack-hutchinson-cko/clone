@@ -6,11 +6,11 @@ import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
-import { getAnchorUrl } from 'lib/url';
 import { ABCDocsPath } from 'constants/filePath';
+import { getAnchorUrl } from 'lib/url';
 
 const getAnchorsNavItems = ({ content = '' }: { content: string }) =>
-  (content.match(/^#+ (.*$)/gim) || []).map((headerItem) => {
+  (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
     return {
       title,
@@ -122,4 +122,46 @@ export const getFileNameFromPath = (docsPathParams: string[]): string => {
   const fullSlug = `/${docsPathParams.join('/')}`;
 
   return get(slugToFilePathMap, fullSlug, '');
+};
+
+type ForEachFileTreeParams = {
+  parentFilePath: string;
+  parentPath: string;
+  parentArticles: string[];
+};
+
+type CallBackParamsType = {
+  title: string;
+  path: string;
+  filePath: string;
+  parentArticles: string[];
+};
+
+export const forEachFileTree = (
+  { parentFilePath, parentPath, parentArticles = [] }: ForEachFileTreeParams,
+  callBack: (params: CallBackParamsType) => void,
+): void => {
+  const children = fs.readdirSync(parentFilePath);
+
+  for (const child of children) {
+    const filePath = `${parentFilePath}/${child}`;
+
+    if (fs.statSync(filePath).isDirectory()) {
+      const title = child.replace(/^[1-9]+ /, '');
+      const currentSlug = lowerCase(title).replace(/ /g, '-');
+      const path = `${parentPath}/${currentSlug}`;
+
+      const childNode = { title, path, filePath, parentArticles };
+
+      callBack({ ...childNode });
+      forEachFileTree(
+        {
+          parentFilePath: filePath,
+          parentPath: path,
+          parentArticles: [...parentArticles, title],
+        },
+        callBack,
+      );
+    }
+  }
 };

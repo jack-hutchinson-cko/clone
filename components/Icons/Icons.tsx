@@ -336,7 +336,7 @@ export const IconTestAccount: FC<Props> = (props) => (
 );
 
 export const IconActionArrowRight: FC<Props> = (props) => (
-  <StyledIcon width={16} height={16} {...props}>
+  <StyledIcon width={16} height={16} color="#6D708E" {...props}>
     <path
       d="M2 7.50615L13.5 7.50615M13.5 7.50615L8.99385 12.0123M13.5 7.50615L8.99385 3"
       stroke="currentColor"
@@ -371,6 +371,44 @@ export const IconBurger: FC<Props> = (props) => (
           </g>
         </g>
       </g>
+    </g>
+  </StyledIcon>
+);
+
+export const IconActionCopy: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      fill="currentColor"
+      d="M5.5 2c-.3 0-.5.2-.5.5a.5.5 0 01-1 0C4 1.7 4.7 1 5.5 1h8c.8 0 1.5.7 1.5 1.5v8c0 .8-.7 1.5-1.5 1.5a.5.5 0 010-1c.3 0 .5-.2.5-.5v-8c0-.3-.2-.5-.5-.5h-8zM2 13.5c0 .3.2.5.5.5h8c.3 0 .5-.2.5-.5v-8c0-.3-.2-.5-.5-.5h-8c-.3 0-.5.2-.5.5v8zm10-8v8c0 .8-.7 1.5-1.5 1.5h-8c-.8 0-1.5-.7-1.5-1.5v-8C1 4.7 1.7 4 2.5 4h8c.8 0 1.5.7 1.5 1.5z"
+    />
+  </StyledIcon>
+);
+
+export const IconCheck: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <g fill="none" fillRule="evenodd">
+      <circle fill="#00875A" cx="8" cy="8" r="8" />
+      <path
+        d="M10.242 4.474a.941.941 0 0 1 1.634.934L8.11 11.996a.941.941 0 0 1-1.54.136L4.218 9.308a.941.941 0 1 1 1.446-1.205L7.15 9.886l3.093-5.412z"
+        stroke="#FFF"
+        strokeWidth=".2"
+        fill="#FFF"
+        fillRule="nonzero"
+      />
+    </g>
+  </StyledIcon>
+);
+
+export const IconError: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <g fill="none" fillRule="evenodd">
+      <circle fill="#DE350B" cx="8" cy="8" r="8" />
+      <path
+        d="M9.485 8.071l2.122 2.121a1 1 0 1 1-1.415 1.415l-2.12-2.122-2.122 2.122a1 1 0 1 1-1.414-1.415l2.12-2.12-2.12-2.122A1 1 0 1 1 5.95 4.536l2.121 2.12 2.121-2.12a1 1 0 1 1 1.415 1.414L9.485 8.07z"
+        fill="#FFF"
+      />
     </g>
   </StyledIcon>
 );

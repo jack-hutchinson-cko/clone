@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const useWindowScrollDisabling = (disabled?: boolean) => {
+const useScrollDisabling = (disabled?: boolean): void => {
   const yScrollValue = useRef<number>(0);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const useWindowScrollDisabling = (disabled?: boolean) => {
   }, [disabled]);
 };
 
-export default useWindowScrollDisabling;
+export default useScrollDisabling;

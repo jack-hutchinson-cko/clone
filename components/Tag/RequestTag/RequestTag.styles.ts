@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ThemeType } from 'constants/theme';
 import { RequestTagProps } from '../types';
 
@@ -8,7 +9,13 @@ const getColorWithType = ({ type, theme }: { type: RequestTagProps['type']; them
       return theme.colors.postTag;
 
     case 'delete':
-      return theme.colors.danger;
+      return theme.colors.warning;
+
+    case 'patch':
+      return theme.colors.note;
+
+    case 'put':
+      return theme.colors.putTag;
 
     case 'get':
     default:

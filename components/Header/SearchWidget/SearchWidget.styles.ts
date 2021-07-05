@@ -1,33 +1,4 @@
-import { TextFieldBase } from '@cko/primitives';
 import styled, { css } from 'styled-components';
-
-import { IconSearch } from 'components/Icons';
-
-export const TextFieldHolder = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
-  box-sizing: border-box;
-
-  &:focus-within {
-    outline: 0;
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.blueLight};
-  }
-`;
-
-export const TextField = styled(TextFieldBase)`
-  width: 100%;
-  font-weight: 300;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.base};
-  transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
-`;
-
-export const SearchActionIcon = styled(IconSearch)``;
 
 export const Results = styled.div<{ isShown: boolean }>`
   display: ${({ isShown }) => (isShown ? 'display' : 'none')};
@@ -35,7 +6,7 @@ export const Results = styled.div<{ isShown: boolean }>`
   left: 0;
   top: calc(100% + 10px);
   width: 100%;
-  padding: 24px 16px;
+  padding: 8px 16px;
   background: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.greyLight};
   border-radius: 8px;
@@ -46,7 +17,8 @@ export const Results = styled.div<{ isShown: boolean }>`
 export const EmptySearchResult = styled.div`
   color: ${({ theme }) => theme.colors.base};
   font-weight: 500;
-  padding: 0 8px;
+
+  padding: 16px 8px;
 `;
 
 export const PopularSearches = styled.div`
@@ -57,13 +29,13 @@ export const PopularSearches = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.greyLight};
 `;
 
-export const PopularSearchesTitle = styled.div`
+export const SearchesTitle = styled.div`
   color: ${({ theme }) => theme.colors.grayFaded};
   font-size: 11px;
   font-weight: 500;
-  padding-top: 24px;
-  padding-bottom: 8px;
+  padding: 8px 0;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
 `;
 
 export const PopularSearchesItem = styled.a`
@@ -81,6 +53,10 @@ export const PopularSearchesItem = styled.a`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  margin: 16px 0;
+`;
+
 export const TextFieldWrapper = styled.div<{ isMobile?: boolean }>`
   position: relative;
   cursor: initial;
@@ -88,19 +64,6 @@ export const TextFieldWrapper = styled.div<{ isMobile?: boolean }>`
   ${({ isMobile }) =>
     isMobile &&
     css`
-      ${TextField} {
-        font-size: 24px;
-      }
-
-      ${TextFieldHolder} {
-        padding: 12px 24px;
-      }
-
-      ${SearchActionIcon} {
-        width: 26px;
-        height: 26px;
-      }
-
       ${Results} {
         position: initial;
         top: auto;

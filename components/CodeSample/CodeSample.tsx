@@ -1,40 +1,46 @@
 /* eslint-disable react/no-array-index-key */
 import React, { FC, useState, useCallback } from 'react';
-import { IconActionCopy, IconActionSave } from '@cko/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import { Pre, Line, SpanLine, HighlightContainer, CopyIcon } from './CodeSample.styles';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import { IconActionCopy } from '../Icons/Icons';
+import { HighlightContainer, StyledIcons, StyledText } from './CodeSample.styles';
+import { CodeSampleProps } from './type';
+import PreLine from './PreLine';
 
-export type Props = {
-  code: string;
-  language: Language;
-};
+const timeout = 3000;
 
-const CodeSample: FC<Props> = ({ code, language }) => {
-  const [isCopied, setIsCopied] = useState(false);
+const CodeSample: FC<CodeSampleProps> = ({
+  code,
+  language,
+  isCollapsible = false,
+  withBorder = true,
+}) => {
+  const [isCopied, setIsCopied] = useState(true);
 
   const onToggleHandler = useCallback(() => {
     setIsCopied(!isCopied);
-    const timer = setTimeout(() => setIsCopied(isCopied), 3000);
+    const timer = setTimeout(() => setIsCopied(isCopied), timeout);
     return () => clearTimeout(timer);
   }, [isCopied]);
+
+  const onHandlerCopy = (
+    <StyledIcons>{isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}</StyledIcons>
+  );
 
   return (
     <HighlightContainer>
       <CopyToClipboard text={code} onCopy={() => onToggleHandler()}>
-        <CopyIcon>{isCopied ? <IconActionSave /> : <IconActionCopy />}</CopyIcon>
+        {onHandlerCopy}
       </CopyToClipboard>
       <Highlight {...defaultProps} code={code} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
-          <Pre>
-            {tokens.map((line, i) => (
-              <Line key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <SpanLine key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </Line>
-            ))}
-          </Pre>
+          <PreLine
+            tokens={tokens}
+            getLineProps={getLineProps}
+            getTokenProps={getTokenProps}
+            isCollapsible={isCollapsible}
+            withBorder={withBorder}
+          />
         )}
       </Highlight>
     </HighlightContainer>

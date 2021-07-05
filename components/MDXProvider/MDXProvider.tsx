@@ -1,5 +1,8 @@
 import { FC } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+import ButtonLink from 'components/ButtonLink';
+import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
 import {
@@ -27,19 +30,24 @@ import Table, {
   TableHeadSticky,
   TableRow,
   StyledTH,
+  TableSubhead,
+  TableTicCell,
 } from 'components/Table';
 import ImageBox from 'components/ImageBox';
-import { ListItem, List, OrderedList, UnorderedList } from 'components/List';
+import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
+import Iframe from 'components/Iframe';
 
-const components = {
+export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
   tabs: withBlockMargin(Tabs),
   tab: Tab,
   TableBody,
   TableCell,
+  TableTicCell,
   TableHead,
   TableHeadSticky,
   TableRow,
+  TableSubhead,
   Table: withBlockMargin(Table),
   table: withBlockMargin(Table),
   tbody: TableBody,
@@ -50,8 +58,8 @@ const components = {
   LineCodeWrapper,
   h1: withAnchor(TextHeadingOne),
   h2: withAnchor(TextHeadingTwo),
-  h3: withAnchor(TextHeadingThree),
-  h4: withAnchor(TextHeadingFour),
+  h3: TextHeadingThree,
+  h4: TextHeadingFour,
   p: Text,
   inlineCode: LineCode,
   a: TextLink,
@@ -61,23 +69,27 @@ const components = {
   StatusTag,
   TypeTag,
   InfoBox,
+  List: withBlockMargin(List),
+  ListIconItem,
   ul: withBlockMargin(UnorderedList),
   ol: withBlockMargin(OrderedList),
   li: ListItem,
   UnorderedList: withBlockMargin(UnorderedList),
   OrderedList: withBlockMargin(OrderedList),
   ListItem,
-  List: withBlockMargin(List),
   Accordion,
   AccordionHead,
   AccordionBody,
   img: withBlockMargin(ImageBox),
+  Iframe: withBlockMargin(Iframe),
+  ButtonLink,
+  ContentPanel,
 };
 
 type Props = {
   source: MDXRemoteSerializeResult;
 };
 
-const MDXProvider: FC<Props> = ({ source }) => <MDXRemote {...source} components={components} />;
+const MDXProvider: FC<Props> = ({ source }) => <MDXRemote {...source} components={mdxComponents} />;
 
 export default MDXProvider;

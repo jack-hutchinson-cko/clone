@@ -1,5 +1,502 @@
 ---
 title: Manage payment links
+account: ABC
 ---
 
-## Some info about Manage payment links
+On this page, find out how to:
+
+- [Create a Payment Link](https://docs.checkout.com/integrate/payment-links/manage-payment-links#ManagePaymentLinks-create-a-link)
+- [Check on the status of a Payment Link session](https://docs.checkout.com/integrate/payment-links/manage-payment-links#ManagePaymentLinks-status)
+
+---
+
+## Before you begin
+
+- Have you registered to begin using payment links? Contact your Solution Engineer or [integration@checkout.com](mailto:integration@checkout.com). During integration, you'll be able to specify your payment capture and 3D Secure settings.
+- You can set up [webhooks](https://docs.checkout.com/integrate/payment-links/manage-payment-links#) to be notified when the payment has been approved, so you can continue the sales fulfilment flow.
+- To practise API calls [request a test account](https://www.checkout.com/get-test-account) and use the Sandbox version of the endpoint.
+
+---
+
+## Create a Payment Link
+
+### Step 1: Create a new Payment Link session
+
+When requesting a payment from a customer using Payment Links solution, you can to create a Payment Links session. This can be sent to the customer through a method that best suits you.
+
+To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put).
+
+<TipBox variant="success">
+
+You can provide a `return_url` in your API request. Once their payment is confirmed, the customer will be redirected to wherever the link is directed to. This could be back to your website, for example.
+
+</TipBox>
+
+#### Endpoints
+
+<TipBox variant="warning" title="Testing">
+
+http://localhost/ can only be used for the URL fields during testing and will not work in production.
+
+</TipBox>
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payment-links`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payment-links`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+<TipBox variant="note" title="Required parameters for certain payment methods">
+
+Depending on the payment method, certain parameters are required. Please use the drop-down below to find out more.
+
+</TipBox>
+
+<Accordion title="Parameters for supported payment methods">
+
+<Table>
+<TableHead headers={['Payment method', 'billing.address.country', 'currency', 'reference']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+KNET
+
+</TableCell>
+<TableCell>
+
+`KW` - Kuwait
+
+</TableCell>
+<TableCell>
+
+`KWD`
+
+</TableCell>
+<TableCell>
+
+<StatusTag type="optional" />
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Mada
+
+</TableCell>
+<TableCell>
+
+`SA` - Saudi Arabia
+
+</TableCell>
+<TableCell>
+
+`SAR`
+
+</TableCell>
+<TableCell>
+
+<StatusTag type="optional" />
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+PayPal
+
+</TableCell>
+<TableCell>
+
+Any supported
+
+</TableCell>
+<TableCell>
+
+Any supported
+
+</TableCell>
+<TableCell>
+
+<StatusTag type="required" />
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Sofort
+
+</TableCell>
+<TableCell>
+
+`AT` - Austria
+
+`BE` - Belgium
+
+`DE` - Germany
+
+`IT` - Italy
+
+`NL` - Netherlands
+
+`ES` - Spain
+
+</TableCell>
+<TableCell>
+
+EUR
+
+</TableCell>
+<TableCell>
+
+<StatusTag type="optional" />
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+</Accordion>
+
+#### Request examples
+
+<tabs>
+<tab title="Card">
+
+```json
+{
+  "amount": 200,
+  "currency": "GBP",
+  "reference": "ORD-123A",
+  "expires_in": 604800,
+  "customer": {
+    "name": "Jack Napier",
+    "email": "jokershere@email.com"
+  },
+  "billing": {
+    "address": {
+      "country": "GB"
+    }
+  },
+  "return_url": "https://example.com/home"
+}
+```
+
+</tab>
+<tab title="KNET">
+
+```json
+{
+  "amount": 200,
+  "currency": "KWD",
+  "reference": "ORD-123A",
+  "expires_in": 604800,
+  "customer": {
+    "name": "Jack Napier",
+    "email": "jokershere@email.com"
+  },
+  "billing": {
+    "address": {
+      "country": "KW"
+    }
+  },
+  "return_url": "https://example.com/home"
+}
+```
+
+</tab>
+<tab title="Mada">
+
+```json
+{
+  "amount": 200,
+  "currency": "SAR",
+  "reference": "ORD-123A",
+  "expires_in": 604800,
+  "customer": {
+    "name": "Jack Napier",
+    "email": "jokershere@email.com"
+  },
+  "billing": {
+    "address": {
+      "country": "SA"
+    }
+  },
+  "return_url": "https://example.com/home"
+}
+```
+
+</tab>
+<tab title="PayPal">
+
+```json
+{
+  "amount": 200,
+  "currency": "GBP",
+  "reference": "ORD-123A",
+  "expires_in": 604800,
+  "customer": {
+    "name": "Jack Napier",
+    "email": "jokershere@email.com"
+  },
+  "billing": {
+    "address": {
+      "country": "GB"
+    }
+  },
+  "return_url": "https://example.com/home"
+}
+```
+
+</tab>
+<tab title="Sofort">
+
+```json
+{
+  "amount": 200,
+  "currency": "EUR",
+  "reference": "ORD-123A",
+  "expires_in": 604800,
+  "customer": {
+    "name": "Jack Napier",
+    "email": "jokershere@email.com"
+  },
+  "billing": {
+    "address": {
+      "country": "DE"
+    }
+  },
+  "return_url": "https://example.com/home"
+}
+```
+
+</tab>
+</tabs>
+
+#### Response example
+
+```json
+{
+  "id": "pl_ELqQJXdXzabU",
+  "reference": "ORD-123A",
+  "expires_on": "2020-08-20T20:25:28+08:00",
+  "_links": {
+    "redirect": {
+      "href": "https://pay.sandbox.checkout.com/link/pl_ELqQJXdXzabU"
+    }
+  }
+}
+```
+
+### Step 2: Send the link to your customer
+
+Send the Payment Link you received in the `\_links.redirect` object of the above response to your customer.
+
+This could be by email, text message, social media, live chat—wherever your customer wants to pay.
+
+When they visit the link, they will be presented with a Checkout.com-hosted payment page to complete their payment. Once they have completed the payment, they will be redirected to a Checkout.com-hosted confirmation page. The button at the bottom of the page redirects the customer to the specified URL only if you provide a `return_url` when creating a Payment Link, so make sure you include it in your API request.
+
+---
+
+## Check the status of a Payment Link
+
+To keep track of the payments you request through Payment Links, you can check the status using the id returned when you created the session. It will look like `pl_ELqQJXdXzabU`.
+
+There are three statuses:
+
+- `Active`: The Payment Link can accept a payment from the customer. A payment may have been attempted by the customer but not completed successfully.
+- `Payment Received`: A payment has been received successfully using this Payment Link.
+- `Expired`: The Payment Link has expired and can no longer be accessed.
+
+#### Endpoints
+
+For a full explanation of the fields, see our [API reference](https://api-reference.checkout.com/#tag/Payment-Links).
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payment-links/{id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payment-links/{id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Response examples
+
+<tabs>
+<tab title="Active">
+
+```json
+{
+  "id": "pl_ELqQJXdXzabU",
+  "status": "Active",
+  "payment_id": "undefined",
+  "amount": 200,
+  "currency": "GBP",
+  "reference": "ORD-123A",
+  "description": "Payment for Gold Necklace",
+  "expires_on": "2021-08-20T20:25:28+08:00",
+  "customer": {
+    "email": "jokershere@email.com",
+    "name": "Jack Napier"
+  },
+  "billing": {
+    "address": {
+      "address_line1": "Checkout.com",
+      "address_line2": "90 Tottenham Court Road",
+      "city": "London",
+      "state": "London",
+      "zip": "W1T 4TJ",
+      "country": "GB"
+    },
+    "phone": {
+      "country_code": "+1",
+      "number": "4155552671"
+    }
+  },
+  "products": [
+    {
+      "name": "Gold Necklace",
+      "quantity": 1,
+      "price": 200
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/payment-links/pl_ELqQJXdXzabU"
+    },
+    "redirect": {
+      "href": "https://pay.sandbox.checkout.com/link/pl_ELqQJXdXzabU"
+    }
+  }
+}
+```
+
+</tab>
+<tab title="Payment Received">
+
+```json
+{
+  "id": "pl_ELqQJXdXzabU",
+  "status": "Payment Received",
+  "payment_id": "pay_mbabizu24mvu3mela5njyhpit4",
+  "amount": 200,
+  "currency": "GBP",
+  "reference": "ORD-123A",
+  "description": "Payment for Gold Necklace",
+  "expires_on": "2021-08-20T20:25:28+08:00",
+  "customer": {
+    "email": "jokershere@email.com",
+    "name": "Jack Napier"
+  },
+  "billing": {
+    "address": {
+      "address_line1": "Checkout.com",
+      "address_line2": "90 Tottenham Court Road",
+      "city": "London",
+      "state": "London",
+      "zip": "W1T 4TJ",
+      "country": "GB"
+    },
+    "phone": {
+      "country_code": "+1",
+      "number": "4155552671"
+    }
+  },
+  "products": [
+    {
+      "name": "Gold Necklace",
+      "quantity": 1,
+      "price": 200
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/payment-links/pl_ELqQJXdXzabU"
+    },
+    "redirect": {
+      "href": "https://pay.sandbox.checkout.com/link/pl_ELqQJXdXzabU"
+    },
+    "payment": {
+      "href": "https://api.sandbox.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
+    },
+    "payment_actions": {
+      "href": "https://api.sandbox.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4/actions"
+    }
+  }
+}
+```
+
+</tab>
+<tab title="Expired">
+
+```json
+{
+  "id": "pl_ELqQJXdXzabU",
+  "status": "Expired",
+  "payment_id": "undefined",
+  "amount": 200,
+  "currency": "GBP",
+  "reference": "ORD-123A",
+  "description": "Payment for Gold Necklace",
+  "expires_on": "2021-08-20T20:25:28+08:00",
+  "customer": {
+    "email": "jokershere@email.com",
+    "name": "Jack Napier"
+  },
+  "billing": {
+    "address": {
+      "address_line1": "Checkout.com",
+      "address_line2": "90 Tottenham Court Road",
+      "city": "London",
+      "state": "London",
+      "zip": "W1T 4TJ",
+      "country": "GB"
+    },
+    "phone": {
+      "country_code": "+1",
+      "number": "4155552671"
+    }
+  },
+  "products": [
+    {
+      "name": "Gold Necklace",
+      "quantity": 1,
+      "price": 200
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/payment-links/pl_ELqQJXdXzabU"
+    },
+    "redirect": {
+      "href": "https://pay.sandbox.checkout.com/link/pl_ELqQJXdXzabU"
+    }
+  }
+}
+```
+
+</tab>
+</tabs>

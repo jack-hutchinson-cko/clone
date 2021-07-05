@@ -15,7 +15,7 @@ import {
   getBreadCrumbsItem,
 } from 'lib/fileParser';
 
-import { MainWrapper, Content, Title, Navigation } from '../../styles/index.styles';
+import { PageContent, Title, Navigation } from '../../styles/index.styles';
 
 type Props = {
   breadCrumbsItem: BreadCrumbsItems;
@@ -30,20 +30,18 @@ const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatte
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   return (
     <AnchorsProvider>
-      <MainWrapper>
-        <Content>
-          <header>
-            <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-            <Title>{frontMatter.title}</Title>
-          </header>
-          <MDXProvider source={source} />
-        </Content>
-        {!isMobile && (
-          <Navigation>
-            <AnchorNavigation anchors={anchorsNavItems} />
-          </Navigation>
-        )}
-      </MainWrapper>
+      <PageContent>
+        <header>
+          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+          <Title>{frontMatter.title}</Title>
+        </header>
+        <MDXProvider source={source} />
+      </PageContent>
+      {!isMobile && (
+        <Navigation>
+          <AnchorNavigation anchors={anchorsNavItems} />
+        </Navigation>
+      )}
     </AnchorsProvider>
   );
 };

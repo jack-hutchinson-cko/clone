@@ -15,7 +15,7 @@ const ListItemLink: FC<WithMenuStateProps<NavigationLinkProps>> = ({
   return (
     <Link href={href} passHref>
       <StyledLink isActive={isActive} onClick={onClickHandler}>
-        {children}
+        <mark>{children}</mark>
       </StyledLink>
     </Link>
   );

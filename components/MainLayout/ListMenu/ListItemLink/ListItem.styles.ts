@@ -1,8 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledLink = styled.a<{ isActive?: boolean }>`
-  border-top: 2px solid transparent;
-  border-bottom: 2px solid ${({ isActive }) => (isActive ? '#80E5E9' : 'transparent')};
+  mark {
+    background: transparent;
+    color: inherit;
+  }
+
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
+      mark {
+        background: linear-gradient(to top, ${theme.colors.turquoise} 0 6px, transparent 6px 100%);
+      }
+    `}
 
   &:hover {
     text-decoration: ${({ isActive }) => (isActive ? 'none' : 'underline')};

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledIframe = styled.iframe`
-  border: none;
+  border: 1px solid ${({ theme }) => theme.colors.catskillWhite};
+  border-radius: 8px;
 `;

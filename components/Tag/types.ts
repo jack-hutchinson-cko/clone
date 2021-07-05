@@ -2,7 +2,7 @@ export interface Tag<Type> {
   type: Type;
 }
 
-export type RequestTagProps = Tag<'post' | 'get' | 'delete'>;
+export type RequestTagProps = Tag<'post' | 'get' | 'delete' | 'put' | 'patch'>;
 
 export type StatusTagProps = Tag<'optional' | 'required' | 'recommended' | 'conditional'>;
 

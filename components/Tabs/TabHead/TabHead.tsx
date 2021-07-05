@@ -8,7 +8,7 @@ export type Props = {
 };
 
 const TabHead: FC<Props> = ({ setActiveTab, titles = [], activeTab = 0 }) => {
-  const onClickHandler = (event: MouseEvent<HTMLAnchorElement>): void => {
+  const onClickHandler = (event: MouseEvent<HTMLButtonElement>): void => {
     const tabIndex = Number(event.currentTarget?.dataset?.tabIndex);
 
     event.preventDefault();

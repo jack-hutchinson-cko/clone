@@ -35,7 +35,7 @@ const NavigationTree: FC<Props> = ({ docsTreeLinks, activeLink, NavSection, NavI
     );
 
     if (children?.length) {
-      const isOpen = activeLink.includes(path) && !activeLink.endsWith(path);
+      const isOpen = activeLink.includes(`${path}/`);
       return (
         <NavSection key={id} isRoot={isRoot} link={link} isOpen={isOpen}>
           {children.map((n) => renderSegment(n, isActiveLink))}

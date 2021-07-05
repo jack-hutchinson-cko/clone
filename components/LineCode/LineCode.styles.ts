@@ -7,4 +7,5 @@ export const LineCode = styled.code`
   background: ${({ theme }) => theme.colors.codeLabelBackground};
   font-family: Courier, monospace;
   border-radius: 4px;
+  word-break: break-word;
 `;

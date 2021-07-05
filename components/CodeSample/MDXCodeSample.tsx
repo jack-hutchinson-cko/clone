@@ -6,6 +6,8 @@ import CodeSample from './CodeSample';
 export type Props = {
   className?: string;
   language?: Language;
+  isCollapsible: boolean;
+  withBorder: boolean;
 };
 
 const MDXCodeSample: FC<Props> = ({ children, language, ...otherProps }) => {

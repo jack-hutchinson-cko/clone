@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const StyledLineCodeWrapper = styled.div`
   display: flex;
+  padding: 15px;
   color: ${({ theme }) => theme.colors.base};
   background: ${({ theme }) => theme.colors.codeLabelBackground};
-  padding: 15px;
 
   div,
   p {

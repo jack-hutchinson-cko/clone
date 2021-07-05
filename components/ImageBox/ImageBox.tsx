@@ -10,11 +10,13 @@ export type Props = {
   loader?: () => string;
   priority?: boolean;
   loading?: 'lazy' | 'eager';
+  width?: '100%';
+  maxWidth?: number;
 };
 
-const ImageBox: FC<Props> = ({ src, ...props }) => {
+const ImageBox: FC<Props> = ({ src, maxWidth, ...props }) => {
   return (
-    <ImgWrapper>
+    <ImgWrapper maxWidth={maxWidth}>
       <StyledImage src={src} {...props} />
     </ImgWrapper>
   );

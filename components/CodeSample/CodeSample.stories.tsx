@@ -1,27 +1,37 @@
 import { Story, Meta } from '@storybook/react';
-import CodeSample, { Props } from './CodeSample';
+import CodeSample from './CodeSample';
+import { CodeSampleProps } from './type';
 
-const Template: Story<Props> = (args) => <CodeSample {...args} />;
+const Template: Story<CodeSampleProps> = (args) => <CodeSample {...args} />;
 
 export const CodeSampleStory = Template.bind({});
 
 CodeSampleStory.args = {
-  code: `
-  {
-    "source": {
-      "type": "network_token",
-      "token": "4242424242424242",
-      "token_type": "vts",
-      "expiry_month": "10",
-      "expiry_year": "2025",
-      "eci": "06",
-      "cryptogram": "AgAAAAAAAIR8CQrXcIhbQAAAAAA"
+  code: `{
+    "destination": {
+      "type": "token",
+      "token": "tok_ihvkileifkzebkgnhkskbglyte",
+      "first_name" : "John",
+      "last_name" : "Smith"
     },
     "amount": 1000,
-    "currency": "USD"
-  }
-    `,
-  language: 'json',
+    "currency": "GBP",
+    "fund_transfer_type": "FD",
+    "reference": "ORD-5023-4E89",
+    "processing": {
+      "senderInformation": {
+        "reference": "87654321",
+        "accountNumber": "12345678",
+        "firstName": "ABC",
+        "lastName": "International",
+        "address": "1 High Street",
+        "city": "London",
+        "country": "GB",
+        "sourceOfFunds": "DepositAccount"
+      }
+    }  
+  }`,
+  language: 'javascript',
 };
 
 export default {

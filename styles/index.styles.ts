@@ -63,6 +63,13 @@ export const MainWrapper = styled.div`
 
 export const Content = styled.article`
   flex-grow: 1;
+  overflow-x: hidden;
+`;
+
+export const PageContent = styled.main`
+  padding: 32px 26px 64px 26px;
+  flex-grow: 1;
+  overflow-x: hidden;
 `;
 
 export const Title = styled(TextHeadingOne)`
@@ -76,6 +83,6 @@ export const Navigation = styled.div`
   position: sticky;
   height: 100%;
   top: 110px;
-  padding: 0 26px 0 52px;
+  padding: 0 26px 0 26px;
   box-sizing: content-box;
 `;

@@ -1,0 +1,775 @@
+---
+title: OXXO
+account: ABC
+---
+
+Start accepting OXXO payments, a popular offline cash payment voucher system in Mexico.
+
+<TipBox variant="info">
+
+If you want to use a gateway model for accepting OXXO payments, you will need to arrange an agreement with our provider, dLocal, and create merchant details (specifically, `x_login` and `x_trans_key`) and a secret key with them. Share these details with our Customer Support team and we'll get you up and running. If you have already been onboarded for one of our other dLocal payment methods, you can use the same credentials.
+
+</TipBox>
+
+---
+
+## Overview
+
+OXXO can be used by either redirecting the customer to a statically hosted ticket (`redirect` integration method) or by rendering the complete ticket within your own checkout flow (`direct` integration method).
+
+Payments follow a two-step process:
+
+1.  [Request payment](#OXXO-requestpayment)
+2.  [Redirect the customer or render the ticket](#OXXO-redirectorrender)
+
+---
+
+## Step 1: Request payment
+
+### The POST request
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/payments`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Body parameters
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Details about the payment source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of payment source. Set this to `oxxo`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.integration_type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of integration. Either `direct` or `redirect`.
+
+*   `direct`: a ticket object is returned, which you can use to render a ticket to the customer. No redirect URL is returned.
+*   `redirect`: a redirect URL is returned. Redirect the customer to this URL to proceed with the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.country`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The two-letter ISO country code of the country in which the payment instrument is issued/operated. Set this to `MX`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.payer`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Details about the customer.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.payer.name`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The customer's full name.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.payer.email`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The customer's email address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.payer.document`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The customer's Mexican personal identity code, specifically the Unique Population Registry Code (CURP).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.payer.description`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+A description of the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="required" />
+<TypeTag type="integer" />
+</TableCell>
+<TableCell>
+
+The payment amount.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `MXN`.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+<tabs>
+<tab title="Redirect" active>
+
+    {
+      "source": {
+        "type": "oxxo",
+        "integration_type": "redirect",
+        "country": "MX",
+        "payer": {
+          "name": "Bruce Wayne",
+          "email": "bruce@wayne-enterprises.com"
+        },
+      "description": "simulate OXXO Demo Payment"
+      },
+      "amount": 100,
+      "currency": "MXN"
+    }
+
+</tab>
+<tab title="Direct">
+
+    {
+      "source": {
+        "type": "oxxo",
+        "integration_type": "direct",
+        "country": "MX",
+        "payer": {
+          "name": "Bruce Wayne",
+          "email": "bruce@wayne-enterprises.com"
+        },
+        "description": "simulate OXXO Demo Payment"
+      },
+      "amount": 100,
+      "currency": "MXN"
+    }
+
+</tab>
+</tabs>
+
+### The POST response
+
+Whether you used the direct or redirect method, you should get a `202` response with the `status` field set to `Pending`. This means your request has been accepted.
+
+#### Response example
+
+<tabs>
+<tab title="Redirect" active>
+
+    {
+      "id": "pay_r2vanwtizkeedc5fesx7ydvdzu",
+      "status": "Pending",
+        "customer": {
+        "id": "cus_oxgvscbkycweplf4pvwhedyeg4"
+      },
+      "_links": {
+          "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_r2vanwtizkeedc5fesx7ydvdzu"
+        },
+        "redirect": {
+          "href": "https://sandbox.dlocal.com/collect/pay/pay/M-4e296cdd-5c0d-4a05-9ae5-850c85a822d6?xtid=CATH-ST-1587996829-1977060731"
+        },
+        "simulator:payment-succeed": {
+          "href": "http://sb-gateway-internal.cko.lon/dlocal-internal/oxxo/payments/pay_r2vanwtizkeedc5fesx7ydvdzu/succeed"
+        },
+        "simulator:payment-expire": {
+          "href": "http://sb-gateway-internal.cko.lon/dlocal-internal/oxxo/payments/pay_r2vanwtizkeedc5fesx7ydvdzu/expire"
+        }
+      }
+    }
+
+</tab>
+<tab title="Direct">
+
+    {
+      "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
+      "status": "Pending",
+      "customer": {
+        "id": "cus_6unw4ulqvrlenduk4xiurlbiyq"
+      },
+      "_links": {
+          "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_gxw65fs6rijepgn4rb5tqqvp5u"
+        }
+      }
+    }
+
+</tab>
+</tabs>
+
+---
+
+## Step 2: Redirect the customer or render the ticket
+
+To complete the payment, you need to provide the customer with a OXXO ticket by following one of two flows:
+
+*   If you used the `redirect` method, [redirect the customer](#OXXO-redirect).
+*   If you used the `direct` method, [render the ticket](#OXXO-render).
+
+### Redirect the customer
+
+<TipBox variant="info">
+
+When using the `redirect` integration method, make sure your customer is aware that they will be redirected to the ticket page when they click your "Pay now" button, and that they should print or save the ticket.
+
+</TipBox>
+
+Using the redirection URL returned in the response above via `_links.redirect`, redirect your customer to the static, hosted OXXO ticket page. Once redirected, your customer should save or print the ticket.
+
+A button on the page will allow them to return to your shop:
+
+*   If the ticket is still valid, they will be redirected to your success URL.
+*   If the ticket has expired, they will be redirected to your failure URL.
+
+<TipBox variant="note">
+
+Your payment confirmation page should make it clear to the customer that their purchase has not yet been completed. Explain that it has been reserved and is pending payment before the order can be completed and the goods/services can be delivered.
+
+</TipBox>
+
+### Render the OXXO ticket
+
+Redirect your customer to your payment confirmation page, where you should summarize their order and render the OXXO ticket so they can complete the payment.
+
+<TipBox variant="note">
+
+Your payment confirmation page should make it clear to the customer that their purchase has not yet been completed. Explain that it has been reserved and is pending payment before the order can be completed and the goods/services can be delivered.
+
+</TipBox>
+
+To get the components necessary to render the ticket, use the ['get payment details' endpoint](#OXXO-getpaymentdetails) below. This will return a `ticket` object which contains the components to display the ticket.
+
+<TipBox title="Tips for displaying the ticket:">
+
+*   Separate the **ticket number** into three groups, like this: four digits - five digits - five digits. It makes it easier for customers to dictate it to cashiers.
+*   Include the **currency** and **amount** on the ticket.
+*   Make sure the **expiry date** is clear and visible, and use the **dd/mm/yyyy** format.
+*   Include **payment instructions** to help customers unfamiliar with the payment process.
+*   A **store locator** is a helpful feature. Just link it to [google.com/maps/search/oxxo/](https://www.google.com/maps/search/oxxo).
+*   Include a **download button** so customers can easily save the ticket on their phone.
+*   Include a **print button** for customers who want to print their ticket.
+
+</TipBox>
+
+Here's an example:
+
+![](/download/attachments/2785394/oxxo-ticket-render-example.png?version=1&modificationDate=1588778972982&api=v2)
+
+---
+
+## Get details about a payment
+
+Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45ymepcr7thciirbdaa`) from the payment response to get details about the payment.
+
+### The GET request
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="SandBox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment ID found in the response of the initial response.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+### The GET response
+
+The response will differ depending on which `integration_type` (`redirect` or `direct`) you used in the initial payment request.
+
+#### Response examples
+
+##### Redirect
+
+<tabs>
+<tab title="Payment pending" active>
+
+    {
+      "id": "pay_r2vanwtizkeedc5fesx7ydvdzu",
+      "requested_on": "2020-04-27T14:13:49Z",
+      "source": {
+        "type": "oxxo",
+        "dlocal_order_id": "dd889cb7f3f1439a960ea165cb48b866",
+        "dlocal_payment_id": "D-30150-fdb35d63-f86a-4593-9e43-349d63c37110",
+        "integration_type": "redirect",
+        "description": "simulate OXXO Demo Payment"
+      },
+      "amount": 100,
+      "currency": "MXN",
+      "payment_type": "Regular",
+      "status": "Pending",
+      "risk": {
+        "flagged": false
+      },
+      "customer": {
+        "id": "cus_oxgvscbkycweplf4pvwhedyeg4"
+      },
+      "_links": {
+          "redirect": {
+          "href": "https://sandbox.dlocal.com/collect/pay/pay/M-4e296cdd-5c0d-4a05-9ae5-850c85a822d6?xtid=CATH-ST-1587996829-1977060731"
+        },
+        "simulator:payment-succeed": {
+          "href": "http://sb-gateway-internal.cko.lon/dlocal-internal/oxxo/payments/pay_r2vanwtizkeedc5fesx7ydvdzu/succeed"
+        },
+        "simulator:payment-expire": {
+          "href": "http://sb-gateway-internal.cko.lon/dlocal-internal/oxxo/payments/pay_r2vanwtizkeedc5fesx7ydvdzu/expire"
+        },
+        "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_r2vanwtizkeedc5fesx7ydvdzu"
+        }
+      }
+    }
+
+</tab>
+<tab title="Payment captured">
+
+    {
+      "id": "pay_r2vanwtizkeedc5fesx7ydvdzu",
+      "requested_on": "2020-04-27T14:13:49Z",
+      "source": {
+        "type": "oxxo",
+        "dlocal_order_id": "dd889cb7f3f1439a960ea165cb48b866",
+        "dlocal_payment_id": "D-30150-fdb35d63-f86a-4593-9e43-349d63c37110",
+        "integration_type": "redirect",
+        "description": "simulate OXXO Demo Payment"
+      },
+      "amount": 100,
+      "currency": "MXN",
+      "payment_type": "Regular",
+      "status": "Captured",
+      "approved": true,
+      "risk": {
+        "flagged": false
+      },
+      "customer": {
+        "id": "cus_oxgvscbkycweplf4pvwhedyeg4"
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_r2vanwtizkeedc5fesx7ydvdzu"
+        },
+        "actions": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_r2vanwtizkeedc5fesx7ydvdzu/actions"
+        },
+        "refund": {
+          "href": "https://api.sandbox.checkout.com/payments/pay_r2vanwtizkeedc5fesx7ydvdzu/refunds"
+        }
+      }
+    }
+
+</tab>
+</tabs>
+
+##### Direct
+
+<tabs>
+<tab title="Payment pending">
+
+  {
+    "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
+    "requested_on": "2020-03-17T09:14:17Z",
+    "source": {
+      "type": "boleto",
+      "dlocal_order_id": "c0e6cc2bf24c43c79fbbee55df293f5c",
+      "dlocal_payment_id": "D-30150-e59f330d-4b92-487c-a09a-3307be2184b7",
+      "ticket": {
+        "type": "REFERENCE_CODE",
+        "number": "9800-0004-8206-53",
+        "expiration_date": "2020-02-10T23:59:00.000+0000",
+        "image_url": "https://sandbox.dlocal.com/gmf/payments/M-cd028b60-4824-11ea-8d66-7fb82c3fe391"
+      }
+    },
+    "amount": 100,
+    "currency": "BRL",
+    "payment_type": "Regular",
+    "status": "Pending",
+    "risk": {
+      "flagged": false
+    },
+    "customer": {
+      "id": "cus_6unw4ulqvrlenduk4xiurlbiyq"
+    },
+    "_links": {
+      "self": {
+        "href": "https://api.sandbox.checkout.com/payments/pay_gxw65fs6rijepgn4rb5tqqvp5u"
+      }
+    }
+  }
+
+</tab>
+</tabs>
+
+---
+
+## Refunds and chargebacks
+
+### Refund a payment
+
+You can refund an OXXO payment using our [refund API](/display/DOCS/Refund+a+payment). Partial and multiple – as well as full – refunds are allowed.
+
+The customer will get an email (the email address is taken from the `source.payer.email` property in the initial payment request) from dLocal asking for their banking details. Once the customer has provided their details, dLocal will transfer the money to the customer's bank account.
+
+The payment status will update to `refunded` and you will receive a `payment_refunded` (or `payment_refund_declined`, if unsuccessful) webhook notification.
+
+A refund processing fee may apply.
+
+### Chargebacks
+
+There is no chargeback mechanism for OXXO.
+
+---
+
+## Webhooks
+
+When using OXXO, you may receive the following webhooks.
+
+<Table>
+<TableHead headers={['Webhooks', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_pending`
+
+</TableCell>
+<TableCell>
+
+Sent when a payment request is successfully initiated.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_capture_pending`
+
+</TableCell>
+<TableCell>
+
+Sent when the acquirer is in the process of accepting the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_captured`
+
+</TableCell>
+<TableCell>
+
+Sent when the payment has been successfully approved.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_expired`
+
+</TableCell>
+<TableCell>
+
+Sent when the customer has failed to complete the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_declined`
+
+</TableCell>
+<TableCell>
+
+Sent when there was a failure in creating the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_refund_pending`
+
+</TableCell>
+<TableCell>
+
+Sent when a refund is successfully initiated.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_refunded`
+
+</TableCell>
+<TableCell>
+
+Sent when a refund is successfully processed.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_refund_declined`
+
+</TableCell>
+<TableCell>
+
+Sent when a refund is declined.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<TipBox variant="info">
+
+Learn more about [webhooks and how to subscribe to them](/display/DOCS/Webhooks).
+
+</TipBox>
+
+---
+
+## Testing OXXO
+
+<TipBox variant="info">
+
+To start testing, you'll need to:
+
+*   [create a test account](https://www.checkout.com/get-test-account), and
+*   contact your Customer Success Manager or Integrations engineer to activate OXXO payments in the sandbox environment.
+
+</TipBox>
+
+In your sandbox environment, you can test payment capture and expiration, as well as refund success and failure.
+
+In order to test these actions, pass the string `"simulate"` as part of the `source.description` field in the initial payment request.
+
+When you do, you will receive additional hypermedia links in the `_links` object in the payment response and in the 'get payment details' response.
+
+Use the URLs contained in the `simulator:payment-succeed`, `simulator:payment-expire`, `simulator:refund-succeed` and `simulator:refund-fail` hypermedia objects to simulate the respective action/state change on the test payment.
+
+You can only test the `redirect` payment flow in sandbox.
