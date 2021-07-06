@@ -75,8 +75,13 @@ type ArticleSettingsType = {
   docsPathUrl: DocsPathItem[];
 };
 
-const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[1-9]+ /, '');
+const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
 const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
+const getFileIndex = (fileName: string) => {
+  const result = fileName.match(/^[0-9]+/);
+
+  return result ? Number(result[0]) : 0;
+};
 
 export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSettingsType => {
   const root = {
@@ -95,7 +100,9 @@ export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSetti
 
     if (currentNode) {
       const { filePath: parentFilePath, path: parentPath } = currentNode;
-      const children = fs.readdirSync(parentFilePath);
+      const children = fs
+        .readdirSync(parentFilePath)
+        .sort((a, b) => getFileIndex(a) - getFileIndex(b));
 
       for (const child of children) {
         const filePath = `${parentFilePath}/${child}`;
