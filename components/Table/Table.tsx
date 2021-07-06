@@ -16,7 +16,7 @@ import { TableSubheadProps, TableTicCellProps } from './types';
 const TableHead: FC<{ headers: string[] }> = ({ headers }) => {
   return (
     <thead>
-      <TableRow role="row">
+      <TableRow>
         {headers.map((title) => (
           <StyledTH key={title}>{title}</StyledTH>
         ))}

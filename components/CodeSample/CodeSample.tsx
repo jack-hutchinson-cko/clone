@@ -16,6 +16,8 @@ const CodeSample: FC<CodeSampleProps> = ({
   withBorder = true,
 }) => {
   const [isCopied, setIsCopied] = useState(true);
+  // this is for converting the string 'true' or 'fasle' to Boolean type
+  const isWithBorder = typeof withBorder === 'boolean' ? withBorder : withBorder === 'true';
 
   const onToggleHandler = useCallback(() => {
     setIsCopied(!isCopied);
@@ -39,7 +41,7 @@ const CodeSample: FC<CodeSampleProps> = ({
             getLineProps={getLineProps}
             getTokenProps={getTokenProps}
             isCollapsible={isCollapsible}
-            withBorder={withBorder}
+            withBorder={isWithBorder}
           />
         )}
       </Highlight>

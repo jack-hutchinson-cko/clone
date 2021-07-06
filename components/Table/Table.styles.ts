@@ -1,18 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ThemeType } from 'constants/theme';
 
 import { SubheadBackgroundColor } from './types';
 
-export const Table = styled.table`
+export const Table = styled.table<{ withTopBorder?: boolean }>`
   table-layout: fixed;
   width: 100%;
   color: ${({ theme }) => theme.colors.success};
   border-radius: 8px;
+  border-spacing: 1px;
   font-size: 16px;
   text-align: left;
   vertical-align: top;
   line-height: 24px;
-  border-spacing: 1px;
   background-color: ${({ theme }) => theme.colors.greyLight};
 
   & tr th p {
@@ -22,6 +22,22 @@ export const Table = styled.table`
     font-size: 16px;
     line-height: 24px;
   }
+
+  ${({ withTopBorder = true }) =>
+    withTopBorder
+      ? css`
+          tr > th:first-child {
+            border-radius: 8px 0 0 0;
+          }
+
+          tr > th:last-child {
+            border-radius: 0 8px 0 0;
+          }
+        `
+      : css`
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        `}
 `;
 
 export const TableBody = styled.tbody`
@@ -51,14 +67,6 @@ export const TableCell = styled.td`
 export const TableRow = styled.tr`
   min-width: 8px;
   background-color: ${({ theme }) => theme.colors.white};
-
-  & > th:first-child {
-    border-radius: 8px 0 0 0;
-  }
-
-  & > th:last-child {
-    border-radius: 0 8px 0 0;
-  }
 `;
 
 export const StyledTH = styled.th`

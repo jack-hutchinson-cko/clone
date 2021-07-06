@@ -5,6 +5,10 @@ export const StyledLineCodeWrapper = styled.div`
   padding: 15px;
   color: ${({ theme }) => theme.colors.base};
   background: ${({ theme }) => theme.colors.codeLabelBackground};
+  border-end-start-radius: 8px;
+  border-end-end-radius: 8px;
+  white-space: nowrap;
+  overflow: auto;
 
   div,
   p {

@@ -37,6 +37,7 @@ import ImageBox from 'components/ImageBox';
 import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
 import Iframe from 'components/Iframe';
 import CardLink from 'components/CardLink';
+import CardWrapper from 'components/CardWrapper';
 import Tic from 'components/Tic';
 
 export const mdxComponents = {
@@ -87,6 +88,7 @@ export const mdxComponents = {
   ButtonLink,
   ContentPanel: withBlockMargin(ContentPanel),
   CardLink,
+  CardWrapper: withBlockMargin(CardWrapper),
   Tic: withBlockMargin(Tic),
 };
 

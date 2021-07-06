@@ -11,6 +11,7 @@ export type Props = {
   imgAlt?: string;
   imgWidth?: number;
   imgHeight?: number;
+  eCommerceCard?: boolean;
 };
 
 const ContentPanel: FC<Props> = ({
@@ -19,9 +20,10 @@ const ContentPanel: FC<Props> = ({
   imgSrc,
   imgAlt = '',
   imgWidth = DefaultImageWidth,
+  eCommerceCard = false,
 }) => {
   return (
-    <Container>
+    <Container isECommerceCard={eCommerceCard}>
       <ImageWrapper width={imgWidth}>
         <ImageBox src={imgSrc} alt={imgAlt} layout="fill" />
       </ImageWrapper>
