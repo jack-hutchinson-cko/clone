@@ -26,7 +26,7 @@ const ContentPanel: FC<Props> = ({
         <ImageBox src={imgSrc} alt={imgAlt} layout="fill" />
       </ImageWrapper>
       <div>
-        <Title>{title}</Title>
+        {title ? <Title>{title}</Title> : null}
         {children}
       </div>
     </Container>

@@ -4,8 +4,8 @@ import Image from 'next/image';
 // TODO implement response for img
 export const StyledImage = styled(Image)`
   object-fit: contain;
-  width: auto !important;
-  min-width: auto !important;
+  width: 100% !important;
+  min-width: 100% !important;
   position: relative !important;
   height: unset !important;
 `;
