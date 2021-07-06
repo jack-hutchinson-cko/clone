@@ -1,0 +1,290 @@
+---
+title: File uploader
+account: ABC
+---
+
+Our file uploader allows you to upload files to Checkout.com. You can then use these to [provide evidence in a dispute](/display/DOCS/Disputes+API).
+
+---
+
+## Upload a file
+
+Upload a file to use as evidence in a dispute. Your request must be multipart/form-data and the file must be in either JPEG/JPG, PNG or PDF format, and no larger than 4MB.
+
+### The POST request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/files`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/files`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Additional parameters
+
+<Table>
+<TableHead headers={['Parameter', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`file`
+
+<StatusTag type="required" />
+<TypeTag type="string" /> (BINARY)
+</TableCell>
+<TableCell>
+
+The path of the file to upload, and its type.
+
+This must be a local path.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`purpose`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The purpose of the file upload. You must set this to `dispute_evidence`.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+<tabs>
+<tab title="cURL">
+
+```
+      curl https://api.sandbox.checkout.com/files
+      -H "Authorization: sk_11111111-2222-3333-4444-555555555555"
+      -F "file=@/path/receipt.png;type=image/png"
+      -F "purpose=dispute_evidence"
+```
+
+</tab>
+<tab title="C#">
+
+```
+  public static async Task Main(string[] args)
+  {
+    using (var httpClient = new HttpClient())
+      {
+        httpClient.DefaultRequestHeaders.Add("Authorization", "sk_11111111-2222-3333-4444-555555555555");
+        using (var form = new MultipartFormDataContent())
+          {
+            using (var fileStream = new FileStream("test.png", FileMode.Open))
+            {
+              var streamContent = new StreamContent(fileStream);
+              streamContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+              form.Add(streamContent, "File", "test.png");
+              form.Add(new StringContent("dispute_evidence"), "purpose");
+              var response = await httpClient.PostAsync("https://api.sandbox.checkout.com/files", form);
+              Console.WriteLine(response.StatusCode);
+              string responseContent = await response.Content.ReadAsStringAsync();
+              Console.WriteLine(responseContent);
+            }
+          }
+      }
+  }
+```
+
+</tab>
+</tabs>
+
+#### The POST response
+
+If the response returns a file `id`, your request was successful. Take a look at the example response below.
+
+#### Response example
+
+```json
+    {
+      "id": "file_6lbss42ezvoufcb2beo76rvwly",
+      "_links": {
+        "self": {
+          "href": "https://api.sandbox.checkout.com/files/file_6lbss42ezvoufcb2beo76rvwly"
+        }
+      }
+    }
+```
+
+---
+
+## Get file information
+
+Use the following endpoint to retrieve information about a file that you've uploaded.
+
+### The GET request
+
+#### Endpoints
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/files/{file_id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/files/{file_id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`file_id`
+
+<StatusTag type="required" />
+<TypeTag type="string" /> (FILE)
+</TableCell>
+<TableCell>
+
+The file identifier. It is always prefixed by `file_`.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+```
+    curl https://api.sandbox.checkout.com/files/file_6lbss42ezvoufcb2beo76rvwly
+        -H "Authorization: sk_11111111-2222-3333-4444-555555555555"
+```
+
+### The GET response
+
+If the response returns a file `id`, your request was successful.
+
+#### Response example
+
+```json
+    {
+      "id": "file_6lbss42ezvoufcb2beo76rvwly",
+      "filename": "receipt.png",
+      "purpose": "dispute_evidence",
+      "size": 1024,
+      "uploaded_on": "2016-05-17T16:48:52.000Z",
+      "_links": {
+        "self": {
+          "href": "https://api.sandbox.checkout.com/files/file_6lbss42ezvoufcb2beo76rvwly"
+        },
+        "download": {
+          "href": "https://checkout-file-upload.s3.eu-west-2.amazonaws.com/ucdac/ucdac/6lbss42ezvoufcb2beo76rvwly?X-Amz-Expires=3600&x-amz-security-token=FQoDYXdzENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEa"
+        }
+      }
+    }
+```
