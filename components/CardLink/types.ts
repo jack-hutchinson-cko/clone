@@ -3,5 +3,4 @@ export type Props = {
   href: string;
   title?: string;
   linkName?: string;
-  layout: 'fill';
 };

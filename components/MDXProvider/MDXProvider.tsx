@@ -85,7 +85,7 @@ export const mdxComponents = {
   AccordionBody,
   img: withBlockMargin(ImageBox),
   Iframe: withBlockMargin(Iframe),
-  ButtonLink,
+  ButtonLink: withBlockMargin(ButtonLink),
   ContentPanel: withBlockMargin(ContentPanel),
   CardLink,
   CardWrapper: withBlockMargin(CardWrapper),

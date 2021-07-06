@@ -47,10 +47,7 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
   }
 
   a {
-    display: block;
-    &:not(:first-of-type) {
-      margin-top: 8px;
-    }
+    margin: 0;
   }
 `;
 
@@ -65,4 +62,5 @@ export const Title = styled.span`
 export const ImageWrapper = styled.div<{ width: number }>`
   display: block;
   min-width: ${({ width }) => width}px;
+  width: ${({ width }) => width}px;
 `;
