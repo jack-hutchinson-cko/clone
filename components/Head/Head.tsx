@@ -7,7 +7,7 @@ type Props = {
 
 const PageHead: FC<Props> = ({ title }) => (
   <Head>
-    <title>{title}</title>
+    <title>{title} - Docs</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -15,7 +15,7 @@ const PageHead: FC<Props> = ({ title }) => (
 );
 
 PageHead.defaultProps = {
-  title: 'Checkout.com - Docs',
+  title: 'Checkout.com',
 };
 
 export default PageHead;
