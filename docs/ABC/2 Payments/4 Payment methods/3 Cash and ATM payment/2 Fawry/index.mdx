@@ -7,7 +7,7 @@ Start accepting payments using Fawry, the dominant payment method in Egypt.
 
 <TipBox>
 
-Shoppers can now make Fawry payments via the myFawry app (App Store and Google Play), rather than having to take their payment reference to a shop or ATM, meaning a better payment experience for both you and your customers.
+Shoppers can now make Fawry payments via the myFawry app ([App Store](https://apps.apple.com/de/app/myfawry/id1462911630?l=en) and [Google Play](https://play.google.com/store/apps/details?id=com.fawry.myfawry&hl=en&gl=US)), rather than having to take their payment reference to a shop or ATM, meaning a better payment experience for both you and your customers.
 
 </TipBox>
 
@@ -21,12 +21,11 @@ To start accepting Fawry payments, please contact your Customer Success Manager.
 
 ## Request a payment
 
-
-### The POST request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -36,7 +35,7 @@ Use the details below to set up your request.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -45,269 +44,7 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `EGP`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `fawry`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.description`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A description of the payment.
-
-Less than or equal to 265 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.customer_mobile`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's mobile number. The number must:
-
-*   Contain only digits. No spaces, dashes, etc.
-*   Be an Egyptian mobile number.
-*   Not include the country code.
-*   Be 11 digits in total, starting with the three-digit operator code.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.customer_email`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's email address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.customer_profile_id`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The profile ID that the merchant has assigned to the customer.
-
-Alphanumeric characters only.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.expires_on`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Use to set a date and time (UTC, in ISO 8601 format) on which the payment will expire.
-
-This overrides the expiration period you specified during onboarding.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.products`
-
-<StatusTag type="required" />
-<TypeTag type="array" />
-</TableCell>
-<TableCell>
-
-An array of Fawry product objects.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.product_id`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The product's ID.
-
-Less than or equal to 265 characters
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.quantity`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The quantity of product being purchased.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.price`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The unit price of the product.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.description`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A description of the product.
-
-Less than or equal to 265 characters.
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Request example
+### Request example
 
 ```json
     {
@@ -330,13 +67,11 @@ Less than or equal to 265 characters.
     }
 ```
 
-### The POST response
+### Response example
 
 If you receive a `202 Success` response containing a `status` field set to `Pending`, your request was successful.
 
 In addition, you will receive `payment_pending` and `payment_capture_pending` webhook notifications. And, when the customer completes the Fawry payment in a timely manner at a point of sale, you will get a `payment_captured` webhook notification to confirm that the payment has completed.
-
-#### Response example
 
 ```json
     {
@@ -365,9 +100,9 @@ The payment will remain pending for the duration that you agreed when you onboar
 
 You can retrieve details about an existing Fawry payment with the following endpoint.
 
-### The GET request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -377,7 +112,7 @@ You can retrieve details about an existing Fawry payment with the following endp
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}`
@@ -386,70 +121,7 @@ You can retrieve details about an existing Fawry payment with the following endp
 </tab>
 </tabs>
 
-#### Header and path parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`reference_number`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The reference number you received in the response to the 'get payment details' request.
-
-If successful, you will receive a `payment_canceled` webhook notification.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
+### Response example
 
 ```json
     {
@@ -522,7 +194,7 @@ Use the `reference_number` from the above response to test capturing a payment.
 #### Endpoint
 
 <tabs>
-<tab title="SandBox" active>
+<tab title="Sandbox" active>
 <LineCodeWrapper type="put">
 
 `https://api.sandbox.checkout.com/fawry/payments/{reference_number}/approval`

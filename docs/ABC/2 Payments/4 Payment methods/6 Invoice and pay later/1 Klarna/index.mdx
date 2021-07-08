@@ -37,9 +37,7 @@ If, however, your checkout process is designed in a way that you don't have all 
 
 When you create a session, you will receive the available `payment_method_categories`, a `session_id` and a `client_token`. You can use the `session_id` to update the session using our API, and the `client_token` should be passed to the browser. A session is valid for 48 hours.
 
-### The POST request
-
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live" active>
@@ -49,7 +47,7 @@ When you create a session, you will receive the available `payment_method_catego
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/klarna-external/credit-sessions`
@@ -854,6 +852,8 @@ When you're processing a transaction via Klarna, you must **only capture the pay
 
 #### Endpoints
 
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
 <tabs>
 <tab title="Live" active>
 <LineCodeWrapper type="post">
@@ -862,7 +862,7 @@ When you're processing a transaction via Klarna, you must **only capture the pay
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -870,344 +870,6 @@ When you're processing a transaction via Klarna, you must **only capture the pay
 </LineCodeWrapper>
 </tab>
 </tabs>
-
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`capture`
-
-<StatusTag type="optional" />
-<TypeTag type="boolean" />
-</TableCell>
-<TableCell>
-
-Choose whether or not to capture the payment.
-
-Defaults to `true`, but must be `false` in this case.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `klarna`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.authorization_token`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The Klarna authorization token, which you received when you authorized the order.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.locale`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's locale (RFC 1766 code).
-
-Default value taken from your business settings.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.purchase_country`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The country in which the purchase is being made (two-letter ISO 3166 code).
-
-Default value taken from your business settings.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.auto_capture`
-
-<StatusTag type="optional" />
-<TypeTag type="boolean" />
-</TableCell>
-<TableCell>
-
-Allows you to trigger auto-capture of the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.tax_amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The total tax amount for the order.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.billing_address`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer's billing address.
-
-This object is passed directly to Klarna as `billing_address`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.shipping_address`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer's shipping address.
-
-This object is passed directly to Klarna as `shipping_address`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.customer`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer.
-
-This object is passed directly to Klarna as `customer`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.products`
-
-<StatusTag type="required" />
-<TypeTag type="array" />
-</TableCell>
-<TableCell>
-
-Details about the order.
-
-This object is passed directly to Klarna as `order_lines`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.merchant_reference1`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Use this to store an internal order number or other reference. If set, this will be shown on the confirmation page as `order number`.
-
-Up to 255 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.merchant_reference2`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Use this to store an internal order number or other reference.
-
-Up to 255 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.merchant_data`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Pass-through field.
-
-Up to 1024 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.attachment`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Additional purchase information required for some industries.
-
-This object is passed directly to Klarna as `attachment`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.attachment`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Additional purchase information required for some industries.
-
-This object is passed directly to Klarna as `attachment`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 #### Request example
 
@@ -1314,6 +976,9 @@ If you're shipping goods, it's a good idea to include the `shipping_info` for tr
 
 #### Endpoints
 
+You can find the full list, as well as complete request and response examples, in our API reference.
+
+
 <tabs>
 <tab title="Live" active>
 <LineCodeWrapper type="post">
@@ -1322,7 +987,7 @@ If you're shipping goods, it's a good idea to include the `shipping_info` for tr
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/klarna-external/orders/{payment_id}/captures`
@@ -1597,7 +1262,7 @@ Klarna supports both partial and full refunds. You can refund a payment through 
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/klarna-external/orders/{payment_id}/voids`

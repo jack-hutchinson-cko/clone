@@ -6,12 +6,11 @@ description: Start accepting payments via Visa and Mastercard network tokens.
 
 You can use Visa or Mastercard network tokens to make payments through the unified payments endpoint.
 
-
-### The POST request
-
 Use the details below to set up a payment request using a network token.
 
-#### Endpoints
+## Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -21,7 +20,7 @@ Use the details below to set up a payment request using a network token.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -30,145 +29,7 @@ Use the details below to set up a payment request using a network token.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<TypeTag type="object" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`token`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The network token PAN.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`expiry_month`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The two-digit expiry month of the token.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`expiry_year`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The four-digit expiry year of the token.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`token_type`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The type of token. Set this to vts for Visa or mdes for Mastercard.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`eci`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The Electronic Commerce Indicator security level associated with the token. Optional if `previous_payment_id` is specified and `3ds.enabled` is `false`.
-
-For more information, see [stored card details](/display/DOCS/Requirements+for+stored+payment+details).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`cryptogram`
-
-<TypeTag type="string" />
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-Cryptographic identifier used by card schemes to validate the token verification result. Optional if `previous_payment_id` is specified and `3ds.enabled` is `false`.
-
-For more information, see [stored card details](/display/DOCS/Requirements+for+stored+payment+details).
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
+## Request example
 
 ```json
     {
@@ -186,7 +47,7 @@ For more information, see [stored card details](/display/DOCS/Requirements+for+s
     }
 ```
 
-### The POST response
+## Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -197,8 +58,6 @@ If you received a `202` response, the payment requires a redirect. For example, 
   A successful response will include a `payment_account_reference` value, which is a unique reference to the underlying card for network tokens. If the card scheme provided us with an `eci` value, it will be included in the response. The value indicates the security level with which the card scheme decided to authorize the payment.
 
 </TipBox>
-
-#### Response example
 
 ```json
     {

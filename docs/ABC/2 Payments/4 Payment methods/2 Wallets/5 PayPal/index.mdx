@@ -23,11 +23,9 @@ PayPal payments follow a two-step process:
 
 ## Request a payment
 
-### The POST request
+### Endpoints
 
-Use the details below to set up your request.
-
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -37,7 +35,7 @@ Use the details below to set up your request.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -46,174 +44,7 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `paypal`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.invoice_number`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Your unique internal invoice number or tracking ID.
-
-Using the same value in the optional `reference` field will help you match up the transactions across your Hub and PayPal accounts.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.recipient_name`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The full name of the shipment's recipient, if applicable.
-
-If provided, the `shipping.address` field becomes required.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.logo_url`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The URL for your logo. Your logo will appear at the top of the cart review area.
-
-Use a graphic file format, such as .gif, .jpeg or .png, and host the image on a secure (`https`) server. Character limit: 127 alphanumeric characters. Width: 190px. Height: 60px.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.stc`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-These details are used by PayPal to perform a pre-transaction risk management evaluation. The property names should match those you agreed with PayPal.
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Request example
+### Request example
 
 ```json
     {
@@ -232,7 +63,7 @@ These details are used by PayPal to perform a pre-transaction risk management ev
     }
 ```
 
-### The POST response
+### Response example
 
 If you receive a `202 Success` response containing a `status` field set to `Pending`, your request was successful.
 
@@ -274,11 +105,11 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### The GET request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -288,7 +119,7 @@ Use the details below to set up your request.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}`
@@ -297,68 +128,7 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial response
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
+### Response example
 
 ```json
     {

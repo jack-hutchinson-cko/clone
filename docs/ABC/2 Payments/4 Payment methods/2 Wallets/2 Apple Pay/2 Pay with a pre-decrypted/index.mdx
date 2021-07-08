@@ -1,14 +1,15 @@
 ---
 title: Pay with a pre-decrypted
+account: ABC
 ---
 
-We also support the ability to make payments using Google Pay tokens that you have decrypted. To make use of this feature, use the `network_token` source type and specify the `token_type` as `googlepay`. This source type allows you to provide the details about the token, as well as the cryptogram and ECI value obtained from the Google Pay token.
+We also support the ability to make payments using Apple Pay tokens that you have decrypted. To make use of this feature, use the `network_token` source type and specify the `token_type` as `applepay`. This source type allows you to provide the details about the token, as well as the cryptogram and ECI value obtained from the Apple Pay token.
 
 Use the details below to set up your request.
 
 ## Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+For the full API specification, see the [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
 
 <tabs>
 <tab title="Live" active>
@@ -34,7 +35,7 @@ You can find the full list, as well as complete request and response examples, i
       "source": {
         "type": "network_token",
         "token": "4242424242424242",
-        "token_type": "googlepay",
+        "token_type": "applepay",
         "expiry_month": "10",
         "expiry_year": "2025",
         "eci": "06",

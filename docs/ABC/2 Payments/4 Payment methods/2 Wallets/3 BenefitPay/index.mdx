@@ -24,8 +24,6 @@ You can process a BenefitPay payment in two steps:
 
 ## Request a payment
 
-### The POST request
-
 Use the details below to set up your request.
 
 You can request either a **web payment** or a **mobile payment** by setting the `source.integration_type` field to `web` or `mobile`.
@@ -36,7 +34,9 @@ If you opt for a mobile payment, the customer can pay with the BenefitPay mobile
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
 
 <tabs>
 <tab title="Live" active>
@@ -46,7 +46,7 @@ If you opt for a mobile payment, the customer can pay with the BenefitPay mobile
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -55,140 +55,22 @@ If you opt for a mobile payment, the customer can pay with the BenefitPay mobile
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `BHD`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `benefitpay`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.integration_type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of BenefitPay integration. Set this to `web` for a web payment, or `mobile` for a mobile payment.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Web payment" active>
 
 <Box horizontal="sm" vertical="sm">
 
-    {
+```json
+{
       "amount": 1000,
       "currency": "BHD",
       "source": {
       "type": "benefitpay",
       "integration_type": "web"
-    }
+}
+```
 
 </Box>
 
@@ -197,25 +79,25 @@ The type of BenefitPay integration. Set this to `web` for a web payment, or `mob
 
 <Box horizontal="sm" vertical="sm">
 
-    {
+```json 
+{
       "amount": 1000,
       "currency": "BHD",
       "source": {
         "type": "benefitpay",
         "integration_type": "mobile"
       }
-    }
+}
+```
 
 </Box>
 
 </tab>
 </tabs>
 
-### The POST response
+### Response example
 
 If you receive a 202 response with "status": "Pending", BenefitPay has accepted your transaction request. We will also send you `payment_pending` and `payment_capture_pending` webhooks to confirm.
-
-#### Response example
 
 ```json
     {
@@ -256,7 +138,7 @@ Use the details below to get the `source.qr_data`.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}`
@@ -265,68 +147,7 @@ Use the details below to get the `source.qr_data`.
 </tab>
 </tabs>
 
-#### Header and path parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial response.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
+### Response example
 
 ```json
     {
@@ -437,7 +258,7 @@ Learn more about [webhooks and how to subscribe to them](/display/DOCS/Webhooks)
 
 ## Testing BenefitPay
 
-<TipBox variant="info">
+<TipBox variant="note">
 
 To start testing, you'll need to:
 
@@ -451,6 +272,76 @@ To start testing, you'll need to:
 3.  Download BenefitPay's simulator app.
 4.  Scan the QR code with the app to capture and complete the test payment.
 
-**Downloading BenefitPay's mobile app**
+
+<TipBox variant="info" title="Downloading BenefitPay's mobile app">
 
 To download BenefitPay's simulator app, simply provide BenefitPay with an account ID (either a Google Play Store ID or an Apple ID) and then, once you've installed it, supply a mobile number to complete your registration.
+
+</TipBox>
+
+### BenefitPay test cards
+
+You can use one of the following test cards in your sandbox environment. See our [testing guide](https://docs.checkout.com/testing) for more information.
+
+<Table>
+<TableHead headers={['Card', 'Number', 'Response']}/>
+<TableBody>
+<TableRow>
+<TableCell>
+        
+Visa
+
+</TableCell>
+<TableCell>
+
+`4600 41## #### ####`
+
+</TableCell>
+<TableCell>
+
+Successful
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Visa
+
+</TableCell>
+<TableCell>
+
+`4550 12## #### ####`
+
+</TableCell>
+<TableCell>
+
+Declined (Expired card)
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Visa
+
+</TableCell>
+<TableCell>
+
+`4415 55## #### ####`
+
+</TableCell>
+<TableCell>
+
+Declined (Insufficient funds)
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<TipBox varian="info">
+
+Use any future expiry date and PIN code to add the cards into your test wallet. Replace `#` with random numbers and ensure that your card number length is 16 digits.
+
+</TipBox>

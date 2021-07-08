@@ -22,7 +22,11 @@ Before you get started with Apple Pay, you need the following:
 
 ### Step 1: Create your merchant IDs in your Apple Pay Developer account
 
+<TipBox variant="info">
+
 We recommend that you create separate merchant IDs for your test environment and for your live/production environment.
+
+</TipBox>
 
 1.  In your Apple Developer account, go to the [_Add Merchant IDs_ section](https://developer.apple.com/account/resources/identifiers/add/merchant), select **Merchant IDs** and click **Continue**.
 2.  Add a useful description, like `merchant id for test environment`.
@@ -43,7 +47,11 @@ We recommend that you create separate merchant IDs for your test environment and
 
 ### Step 3: Validate your domain
 
+<TipBox variant="info">
+
 You must have a valid SSL certificate on your domain (meaning it begins with `https`).
+
+</TipBox>
 
 1.  Log in to your Apple Developer account, go to the [_Merchant IDs list_ section](https://developer.apple.com/account/resources/identifiers/list/merchant) and click on the merchant ID you created in step 1.
 2.  Under the _Merchant Domains_ section, click **Add Domain**.
@@ -77,11 +85,19 @@ If you followed the above steps correctly, you should now have the following:
 *   A domain verified by Apple.
 *   A `.key` and a `.pem` certificate file.
 
+<TipBox variant="info">
+
 We recommend that you repeat the above steps so you have a merchant ID, domain (it can be the same domain) and certificates for your test environment and your production environment. You should use descriptive names for each environment to avoid mismatches.
+
+</TipBox>
 
 ### Integrate with Apple Pay
 
+<TipBox variant="info">
+
 If you use an e-commerce platform where we support Apple Pay, like Magento or WooCommerce, the files and certificates you got in the configuration process above are enough to complete your integration. Just follow the instructions provided by your particular platform.
+
+</TipBox>
 
 Follow Apple Pay's integration documentation to integrate Apple Pay:
 
