@@ -1,17 +1,20 @@
-import React, { FC, useState, MouseEvent } from 'react';
+import React, { FC, useState, MouseEvent, useRef } from 'react';
 import { IconActionChevronDown } from '@cko/icons';
-import { StyledAccordionBody } from './AccordionBody';
 import { StyledAccordionHead } from './AccordionHead';
-import { StyledAccordion } from './Accordion.styles';
+import { StyledAccordion, AccordionBodyWrapper } from './Accordion.styles';
 import { AccordionProps } from './types';
+import { getHeightOfInnerContent } from './utils';
 
 const Accordion: FC<AccordionProps> = ({ title = null, isExpanded, children, ...props }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
+  const bodyElement = useRef(null);
 
   const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setOpen(!isOpen);
   };
+
+  const height = getHeightOfInnerContent(bodyElement.current);
 
   if (title) {
     return (
@@ -20,7 +23,9 @@ const Accordion: FC<AccordionProps> = ({ title = null, isExpanded, children, ...
           <div>{title}</div>
           <IconActionChevronDown />
         </StyledAccordionHead>
-        <StyledAccordionBody isOpen={isOpen}>{children}</StyledAccordionBody>
+        <AccordionBodyWrapper height={isOpen ? height : 0}>
+          <div ref={bodyElement}>{children}</div>
+        </AccordionBodyWrapper>
       </StyledAccordion>
     );
   }

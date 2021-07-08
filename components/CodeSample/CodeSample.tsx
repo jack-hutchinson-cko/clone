@@ -9,12 +9,7 @@ import PreLine from './PreLine';
 
 const timeout = 3000;
 
-const CodeSample: FC<CodeSampleProps> = ({
-  code,
-  language,
-  isCollapsible = false,
-  withBorder = true,
-}) => {
+const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible, withBorder }) => {
   const [isCopied, setIsCopied] = useState(true);
   // this is for converting the string 'true' or 'fasle' to Boolean type
   const isWithBorder = typeof withBorder === 'boolean' ? withBorder : withBorder === 'true';
@@ -47,6 +42,11 @@ const CodeSample: FC<CodeSampleProps> = ({
       </Highlight>
     </HighlightContainer>
   );
+};
+
+CodeSample.defaultProps = {
+  isCollapsible: true,
+  withBorder: true,
 };
 
 export default CodeSample;

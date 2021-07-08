@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import ButtonLink from 'components/ButtonLink';
@@ -96,6 +96,15 @@ type Props = {
   source: MDXRemoteSerializeResult;
 };
 
-const MDXProvider: FC<Props> = ({ source }) => <MDXRemote {...source} components={mdxComponents} />;
+const MDXProvider: FC<Props> = ({ source }) => {
+  // because of bug in MDXRemote
+  const [key, setKey] = useState(1);
+
+  useEffect(() => {
+    setKey(2);
+  }, []);
+
+  return <MDXRemote key={key} {...source} components={mdxComponents} />;
+};
 
 export default MDXProvider;

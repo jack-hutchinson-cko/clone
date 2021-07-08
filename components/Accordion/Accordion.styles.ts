@@ -6,3 +6,9 @@ export const StyledAccordion = styled.div`
   color: ${({ theme }) => theme.colors.success};
   font-family: inherit;
 `;
+
+export const AccordionBodyWrapper = styled.div<{ height: number }>`
+  height: ${({ height }) => `${height}px`};
+  overflow-y: hidden;
+  transition: height 1s ease;
+`;

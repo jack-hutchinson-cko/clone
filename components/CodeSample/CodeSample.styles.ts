@@ -2,17 +2,13 @@ import styled from 'styled-components';
 import { Text } from '@cko/primitives';
 import { IconActionChevronDown } from '../Icons/Icons';
 
-export const Pre = styled.pre<{
-  lineToShow: number;
-  isOpen: boolean;
-  isCollapsible: boolean;
-  checkLengthWithCollabsible: boolean;
+export const PreWrapper = styled.div<{
   withBorder: boolean;
+  showBlurBackground: boolean;
 }>`
   background: ${({ theme }) => theme.colors.codeLabelBackground};
   line-height: 24px;
   padding: 24px;
-  overflow-y: hidden;
   margin: 0;
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
   border: ${({ withBorder, theme }) =>
@@ -20,8 +16,7 @@ export const Pre = styled.pre<{
   &:after {
     content: '';
     width: 100%;
-    display: ${({ isCollapsible, checkLengthWithCollabsible, isOpen }) =>
-      isCollapsible && checkLengthWithCollabsible && !isOpen ? 'block' : 'none'};
+    display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
     top: 0;
     left: 0;
@@ -34,6 +29,17 @@ export const Pre = styled.pre<{
     );
     pointer-events: none;
   }
+`;
+
+export const Pre = styled.pre<{
+  height: number;
+  showBlurBackground: boolean;
+}>`
+  margin: 0;
+  height: ${({ height }) => `${height}px`};
+  transition: height 1s ease;
+  overflow-y: hidden;
+  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'auto')};
 `;
 
 export const Line = styled.div`
