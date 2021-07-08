@@ -46,11 +46,15 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 5.  Select **API - v2.0**.
 6.  Tick **Select all**, then click **Create webhook**.
 
-<img maxWidth={300} src="/docs/Integrate/sfcc-create_webhook.png" alt="SFCC Create Webhook" />
+<img
+  maxWidth={300}
+  src="/docs/Integrate/Salesforce/sfcc-create_webhook.png"
+  alt="SFCC Create Webhook"
+/>
 
 7. Click on the webhook you just created, and make a note of the private shared API key.
 
-<img maxWidth={400} src="/docs/Integrate/sfcc-webhook.png" alt="SFCC Webhook" />
+<img maxWidth={400} src="/docs/Integrate/Salesforce/sfcc-webhook.png" alt="SFCC Webhook" />
 
 ---
 
@@ -69,7 +73,7 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 SFRA example:
 
-<img maxWidth={700} src="/docs/Integrate/Frame+2366.png" />
+<img maxWidth={700} src="/docs/Integrate/Salesforce/Frame+2366.png" />
 
 ### Import the metadata
 
@@ -80,12 +84,11 @@ SFRA example:
 3.  Navigate back to the package's root folder, and zip the `metadata` folder.
 4.  Next, log in to Business Manager and go to **Administration > Site Development > Site Import & Export**.
 5.  Under *Upload Archive*, select **Local** and then click **Choose file**.
-6.  Find the `metadata.zip` you just created, click **Open** and then **Upload**.  
-
+6.  Find the `metadata.zip` you just created, click **Open** and then **Upload**.
 
 <img
   maxWidth={700}
-  src="/docs/Integrate/sfcc-site_import_export.png"
+  src="/docs/Integrate/Salesforce/sfcc-site_import_export.png"
   alt="SFCC Site Import Export"
 />
 
@@ -134,7 +137,11 @@ The [Checkout.com](http://Checkout.com) credit card form is not compatible with 
 2.  Enter the public key, secret key, and private shared key from your sandbox Hub account, and click **Save**.
 3.  Go back to the custom site preferences page and click **Checkout.com Global Settings**.
 
-<img maxWidth={700} src="/docs/Integrate/sfcc-account_settings.png" alt="SFCC Account settings" />
+<img
+  maxWidth={700}
+  src="/docs/Integrate/Salesforce/sfcc-account_settings.png"
+  alt="SFCC Account settings"
+/>
 
 4.  Make sure *Enable* is set to **Yes**, to enable the Checkout.com card payment form.
 5.  Set *Mode* to **Sandbox**, so you can start testing card payments.

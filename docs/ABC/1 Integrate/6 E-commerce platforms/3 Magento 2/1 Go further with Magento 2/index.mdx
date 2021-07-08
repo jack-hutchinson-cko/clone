@@ -55,7 +55,7 @@ We currently support the following payment methods on Magento 2:
 
 <img
   maxWidth={800}
-  src="/docs/Integrate/alternative_payments_magento_2.png"
+  src="/docs/Integrate/Magento 2/alternative_payments_magento_2.png"
   title="Alternative Payments Magento 2"
 />
 
@@ -133,7 +133,7 @@ If you enable this feature, every transaction will trigger a 3D Secure (3DS) che
 2.  Set *Save Card Option* to **Yes** if you want to allow your customers to save their cards for future payments. They can then use the same card on your website without re-entering the details.
 3.  Next, go to _Saved Card Payment_s and expand it.
 
-<img src="/docs/Integrate/saved_card_payments.png" title="Saved Card Payments" />
+<img src="/docs/Integrate/Magento 2/saved_card_payments.png" title="Saved Card Payments" />
 
 4.  Set *Vault Enabled* to **Yes**.
 5.  Specify the **Title** customers see when they choose to pay with a saved card.
@@ -223,11 +223,10 @@ As well as doing so through the Hub, you can also manually capture, void, and re
 #### Manually capture payment
 
 1.  Log in to your Magento Admin Panel, go the Checkout.com plugin's configuration panel and expand **Global Settings**.
-2.  Make sure _Payment Action_ is set to **Authorize**.
-3.  Once you've created an order, find it in _Sales > Orders_ in your Magento Admin Panel. It should have a `Pending Payment` status. Click **View** on the order.
+2.  Make sure *Payment Action* is set to **Authorize**.
+3.  Once you've created an order, find it in *Sales > Orders* in your Magento Admin Panel. It should have a `Pending Payment` status. Click **View** on the order.
 4.  Click **Invoice**.
-5.  Click **Submit Invoice** at the bottom of the page to complete and capture the payment.  
-    
+5.  Click **Submit Invoice** at the bottom of the page to complete and capture the payment.
 
 #### Void payment
 
@@ -238,10 +237,9 @@ You can only void payments that have been authorized but not yet captured.
 </TipBox>
 
 1.  Log in to your Magento Admin Panel, go the Checkout.com plugin's configuration panel and expand **Global Settings**.
-2.  Make sure _Payment Action_ is set to **Authorize**.
-3.  Once you've created an order, find it in _Sales > Orders_ in your Magento Admin Panel. It should have a `Pending Payment` status. Click **View** on the order.
-4.  Click **Void** to void the payment.  
-    
+2.  Make sure *Payment Action* is set to **Authorize**.
+3.  Once you've created an order, find it in *Sales > Orders* in your Magento Admin Panel. It should have a `Pending Payment` status. Click **View** on the order.
+4.  Click **Void** to void the payment.
 
 #### Refund a payment
 
@@ -251,7 +249,7 @@ If refunding through Magento, we recommend you do so through the invoice for the
 
 </TipBox>
 
-1.  Once you've created an order, log in to your Magento Admin Panel and find the order in _Sales > Orders_.
+1.  Once you've created an order, log in to your Magento Admin Panel and find the order in *Sales > Orders*.
 2.  If the payment wasn't captured automatically on authorization, capture the payment now. A captured payment will have a `Processing` status.
 3.  Click **View** on the order.
 4.  From the Invoices section of the order, click **Credit Memo**.

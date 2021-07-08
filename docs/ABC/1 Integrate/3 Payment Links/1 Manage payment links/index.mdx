@@ -157,7 +157,7 @@ Sofort
 </TableCell>
 <TableCell>
 
-EUR
+`EUR`
 
 </TableCell>
 <TableCell>
@@ -166,7 +166,28 @@ EUR
 
 </TableCell>
 </TableRow>
+<TableRow>
+<TableCell>
 
+iDEAL
+
+</TableCell>
+<TableCell>
+
+`NL` - Netherlands
+
+</TableCell>
+<TableCell>
+
+`EUR`
+
+</TableCell>
+<TableCell>
+
+<StatusTag type="optional" />
+
+</TableCell>
+</TableRow>
 </TableBody>
 </Table>
 
@@ -278,6 +299,28 @@ EUR
   "billing": {
     "address": {
       "country": "DE"
+    }
+  },
+  "return_url": "https://example.com/home"
+}
+```
+
+</tab>
+<tab title="iDeal">
+
+```json
+{
+  "amount": 200,  
+  "currency": "EUR",
+  "reference": "ORD-123A",
+  "expires_in": 604800,
+  "customer": {
+    "name": "Jack Napier",
+    "email": "jokershere@email.com"
+  },
+  "billing": {
+    "address": {
+      "country": "NL"
     }
   },
   "return_url": "https://example.com/home"
