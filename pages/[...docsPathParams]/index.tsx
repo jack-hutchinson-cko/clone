@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useMatchMedia } from '@cko/primitives';
-
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
 import { Breakpoints } from 'constants/screen';
 import BreadCrumbs from 'components/BreadCrumbs';
@@ -45,6 +45,7 @@ const DocPost: NextPage<Props> = ({
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   return (
     <AnchorsProvider>
+      <Head title={frontMatter.title} />
       <PageContent>
         <header>
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />

@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
-import Head from 'next/head';
 import { ThemeDefaultProvider } from '@cko/primitives';
 import MainLayout from 'components/MainLayout';
 import { defaultTheme } from 'constants/theme';
 import useAppInitState from 'hooks/useAppInitState';
+import Head from 'components/Head';
 import GlobalStyle from '../styles/globalStyles';
 
 type Props = {
@@ -17,11 +17,7 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
 
   return (
     <ThemeDefaultProvider theme={defaultTheme}>
-      <Head>
-        <title>Documentation</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-      </Head>
+      <Head />
       <GlobalStyle />
       <MainLayout
         navTreeLinks={sidebarDocLinks}
