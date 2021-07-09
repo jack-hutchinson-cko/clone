@@ -19,8 +19,10 @@ const Accordion: FC<AccordionProps> = ({ title = null, isExpanded, children, ...
   if (title) {
     return (
       <StyledAccordion {...props}>
-        <StyledAccordionHead onClick={onClickHandler} isOpen={isOpen} hasTitle>
-          <div>{title}</div>
+        <StyledAccordionHead onClick={onClickHandler} isOpen={isOpen}>
+          <div>
+            <mark>{title}</mark>
+          </div>
           <IconActionChevronDown />
         </StyledAccordionHead>
         <AccordionBodyWrapper height={isOpen ? height : 0}>

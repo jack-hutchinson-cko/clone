@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
@@ -22,8 +22,23 @@ export const StyledAccordionHead = styled.button<{
 
   & > div,
   & > p {
-    ${({ isOpen, hasTitle, theme }) =>
-      hasTitle && `border-bottom: 3px solid ${isOpen ? theme.colors.information : 'transparent'};`}
+    mark {
+      background: transparent;
+      color: inherit;
+    }
+
+    ${({ isOpen, theme }) =>
+      isOpen
+        ? css`
+            mark {
+              background: linear-gradient(
+                to top,
+                ${theme.colors.turquoise} 0 6px,
+                transparent 6px 100%
+              );
+            }
+          `
+        : ''};
   }
 
   svg {
