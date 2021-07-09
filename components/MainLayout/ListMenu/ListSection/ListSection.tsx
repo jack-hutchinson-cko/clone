@@ -1,20 +1,32 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, useEffect } from 'react';
 
-import { NavigationSectionProps } from '../../../NavigationTreeMenu';
+import { NavigationSectionProps } from 'components/NavigationTreeMenu';
 import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles';
 
-export const ListSection: FC<NavigationSectionProps> = ({ link, isRoot, isOpen, children }) => {
-  const [opened, setOpened] = useState<boolean>(isOpen ?? false);
+export const ListSection: FC<NavigationSectionProps> = ({
+  link,
+  children,
+  isRoot = false,
+  isOpen = false,
+}) => {
+  const [open, setOpen] = useState<boolean>(isOpen);
   const onToggleHandler = useCallback(() => {
-    setOpened(!opened);
-  }, [opened]);
+    setOpen(!open);
+  }, [open]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setOpen(isOpen);
+    }
+  }, [isOpen]);
+
   return (
     <div>
       <StyledHeader isRoot={isRoot}>
-        <StyledIcon isRotated={opened} onClick={onToggleHandler} />
+        <StyledIcon isRotated={open} onClick={onToggleHandler} />
         {link}
       </StyledHeader>
-      <StyledContent isShown={opened}>{children}</StyledContent>
+      <StyledContent isShown={open}>{children}</StyledContent>
     </div>
   );
 };

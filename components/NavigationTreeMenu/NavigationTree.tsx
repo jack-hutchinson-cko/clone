@@ -26,19 +26,20 @@ export type Props = {
 };
 
 const NavigationTree: FC<Props> = ({ docsTreeLinks, activeLink, NavSection, NavItem, NavLink }) => {
-  const renderSegment = (el: NavTreeElement, isActiveLink: string, isRoot?: boolean): ReactNode => {
+  const renderSegment = (el: NavTreeElement, currentLink: string, isRoot?: boolean): ReactNode => {
     const { id, title, path, children } = el;
+    const isActive = path === currentLink;
     const link = (
-      <NavLink href={path} isActive={path === isActiveLink}>
+      <NavLink href={path} isActive={isActive}>
         {title}
       </NavLink>
     );
 
     if (children?.length) {
-      const isOpen = activeLink.includes(`${path}/`);
+      const isOpen = currentLink.includes(`${path}/`);
       return (
-        <NavSection key={id} isRoot={isRoot} link={link} isOpen={isOpen}>
-          {children.map((n) => renderSegment(n, isActiveLink))}
+        <NavSection key={id} isRoot={isRoot} link={link} isOpen={isActive || isOpen}>
+          {children.map((n) => renderSegment(n, currentLink))}
         </NavSection>
       );
     }
