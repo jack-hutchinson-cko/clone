@@ -11,7 +11,7 @@ export const CardWrapper = styled(Flex)`
   cursor: pointer;
   height: 100%;
   &:hover {
-    box-shadow: 0px 8px 16px rgba(12, 17, 66, 0.12);
+    box-shadow: ${({ theme }) => theme.shadows.light};
     border-color: ${({ theme }) => theme.colors.blueTertiary};
   }
   svg {

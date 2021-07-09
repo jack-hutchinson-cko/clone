@@ -2,9 +2,10 @@ import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ListItem } from '@cko/primitives';
-import { IconActionArrowRight } from '@cko/icons';
+import { IconActionArrowRight } from 'components/Icons';
 import { getHomePageContent } from 'lib/homePageContent';
 import { HomePageContent } from 'types/homepage';
+
 import {
   IntroWrapper,
   ContentBlock,

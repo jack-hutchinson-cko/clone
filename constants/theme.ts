@@ -41,6 +41,7 @@ export const defaultTheme = {
     yellowFrimaryFont: '#ffffc8',
     catskillWhite: '#f0f3f7',
     athensGray: '#e6e7ec',
+    stormGray: '#6D708E',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -107,7 +108,8 @@ export const defaultTheme = {
     ],
     success: ['0 1px 3px 0 rgba(61,65,104,0.45)', '0 2px 5px 0 rgba(61,65,104,0.45)'],
     danger: ['0 1px 3px 0 rgba(202,74,74,0.45)', '0 2px 5px 0 rgba(202,74,74,0.45)'],
-    focus: '0 0 0 3px rgba(12,17,66,0.5)',
+    focus: ['0 0 0 3px rgba(12,17,66,0.5)'],
+    light: ['0px 8px 16px rgba(12, 17, 66, 0.12)'],
   },
   lineHeights: ['16px', '24px', '32px'],
   fontSizes: ['13px', '16px', '16px', '24px', '40px'],

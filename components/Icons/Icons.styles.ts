@@ -4,5 +4,5 @@ export const StyledIcon = styled.svg<{ width: number; height: number; color?: st
   fill: none;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  color: ${({ color }) => color ?? '#3D415C'};
+  color: ${({ color, theme }) => color ?? theme.colors.stormGray};
 `;

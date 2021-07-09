@@ -161,14 +161,14 @@ export const IconEarth: FC<Props> = (props) => (
 );
 
 export const IconActionChevronDown: FC<Props> = (props) => (
-  <StyledIcon width={16} height={16} {...props}>
-    <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
+  <StyledIcon width={14} height={8} {...props}>
+    <path d="M1.00195 1L7 7L12.998 1" stroke="currentColor" strokeWidth="1" />
   </StyledIcon>
 );
 
 export const IconActionChevronRight: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} {...props}>
-    <path d="M2 5L7.99805 11L13.9961 5" stroke="currentColor" strokeWidth="1" />
+    <path d="M1 12.998L7 7L0.999999 1.00195" stroke="currentColor" strokeWidth="1" />
   </StyledIcon>
 );
 
@@ -336,11 +336,10 @@ export const IconTestAccount: FC<Props> = (props) => (
 );
 
 export const IconActionArrowRight: FC<Props> = (props) => (
-  <StyledIcon width={16} height={16} color="#6D708E" {...props}>
+  <StyledIcon width={13} height={11} {...props}>
     <path
-      d="M2 7.50615L13.5 7.50615M13.5 7.50615L8.99385 12.0123M13.5 7.50615L8.99385 3"
+      d="M0 5.50615L11.5 5.50615M11.5 5.50615L6.99385 10.0123M11.5 5.50615L6.99385 1"
       stroke="currentColor"
-      strokeWidth="1"
     />
   </StyledIcon>
 );
