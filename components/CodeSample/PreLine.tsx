@@ -11,7 +11,7 @@ import {
 } from './CodeSample.styles';
 import { PreLineProps } from './type';
 
-const defaultLengthWithCollapsible = 20;
+const defaultLengthWithCollapsible = 11;
 
 const PreLine: FC<PreLineProps> = ({
   tokens,

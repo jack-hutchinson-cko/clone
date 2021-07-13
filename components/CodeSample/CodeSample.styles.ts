@@ -16,12 +16,11 @@ export const PreWrapper = styled.div<{
   &:after {
     content: '';
     width: 100%;
+    height: 130px;
     display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
-    top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    bottom: 22px;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,
