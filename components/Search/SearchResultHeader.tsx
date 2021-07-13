@@ -5,15 +5,16 @@ import SearchStatus from './SearchStatus';
 
 type Props = {
   searchResult: string;
+  currentPage: number;
 };
 
-const SearchResultHeader: FC<Props> = ({ searchResult }) => {
+const SearchResultHeader: FC<Props> = ({ searchResult, currentPage }) => {
   return (
     <HeaderContainer>
       <Header>
         Results for "<Mark>{searchResult}</Mark>"
       </Header>
-      <SearchStatus />
+      <SearchStatus currentPage={currentPage} />
     </HeaderContainer>
   );
 };

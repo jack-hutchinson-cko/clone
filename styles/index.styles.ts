@@ -10,6 +10,7 @@ import {
   Link as PrimitiveLink,
 } from '@cko/primitives';
 import { TextHeadingOne } from 'components/TextHeading';
+import { SIZE } from 'constants/screen';
 
 export const IntroWrapper = styled(Flex)`
   justify-content: space-between;
@@ -85,4 +86,8 @@ export const Navigation = styled.div`
   top: 110px;
   padding: 0 26px 0 26px;
   box-sizing: content-box;
+
+  @media (max-width: ${SIZE.XL}px) {
+    display: none;
+  }
 `;

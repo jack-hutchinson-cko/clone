@@ -1,9 +1,7 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import { useMatchMedia } from '@cko/primitives';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
-import { Breakpoints } from 'constants/screen';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
@@ -30,6 +28,8 @@ type Props = {
   childrenArticles: { title: string; href: string; description: string }[];
 };
 
+const MIN_ANCHOR_COUNT = 2;
+
 const ChildArticlesPerRow = {
   desktop: 2,
   mobile: 1,
@@ -42,7 +42,6 @@ const DocPost: NextPage<Props> = ({
   source,
   childrenArticles,
 }) => {
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
@@ -60,11 +59,11 @@ const DocPost: NextPage<Props> = ({
           ))}
         </CardWrapper>
       </PageContent>
-      {!isMobile && anchorsNavItems.length ? (
-        <Navigation>
+      <Navigation>
+        {anchorsNavItems.length < MIN_ANCHOR_COUNT ? null : (
           <AnchorNavigation anchors={anchorsNavItems} />
-        </Navigation>
-      ) : null}
+        )}
+      </Navigation>
     </AnchorsProvider>
   );
 };
@@ -85,7 +84,6 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
   const childrenArticles = getChildrenArticle(filePath, docsPathParams as string[]);
   const { anchorsNavItems, frontMatter, source } = await getDocArticleData({
     filePath,
-    childrenArticles,
   });
 
   return {

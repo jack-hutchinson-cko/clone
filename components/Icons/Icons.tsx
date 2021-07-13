@@ -6,6 +6,8 @@ type Props = {
   onClick?: MouseEventHandler<SVGSVGElement>;
   className?: string;
   style?: CSSProperties;
+  width?: number;
+  height?: number;
 };
 
 export const HeaderLogo: FC<Props> = (props) => (
@@ -265,10 +267,27 @@ export const IconDocSearch: FC<Props> = (props) => (
   </StyledIcon>
 );
 
-export const IconSearch: FC<Props> = (props) => (
-  <StyledIcon width={16} height={16} viewBox="0 0 25 25" {...props}>
+export const IconSearch: FC<Props> = ({ width = 16, height = 16, ...props }) => (
+  <StyledIcon width={width} height={height} viewBox="0 0 25 25" {...props}>
     <path d="M2.34375 22.6562L9.375 15.625" stroke="currentColor" />
     <circle cx="14.8438" cy="10.1562" r="8.09375" stroke="currentColor" />
+  </StyledIcon>
+);
+
+export const CrossSearch: FC<Props> = ({ width = 16, height = 16, ...props }) => (
+  <StyledIcon width={width} height={height} viewBox="0 0 16 16" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12.3936 13.1924L2.80762 3.60645L3.60645 2.80762L13.1924 12.3936L12.3936 13.1924Z"
+      fill="currentColor"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M13.1924 3.60644L3.60645 13.1924L2.80762 12.3936L12.3936 2.80761L13.1924 3.60644Z"
+      fill="currentColor"
+    />
   </StyledIcon>
 );
 

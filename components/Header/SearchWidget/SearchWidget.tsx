@@ -7,7 +7,6 @@ import { InstantSearch } from 'react-instantsearch-dom';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import { DocsHits, SearchBox } from 'components/Search';
 import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
-import ButtonLink from 'components/ButtonLink';
 import { IconActionArrowRight } from 'components/Icons';
 import Outside from 'components/Outside';
 import { SearchResultLink } from 'types/header';
@@ -15,11 +14,13 @@ import { Breakpoints } from 'constants/screen';
 import {
   TextFieldWrapper,
   Results,
-  EmptySearchResult,
   PopularSearches,
   SearchesTitle,
   PopularSearchesItem,
   ButtonContainer,
+  ResultItemsContainer,
+  StyledLink,
+  Button,
 } from './SearchWidget.styles';
 
 type Props = {
@@ -34,7 +35,6 @@ const INITIAL_SEARCH_STATE = { query: '', page: 1 };
 
 const SearchWidget: FC<WithMenuStateProps<Props>> = ({
   popularSearches,
-  emptySearchResult,
   popularSearchesTitle,
   onChangeSearchState,
 }) => {
@@ -73,24 +73,16 @@ const SearchWidget: FC<WithMenuStateProps<Props>> = ({
             <SearchBox onSubmit={onSubmitHandler} />
             <Results isShown={isMobile || showResults}>
               {showResults && (
-                <>
+                <ResultItemsContainer>
                   <SearchesTitle>Search result</SearchesTitle>
-                  <DocsHits
-                    mode="header"
-                    maxHeight={500}
-                    maxHitsNumber={5}
-                    NoDataComponent={() => (
-                      <EmptySearchResult>{emptySearchResult}</EmptySearchResult>
-                    )}
-                    onClickHit={onCloseSearchPanel}
-                  >
+                  <DocsHits mode="header" maxHitsNumber={4} onClickHit={onCloseSearchPanel}>
                     <ButtonContainer>
-                      <ButtonLink href={searchUrl} onClick={onCloseSearchPanel}>
-                        View all search results
-                      </ButtonLink>
+                      <StyledLink href={searchUrl}>
+                        <Button onClick={onCloseSearchPanel}>View all search results</Button>
+                      </StyledLink>
                     </ButtonContainer>
                   </DocsHits>
-                </>
+                </ResultItemsContainer>
               )}
               <PopularSearches>
                 <SearchesTitle>{popularSearchesTitle}</SearchesTitle>

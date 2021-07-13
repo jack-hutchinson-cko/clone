@@ -154,3 +154,15 @@ export const SearchFieldWrapper = styled.div`
   display: inline-block;
   width: 370px;
 `;
+
+export const DrawerTopContentWrapper = styled.div`
+  padding: 30px;
+  background: ${({ theme }) => theme.colors.white};
+`;
+
+export const DrawerBottomContentWrapper = styled.div`
+  background: ${({ theme }) => theme.colors.greyLight};
+  padding: 30px;
+  width: 100%;
+  flex: 1;
+`;

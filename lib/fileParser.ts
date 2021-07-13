@@ -16,7 +16,7 @@ const getAnchorsNavItems = ({
   childrenArticles = [],
 }: {
   content: string;
-  childrenArticles: ChildArticlesType;
+  childrenArticles?: ChildArticlesType;
 }) => {
   const contentAnchors = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
@@ -39,7 +39,7 @@ export const getDocArticleData = async ({
   childrenArticles,
 }: {
   filePath: string;
-  childrenArticles: ChildArticlesType;
+  childrenArticles?: ChildArticlesType;
 }): Promise<{
   source: MDXRemoteSerializeResult;
   frontMatter: { [key: string]: string };

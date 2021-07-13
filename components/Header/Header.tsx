@@ -27,6 +27,8 @@ import {
   ButtonLogin,
   NavigationDrawers,
   SearchFieldWrapper,
+  DrawerTopContentWrapper,
+  DrawerBottomContentWrapper,
 } from './Header.styles';
 
 type Props = {
@@ -217,8 +219,9 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       </NavigationContent>
       <NavigationDrawers>
         {!isDesktop && menuState && (
-          <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer} bottomContent={loginWidget}>
-            {menuWidget}
+          <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer}>
+            <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>
+            <DrawerBottomContentWrapper>{loginWidget}</DrawerBottomContentWrapper>
           </Drawer>
         )}
         {isMobile && searchState && (

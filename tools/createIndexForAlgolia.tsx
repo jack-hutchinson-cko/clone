@@ -19,6 +19,7 @@ type IndexItemType = {
   path: string;
   parentArticles: string[];
   body: string;
+  headBody: string;
 };
 
 type GetIndexArticleItemParams = {
@@ -44,7 +45,7 @@ const getIndexArticleItem = ({
     </ThemeDefaultProvider>,
   );
 
-  const body = unescape(striptags(html));
+  const body = unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ');
 
   return {
     title: data.title,
@@ -52,6 +53,7 @@ const getIndexArticleItem = ({
     path,
     parentArticles,
     body,
+    headBody: body,
   };
 };
 
@@ -78,6 +80,12 @@ export const createIndexForAlgolia = async (
 
   const client = algoliasearch(ApplicationID, AdminAPIKey);
   const index = client.initIndex(ABC_DOCS_INDEX_NAME);
+
+  index.setSettings({
+    attributesToSnippet: ['body:40', 'title:20', 'headBody:12'],
+    snippetEllipsisText: '...',
+    searchableAttributes: ['title', 'body', 'headBody'],
+  });
 
   await index.clearObjects();
   await index.saveObjects(indexResult, {

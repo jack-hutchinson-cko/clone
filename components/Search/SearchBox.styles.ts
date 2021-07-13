@@ -1,7 +1,7 @@
 import { TextFieldBase } from '@cko/primitives';
 import styled from 'styled-components';
-
-import { IconSearch } from 'components/Icons';
+import { MobileBreakPoints } from 'constants/screen';
+import { CrossSearch } from 'components/Icons';
 
 export const TextFieldHolder = styled.div`
   display: flex;
@@ -17,14 +17,41 @@ export const TextFieldHolder = styled.div`
     outline: 0;
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.blueLight};
   }
+
+  @media ${MobileBreakPoints.MOBILE_L} {
+    margin: 40px 40px 2px 40px;
+    padding: 18px 24px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    margin: 24px 24px 2px 24px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    margin: 24px 24px 2px 24px;
+  }
 `;
 
 export const TextField = styled(TextFieldBase)`
   width: 100%;
-  font-weight: 300;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.base};
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.success};
   transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+
+  @media ${MobileBreakPoints.MOBILE_L} {
+    font-size: 32px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 18px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    font-size: 18px;
+  }
 `;
 
-export const SearchActionIcon = styled(IconSearch)``;
+export const CrossSearchIcon = styled(CrossSearch)`
+  cursor: pointer;
+`;

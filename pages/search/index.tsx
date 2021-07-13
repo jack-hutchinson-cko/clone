@@ -24,7 +24,10 @@ const SearchPage: FC = () => {
         searchClient={searchClient}
         indexName={ABC_DOCS_INDEX_NAME}
       >
-        <SearchResultHeader searchResult={searchState.query || ''} />
+        <SearchResultHeader
+          searchResult={searchState.query || ''}
+          currentPage={Number(searchState.page) || 1}
+        />
         <HiddenSearchInput />
         <DocsHits mode="page" />
         <Pagination searchState={searchState} />
