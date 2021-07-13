@@ -70,11 +70,11 @@ export const FooterColumnItem = styled.li<FooterLinksProps>`
 
 export const FooterLinkSpecial = styled.span`
   margin-left: 8px;
-  padding: 4px;
+  padding: 4px 6px;
   color: ${({ theme }) => theme.colors.successDark};
-  background: ${({ theme }) => theme.colors.blueTertiary};
+  background: ${({ theme }) => theme.colors.lightCyan};
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   line-height: 16px;

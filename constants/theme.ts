@@ -42,6 +42,7 @@ export const defaultTheme = {
     catskillWhite: '#f0f3f7',
     athensGray: '#e6e7ec',
     stormGray: '#6D708E',
+    lightCyan: '#D5F6F8',
   },
   borders: {
     success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],

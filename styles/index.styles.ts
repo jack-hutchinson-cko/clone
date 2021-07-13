@@ -29,8 +29,11 @@ export const IntroDescription = styled(Text)`
 `;
 export const GetStartedLink = styled(PrimaryButton)`
   margin-top: 30px;
-  padding: 15px 24px;
-  font-weight: 500;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.yellowFrimaryFont};
 `;
 export const BlocksWrapper = styled(Flex)`
   justify-content: space-between;
