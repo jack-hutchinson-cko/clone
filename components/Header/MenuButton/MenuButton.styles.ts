@@ -12,18 +12,18 @@ export const Button = styled.span<{ isActive?: boolean }>`
   > span::after {
     display: block;
     position: absolute;
-    width: 100%;
+    width: 40px;
     height: 2px;
-    background-color: ${({ theme }) => theme.colors.base};
+    background-color: ${({ theme }) => theme.colors.successDark};
     transition-duration: 0.25s;
   }
   > span::before {
     content: '';
-    top: -8px;
+    top: -10px;
   }
   > span::after {
     content: '';
-    top: 8px;
+    top: 10px;
   }
 
   ${({ isActive }) =>

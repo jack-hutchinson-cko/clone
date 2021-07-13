@@ -45,5 +45,8 @@ export const StyledAccordionHead = styled.button<{
     width: 20px;
     height: 20px;
     transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
+    & > g {
+      fill: ${({ theme }) => theme.colors.stormGray};
+    }
   }
 `;
