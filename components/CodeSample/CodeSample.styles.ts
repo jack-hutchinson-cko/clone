@@ -69,11 +69,18 @@ export const StyledIcons = styled.div`
   cursor: pointer;
 `;
 
+export const StyledIconLink = styled(StyledIcons)`
+  right: 50px;
+`;
+
 export const HighlightContainer = styled.div`
   position: relative;
-  &:hover ${StyledIcons} {
-    transition: 1s;
-    opacity: 1;
+  &:hover {
+    ${StyledIcons},
+    ${StyledIconLink} {
+      transition: 1s;
+      opacity: 1;
+    }
   }
 `;
 
@@ -98,7 +105,7 @@ export const IconArrowAction = styled(IconActionChevronDown)<{ isOpen: boolean }
 `;
 
 export const StyledText = styled(Text)`
-  font-size: 12px;
+  font-size: 10px;
 `;
 
 export const LineNo = styled.span`

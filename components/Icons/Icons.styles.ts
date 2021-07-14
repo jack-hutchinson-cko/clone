@@ -10,3 +10,7 @@ export const StyledIcon = styled.svg<{ width: number; height: number; color?: st
 export const StyledHeaderLogo = styled(StyledIcon)`
   color: ${({ theme }) => theme.colors.success};
 `;
+
+export const StyledIconActionLink = styled(StyledIcon)`
+  color: ${({ theme }) => theme.colors.success};
+`;

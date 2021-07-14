@@ -2,8 +2,8 @@
 import React, { FC, useState, useCallback } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { IconActionCopy } from '../Icons/Icons';
-import { HighlightContainer, StyledIcons, StyledText } from './CodeSample.styles';
+import { IconActionCopy, IconActionLink } from '../Icons/Icons';
+import { HighlightContainer, StyledIcons, StyledText, StyledIconLink } from './CodeSample.styles';
 import { CodeSampleProps } from './type';
 import PreLine from './PreLine';
 
@@ -26,6 +26,9 @@ const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible, withBo
 
   return (
     <HighlightContainer>
+      <StyledIconLink>
+        <IconActionLink />
+      </StyledIconLink>
       <CopyToClipboard text={code} onCopy={() => onToggleHandler()}>
         {onHandlerCopy}
       </CopyToClipboard>
