@@ -1,24 +1,24 @@
 import styled, { css } from 'styled-components';
-import { ThemeType } from 'constants/theme';
+import { ThemeType } from 'constants/themes';
 
 import { SubheadBackgroundColor } from './types';
 
 export const Table = styled.table<{ withTopBorder?: boolean }>`
   table-layout: fixed;
   width: 100%;
-  color: ${({ theme }) => theme.colors.success};
+  color: ${({ theme }) => theme.colors.baseLight};
   border-radius: 8px;
   border-spacing: 1px;
   font-size: 16px;
   text-align: left;
   vertical-align: top;
   line-height: 24px;
-  background-color: ${({ theme }) => theme.colors.greyLight};
+  background-color: ${({ theme }) => theme.colors.border};
 
   & tr th p {
     margin: 0;
     padding: 0;
-    color: ${({ theme }) => theme.colors.success};
+    color: ${({ theme }) => theme.colors.base};
     font-size: 16px;
     line-height: 24px;
   }
@@ -66,13 +66,14 @@ export const TableCell = styled.td`
 
 export const TableRow = styled.tr`
   min-width: 8px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const StyledTH = styled.th`
   padding: 10px 16px;
   border: none;
-  background: ${({ theme }) => theme.colors.greyLight};
+  color: ${({ theme }) => theme.colors.base};
+  background: ${({ theme }) => theme.colors.border};
   font-weight: 500;
 `;
 
@@ -100,4 +101,7 @@ const getBackgroundColorForSubhead = ({
 
 export const StyledTableCell = styled(TableCell)<{ color: SubheadBackgroundColor }>`
   background-color: ${getBackgroundColorForSubhead};
+  p > strong {
+    color: ${({ theme }) => theme.colors.success};
+  }
 `;

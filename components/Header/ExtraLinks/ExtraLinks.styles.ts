@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div<{ isMobile?: boolean }>`
-  border: 1px solid ${({ theme }) => theme.colors.baseLight};
-  box-shadow: 0 3px 5px rgba(12, 17, 66, 0.15);
+  box-shadow: ${({ theme }) => theme.shadows.itemHolder};
 
   ${({ isMobile }) =>
     isMobile
@@ -24,9 +23,9 @@ export const Content = styled.ul`
   width: 100%;
   margin: 0;
   padding: 32px;
-  background: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Footer = styled(Content)`
-  background: ${({ theme }) => theme.colors.greyLight};
+  background-color: ${({ theme }) => theme.colors.backgroundDark};
 `;

@@ -28,7 +28,7 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
     isRoot &&
     css`
       padding: 30px 0;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
       > ${StyledAccordionHead} {
         font-size: 24px;

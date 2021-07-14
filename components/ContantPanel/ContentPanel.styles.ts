@@ -6,7 +6,7 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
   gap: 32px;
   padding-bottom: 24px;
   color: ${({ theme }) => theme.colors.base};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
   ${({ isECommerceCard }) =>
     isECommerceCard &&
@@ -14,18 +14,17 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
       flex: 1 0 0%;
       flex-direction: column;
       gap: 50px;
-      min-height: 400px;
-      /* min-height: 600px; */
+      min-height: 600px;
       height: 100%;
       margin-bottom: 24px;
       padding: 24px;
-      border: 1px solid ${({ theme }) => theme.colors.greyLight};
+      border: 1px solid ${({ theme }) => theme.colors.border};
       border-radius: 8px;
       background-clip: border-box;
       transition: background 0.5s, border 0.5s;
 
       &:hover {
-        border: 1px solid ${({ theme }) => theme.colors.blueTertiary};
+        border: 1px solid ${({ theme }) => theme.colors.borderHighlight};
         box-shadow: 0px 8px 16px rgb(12 17 66 / 12%);
       }
 

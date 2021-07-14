@@ -6,9 +6,9 @@ export const Content = styled.aside`
   width: 340px;
   max-height: 100%;
   overflow-y: auto;
-  border-left: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border-left: 1px solid ${({ theme }) => theme.colors.border};
   filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
-  background: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Container = styled.div<{ isMobile?: boolean }>`

@@ -11,8 +11,7 @@ export const PreWrapper = styled.div<{
   padding: 24px;
   margin: 0;
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
-  border: ${({ withBorder, theme }) =>
-    withBorder ? `1px solid ${theme.colors.greyLight}` : 'none'};
+  border: ${({ withBorder, theme }) => (withBorder ? `1px solid ${theme.colors.border}` : 'none')};
   &:after {
     content: '';
     width: 100%;
@@ -88,7 +87,7 @@ export const IconArrowActionContainer = styled.div`
   width: 32px;
   height: 32px;
   background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 50%;
   cursor: pointer;
 `;

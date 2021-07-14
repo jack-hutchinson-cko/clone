@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
-import { ThemeDefaultProvider } from '@cko/primitives';
+
+import { ThemeProvider } from 'theme/ThemeProvider';
 import MainLayout from 'components/MainLayout';
-import { defaultTheme } from 'constants/theme';
 import useAppInitState from 'hooks/useAppInitState';
 import Head from 'components/Head';
 import GlobalStyle from '../styles/globalStyles';
@@ -16,7 +16,7 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
   const { sidebarDocLinks, headerContent, footerContent } = useAppInitState();
 
   return (
-    <ThemeDefaultProvider theme={defaultTheme}>
+    <ThemeProvider>
       <Head />
       <GlobalStyle />
       <MainLayout
@@ -26,7 +26,7 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
       >
         <Component {...pageProps} />
       </MainLayout>
-    </ThemeDefaultProvider>
+    </ThemeProvider>
   );
 };
 

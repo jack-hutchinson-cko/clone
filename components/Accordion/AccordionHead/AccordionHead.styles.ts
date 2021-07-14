@@ -33,7 +33,7 @@ export const StyledAccordionHead = styled.button<{
             mark {
               background: linear-gradient(
                 to top,
-                ${theme.colors.turquoise} 0 6px,
+                ${theme.colors.underline} 0 6px,
                 transparent 6px 100%
               );
             }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
-  background: ${({ theme }) => theme.colors.successDark};
+  background: ${({ theme }) => theme.colors.footerBackground};
 `;
 
 export const FooterContainer = styled.main<{ isMobile: boolean }>`

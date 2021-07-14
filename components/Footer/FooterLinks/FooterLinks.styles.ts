@@ -27,6 +27,7 @@ export const FooterAccordionHead = styled(AccordionHead)`
   text-transform: uppercase;
   line-height: 16px;
   letter-spacing: 1.6px;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const FooterListTitle = styled.p`

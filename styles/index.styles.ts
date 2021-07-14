@@ -19,38 +19,63 @@ export const IntroWrapper = styled(Flex)`
 export const ContentBlock = styled(Box)`
   flex: 0 0 50%;
 `;
+
 export const IntroTitle = styled(PrimitivesTextHeadingOne)`
+  color: ${({ theme }) => theme.colors.base};
   letter-spacing: 0.02em;
   word-spacing: 0.02em;
   line-height: 48px;
 `;
+
 export const IntroDescription = styled(Text)`
   margin: 30px 0 0;
+  color: ${({ theme }) => theme.colors.baseLight};
 `;
+
 export const GetStartedLink = styled(PrimaryButton)`
   margin-top: 30px;
   padding: 12px 24px;
   font-size: 16px;
   line-height: 24px;
+  border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.yellowFrimaryFont};
+  color: ${({ theme }) => theme.colors.btnPrimaryFont};
+  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+
+  &:hover,
+  :focus {
+    border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
+    color: ${({ theme }) => theme.colors.btnPrimaryFont};
+    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+    box-shadow: inherit;
+  }
 `;
+
 export const BlocksWrapper = styled(Flex)`
   justify-content: space-between;
   padding-top: 60px;
 `;
+
 export const BlockTitle = styled(TextHeadingTwo)`
+  color: ${({ theme }) => theme.colors.base};
   margin: 20px 0 0;
 `;
+
 export const BlockDescription = styled(Text)`
   padding: 10px 0 20px;
+  color: ${({ theme }) => theme.colors.baseLight};
 `;
+
 export const BlockList = styled(List)`
   & li {
     padding: 5px 0;
     font-weight: 500;
+    a {
+      color: ${({ theme }) => theme.colors.base};
+    }
   }
 `;
+
 export const BlockLink = styled(PrimitiveLink)`
   cursor: pointer;
   & svg {
@@ -61,6 +86,7 @@ export const BlockLink = styled(PrimitiveLink)`
     transition: transform 0.15s linear 0s;
   }
 `;
+
 export const MainWrapper = styled.div`
   display: flex;
 `;

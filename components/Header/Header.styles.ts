@@ -18,8 +18,8 @@ export const NavigationSection = styled.div<{ isMobile?: boolean }>`
 
 export const Navigation = styled.header<{ isMobile?: boolean }>`
   display: block;
-  background: ${({ theme }) => theme.colors.white};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+  background: ${({ theme }) => theme.colors.background};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   box-sizing: content-box;
 
   ${({ isMobile }) =>
@@ -48,7 +48,7 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
 
         &:not(:last-child) {
           padding: 0 26px;
-          border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+          border-bottom: 1px solid ${({ theme }) => theme.colors.border};
         }
       }
     `}
@@ -65,25 +65,35 @@ export const NavigationDrawers = styled.div`
   z-index: 2;
 `;
 
-export const NavigationItem = styled.div<{ withHover?: boolean; isSelected?: boolean }>`
+export const NavigationItem = styled.div<{
+  withHover?: boolean;
+  isSelected?: boolean;
+  withPointer?: boolean;
+}>`
   display: flex;
   height: 80px;
   align-items: center;
   padding-top: 4px;
   border-bottom: 4px solid
-    ${({ isSelected, theme }) => (isSelected ? theme.colors.focus : 'transparent')};
+    ${({ isSelected, theme }) => (isSelected ? theme.colors.base : 'transparent')};
   transition: border-bottom 100ms;
+  color: ${({ theme }) => theme.colors.base};
   font-size: 16px;
   line-height: 24px;
-  cursor: pointer;
 
   ${({ withHover }) =>
     withHover &&
     css`
       &:hover {
-        border-bottom-color: ${({ theme }) => theme.colors.focus};
+        border-bottom-color: ${({ theme }) => theme.colors.base};
       }
     `}
+
+  ${({ withPointer = true }) => withPointer && 'cursor: pointer;'}
+
+  svg {
+    color: ${({ theme }) => theme.colors.sectionIcon};
+  }
 `;
 
 export const NavigationLink = styled.a<{
@@ -96,6 +106,7 @@ export const NavigationLink = styled.a<{
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  color: ${({ theme }) => theme.colors.base};
   font-weight: ${({ light }) => (light ? 400 : 500)};
   outline: none;
 
@@ -123,13 +134,17 @@ export const NavigationLink = styled.a<{
         text-decoration: underline;
       }
     `}
+
+  svg {
+    color: ${({ theme }) => theme.colors.sectionIcon};
+  }
 `;
 
 export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
   display: inline-block;
   padding: 12px 24px;
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.btnTertiaryFont};
   background: ${({ theme }) => theme.colors.blueTertiary};
   font-weight: 500;
   font-size: 16px;
@@ -155,13 +170,20 @@ export const SearchFieldWrapper = styled.div`
   width: 370px;
 `;
 
+export const SwitchIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+`;
+
 export const DrawerTopContentWrapper = styled.div`
   padding: 30px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.background};
 `;
 
 export const DrawerBottomContentWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.greyLight};
+  background: ${({ theme }) => theme.colors.backgroundDark};
   padding: 30px;
   width: 100%;
   flex: 1;

@@ -9,13 +9,17 @@ export const TextFieldHolder = styled.div`
   gap: 10px;
   padding: 8px 16px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
+  background-color: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   box-sizing: border-box;
 
   &:focus-within {
     outline: 0;
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.blueLight};
+  }
+
+  svg {
+    color: ${({ theme }) => theme.colors.base} !important;
   }
 
   @media ${MobileBreakPoints.MOBILE_L} {
@@ -36,8 +40,12 @@ export const TextField = styled(TextFieldBase)`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.success};
+  color: ${({ theme }) => theme.colors.base};
   transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.placeholderSearch};
+  }
 
   @media ${MobileBreakPoints.MOBILE_L} {
     font-size: 32px;

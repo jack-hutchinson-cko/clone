@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const LineCode = styled.code`
   padding: 2px 8px;
   border-radius: 4px;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
   background: ${({ theme }) => theme.colors.codeLabelBackground};
   font-family: Courier, monospace;
   font-size: 14px;

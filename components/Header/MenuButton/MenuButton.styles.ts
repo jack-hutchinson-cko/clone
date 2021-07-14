@@ -14,7 +14,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
     position: absolute;
     width: 40px;
     height: 2px;
-    background-color: ${({ theme }) => theme.colors.successDark};
+    background-color: ${({ theme }) => theme.colors.base};
     transition-duration: 0.25s;
   }
   > span::before {

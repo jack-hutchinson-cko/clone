@@ -6,7 +6,7 @@ import { MobileBreakPoints } from 'constants/screen';
 export const HighlightedHeader = styled(TextHeadingThree)<{ mode: 'header' | 'page' }>`
   margin: ${({ mode }) => (mode === 'header' ? 0 : '0px 0 8px 0')};
   font-size: ${({ mode }) => (mode === 'header' ? '16px' : '24px')};
-  color: ${({ theme }) => theme.colors.successDark};
+  color: ${({ theme }) => theme.colors.base};
   & > em {
     color: ${({ theme }) => theme.colors.textHighlight};
     font-style: normal;
@@ -30,5 +30,5 @@ export const HighlightedBody = styled(Text)<{ mode: 'header' | 'page' }>`
   @media ${MobileBreakPoints.MOBILE_L} {
     font-size: ${({ mode }) => (mode === 'header' ? '24px' : '16px')};
   }
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
 `;

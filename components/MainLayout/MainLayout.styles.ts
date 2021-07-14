@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { IconEarth } from 'components/Icons';
+
 export const MainWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -33,6 +35,11 @@ export const Content = styled.main`
   padding: 32px 26px 64px 26px;
   flex-grow: 1;
 `;
+
 export const FooterWrapper = styled.div`
   flex-grow: 0;
+`;
+
+export const StyledIconEarth = styled(IconEarth)`
+  color: ${({ theme }) => theme.colors.sectionIcon};
 `;

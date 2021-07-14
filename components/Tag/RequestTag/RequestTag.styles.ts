@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ThemeType } from 'constants/theme';
+import { ThemeType } from 'constants/themes';
 import { RequestTagProps } from '../types';
 
 const getColorWithType = ({ type, theme }: { type: RequestTagProps['type']; theme: ThemeType }) => {

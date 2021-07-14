@@ -6,7 +6,7 @@ export const HeadSection = styled.section`
   cursor: pointer;
   border-radius: 8px;
   &:hover {
-    background: ${({ theme }) => theme.colors.modalHoverBackground};
+    background: ${({ theme }) => theme.colors.backgroundSearch};
   }
 
   @media ${MobileBreakPoints.MOBILE_L} {
@@ -18,8 +18,9 @@ export const PageSection = styled.section`
   padding: 16px;
   cursor: pointer;
   border-radius: 8px;
+
   &:hover {
-    background: ${({ theme }) => theme.colors.modalHoverBackground};
+    background: ${({ theme }) => theme.colors.backgroundSearch};
   }
 `;
 
@@ -29,7 +30,7 @@ export const HitsContainer = styled.div<{ maxHeight?: number }>`
 `;
 
 export const NoDataWrapper = styled.div<{ mode: 'header' | 'page' }>`
-  color: ${({ theme }) => theme.colors.successDark};
+  color: ${({ theme }) => theme.colors.base};
   font-size: ${({ mode }) => (mode === 'header' ? '16px' : '24px')};
   font-weight: 500;
   padding: 16px;

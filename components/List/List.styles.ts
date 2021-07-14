@@ -5,7 +5,7 @@ export const UnorderedList = styled.ul`
   margin: 0;
   padding: 0;
   padding-inline-start: 28px;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
   list-style-type: disc;
 `;
 
@@ -14,12 +14,12 @@ export const OrderedList = styled.ol`
   margin: 0;
   padding: 0;
   padding-inline-start: 28px;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
   list-style-type: decimal;
 `;
 
 export const ListItem = styled.li`
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
   margin: 5px 0;
   line-height: 24px;
   list-style-type: inherit;
@@ -29,7 +29,7 @@ export const List = styled.div`
   display: block;
   margin: 0;
   padding: 0;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
 `;
 
 export const ListIconItem = styled.p`

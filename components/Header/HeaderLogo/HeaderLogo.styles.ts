@@ -7,5 +7,9 @@ export const Container = styled.div`
   font-weight: 500;
   font-size: 24px;
   letter-spacing: 1px;
-  color: #0c1142;
+  color: ${({ theme }) => theme.colors.base};
+
+  svg {
+    color: ${({ theme }) => theme.colors.base} !important;
+  }
 `;

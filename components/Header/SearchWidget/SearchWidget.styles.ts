@@ -8,8 +8,8 @@ export const Results = styled.div<{ isShown: boolean }>`
   left: 0;
   top: calc(100% + 10px);
   width: 100%;
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.backgroundSearch};
   border-radius: 8px;
   box-shadow: 0 0 24px rgb(0 0 0 / 8%);
   color: ${({ theme }) => theme.colors.base};
@@ -34,7 +34,7 @@ const innerContainerStyles = `
 
 export const ResultItemsContainer = styled.div`
   ${innerContainerStyles}
-  border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const PopularSearches = styled.div`
@@ -65,7 +65,7 @@ export const PopularSearchesItem = styled.a`
   font-weight: 500;
   margin: 8px 16px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.success};
+  color: ${({ theme }) => theme.colors.base};
   &:hover {
     text-decoration: underline;
   }
@@ -87,8 +87,8 @@ export const TextFieldWrapper = styled.div<{ isMobile?: boolean }>`
 
 export const Button = styled.button`
   display: inline-block;
-  background-color: ${({ theme }) => theme.colors.successDark};
-  color: ${({ theme }) => theme.colors.primaryYellow};
+  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+  color: ${({ theme }) => theme.colors.btnPrimaryFont};
   padding: 8px 24px;
   border-radius: 8px;
   font-size: 14px;

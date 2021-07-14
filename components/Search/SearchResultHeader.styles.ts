@@ -3,11 +3,11 @@ import { TextHeadingOne } from 'components/TextHeading';
 
 export const Header = styled(TextHeadingOne)`
   margin: 0 0 16px 0;
-  color: ${({ theme }) => theme.colors.successDark};
+  color: ${({ theme }) => theme.colors.base};
 `;
 
 export const Mark = styled.span`
-  color: ${({ theme }) => theme.colors.successDark};
+  color: ${({ theme }) => theme.colors.base};
   position: relative;
   &::after {
     position: absolute;
@@ -17,14 +17,15 @@ export const Mark = styled.span`
     left: 0;
     right: 0;
     height: 8px;
-    background: ${({ theme }) => theme.colors.turquoise};
   }
+
+  background: linear-gradient(to top, ${({ theme }) => theme.colors.underline} 18%, transparent 2%);
 `;
 
 export const HeaderContainer = styled.div`
   margin: 0 16px 16px 16px;
   padding-bottom: 32px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight} !important;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border} !important;
 `;
 
 export const SearchStatusContainer = styled.div`

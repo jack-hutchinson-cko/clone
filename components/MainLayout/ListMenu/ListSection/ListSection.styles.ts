@@ -19,6 +19,7 @@ export const StyledContent = styled.div<{ isShown: boolean }>`
 
 export const StyledIcon = styled(IconActionChevronDown)<{ isRotated: boolean }>`
   display: inline-flex;
+  color: ${({ theme }) => theme.colors.sectionIcon};
   cursor: pointer;
   transform: rotate(${({ isRotated }) => (!isRotated ? '-90deg' : 0)});
   transition: transform 100ms;

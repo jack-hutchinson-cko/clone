@@ -7,7 +7,6 @@ import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
 import { getPathValue } from 'lib/url';
-import { IconEarth } from 'components/Icons';
 import MenuStateProvider from 'components/MenuStateProvider';
 
 import Header from '../Header';
@@ -23,6 +22,7 @@ import {
   ContentWrapper,
   SideBarWrapper,
   FooterWrapper,
+  StyledIconEarth,
 } from './MainLayout.styles';
 
 type Props = {
@@ -43,7 +43,7 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerCo
       docsTreeLinks={navTreeLinks}
       homeLink="/"
       homeLinkTitle="Home"
-      homeLinkIcon={<IconEarth />}
+      homeLinkIcon={<StyledIconEarth />}
       activeLink={activeLink}
     />
   );

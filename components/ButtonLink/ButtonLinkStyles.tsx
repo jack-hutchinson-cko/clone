@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export const Button = styled.button`
   display: inline-block;
-  background-color: ${({ theme }) => theme.colors.successDark};
-  color: ${({ theme }) => theme.colors.yellowFrimaryFont};
+  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+  color: ${({ theme }) => theme.colors.btnPrimaryFont};
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 16px;
