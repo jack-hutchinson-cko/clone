@@ -183,12 +183,15 @@ The total tax amount of the order.
 
 The order details.
 
+<InfoBox>
+
+This object is passed directly to Klarna as order\_lines. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
+
+</InfoBox>
 </TableCell>
 </TableRow>
 </TableBody>
 </Table>
-
-This object is passed directly to Klarna as order\_lines. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
 
 <TipBox variant="note">
 
@@ -286,13 +289,13 @@ Next, load the widget on your page so your customer can choose one of the Klarna
 To do so, you first need to insert the below code into your page to load the Klarna Payments Library in your client.
 
 ```javascript
+//<![CDATA[
       window.klarnaAsyncCallback = function () {
-
         // This is where you start calling Klarna's JS SDK functions
         //
         // Klarna.Payments.init({ ... })
-
       };
+//]]>
 ```
 
 #### Initialize the SDK
@@ -960,7 +963,7 @@ Unlike the other payment method supports, Klarna is always synchronous. The redi
     }
 ```
 
-<TipBox variant="info">
+<TipBox>
 
 The 202 response with an `approved: true` flag confirms that Klarna will process your payout as soon as you capture the payment in the next step.
 
@@ -996,7 +999,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Header parameters
+#### Header and path parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -1029,6 +1032,26 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 <TableCell>
 
 `application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment ID you received in the response when you placed the order.
 
 </TableCell>
 </TableRow>
