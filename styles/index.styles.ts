@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Flex,
   Box,
@@ -10,26 +10,66 @@ import {
   Link as PrimitiveLink,
 } from '@cko/primitives';
 import { TextHeadingOne } from 'components/TextHeading';
-import { SIZE } from 'constants/screen';
+import { SIZE, Breakpoints, MobileBreakPoints } from 'constants/screen';
 
-export const IntroWrapper = styled(Flex)`
-  justify-content: space-between;
+export const IntroWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media ${Breakpoints.MOBILE} {
+    flex-direction: column;
+    gap: 24px;
+  }
 `;
 
 export const ContentBlock = styled(Box)`
-  flex: 0 0 50%;
+  flex: 1;
+`;
+
+export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobile?: boolean }>`
+  max-width: 100%;
+
+  @media ${Breakpoints.DESKTOP} {
+    max-width: ${({ maxDesktopWidth }) => maxDesktopWidth}px;
+  }
+
+  ${({ hideForMobile }) =>
+    hideForMobile &&
+    css`
+      @media (max-width: ${SIZE.SM}px) {
+        display: none;
+      }
+    `}
 `;
 
 export const IntroTitle = styled(PrimitivesTextHeadingOne)`
   color: ${({ theme }) => theme.colors.base};
   letter-spacing: 0.02em;
   word-spacing: 0.02em;
+  font-size: 40px;
   line-height: 48px;
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 export const IntroDescription = styled(Text)`
   margin: 30px 0 0;
   color: ${({ theme }) => theme.colors.baseLight};
+  font-size: 16px;
+  line-height: 24px;
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 24px;
+    line-height: 32px;
+  }
 `;
 
 export const GetStartedLink = styled(PrimaryButton)`
@@ -49,21 +89,67 @@ export const GetStartedLink = styled(PrimaryButton)`
     background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
     box-shadow: inherit;
   }
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (max-width: ${SIZE.SM}px) {
+    width: 100%;
+  }
 `;
 
-export const BlocksWrapper = styled(Flex)`
-  justify-content: space-between;
+export const BlocksWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
   padding-top: 60px;
+
+  @media ${Breakpoints.DESKTOP} {
+    gap: 50px;
+  }
+
+  @media ${Breakpoints.TABLET} {
+    gap: 48px;
+  }
+
+  @media ${Breakpoints.MOBILE} {
+    gap: 24px;
+  }
+
+  @media (max-width: ${SIZE.SM}px) {
+    gap: 33px;
+    flex-direction: column;
+  }
 `;
 
 export const BlockTitle = styled(TextHeadingTwo)`
   color: ${({ theme }) => theme.colors.base};
   margin: 20px 0 0;
+  font-size: 24px;
+  line-height: 32px;
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 40px;
+    line-height: 48px;
+  }
 `;
 
 export const BlockDescription = styled(Text)`
   padding: 10px 0 20px;
   color: ${({ theme }) => theme.colors.baseLight};
+  font-size: 16px;
+  line-height: 24px;
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 24px;
+    line-height: 32px;
+  }
 `;
 
 export const BlockList = styled(List)`
@@ -72,6 +158,14 @@ export const BlockList = styled(List)`
     font-weight: 500;
     a {
       color: ${({ theme }) => theme.colors.base};
+    }
+
+    font-size: 16px;
+    line-height: 24px;
+
+    @media ${MobileBreakPoints.MOBILE_M} {
+      font-size: 24px;
+      line-height: 32px;
     }
   }
 `;
