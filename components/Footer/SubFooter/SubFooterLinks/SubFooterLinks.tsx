@@ -1,6 +1,12 @@
 import { FC } from 'react';
 
-import { PoliciesList } from 'types/footer';
+import {
+  PoliciesList,
+  PolicyEntity,
+  PolicyLink,
+  PolicyButton,
+  PolicyEntityType,
+} from 'types/footer';
 import FooterLink from '../../FooterLink';
 import { SubFooterList, SubFooterListItem } from './SubFooter.styles';
 
@@ -10,14 +16,23 @@ type Props = {
 };
 
 const SubFooterLinks: FC<Props> = ({ policies, isMobile }) => {
+  const mapContent = (entity: PolicyEntity<unknown>) => {
+    if (entity.type === PolicyEntityType.BUTTON) {
+      const { props } = entity as PolicyEntity<PolicyButton>;
+      return <span {...props}>{entity.name}</span>;
+    }
+    const { link } = entity as PolicyEntity<PolicyLink>;
+    return (
+      <FooterLink href={link} underline external>
+        {entity.name}
+      </FooterLink>
+    );
+  };
+
   return (
     <SubFooterList isMobile={isMobile}>
-      {policies.map((sectionLink: { link: string; name: string }) => (
-        <SubFooterListItem key={sectionLink.link + sectionLink.name}>
-          <FooterLink href={sectionLink.link} underline external>
-            {sectionLink.name}
-          </FooterLink>
-        </SubFooterListItem>
+      {policies.map((entity) => (
+        <SubFooterListItem key={entity.name}>{mapContent(entity)}</SubFooterListItem>
       ))}
     </SubFooterList>
   );

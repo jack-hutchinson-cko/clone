@@ -6,6 +6,8 @@ import Boomerang from './Trackers/Boomerang';
 import HeapIO from './Trackers/HeapIO';
 import HotJar from './Trackers/HotJar';
 
+import OneTrustCookie from './Cookies/OneTrustCookie';
+
 type Props = {
   title?: string;
 };
@@ -23,6 +25,7 @@ const PageHead: FC<Props> = ({ title = 'Checkout.com' }) => (
       account={process.env.NEXT_PUBLIC_HEAP_IO_ACCOUNT}
     />
     <HotJar id={process.env.NEXT_PUBLIC_HOT_JAR_ID} />
+    <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />
   </Head>
 );
 export default PageHead;

@@ -22,5 +22,6 @@ export const SubFooterList = styled.ul<SubFooterLinksProps>`
 
 export const SubFooterListItem = styled.li`
   display: block;
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.greyDark};
 `;
