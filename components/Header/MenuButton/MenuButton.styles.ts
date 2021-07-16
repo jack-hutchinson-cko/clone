@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { MobileBreakPoints, Breakpoints } from 'constants/screen';
 
 export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;

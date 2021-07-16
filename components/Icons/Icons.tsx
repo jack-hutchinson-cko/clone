@@ -441,3 +441,9 @@ export const IconActionLink: FC<Props> = (props) => (
     />
   </StyledIconActionLink>
 );
+
+export const IconActionAccordion: FC<Props> = (props) => (
+  <StyledIcon width={20} height={11} viewBox="0 0 20 11" {...props}>
+    <path d="M1.00293 0.5L10 9.5L18.9971 0.5" stroke="currentColor" />
+  </StyledIcon>
+);

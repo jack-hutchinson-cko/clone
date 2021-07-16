@@ -14,7 +14,9 @@ export const AccordionSection: FC<NavigationSectionProps> = ({
   children,
 }) => (
   <StyledAccordion isRoot={isRoot} isExpanded={isOpen}>
-    <StyledAccordionHead clickableTitle={false}>{link}</StyledAccordionHead>
+    <StyledAccordionHead isRoot={isRoot} clickableTitle={false}>
+      {link}
+    </StyledAccordionHead>
     <StyledAccordionBody>{children}</StyledAccordionBody>
   </StyledAccordion>
 );

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Breakpoints, MobileBreakPoints } from 'constants/screen';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
@@ -15,18 +16,13 @@ export const StyledAccordionHead = styled.button<{
   color: inherit;
   font-family: inherit;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 300;
   text-align: left;
-  line-height: 24px;
+  line-height: 32px;
   cursor: pointer;
 
   & > div,
   & > p {
-    mark {
-      background: transparent;
-      color: inherit;
-    }
-
     ${({ isOpen, theme }) =>
       isOpen
         ? css`
@@ -39,14 +35,23 @@ export const StyledAccordionHead = styled.button<{
             }
           `
         : ''};
+    mark {
+      background: transparent;
+      color: inherit;
+      @media ${Breakpoints.MOBILE} {
+        background: transparent;
+      }
+    }
   }
 
   svg {
-    width: 20px;
-    height: 20px;
     transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
     & > g {
       fill: ${({ theme }) => theme.colors.stormGray};
+    }
+    @media ${MobileBreakPoints.MOBILE_S} {
+      width: 12px;
+      height: 6px;
     }
   }
 `;
