@@ -3,11 +3,12 @@ import Link from 'next/link';
 import { Breakpoints, MobileBreakPoints } from 'constants/screen';
 
 export const Results = styled.div<{ isShown: boolean }>`
-  display: ${({ isShown }) => (isShown ? 'display' : 'none')};
+  display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   position: absolute;
   left: 0;
   top: calc(100% + 10px);
   width: 100%;
+  min-width: 360px;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.backgroundSearch};
   border-radius: 8px;

@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
+
 import { IconActionChevronDown } from 'components/Icons';
+import { Breakpoints, MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const NavigationContent = styled.nav`
   position: relative;
@@ -14,6 +16,17 @@ export const NavigationContent = styled.nav`
 export const NavigationSection = styled.div<{ isMobile?: boolean }>`
   display: inline-flex;
   gap: 30px;
+
+  @media (min-width: ${SIZE.L}px) and (max-width: 1070px) {
+    gap: 15px;
+  }
+`;
+
+export const MiddleNavigationSection = styled(NavigationSection)`
+  @media ${Breakpoints.TABLET} {
+    flex: 1;
+    margin: 0 25px 0 50px;
+  }
 `;
 
 export const Navigation = styled.header<{ isMobile?: boolean }>`
@@ -63,6 +76,14 @@ export const NavigationDrawers = styled.div`
   height: calc(100vh - 81px);
   pointer-events: none;
   z-index: 2;
+
+  @media ${Breakpoints.MOBILE} {
+    top: 109.5px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    top: 66px;
+  }
 `;
 
 export const NavigationItem = styled.div<{
@@ -93,6 +114,23 @@ export const NavigationItem = styled.div<{
 
   svg {
     color: ${({ theme }) => theme.colors.sectionIcon};
+  }
+
+  @media ${Breakpoints.MOBILE} {
+    height: 108.5px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    height: 65px;
+    font-size: 16px;
+  }
+`;
+
+export const MiddleNavigationItem = styled(NavigationItem)`
+  @media ${Breakpoints.TABLET} {
+    flex: 1;
   }
 `;
 
@@ -168,6 +206,11 @@ export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
 export const SearchFieldWrapper = styled.div`
   display: inline-block;
   width: 370px;
+
+  @media ${Breakpoints.TABLET} {
+    width: 100%;
+    max-width: 370px;
+  }
 `;
 
 export const SwitchIcon = styled.div`

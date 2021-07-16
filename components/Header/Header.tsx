@@ -32,6 +32,8 @@ import {
   SearchFieldWrapper,
   DrawerTopContentWrapper,
   DrawerBottomContentWrapper,
+  MiddleNavigationSection,
+  MiddleNavigationItem,
 } from './Header.styles';
 
 type Props = {
@@ -143,7 +145,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             </NavigationItem>
           )}
         </NavigationSection>
-        <NavigationSection>
+        <MiddleNavigationSection>
           <NavigationItemHolder
             isMobile={isMobile}
             content={
@@ -165,11 +167,11 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             )}
           </NavigationItemHolder>
           {(isDesktop || isTablet) && (
-            <NavigationItem>
+            <MiddleNavigationItem>
               <SearchFieldWrapper>{searchWidget}</SearchFieldWrapper>
-            </NavigationItem>
+            </MiddleNavigationItem>
           )}
-        </NavigationSection>
+        </MiddleNavigationSection>
         {!isMobile && (
           <NavigationSection>
             {isDesktop && (
