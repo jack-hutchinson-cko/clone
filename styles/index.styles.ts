@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import {
-  Flex,
   Box,
   PrimaryButton,
   TextHeadingOne as PrimitivesTextHeadingOne,
@@ -10,7 +9,14 @@ import {
   Link as PrimitiveLink,
 } from '@cko/primitives';
 import { TextHeadingOne } from 'components/TextHeading';
-import { SIZE, Breakpoints, MobileBreakPoints } from 'constants/screen';
+import {
+  SIZE,
+  Breakpoints,
+  MobileBreakPoints,
+  createBreakpointBetween,
+  createBreakpointFrom,
+  createBreakpointTo,
+} from 'constants/screen';
 
 export const IntroWrapper = styled.div`
   display: flex;
@@ -191,9 +197,20 @@ export const Content = styled.article`
 `;
 
 export const PageContent = styled.main`
-  padding: 32px 26px 64px 26px;
   flex-grow: 1;
   overflow-x: hidden;
+
+  @media ${createBreakpointFrom(SIZE.M)} {
+    padding: 32px 64px 64px 64px;
+  }
+
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
+    padding: 24px 40px 40px 40px;
+  }
+
+  @media ${createBreakpointTo(SIZE.XS)} {
+    padding: 24px;
+  }
 `;
 
 export const Title = styled(TextHeadingOne)`
@@ -210,7 +227,7 @@ export const Navigation = styled.div`
   padding: 0 26px 0 26px;
   box-sizing: content-box;
 
-  @media (max-width: ${SIZE.XL}px) {
+  @media ${createBreakpointTo(SIZE.XL)} {
     display: none;
   }
 `;

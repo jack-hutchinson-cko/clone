@@ -80,7 +80,7 @@ export const FooterLogo: FC<Props> = (props) => (
 );
 
 export const IconFacebook: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} {...props}>
+  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M6 5.33H4V8h2v8h3.33V8h2.43L12 5.33H9.33v-1.1c0-.64.14-.9.75-.9H12V0H9.47C7.07 0 6 1.05 6 3.08v2.25z"
       fill="#FFF"
@@ -89,7 +89,7 @@ export const IconFacebook: FC<Props> = (props) => (
 );
 
 export const IconTwitter: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} {...props}>
+  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M16 2.9c-.6.28-1.23.46-1.88.54.69-.43 1.2-1.09 1.44-1.86-.65.39-1.35.67-2.1.82a3.2 3.2 0 00-4.97.23 3.35 3.35 0 00-.61 2.83 9.21 9.21 0 01-6.76-3.51 3.39 3.39 0 001.01 4.48 3.13 3.13 0 01-1.49-.41 3.35 3.35 0 002.67 3.33c-.5.12-1 .12-1.5 0a3.32 3.32 0 003.06 2.39A6.56 6.56 0 010 13.14a9.17 9.17 0 0011.85-1.46 9.41 9.41 0 002.51-7.01A6.56 6.56 0 0016 2.9z"
       fill="#fff"
@@ -98,7 +98,7 @@ export const IconTwitter: FC<Props> = (props) => (
 );
 
 export const IconInstagram: FC<Props> = (props) => (
-  <StyledIcon width={16} height={17} {...props}>
+  <StyledIcon width={16} height={17} viewBox="0 0 16 16" {...props}>
     <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z" fill="#fff" />
     <path
       d="M16 4.7A4.41 4.41 0 0011.3 0H4.7A4.41 4.41 0 000 4.7v6.6A4.43 4.43 0 004.7 16h6.6a4.41 4.41 0 004.7-4.7V8 4.7zm-8 7.4a4.1 4.1 0 110-8.2 4.1 4.1 0 010 8.2zM13.33 4H12V2.67h1.33V4z"
@@ -108,7 +108,7 @@ export const IconInstagram: FC<Props> = (props) => (
 );
 
 export const IconYoutube: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} {...props}>
+  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M13.08 1.47a99.32 99.32 0 00-10.16 0C.32 1.67 0 3.4 0 8c0 4.6.32 6.3 2.92 6.5 3.38.2 6.78.2 10.16 0C15.68 14.3 16 12.57 16 8c0-4.56-.32-6.33-2.92-6.53zm-7.75 9.2V5.33L12 8l-6.67 2.67z"
       fill="#fff"
@@ -117,7 +117,7 @@ export const IconYoutube: FC<Props> = (props) => (
 );
 
 export const IconGlassdoor: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} {...props}>
+  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -128,7 +128,7 @@ export const IconGlassdoor: FC<Props> = (props) => (
 );
 
 export const IconCheckout: FC<Props> = (props) => (
-  <StyledIcon width={16} height={17} {...props}>
+  <StyledIcon width={16} height={17} viewBox="0 0 16 16" {...props}>
     <path
       d="M4.33 13.84a2.17 2.17 0 11-4.34 0 2.17 2.17 0 014.34 0zM0 5.46v3.2A7.43 7.43 0 017.35 16h3.21A10.67 10.67 0 000 5.46zm0-2.24A12.81 12.81 0 0112.79 16H16A16 16 0 000 0v3.22z"
       fill="#fff"
@@ -137,7 +137,7 @@ export const IconCheckout: FC<Props> = (props) => (
 );
 
 export const IconLinkedin: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} {...props}>
+  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M3.32 1.74a1.7 1.7 0 01-1.65 1.74A1.7 1.7 0 010 1.74 1.7 1.7 0 011.67 0a1.7 1.7 0 011.65 1.74zm0 3.13H0V16h3.33L3.32 4.87zm5.33 0H5.33V16h3.32v-5.84c0-3.25 4-3.52 4 0V16H16V8.95a4 4 0 00-7.35-2.57V4.87z"
       fill="#fff"

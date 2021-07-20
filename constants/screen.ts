@@ -1,10 +1,10 @@
-export const SIZE = {
-  XL: 1360,
-  L: 1024,
-  M: 768,
-  SM: 600,
-  XS: 375,
-};
+export enum SIZE {
+  XL = 1360,
+  L = 1024,
+  M = 768,
+  SM = 600,
+  XS = 375,
+}
 
 export const Breakpoints = {
   DESKTOP: `(min-width: ${SIZE.L}px)`,
@@ -17,3 +17,10 @@ export const MobileBreakPoints = {
   MOBILE_M: `(min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM - 1}px)`,
   MOBILE_S: `(max-width: ${SIZE.XS - 1}px)`,
 };
+
+export const createBreakpointBetween = (start: SIZE, end: SIZE): string =>
+  `(min-width: ${start}px) and (max-width: ${end - 1}px)`;
+
+export const createBreakpointFrom = (start: SIZE): string => `(min-width: ${start}px)`;
+
+export const createBreakpointTo = (end: SIZE): string => `(max-width: ${end - 1}px)`;

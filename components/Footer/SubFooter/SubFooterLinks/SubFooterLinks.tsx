@@ -12,10 +12,9 @@ import { SubFooterList, SubFooterListItem } from './SubFooter.styles';
 
 type Props = {
   policies: PoliciesList;
-  isMobile: boolean;
 };
 
-const SubFooterLinks: FC<Props> = ({ policies, isMobile }) => {
+const SubFooterLinks: FC<Props> = ({ policies }) => {
   const mapContent = (entity: PolicyEntity<unknown>) => {
     if (entity.type === PolicyEntityType.BUTTON) {
       const { props } = entity as PolicyEntity<PolicyButton>;
@@ -28,9 +27,8 @@ const SubFooterLinks: FC<Props> = ({ policies, isMobile }) => {
       </FooterLink>
     );
   };
-
   return (
-    <SubFooterList isMobile={isMobile}>
+    <SubFooterList>
       {policies.map((entity) => (
         <SubFooterListItem key={entity.name}>{mapContent(entity)}</SubFooterListItem>
       ))}

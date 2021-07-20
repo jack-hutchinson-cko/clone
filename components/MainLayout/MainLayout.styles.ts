@@ -28,7 +28,7 @@ export const SideBarWrapper = styled.div`
   width: 300px;
   flex-grow: 0;
   min-width: 300px;
-  padding: 26px;
+  padding: 32px 0 32px 64px;
 `;
 
 export const Content = styled.main`

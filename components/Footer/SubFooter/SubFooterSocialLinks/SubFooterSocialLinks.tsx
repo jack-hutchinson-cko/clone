@@ -7,12 +7,11 @@ import { SubFooterSocialLinksWrapper } from './SubFooterSocialLinks.styles';
 
 type Props = {
   social: SocialList;
-  isMobile: boolean;
 };
 
-const SubFooterSocialLinks: FC<Props> = ({ social, isMobile }) => {
+const SubFooterSocialLinks: FC<Props> = ({ social }) => {
   return (
-    <SubFooterSocialLinksWrapper isMobile={isMobile}>
+    <SubFooterSocialLinksWrapper>
       {social.map(({ link, title, iconName }) => (
         <li key={title}>
           <FooterLink href={link} title={title} external>
