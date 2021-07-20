@@ -3,12 +3,14 @@ import styled from 'styled-components';
 export const TextHeadingOne = styled.h1`
   color: ${({ theme }) => theme.colors.base};
   font-size: 38px;
+  font-weight: 600;
   margin: 32px 0;
 `;
 
 export const TextHeadingTwo = styled.h2`
   color: ${({ theme }) => theme.colors.base};
   font-size: 32px;
+  font-weight: 600;
   margin: 26px 0;
 `;
 

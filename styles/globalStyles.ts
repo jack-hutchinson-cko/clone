@@ -1,15 +1,46 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-   html,
+   @font-face { 
+      font-family: "Graphik LCG";
+      font-style: normal;
+      font-weight: 400;
+      src: url("../fonts/Graphik-Regular-Web.eot");
+      src: url("../fonts/Graphik-Regular-Web.eot?#iefix")format("embedded-opentype"),
+      url("../fonts/Graphik-Regular-Web.woff") format("woff"),
+      url("../fonts/Graphik-Regular-Web.woff2") format("woff2"),
+      url("../fonts/Graphik-Regular-Web.ttf") format("truetype");
+   };
+
+   @font-face { 
+      font-family: "Graphik LCG";
+      font-style: normal;
+      font-weight: 500;
+      src: url("../fonts/Graphik-Medium-Web.eot");
+      src: url("../fonts/Graphik-Medium-Web.eot?#iefix")format("embedded-opentype"),
+      url("../fonts/Graphik-Medium-Web.woff") format("woff"),
+      url("../fonts/Graphik-Medium-Web.woff2") format("woff2"),
+      url("../fonts/Graphik-Medium-Web.ttf") format("truetype");
+   };
+
+   @font-face { 
+      font-family: "Graphik LCG";
+      font-style: normal;
+      font-weight: 600;
+      src: url("../fonts/Graphik-Semibold-Cy-Gr-Web.eot?#iefix")format("embedded-opentype"),
+      url("../fonts/Graphik-Semibold-Cy-Gr-Web.woff") format("woff"),
+      url("../fonts/Graphik-Semibold-Cy-Gr-Web.woff2") format("woff2"),
+      url("../fonts/Graphik-Semibold-Cy-Gr-Web.ttf") format("truetype");
+   };
+
+   html, 
    body {
       margin: 0;
       padding: 0;
-      font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      font-family: Graphik LCG, sans-serif;
+      font-weight: 400;
       color: ${({ theme }) => theme.colors.baseLight};
       background-color: ${({ theme }) => theme.colors.background};
-      font-weight: 400;
    };
    * {
       box-sizing: border-box;
@@ -29,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
       border: 0;
       border-top: 1px solid rgba(0,0,0,.1);
    }
-
+   
    #ot-sdk-btn.ot-sdk-show-settings.settings-button {
      border: none;
      height: initial;
