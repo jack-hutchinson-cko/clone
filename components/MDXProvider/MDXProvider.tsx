@@ -39,6 +39,7 @@ import Iframe from 'components/Iframe';
 import CardLink from 'components/CardLink';
 import CardWrapper from 'components/CardWrapper';
 import Tic from 'components/Tic';
+import { CategoriesList, CategoriesItem } from 'components/Categories';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -90,6 +91,8 @@ export const mdxComponents = {
   CardLink,
   CardWrapper: withBlockMargin(CardWrapper),
   Tic: withBlockMargin(Tic),
+  CategoriesList: withBlockMargin(CategoriesList),
+  CategoriesItem,
 };
 
 type Props = {
