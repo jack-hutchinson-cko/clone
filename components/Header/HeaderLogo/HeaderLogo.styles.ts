@@ -37,6 +37,6 @@ export const Container = styled.div`
     }
 
     svg {
-      transform: scale(0.6);
+      transform: scale(0.74);
     }
 `;

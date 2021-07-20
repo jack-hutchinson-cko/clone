@@ -205,7 +205,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                           alternativeLink={
                             <Link href={testAccountUrl} passHref>
                               <NavigationLink target="_blank" light underlineAlways>
-                                apply for an account
+                                apply for a test account
                               </NavigationLink>
                             </Link>
                           }

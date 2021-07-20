@@ -15,7 +15,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
-    height: 25px;
+    height: 17px;
     width: 25px;
   }
 
@@ -40,10 +40,18 @@ export const Button = styled.span<{ isActive?: boolean }>`
   > span::before {
     content: '';
     top: -10px;
+
+    @media ${MobileBreakPoints.MOBILE_S} {
+      top: -8.5px;
+    }
   }
   > span::after {
     content: '';
     top: 10px;
+
+    @media ${MobileBreakPoints.MOBILE_S} {
+      top: 8.5px;
+    }
   }
 
   ${({ isActive }) =>

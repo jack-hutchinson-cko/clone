@@ -9,23 +9,21 @@ export const NavigationContent = styled.nav`
   max-width: 1360px;
   margin: 0 auto;
   justify-content: space-between;
-  padding: 0 26px;
+  padding: 0 64px;
   z-index: 1;
 `;
 
 export const NavigationSection = styled.div<{ isMobile?: boolean }>`
   display: inline-flex;
   gap: 30px;
-
-  @media (min-width: ${SIZE.L}px) and (max-width: 1070px) {
-    gap: 15px;
-  }
 `;
 
 export const MiddleNavigationSection = styled(NavigationSection)`
-  @media ${Breakpoints.TABLET} {
-    flex: 1;
-    margin: 0 25px 0 50px;
+  flex: 1;
+  margin: 0 25px 0 50px;
+
+  @media (min-width: ${SIZE.M}px) and (max-width: 870px) {
+    margin: 0 20px 0 20px;
   }
 `;
 
@@ -60,8 +58,12 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         }
 
         &:not(:last-child) {
-          padding: 0 26px;
+          padding: 0 40px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+
+          @media ${MobileBreakPoints.MOBILE_S} {
+            padding: 0 24px;
+          }
         }
       }
     `}
@@ -129,9 +131,7 @@ export const NavigationItem = styled.div<{
 `;
 
 export const MiddleNavigationItem = styled(NavigationItem)`
-  @media ${Breakpoints.TABLET} {
-    flex: 1;
-  }
+  flex: 1;
 `;
 
 export const NavigationLink = styled.a<{
@@ -176,6 +176,11 @@ export const NavigationLink = styled.a<{
   svg {
     color: ${({ theme }) => theme.colors.sectionIcon};
   }
+
+  @media ${Breakpoints.TABLET} {
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
@@ -205,12 +210,8 @@ export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
 
 export const SearchFieldWrapper = styled.div`
   display: inline-block;
-  width: 370px;
-
-  @media ${Breakpoints.TABLET} {
-    width: 100%;
-    max-width: 370px;
-  }
+  width: 100%;
+  max-width: 370px;
 `;
 
 export const SwitchIcon = styled.div`
@@ -221,13 +222,13 @@ export const SwitchIcon = styled.div`
 `;
 
 export const DrawerTopContentWrapper = styled.div`
-  padding: 30px;
+  padding: 40px;
   background: ${({ theme }) => theme.colors.background};
 `;
 
 export const DrawerBottomContentWrapper = styled.div`
   background: ${({ theme }) => theme.colors.backgroundDark};
-  padding: 30px;
+  padding: 40px;
   width: 100%;
   flex: 1;
 `;

@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { Breakpoints } from 'constants/screen';
+
 export const Divider = styled.span`
   font-size: inherit;
   font-style: normal;
@@ -11,6 +13,10 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
   align-items: center;
   gap: ${({ gap }) => gap ?? 6}px;
   padding-top: 12px;
+
+  @media ${Breakpoints.TABLET} {
+    gap: 16px;
+  }
 
   ${({ isMobile }) =>
     isMobile &&

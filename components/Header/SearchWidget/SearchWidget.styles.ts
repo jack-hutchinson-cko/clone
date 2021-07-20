@@ -19,6 +19,7 @@ export const Results = styled.div<{ isShown: boolean }>`
     position: initial;
     top: auto;
     left: auto;
+    min-width: initial;
     box-shadow: none;
     border-radius: 0;
     border-width: 0;
