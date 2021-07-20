@@ -4,6 +4,8 @@ export type AccordionProps = {
   title?: string;
   children: ReactNode;
   isExpanded?: boolean;
+  isBoldTitle?: boolean;
+  withUnderline?: boolean;
 };
 
 export type AccordionBodyProps = {

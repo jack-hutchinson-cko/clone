@@ -15,12 +15,16 @@ export const MenuItem = styled.div<{ isRoot?: boolean }>`
       font-weight: 500;
       font-size: 32px;
       line-height: 32px;
-      padding: 10px 0 36px 0;
+      padding: 36px 0;
       border-bottom: 1px solid ${({ theme }) => theme.colors.border};
     `}
 
   @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
+    padding: 24px 0;
+  }
+  &:first-child {
+    padding-top: 0;
   }
 `;

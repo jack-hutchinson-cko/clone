@@ -162,6 +162,34 @@ export const IconEarth: FC<Props> = (props) => (
   </StyledIcon>
 );
 
+export const ChangeLogIcon: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 17" {...props}>
+    <g clipPath="url(#clip0)">
+      <path d="M3.5 5H8.5" stroke="currentColor" strokeLinecap="round" />
+      <path d="M3.5 8H5" stroke="currentColor" strokeLinecap="round" />
+      <path d="M7 8H8.5" stroke="currentColor" strokeLinecap="round" />
+      <path d="M3.5 11H5" stroke="currentColor" strokeLinecap="round" />
+      <path
+        d="M14 10.5C14 10.2239 13.7761 10 13.5 10C13.2239 10 13 10.2239 13 10.5H14ZM13 15.5C13 15.7761 13.2239 16 13.5 16C13.7761 16 14 15.7761 14 15.5H13ZM13 10.5V15.5H14V10.5H13Z"
+        fill="currentColor"
+      />
+      <path
+        d="M13.5 15.9998C12.3954 15.9998 11.5 15.1043 11.5 13.9998V5.99976C11.5 4.89519 12.3954 3.99976 13.5 3.99976V3.99976C14.6046 3.99976 15.5 4.89519 15.5 5.99976V13.9998C15.5 15.1043 14.6046 15.9998 13.5 15.9998V15.9998V15.9998Z"
+        stroke="currentColor"
+      />
+      <path
+        d="M2.49944 16C1.39487 16 0.5 15.1046 0.5 14V3C0.5 1.89543 1.39543 1 2.5 1H9.5C10.6046 1 11.5 1.89543 11.5 3V14.5C11.5 15.5 12.5 16 13.5 16C10.297 16 6.04683 16 2.49944 16Z"
+        stroke="currentColor"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0">
+        <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
+      </clipPath>
+    </defs>
+  </StyledIcon>
+);
+
 export const IconActionChevronDown: FC<Props> = (props) => (
   <StyledIcon width={14} height={8} {...props}>
     <path d="M1.00195 1L7 7L12.998 1" stroke="currentColor" strokeWidth="1" />

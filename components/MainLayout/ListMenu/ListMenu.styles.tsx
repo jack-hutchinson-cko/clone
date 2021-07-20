@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-
+import { IconEarth, ChangeLogIcon } from 'components/Icons';
 import Accordion, { AccordionBody, AccordionHead } from 'components/Accordion';
 
 export const StyledAccordionBody = styled(AccordionBody)`
@@ -34,4 +34,18 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
         font-size: 24px;
       }
     `}
+`;
+
+export const StyledIconEarth = styled(IconEarth)`
+  color: ${({ theme }) => theme.colors.sectionIcon};
+`;
+
+export const StyledChangeLogIcon = styled(ChangeLogIcon)`
+  color: ${({ theme }) => theme.colors.sectionIcon};
+`;
+
+export const ChangeLogWrapper = styled.div`
+  display: flex;
+  align-item: center;
+  gap: 16px;
 `;

@@ -22,7 +22,6 @@ import {
   ContentWrapper,
   SideBarWrapper,
   FooterWrapper,
-  StyledIconEarth,
 } from './MainLayout.styles';
 
 type Props = {
@@ -38,15 +37,7 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerCo
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
 
   const Menu = isMobile ? AccordionMenu : ListMenu;
-  const menu = (
-    <Menu
-      docsTreeLinks={navTreeLinks}
-      homeLink="/"
-      homeLinkTitle="Home"
-      homeLinkIcon={<StyledIconEarth />}
-      activeLink={activeLink}
-    />
-  );
+  const menu = <Menu docsTreeLinks={navTreeLinks} activeLink={activeLink} />;
 
   return (
     <MenuStateProvider>

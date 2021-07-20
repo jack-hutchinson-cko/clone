@@ -39,7 +39,3 @@ export const Content = styled.main`
 export const FooterWrapper = styled.div`
   flex-grow: 0;
 `;
-
-export const StyledIconEarth = styled(IconEarth)`
-  color: ${({ theme }) => theme.colors.sectionIcon};
-`;

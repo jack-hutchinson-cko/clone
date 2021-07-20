@@ -5,7 +5,14 @@ import { StyledAccordion, AccordionBodyWrapper } from './Accordion.styles';
 import { AccordionProps } from './types';
 import { getHeightOfInnerContent } from './utils';
 
-const Accordion: FC<AccordionProps> = ({ title = null, isExpanded, children, ...props }) => {
+const Accordion: FC<AccordionProps> = ({
+  title = null,
+  isExpanded,
+  children,
+  isBoldTitle,
+  withUnderline,
+  ...props
+}) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
   const bodyElement = useRef(null);
 
@@ -19,7 +26,12 @@ const Accordion: FC<AccordionProps> = ({ title = null, isExpanded, children, ...
   if (title) {
     return (
       <StyledAccordion {...props}>
-        <StyledAccordionHead onClick={onClickHandler} isOpen={isOpen}>
+        <StyledAccordionHead
+          onClick={onClickHandler}
+          isOpen={isOpen}
+          isBoldTitle={isBoldTitle}
+          withUnderline={withUnderline}
+        >
           <div>
             <mark>{title}</mark>
           </div>

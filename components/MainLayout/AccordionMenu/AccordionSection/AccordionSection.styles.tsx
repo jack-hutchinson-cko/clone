@@ -34,10 +34,12 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
   ${({ isRoot }) =>
     isRoot &&
     css`
+      font-weight: 500;
       padding: 40px 0 36px 0;
-      &:not(:first-child) {
-        border-top: 1px solid ${({ theme }) => theme.colors.border};
+      & > mark {
+        font-weight: 500 !important;
       }
+      border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
       > ${StyledAccordionHead} {
         font-size: 32px;

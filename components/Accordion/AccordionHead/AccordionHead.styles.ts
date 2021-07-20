@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { MobileBreakPoints } from 'constants/screen';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
   hasTitle?: boolean;
+  isBoldTitle?: boolean;
+  withUnderline?: boolean;
 }>`
   display: flex;
   justify-content: space-between;
@@ -36,11 +38,12 @@ export const StyledAccordionHead = styled.button<{
           `
         : ''};
     mark {
-      background: transparent;
+      background: ${({ isOpen, theme, withUnderline }) =>
+        withUnderline && isOpen
+          ? `linear-gradient(to top, ${theme.colors.turquoise} 0 8px,transparent 8px 100%)`
+          : 'transparent'};
+      font-weight: ${({ isBoldTitle }) => (isBoldTitle ? 500 : 300)};
       color: inherit;
-      @media ${Breakpoints.MOBILE} {
-        background: transparent;
-      }
     }
   }
 
