@@ -1,6 +1,6 @@
-import { ThemeDefaultProvider } from '@cko/primitives';
-import { defaultTheme } from '../constants/theme';
 import * as nextImage from 'next/image';
+
+import { ThemeProvider } from '../theme/ThemeProvider';
 
 Object.defineProperty(nextImage, 'default', {
   configurable: true,
@@ -14,8 +14,8 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <ThemeDefaultProvider theme={defaultTheme}>
+    <ThemeProvider>
       <Story />
-    </ThemeDefaultProvider>
+    </ThemeProvider>
   ),
 ];

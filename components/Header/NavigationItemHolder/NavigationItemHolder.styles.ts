@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+
 export const Container = styled.div<{ isMobile?: boolean }>`
   position: relative;
   z-index: 1;
@@ -36,4 +38,16 @@ export const Content = styled.div<{
 export const Trigger = styled.div`
   display: inline-flex;
   align-items: center;
+
+  @media ${Breakpoints.MOBILE} {
+    > div {
+      height: 65.5px;
+    }
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    > div {
+      height: 45px;
+    }
+  }
 `;

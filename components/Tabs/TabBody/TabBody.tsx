@@ -8,13 +8,21 @@ type Props = {
 
 const TabBody: FC<Props> = ({ activeTab = 0, children }) => {
   if (!children) {
-    return <StyledTabBody>Empty</StyledTabBody>;
+    return <StyledTabBody isVisible>Empty</StyledTabBody>;
   }
 
   const childrenArray = React.Children.toArray(children);
-  const contentTabBody = React.Children.count(children) > 1 ? childrenArray[activeTab] : children;
 
-  return <StyledTabBody>{contentTabBody}</StyledTabBody>;
+  return (
+    <div>
+      {childrenArray.map((childrenItem, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <StyledTabBody key={index} isVisible={index === activeTab}>
+          {childrenItem}
+        </StyledTabBody>
+      ))}
+    </div>
+  );
 };
 
 export default TabBody;

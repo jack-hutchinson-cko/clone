@@ -1,6 +1,7 @@
 ---
 title: Account Funding Transactions
 account: ABC
+description: Learn how to perform Account Funding Transactions (AFTs).
 ---
 
 The Unified Payments API can be used to perform Account Funding Transactions (AFTs). AFTs are a type of pull payment used primarily to fund a wallet.
@@ -39,10 +40,244 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+#### Body parameters
+
+The table below describes the minimum recommended fields.
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+<StatusTag type="required" />
+<TypeTag type="object" />
+</TableCell>
+<TableCell>
+
+Details about the payment source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The type of payment source. Set this to `token`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.token`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The Checkout.com token.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="optional" />
+<TypeTag type="integer" />
+
+</TableCell>
+<TableCell>
+
+The payment amount in your chosen currency. Omit the amount or provide a value of `0` to perform a [card verification](/display/DOCS/Card+verification).
+
+The format depends on the currency. For more information, see [calculating the value](/display/DOCS/Calculating+the+value).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+A three-letter ISO currency code representing the currency of the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processing`
+
+<StatusTag type="optional" />
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the processing.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processing.aft`
+
+<StatusTag type="optional" />
+<TypeTag type="boolean" />
+
+</TableCell>
+<TableCell>
+
+Indicates whether the payment is an Account Funding Transaction (AFT).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`recipient`
+
+<StatusTag type="optional" />
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the recipient.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`recipient.first_name`
+
+<StatusTag type="required" /> for Mastercard
+<StatusTag type="optional" /> for Visa
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The first name of the recipient of the funds.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`recipient.last_name`
+
+<StatusTag type="required" /> for Mastercard
+<StatusTag type="optional" /> for Visa
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The last name of the recipient of the funds.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`recipient.account_number`
+
+<StatusTag type="required" /> for Mastercard
+<StatusTag type="optional" /> for Visa
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The primary account number (PAN) of the recipient's account.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`recipient.country`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The country ([two-letter ISO country code](/display/DOCS/Country+codes)) of the recipient's address.
+**Required for Mastercard** when the domestic funding transaction is used to fund a subsequent cross-border funds transfer.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
 ### Request example
 
 ```json
-{	
+{
   "source": {
     "type": "token",
     "token": "tok_4gzeau5o2uqubbk6fufs3m7p54",
@@ -61,7 +296,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response example
+### The response
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -76,6 +311,8 @@ The following pages can help you understand the response message:
 *   [Response codes](/resources/codes/response-codes) (if the authorization was unsuccessful)
 
 </TipBox>
+
+#### Response example
 
 The possible values for the status field include `Authorized`, `Captured`, `Card Verified`, `Declined`, and `Pending`. Note that `Pending` only applies to 3D Secure payments.
 

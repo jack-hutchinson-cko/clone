@@ -1,6 +1,7 @@
 ---
 title: Refund a payment
 account: ABC
+description: Return funds to a customer either partially or in full.
 ---
 
 Use a refund to return a payment to a customer. Refunds can be made in the [Hub](https://hub.checkout.com/v2) or by using this API endpoint.
@@ -84,7 +85,7 @@ A successful refund request returns a `202 Refund accepted` response. However,
 <tabs>
 <tab title="202 Refund accepted">
 
-```json
+```json withBorder=false
 {
   "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
   "reference": "ORD-5023-4E89",
@@ -99,7 +100,7 @@ A successful refund request returns a `202 Refund accepted` response. However,
 </tab>
 <tab title="422 Invalid data was sent">
 
-```json
+```json withBorder=false
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",

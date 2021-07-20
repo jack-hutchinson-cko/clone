@@ -24,9 +24,10 @@ QPay payments follow a two-step process:
 
 ## Request a payment
 
-### The POST request
+### Endpoints
 
-#### Endpoints
+For the full API specification, see the [API reference](https://api-reference.checkout.com/).
+
 
 <tabs>
 <tab title="Live" active>
@@ -36,7 +37,7 @@ QPay payments follow a two-step process:
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -45,177 +46,9 @@ QPay payments follow a two-step process:
 </tab>
 </tabs>
 
-#### Header parameters
+### Request example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `QAR`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `qpay`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.description`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A description of the transaction.
-
-Maximum of 255 characters (after UTF-8 URL encoding).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.language`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's preferred language (2-letter ISO code). Set this to either `ar` (Arabic) or `en` (English).
-
-Defaults to `en` if not specified.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.quantity`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The quantity (minimum value of `1`) of the purchased item.
-
-Used for display purposes only; does not affect the total amount of the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.national_id`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The national ID of the customer.
-
-Maximum of 32 characters.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
-
+```json
     {
       "amount": 100,
       "currency": "QAR",
@@ -227,14 +60,13 @@ Maximum of 32 characters.
         "national_id": "070AYY010BU234M"
       }
     }
+```
 
-
-### The POST response
+### Response example
 
 If you receive a `202 Success` response with a `status` field set to `Pending`, your request was successful.
 
-#### Response example
-
+```json
     {
       "id": "pay_7eil5osdlcdehe62et5aihec4q",
       "status": "Pending",
@@ -250,6 +82,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
         }
       }
     }
+```
 
 ---
 
@@ -269,11 +102,11 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### The GET request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+For the full API specification, see the [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -292,55 +125,9 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Response example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial response.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
-
+```json
     {
       "id": "pay_7eil5osdlcdehe62et5aihec4q",
       "requested_on": "2019-06-20T10:03:42Z",
@@ -375,6 +162,7 @@ The payment ID found in the response of the initial response.
         }
       }
     }
+```
 
 ---
 
@@ -394,7 +182,7 @@ If the customer cancels their payment, we will send a `payment_canceled` webhook
 
 ## Testing QPay
 
-<TipBox variant="info">
+<TipBox variant="note">
 
 To start testing, you'll need to:
 

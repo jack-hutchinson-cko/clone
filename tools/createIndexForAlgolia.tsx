@@ -2,13 +2,13 @@ import systemPath from 'path';
 import fs from 'fs';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { ThemeDefaultProvider } from '@cko/primitives';
 import matter from 'gray-matter';
 import striptags from 'striptags';
 import MDX from '@mdx-js/runtime';
 import algoliasearch from 'algoliasearch';
+
+import { ThemeProvider } from 'theme/ThemeProvider';
 import { mdxComponents } from 'components/MDXProvider';
-import { defaultTheme } from 'constants/theme';
 import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
 import { forEachFileTree } from 'lib/fileParser';
 import { unescape } from 'lib/unescape';
@@ -19,6 +19,7 @@ type IndexItemType = {
   path: string;
   parentArticles: string[];
   body: string;
+  headBody: string;
 };
 
 type GetIndexArticleItemParams = {
@@ -39,12 +40,12 @@ const getIndexArticleItem = ({
   const { content, data } = matter(source);
 
   const html = renderToString(
-    <ThemeDefaultProvider theme={defaultTheme}>
+    <ThemeProvider>
       <MDX components={mdxComponents}>{content}</MDX>
-    </ThemeDefaultProvider>,
+    </ThemeProvider>,
   );
 
-  const body = unescape(striptags(html));
+  const body = unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ');
 
   return {
     title: data.title,
@@ -52,6 +53,7 @@ const getIndexArticleItem = ({
     path,
     parentArticles,
     body,
+    headBody: body,
   };
 };
 
@@ -78,6 +80,12 @@ export const createIndexForAlgolia = async (
 
   const client = algoliasearch(ApplicationID, AdminAPIKey);
   const index = client.initIndex(ABC_DOCS_INDEX_NAME);
+
+  index.setSettings({
+    attributesToSnippet: ['body:40', 'title:20', 'headBody:12'],
+    snippetEllipsisText: '...',
+    searchableAttributes: ['title', 'body', 'headBody'],
+  });
 
   await index.clearObjects();
   await index.saveObjects(indexResult, {

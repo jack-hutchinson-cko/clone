@@ -3,6 +3,20 @@ type LinkEntity = {
   name: string;
 };
 
+export enum PolicyEntityType {
+  LINK = 1,
+  BUTTON = 2,
+}
+
+export type PolicyEntity<T> = {
+  type: PolicyEntityType;
+  name: string;
+} & T;
+
+export type PolicyLink = { link: string };
+
+export type PolicyButton = { props?: unknown };
+
 type SocialLinkEntity = {
   link: string;
   title: string;
@@ -16,7 +30,7 @@ type NavigationEntity = {
   items: NavigationItemEntity[];
 };
 
-export type PoliciesList = LinkEntity[];
+export type PoliciesList = PolicyEntity<PolicyLink | PolicyButton>[];
 
 export type SocialList = SocialLinkEntity[];
 

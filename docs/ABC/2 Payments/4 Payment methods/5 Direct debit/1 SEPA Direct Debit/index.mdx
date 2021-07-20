@@ -1,4 +1,3 @@
-
 ---
 title: SEPA Direct Debit
 account: ABC
@@ -74,9 +73,9 @@ Payment sources are linked to a specific customer and cannot be shared between c
 
 </TipBox>
 
-### The POST request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -86,7 +85,7 @@ Payment sources are linked to a specific customer and cannot be shared between c
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/sources`
@@ -95,367 +94,12 @@ Payment sources are linked to a specific customer and cannot be shared between c
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment. Set this to `sepa`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`reference`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A reference that you can later use to identify the source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source_data`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Additional data required to create SEPA payment sources.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source_data.first_name`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The account holder's first name.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source_data.last_name`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The account holder's last name.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source_data.account_iban`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The account's IBAN.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source_data.billing_descriptor`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The billing descriptor.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source_data.mandate_type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of mandate. Set to `single` for one-off payments or `recurring` for recurring payments.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-The account owner's billing address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address.address_line1`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Line 1 of the billing address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address.address_line2`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Line 2 of the billing address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address.city`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The city of the billing address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address.state`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The state of the billing address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address.zip`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The zip/postal code.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`billing_address.country`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The country of the billing address, using the two-letter ISO code (e.g., `GB` for the United Kingdom).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`phone`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-The account holder's phone number.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`phone.country_code`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The valid country code for the phone number (e.g., `+44` for the United Kingdom).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`phone.number`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The phone number.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`customer`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Details about the customer associated with the source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`customer_id`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The identifier of an existing customer. If neither customer `id` nor `email` is provided, we will automatically create a new customer profile and return the customer `id` in the response.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`customer.email`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's email address.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`customer.name`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's name. This will only set the name for new customers.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request examples
+### Request examples
 
 <tabs>
-  <tab title="Recurring mandate request" active>
+<tab title="Recurring mandate request" active>
 
+```json withBorder=false
     {
       "type": "sepa",
       "reference": "X-080957-N34",
@@ -480,10 +124,12 @@ The customer's name. This will only set the name for new customers.
         "email": "sophie.bonneville@ckomail.com"
       }
     }
+```
 
-  </tab>
-  <tab title="One-off mandate request">
+</tab>
+<tab title="One-off mandate request">
 
+```json withBorder=false
     {
       "type": "sepa",
       "reference": "X-080957-N34",
@@ -508,8 +154,9 @@ The customer's name. This will only set the name for new customers.
         "email": "sophie.bonneville@ckomail.com"
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 <TipBox variant="info">
@@ -518,8 +165,9 @@ The soft descriptor value will be prepended to the mandate reference when it app
 
 </TipBox>
 
-### The POST response
+### Response example
 
+```json
     {
       "id": "src_a3wfgafsyedefaobbqadqw34vy",
       "type": "Sepa",
@@ -542,14 +190,15 @@ The soft descriptor value will be prepended to the mandate reference when it app
         }
       }
     }
+```
 
 ---
 
 ## Request a payment
 
-### The POST request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -559,7 +208,7 @@ The soft descriptor value will be prepended to the mandate reference when it app
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -568,140 +217,9 @@ The soft descriptor value will be prepended to the mandate reference when it app
 </tab>
 </tabs>
 
-#### Header parameters
+### Request example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `id`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.id`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The source ID (received in the response above).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The payment currency (three-letter ISO 4217 code).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`reference`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A reference with which you can later identify the payment.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
-
+```json
     {
       "source": {
         "type": "id",
@@ -711,6 +229,7 @@ A reference with which you can later identify the payment.
       "currency": "EUR",
       "reference": "X-080957-N34"
     }
+```
 
 <TipBox variant="info">
 
@@ -718,10 +237,9 @@ Use the provided source ID in the payments endpoint to create a payment for a pa
 
 </TipBox>
 
-### The POST response
+### Response example
 
-#### Response example
-
+```json
     {
       "id": "pay_6thh5vhggyjudgzfznx2fkuede",
       "status": "Pending",
@@ -736,6 +254,7 @@ Use the provided source ID in the payments endpoint to create a payment for a pa
         }
       }
     }
+```
 
 ---
 
@@ -749,9 +268,9 @@ This action is only available for recurring SDD payments; you cannot cancel one-
 
 </TipBox>
 
-### The POST request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -761,7 +280,7 @@ This action is only available for recurring SDD payments; you cannot cancel one-
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/sepa/mandates/{source_id}/cancel`
@@ -769,65 +288,6 @@ This action is only available for recurring SDD payments; you cannot cancel one-
 </LineCodeWrapper>
 </tab>
 </tabs>
-
-#### Header and path parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The source ID (you'll find this in the response of the source creation).
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 <TipBox variant="info">
 
@@ -841,9 +301,9 @@ Mandates automatically expire after 36 months of inactivity.
 
 A captured SEPA charge can be refunded by passing the original payment ID (of the SEPA payment) through our [refund endpoint](/display/DOCS/Refund+a+payment). Refunds must be claimed within eight weeks, starting from the date on which the account was debited.
 
-### The POST request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -853,7 +313,7 @@ A captured SEPA charge can be refunded by passing the original payment ID (of th
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}/refunds`
@@ -862,73 +322,16 @@ A captured SEPA charge can be refunded by passing the original payment ID (of th
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Request example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial payment.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
-
+```json
     {
       "amount": 6540,
       "reference": "ORD-5023-4E89",
     }
+```
 
-### The POST response
+### Response example
 
 If your refund request is successful, you will receive a `payment_refund_pending` webhook notification. Once the refund has been processed, you will receive a `payment_refunded` webhook and the payment status will change to `refunded`.
 
@@ -938,8 +341,7 @@ Refunds can take up to four days to be processed.
 
 </TipBox>
 
-#### Response example
-
+```json
     {
       "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
       "reference": "ORD-5023-4E89",
@@ -949,6 +351,7 @@ Refunds can take up to four days to be processed.
         }
       }
     }
+```
 
 ---
 
@@ -956,9 +359,9 @@ Refunds can take up to four days to be processed.
 
 Use this request to get more information on an SDD payment source, based on its `id`.
 
-### The GET request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -968,7 +371,7 @@ Use this request to get more information on an SDD payment source, based on its 
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/sources/{id}`
@@ -977,69 +380,9 @@ Use this request to get more information on an SDD payment source, based on its 
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Response example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The source ID (you'll find this in the response of the source creation).
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
-
+```json
     {
       "id": "src_y3oqhf46pyzuxjbcn2giaqnb44",
       "type": "sepa",
@@ -1052,6 +395,7 @@ The source ID (you'll find this in the response of the source creation).
         }
       }
     }
+```
 
 <TipBox variant="info">
 

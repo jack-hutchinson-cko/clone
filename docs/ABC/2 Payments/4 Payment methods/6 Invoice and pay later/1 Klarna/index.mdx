@@ -37,9 +37,7 @@ If, however, your checkout process is designed in a way that you don't have all 
 
 When you create a session, you will receive the available `payment_method_categories`, a `session_id` and a `client_token`. You can use the `session_id` to update the session using our API, and the `client_token` should be passed to the browser. A session is valid for 48 hours.
 
-### The POST request
-
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live" active>
@@ -49,7 +47,7 @@ When you create a session, you will receive the available `payment_method_catego
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/klarna-external/credit-sessions`
@@ -185,12 +183,15 @@ The total tax amount of the order.
 
 The order details.
 
+<InfoBox>
+
+This object is passed directly to Klarna as order\_lines. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
+
+</InfoBox>
 </TableCell>
 </TableRow>
 </TableBody>
 </Table>
-
-This object is passed directly to Klarna as order\_lines. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
 
 <TipBox variant="note">
 
@@ -200,6 +201,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
 
 #### Request example
 
+```json
     {
       "purchase_country": "GB",
       "currency": "GBP",
@@ -217,12 +219,14 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
         }
       ]
     }
+```
 
 #### Response examples
 
 <tabs>
-  <tab title="201 Successfully created Klarna session" active>
+<tab title="201 Successfully created Klarna session" active>
 
+```json withBorder=false
     {
       "session_id": "kcs_55xomnyd3ftujckeoyuvtkx2ue",
       "client_token": "eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICI1MGEzYTNiOS02NGE5LTYwNjMtODNmNC1hMzRlM2Q4MjRiNGIiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9rbGFybmEtcGF5bWVudHMtZXUucGxheWdyb3VuZC5rbGFybmEuY29tIiwKICAiZGVzaWduIiA6ICJrbGFybmEiLAogICJsYW5ndWFnZSIgOiAiZW4iLAogICJwdXJjaGFzZV9jb3VudHJ5IiA6ICJHQiIsCiAgImFuYWx5dGljc19wcm9wZXJ0eV9pZCIgOiAiVUEtMzYwNTMxMzctMTEiLAogICJ0cmFjZV9mbG93IiA6IGZhbHNlLAogICJlbnZpcm9ubWVudCIgOiAicGxheWdyb3VuZCIsCiAgIm1lcmNoYW50X25hbWUiIDogIlBsYXlncm91bmQgRGVtbyBNZXJjaGFudCIsCiAgInNlc3Npb25fdHlwZSIgOiAiUEFZTUVOVFMiLAogICJjbGllbnRfZXZlbnRfYmFzZV91cmwiIDogImh0dHBzOi8vZXZ0LnBsYXlncm91bmQua2xhcm5hLmNvbSIKfQ.",
@@ -250,10 +254,12 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
         }
       }
     }
+```
 
-  </tab>
-  <tab title="422 Request could not be accepted">
+</tab>
+<tab title="422 Request could not be accepted">
 
+```json withBorder=false
     {
       "request_id": "0HLK56US9BH1E:0000005B",
       "error_type": "request_invalid",
@@ -261,8 +267,9 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
       "purchase_country_required"
       ]
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 <TipBox variant="info">
@@ -281,21 +288,21 @@ Next, load the widget on your page so your customer can choose one of the Klarna
 
 To do so, you first need to insert the below code into your page to load the Klarna Payments Library in your client.
 
-
+```javascript
+//<![CDATA[
       window.klarnaAsyncCallback = function () {
-
         // This is where you start calling Klarna's JS SDK functions
         //
         // Klarna.Payments.init({ ... })
-
       };
-
-
+//]]>
+```
 
 #### Initialize the SDK
 
 Then initialize the Klarna Payments Library. To do this, call `init` and pass the `client_token` that you got in the response when you created the session in the first step.
 
+```javascript
     try {
         Klarna.Payments.init(
             {
@@ -305,12 +312,15 @@ Then initialize the Klarna Payments Library. To do this, call `init` and pass th
     } catch (e) {
         // Handle error
     }
+```
 
 #### Add a container to your page
 
 Next, specify where you want the widget by adding a container to your checkout page with the following snippet.
 
+```html
     <div id="klarna_container"></div>
+```
 
 <TipBox variant="note">
 
@@ -322,6 +332,7 @@ The Klarna Payments iframe requires a minimum width of 280px.
 
 To show your customer the Klarna payment options open to them (i.e. _Pay later_ and _Slice it_), use the following `payment_method_categories` array, which you'll find in the response you received when you created the session in step one.
 
+```json
     {
       // ...
       "payment_method_categories": [
@@ -344,6 +355,7 @@ To show your customer the Klarna payment options open to them (i.e. _Pay later_ 
       ]
       // ...
     }
+```
 
 ### Load the Klarna widget
 
@@ -580,6 +592,7 @@ Catches the response from `Klarna.Payments.load()` for further processing.
 
 #### Example
 
+```javascript
     try {
       Klarna.Payments.load(
         // options
@@ -650,32 +663,39 @@ Catches the response from `Klarna.Payments.load()` for further processing.
       // Handle error. The load~callback will have been called
       // with "{ show_form: false }" at this point.
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Positive response: Klarna offered" active>
 
+```json withBorder=false
       {
         show_form: true
       }
+```
 
 </tab>
 <tab title="Adjust and try again">
 
+```json withBorder=false
       {
         show_form: true,
         error: {
           invalid_fields: ["billing_address.email"]
         }
       }
+```
 
 </tab>
 <tab title="Klarna not offered">
 
+```json withBorder=false
       {
         show_form: false
       }
+```
 
 </tab>
 </tabs>
@@ -758,6 +778,7 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
 
 #### Example
 
+```javascript
     try {
       Klarna.Payments.authorize(
         // options
@@ -779,21 +800,25 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
       // Handle error. The authorize~callback will have been called
       // with "{ show_form: false, approved: false }" at this point.
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Successful" active>
 
+```json withBorder=false
     {
       authorization_token: "b4bd3423-24e3",
       approved: true,
       show_form: true
     }
+```
 
 </tab>
 <tab title="Rejected with solvable errors">
 
+```json withBorder=false
     {
       approved: false,
       show_form: true,
@@ -801,14 +826,17 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
         invalid_fields: ["billing_address.email"]
       }
     }
+```
 
 </tab>
 <tab title="Rejected">
 
+```json withBorder=false
     {
       approved: false,
       show_form: false
     }
+```
 
 </tab>
 </tabs>
@@ -827,6 +855,8 @@ When you're processing a transaction via Klarna, you must **only capture the pay
 
 #### Endpoints
 
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
 <tabs>
 <tab title="Live" active>
 <LineCodeWrapper type="post">
@@ -835,7 +865,7 @@ When you're processing a transaction via Klarna, you must **only capture the pay
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -844,346 +874,9 @@ When you're processing a transaction via Klarna, you must **only capture the pay
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`capture`
-
-<StatusTag type="optional" />
-<TypeTag type="boolean" />
-</TableCell>
-<TableCell>
-
-Choose whether or not to capture the payment.
-
-Defaults to `true`, but must be `false` in this case.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `klarna`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.authorization_token`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The Klarna authorization token, which you received when you authorized the order.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.locale`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's locale (RFC 1766 code).
-
-Default value taken from your business settings.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.purchase_country`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The country in which the purchase is being made (two-letter ISO 3166 code).
-
-Default value taken from your business settings.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.auto_capture`
-
-<StatusTag type="optional" />
-<TypeTag type="boolean" />
-</TableCell>
-<TableCell>
-
-Allows you to trigger auto-capture of the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.tax_amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The total tax amount for the order.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.billing_address`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer's billing address.
-
-This object is passed directly to Klarna as `billing_address`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.shipping_address`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer's shipping address.
-
-This object is passed directly to Klarna as `shipping_address`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.customer`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer.
-
-This object is passed directly to Klarna as `customer`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.products`
-
-<StatusTag type="required" />
-<TypeTag type="array" />
-</TableCell>
-<TableCell>
-
-Details about the order.
-
-This object is passed directly to Klarna as `order_lines`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.merchant_reference1`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Use this to store an internal order number or other reference. If set, this will be shown on the confirmation page as `order number`.
-
-Up to 255 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.merchant_reference2`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Use this to store an internal order number or other reference.
-
-Up to 255 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.merchant_data`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Pass-through field.
-
-Up to 1024 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.attachment`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Additional purchase information required for some industries.
-
-This object is passed directly to Klarna as `attachment`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.attachment`
-
-<StatusTag type="optional" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Additional purchase information required for some industries.
-
-This object is passed directly to Klarna as `attachment`. See [Klarna's documentation](https://developers.klarna.com/api/) for more information.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
 #### Request example
 
+```json
     {
       "amount": 1000,
       "currency": "GBP",
@@ -1222,6 +915,7 @@ This object is passed directly to Klarna as `attachment`. See [Klarna's document
         ]
       }
     }
+```
 
 #### Response example
 
@@ -1231,6 +925,7 @@ Unlike the other payment method supports, Klarna is always synchronous. The redi
 
 </TipBox>
 
+```json
     {
       "id": "pay_y3oqhf46pyzuxjbcn2giaqnb44",
       "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
@@ -1266,8 +961,9 @@ Unlike the other payment method supports, Klarna is always synchronous. The redi
         }
       }
     }
+```
 
-<TipBox variant="info">
+<TipBox>
 
 The 202 response with an `approved: true` flag confirms that Klarna will process your payout as soon as you capture the payment in the next step.
 
@@ -1283,6 +979,9 @@ If you're shipping goods, it's a good idea to include the `shipping_info` for tr
 
 #### Endpoints
 
+You can find the full list, as well as complete request and response examples, in our API reference.
+
+
 <tabs>
 <tab title="Live" active>
 <LineCodeWrapper type="post">
@@ -1291,7 +990,7 @@ If you're shipping goods, it's a good idea to include the `shipping_info` for tr
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/klarna-external/orders/{payment_id}/captures`
@@ -1300,7 +999,7 @@ If you're shipping goods, it's a good idea to include the `shipping_info` for tr
 </tab>
 </tabs>
 
-#### Header parameters
+#### Header and path parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -1333,6 +1032,26 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 <TableCell>
 
 `application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_id`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment ID you received in the response when you placed the order.
 
 </TableCell>
 </TableRow>
@@ -1482,6 +1201,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
 
 #### Request example
 
+```json
     {
       "amount": 1000,
       "reference": "ORD-5023-4E89",
@@ -1513,19 +1233,23 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
         "shipping_delay": 0
       }
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Capture accepted" active>
 
+```json withBorder=false
     {
       "action_id": "act_4sz4seltcrzuvcgaetumnlamq4"
     }
+```
 
 </tab>
 <tab title="Invalid data was sent">
 
+```json withBorder=false
     {
       "request_id": "beug8y83h978yh",
       "error_type": "request_invalid",
@@ -1534,6 +1258,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
         "given_name_exceed_length"
         ]
     }
+```
 
 </tab>
 </tabs>
@@ -1560,7 +1285,7 @@ Klarna supports both partial and full refunds. You can refund a payment through 
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/klarna-external/orders/{payment_id}/voids`
@@ -1666,23 +1391,28 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 
 #### Request example
 
+```json
     {
       "reference": "ORD-5023-4E89",
       "metadata": {}
     }
+```
 
 #### Response examples
 
 <tabs>
 <tab title="Void accepted" active>
 
+```json withBorder=false
     {
       "action_id": "act_v6572a7elpuupbaljmoi4tk3ma"
     }
+```
 
 </tab>
 <tab title="Invalid data was sent">
 
+```json withBorder=false
     {
       "request_id": "0HL80RJLS76I7",
       "error_type": "request_invalid",
@@ -1690,6 +1420,7 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
       "payment_source_required"
       ]
     }
+```
 
 </tab>
 </tabs>

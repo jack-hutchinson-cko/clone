@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { connectPagination } from 'react-instantsearch-dom';
-import { IconActionArrowRight, IconActionArrowLeft } from '@cko/icons';
 import Link from 'next/link';
-import { PaginatorContainer, LinkContainer } from './Paginator.styles';
+import { PaginatorContainer, LinkContainer, ArrowLeft, ArrowRight } from './Paginator.styles';
 import { QueryType } from './types';
 
 type Props = {
@@ -12,6 +11,10 @@ type Props = {
 };
 
 const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState }) => {
+  if (!nbPages) {
+    return null;
+  }
+
   const nextLink =
     currentRefinement < nbPages
       ? `/search?query=${searchState.query}&page=${currentRefinement + 1}`
@@ -25,7 +28,7 @@ const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState }) => {
       <LinkContainer>
         {prevLink ? (
           <>
-            <IconActionArrowLeft />
+            <ArrowLeft />
             <Link href={prevLink}>
               <a href={prevLink}>Previous</a>
             </Link>
@@ -38,7 +41,7 @@ const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState }) => {
             <Link href={nextLink}>
               <a href={nextLink}>Next</a>
             </Link>
-            <IconActionArrowRight />
+            <ArrowRight />
           </>
         ) : null}
       </LinkContainer>

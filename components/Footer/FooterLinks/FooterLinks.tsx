@@ -32,9 +32,9 @@ const FooterLinks: FC<Props> = ({ navigation, isMobile = false }) => {
   const getColumnsContent = (items: NavigationItemEntity[]) =>
     items.map((item, itemIndex) => (
       // eslint-disable-next-line react/no-array-index-key
-      <FooterColumn key={itemIndex} isMobile={isMobile}>
+      <FooterColumn key={itemIndex}>
         {item.map(({ link, name }) => (
-          <FooterColumnItem key={name} isMobile={isMobile}>
+          <FooterColumnItem key={name}>
             <FooterLink href={link}>{name}</FooterLink>
             {appendSpecialLink(name)}
           </FooterColumnItem>
@@ -43,19 +43,19 @@ const FooterLinks: FC<Props> = ({ navigation, isMobile = false }) => {
     ));
 
   return (
-    <FooterLinksWrapper isMobile={isMobile}>
+    <FooterLinksWrapper>
       {navigation.map(({ navigationTitle, items }) =>
         isMobile ? (
           <FooterAccordion key={navigationTitle}>
             <FooterAccordionHead>{navigationTitle}</FooterAccordionHead>
             <AccordionBody>
-              <FooterColumns isMobile={isMobile}>{getColumnsContent(items)}</FooterColumns>
+              <FooterColumns>{getColumnsContent(items)}</FooterColumns>
             </AccordionBody>
           </FooterAccordion>
         ) : (
           <div key={navigationTitle}>
             <FooterListTitle>{navigationTitle}</FooterListTitle>
-            <FooterColumns isMobile={isMobile}>{getColumnsContent(items)}</FooterColumns>
+            <FooterColumns>{getColumnsContent(items)}</FooterColumns>
           </div>
         ),
       )}

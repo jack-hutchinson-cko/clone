@@ -2,20 +2,17 @@
 import React, { FC, useState, useCallback } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { IconActionCopy } from '../Icons/Icons';
-import { HighlightContainer, StyledIcons, StyledText } from './CodeSample.styles';
+import { IconActionCopy, IconActionLink } from '../Icons/Icons';
+import { HighlightContainer, StyledIcons, StyledText, StyledIconLink } from './CodeSample.styles';
 import { CodeSampleProps } from './type';
 import PreLine from './PreLine';
 
 const timeout = 3000;
 
-const CodeSample: FC<CodeSampleProps> = ({
-  code,
-  language,
-  isCollapsible = false,
-  withBorder = true,
-}) => {
+const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible, withBorder }) => {
   const [isCopied, setIsCopied] = useState(true);
+  // this is for converting the string 'true' or 'fasle' to Boolean type
+  const isWithBorder = typeof withBorder === 'boolean' ? withBorder : withBorder === 'true';
 
   const onToggleHandler = useCallback(() => {
     setIsCopied(!isCopied);
@@ -29,6 +26,9 @@ const CodeSample: FC<CodeSampleProps> = ({
 
   return (
     <HighlightContainer>
+      <StyledIconLink>
+        <IconActionLink />
+      </StyledIconLink>
       <CopyToClipboard text={code} onCopy={() => onToggleHandler()}>
         {onHandlerCopy}
       </CopyToClipboard>
@@ -39,12 +39,17 @@ const CodeSample: FC<CodeSampleProps> = ({
             getLineProps={getLineProps}
             getTokenProps={getTokenProps}
             isCollapsible={isCollapsible}
-            withBorder={withBorder}
+            withBorder={isWithBorder}
           />
         )}
       </Highlight>
     </HighlightContainer>
   );
+};
+
+CodeSample.defaultProps = {
+  isCollapsible: true,
+  withBorder: true,
 };
 
 export default CodeSample;

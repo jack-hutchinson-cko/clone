@@ -7,7 +7,7 @@ Start accepting payments using Boleto Bancário, a favorite payment method in Br
 
 <TipBox variant="info">
 
-  If you want to use a gateway model for accepting Boleto Bancário payments, you will need to arrange an agreement with our provider, dLocal, and create merchant details (specifically,  x_login and x_trans_key) and a secret key with them. Share these details with our Customer Support team and we'll get you up and running. If you have already been onboarded for one of our other dLocal payment methods, you can use the same credentials.
+  If you want to use a gateway model for accepting Boleto Bancário payments, you will need to arrange an agreement with our provider, dLocal, and create merchant details (specifically, `x_login` and `x_trans_key`) and a secret key with them. Share these details with our Customer Support team and we'll get you up and running. If you have already been onboarded for one of our other dLocal payment methods, you can use the same credentials.
 
 </TipBox>
 
@@ -26,11 +26,11 @@ Payments follow a two-step process:
 
 ## Step 1: Request a payment
 
-### The POST request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -40,7 +40,7 @@ Use the details below to set up your request.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -49,265 +49,61 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `boleto`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.integration_type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of integration. Either `direct` or `redirect`.
-
-*   `direct`: a ticket object is returned, which you can use to render a ticket to the customer. No redirect URL is returned.
-*   `redirect`: a redirect URL is returned. Redirect the customer to this URL to proceed with the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.country`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The two-letter code (ISO 3166) of the customer's country. Should be `BR`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.email`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The email address of the customer.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.email`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The email address of the customer.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.document`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's tax identification number. Either Cadastro de Pessoas Físicas (CPF) or Cadastro Nacional da Pessoa Jurídica (CNPJ).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.description`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A description of the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The three-letter currency code (ISO 4217). Should be `BRL` or `USD`.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Redirect" active>
 
-        {
-          "source": {
-            "type": "boleto",
-            "integration_type": "redirect",
-            "country": "BR",
-              "payer": {
-              "name": "John Doe",
-              "email": "john@doe-enterprises.com",
-              "document": "53033315550"
-            },
-            "description": "boleto payment"
+```json withBorder=false
+      {
+        "source": {
+          "type": "boleto",
+          "integration_type": "redirect",
+          "country": "BR",
+            "payer": {
+            "name": "John Doe",
+            "email": "john@doe-enterprises.com",
+            "document": "53033315550"
           },
-          "amount": 100,
-          "currency": "BRL"
-        }
+          "description": "boleto payment"
+        },
+        "amount": 100,
+        "currency": "BRL"
+      }
+```
 
 </tab>
 <tab title="Direct">
 
-        {
-          "source": {
-            "type": "boleto",
-            "integration_type": "direct",
-            "country": "BR",
-              "payer": {
-              "name": "John Doe",
-              "email": "john@doe-enterprises.com",
-              "document": "53033315550"
-            },
-            "description": "boleto payment"
+```json withBorder=false
+      {
+        "source": {
+          "type": "boleto",
+          "integration_type": "direct",
+          "country": "BR",
+            "payer": {
+            "name": "John Doe",
+            "email": "john@doe-enterprises.com",
+            "document": "53033315550"
           },
-          "amount": 100,
-          "currency": "BRL"
-        }
+          "description": "boleto payment"
+        },
+        "amount": 100,
+        "currency": "BRL"
+      }
+```
 
 </tab>
 </tabs>
 
-### The POST response
+### Response examples
 
 Whether you used the direct or redirect method, you should get a `202` response with the `status` field set to `Pending`. This means your request has been accepted.
-
-#### Response examples
 
 <tabs>
 <tab title="Redirect" active>
 
+```json withBorder=false
     {
       "id": "pay_hcklpcd45ymepcr7thciirbdaa",
       "status": "Pending",
@@ -323,10 +119,12 @@ Whether you used the direct or redirect method, you should get a `202` response 
         }
       }
     }
+```
 
 </tab>
 <tab title="Direct">
 
+```json withBorder=false
     {
       "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
       "status": "Pending",
@@ -339,7 +137,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
         }
       }
     }
-
+```
   </tab>
 </tabs>
 
@@ -398,18 +196,17 @@ To get the components necessary to render the ticket, use the ['get payment deta
 
 Here's an example:
 
-<img alt="Boleto ticket render example" src="/docs/boleto_ticket_render_example.png" layout="fill" />
+<img src="/docs/Payments/boleto_ticket_render_example.png" alt="Boleto ticket render example" maxWidth={356} />
 
-Get details about a payment
----------------------------
+---
+
+## Get details about a payment
 
 Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45ymepcr7thciirbdaa`) from the payment response to get details about the payment.
 
-### The GET request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live" active>
@@ -419,7 +216,7 @@ Use the details below to set up your request.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="GET">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}`
@@ -428,147 +225,89 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial response
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-### The GET response
+### Response examples
 
 The response will differ depending on which integration type (`redirect` or `direct`) you used in the initial payment request.
 
-#### Response examples
-
-##### Redirect
+#### Redirect
 
 <tabs>
 <tab title="Payment pending" active>
 
-        {
-          "id": "pay_hcklpcd45ymepcr7thciirbdaa",
-          "requested_on": "2020-03-17T09:13:18Z",
-          "source": {
-            "type": "boleto",
-            "dlocal_order_id": "430fa151c1034a8788950dcaf061c6b8",
-            "dlocal_payment_id": "D-30150-39d14a21-f598-4163-b8d0-2befaf9acc29"
+```json withBorder=false
+      {
+        "id": "pay_hcklpcd45ymepcr7thciirbdaa",
+        "requested_on": "2020-03-17T09:13:18Z",
+        "source": {
+          "type": "boleto",
+          "dlocal_order_id": "430fa151c1034a8788950dcaf061c6b8",
+          "dlocal_payment_id": "D-30150-39d14a21-f598-4163-b8d0-2befaf9acc29"
+        },
+        "amount": 100,
+        "currency": "BRL",
+        "payment_type": "Regular",
+        "status": "Pending",
+        "risk": {
+          "flagged": false
+        },
+        "customer": {
+          "id": "cus_kh6eqv276rou7ae5s3uwj4emnq"
+        },
+        "_links": {
+          "redirect": {
+            "href": "https://sandbox.dlocal.com/collect/pay/pay/M-8aaf7e50-682f-11ea-ab15-cd9dd592717d?xtid=CATH-ST-1584436398-2076616064"
           },
-          "amount": 100,
-          "currency": "BRL",
-          "payment_type": "Regular",
-          "status": "Pending",
-          "risk": {
-            "flagged": false
-          },
-          "customer": {
-            "id": "cus_kh6eqv276rou7ae5s3uwj4emnq"
-          },
-          "_links": {
-            "redirect": {
-              "href": "https://sandbox.dlocal.com/collect/pay/pay/M-8aaf7e50-682f-11ea-ab15-cd9dd592717d?xtid=CATH-ST-1584436398-2076616064"
-            },
-            "self": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_hcklpcd45ymepcr7thciirbdaa"
-            }
+          "self": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_hcklpcd45ymepcr7thciirbdaa"
           }
         }
-
+      }
+```
 </tab>
 <tab title="Payment captured">
 
-        {
-          "id": "pay_wflckd47jlwetk6zbm472m7vjm",
-          "requested_on": "2020-04-27T12:59:26Z",
-          "source": {
-            "type": "boleto",
-            "dlocal_order_id": "33f1ab1423b24d70baee5aea9207ee97",
-            "dlocal_payment_id": "D-30150-e017ac0d-4f42-43d2-a12b-60f2322367bb",
-            "integration_type": "redirect",
-            "description": "simulate Boleto Bancário Demo Payment"
+```json withBorder=false
+      {
+        "id": "pay_wflckd47jlwetk6zbm472m7vjm",
+        "requested_on": "2020-04-27T12:59:26Z",
+        "source": {
+          "type": "boleto",
+          "dlocal_order_id": "33f1ab1423b24d70baee5aea9207ee97",
+          "dlocal_payment_id": "D-30150-e017ac0d-4f42-43d2-a12b-60f2322367bb",
+          "integration_type": "redirect",
+          "description": "simulate Boleto Bancário Demo Payment"
+        },
+        "amount": 100,
+        "currency": "BRL",
+        "payment_type": "Regular",
+        "status": "Captured",
+        "approved": true,
+        "risk": {
+          "flagged": false
+        },
+        "customer": {
+          "id": "cus_cjdi2jubn2gevguvki3qsl5zby"
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm"
           },
-          "amount": 100,
-          "currency": "BRL",
-          "payment_type": "Regular",
-          "status": "Captured",
-          "approved": true,
-          "risk": {
-            "flagged": false
+          "actions": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/actions"
           },
-          "customer": {
-            "id": "cus_cjdi2jubn2gevguvki3qsl5zby"
-          },
-          "_links": {
-            "self": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm"
-            },
-            "actions": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/actions"
-            },
-            "refund": {
-              "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/refunds"
-            }
+          "refund": {
+            "href": "https://api.sandbox.checkout.com/payments/pay_wflckd47jlwetk6zbm472m7vjm/refunds"
           }
         }
+      }
+```
 
 </tab>
 </tabs>
 
-##### Direct
+#### Direct
 
+```json
     {
       "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
       "requested_on": "2020-03-17T09:14:17Z",
@@ -604,6 +343,7 @@ The response will differ depending on which integration type (`redirect` or `dir
         }
       }
     }
+```
 
 ---
 
@@ -628,3 +368,144 @@ There is no chargeback mechanism for Boleto Bancário.
 ## Cancel a payment
 
 You cannot cancel a Boleto Bancário payment, but it will expire after seven days (or more, if you have requested a longer period) if the customer fails to complete the transaction in this time. If the payment expires, we'll send you a `payment_expired` webhook.
+
+---
+
+## Webhooks
+
+<Table>
+<TableHead headers={['Webhooks', 'Description']} />
+
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_pending`
+
+</TableCell>
+<TableCell>
+
+Sent when a payment request is successfully initiated.
+
+</TableCell>
+</TableRow>
+
+<TableRow>
+<TableCell>
+
+`payment_capture_pending`
+
+</TableCell>
+<TableCell>
+
+Sent when the acquirer is in the process of accepting the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_captured`
+
+</TableCell>
+<TableCell>
+
+Sent when the customer has completed the payment with the ticket.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_expired`
+
+</TableCell>
+<TableCell>
+
+Sent when the ticket has expired.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_declined`
+
+</TableCell>
+<TableCell>
+
+Sent when there was a failure in creating the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_refund_pending`
+
+</TableCell>
+<TableCell>
+
+Sent when a refund is successfully initiated.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_refunded`
+
+</TableCell>
+<TableCell>
+
+Sent when a refund is successfully processed.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_refund_declined`
+
+</TableCell>
+<TableCell>
+
+Sent when a refund is declined.
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<TipBox variant="info">
+
+Learn more about [webhooks and how to subscribe to them](https://docs.checkout.com/reporting-and-insights/webhooks).
+
+</TipBox>
+
+---
+
+## Testing
+
+<TipBox variant="info">
+
+To start testing, you'll need to:
+* [create a test account](https://www.checkout.com/get-test-account), and
+* contact your Customer Success Manager or Integrations engineer to activate Boleto Bancário payments in the sandbox environment.
+
+</TipBox>
+
+In your sandbox environment, you can test payment capture and expiration, as well as refund success and failure.
+
+In order to test these actions, pass the string `"simulate"` as part of the `source.description` field in the initial payment request.
+
+When you do, you will receive additional hypermedia links in the `_links` object in the payment response and in the 'get payment details' response.
+
+Use the URLs contained in the `simulator:payment-succeed`, `simulator:payment-expire`, `simulator:refund-succeed` and `simulator:refund-fail` hypermedia objects to simulate the respective action/state change on the test payment.
+
+<TipBox variant="note">
+
+You can only test the `redirect` payment flow in sandbox.
+
+</TipBox>

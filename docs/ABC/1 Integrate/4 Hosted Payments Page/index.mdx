@@ -7,7 +7,7 @@ Accept card payments with a Hosted Payments Page—a fast and easy way to collec
 
 <TipBox variant="info">
 
-Hosted Payments Page now accepts [five more languages](https://docs.checkout.com/integrate/product-support) – French, Italian, Spanish, German and Dutch.
+Hosted Payments Page now accepts [15 more languages!](https://docs.checkout.com/integrate/product-support)
 
 </TipBox>
 
@@ -20,7 +20,7 @@ When your customer is ready to check out:
 3. Once your customer fills in the required payment details, we will process the payment and handle the authentication flow.
 4. And after the payment has been successfully processed, you will be notified by a [webhook](https://docs.checkout.com/reporting-and-insights/webhooks).
 
-![title](/docs/Hosted+Payments+page.png)
+<img src="/docs/Integrate/Hosted Payments/Hosted+Payments+page.png" />
 
 ---
 
@@ -28,15 +28,34 @@ When your customer is ready to check out:
 
 Preview a Hosted Payments Page using one of our [test cards](https://docs.checkout.com/testing/test-card-numbers) with any future expiry date, or use the details below for a basic payment flow:
 
+<tabs>
+<tab title="Card">
+<Box horizontal="sm">
+
+Use one of our [test cards](https://docs.checkout.com/testing/test-card-numbers) with any future expiry date, or use the details below:
+
 - **Card number**: 4242 4242 4242 4242
 - **Expiry date**: Any future date
 - **CVV**: 100
 
-<Iframe
-  src="https://pay.sandbox.checkout.com/examples/docs-example/"
-  height="700"
-  width="100%"
-></Iframe>
+</Box>
+</tab>
+
+<tab title="Sofort">
+<Box horizontal="sm">
+
+Use the following details to test a Sofort payment flow:
+
+1. In the _Bank name, BLZ, IBAN or BIC_ field, enter `88888888`, and then click _Next_.
+2. Enter `88888888` in the _Account number_ field, and `123456` in the _PIN_ field. Click _Next_.
+3. Select any account, and then click _Next_.
+4. Enter `12345` in the TAN field and click _Next_.
+
+</Box>
+</tab>
+</tabs>
+
+<Iframe src="https://pay.sandbox.checkout.com/examples/docs-example/" height="700" width="100%" />
 
 ---
 
@@ -207,7 +226,7 @@ EUR
 <tabs>
 <tab title="Card">
 
-```json
+```json withBorder=false
 {
   "amount": 1000,
   "currency": "GBP",
@@ -230,7 +249,7 @@ EUR
 </tab>
 <tab title="KNET">
 
-```json
+```json withBorder=false
 {
   "amount": 1000,
   "currency": "KWD",
@@ -253,7 +272,7 @@ EUR
 </tab>
 <tab title="Mada">
 
-```json
+```json withBorder=false
 {
   "amount": 1000,
   "currency": "SAR",
@@ -276,7 +295,7 @@ EUR
 </tab>
 <tab title="Sofort">
 
-```json
+```json withBorder=false
 {
   "amount": 1000,
   "currency": "EUR",
@@ -325,14 +344,14 @@ Redirect the customer to the `\_links.redirect` URL you received in the response
 <tabs>
 <tab title="Server-side redirect">
 
-```json
+```json withBorder=false
 res.redirect(hostedPaymentsResponse._links.redirect.href);
 ```
 
 </tab>
 <tab title="Client-side redirect">
 
-```json
+```json withBorder=false
 window.location.href(hostedPaymentsResponse._links.redirect.href);
 ```
 

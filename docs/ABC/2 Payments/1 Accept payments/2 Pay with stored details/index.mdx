@@ -1,6 +1,7 @@
 ---
 title: Pay with stored details
 account: ABC
+description: Process a payment using a previously-obtained source ID.
 ---
 
 There's no need to request your customers’ card details for every payment. Instead, you can use a stored card's source ID to securely process their subsequent payments without having to re-enter their card number. It's simple, fast, and secure!
@@ -68,7 +69,7 @@ The possible values for the `status` field include `Authorized`, `Captured`,
 <tabs>
 <tab title="201 Success">
 
-```json
+```json withBorder=false
 {
   "id": "pay_zpg25obbkv2uld22vto2zy5b3m",
   "action_id": "act_zpg25obbkv2uld22vto2zy5b3m",
@@ -127,7 +128,7 @@ The possible values for the `status` field include `Authorized`, `Captured`,
 </tab>
 <tab title="202 Payment asynchronous / further action required">
 
-```json
+```json withBorder=false
 {
   "id": "pay_y3oqhf46pyzuxjbcn2giaqnb44",
   "status": "Pending",
@@ -155,7 +156,7 @@ The possible values for the `status` field include `Authorized`, `Captured`,
 </tab>
 <tab title="422 Invalid data was sent">
 
-```json
+```json withBorder=false
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",

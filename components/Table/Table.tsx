@@ -16,7 +16,7 @@ import { TableSubheadProps, TableTicCellProps } from './types';
 const TableHead: FC<{ headers: string[] }> = ({ headers }) => {
   return (
     <thead>
-      <TableRow role="row">
+      <TableRow>
         {headers.map((title) => (
           <StyledTH key={title}>{title}</StyledTH>
         ))}
@@ -25,10 +25,17 @@ const TableHead: FC<{ headers: string[] }> = ({ headers }) => {
   );
 };
 
-const TableSubhead: FC<TableSubheadProps> = ({ colspan = 1, color = 'transparent', children }) => {
+const TableSubhead: FC<TableSubheadProps> = ({
+  colspan = 1,
+  color = 'transparent',
+  children,
+  isNoWrap,
+}) => {
+  const isWithNoWrap = typeof isNoWrap === 'boolean' ? isNoWrap : isNoWrap === 'true';
+
   return (
     <TableRow>
-      <StyledTableCell colSpan={colspan} color={color}>
+      <StyledTableCell colSpan={colspan} color={color} isNoWrap={isWithNoWrap}>
         {children}
       </StyledTableCell>
     </TableRow>

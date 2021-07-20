@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { IconActionChevronDown } from '../../../Icons';
+import { IconActionChevronDown } from 'components/Icons';
 
 export const StyledHeader = styled.div<{ isRoot?: boolean }>`
   display: flex;
@@ -8,7 +8,7 @@ export const StyledHeader = styled.div<{ isRoot?: boolean }>`
   font-size: ${({ isRoot }) => (isRoot ? '16px' : '14px')};
   font-weight: 500;
   line-height: 24px;
-  gap: 15px;
+  gap: 21px;
 `;
 export const StyledContent = styled.div<{ isShown: boolean }>`
   display: ${({ isShown }) => (isShown ? 'flex' : 'none')};
@@ -19,6 +19,7 @@ export const StyledContent = styled.div<{ isShown: boolean }>`
 
 export const StyledIcon = styled(IconActionChevronDown)<{ isRotated: boolean }>`
   display: inline-flex;
+  color: ${({ theme }) => theme.colors.sectionIcon};
   cursor: pointer;
   transform: rotate(${({ isRotated }) => (!isRotated ? '-90deg' : 0)});
   transition: transform 100ms;

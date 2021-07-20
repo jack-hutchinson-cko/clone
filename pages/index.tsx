@@ -1,10 +1,12 @@
 import { GetStaticProps, NextPage } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ListItem } from '@cko/primitives';
-import { IconActionArrowRight } from '@cko/icons';
+
+import ImageBox from 'components/ImageBox';
+import { IconActionArrowRight } from 'components/Icons';
 import { getHomePageContent } from 'lib/homePageContent';
 import { HomePageContent } from 'types/homepage';
+
 import {
   IntroWrapper,
   ContentBlock,
@@ -17,6 +19,7 @@ import {
   BlockList,
   BlockLink,
   PageContent,
+  ImageBoxWrapper,
 } from '../styles/index.styles';
 
 type Props = HomePageContent;
@@ -33,13 +36,17 @@ const HomePage: NextPage<Props> = ({ intro, blocks }) => {
           </Link>
         </ContentBlock>
         <ContentBlock>
-          <Image src={intro.imageUrl} width={480} height={335} />
+          <ImageBoxWrapper maxDesktopWidth={480} hideForMobile>
+            <ImageBox src={intro.imageUrl} layout="fill" alt={intro.title} />
+          </ImageBoxWrapper>
         </ContentBlock>
       </IntroWrapper>
       <BlocksWrapper>
         {blocks.map(({ id, title, imageUrl, description, links = [] }) => (
           <ContentBlock key={id}>
-            <Image src={imageUrl} width={465} height={190} alt={title} />
+            <ImageBoxWrapper maxDesktopWidth={465}>
+              <ImageBox src={imageUrl} layout="fill" alt={title} />
+            </ImageBoxWrapper>
             <BlockTitle>{title}</BlockTitle>
             <BlockDescription>{description}</BlockDescription>
             <BlockList>

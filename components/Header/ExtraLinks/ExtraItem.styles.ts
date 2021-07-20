@@ -5,6 +5,6 @@ export const Container = styled.li`
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.baseLight};
   font-weight: 400;
 `;

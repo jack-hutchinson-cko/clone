@@ -1,29 +1,57 @@
 import styled, { css } from 'styled-components';
+import { MobileBreakPoints, Breakpoints } from 'constants/screen';
 
 export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
-  width: 26px;
+  width: 32px;
   height: 26px;
   cursor: pointer;
+
+  @media ${Breakpoints.MOBILE} {
+    width: 40px;
+    height: 23px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    height: 17px;
+    width: 25px;
+  }
+
   > span,
   > span::before,
   > span::after {
     display: block;
     position: absolute;
-    width: 100%;
+    width: 32px;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.base};
     transition-duration: 0.25s;
+
+    @media ${Breakpoints.MOBILE} {
+      width: 40px;
+    }
+
+    @media ${MobileBreakPoints.MOBILE_S} {
+      width: 25px;
+    }
   }
   > span::before {
     content: '';
-    top: -8px;
+    top: -10px;
+
+    @media ${MobileBreakPoints.MOBILE_S} {
+      top: -8.5px;
+    }
   }
   > span::after {
     content: '';
-    top: 8px;
+    top: 10px;
+
+    @media ${MobileBreakPoints.MOBILE_S} {
+      top: 8.5px;
+    }
   }
 
   ${({ isActive }) =>

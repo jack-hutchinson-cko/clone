@@ -6,25 +6,9 @@ export const Content = styled.aside`
   width: 340px;
   max-height: 100%;
   overflow-y: auto;
-  border-left: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border-left: 1px solid ${({ theme }) => theme.colors.border};
   filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
-`;
-
-export const Top = styled.div`
-  background: ${({ theme }) => theme.colors.white};
-  padding: 30px;
-  width: 100%;
-
-  &:only-child {
-    flex: 1;
-  }
-`;
-
-export const Bottom = styled.div`
-  background: ${({ theme }) => theme.colors.greyLight};
-  padding: 30px;
-  width: 100%;
-  flex: 1;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Container = styled.div<{ isMobile?: boolean }>`

@@ -1,12 +1,14 @@
-import { FC, useCallback, ReactNode } from 'react';
+import { FC, useContext, useCallback, ReactNode } from 'react';
 import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import { HeaderLink, SearchResultLink } from 'types/header';
 import { Breakpoints } from 'constants/screen';
 import useScrollDisabled from 'hooks/useScrollDisabled';
+import { ThemeContext } from 'theme/themeContext';
 import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
+import Switch from 'components/Switch';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
 import Drawer from './Drawer';
@@ -24,9 +26,14 @@ import {
   NavigationItem,
   NavigationLink,
   ToggleIcon,
+  SwitchIcon,
   ButtonLogin,
   NavigationDrawers,
   SearchFieldWrapper,
+  DrawerTopContentWrapper,
+  DrawerBottomContentWrapper,
+  MiddleNavigationSection,
+  MiddleNavigationItem,
 } from './Header.styles';
 
 type Props = {
@@ -55,6 +62,8 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const isDarkTheme = theme === 'dark';
 
   useScrollDisabled((searchState || menuState) && isMobile);
 
@@ -101,6 +110,10 @@ const Header: FC<WithMenuStateProps<Props>> = ({
     />
   );
 
+  const switchCheckedIcon = <SwitchIcon>🌛</SwitchIcon>;
+
+  const switchUncheckedIcon = <SwitchIcon>☀️</SwitchIcon>;
+
   return (
     <Navigation isMobile={isMobile}>
       <NavigationContent>
@@ -119,11 +132,20 @@ const Header: FC<WithMenuStateProps<Props>> = ({
           </NavigationItem>
           {isMobile && (
             <NavigationItem>
-              <SearchButton isActive={searchState} onClick={onToggleSearchDrawer} />
+              {menuState ? (
+                <Switch
+                  icon={switchUncheckedIcon}
+                  checked={isDarkTheme}
+                  checkedIcon={switchCheckedIcon}
+                  onChange={toggleTheme}
+                />
+              ) : (
+                <SearchButton isActive={searchState} onClick={onToggleSearchDrawer} />
+              )}
             </NavigationItem>
           )}
         </NavigationSection>
-        <NavigationSection>
+        <MiddleNavigationSection>
           <NavigationItemHolder
             isMobile={isMobile}
             content={
@@ -132,7 +154,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                 guides={guides}
                 mapTitle={(title, Icon) => (
                   <NavigationLink target="_blank" large underlineOnHover>
-                    {Icon} {title}
+                    <Icon /> {title}
                   </NavigationLink>
                 )}
               />
@@ -145,11 +167,11 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             )}
           </NavigationItemHolder>
           {(isDesktop || isTablet) && (
-            <NavigationItem>
+            <MiddleNavigationItem>
               <SearchFieldWrapper>{searchWidget}</SearchFieldWrapper>
-            </NavigationItem>
+            </MiddleNavigationItem>
           )}
-        </NavigationSection>
+        </MiddleNavigationSection>
         {!isMobile && (
           <NavigationSection>
             {isDesktop && (
@@ -183,7 +205,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                           alternativeLink={
                             <Link href={testAccountUrl} passHref>
                               <NavigationLink target="_blank" light underlineAlways>
-                                apply for an account
+                                apply for a test account
                               </NavigationLink>
                             </Link>
                           }
@@ -205,20 +227,39 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                     </NavigationLink>
                   </Link>
                 </NavigationItem>
+                <NavigationItem withPointer={false}>
+                  <Switch
+                    icon={switchUncheckedIcon}
+                    checked={isDarkTheme}
+                    checkedIcon={switchCheckedIcon}
+                    onChange={toggleTheme}
+                  />
+                </NavigationItem>
               </>
             )}
             {isTablet && (
-              <NavigationItem>
-                <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
-              </NavigationItem>
+              <>
+                <NavigationItem withPointer={false}>
+                  <Switch
+                    icon={switchUncheckedIcon}
+                    checked={isDarkTheme}
+                    checkedIcon={switchCheckedIcon}
+                    onChange={toggleTheme}
+                  />
+                </NavigationItem>
+                <NavigationItem>
+                  <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
+                </NavigationItem>
+              </>
             )}
           </NavigationSection>
         )}
       </NavigationContent>
       <NavigationDrawers>
         {!isDesktop && menuState && (
-          <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer} bottomContent={loginWidget}>
-            {menuWidget}
+          <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer}>
+            <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>
+            <DrawerBottomContentWrapper>{loginWidget}</DrawerBottomContentWrapper>
           </Drawer>
         )}
         {isMobile && searchState && (

@@ -1,18 +1,19 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import { useMatchMedia } from '@cko/primitives';
-
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
-import { Breakpoints } from 'constants/screen';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
+import Card from 'components/Card';
+import CardWrapper from 'components/CardWrapper';
 import {
   getFileNameFromPath,
   getDocArticleData,
   getDocsPathUrl,
   getBreadCrumbsItem,
+  getChildrenArticle,
 } from 'lib/fileParser';
 
 import { PageContent, Title, Navigation } from '../../styles/index.styles';
@@ -24,24 +25,45 @@ type Props = {
   };
   source: MDXRemoteSerializeResult;
   anchorsNavItems: { title: string; href: string }[];
+  childrenArticles: { title: string; href: string; description: string }[];
 };
 
-const DocPost: NextPage<Props> = ({ breadCrumbsItem, anchorsNavItems, frontMatter, source }) => {
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
+const MIN_ANCHOR_COUNT = 2;
+
+const ChildArticlesPerRow = {
+  desktop: 2,
+  mobile: 1,
+};
+
+const DocPost: NextPage<Props> = ({
+  breadCrumbsItem,
+  anchorsNavItems,
+  frontMatter,
+  source,
+  childrenArticles,
+}) => {
   return (
     <AnchorsProvider>
+      <Head title={frontMatter.title} />
       <PageContent>
         <header>
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           <Title>{frontMatter.title}</Title>
         </header>
         <MDXProvider source={source} />
+        <CardWrapper cardsInRow={ChildArticlesPerRow}>
+          {childrenArticles.map((childItem) => (
+            <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
+              {childItem.description}
+            </Card>
+          ))}
+        </CardWrapper>
       </PageContent>
-      {!isMobile && (
-        <Navigation>
+      <Navigation>
+        {anchorsNavItems.length < MIN_ANCHOR_COUNT ? null : (
           <AnchorNavigation anchors={anchorsNavItems} />
-        </Navigation>
-      )}
+        )}
+      </Navigation>
     </AnchorsProvider>
   );
 };
@@ -56,10 +78,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
-  const { docsPathParams = [] as string[] } = params;
+  const { docsPathParams = [] } = params;
   const breadCrumbsItem = getBreadCrumbsItem(docsPathParams as string[]);
   const filePath = getFileNameFromPath(docsPathParams as string[]);
-  const { anchorsNavItems, frontMatter, source } = await getDocArticleData({ filePath });
+  const childrenArticles = getChildrenArticle(filePath, docsPathParams as string[]);
+  const { anchorsNavItems, frontMatter, source } = await getDocArticleData({
+    filePath,
+  });
 
   return {
     props: {
@@ -67,6 +92,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       anchorsNavItems,
       frontMatter,
       source,
+      childrenArticles,
     },
   };
 };

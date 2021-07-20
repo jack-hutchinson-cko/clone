@@ -24,11 +24,11 @@ Multibanco payments follow a two-step process:
 
 ## Request a payment
 
-### The POST request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live">
@@ -47,157 +47,9 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
+### Request example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `EUR`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `multibanco`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payment_country`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The country in which the payment instrument is issued/operated (two-letter ISO 3166 code). Set this to `PT`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.account_holder_name`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The account holder's name.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.billing_descriptor`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-Typically, the trading name of your company or the name of your service.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
-
+```json
     {
       "amount": 100,
       "currency": "EUR",
@@ -208,13 +60,13 @@ Typically, the trading name of your company or the name of your service.
         "billing_descriptor": "Multibanco Demo Payment"
       }
     }
+```
 
-### The POST response
+### Response example
 
 If you receive a `202 Success` response with a `status` field set to `Pending`, your request was successful.
 
-#### Response example
-
+```json
     {
       "id": "pay_cdv64cky2neeljlss37yjpofzu",
       "status": "Pending",
@@ -230,6 +82,7 @@ If you receive a `202 Success` response with a `status` field set to `Pending`, 
         }
       }
     }
+```
 
 ---
 
@@ -249,11 +102,11 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### The GET request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -272,72 +125,9 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
+### Response example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-<InfoBox>
-
-The payment ID found in the response of the initial payment.
-
-</InfoBox>
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
-
+```json
     {
       "id": "pay_cdv64cky2neeljlss37yjpofzu",
       "requested_on": "2019-09-25T06:05:22Z",
@@ -377,6 +167,7 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
 ---
 
@@ -392,11 +183,7 @@ To start testing, you'll need to:
 </TipBox>
 
 1.  Create a Multibanco transaction as above, following the redirect link in the response to Multibanco's website.
-
 2.  Select **Multibanco**.
-
 3.  Click **Pay now**. You will be redirected to the Multibanco Simulator.
-
 4.  Leave the _Pin_ field blank and click **Make Payment**.
-
 5.  Click **Back to where you came from** to be redirected to your predefined success URL.

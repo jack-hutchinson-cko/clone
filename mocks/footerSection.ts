@@ -1,27 +1,36 @@
-import { NavigationList, PoliciesList, SocialList } from 'types/footer';
+import { NavigationList, PoliciesList, SocialList, PolicyEntityType } from 'types/footer';
 
 export const policies: PoliciesList = [
   {
+    type: PolicyEntityType.LINK,
     link: 'https://www.checkout.com/legal/terms-and-policies',
     name: 'Terms and policies',
   },
   {
+    type: PolicyEntityType.LINK,
     link: 'https://www.checkout.com/legal/terms-and-policies',
     name: 'Privacy policy',
   },
   {
+    type: PolicyEntityType.LINK,
     link: 'https://www.checkout.com/legal/terms-and-policies',
     name: 'Certificates',
   },
   {
-    link: 'https://www.checkout.com/legal/terms-and-policies',
-    name: 'Cookie Policy',
+    type: PolicyEntityType.BUTTON,
+    name: 'Cookie Settings',
+    props: {
+      id: 'ot-sdk-btn',
+      className: 'ot-sdk-show-settings settings-button'
+    },
   },
   {
+    type: PolicyEntityType.LINK,
     link: 'https://www.checkout.com/legal/terms-and-policies',
     name: 'Modern Slavery Statement',
   },
   {
+    type: PolicyEntityType.LINK,
     link: 'https://www.checkout.com/legal/terms-and-policies',
     name: 'Supplier Code of Conduct',
   },

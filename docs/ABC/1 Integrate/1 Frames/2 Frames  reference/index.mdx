@@ -263,7 +263,7 @@ The available options are:
 ## Events
 
 <Table>
-<TableHead headers={['Javascript key', 'Description', 'Default']} />
+<TableHead headers={['Event name', 'Javascript constant', 'Description']} />
 <TableBody>
 <TableRow>
 <TableCell>
@@ -380,7 +380,7 @@ Triggered when a valid payment method is detected based on the card number being
 </TableCell>
 <TableCell>
 
-Triggered when the state of the card validation changes. This will return: isValid: true / false.
+Triggered when the state of the card validation changes. This will return: `isValid: true / false`.
 
 </TableCell>
 </TableRow>
@@ -416,7 +416,7 @@ Triggered when the card form has been submitted.
 
 Triggered after a card is tokenized. The event will contain data following this example:
 
-```json
+```json 
 {
   type: card,
   token: tok_ubfj2q76miwundwlk72vxt2i7q,
@@ -467,14 +467,14 @@ There are two ways to add an event handler: using the standard approach or using
 <tabs>
 <tab title="Method 1: Standard approach">
 
-```javascript
+```javascript withBorder=false
 Frames.addEventHandler(Frames.Events., handler);
 ```
 
 </tab>
 <tab title="Method 2: Configuration options">
 
-```javascript
+```javascript withBorder=false
 Frames.init({
   publicKey: 'pk_test_6ff46046-30af-41d9-bf58-929022d2cd14',
   : handler
@@ -483,6 +483,8 @@ Frames.init({
 
 </tab>
 </tabs>
+
+---
 
 ## Actions
 
@@ -625,6 +627,8 @@ Retains the entered card details and allows you to resubmit the payment form.
 </TableRow>
 </TableBody>
 </Table>
+
+---
 
 ## Functions
 
@@ -921,6 +925,86 @@ Use `window.CKOConfig` to change the namespace, or to load Frames asynchronously
         form.submit();
       }
     };
+  </script>
+
+</body>
+```
+### Including billing details
+
+Use cardholder and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.
+
+```json
+<body>
+
+  <!-- add frames script -->
+  <script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
+
+  <form id="payment-form" method="POST" action="https://merchant.com/charge-card">
+    <div class="card-frame">
+      <!-- form will be added here -->
+    </div>
+    <!-- add submit button -->
+    <button id="pay-button" disabled>
+      PAY GBP 24.99
+    </button>
+  </form>
+
+  <script>
+    var payButton = document.getElementById("pay-button");
+    var form = document.getElementById("payment-form");
+
+    Frames.init("pk_test_6ff46046-30af-41d9-bf58-929022d2cd14");
+
+    Frames.addEventHandler(
+      Frames.Events.CARD_VALIDATION_CHANGED,
+      function (event) {
+        console.log("CARD_VALIDATION_CHANGED: %o", event);
+
+        payButton.disabled = !Frames.isCardValid();
+      }
+    );
+
+    Frames.addEventHandler(
+      Frames.Events.CARD_SUBMITTED,
+      function () {
+        payButton.disabled = true;
+        // display loader
+      }
+    );
+
+    Frames.addEventHandler(
+      Frames.Events.CARD_TOKENIZED,
+      function (data) {
+        Frames.addCardToken(form, data.token);
+        form.submit();
+      }
+    );
+
+    Frames.addEventHandler(
+      Frames.Events.CARD_TOKENIZATION_FAILED,
+      function (error) {
+        // catch the error
+      }
+    );
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      Frames.cardholder = {
+        name: "John Smith",
+        billingAddress: {
+          addressLine1: "623 Slade Street",
+          addressLine2: "Apartment 8",
+          zip: "31313",
+          city: "Hinesville",
+          state: "Georgia",
+          country: "US",
+        },
+        phone: "9125084652"
+      };
+
+      Frames.submitCard();
+    });
   </script>
 
 </body>

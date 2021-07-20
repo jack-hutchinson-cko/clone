@@ -1,17 +1,21 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
+import { withAnchor as withAnchorWrapper } from 'components/AnchorsProvider';
 import { TextHeadingThree } from '../TextHeading/TextHeading.styles';
-import { Text } from '../Text/Text.styles';
 import { IconArrowRight } from '../Icons/Icons';
 import { Props } from './types';
-import { CardWrapper } from './Card.styles';
+import { CardWrapper, TextContainer } from './Card.styles';
 
-const Card: FC<Props> = ({ href, title, children }) => {
+const TextHeadingThreeWithAnchor = withAnchorWrapper(TextHeadingThree);
+
+const Card: FC<Props> = ({ href, title, children, withAnchor }) => {
+  const HeaderComponent = withAnchor ? TextHeadingThreeWithAnchor : TextHeadingThree;
+
   return (
     <Link href={href}>
       <CardWrapper>
-        <TextHeadingThree>{title}</TextHeadingThree>
-        <Text>{children}</Text>
+        <HeaderComponent>{title}</HeaderComponent>
+        <TextContainer>{children}</TextContainer>
         <IconArrowRight />
       </CardWrapper>
     </Link>

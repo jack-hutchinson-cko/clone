@@ -6,8 +6,6 @@ const Template: Story<Props> = (args) => <ListMenu {...args} />;
 export const SideBarStory = Template.bind({});
 
 SideBarStory.args = {
-  homeLink: '/',
-  homeLinkTitle: 'Home',
   activeLink: '/section1',
   docsTreeLinks: [
     { id: '1', title: 'Section 1', path: '/section1' },

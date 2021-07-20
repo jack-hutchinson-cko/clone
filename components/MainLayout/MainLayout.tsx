@@ -7,7 +7,6 @@ import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
 import { getPathValue } from 'lib/url';
-import { IconEarth } from 'components/Icons';
 import MenuStateProvider from 'components/MenuStateProvider';
 
 import Header from '../Header';
@@ -38,15 +37,7 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerCo
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
 
   const Menu = isMobile ? AccordionMenu : ListMenu;
-  const menu = (
-    <Menu
-      docsTreeLinks={navTreeLinks}
-      homeLink="/"
-      homeLinkTitle="Home"
-      homeLinkIcon={<IconEarth />}
-      activeLink={activeLink}
-    />
-  );
+  const menu = <Menu docsTreeLinks={navTreeLinks} activeLink={activeLink} />;
 
   return (
     <MenuStateProvider>

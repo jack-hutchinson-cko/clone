@@ -1,87 +1,122 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import Link from 'next/link';
+import { Breakpoints, MobileBreakPoints } from 'constants/screen';
 
 export const Results = styled.div<{ isShown: boolean }>`
-  display: ${({ isShown }) => (isShown ? 'display' : 'none')};
+  display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   position: absolute;
   left: 0;
   top: calc(100% + 10px);
   width: 100%;
-  padding: 8px 16px;
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
+  min-width: 360px;
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.backgroundSearch};
   border-radius: 8px;
   box-shadow: 0 0 24px rgb(0 0 0 / 8%);
   color: ${({ theme }) => theme.colors.base};
+
+  @media ${Breakpoints.MOBILE} {
+    position: initial;
+    top: auto;
+    left: auto;
+    min-width: initial;
+    box-shadow: none;
+    border-radius: 0;
+    border-width: 0;
+  }
 `;
 
-export const EmptySearchResult = styled.div`
-  color: ${({ theme }) => theme.colors.base};
-  font-weight: 500;
-
+const innerContainerStyles = `
   padding: 16px 8px;
+
+  @media ${MobileBreakPoints.MOBILE_L} {
+    padding: 32px 24px;
+  }
+`;
+
+export const ResultItemsContainer = styled.div`
+  ${innerContainerStyles}
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const PopularSearches = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 25px;
-  border-top: 1px solid ${({ theme }) => theme.colors.greyLight};
+  ${innerContainerStyles}
 `;
 
 export const SearchesTitle = styled.div`
   color: ${({ theme }) => theme.colors.grayFaded};
   font-size: 11px;
   font-weight: 500;
-  padding: 8px 0;
+  padding: 8px 16px;
+  line-height: 11px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+
+  @media ${MobileBreakPoints.MOBILE_L} {
+    font-size: 16px;
+    line-height: 16px;
+  }
 `;
 
 export const PopularSearchesItem = styled.a`
   display: flex;
   align-items: center;
-  gap: 20px;
-  font-size: 14px;
+  gap: 10px;
+  font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-  margin-bottom: 15px;
+  margin: 8px 16px;
   cursor: pointer;
-
+  color: ${({ theme }) => theme.colors.base};
   &:hover {
     text-decoration: underline;
+  }
+  @media ${MobileBreakPoints.MOBILE_L} {
+    font-size: 24px;
+    line-height: 32px;
+    margin: 16px;
   }
 `;
 
 export const ButtonContainer = styled.div`
-  margin: 16px 0;
+  margin: 8px 16px;
 `;
 
 export const TextFieldWrapper = styled.div<{ isMobile?: boolean }>`
   position: relative;
   cursor: initial;
+`;
 
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      ${Results} {
-        position: initial;
-        top: auto;
-        left: auto;
-        padding: 24px 0;
-        margin-top: 2px;
+export const Button = styled.button`
+  display: inline-block;
+  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+  color: ${({ theme }) => theme.colors.btnPrimaryFont};
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.base};
+  }
 
-        box-shadow: none;
-        border-radius: 0;
-        border-width: 0;
-      }
+  @media ${Breakpoints.MOBILE} {
+    width: 100%;
+  }
 
-      ${EmptySearchResult} {
-        margin-top: 20px;
-      }
+  @media ${MobileBreakPoints.MOBILE_L} {
+    font-size: 24px;
+    line-height: 24px;
+    padding: 24px 24px;
+  }
+`;
 
-      ${PopularSearches} {
-        border-top-width: 0;
-      }
-    `}
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  background-color: transparent;
 `;

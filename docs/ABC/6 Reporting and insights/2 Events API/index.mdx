@@ -1,0 +1,264 @@
+---
+title: Events API
+account: ABC
+description: Get a snapshot of your transaction history with events.
+---
+
+Request and view events that have taken place within a specific timeframe.
+
+With the Events API, you can:
+
+- [Get an event based on an ID](https://docs.checkout.com/reporting-and-insights/events-api#EventsAPI-getevent)
+- [Get a summary of notifications for an event](https://docs.checkout.com/reporting-and-insights/events-api#EventsAPI-getnotificationsummary)
+- [Retry notifications for all subscribed active webhooks](https://docs.checkout.com/reporting-and-insights/events-api#EventsAPI-retrynotifications)
+- [Retry a single event for a specified webhook](https://docs.checkout.com/reporting-and-insights/events-api#EventsAPI-retrysingleevent)
+
+To view a list of events you can subscribe to, please see our [event types page](https://docs.checkout.com/reporting-and-insights/events-api/event-types).
+
+---
+
+## Get an event
+
+Get an event using the event's ID.
+
+Use the details below to set up your request.
+
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/events/{eventId}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/events/{eventId}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+### Response example
+
+Below is an example of a successful response.
+
+<TipBox variant="info" >
+
+For a full description of what each section means, see [our API reference](https://api-reference.checkout.com/#operation/retrieveEvent).
+
+</TipBox>
+
+```json
+{
+  "id": "evt_az5sblvku4ge3dwpztvyizgcau",
+  "type": "payment_approved",
+  "version": "2.0",
+  "created_on": "2018-10-29T16:59:20Z",
+  "data": {
+    "id": "pay_y3oqhf46pyzuxjbcn2giaqnb44",
+    "action_id": "act_y3oqhf46pyzuxjbcn2giaqnb44",
+    "amount": 6540,
+    "currency": "GBP",
+    "approved": true,
+    "status": "Authorized",
+    "auth_code": "643381",
+    "response_code": "10000",
+    "response_summary": "Approved",
+    "3ds": {
+      "downgraded": true,
+      "enrolled": "N"
+    },
+    "flagged": true,
+    "source": {
+      "type": "card",
+      "id": "src_wmlfc3zyhqzehihu7giusaaawu",
+      "billing_address": {
+        "address_line1": "75 York Road",
+        "address_line2": "Apartment 3",
+        "city": "Oxford",
+        "state": "Oxfordshire",
+        "zip": "OX1 5DJ",
+        "country": "GB"
+      },
+      "phone": {
+        "country_code": "+44",
+        "number": "7891 23456"
+      }
+    },
+    "customer": {
+      "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
+      "email": "jack.brown@ckomail.com",
+      "name": "Jack Brown"
+    },
+    "processed_on": "2018-10-29T16:59:20Z",
+    "reference": "ORD-5023-4E89",
+    "destinations": [
+      {
+        "id": "vendor-123456",
+        "amount": 10.5
+      }
+    ],
+    "metadata": {
+      "coupon_code": "LDN2018",
+      "partner_id": 123989
+    }
+  },
+  "notifications": [
+    {
+      "id": "ntf_az5sblvku4ge3dwpztvyizgcau",
+      "url": "https://example.com/webhooks",
+      "success": false,
+      "_links": {
+        "self": {
+          "href": "https://api.checkout.com/events/evt_az5sblvku4ge3dwpztvyizgcau/notifications/ntf_az5sblvku4ge3dwpztvyizgcau"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/events/evt_az5sblvku4ge3dwpztvyizgcau"
+    },
+    "webhooks-retry": {
+      "href": "https://api.checkout.com/events/evt_az5sblvku4ge3dwpztvyizgcau/webhooks/retry"
+    }
+  }
+}
+```
+
+Other possible responses:
+
+- 404 - The event was not found
+- 500 - Unexpected server error
+
+---
+
+## Get an event's notification summary
+
+View a summary of the notifications for an event.
+
+Use the details below to set up your request.
+
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/events/{eventId}/notifications/{notificationId}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/events/{eventId}/notifications/{notificationId}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+### Response example
+
+Below is an example successful response.
+
+```json
+{
+  "id": "ntf_az5sblvku4ge3dwpztvyizgcau",
+  "url": "https://example.com/webhooks",
+  "success": false,
+  "content_type": "json",
+  "attempts": [
+    {
+      "status_code": 400,
+      "response_body": "Bad Request",
+      "retry_mode": "Automatic",
+      "timestamp": "2018-10-29T16:59:20Z"
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/events/evt_az5sblvku4ge3dwpztvyizgcau/notifications/ntf_az5sblvku4ge3dwpztvyizgcau"
+    },
+    "retry": {
+      "href": "https://api.checkout.com/events/evt_az5sblvku4ge3dwpztvyizgcau/webhooks/wh_5nuzkt62ddxuho5rwsvt6pyesi/retry"
+    }
+  }
+}
+```
+
+Other possible response: 404 - The event or notification was not found.
+
+---
+
+## Retry notifications for all active webhooks
+
+Use this API request to retry notifications for all subscribed active webhooks.
+
+Use the details below to set up your request.
+
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/events/{eventId}/webhooks/retry`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/events/{eventId}/webhooks/retry`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+### Response
+
+Below is a list of example responses:
+
+- 202 - Accepted. Notifications were queued
+- 204 - No content. No active webhooks are subscribed to this event
+- 404 - The event does not exist
+
+---
+
+## Retry a single event
+
+Retry a single event for a specific webhook.
+
+Use the details below to set up your request.
+
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://api.checkout.com/events/{eventId}/webhooks/{webhookId}/retry`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="post">
+
+`https://api.sandbox.checkout.com/events/{eventId}/webhooks/{webhookId}/retry`
+
+</LineCodeWrapper>
+</tab>
+</tabs>

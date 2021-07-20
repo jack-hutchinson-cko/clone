@@ -3,35 +3,31 @@ import Link from 'next/link';
 import { connectHits } from 'react-instantsearch-dom';
 import { get } from 'lodash';
 import SearchBreadCrumbs from './SearchBreadCrumbs';
-import Highlighted from './Highlighted';
-import { Section, HitsContainer } from './DocsHits.styles';
+import Snippet from './Snippet';
+import { HitsContainer, HeadSection, PageSection, NoDataWrapper } from './DocsHits.styles';
+import { HitType } from './types';
 
 type DocsHintProps = {
-  hit: { objectID: string; _highlightResult: never };
+  hit: HitType;
   mode: 'header' | 'page';
   onClickHit?: () => void;
 };
 
 const Hit: FC<DocsHintProps> = ({ hit, mode, onClickHit }) => {
-  const maxWordsCount = mode === 'header' ? 15 : 30;
+  const Section = mode === 'header' ? HeadSection : PageSection;
 
   return (
     <Link href={get(hit, 'path', '')}>
-      <Section mode={mode} onClick={onClickHit}>
-        <Highlighted
-          mode={mode}
-          value={get(hit, '_highlightResult.title.value', '')}
-          type="header"
-        />
+      <Section onClick={onClickHit}>
+        <Snippet hit={hit} attribute="title" mode={mode} type="header" />
         {mode === 'header' ? null : (
           <SearchBreadCrumbs parentArticles={get(hit, 'parentArticles', [])} />
         )}
-        <Highlighted
+        <Snippet
+          hit={hit}
+          attribute={mode === 'header' ? 'headBody' : 'body'}
           mode={mode}
-          value={get(hit, '_highlightResult.body.value', '')}
           type="body"
-          withTruncate
-          maxWordsCount={maxWordsCount}
         />
       </Section>
     </Link>
@@ -39,7 +35,7 @@ const Hit: FC<DocsHintProps> = ({ hit, mode, onClickHit }) => {
 };
 
 type DocsHintsProps = {
-  hits: { objectID: string; _highlightResult: never }[];
+  hits: HitType[];
   maxHeight?: number;
   maxHitsNumber?: number;
   NoDataComponent?: FC;
@@ -51,7 +47,6 @@ const DocsHits: FC<DocsHintsProps> = ({
   hits,
   maxHeight,
   maxHitsNumber,
-  NoDataComponent,
   children,
   mode,
   onClickHit,
@@ -64,7 +59,11 @@ const DocsHits: FC<DocsHintsProps> = ({
         {resultHits.map((hit) => (
           <Hit key={hit.objectID} hit={hit} mode={mode} onClickHit={onClickHit} />
         ))}
-        {!resultHits.length && NoDataComponent ? <NoDataComponent /> : null}
+        {!resultHits.length ? (
+          <NoDataWrapper mode={mode}>
+            No results found. Please try searching for something else.
+          </NoDataWrapper>
+        ) : null}
       </HitsContainer>
       {children}
     </>

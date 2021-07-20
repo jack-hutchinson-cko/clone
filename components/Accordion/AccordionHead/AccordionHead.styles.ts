@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { MobileBreakPoints } from 'constants/screen';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
   hasTitle?: boolean;
+  isBoldTitle?: boolean;
+  withUnderline?: boolean;
 }>`
   display: flex;
   justify-content: space-between;
@@ -15,20 +18,43 @@ export const StyledAccordionHead = styled.button<{
   color: inherit;
   font-family: inherit;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 300;
   text-align: left;
-  line-height: 24px;
+  line-height: 32px;
   cursor: pointer;
 
   & > div,
   & > p {
-    ${({ isOpen, hasTitle, theme }) =>
-      hasTitle && `border-bottom: 3px solid ${isOpen ? theme.colors.information : 'transparent'};`}
+    ${({ isOpen, theme }) =>
+      isOpen
+        ? css`
+            mark {
+              background: linear-gradient(
+                to top,
+                ${theme.colors.underline} 0 6px,
+                transparent 6px 100%
+              );
+            }
+          `
+        : ''};
+    mark {
+      background: ${({ isOpen, theme, withUnderline }) =>
+        withUnderline && isOpen
+          ? `linear-gradient(to top, ${theme.colors.turquoise} 0 8px,transparent 8px 100%)`
+          : 'transparent'};
+      font-weight: ${({ isBoldTitle }) => (isBoldTitle ? 500 : 300)};
+      color: inherit;
+    }
   }
 
   svg {
-    width: 20px;
-    height: 20px;
     transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
+    & > g {
+      fill: ${({ theme }) => theme.colors.stormGray};
+    }
+    @media ${MobileBreakPoints.MOBILE_S} {
+      width: 12px;
+      height: 6px;
+    }
   }
 `;

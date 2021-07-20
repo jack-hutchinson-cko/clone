@@ -1,6 +1,7 @@
 ---
 title: Customers
 account: ABC
+description: Learn how to create, retrieve, update, and delete your customer objects.
 ---
 
 Store a customer's details in a customer object to reuse in future payments. You can associate multiple payment instruments with the customer, and set a default payment instrument, which will be used when you use the customer ID as the source in a payment request.
@@ -64,7 +65,7 @@ This payment instrument will be set as the default for the new customer, so when
 <tabs>
 <tab title="201 Success">
 
-```json
+```json withBorder=false
 {
   "id": "pay_mbabizu24mvu3mela5njyhpit4",
   "action_id": "act_mbabizu24mvu3mela5njyhpit4",
@@ -125,7 +126,7 @@ This payment instrument will be set as the default for the new customer, so when
 </tab>
 <tab title="422 Invalid data was sent">
 
-```json
+```json withBorder=false
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",
@@ -193,7 +194,7 @@ Each customer must have a unique email address – you cannot have multiple cust
 <tabs>
 <tab title="201 Success">
 
-```json
+```json withBorder=false
 {
   "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44"
 }
@@ -202,7 +203,7 @@ Each customer must have a unique email address – you cannot have multiple cust
 </tab>
 <tab title="422 Invalid data was sent">
 
-```json
+```json withBorder=false
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",

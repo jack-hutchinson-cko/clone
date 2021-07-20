@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { IconEarth } from 'components/Icons';
+
 export const MainWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -18,7 +20,7 @@ export const ContentWrapper = styled.div<{ isDesktop?: boolean }>`
   flex-grow: 1;
   display: flex;
   max-width: 1360px;
-  width: ${({ isDesktop }) => (isDesktop ? '1360px' : '100%')};
+  width: 100%;
   margin: 0 auto;
 `;
 
@@ -26,13 +28,14 @@ export const SideBarWrapper = styled.div`
   width: 300px;
   flex-grow: 0;
   min-width: 300px;
-  padding: 26px;
+  padding: 32px 0 32px 64px;
 `;
 
 export const Content = styled.main`
   padding: 32px 26px 64px 26px;
   flex-grow: 1;
 `;
+
 export const FooterWrapper = styled.div`
   flex-grow: 0;
 `;

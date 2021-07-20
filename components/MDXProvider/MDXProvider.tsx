@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import ButtonLink from 'components/ButtonLink';
@@ -36,6 +36,10 @@ import Table, {
 import ImageBox from 'components/ImageBox';
 import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
 import Iframe from 'components/Iframe';
+import CardLink from 'components/CardLink';
+import CardWrapper from 'components/CardWrapper';
+import Tic from 'components/Tic';
+import { CategoriesList, CategoriesItem } from 'components/Categories';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -82,14 +86,28 @@ export const mdxComponents = {
   AccordionBody,
   img: withBlockMargin(ImageBox),
   Iframe: withBlockMargin(Iframe),
-  ButtonLink,
-  ContentPanel,
+  ButtonLink: withBlockMargin(ButtonLink),
+  ContentPanel: withBlockMargin(ContentPanel),
+  CardLink,
+  CardWrapper: withBlockMargin(CardWrapper),
+  Tic: withBlockMargin(Tic),
+  CategoriesList: withBlockMargin(CategoriesList),
+  CategoriesItem,
 };
 
 type Props = {
   source: MDXRemoteSerializeResult;
 };
 
-const MDXProvider: FC<Props> = ({ source }) => <MDXRemote {...source} components={mdxComponents} />;
+const MDXProvider: FC<Props> = ({ source }) => {
+  // because of bug in MDXRemote
+  const [key, setKey] = useState(1);
+
+  useEffect(() => {
+    setKey(2);
+  }, []);
+
+  return <MDXRemote key={key} {...source} components={mdxComponents} />;
+};
 
 export default MDXProvider;

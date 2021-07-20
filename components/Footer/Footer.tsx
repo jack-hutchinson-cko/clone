@@ -23,8 +23,8 @@ const Footer: FC<Props> = ({ navigation, policies, social }) => {
     <FooterWrapper>
       <FooterContainer isMobile={isMobile}>
         <FooterLogo />
-        <FooterLinks navigation={navigation} isMobile={isMobile} />
-        <SubFooter policies={policies} social={social} isTablet={isTablet} isMobile={isMobile} />
+        <FooterLinks navigation={navigation} isMobile={isMobile || isTablet} />
+        <SubFooter policies={policies} social={social} />
       </FooterContainer>
     </FooterWrapper>
   );

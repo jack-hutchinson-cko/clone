@@ -22,9 +22,9 @@ Rapipago payments follow a two-step process:
 
 ## Step 1: Request payment
 
-### The POST request
+### Endpoints
 
-#### Endpoints
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -34,7 +34,7 @@ Rapipago payments follow a two-step process:
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/payments`
@@ -43,212 +43,9 @@ Rapipago payments follow a two-step process:
 </tab>
 </tabs>
 
-#### Header parameters
+### Request example
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `rapipago`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.integration_type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of integration. Set this to `redirect`. This will return a redirect URL. Redirect the customer to this URL to proceed with the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.country`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The two-letter code (ISO 3166) of the customer's country. Should be `AR`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the customer.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.name`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The full name of the customer.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.email`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The email address of the customer.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.document`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's tax identification number. Either the Documento Nacional de Identidad (DNI) or Clave Única de Identificación Tributaria (CUIT).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.payer.description`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A description of the payment.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="required" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The three-letter currency code (ISO 4217). Set this to `ARS`.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
-
+```json
     {
       "source": {
         "type": "rapipago",
@@ -263,13 +60,13 @@ The three-letter currency code (ISO 4217). Set this to `ARS`.
       "amount": 100,
       "currency": "ARS"
     }
+```
 
-### The POST response
+### Response example
 
 You should get a `202` response with the `status` field set to `Pending`. This means your request has been accepted.
 
-#### Response example
-
+```json
     {
       "id": "pay_274nqq3v2vqura6oirwlupvpuu",
       "status": "Pending",
@@ -291,6 +88,7 @@ You should get a `202` response with the `status` field set to `Pending`. This m
         }
       }
     }
+```
 
 ### Step 2: Redirect the customer
 
@@ -319,11 +117,11 @@ Your payment confirmation page should make it clear to the customer that their p
 
 Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45ymepcr7thciirbdaa`) from the payment response to get details about the payment.
 
-### The GET request
-
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
 <tabs>
 <tab title="Live" active>
@@ -333,7 +131,7 @@ Use the details below to set up your request.
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}`
@@ -342,110 +140,12 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-<InfoBox>
-
-The payment ID found in the response of the initial payment.
-
-</InfoBox>
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response examples
+### Response examples
 
 <tabs>
-  <tab title="Payment pending" active>
+<tab title="Payment pending" active>
 
+```json withBorder=false
     {
       "id": "pay_274nqq3v2vqura6oirwlupvpuu",
       "requested_on": "2020-04-27T15:26:15Z",
@@ -481,11 +181,12 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
+</tab>
+<tab title="Payment captured">
 
-  </tab>
-  <tab title="Payment captured">
-
+```json withBorder=false
     {
       "id": "pay_274nqq3v2vqura6oirwlupvpuu",
       "requested_on": "2020-04-27T15:26:15Z",
@@ -519,8 +220,9 @@ The payment ID found in the response of the initial payment.
         }
       }
     }
+```
 
-  </tab>
+</tab>
 </tabs>
 
 ---

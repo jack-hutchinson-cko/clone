@@ -2,31 +2,24 @@ import styled from 'styled-components';
 import { Text } from '@cko/primitives';
 import { IconActionChevronDown } from '../Icons/Icons';
 
-export const Pre = styled.pre<{
-  lineToShow: number;
-  isOpen: boolean;
-  isCollapsible: boolean;
-  checkLengthWithCollabsible: boolean;
+export const PreWrapper = styled.div<{
   withBorder: boolean;
+  showBlurBackground: boolean;
 }>`
   background: ${({ theme }) => theme.colors.codeLabelBackground};
   line-height: 24px;
   padding: 24px;
-  overflow-y: hidden;
   margin: 0;
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
-  border: ${({ withBorder, theme }) =>
-    withBorder ? `1px solid ${theme.colors.greyLight}` : 'none'};
+  border: ${({ withBorder, theme }) => (withBorder ? `1px solid ${theme.colors.border}` : 'none')};
   &:after {
     content: '';
     width: 100%;
-    display: ${({ isCollapsible, checkLengthWithCollabsible, isOpen }) =>
-      isCollapsible && checkLengthWithCollabsible && !isOpen ? 'block' : 'none'};
+    height: 130px;
+    display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
-    top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    bottom: 22px;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,
@@ -34,6 +27,17 @@ export const Pre = styled.pre<{
     );
     pointer-events: none;
   }
+`;
+
+export const Pre = styled.pre<{
+  height: number;
+  showBlurBackground: boolean;
+}>`
+  margin: 0;
+  height: ${({ height }) => `${height}px`};
+  transition: height 1s ease;
+  overflow-y: hidden;
+  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'auto')};
 `;
 
 export const Line = styled.div`
@@ -65,11 +69,18 @@ export const StyledIcons = styled.div`
   cursor: pointer;
 `;
 
+export const StyledIconLink = styled(StyledIcons)`
+  right: 50px;
+`;
+
 export const HighlightContainer = styled.div`
   position: relative;
-  &:hover ${StyledIcons} {
-    transition: 1s;
-    opacity: 1;
+  &:hover {
+    ${StyledIcons},
+    ${StyledIconLink} {
+      transition: 1s;
+      opacity: 1;
+    }
   }
 `;
 
@@ -83,7 +94,7 @@ export const IconArrowActionContainer = styled.div`
   width: 32px;
   height: 32px;
   background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.greyLight};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 50%;
   cursor: pointer;
 `;
@@ -94,7 +105,7 @@ export const IconArrowAction = styled(IconActionChevronDown)<{ isOpen: boolean }
 `;
 
 export const StyledText = styled(Text)`
-  font-size: 12px;
+  font-size: 10px;
 `;
 
 export const LineNo = styled.span`
