@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 import { ThemeType } from 'constants/themes';
+import { Breakpoints } from 'constants/screen';
 
 import { SubheadBackgroundColor } from './types';
 
 export const Table = styled.table<{ withTopBorder?: boolean }>`
   table-layout: fixed;
-  width: 100%;
   color: ${({ theme }) => theme.colors.baseLight};
   border-radius: 8px;
   border-spacing: 1px;
@@ -50,7 +50,9 @@ export const TableBody = styled.tbody`
   }
 `;
 
-export const TableCell = styled.td`
+export const TableCell = styled.td<{ isNoWrap?: boolean }>`
+  white-space: ${({ isNoWrap }) => (isNoWrap ? `nowrap` : 'normal')};
+  width: 1%;
   padding: 0 16px;
   vertical-align: top;
   font-size: 14px;
@@ -61,6 +63,9 @@ export const TableCell = styled.td`
   & > p {
     margin: 14px 0;
     font-size: 14px;
+  }
+  @media ${Breakpoints.TABLET}, ${Breakpoints.MOBILE} {
+    white-space: normal;
   }
 `;
 
