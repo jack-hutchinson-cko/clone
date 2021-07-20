@@ -7,11 +7,13 @@ type Props = {
 const OneTrustCookie: FC<Props> = ({ id }) => {
   return (
     <>
-      <script
-        defer
-        type="text/javascript"
-        src={`https://cdn-ukwest.onetrust.com/consent/${id}/OtAutoBlock.js`}
-      />
+      {/* TODO This script leads to the errors in <image> component when a page with images is initialised
+        <script
+          defer
+          type="text/javascript"
+          src={`https://cdn-ukwest.onetrust.com/consent/${id}/OtAutoBlock.js`}
+        />
+      */}
       <script
         defer
         src="https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js"
