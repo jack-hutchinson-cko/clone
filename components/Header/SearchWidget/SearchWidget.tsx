@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { InstantSearch } from 'react-instantsearch-dom';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import { DocsHits, SearchBox } from 'components/Search';
-import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
+import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
+import { clientSettings } from 'constants/clientSettings';
 import { IconActionArrowRight } from 'components/Icons';
 import Outside from 'components/Outside';
 import { SearchResultLink } from 'types/header';
@@ -66,7 +67,7 @@ const SearchWidget: FC<WithMenuStateProps<Props>> = ({
         <TextFieldWrapper ref={refToElement} isMobile={isMobile}>
           <InstantSearch
             searchClient={searchClient}
-            indexName={ABC_DOCS_INDEX_NAME}
+            indexName={clientSettings.searchIndexName}
             searchState={searchState}
             onSearchStateChange={setSearchState}
           >

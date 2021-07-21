@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import systemPath from 'path';
 import fs from 'fs';
 import React from 'react';
@@ -6,10 +7,10 @@ import matter from 'gray-matter';
 import striptags from 'striptags';
 import MDX from '@mdx-js/runtime';
 import algoliasearch from 'algoliasearch';
-
+import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
 import { ThemeProvider } from 'theme/ThemeProvider';
 import { mdxComponents } from 'components/MDXProvider';
-import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
+import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
 import { forEachFileTree } from 'lib/fileParser';
 import { unescape } from 'lib/unescape';
 
@@ -58,7 +59,8 @@ const getIndexArticleItem = ({
 };
 
 export const createIndexForAlgolia = async (
-  filePath = systemPath.join(process.cwd(), 'docs/ABC'),
+  filePath: string,
+  searchIndexName: string,
 ): Promise<void> => {
   if (!ApplicationID || !AdminAPIKey) {
     throw new Error('ApplicationID or AdminAPIKey are not specified');
@@ -68,7 +70,7 @@ export const createIndexForAlgolia = async (
 
   forEachFileTree(
     {
-      parentFilePath: filePath,
+      parentFilePath: systemPath.join(process.cwd(), filePath),
       parentPath: '',
       parentArticles: [],
     },
@@ -79,7 +81,7 @@ export const createIndexForAlgolia = async (
   );
 
   const client = algoliasearch(ApplicationID, AdminAPIKey);
-  const index = client.initIndex(ABC_DOCS_INDEX_NAME);
+  const index = client.initIndex(searchIndexName);
 
   index.setSettings({
     attributesToSnippet: ['body:40', 'title:20', 'headBody:12'],
@@ -93,7 +95,11 @@ export const createIndexForAlgolia = async (
   });
 };
 
-createIndexForAlgolia()
+Promise.all(
+  Object.values(CLIENT_SETTINGS_BY_TYPE).map(({ docArticlesFilePath, searchIndexName }) =>
+    createIndexForAlgolia(docArticlesFilePath, searchIndexName),
+  ),
+)
   .then(() => {
     console.log('algolia search index was successfully generated/updated');
     process.exit(0);

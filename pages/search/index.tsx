@@ -3,7 +3,8 @@ import algoliasearch from 'algoliasearch/lite';
 import { useRouter } from 'next/router';
 import { InstantSearch } from 'react-instantsearch-dom';
 import { DocsHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'components/Search';
-import { ApplicationID, AdminAPIKey, ABC_DOCS_INDEX_NAME } from 'constants/algoliasearch';
+import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
+import { clientSettings } from 'constants/clientSettings';
 import { QueryType } from 'components/Search/types';
 import { PageContent } from 'styles/index.styles';
 
@@ -22,7 +23,7 @@ const SearchPage: FC = () => {
       <InstantSearch
         searchState={searchState}
         searchClient={searchClient}
-        indexName={ABC_DOCS_INDEX_NAME}
+        indexName={clientSettings.searchIndexName}
       >
         <SearchResultHeader
           searchResult={searchState.query || ''}

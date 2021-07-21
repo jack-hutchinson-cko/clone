@@ -6,7 +6,7 @@ import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
-import { ABCDocsPath } from 'constants/filePath';
+import { clientSettings } from 'constants/clientSettings';
 import { getAnchorUrl } from 'lib/url';
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
@@ -83,7 +83,7 @@ const getFileIndex = (fileName: string) => {
   return result ? Number(result[0]) : 0;
 };
 
-export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSettingsType => {
+export const getDocArticlesSettings = (rootFilePath: string): ArticleSettingsType => {
   const root = {
     filePath: rootFilePath,
     path: '',
@@ -161,7 +161,7 @@ export const getChildrenArticle = (
   return result;
 };
 
-export const docksArticleSettings = getDocArticlesSettings();
+export const docksArticleSettings = getDocArticlesSettings(clientSettings.fullFilePath);
 
 export const getDocsPathUrl = (): DocsPathItem[] => docksArticleSettings.docsPathUrl;
 
