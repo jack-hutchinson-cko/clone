@@ -8,6 +8,11 @@ export type StatusTagProps = Tag<'optional' | 'required' | 'recommended' | 'cond
 
 export type TypeTagProps = Tag<string>;
 
+export type SectionTagProps = {
+  title: string;
+  url: string;
+};
+
 export type TagWrapperProps = (StatusTagProps | RequestTagProps | TypeTagProps) & {
   variant: 'status' | 'type' | 'request';
 };

@@ -19,7 +19,7 @@ import LineCode from 'components/LineCode';
 import TextLink from 'components/TextLink';
 import Box from 'components/Box';
 import Pre from 'components/Pre';
-import { RequestTag, StatusTag, TypeTag } from 'components/Tag';
+import { RequestTag, StatusTag, TypeTag, SectionTag } from 'components/Tag';
 import InfoBox from 'components/InfoBox';
 import LineCodeWrapper from 'components/LineCodeWrapper';
 import Accordion, { AccordionHead, AccordionBody } from 'components/Accordion';
@@ -39,6 +39,7 @@ import Iframe from 'components/Iframe';
 import CardLink from 'components/CardLink';
 import CardWrapper from 'components/CardWrapper';
 import Tic from 'components/Tic';
+import SectionLink from 'components/SectionLink';
 import { CategoriesList, CategoriesItem } from 'components/Categories';
 
 export const mdxComponents = {
@@ -72,6 +73,7 @@ export const mdxComponents = {
   RequestTag,
   StatusTag,
   TypeTag,
+  SectionTag,
   InfoBox,
   List: withBlockMargin(List),
   ListIconItem,
@@ -91,6 +93,7 @@ export const mdxComponents = {
   CardLink,
   CardWrapper: withBlockMargin(CardWrapper),
   Tic: withBlockMargin(Tic),
+  SectionLink: withBlockMargin(SectionLink),
   CategoriesList: withBlockMargin(CategoriesList),
   CategoriesItem,
 };

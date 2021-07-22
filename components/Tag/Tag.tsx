@@ -2,7 +2,14 @@ import { FC } from 'react';
 import { StyledRequestTag } from './RequestTag';
 import { StyledTypeTag } from './TypeTag';
 import { StyledStatusTag } from './StatusTag';
-import { RequestTagProps, StatusTagProps, TagWrapperProps, TypeTagProps } from './types';
+import SectionTagWrapper from './SectionTag';
+import {
+  RequestTagProps,
+  StatusTagProps,
+  TagWrapperProps,
+  TypeTagProps,
+  SectionTagProps,
+} from './types';
 
 const Tag: FC<TagWrapperProps> = ({ type, variant }) => {
   let StyledWrapper;
@@ -42,4 +49,8 @@ export const TypeTag: FC<TypeTagProps> = (props) => {
       <Tag {...props} variant="type" />
     </div>
   );
+};
+
+export const SectionTag: FC<SectionTagProps> = (props) => {
+  return <SectionTagWrapper {...props} />;
 };
