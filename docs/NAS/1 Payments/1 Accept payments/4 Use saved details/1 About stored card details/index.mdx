@@ -23,7 +23,7 @@ If you're considering us as your payment service provider but your subscriptions
 
 Below is a summary of the attributes you need to add to payment requests that use stored card details. These additional details help fulfill Strong Customer Authentication (SCA) requirements, and give the issuing bank what they need to approve such payments.
 
-See the sections on  [cardholder-initiated transactions](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-cits) and  [merchant-initiated transactions](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-mits) further down for more detail.
+See the sections on  [cardholder-initiated transactions](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-cits) and  [merchant-initiated transactions](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-mits) further down for more detail.
 
 ## Cardholder-initiated and merchant-initiated transactions
 
@@ -31,7 +31,7 @@ See the sections on  [cardholder-initiated transactions](https://docs.checkout.c
 
 ## Merchant-initiated transactions only
 
-- For both [scheduled](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) and [unscheduled](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) MITs, you must include the `merchant_initiated: true` flag to mark the payment as merchant-initiated, and reference either the [original cardholder-initiated payment or the previous payment](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-previouspaymentid) in the series of transactions using the `previous_payment_id` attribute.
+- For both [scheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) and [unscheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) MITs, you must include the `merchant_initiated: true` flag to mark the payment as merchant-initiated, and reference either the [original cardholder-initiated payment or the previous payment](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-previouspaymentid) in the series of transactions using the `previous_payment_id` attribute.
 
 - The initial cardholder-initiated transaction of a scheduled recurring series should **no**t be marked as `"Recurring"` (unless it is a Visa card, in which case it **must** be marked as `"Recurring"`) and it should have `merchant_initiated` set to `false`. All subsequent payments in the series should include `payment_type`: `"Recurring"`, `merchant_initiated: true` and the `previous_payment_id`.
 
@@ -87,7 +87,7 @@ n/a
 
 ## Merchant-initiated transactions 
 
-Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be [scheduled](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) (such as recurring payments and installments) or [unscheduled](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) (like account top-ups triggered by balance thresholds and no-show charges).
+Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be [scheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) (such as recurring payments and installments) or [unscheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) (like account top-ups triggered by balance thresholds and no-show charges).
 
 ### Scheduled 
 
@@ -97,7 +97,7 @@ These are regular payments using stored card details, like installments or a mon
 
 <TipBox variant="info" title="Add a card for scheduled MITs">
 
-If you're [adding a Visa card for later scheduled billing without taking a payment](https://docs.checkout.com/four/risk-management/card-verification), you need to include `payment_type: "Recurring"` in your request.
+If you're [adding a Visa card for later scheduled billing without taking a payment](/risk-management/card-verification), you need to include `payment_type: "Recurring"` in your request.
 
 </TipBox>
 
@@ -382,7 +382,7 @@ Can be used for previous payment ID.
 
 <Accordion title="What do I do if a subscription flow involves both scheduled and unscheduled payments?">
 
-Card schemes handle scheduled (recurring) and unscheduled (not recurring) payments differently, so it's important that you include the proper identifiers in your payment requests to distinguish between these two types of merchant-initiated transactions (MITs). See above for the attributes required for [scheduled](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) and [unscheduled](https://docs.checkout.com/four/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) MITs.
+Card schemes handle scheduled (recurring) and unscheduled (not recurring) payments differently, so it's important that you include the proper identifiers in your payment requests to distinguish between these two types of merchant-initiated transactions (MITs). See above for the attributes required for [scheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) and [unscheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) MITs.
 
 </Accordion>
 <Accordion title="If I save card details after a payment, should I include the previous_payment_id in following payments made with that saved card?">
