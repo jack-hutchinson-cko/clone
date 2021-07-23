@@ -2,7 +2,6 @@ type HomePageIntro = {
   title: string;
   description: string;
   getStartedUrl: string;
-  imageUrl: string;
 };
 
 type HomePageBlockNames = 'payments' | 'the-hub';

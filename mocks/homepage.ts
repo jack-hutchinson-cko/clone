@@ -43,7 +43,6 @@ export const homePageContent: HomePageContent = {
     description:
       'Accept web and mobile payments, defend against disputes and fraud, and monitor your transactions in real time.',
     getStartedUrl: '/#',
-    imageUrl: '/assets/images/HeroImg.svg',
   },
   blocks: [
     {

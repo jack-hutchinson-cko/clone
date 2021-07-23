@@ -24,12 +24,22 @@ export const IntroWrapper = styled.div`
 
   @media ${Breakpoints.MOBILE} {
     flex-direction: column;
+    gap: 64px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_M} {
     gap: 24px;
   }
 `;
 
 export const ContentBlock = styled(Box)`
   flex: 1;
+
+  @media ${Breakpoints.DESKTOP} {
+    &:first-child {
+      padding-right: 20px;
+    }
+  }
 `;
 
 export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobile?: boolean }>`
