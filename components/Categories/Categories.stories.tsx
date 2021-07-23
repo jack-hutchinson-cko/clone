@@ -11,8 +11,10 @@ type Props = {
 export const CategoriesStory: Story<Props> = ({ list }) => {
   return (
     <CategoriesList>
-      {list.map(({ children, ...rest }) => (
-        <CategoriesItem {...rest}>{children}</CategoriesItem>
+      {list.map(({ href, children, ...rest }) => (
+        <CategoriesItem key={href} href={href} {...rest}>
+          {children}
+        </CategoriesItem>
       ))}
     </CategoriesList>
   );

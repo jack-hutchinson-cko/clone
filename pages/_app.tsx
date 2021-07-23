@@ -4,7 +4,8 @@ import { ThemeProvider } from 'theme/ThemeProvider';
 import MainLayout from 'components/MainLayout';
 import useAppInitState from 'hooks/useAppInitState';
 import Head from 'components/Head';
-import GlobalStyle from '../styles/globalStyles';
+
+import GlobalStyles from '../styles/globalStyles';
 
 type Props = {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -17,8 +18,8 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
 
   return (
     <ThemeProvider>
+      <GlobalStyles />
       <Head />
-      <GlobalStyle />
       <MainLayout
         navTreeLinks={sidebarDocLinks}
         headerContent={headerContent}

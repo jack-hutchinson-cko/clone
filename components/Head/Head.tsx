@@ -20,6 +20,7 @@ const PageHead: FC<Props> = ({ title = 'Checkout.com' }) => (
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link href="/assets/fonts/add.css" rel="stylesheet" />
     <GoogleTags id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
     <Boomerang id={process.env.NEXT_PUBLIC_BOOMERANG_ID} />
     <HeapIO
