@@ -11,7 +11,7 @@ import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
 import { ThemeProvider } from 'theme/ThemeProvider';
 import { mdxComponents } from 'components/MDXProvider';
 import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
-import { forEachFileTree } from 'lib/fileParser';
+import { forEachFileTree } from 'lib/fileParserCommon';
 import { unescape } from 'lib/unescape';
 
 type IndexItemType = {
@@ -96,7 +96,12 @@ export const createIndexForAlgolia = async (
 };
 
 Promise.all(
-  Object.values(CLIENT_SETTINGS_BY_TYPE).map(({ docArticlesFilePath, searchIndexName }) =>
+  (
+    Object.values(CLIENT_SETTINGS_BY_TYPE) as {
+      docArticlesFilePath: string;
+      searchIndexName: string;
+    }[]
+  ).map(({ docArticlesFilePath, searchIndexName }) =>
     createIndexForAlgolia(docArticlesFilePath, searchIndexName),
   ),
 )

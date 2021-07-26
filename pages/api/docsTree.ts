@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import path from 'path';
 import { get } from 'lodash';
 import { NextApiRequest, NextApiResponse } from 'next';

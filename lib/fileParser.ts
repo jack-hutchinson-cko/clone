@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import { get, lowerCase } from 'lodash';
+import { get } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -8,6 +8,7 @@ import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
 import { clientSettings } from 'constants/clientSettings';
 import { getAnchorUrl } from 'lib/url';
+import { getTitleFromFileName, getSlugFromTitle } from './fileParserCommon';
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
 
@@ -75,8 +76,6 @@ type ArticleSettingsType = {
   docsPathUrl: DocsPathItem[];
 };
 
-const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
-const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
 const getFileIndex = (fileName: string) => {
   const result = fileName.match(/^[0-9]+/);
 
@@ -183,46 +182,4 @@ export const getFileNameFromPath = (docsPathParams: string[]): string => {
   const fullSlug = `/${docsPathParams.join('/')}`;
 
   return get(slugToFilePathMap, fullSlug, '');
-};
-
-type ForEachFileTreeParams = {
-  parentFilePath: string;
-  parentPath: string;
-  parentArticles: string[];
-};
-
-type CallBackParamsType = {
-  title: string;
-  path: string;
-  filePath: string;
-  parentArticles: string[];
-};
-
-export const forEachFileTree = (
-  { parentFilePath, parentPath, parentArticles = [] }: ForEachFileTreeParams,
-  callBack: (params: CallBackParamsType) => void,
-): void => {
-  const children = fs.readdirSync(parentFilePath);
-
-  for (const child of children) {
-    const filePath = `${parentFilePath}/${child}`;
-
-    if (fs.statSync(filePath).isDirectory()) {
-      const title = getTitleFromFileName(child);
-      const currentSlug = getSlugFromTitle(title);
-      const path = `${parentPath}/${currentSlug}`;
-
-      const childNode = { title, path, filePath, parentArticles };
-
-      callBack({ ...childNode });
-      forEachFileTree(
-        {
-          parentFilePath: filePath,
-          parentPath: path,
-          parentArticles: [...parentArticles, title],
-        },
-        callBack,
-      );
-    }
-  }
 };
