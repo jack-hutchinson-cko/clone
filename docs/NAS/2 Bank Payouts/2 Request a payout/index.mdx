@@ -20,7 +20,7 @@ Once you've done that, you can either use those bank account details directly in
 
 ## Step 2: Request a payout 
 
-Request a Bank Payout by using the relevant bank account fields or a bank account payment instrument (prefixed by src_).
+Request a Bank Payout by using the relevant bank account fields or a bank account payment instrument (prefixed by `src_`).
 
 ### The request
 
@@ -521,7 +521,7 @@ To create a quote, use our [Foreign Exchange API](/bank-payouts/create-an-fx-quo
 
 <StatusTag type="required" />
 
-<TypeTag type="string (30 chars)" />
+<TypeTag type="string" />
 
 </TableCell>
 <TableCell>
@@ -939,7 +939,7 @@ To create a quote, use our [Foreign Exchange API](/bank-payouts/create-an-fx-quo
 
 <StatusTag type="required" />
 
-<TypeTag type="string (30 chars)" />
+<TypeTag type="string" />
 
 </TableCell>
 <TableCell>
@@ -1121,7 +1121,7 @@ Use our [testing guide](/pay-to-bank/testing#Testing-Payoutrequests) to test dif
 ### Webhook examples
 
 <tabs>
-<tab title="Bank account fields">
+<tab title="payment_paid">
 
 ```json withBorder=false
 {
