@@ -42,7 +42,7 @@ SCA is a sort of multi-factor authentication, verifying the identity of the card
 - Something the customer **has** (like a mobile phone or wearable device)
 - Something the customer **is** (like their fingerprint or facial recognition)
 
-#### Does SCA apply to me? 
+### Does SCA apply to me? 
 
 Strong authentication is required for customer-initiated online payments within Europe. For online card payments, SCA applies only to transactions where both your business's bank and the cardholder's bank are located in the European Economic Area (EEA) or the United Kingdom (UK).
 
@@ -51,7 +51,7 @@ Strong authentication is required for customer-initiated online payments within 
 
 <TipBox variant="info">
 
-Even if SCA applies to your business, some transactions fall [outside the scope of SCA](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-outofscope), or can benefit from possible exemptions if the customer's bank approves.
+Even if SCA applies to your business, some transactions fall [outside the scope of SCA](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-outofscope), or can benefit from possible [exemptions](https://docs.checkout.com/four/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-exemptions) if the customer's bank approves.
 
 </TipBox>
 
@@ -70,11 +70,11 @@ Some issuing banks have started soft declining payments that are not SCA-ready (
 
 ---
 
-### Out-of-scope transactions 
+## Out-of-scope transactions 
 
 Some transactions fall outside the scope of SCA, meaning they do not require strong authentication.
 
-#### Merchant-initiated transactions 
+### Merchant-initiated transactions 
 
 Scheduled and unscheduled merchant-initiated transactions (MITs) of a fixed or variable amount originating from the merchant, where you make the payment with a customer's previously saved card (like subscriptions and automatic account top-ups) are out of scope.
 
@@ -104,7 +104,7 @@ However, the customer's bank has the final say on whether or not the requested e
 
 - **Bank accepts exemption**. If the customer’s bank accepts the requested exemption, the transaction can be completed without strong authentication.
 
-- **Bank rejects exemption**. If the customer’s bank does not allow the exemption, you will receive a 20154 response code, meaning that you will need to apply 3DS authentication to the transaction to meet SCA requirements.
+- **Bank rejects exemption**. If the customer’s bank does not allow the exemption, you will receive a `20154` response code, meaning that you will need to apply 3DS authentication to the transaction to meet SCA requirements.
 
 <TipBox variant="info" title="Liability shift">
 
@@ -530,6 +530,8 @@ Yes. However, you can flag such transactions as [MOTO payments](/payments/regula
 For more details about the additional parameters required for payments using saved cards, see our stored [card details guide](/payments/accept-payments/use-saved-details/about-stored-card-details).
 
 </TipBox>
+
+---
 
 ## Implement 3DS with our Payments API 
 
