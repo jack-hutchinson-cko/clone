@@ -19,21 +19,21 @@ If you're considering us as your payment service provider but your subscriptions
 
 ---
  
-# Additional attributes for your saved card payment requests
+## Additional attributes for your saved card payment requests
 
 Below is a summary of the attributes you need to add to payment requests that use stored card details. These additional details help fulfill Strong Customer Authentication (SCA) requirements, and give the issuing bank what they need to approve such payments.
 
 See the sections on  [cardholder-initiated transactions](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-cits) and  [merchant-initiated transactions](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-mits) further down for more detail.
 
-## Cardholder-initiated and merchant-initiated transactions
+### Cardholder-initiated and merchant-initiated transactions
 
 - If you use our full card API, storing customers' full card details on your server, you need to flag that you are using previously stored card details by including `source.stored: true` in the request.
 
-## Merchant-initiated transactions only
+### Merchant-initiated transactions only
 
 - For both [scheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-scheduled) and [unscheduled](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-unscheduled) MITs, you must include the `merchant_initiated: true` flag to mark the payment as merchant-initiated, and reference either the [original cardholder-initiated payment or the previous payment](/payments/accept-payments/use-saved-details/about-stored-card-details#Aboutstoredcarddetails-previouspaymentid) in the series of transactions using the `previous_payment_id` attribute.
 
-- The initial cardholder-initiated transaction of a scheduled recurring series should **no**t be marked as `"Recurring"` (unless it is a Visa card, in which case it **must** be marked as `"Recurring"`) and it should have `merchant_initiated` set to `false`. All subsequent payments in the series should include `payment_type`: `"Recurring"`, `merchant_initiated: true` and the `previous_payment_id`.
+- The initial cardholder-initiated transaction of a scheduled recurring series should **not** be marked as `"Recurring"` (unless it is a Visa card, in which case it **must** be marked as `"Recurring"`) and it should have `merchant_initiated` set to `false`. All subsequent payments in the series should include `payment_type`: `"Recurring"`, `merchant_initiated: true` and the `previous_payment_id`.
 
 ---
 
@@ -214,7 +214,7 @@ These are payments using stored card details that do not occur on a regular sche
 #### Required attributes for unscheduled MITs
 
 <Table>
-<TableHead headers={['Pament sourse', 'First cardholder-initiated payment attributes', 'Second payment attributes']} />
+<TableHead headers={['Pament sourse', 'First payment attributes', 'Second payment attributes']} />
 <TableBody>
 <TableRow>
 <TableCell>
@@ -266,7 +266,7 @@ For Visa payments with Google Pay or Apple Pay, the attribute previous_payment_i
 ### Visa required attributes for digital wallets
 
 <Table>
-<TableHead headers={['Pament sourse', 'First cardholder-initiated payment attributes', 'Second payment attributes']} />
+<TableHead headers={['Pament sourse', 'First: Payment attributes required', 'Second: Payment attributes required']} />
 <TableBody>
 <TableRow>
 <TableCell>
@@ -298,7 +298,7 @@ Your previous payment ID will contain the prefix `pay_`, for example, `pay_fou2p
 
 ### Using the previous payment ID
 
-Scheduled and unscheduled MITs can begin in two ways: a card verification or a payment. In the example below, you could reference the previous_payment_id as either row one or row four.
+Scheduled and unscheduled MITs can begin in two ways: a card verification or a payment. In the example below, you could reference the `previous_payment_id` as either row one or row four.
 
 <Table>
 <TableHead headers={['Series with card verification', 'Standart payment series']} />
@@ -377,6 +377,8 @@ Can be used for previous payment ID.
 </TableRow>
 </TableBody>
 </Table>
+
+---
 
 ## FAQs
 

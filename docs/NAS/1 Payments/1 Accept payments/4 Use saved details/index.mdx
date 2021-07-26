@@ -12,11 +12,13 @@ The `source ID` must be one received in response to a card payment request. An I
 
 </TipBox>
 
+---
+
 ## Request a payment using an ID
 
 ### Before you start
 
-Make sure you have your source ID at hand. You can find this in the source object of your card payment request's response. It is prefixed by `src_`.
+Make sure you have your source ID at hand. You can find this in the `source` object of your card payment request's response. It is prefixed by `src_`.
 
 ### The request
 
@@ -45,7 +47,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 <TipBox variant="info" title="IPv4 or IPv6 addresses?">
 
-The optional `payment_ip field`, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
+The optional `payment_ip` field, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
 
 </TipBox>
 
@@ -85,57 +87,14 @@ The following pages can help you understand the response message:
 
 #### Response example
 
-Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
+The possible values for the `status` field include `Authorized`, `Pending`, `Card Verified`, `Captured`, `Declined`, or `Paid`. Note that `Pending` only applies to 3D Secure payments.
 
 <tabs>
 <tab title="201 Success">
 
 ```json withBorder=false
 {
-  "request_id": "0HL80RJLS76I7",
-  "error_type": "request_invalid",
-  "error_codes": [
-    "payment_source_required"
-  ]
-}
-```
-</tab>
-<tab title="202 Payment asynchronous / further action required">
-
-```json withBorder=false
-{
-  "id": "pay_mbabizu24mvu3mela5njyhpit4",
-  "status": "Pending",
-  "reference": "ORD-5023-4E89",
-  "customer": {
-    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
-    "email": "jokershere@gmail.com",
-    "name": "Jack Napier"
-  },
-  "3ds": {
-    "downgraded": false,
-    "enrolled": "Y"
-  },
-  "instruction": {
-    "value_date": "2020-08-25"
-  },
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
-    },
-    "redirect": {
-      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
-    }
-  }
-}
-```
-
-</tab>
-<tab title="422 Invalid data was sent">
-
-```json withBorder=false
-{
-  "id": "pay_mbabizu24mvu3mela5njyhpit4",
+  "id": "src_nwd3m4in3hkuddfpjsaevunhdy",
   "action_id": "act_mbabizu24mvu3mela5njyhpit4",
   "amount": 6540,
   "currency": "USD",
@@ -197,6 +156,49 @@ Use the `approved` field to check whether or not the authorization was successfu
       "href": "https://api.sandbox.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4/voids"
     }
   }
+}
+```
+</tab>
+<tab title="202 Payment asynchronous / further action required">
+
+```json withBorder=false
+{
+  "id": "pay_mbabizu24mvu3mela5njyhpit4",
+  "status": "Pending",
+  "reference": "ORD-5023-4E89",
+  "customer": {
+    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
+    "email": "jokershere@gmail.com",
+    "name": "Jack Napier"
+  },
+  "3ds": {
+    "downgraded": false,
+    "enrolled": "Y"
+  },
+  "instruction": {
+    "value_date": "2020-08-25"
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
+    },
+    "redirect": {
+      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
+    }
+  }
+}
+```
+
+</tab>
+<tab title="422 Invalid data was sent">
+
+```json withBorder=false
+{
+  "request_id": "0HL80RJLS76I7",
+  "error_type": "request_invalid",
+  "error_codes": [
+    "payment_source_required"
+  ]
 }
 ```
 

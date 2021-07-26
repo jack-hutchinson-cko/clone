@@ -24,7 +24,7 @@ If you discover any issues with the supported browsers, or would like to report 
 
 Here's a complete list of Frames configuration options.
 
-## Required
+### Required
 
 <TipBox variant="info">
 
@@ -254,6 +254,8 @@ The available options are:
 </TableBody>
 </Table>
 
+---
+
 ## Events
 
 <Table>
@@ -454,7 +456,7 @@ Triggered if the card tokenization fails.
 </TableBody>
 </Table>
 
-## Adding an event handler
+### Adding an event handler
 
 There are two ways to add an event handler: using the standard approach or using configuration options.
 
@@ -579,7 +581,7 @@ e`vent: Events.CARD_TOKENIZED handler: function(event){}`
 </TableCell>
 <TableCell>
 
-`boolean`
+boolean
 
 </TableCell>
 </TableRow>
@@ -598,7 +600,7 @@ Example:
 </TableCell>
 <TableCell>
 
-`boolean`
+boolean
 
 </TableCell>
 </TableRow>
@@ -642,13 +644,7 @@ Retains the entered card details and allows you to resubmit the payment form.
 </TableCell>
 <TableCell>
 
-Your public key.
-
-<InfoBox>
-
-You can find it in the [Hub](https://hub.checkout.com/).
-
-</InfoBox>
+Bearer public API key.
 
 </TableCell>
 </TableRow>
@@ -761,7 +757,9 @@ Returns the configuration of Frames.
 
 ## Examples
 
-### Using the submitCard Promise
+---
+
+## Using the submitCard Promise
 
 This example uses a JavaScript Promise to tokenize a customer's payment details. The card token will be posted via the URL specified in the form's `action` attribute.
 
@@ -812,7 +810,7 @@ This example uses a JavaScript Promise to tokenize a customer's payment details.
 
 ### Using the cardTokenized handler
 
-This example uses cardTokenized handler to gain a payment token for your customers' card details.
+This example uses `cardTokenized` handler to gain a payment token for your customers' card details.
 
 ```javascript
 <body>
@@ -925,7 +923,7 @@ Use `window.CKOConfig` to change the namespace, or to load Frames asynchronously
 ```
 ### Including billing details
 
-Use cardholder and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.
+Use `cardholder` and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.
 
 ```json
 <body>

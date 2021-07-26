@@ -69,7 +69,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 ```
 ### Response example
 
-Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
+Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
 ```json
 {
@@ -161,14 +161,14 @@ For the full API specification, see the [API reference](https://api-reference.ch
 <tab title="Live">
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/payments/{id}/authorizations`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/payments/{id}/authorizations`
 
 </LineCodeWrapper>
 </tab>
@@ -184,7 +184,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 ```
 ### Response example
 
-Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
+Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
 ```json
 {
@@ -249,14 +249,14 @@ For the full API specification, see the [API reference](https://api-reference.ch
 <tab title="Live">
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/payments/{id}`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/payments/{id}`
 
 </LineCodeWrapper>
 </tab>

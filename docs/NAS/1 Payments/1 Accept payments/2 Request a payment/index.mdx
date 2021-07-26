@@ -18,6 +18,8 @@ Use the details below to set up your request.
 
 ### Endpoints
 
+For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
+
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="post">
@@ -37,7 +39,7 @@ Use the details below to set up your request.
 
 <TipBox variant="info" title="IPv4 or IPv6 addresses?">
 
-The optional `payment_ip field`, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
+The optional `payment_ip` field, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
 
 </TipBox>
 
@@ -84,49 +86,6 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
 
 ```json withBorder=false
 {
-  "request_id": "0HL80RJLS76I7",
-  "error_type": "request_invalid",
-  "error_codes": [
-    "payment_source_required"
-  ]
-}
-```
-</tab>
-<tab title="202 Payment asynchronous / further action required">
-
-```json withBorder=false
-{
-  "id": "pay_mbabizu24mvu3mela5njyhpit4",
-  "status": "Pending",
-  "reference": "ORD-5023-4E89",
-  "customer": {
-    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
-    "email": "jokershere@gmail.com",
-    "name": "Jack Napier"
-  },
-  "3ds": {
-    "downgraded": false,
-    "enrolled": "Y"
-  },
-  "instruction": {
-    "value_date": "2020-08-25"
-  },
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
-    },
-    "redirect": {
-      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
-    }
-  }
-}
-```
-
-</tab>
-<tab title="422 Invalid data was sent">
-
-```json withBorder=false
-{
   "id": "pay_mbabizu24mvu3mela5njyhpit4",
   "action_id": "act_mbabizu24mvu3mela5njyhpit4",
   "amount": 6540,
@@ -189,6 +148,49 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
       "href": "https://api.sandbox.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4/voids"
     }
   }
+}
+```
+</tab>
+<tab title="202 Payment asynchronous / further action required">
+
+```json withBorder=false
+{
+  "id": "pay_mbabizu24mvu3mela5njyhpit4",
+  "status": "Pending",
+  "reference": "ORD-5023-4E89",
+  "customer": {
+    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
+    "email": "jokershere@gmail.com",
+    "name": "Jack Napier"
+  },
+  "3ds": {
+    "downgraded": false,
+    "enrolled": "Y"
+  },
+  "instruction": {
+    "value_date": "2020-08-25"
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
+    },
+    "redirect": {
+      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
+    }
+  }
+}
+```
+
+</tab>
+<tab title="422 Invalid data was sent">
+
+```json withBorder=false
+{
+  "request_id": "0HL80RJLS76I7",
+  "error_type": "request_invalid",
+  "error_codes": [
+    "payment_source_required"
+  ]
 }
 ```
 
@@ -225,7 +227,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 <TipBox variant="info" title="IPv4 or IPv6 addresses?">
 
-The optional `payment_ip field`, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
+The optional `payment_ip` field, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
 
 </TipBox>
 
@@ -269,49 +271,6 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
 
 <tabs>
 <tab title="201 Success">
-
-```json withBorder=false
-{
-  "request_id": "0HL80RJLS76I7",
-  "error_type": "request_invalid",
-  "error_codes": [
-    "payment_source_required"
-  ]
-}
-```
-</tab>
-<tab title="202 Payment asynchronous / further action required">
-
-```json withBorder=false
-{
-  "id": "pay_mbabizu24mvu3mela5njyhpit4",
-  "status": "Pending",
-  "reference": "ORD-5023-4E89",
-  "customer": {
-    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
-    "email": "jokershere@gmail.com",
-    "name": "Jack Napier"
-  },
-  "3ds": {
-    "downgraded": false,
-    "enrolled": "Y"
-  },
-  "instruction": {
-    "value_date": "2020-08-25"
-  },
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
-    },
-    "redirect": {
-      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
-    }
-  }
-}
-```
-
-</tab>
-<tab title="422 Invalid data was sent">
 
 ```json withBorder=false
 {
@@ -379,6 +338,49 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
   }
 }
 ```
+</tab>
+<tab title="202 Payment asynchronous / further action required">
+
+```json withBorder=false
+{
+  "id": "pay_mbabizu24mvu3mela5njyhpit4",
+  "status": "Pending",
+  "reference": "ORD-5023-4E89",
+  "customer": {
+    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
+    "email": "jokershere@gmail.com",
+    "name": "Jack Napier"
+  },
+  "3ds": {
+    "downgraded": false,
+    "enrolled": "Y"
+  },
+  "instruction": {
+    "value_date": "2020-08-25"
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
+    },
+    "redirect": {
+      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
+    }
+  }
+}
+```
+
+</tab>
+<tab title="422 Invalid data was sent">
+
+```json withBorder=false
+{
+  "request_id": "0HL80RJLS76I7",
+  "error_type": "request_invalid",
+  "error_codes": [
+    "payment_source_required"
+  ]
+}
+```
 
 </tab>
 </tabs>
@@ -392,6 +394,8 @@ If you are [SAQ D PCI compliant](/payments/regulation-support/pci-compliance), y
 Use the details below to set up your request.
 
 ### Endpoints
+
+For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
 <tabs>
 <tab title="Live">
@@ -413,7 +417,7 @@ Use the details below to set up your request.
 
 <TipBox variant="info" title="IPv4 or IPv6 addresses?">
 
-The optional `payment_ip field`, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
+The optional `payment_ip` field, which is used by our risk engine to check the customer's IP address, _only accepts IPv4 addresses_.
 
 </TipBox>
 
@@ -457,49 +461,6 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
 
 <tabs>
 <tab title="201 Success">
-
-```json withBorder=false
-{
-  "request_id": "0HL80RJLS76I7",
-  "error_type": "request_invalid",
-  "error_codes": [
-    "payment_source_required"
-  ]
-}
-```
-</tab>
-<tab title="202 Payment asynchronous / further action required">
-
-```json withBorder=false
-{
-  "id": "pay_mbabizu24mvu3mela5njyhpit4",
-  "status": "Pending",
-  "reference": "ORD-5023-4E89",
-  "customer": {
-    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
-    "email": "jokershere@gmail.com",
-    "name": "Jack Napier"
-  },
-  "3ds": {
-    "downgraded": false,
-    "enrolled": "Y"
-  },
-  "instruction": {
-    "value_date": "2020-08-25"
-  },
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
-    },
-    "redirect": {
-      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
-    }
-  }
-}
-```
-
-</tab>
-<tab title="422 Invalid data was sent">
 
 ```json withBorder=false
 {
@@ -565,6 +526,49 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
       "href": "https://api.sandbox.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4/voids"
     }
   }
+}
+```
+</tab>
+<tab title="202 Payment asynchronous / further action required">
+
+```json withBorder=false
+{
+  "id": "pay_mbabizu24mvu3mela5njyhpit4",
+  "status": "Pending",
+  "reference": "ORD-5023-4E89",
+  "customer": {
+    "id": "cus_y3oqhf46pyzuxjbcn2giaqnb44",
+    "email": "jokershere@gmail.com",
+    "name": "Jack Napier"
+  },
+  "3ds": {
+    "downgraded": false,
+    "enrolled": "Y"
+  },
+  "instruction": {
+    "value_date": "2020-08-25"
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
+    },
+    "redirect": {
+      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
+    }
+  }
+}
+```
+
+</tab>
+<tab title="422 Invalid data was sent">
+
+```json withBorder=false
+{
+  "request_id": "0HL80RJLS76I7",
+  "error_type": "request_invalid",
+  "error_codes": [
+    "payment_source_required"
+  ]
 }
 ```
 
