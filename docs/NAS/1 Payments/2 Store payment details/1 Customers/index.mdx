@@ -1,17 +1,18 @@
 ---
 title: Customers
 account: NAS
+description: Learn how to create, retrieve, update, and delete your customer objects.
 ---
 
 Store a customer's details in a customer object to reuse in future payments. You can associate multiple payment instruments with the customer, and set a default payment instrument, which will be used when you use the customer ID as the source in a payment request.
 
 ---
 
-# Create a customer
+## Create a customer
 
 You can store your customer's details and create a customer object in two ways: as part of the payment request, or separately using the `/customers` endpoint.
 
-## Using the /payments endpoint
+### Using the /payments endpoint
 
 When you request a payment for a new customer, include the `customer's email` in the request (in the customer.email parameter) to create a new `customer` object in the Vault. The response will include a customer object containing the `id` (prefixed with `cus_`) of the newly stored customer.
 
@@ -19,7 +20,7 @@ You can use the `customer.name` parameter in the request to set a name for the n
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -38,7 +39,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -54,7 +55,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
   } 
 }
 ```
-### Response example
+#### Response example
 
 If the request was successful, you'll receive a 201 Success response. You'll find the ID (prefixed with `cus_`) of the newly created customer in the `customer` object, and the ID (prefixed with `src_`) of the newly created payment instrument (ie, the stored details of the card used in the payment) in the `source` object.
 
@@ -143,26 +144,26 @@ Alternatively, you can create a customer object by passing the customer's detail
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/customers`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/customers`
 
 </LineCodeWrapper>
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -179,7 +180,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response example
+#### Response example
 
 If successful, you'll receive a 201 success response containing the ID (prefixed with `cus_`) of the newly created customer.
 
@@ -229,14 +230,14 @@ For the full API specification, see the [API reference](https://api-reference.ch
 <tab title="Live">
 <LineCodeWrapper type="get">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/customers/{id}`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="get">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/customers/{id}`
 
 </LineCodeWrapper>
 </tab>
@@ -259,9 +260,9 @@ You can pass either the `id` or the `email` in the path.
 `id`
 
 <TypeTag type="string" />
-<StatusTag type="required" />
+<StatusTag type="required" /> 
 
- if `email` is not provided
+if `email` is not provided
 
 </TableCell>
 <TableCell>
@@ -348,7 +349,7 @@ If successful, you'll receive a 200 success response containing the customer's d
 
 ## Update customer details
 
-If you want to update the details of an existing customer, pass the customer's id and any new information into this endpoint.
+If you want to update the details of an existing customer, pass the customer's `id` and any new information into this endpoint.
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
@@ -371,7 +372,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-<TipBox variant="success" title="Metadata">
+<TipBox variant="info" title="Metadata">
 
 If you include metadata in your request, it will replace any existing metadata stored for customer.
 

@@ -1,6 +1,7 @@
 ---
 title: Payment instruments
 account: NAS
+description: Learn how to create and manage card and bank account payment instruments.
 ---
 
 Store a customer's card or bank account as a payment instrument to reuse it in future payments or payouts.
@@ -16,7 +17,7 @@ You can store a card as a payment instrument in two ways: using the `/payments` 
 
 In both cases, you can create a payment instrument for a new customer, or an existing one:
 
-- If you provide a **new email** in the customer object, a new customer will be created and linked with the new payment instrument.
+- If you provide a **new email** in the `customer` object, a new customer will be created and linked with the new payment instrument.
 - If you supply an **existing customer ID or email**, the new payment instrument will be linked to that existing customer. 
 
 ### Using the /payments endpoint
@@ -31,7 +32,7 @@ We recommend this flow if you perform payments with us, because we will check th
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -50,7 +51,7 @@ We recommend this flow if you perform payments with us, because we will check th
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 <TipBox variant="info">
 
@@ -71,7 +72,7 @@ In this example, the ID of an existing customer has been supplied, so the paymen
   }
 }
 ```
-### Response example
+#### Response example
 
 If the request was successful, you will receive 201 success response. This will include a `source.id` (prefixed with `src_`) – this is the payment instrument ID. You can use this in future payment requests.
 
@@ -163,26 +164,26 @@ Using this flow will not check the card is valid before storing it.
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/instruments`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/instruments`
 
 </LineCodeWrapper>
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 <TipBox variant="info">
 
@@ -214,7 +215,7 @@ In this example, a new customer `email` and `name` is provided. This will create
   }
 }
 ```
-### Response example
+#### Response example
 
 If the request was successful, you will receive a 201 success response. This will include the newly created payment instrument `id` (prefixed with `src_`), which you can now use in future payment requests.
 
@@ -278,26 +279,26 @@ Convert bank account details into a bank account payment instrument using the `/
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
-### Endpoints
+#### Endpoints
    
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/instruments`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/instruments`
 
 </LineCodeWrapper>
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -358,7 +359,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
   }
 }
 ```
-### Response example
+#### Response example
 
 If successful, the response will include the `id` (prefixed with `src_`) of the newly created bank account payment instrument, which you can now use in [payout requests](/bank-payouts/request-a-payout), and a `fingerprint`, which is a unique token that can identify this instrument across all customers.
 
@@ -693,9 +694,11 @@ If successful, you will receive a 200 success response containing the `fingerpri
 
 ## Delete an instrument
 
-If you want to delete a payment instrument, pass the instrument's id in the following request.
+If you want to delete a payment instrument, pass the instrument's `id` in the following request.
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
+
+### Endpoints
 
 <tabs>
 <tab title="Live">
