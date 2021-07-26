@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none">
+  <rect
+    x="5.333"
+    y="8"
+    width="26.667"
+    height="20"
+    rx="3"
+    fill="url(#paint0_linear)"
+  ></rect>
+  <path
+    d="M.5 5.667a2.5 2.5 0 012.5-2.5h19.333a2.5 2.5 0 012.5 2.5v12.666a2.5 2.5 0 01-2.5 2.5H3a2.5 2.5 0 01-2.5-2.5V5.667z"
+    stroke="currentColor"
+  ></path>
+  <path
+    d="M24.667 6.667h1a3 3 0 013 3v12a3 3 0 01-3 3h-18a3 3 0 01-3-3v-1"
+    stroke="currentColor"
+  ></path>
+  <path
+    d="M15.5 12c0 2.022-1.35 3.5-2.834 3.5-1.483 0-2.833-1.478-2.833-3.5 0-2.022 1.35-3.5 2.833-3.5C14.15 8.5 15.5 9.978 15.5 12z"
+    stroke="currentColor"
+  ></path>
+  <path
+    d="M18 11.5a.5.5 0 000 1v-1zm2.667 1a.5.5 0 100-1v1zm-16-1a.5.5 0 000 1v-1zm2.667 1a.5.5 0 100-1v1zM18 12.5h2.667v-1H18v1zm-13.333 0h2.667v-1H4.667v1z"
+    fill="#0C1142"
+  ></path>
+  <defs>
+    <linearGradient
+      id="paint0_linear"
+      x1="2"
+      y1="4"
+      x2="9.836"
+      y2="41.914"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#2BD4DB" stop-opacity=".8"></stop>
+      <stop offset="1" stop-color="#D5F6F8" stop-opacity=".3"></stop>
+    </linearGradient>
+  </defs>
+</svg>

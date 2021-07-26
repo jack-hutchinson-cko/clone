@@ -5,6 +5,7 @@ export const Button = styled.button`
   display: inline-block;
   background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
   color: ${({ theme }) => theme.colors.btnPrimaryFont};
+  margin-right: 16px;
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 16px;

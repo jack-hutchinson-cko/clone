@@ -10,7 +10,6 @@ const Accordion: FC<AccordionProps> = ({
   isExpanded,
   children,
   isBoldTitle,
-  withUnderline,
   ...props
 }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
@@ -30,7 +29,7 @@ const Accordion: FC<AccordionProps> = ({
           onClick={onClickHandler}
           isOpen={isOpen}
           isBoldTitle={isBoldTitle}
-          withUnderline={withUnderline}
+          hasTitle
         >
           <div>
             <mark>{title}</mark>

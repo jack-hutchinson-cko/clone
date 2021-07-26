@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none">
+  <rect
+    x="6.667"
+    y="11.334"
+    width="25.333"
+    height="18.667"
+    rx="3"
+    fill="url(#paint0_linear)"
+  ></rect>
+  <path
+    d="M1.833 5.667a2.5 2.5 0 012.5-2.5h19.333a2.5 2.5 0 012.5 2.5v12.666a2.5 2.5 0 01-2.5 2.5H4.333a2.5 2.5 0 01-2.5-2.5V5.667z"
+    stroke="currentColor"
+  ></path>
+  <path
+    d="M6.19 8.667h14.476M6 14h4"
+    stroke="currentColor"
+    stroke-linecap="round"
+  ></path>
+  <defs>
+    <linearGradient
+      id="paint0_linear"
+      x1="3.5"
+      y1="7.6"
+      x2="10.696"
+      y2="43.037"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#2BD4DB" stop-opacity=".8"></stop>
+      <stop offset="1" stop-color="#D5F6F8" stop-opacity=".3"></stop>
+    </linearGradient>
+  </defs>
+</svg>
