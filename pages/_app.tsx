@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { datadogRum } from '@datadog/browser-rum';
 
 import { ThemeProvider } from 'theme/ThemeProvider';
 import MainLayout from 'components/MainLayout';
@@ -30,5 +31,15 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
     </ThemeProvider>
   );
 };
+
+datadogRum.init({
+  applicationId: String(process.env.NEXT_PUBLIC_RUM_APPLICATION_ID),
+  clientToken: String(process.env.NEXT_PUBLIC_RUM_CLIENT_TOKEN),
+  site: 'datadoghq.com',
+  service: 'cko-docs',
+  version: String(process.env.NEXT_PUBLIC_APP_VERSION),
+  sampleRate: 100,
+  trackInteractions: false,
+});
 
 export default MyApp;
