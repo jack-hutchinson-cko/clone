@@ -3,6 +3,7 @@ import { StyledRequestTag } from './RequestTag';
 import { StyledTypeTag } from './TypeTag';
 import { StyledStatusTag } from './StatusTag';
 import SectionTagWrapper from './SectionTag';
+import { StatusTagWrapper } from './StatusTag/StatusTag.styles';
 import {
   RequestTagProps,
   StatusTagProps,
@@ -35,11 +36,11 @@ export const RequestTag: FC<RequestTagProps> = (props) => {
   return <Tag {...props} variant="request" />;
 };
 
-export const StatusTag: FC<StatusTagProps> = (props) => {
+export const StatusTag: FC<StatusTagProps> = ({ display = 'block', ...props }) => {
   return (
-    <div>
+    <StatusTagWrapper display={display}>
       <Tag {...props} variant="status" />
-    </div>
+    </StatusTagWrapper>
   );
 };
 
