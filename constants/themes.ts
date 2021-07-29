@@ -31,6 +31,7 @@ export const themes = {
       tokenNumber: '#0082d9',
       searchBreadcrumbs: '#55587b',
       modalHoverBackground: '#e6e7ec',
+      tableCellBackground: '#e6e7ec',
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
 
@@ -189,6 +190,7 @@ export const themes = {
       searchBreadcrumbs: '#55587b',
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
+      tableCellBackground: '#3D4168',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',

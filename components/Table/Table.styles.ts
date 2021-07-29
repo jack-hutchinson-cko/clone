@@ -50,12 +50,14 @@ export const TableBody = styled.tbody`
   }
 `;
 
-export const TableCell = styled.td<{ isNoWrap?: boolean }>`
+export const TableCell = styled.td<{ isNoWrap?: boolean; withBackground?: boolean }>`
   white-space: ${({ isNoWrap }) => (isNoWrap ? `nowrap` : 'normal')};
   width: 1%;
   padding: 0 16px;
   vertical-align: top;
   font-size: 14px;
+  background-color: ${({ withBackground, theme }) =>
+    withBackground ? `${theme.colors.tableCellBackground}` : 'transparent'};
 
   ${({ align = 'left' }) => `text-align: ${align};`}
 
