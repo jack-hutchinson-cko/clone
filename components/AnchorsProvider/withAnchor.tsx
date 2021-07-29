@@ -1,9 +1,10 @@
 import { FC, useContext, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { toString } from 'lodash';
 import { getAnchorUrl, getHashValue } from 'lib/url';
 
 import Context, { Props } from './AnchorsContext';
-import { Anchor } from './withAnchor.styles';
+import { Anchor, Title, LinkIcon } from './withAnchor.styles';
 
 const DEFAULT_OFFSET = 0;
 
@@ -15,7 +16,7 @@ const checkReachedElement = (target: HTMLElement): boolean => {
 const withAnchor =
   (Component: FC): FC =>
   (props) => {
-    const { children } = props;
+    const { children, ...restProps } = props;
     const anchorRef = useRef<HTMLSpanElement>(null);
     const [initialized, setInitialized] = useState<boolean>();
     const [scrolled, setScrolled] = useState<boolean>(false);
@@ -43,7 +44,14 @@ const withAnchor =
     return (
       <>
         <Anchor ref={anchorRef} name={name} offsetTop={offsetTop} />
-        <Component {...props} />
+        <Component {...restProps}>
+          <Title>
+            {children}
+            <Link href={anchorUrl} passHref>
+              <LinkIcon />
+            </Link>
+          </Title>
+        </Component>
       </>
     );
   };
