@@ -459,7 +459,7 @@ Our SAP Commerce Connector plugin supports multiple Checkout.com channels, where
 1.  In the 'Secret keys' tab, enter your public key, secret key, and private shared key.
 2.  In the 'Global Settings' tab, set the environment to **Test,** so you can start testing payments. (You will need to change this to **Production** when you're ready to go live.)
 3.  Still in the 'Global Settings' tab, select the payment action you want.
-    1.  \***\*Authorize\*\*** will only authorize the charge; you have to manually capture the payment yourself.
+    1.  **Authorize** will only authorize the charge; you have to manually capture the payment yourself.
     2.  **Authorize and Capture** means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time. If you're unsure, **Authorize and Capture** is probably the right choice.
 4.  In the same tab, there are three more fields you can fill in:
     - Review transactions at risk: If true, payment events coming from Checkout.com that have risk flag set to true will be created with transaction status **REVIEW**. Otherwise, the payment status will be **ACCEPTED**.

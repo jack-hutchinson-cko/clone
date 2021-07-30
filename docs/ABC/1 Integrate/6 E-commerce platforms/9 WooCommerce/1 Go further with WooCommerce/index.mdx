@@ -11,6 +11,7 @@ In this guide, you'll find how to:
 - [enable 3D Secure payments](#Enable_3D_Secure_payments)
 - [capture payments manually](#Capture_payments_manually)
 - [accept recurring payments via the WooCommerce Subscriptions extension](#Accept_recurring_payments_via_the_WooCommerce_Subscriptions_extension)
+- [configure order statuses](#Order_statuses)
 
 ---
 
@@ -36,7 +37,7 @@ We currently support the following payment methods on WooCommerce:
 - [Bancontact](/payments/payment-methods/cards/bancontact)
 - [KNET](/payments/payment-methods/cards/knet)
 - [Fawry](/payments/payment-methods/cash-and-atm-payment/fawry)
-- [QPay](payments/payment-methods/cards/qpay)
+- [QPay](/payments/payment-methods/cards/q-pay)
 - [Apple Pay](/payments/payment-methods/wallets/apple-pay)
 - [Google Pay](/payments/payment-methods/wallets/google-pay)
 
@@ -170,3 +171,18 @@ The [Checkout.com](http://Checkout.com) WooCommerce plugin registers with paymen
 - Change of amount for a subscription
 - Change of date for a subscription
 - Management of multiple subscriptions
+
+---
+
+## Order statuses
+
+These settings allow you to edit the order statuses in line with the status of the payment. They are automatically set to WooCommerce's default values, so be aware that editing them may cause problems with the order flow.
+
+To find these settings:
+
+1. Log into your Wordpress admin dashboard.
+2. Go to *WooCommerce > Settings > Payments*.
+3. Find the Checkout.com plugin.
+4. Click *Manage* and then *Order Settings*.
+
+![title](/docs/Integrate/WooCommerce/woocommerce_order_settings.png)
