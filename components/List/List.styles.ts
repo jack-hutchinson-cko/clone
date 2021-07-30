@@ -29,6 +29,7 @@ export const List = styled.div`
   display: block;
   margin: 0;
   padding: 0;
+  list-style-type: none;
   color: ${({ theme }) => theme.colors.baseLight};
 `;
 
