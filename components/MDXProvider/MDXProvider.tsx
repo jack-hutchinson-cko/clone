@@ -34,7 +34,14 @@ import Table, {
   TableTicCell,
 } from 'components/Table';
 import ImageBox from 'components/ImageBox';
-import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
+import {
+  ListItem,
+  ListIconItem,
+  ListNumberItem,
+  List,
+  OrderedList,
+  UnorderedList,
+} from 'components/List';
 import Iframe from 'components/Iframe';
 import Card from 'components/Card';
 import CardLink from 'components/CardLink';
@@ -78,6 +85,7 @@ export const mdxComponents = {
   InfoBox,
   List: withBlockMargin(List),
   ListIconItem,
+  ListNumberItem,
   ul: withBlockMargin(UnorderedList),
   ol: withBlockMargin(OrderedList),
   li: ListItem,
