@@ -1,9 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import systemPath from 'path';
-import fs from 'fs';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import matter from 'gray-matter';
 import striptags from 'striptags';
 import MDX from '@mdx-js/runtime';
 import algoliasearch from 'algoliasearch';
@@ -11,7 +9,7 @@ import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
 import { ThemeProvider } from 'theme/ThemeProvider';
 import { mdxComponents } from 'components/MDXProvider';
 import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
-import { forEachFileTree } from 'lib/fileParserCommon';
+import { forEachFileTree, getMdxFileData } from 'lib/fileParserCommon';
 import { unescape } from 'lib/unescape';
 
 type IndexItemType = {
@@ -36,9 +34,7 @@ const getIndexArticleItem = ({
   filePath,
   parentArticles,
 }: GetIndexArticleItemParams): IndexItemType => {
-  const source = fs.readFileSync(`${filePath}/index.mdx`);
-
-  const { content, data } = matter(source);
+  const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
 
   const html = renderToString(
     <ThemeProvider>

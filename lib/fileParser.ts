@@ -2,13 +2,12 @@
 import fs from 'fs';
 import { get } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
 import { clientSettings } from 'constants/clientSettings';
 import { getAnchorUrl } from 'lib/url';
-import { getTitleFromFileName, getSlugFromTitle } from './fileParserCommon';
+import { getTitleFromFileName, getSlugFromTitle, getMdxFileData } from './fileParserCommon';
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
 
@@ -46,9 +45,7 @@ export const getDocArticleData = async ({
   frontMatter: { [key: string]: string };
   anchorsNavItems: { title: string; href: string }[];
 }> => {
-  const source = fs.readFileSync(filePath);
-
-  const { content, data } = matter(source);
+  const { data, content } = getMdxFileData(filePath);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
@@ -143,8 +140,7 @@ export const getChildrenArticle = (
     if (fs.statSync(childFilePath).isDirectory()) {
       const title = getTitleFromFileName(child);
       const currentSlug = getSlugFromTitle(title);
-      const source = fs.readFileSync(`${childFilePath}/index.mdx`);
-      const { data } = matter(source);
+      const { data } = getMdxFileData(`${childFilePath}/index.mdx`);
       const description = get(data, 'description');
 
       if (description) {

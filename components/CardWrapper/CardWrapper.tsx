@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useMatchMedia } from '@cko/primitives';
 import { Breakpoints } from 'constants/screen';
+import { getDataBySize } from 'lib/layout';
 import { CardsWrapper, CardContainer } from './CardWrapper.styles';
 
 type CardsInRow = {
@@ -10,30 +11,7 @@ type CardsInRow = {
 };
 
 type Props = {
-  cardsInRow?: CardsInRow;
-};
-
-const getBoxSize = ({
-  cardsInRow = {},
-  isMobile,
-  isTablet,
-  defaultValue = 1,
-}: {
-  cardsInRow?: CardsInRow;
-  isMobile: boolean;
-  isTablet: boolean;
-  defaultValue?: number;
-}) => {
-  const { desktop, tablet, mobile } = cardsInRow;
-  if (isMobile) {
-    return mobile || tablet || desktop || defaultValue;
-  }
-
-  if (isTablet) {
-    return tablet || desktop || defaultValue;
-  }
-
-  return desktop || defaultValue;
+  cardsInRow: CardsInRow;
 };
 
 const CardWrapper: FC<Props> = ({ children, cardsInRow }) => {
@@ -41,7 +19,12 @@ const CardWrapper: FC<Props> = ({ children, cardsInRow }) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
 
-  const resultCardsInRow = getBoxSize({ cardsInRow, isMobile, isTablet });
+  const resultCardsInRow = getDataBySize({
+    dataBySize: cardsInRow,
+    isMobile,
+    isTablet,
+    defaultValue: 1,
+  });
 
   return (
     <CardsWrapper>

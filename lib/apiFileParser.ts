@@ -1,7 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import matter from 'gray-matter';
-import { getTitleFromFileName, getSlugFromTitle, forEachFileTree } from './fileParserCommon';
+import {
+  getTitleFromFileName,
+  getSlugFromTitle,
+  forEachFileTree,
+  getMdxFileData,
+} from './fileParserCommon';
 
 type GetPAgeMetadataReturnType = {
   title?: string;
@@ -21,8 +25,7 @@ export const getPageMetadata = (
   }: { filePath: string; path: string; breadcrumbs: { url: string; title: string }[] },
 ): GetPAgeMetadataReturnType => {
   if (path === sourceUrl) {
-    const source = fs.readFileSync(`${filePath}/index.mdx`);
-    const { content, data } = matter(source);
+    const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
     const { title, account } = data;
 
     const sections = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {

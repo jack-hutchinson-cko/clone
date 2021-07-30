@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
@@ -49,6 +48,7 @@ import CardWrapper from 'components/CardWrapper';
 import Tic from 'components/Tic';
 import SectionLink from 'components/SectionLink';
 import { CategoriesList, CategoriesItem } from 'components/Categories';
+import TwoColumn from 'components/TwoColumn';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -107,6 +107,7 @@ export const mdxComponents = {
   SectionLink: withBlockMargin(SectionLink),
   CategoriesList: withBlockMargin(CategoriesList),
   CategoriesItem,
+  TwoColumn: withBlockMargin(TwoColumn),
 };
 
 type Props = {

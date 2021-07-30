@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
+import matter from 'gray-matter';
 import { lowerCase } from 'lodash';
 
 type ForEachFileTreeParams = {
@@ -49,5 +50,43 @@ export const forEachFileTree = (
         callBack,
       );
     }
+  }
+};
+
+const insertRelatedFiles = (data: string, filePath: string): string => {
+  const reg = RegExp(/include\('[^']*'\)/g);
+
+  if (reg.test(data)) {
+    return data.replace(reg, (includeOption: string) => {
+      try {
+        const fileRelativePath = includeOption.slice(9, includeOption.length - 2);
+        const fullPath = `${filePath.slice(0, filePath.lastIndexOf('/') + 1)}${fileRelativePath}`;
+        const source = fs.readFileSync(fullPath);
+        const { content } = matter(source);
+
+        return insertRelatedFiles(content, fullPath);
+      } catch (error) {
+        return includeOption;
+      }
+    });
+  }
+
+  return data;
+};
+
+export const getMdxFileData = (
+  filePath: string,
+): {
+  content: string;
+  data: { [key: string]: string };
+} => {
+  try {
+    const source = fs.readFileSync(filePath);
+    const { content: rawContent, data } = matter(source);
+    const content = insertRelatedFiles(rawContent, filePath);
+
+    return { content, data };
+  } catch (error) {
+    return { content: '', data: {} };
   }
 };
