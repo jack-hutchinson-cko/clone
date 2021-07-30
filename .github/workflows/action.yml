@@ -3,35 +3,46 @@ name: Node.js CI
 on: [pull_request]
 
 env:
-  MYGET_NPM_TOKEN: ""
-  CI: true
+    MYGET_NPM_TOKEN: ""
+    CI: true
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 14.x
+        steps:
+            - uses: actions/checkout@v2.3.4
+              with:
+                  fetch-depth: 0 # 👈 Required to retrieve git history for Chromatic
+            - uses: actions/setup-node@v2.1.5
+              with:
+                  node-version: 14.x
 
-      - name: Install node modules
-        env:
-          MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
-        run: npm ci --ignore-scripts
+            - name: Install node modules
+              env:
+                  MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
+              run: npm ci --ignore-scripts
 
-      - name: Run all unit tests
-        run: npm run test
+            - name: Run all unit tests
+              run: npm run test
 
-      - name: Lint
-        run: npm run lint
+            - name: Lint
+              run: npm run lint
 
-      - name: Type check
-        run: npm run type-check
+            - name: Type check
+              run: npm run type-check
 
-      - name: Post install esbuild
-        working-directory: node_modules/esbuild
-        run: npm run postinstall
+            - name: Post install esbuild
+              working-directory: node_modules/esbuild
+              run: npm run postinstall
 
-      - name: Build
-        run: npm run build
+            - name: Build
+              run: npm run build
+
+              # 👇 Adds Chromatic as a step in the workflow
+            - name: Publish to Chromatic
+              uses: chromaui/action@v1
+              # Chromatic GitHub Action options
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
