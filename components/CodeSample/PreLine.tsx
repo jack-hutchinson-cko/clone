@@ -39,7 +39,7 @@ const PreLine: FC<PreLineProps> = ({
   return (
     <>
       <PreWrapper withBorder={withBorder} showBlurBackground={showBlurBackground}>
-        <Pre height={height} showBlurBackground={showBlurBackground}>
+        <Pre height={height}>
           {resultTokens.map((line, i: number) => {
             return (
               <Line key={i} {...getLineProps({ line, key: i })}>

@@ -6,6 +6,7 @@ import { SubheadBackgroundColor } from './types';
 
 export const Table = styled.table<{ withTopBorder?: boolean }>`
   table-layout: fixed;
+  width: 100%;
   color: ${({ theme }) => theme.colors.baseLight};
   border-radius: 8px;
   border-spacing: 1px;

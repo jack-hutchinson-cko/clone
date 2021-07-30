@@ -12,6 +12,9 @@ export const PreWrapper = styled.div<{
   margin: 0;
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
   border: ${({ withBorder, theme }) => (withBorder ? `1px solid ${theme.colors.border}` : 'none')};
+  overflow-y: hidden;
+  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'scroll')};
+
   &:after {
     content: '';
     width: 100%;
@@ -31,13 +34,10 @@ export const PreWrapper = styled.div<{
 
 export const Pre = styled.pre<{
   height: number;
-  showBlurBackground: boolean;
 }>`
   margin: 0;
   height: ${({ height }) => `${height}px`};
   transition: height 1s ease;
-  overflow-y: hidden;
-  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'auto')};
 `;
 
 export const Line = styled.div`
