@@ -80,6 +80,11 @@ export const ImageWrapper = styled.div<{ variant: VariantContentPanel; width: nu
   min-width: ${({ width }) => width}px;
   width: ${({ width }) => width}px;
 
+  svg {
+    height: ${({ width }) => width}px;
+    width: ${({ width }) => width}px;
+  }
+
   ${({ variant }) =>
     variant === 'heading' &&
     css`

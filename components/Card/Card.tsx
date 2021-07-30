@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
+import { ReactSVG } from 'react-svg';
 
 import { withAnchor as withAnchorWrapper } from 'components/AnchorsProvider';
-import ImageBox from 'components/ImageBox';
 import { IconArrowRight } from '../Icons';
 import { Title, CardWrapper, TextContainer, IconWrapper } from './Card.styles';
 import { Props } from './types';
@@ -26,7 +26,7 @@ const Card: FC<Props> = ({
         return (
           <>
             <IconWrapper>
-              <ImageBox src={imgSrc} alt={imgAlt} layout="fill" />
+              <ReactSVG src={imgSrc} alt={imgAlt} />
             </IconWrapper>
             <HeaderComponent isMedia={variant === 'media'}>{title}</HeaderComponent>
             <TextContainer isMedia={variant === 'media'}>{children}</TextContainer>

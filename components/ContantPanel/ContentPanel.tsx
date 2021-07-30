@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { ReactSVG } from 'react-svg';
 
-import ImageBox from '../ImageBox';
 import { Container, Title, ImageWrapper } from './ContentPanel.styles';
 import { ContentPanelProps } from './types';
 
@@ -18,7 +18,7 @@ const ContentPanel: FC<ContentPanelProps> = ({
   return (
     <Container variant={variant}>
       <ImageWrapper variant={variant} width={imgWidth}>
-        <ImageBox src={imgSrc} alt={imgAlt} layout="fill" />
+        <ReactSVG src={imgSrc} alt={imgAlt} />
       </ImageWrapper>
       <div>
         {title ? <Title variant={variant}>{title}</Title> : null}
