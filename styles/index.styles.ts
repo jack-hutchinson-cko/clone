@@ -79,6 +79,8 @@ export const IntroTitle = styled(PrimitivesTextHeadingOne)`
 export const IntroDescription = styled(Text)`
   margin: 30px 0 0;
   color: ${({ theme }) => theme.colors.baseLight};
+  font-family: inherit;
+  width: 85%;
   font-size: 16px;
   line-height: 24px;
 
@@ -147,7 +149,7 @@ export const BlocksWrapper = styled.div`
 export const BlockTitle = styled(TextHeadingTwo)`
   color: ${({ theme }) => theme.colors.base};
   margin: 20px 0 0;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 32px;
 
   @media ${MobileBreakPoints.MOBILE_M} {
@@ -159,6 +161,7 @@ export const BlockTitle = styled(TextHeadingTwo)`
 export const BlockDescription = styled(Text)`
   padding: 10px 0 20px;
   color: ${({ theme }) => theme.colors.baseLight};
+  font-family: inherit;
   font-size: 16px;
   line-height: 24px;
 
@@ -170,13 +173,14 @@ export const BlockDescription = styled(Text)`
 
 export const BlockList = styled(List)`
   & li {
+    font-family: inherit;
     padding: 5px 0;
     font-weight: 500;
     a {
+      font-size: 14px;
       color: ${({ theme }) => theme.colors.base};
     }
 
-    font-size: 16px;
     line-height: 24px;
 
     @media ${MobileBreakPoints.MOBILE_M} {
