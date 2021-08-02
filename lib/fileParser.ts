@@ -3,6 +3,8 @@ import fs from 'fs';
 import { get } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+
+import { AnchorItem } from 'types/anchors';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
 import { clientSettings } from 'constants/clientSettings';
@@ -17,16 +19,18 @@ const getAnchorsNavItems = ({
 }: {
   content: string;
   childrenArticles?: ChildArticlesType;
-}) => {
-  const contentAnchors = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
-    const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
-    return {
-      title,
-      href: getAnchorUrl(title),
-    };
-  });
+}): AnchorItem[] => {
+  const contentAnchors: AnchorItem[] = (content.match(/^(#|##) (.*$)/gim) || []).map(
+    (headerItem) => {
+      const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
+      return {
+        title,
+        href: getAnchorUrl(title),
+      };
+    },
+  );
 
-  const childArticlesAnchors = childrenArticles.map(({ title }) => ({
+  const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) => ({
     title,
     href: getAnchorUrl(title),
   }));

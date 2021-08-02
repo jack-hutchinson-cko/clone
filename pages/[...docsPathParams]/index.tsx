@@ -1,11 +1,13 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import { BreadCrumbsItems } from 'types/content';
+import { AnchorItem } from 'types/anchors';
 import Card from 'components/Card';
 import CardWrapper from 'components/CardWrapper';
 import {
@@ -24,7 +26,7 @@ type Props = {
     title: string;
   };
   source: MDXRemoteSerializeResult;
-  anchorsNavItems: { title: string; href: string }[];
+  anchorsNavItems: AnchorItem[];
   childrenArticles: { title: string; href: string; description: string }[];
 };
 

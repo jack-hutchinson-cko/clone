@@ -21,8 +21,6 @@ const initFooterContent = {
   policies: [],
 };
 
-const patch = 'docs/ABC';
-
 const useAppInitState = (): {
   sidebarDocLinks: NavTreeElement[];
   headerContent: HeaderContent;

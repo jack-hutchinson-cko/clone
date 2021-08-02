@@ -12,14 +12,14 @@ export const LinkIcon = styled(IconActionLink)`
   }
 `;
 
-export const Title = styled.span`
-  position: relative;
+export const Wrapper = styled.div`
   padding-right: 24px;
 
   ${LinkIcon} {
     position: absolute;
-    right: 0;
-    bottom: 7px;
+    right: -24px;
+    bottom: 50%;
+    transform: translateY(50%);
 
     visibility: hidden;
     cursor: pointer;
@@ -30,4 +30,8 @@ export const Title = styled.span`
       visibility: visible;
     }
   }
+`;
+
+export const Title = styled.span`
+  position: relative;
 `;

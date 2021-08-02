@@ -1,9 +1,17 @@
 import { createContext } from 'react';
 
-export type Props = {
-  onUpdateState?: (hash: string, state: boolean) => void;
-  shownAnchors?: string[];
-  offsetTop?: number;
+const defaultValue = {
+  onUpdateState: () => {},
+  shownAnchors: [],
+  initialized: false,
+  offsetTop: 0,
 };
 
-export default createContext<Props>({});
+export type Props = {
+  onUpdateState: (hash: string, state: boolean) => void;
+  shownAnchors: string[];
+  initialized: boolean;
+  offsetTop: number;
+};
+
+export default createContext<Props>(defaultValue);
