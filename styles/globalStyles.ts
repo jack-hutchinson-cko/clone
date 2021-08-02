@@ -7,6 +7,7 @@ const globalStyles = createGlobalStyle`
     padding: 0;
     color: ${({ theme }) => theme.colors.baseLight};
     background-color: ${({ theme }) => theme.colors.background};
+    overflow-x: hidden;
   };
   * {
     box-sizing: border-box;
