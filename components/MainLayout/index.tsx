@@ -1,3 +1,2 @@
-import MainLayout from './MainLayout';
-
-export default MainLayout;
+export { default } from './MainLayout';
+export type { Props } from './MainLayout';

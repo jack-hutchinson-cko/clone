@@ -11,11 +11,12 @@ import OneTrustCookie from './Cookies/OneTrustCookie';
 
 type Props = {
   title?: string;
+  isHeadlessMode?: boolean;
 };
 
-const PageHead: FC<Props> = ({ title = 'Checkout.com' }) => (
+const PageHead: FC<Props> = ({ title = 'Checkout.com', isHeadlessMode }) => (
   <Head>
-    <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />
+    {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
     <title>{title} - Docs</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charSet="utf-8" />

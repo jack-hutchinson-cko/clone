@@ -9,26 +9,39 @@ import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
 import { clientSettings } from 'constants/clientSettings';
 import { getAnchorUrl } from 'lib/url';
-import { getTitleFromFileName, getSlugFromTitle, getMdxFileData } from './fileParserCommon';
+import {
+  getTitleFromFileName,
+  getSlugFromTitle,
+  getAnchors,
+  getMdxFileData,
+} from './fileParserCommon';
+
+export type ArticleSectionSource = {
+  url?: string;
+  content: string;
+};
+
+export type ArticleSectionData = {
+  url?: string;
+  content: MDXRemoteSerializeResult;
+};
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
 
-const getAnchorsNavItems = ({
+export const getAnchorsNavItems = ({
   content = '',
   childrenArticles = [],
 }: {
   content: string;
   childrenArticles?: ChildArticlesType;
 }): AnchorItem[] => {
-  const contentAnchors: AnchorItem[] = (content.match(/^(#|##) (.*$)/gim) || []).map(
-    (headerItem) => {
-      const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
-      return {
-        title,
-        href: getAnchorUrl(title),
-      };
-    },
-  );
+  const contentAnchors: AnchorItem[] = getAnchors(content).map((headerItem) => {
+    const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
+    return {
+      title,
+      href: getAnchorUrl(title),
+    };
+  });
 
   const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) => ({
     title,

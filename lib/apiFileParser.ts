@@ -1,11 +1,19 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
+import matter from 'gray-matter';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+import { serialize } from 'next-mdx-remote/serialize';
+import { ContentPageData, ContentPageType } from 'types/content';
 import {
   getTitleFromFileName,
   getSlugFromTitle,
   forEachFileTree,
   getMdxFileData,
+  getAnchors,
 } from './fileParserCommon';
+
+import { getAnchorUrl } from './url';
 
 type GetPAgeMetadataReturnType = {
   title?: string;
@@ -63,6 +71,54 @@ export const getPageMetadata = (
   };
 };
 
+export const getPageData = (
+  sourceUrl: string,
+  { filePath, path }: { filePath: string; path: string },
+): { isSelectedPage: boolean; content?: string; data?: ContentPageData } => {
+  if (path === sourceUrl) {
+    const { data, content } = getMdxFileData(`${filePath}/index.mdx`);
+
+    return {
+      content,
+      data: data as ContentPageData,
+      isSelectedPage: true,
+    };
+  }
+
+  return {
+    isSelectedPage: false,
+  };
+};
+
+export const findPageData = ({
+  parentFilePath,
+  pageUrl,
+}: {
+  parentFilePath: string;
+  pageUrl: string;
+}): { content: string; data: ContentPageData } | undefined => {
+  let result;
+
+  forEachFileTree(
+    {
+      parentFilePath,
+      parentPath: '',
+      parentArticles: [],
+    },
+    (data) => {
+      const { isSelectedPage, ...otherProps } = getPageData(pageUrl, data);
+      if (isSelectedPage) {
+        result = otherProps;
+        return true;
+      }
+
+      return false;
+    },
+  );
+
+  return result;
+};
+
 type PageMetadataType = {
   title?: string;
   account?: string;
@@ -98,4 +154,63 @@ export const findPageMetadata = ({
   );
 
   return result;
+};
+
+export const parseDocContent = async ({
+  content,
+  data,
+  sectionUrl,
+}: {
+  content: string;
+  data: ContentPageData;
+  sectionUrl?: string;
+}): Promise<{
+  pageContent: MDXRemoteSerializeResult;
+  pageData: ContentPageData;
+  type: ContentPageType;
+}> => {
+  let pageContent = content;
+  let type = ContentPageType.PAGE;
+
+  if (sectionUrl) {
+    const anchors = getAnchors(content).map((anchor) => [
+      anchor,
+      getAnchorUrl(anchor.replace(/^#+ (.*$)/gim, '$1'), false),
+    ]);
+
+    const selectedAnchor = anchors.reduce<[string, number] | null>(
+      (result, [title, url], index) => {
+        if (sectionUrl === url) return [title, index];
+        return result;
+      },
+      null,
+    );
+
+    if (selectedAnchor) {
+      const [startAnchor, index] = selectedAnchor;
+      const nextAnchor = anchors[index + 1];
+
+      pageContent = content.slice(
+        content.indexOf(startAnchor),
+        nextAnchor ? content.indexOf(nextAnchor[0]) : undefined,
+      );
+      type = ContentPageType.SECTION;
+    }
+  }
+
+  const compilePageContent = await serialize(pageContent, {
+    // Optionally pass remark/rehype plugins
+    mdxOptions: {
+      // eslint-disable-next-line global-require
+      remarkPlugins: [require('remark-grid-tables')],
+      rehypePlugins: [],
+    },
+    scope: data,
+  });
+
+  return {
+    pageContent: compilePageContent,
+    pageData: data,
+    type,
+  };
 };

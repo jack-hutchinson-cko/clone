@@ -1,12 +1,16 @@
 import { NextPage } from 'next';
+import { AppProps } from 'next/app';
 import { datadogRum } from '@datadog/browser-rum';
 
+import widthHeadlessMode from 'hoc/widthHeadlessMode';
 import { ThemeProvider } from 'theme/ThemeProvider';
-import MainLayout from 'components/MainLayout';
+import MainLayout, { Props as LayoutProps } from 'components/MainLayout';
 import useAppInitState from 'hooks/useAppInitState';
 import Head from 'components/Head';
 
 import GlobalStyles from '../styles/globalStyles';
+
+const Layout = widthHeadlessMode<LayoutProps>(MainLayout);
 
 type Props = {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -14,20 +18,22 @@ type Props = {
   pageProps?: any;
 };
 
-const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
+const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps, router }) => {
+  const { headlessMode, ...restPageProps } = pageProps;
   const { sidebarDocLinks, headerContent, footerContent } = useAppInitState();
 
   return (
     <ThemeProvider>
+      <Head isHeadlessMode={headlessMode} />
       <GlobalStyles />
-      <Head />
-      <MainLayout
+      <Layout
         navTreeLinks={sidebarDocLinks}
         headerContent={headerContent}
         footerContent={footerContent}
+        isHeadlessMode={headlessMode}
       >
-        <Component {...pageProps} />
-      </MainLayout>
+        <Component {...restPageProps} />
+      </Layout>
     </ThemeProvider>
   );
 };

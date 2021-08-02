@@ -31,3 +31,10 @@ export type DocsPathItem = {
     docsPathParams: string[];
   };
 };
+
+export enum ContentPageType {
+  PAGE = 'page',
+  SECTION = 'section',
+}
+
+export type ContentPageData = { title: string; account: string; description?: string };

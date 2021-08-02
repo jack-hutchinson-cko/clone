@@ -18,6 +18,8 @@ type CallBackParamsType = {
   breadcrumbs: { url: string; title: string }[];
 };
 
+export const getAnchors = (content: string): string[] => content.match(/^(#|##) (.*$)/gim) || [];
+
 export const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
 export const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
 
