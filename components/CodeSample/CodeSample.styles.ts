@@ -18,15 +18,15 @@ export const PreWrapper = styled.div<{
   &:after {
     content: '';
     width: 100%;
-    height: 130px;
+    height: 40%;
     display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
     left: 0;
-    bottom: 22px;
+    bottom: 5px;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,
-      ${({ theme }) => theme.colors.codeLabelBackground} 100%
+      ${({ theme }) => theme.colors.codeLabelBackground} 85%
     );
     pointer-events: none;
   }
