@@ -4,8 +4,8 @@ import { Breakpoints } from 'constants/screen';
 
 import { SubheadBackgroundColor } from './types';
 
-export const Table = styled.table<{ withTopBorder?: boolean }>`
-  table-layout: fixed;
+export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fixed' }>`
+  table-layout: ${({ type = 'fixed' }) => type};
   width: 100%;
   color: ${({ theme }) => theme.colors.baseLight};
   border-radius: 8px;
@@ -39,6 +39,10 @@ export const Table = styled.table<{ withTopBorder?: boolean }>`
           border-top-left-radius: 0;
           border-top-right-radius: 0;
         `}
+
+  @media ${Breakpoints.MOBILE} {
+    table-layout: auto;
+  }
 `;
 
 export const TableBody = styled.tbody`
@@ -53,7 +57,6 @@ export const TableBody = styled.tbody`
 
 export const TableCell = styled.td<{ isNoWrap?: boolean; withBackground?: boolean }>`
   white-space: ${({ isNoWrap }) => (isNoWrap ? `nowrap` : 'normal')};
-  width: 1%;
   padding: 0 16px;
   vertical-align: top;
   font-size: 14px;
@@ -70,6 +73,10 @@ export const TableCell = styled.td<{ isNoWrap?: boolean; withBackground?: boolea
   @media ${Breakpoints.TABLET}, ${Breakpoints.MOBILE} {
     white-space: normal;
   }
+
+  @media ${Breakpoints.MOBILE} {
+    word-break: break-all;
+  }
 `;
 
 export const TableRow = styled.tr`
@@ -77,7 +84,8 @@ export const TableRow = styled.tr`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const StyledTH = styled.th`
+export const StyledTH = styled.th<{ width?: string }>`
+  width: ${({ width = 'auto' }) => width};
   padding: 10px 16px;
   border: none;
   color: ${({ theme }) => theme.colors.base};
