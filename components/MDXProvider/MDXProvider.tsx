@@ -49,6 +49,7 @@ import Tic from 'components/Tic';
 import SectionLink from 'components/SectionLink';
 import { CategoriesList, CategoriesItem } from 'components/Categories';
 import TwoColumn from 'components/TwoColumn';
+import ArrowLink from 'components/ArrowLink';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -108,6 +109,7 @@ export const mdxComponents = {
   CategoriesList: withBlockMargin(CategoriesList),
   CategoriesItem,
   TwoColumn: withBlockMargin(TwoColumn),
+  ArrowLink,
 };
 
 type Props = {

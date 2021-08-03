@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { findPageMetadata } from 'lib/apiFileParser';
 
 const filePathByAccount = {
-  ABC: 'docs/ABC',
-  NAS: 'docs/NAC',
+  ABC: 'docs/ABC/Articles',
+  NAS: 'docs/NAC/Articles',
 };
 
 const handler = (_req: NextApiRequest, res: NextApiResponse): void => {

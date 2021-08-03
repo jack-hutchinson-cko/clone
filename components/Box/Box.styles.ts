@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export type SizeEnum = 'sm' | 'md';
+export type SizeEnum = 'xsm' | 'sm' | 'md';
 export type AlignCenter = 'center';
 
 export const Box = styled.div<{

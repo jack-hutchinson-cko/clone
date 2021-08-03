@@ -153,6 +153,7 @@ export const themes = {
     fontSizes: ['13px', '16px', '16px', '24px', '40px'],
     space: [0, 0, '8px', '16px', '24px', '32px'],
     padding: {
+      xsm: '8px',
       sm: '16px',
       md: '24px',
     },
@@ -310,6 +311,7 @@ export const themes = {
     fontSizes: ['13px', '16px', '16px', '24px', '40px'],
     space: [0, 0, '8px', '16px', '24px', '32px'],
     padding: {
+      xsm: '8px',
       sm: '16px',
       md: '24px',
     },
