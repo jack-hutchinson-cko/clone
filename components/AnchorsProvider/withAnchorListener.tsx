@@ -3,15 +3,15 @@ import { FC, useContext } from 'react';
 import Context, { Props as ContextProps } from './AnchorsContext';
 
 export type WithAnchorListenerProps<T> = {
-  shownAnchors?: string;
+  shownAnchors: string[];
+  initialized: boolean;
 } & T;
 
 const withAnchorListener =
-  <T,>(Component: FC<T>): FC<WithAnchorListenerProps<T>> =>
+  <T,>(Component: FC<WithAnchorListenerProps<T>>): FC<T> =>
   (props) => {
-    const { shownAnchors } = useContext<ContextProps>(Context);
-
-    return <Component shownAnchors={shownAnchors} {...props} />;
+    const { shownAnchors, initialized } = useContext<ContextProps>(Context);
+    return <Component shownAnchors={shownAnchors} initialized={initialized} {...props} />;
   };
 
 export default withAnchorListener;

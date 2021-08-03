@@ -5,7 +5,7 @@ import MDXProvider from 'components/MDXProvider';
 import { PageContent } from 'styles/index.styles';
 import { ChangelogHeader, Changelog } from 'components/ChangelogComponents';
 import { getDocArticleData } from 'lib/fileParser';
-import { changelogPath } from 'constants/filePath';
+import { clientSettings } from 'constants/clientSettings';
 
 type Props = {
   source: MDXRemoteSerializeResult;
@@ -23,7 +23,9 @@ const ChangeLogPage: FC<Props> = ({ frontMatter, source }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { source, frontMatter } = await getDocArticleData({ filePath: changelogPath });
+  const { source, frontMatter } = await getDocArticleData({
+    filePath: clientSettings.changelogPath,
+  });
 
   return {
     props: {

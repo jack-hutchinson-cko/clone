@@ -1,5 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Flex } from '@cko/primitives';
+
+import { TextHeadingThree } from '../TextHeading/TextHeading.styles';
 import { Text } from '../Text';
 
 export const CardWrapper = styled(Flex)`
@@ -10,6 +12,7 @@ export const CardWrapper = styled(Flex)`
   border-radius: 8px;
   cursor: pointer;
   height: 100%;
+
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.light};
     border-color: ${({ theme }) => theme.colors.borderHighlight};
@@ -19,6 +22,29 @@ export const CardWrapper = styled(Flex)`
   }
 `;
 
-export const TextContainer = styled(Text)`
+export const TextContainer = styled(Text)<{ isMedia?: boolean }>`
   flex-grow: 1;
+
+  ${({ isMedia = false }) =>
+    isMedia &&
+    css`
+      margin: 0;
+    `};
+`;
+
+export const IconWrapper = styled.div`
+  max-width: 32px;
+  max-height: 32px;
+  margin-top: 22px;
+`;
+
+export const Title = styled(TextHeadingThree)<{ isMedia?: boolean }>`
+  ${({ isMedia = false }) =>
+    isMedia &&
+    css`
+      margin: 8px 0 4px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    `}
 `;

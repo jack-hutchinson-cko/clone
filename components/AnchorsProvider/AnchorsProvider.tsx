@@ -15,6 +15,7 @@ type Props = {
 
 const AnchorsProvider: FC<Props> = ({ children }) => {
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
+  const [initialized, setInitialized] = useState<boolean>(false);
   const selectedMapRef = useRef<Map<string, boolean>>(new Map<string, boolean>());
   const [shownAnchors, setShownAnchors] = useState<string[]>([]);
 
@@ -29,11 +30,13 @@ const AnchorsProvider: FC<Props> = ({ children }) => {
       [],
     );
     setShownAnchors(selected);
+    setInitialized(true);
   }, []);
 
   const props: ContextProps = {
     onUpdateState,
     shownAnchors,
+    initialized,
     offsetTop: isMobile ? Offset.MOBILE : Offset.DESKTOP,
   };
 

@@ -26,10 +26,12 @@ export const themes = {
       putTag: '#6964B2',
       optionalTag: '#00b48f',
       recommendedTag: '#ffab00',
+      sectionTag: '#0C1142',
       tokenString: '#6964b3',
       tokenNumber: '#0082d9',
       searchBreadcrumbs: '#55587b',
       modalHoverBackground: '#e6e7ec',
+      tableCellBackground: '#e6e7ec',
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
 
@@ -61,6 +63,7 @@ export const themes = {
       tabBackground: '#FFFFFF',
       tabBorder: '#E6E7EC',
       underline: '#C0F2F4',
+      sectionDescription: '#3D4168',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -150,6 +153,7 @@ export const themes = {
     fontSizes: ['13px', '16px', '16px', '24px', '40px'],
     space: [0, 0, '8px', '16px', '24px', '32px'],
     padding: {
+      xsm: '8px',
       sm: '16px',
       md: '24px',
     },
@@ -181,11 +185,13 @@ export const themes = {
       putTag: '#6964B2',
       optionalTag: '#00b48f',
       recommendedTag: '#ffab00',
+      sectionTag: '#3D4168',
       tokenString: '#6964b3',
       tokenNumber: '#0082d9',
       searchBreadcrumbs: '#55587b',
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
+      tableCellBackground: '#3D4168',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
@@ -215,6 +221,7 @@ export const themes = {
       tabBackground: '#3D4168',
       tabBorder: '#3E4169',
       underline: '#55587B',
+      sectionDescription: '#9EA0B4',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -304,6 +311,7 @@ export const themes = {
     fontSizes: ['13px', '16px', '16px', '24px', '40px'],
     space: [0, 0, '8px', '16px', '24px', '32px'],
     padding: {
+      xsm: '8px',
       sm: '16px',
       md: '24px',
     },

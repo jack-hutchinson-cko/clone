@@ -24,7 +24,7 @@ import {
   FooterWrapper,
 } from './MainLayout.styles';
 
-type Props = {
+export type Props = {
   navTreeLinks: NavTreeElement[];
   headerContent: HeaderContent;
   footerContent: FooterContent;

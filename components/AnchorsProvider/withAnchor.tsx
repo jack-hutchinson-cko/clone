@@ -1,9 +1,10 @@
 import { FC, useContext, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { toString } from 'lodash';
 import { getAnchorUrl, getHashValue } from 'lib/url';
 
 import Context, { Props } from './AnchorsContext';
-import { Anchor } from './withAnchor.styles';
+import { Anchor, Wrapper, Title, LinkIcon } from './withAnchor.styles';
 
 const DEFAULT_OFFSET = 0;
 
@@ -12,22 +13,21 @@ const checkReachedElement = (target: HTMLElement): boolean => {
   return top >= 0 && bottom <= (window.innerHeight || document.documentElement.clientHeight);
 };
 
+type Options = { silentMode?: boolean };
+
 const withAnchor =
-  (Component: FC): FC =>
+  (Component: FC, { silentMode }: Options = {}): FC =>
   (props) => {
-    const { children } = props;
+    const { children, ...restProps } = props;
     const anchorRef = useRef<HTMLSpanElement>(null);
-    const [initialized, setInitialized] = useState<boolean>();
+    const [initialized, setInitialized] = useState<boolean>(false);
     const [scrolled, setScrolled] = useState<boolean>(false);
     const { onUpdateState, offsetTop = DEFAULT_OFFSET } = useContext<Props>(Context);
     const anchorUrl = getAnchorUrl(toString(children)) || '';
-    const name = getHashValue(anchorUrl);
+    const id = getHashValue(anchorUrl);
 
     useEffect(() => {
-      if (anchorRef.current) {
-        setScrolled(checkReachedElement(anchorRef.current));
-        setInitialized(true);
-      }
+      setInitialized(true);
 
       const onScrollHandler = () => {
         if (anchorRef.current) setScrolled(checkReachedElement(anchorRef.current));
@@ -37,13 +37,22 @@ const withAnchor =
     }, []);
 
     useEffect(() => {
-      if (initialized) onUpdateState?.(anchorUrl, scrolled);
+      if (!silentMode && initialized) onUpdateState?.(anchorUrl, scrolled);
     }, [initialized, anchorUrl, onUpdateState, scrolled]);
 
     return (
       <>
-        <Anchor ref={anchorRef} name={name} offsetTop={offsetTop} />
-        <Component {...props} />
+        <Anchor ref={anchorRef} id={id} offsetTop={offsetTop} />
+        <Wrapper>
+          <Component {...restProps}>
+            <Title>
+              {children}
+              <Link href={anchorUrl} passHref>
+                <LinkIcon />
+              </Link>
+            </Title>
+          </Component>
+        </Wrapper>
       </>
     );
   };

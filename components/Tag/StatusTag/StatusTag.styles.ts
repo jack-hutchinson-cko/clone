@@ -34,3 +34,7 @@ export const StyledStatusTag = styled.span<StatusTagProps>`
   text-decoration: none;
   text-transform: uppercase;
 `;
+
+export const StatusTagWrapper = styled.div<{ display: string }>`
+  ${({ display }) => `display: ${display}`}
+`;

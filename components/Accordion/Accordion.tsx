@@ -5,23 +5,46 @@ import { StyledAccordion, AccordionBodyWrapper } from './Accordion.styles';
 import { AccordionProps } from './types';
 import { getHeightOfInnerContent } from './utils';
 
+const accordionAnimationTime = 1000;
+
 const Accordion: FC<AccordionProps> = ({
   title = null,
   isExpanded,
   children,
   isBoldTitle,
-  withUnderline,
   ...props
 }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
+  const [accordionHeight, setAccordionHeight] = useState<string>(isOpen ? 'auto' : '0');
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const bodyElement = useRef(null);
+
+  const disableAccordionButton = () => {
+    setIsButtonDisabled(true);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, accordionAnimationTime);
+  };
 
   const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    if (isOpen) {
+      disableAccordionButton();
+      setAccordionHeight(getHeightOfInnerContent(bodyElement.current).toString());
+      setTimeout(() => {
+        setAccordionHeight('0');
+      }, 0);
+    } else {
+      setAccordionHeight(getHeightOfInnerContent(bodyElement.current).toString());
+    }
     setOpen(!isOpen);
+    if (!isOpen) {
+      disableAccordionButton();
+      setTimeout(() => {
+        setAccordionHeight('auto');
+      }, accordionAnimationTime);
+    }
   };
-
-  const height = getHeightOfInnerContent(bodyElement.current);
 
   if (title) {
     return (
@@ -30,14 +53,15 @@ const Accordion: FC<AccordionProps> = ({
           onClick={onClickHandler}
           isOpen={isOpen}
           isBoldTitle={isBoldTitle}
-          withUnderline={withUnderline}
+          hasTitle
+          disabled={isButtonDisabled}
         >
           <div>
             <mark>{title}</mark>
           </div>
           <IconActionChevronDown />
         </StyledAccordionHead>
-        <AccordionBodyWrapper height={isOpen ? height : 0}>
+        <AccordionBodyWrapper height={accordionHeight}>
           <div ref={bodyElement}>{children}</div>
         </AccordionBodyWrapper>
       </StyledAccordion>

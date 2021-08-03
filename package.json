@@ -13,12 +13,14 @@
     "postinstall": "husky install",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
-    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@cko/icons": "^3.17.2",
     "@cko/primitives": "^5.3.0",
     "@cko/utils": "^1.1.9",
+    "@datadog/browser-rum": "^3.0.1",
     "@mdx-js/runtime": "^1.6.22",
     "@storybook/react": "^6.2.9",
     "@types/lodash": "^4.14.170",
@@ -38,10 +40,12 @@
     "react-dom": "^17.0.2",
     "react-focus-lock": "^2.5.1",
     "react-instantsearch-dom": "^6.11.2",
+    "react-svg": "^14.0.6",
     "remark-grid-tables": "^2.1.2",
     "striptags": "^3.2.0",
     "styled-components": "^5.3.0",
     "styled-system": "^5.1.5",
+    "swr": "^0.5.6",
     "ts-node": "^10.0.0"
   },
   "devDependencies": {
@@ -63,6 +67,7 @@
     "@typescript-eslint/eslint-plugin": "^4.0",
     "@typescript-eslint/parser": "^4.0",
     "babel-jest": "^26.6.3",
+    "chromatic": "^5.10.0-canary.0",
     "esbuild": "^0.12.12",
     "eslint": "^7.15.0",
     "eslint-config-airbnb-typescript": "^12.0",

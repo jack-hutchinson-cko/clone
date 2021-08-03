@@ -447,6 +447,18 @@ export const IconCheck: FC<Props> = (props) => (
   </StyledIcon>
 );
 
+export const IconTicInfo: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} {...props}>
+    <g fill="none" fillRule="evenodd">
+      <circle fill="#0052CC" cx="8" cy="8" r="8" />
+      <g transform="translate(6 3)" fill="#FFF">
+        <rect x="1" y="5" width="2" height="6" rx="1" />
+        <rect x=".5" width="3" height="3" rx="1.5" />
+      </g>
+    </g>
+  </StyledIcon>
+);
+
 export const IconError: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
     <g fill="none" fillRule="evenodd">

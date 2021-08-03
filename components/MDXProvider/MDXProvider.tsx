@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
@@ -19,7 +18,7 @@ import LineCode from 'components/LineCode';
 import TextLink from 'components/TextLink';
 import Box from 'components/Box';
 import Pre from 'components/Pre';
-import { RequestTag, StatusTag, TypeTag } from 'components/Tag';
+import { RequestTag, StatusTag, TypeTag, SectionTag } from 'components/Tag';
 import InfoBox from 'components/InfoBox';
 import LineCodeWrapper from 'components/LineCodeWrapper';
 import Accordion, { AccordionHead, AccordionBody } from 'components/Accordion';
@@ -34,12 +33,23 @@ import Table, {
   TableTicCell,
 } from 'components/Table';
 import ImageBox from 'components/ImageBox';
-import { ListItem, ListIconItem, List, OrderedList, UnorderedList } from 'components/List';
+import {
+  ListItem,
+  ListIconItem,
+  ListNumberItem,
+  List,
+  OrderedList,
+  UnorderedList,
+} from 'components/List';
 import Iframe from 'components/Iframe';
+import Card from 'components/Card';
 import CardLink from 'components/CardLink';
 import CardWrapper from 'components/CardWrapper';
 import Tic from 'components/Tic';
+import SectionLink from 'components/SectionLink';
 import { CategoriesList, CategoriesItem } from 'components/Categories';
+import TwoColumn from 'components/TwoColumn';
+import ArrowLink from 'components/ArrowLink';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -62,8 +72,8 @@ export const mdxComponents = {
   LineCodeWrapper,
   h1: withAnchor(TextHeadingOne),
   h2: withAnchor(TextHeadingTwo),
-  h3: TextHeadingThree,
-  h4: TextHeadingFour,
+  h3: withAnchor(TextHeadingThree, { silentMode: true }),
+  h4: withAnchor(TextHeadingFour, { silentMode: true }),
   p: Text,
   inlineCode: LineCode,
   a: TextLink,
@@ -72,9 +82,11 @@ export const mdxComponents = {
   RequestTag,
   StatusTag,
   TypeTag,
+  SectionTag,
   InfoBox,
   List: withBlockMargin(List),
   ListIconItem,
+  ListNumberItem,
   ul: withBlockMargin(UnorderedList),
   ol: withBlockMargin(OrderedList),
   li: ListItem,
@@ -87,12 +99,17 @@ export const mdxComponents = {
   img: withBlockMargin(ImageBox),
   Iframe: withBlockMargin(Iframe),
   ButtonLink: withBlockMargin(ButtonLink),
+  ButtonLinkSecondary: ButtonLink,
   ContentPanel: withBlockMargin(ContentPanel),
+  Card,
   CardLink,
   CardWrapper: withBlockMargin(CardWrapper),
   Tic: withBlockMargin(Tic),
+  SectionLink: withBlockMargin(SectionLink),
   CategoriesList: withBlockMargin(CategoriesList),
   CategoriesItem,
+  TwoColumn: withBlockMargin(TwoColumn),
+  ArrowLink,
 };
 
 type Props = {

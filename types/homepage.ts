@@ -1,8 +1,9 @@
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 type HomePageIntro = {
   title: string;
   description: string;
   getStartedUrl: string;
-  imageUrl: string;
 };
 
 type HomePageBlockNames = 'payments' | 'the-hub';
@@ -13,19 +14,13 @@ type HomePageBlockLinks = {
   url: string;
 };
 
-type HomePageBlock = {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  links: HomePageBlockLinks[];
-};
-
 export type HomePageBlockLinksData = {
   [key in HomePageBlockNames]: HomePageBlockLinks[];
 };
 
 export type HomePageContent = {
-  intro: HomePageIntro;
-  blocks: HomePageBlock[];
+  source: MDXRemoteSerializeResult;
+  title: string;
+  description: string;
+  getStartedLink: string;
 };

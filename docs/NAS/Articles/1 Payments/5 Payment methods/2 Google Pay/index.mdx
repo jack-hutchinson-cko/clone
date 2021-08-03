@@ -1,0 +1,295 @@
+---
+title: Google Pay
+account: NAS
+description: Google Pay
+---
+
+By integrating Google Pay into your website or Android application, your customers can securely make one-touch payments using any credit or debit card connected to their Google account.
+
+<TipBox variant="info">
+
+To enable Google Pay in the UAE or Saudi Arabia, please request activation from your Customer Success manager.
+
+</TipBox>
+
+---
+
+## Overview
+
+To start processing Google Pay payments, you must first integrate directly with Google. Once integration is complete, you can add the Google Pay button to your checkout page and start requesting your customers' encrypted payment information.
+
+Google Pay integration and payments can be simplified into a three-step method:
+
+1.  [Integrate with Google Pay](#GooglePay-integratewithgooglepay)
+2.  [Tokenize the Google Pay payment data](#GooglePay-tokenizegooglepaypaymentdata)
+3.  [Request the payment](#GooglePay-requestapayment)
+
+<TipBox variant="note" title="There is no liability shift!">
+
+Unlike with some other wallets, payments made via Google Pay do _not_ benefit from any liability shift. You will be subject to the same liability rules and chargeback policies as with regular credit and debit card payments, as described [here](https://support.google.com/pay/merchants/answer/6288992?hl=en-GB). In order to minimize the risk of fraud and chargebacks, you may want to restrict the type of payment cards you accept. For more information, see [this section](https://developers.google.com/pay/api/web/reference/object) of the Google Pay API documentation.
+
+</TipBox>
+
+---
+
+## Step 1: Integrate with Google Pay
+
+<TipBox variant="note">
+
+Before going live, you are required to [register with Google Pay](https://services.google.com/fb/forms/googlepayAPIenable/) and select Checkout.com as your payment processor. You will also need to [whitelist your domain here](https://payments.developers.google.com/signup). Note that you must be logged in as a Google Developer to do this. If not, you will be redirected to Google Pay's support page.
+
+</TipBox>
+
+<TipBox>
+
+For information on integrating with Google Pay, first, refer to the [Google Pay API guide](https://developers.google.com/pay/api/overview).
+
+</TipBox>
+
+When you submit a payment data request to the Google API, be sure to include the following parameters:
+
+*   `'gateway': 'checkoutltd'`
+*   `'gatewayMerchantId': '<your public key>'`
+
+### Examples
+
+<tabs>
+<tab title="Google Pay API request (web)">
+
+```json
+    {
+      'allowedPaymentMethods': ['CARD','TOKENIZED_CARD'],
+      'paymentMethodTokenizationParameters': {
+        'tokenizationType': 'PAYMENT_GATEWAY',
+        'parameters': {
+          'gateway': 'checkoutltd'
+          'gatewayMerchantId': ''
+        }
+      }
+    }
+```
+
+</tab>
+<tab title="Google Pay API request (Android)">
+
+```
+  private PaymentDataRequest createPaymentDataRequest() {
+    PaymentDataRequest.Builder request =
+      PaymentDataRequest.newBuilder()
+        .setTransactionInfo(
+          TransactionInfo.newBuilder()
+            .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
+              .setTotalPrice("10.00")
+              .setCurrencyCode("USD")
+              .build())
+        .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_CARD)                     .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_TOKENIZED_CARD)
+        .setCardRequirements(
+          CardRequirements.newBuilder()
+            .addAllowedCardNetworks(
+              Arrays.asList(
+                WalletConstants.CARD_NETWORK_VISA,
+                WalletConstants.CARD_NETWORK_MASTERCARD))
+            .build());
+
+    PaymentMethodTokenizationParameters params =
+      PaymentMethodTokenizationParameters.newBuilder()
+        .setPaymentMethodTokenizationType(
+          WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY)
+        .addParameter("gateway", "checkoutltd")
+        .addParameter("gatewayMerchantId", "")
+        .build();
+
+    request.setPaymentMethodTokenizationParameters(params);
+    return request.build();
+  }
+```
+
+</tab>
+</tabs>
+
+<TipBox variant="info">
+
+You will need to specify which card types and card schemes to support in your payment data request. Checkout.com and Google Pay support the use of both Visa and Mastercard.
+
+</TipBox>
+
+---
+
+## Step 2: Tokenize the Google Pay payment data
+
+Once you have received the payment data from Google, you then need to call Checkout.com’s endpoint for tokenizing the encrypted payment data; you can find this payment data in the `paymentMethodToken` property of the Google Pay payment data request's response.
+
+To find out more about Google Pay payment requests, read the [Google Pay object reference](https://developers.google.com/pay/api/web/object-reference).
+
+### The POST request
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+#### Header parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`Bearer` `public API key`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Body parameters
+
+<Table>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`type`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The type of card details to be tokenized. Set this to `googlepay`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`token_data`
+
+<StatusTag type="required" />
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+The Google Pay payment token.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`token_data.signature`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+Verifies the message came from Google. The signature is created using ECDSA.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`token_data.protocolVersion`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+Identifies which encryption/signing scheme this message has been created. In this way, the protocol can evolve over time if needed. If it is not set, assume ECv0.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`token_data.signedMessage`
+
+<StatusTag type="required" />
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+A serialized JSON string containing the `encryptedMessage`, `ephemeralPublicKey` and `tag`. To simplify the signature verification process, this value is serialized.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Request example
+
+```json
+    {
+      "type": "googlepay",
+      "token_data": {
+        "protocolVersion": "ECv1",
+        "signature": "TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ",
+        "signedMessage": "{\"encryptedMessage\": \"ZW5jcnlwdGVkTWVzc2FnZQ==\", \"ephemeralPublicKey\": \"ZXBoZW1lcmFsUHVibGljS2V5\", \"tag\": \"c2lnbmF0dXJl\"}"
+      }
+    }
+```
+
+### The POST response
+
+#### Response example
+
+```json
+    {
+      "type": "googlepay",
+      "token": "tok_ubfj2q76miwundwlk72vxt2i7q",
+      "expires_on": "2018-10-22T15:44:03Z"
+    }
+```
+
+---
+
+## Step 3: Request a payment using Google Pay
+
+Now you have the token, it's time to authorize the payment. Take the token, and use it in the body of a card token [payment request](/display/x/Request+a+payment) from your application or website's backend server.
+
+---
+
+## Test Google Pay
+
+<TipBox variant="note">
+
+To start testing you need to [create a test account](https://www.checkout.com/get-test-account).
+
+</TipBox>
+
+Google Pay does not allow the configuration of test cards within its online wallet. However, when using Google's test environment, if a real card is selected when making the online purchase, Google Pay provides a test card in the encrypted payment data; ensuring that no actual transaction takes place.
+
+<TipBox variant="info">
+
+Find out more about [testing and simulating payments](/display/x/Testing).
+
+</TipBox>

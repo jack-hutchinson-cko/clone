@@ -5,7 +5,7 @@ export type AccordionProps = {
   children: ReactNode;
   isExpanded?: boolean;
   isBoldTitle?: boolean;
-  withUnderline?: boolean;
+  hasTitle?: boolean;
 };
 
 export type AccordionBodyProps = {

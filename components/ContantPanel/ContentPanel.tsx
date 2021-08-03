@@ -1,34 +1,27 @@
 import { FC } from 'react';
+import { ReactSVG } from 'react-svg';
 
-import ImageBox from '../ImageBox';
 import { Container, Title, ImageWrapper } from './ContentPanel.styles';
+import { ContentPanelProps } from './types';
 
 const DefaultImageWidth = 70;
+const DefaultVariant = 'default';
 
-export type Props = {
-  title: string;
-  imgSrc: string;
-  imgAlt?: string;
-  imgWidth?: number;
-  imgHeight?: number;
-  eCommerceCard?: boolean;
-};
-
-const ContentPanel: FC<Props> = ({
+const ContentPanel: FC<ContentPanelProps> = ({
   children,
   title,
   imgSrc,
   imgAlt = '',
   imgWidth = DefaultImageWidth,
-  eCommerceCard = false,
+  variant = DefaultVariant,
 }) => {
   return (
-    <Container isECommerceCard={eCommerceCard}>
-      <ImageWrapper width={imgWidth}>
-        <ImageBox src={imgSrc} alt={imgAlt} layout="fill" />
+    <Container variant={variant}>
+      <ImageWrapper variant={variant} width={imgWidth}>
+        <ReactSVG src={imgSrc} alt={imgAlt} />
       </ImageWrapper>
       <div>
-        {title ? <Title>{title}</Title> : null}
+        {title ? <Title variant={variant}>{title}</Title> : null}
         {children}
       </div>
     </Container>

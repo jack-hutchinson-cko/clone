@@ -12,18 +12,21 @@ export const PreWrapper = styled.div<{
   margin: 0;
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
   border: ${({ withBorder, theme }) => (withBorder ? `1px solid ${theme.colors.border}` : 'none')};
+  overflow-y: hidden;
+  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'scroll')};
+
   &:after {
     content: '';
     width: 100%;
-    height: 130px;
+    height: 40%;
     display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
     left: 0;
-    bottom: 22px;
+    bottom: 5px;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,
-      ${({ theme }) => theme.colors.codeLabelBackground} 100%
+      ${({ theme }) => theme.colors.codeLabelBackground} 85%
     );
     pointer-events: none;
   }
@@ -31,13 +34,10 @@ export const PreWrapper = styled.div<{
 
 export const Pre = styled.pre<{
   height: number;
-  showBlurBackground: boolean;
 }>`
   margin: 0;
   height: ${({ height }) => `${height}px`};
   transition: height 1s ease;
-  overflow-y: hidden;
-  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'auto')};
 `;
 
 export const Line = styled.div`

@@ -5,7 +5,6 @@ export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
   hasTitle?: boolean;
   isBoldTitle?: boolean;
-  withUnderline?: boolean;
 }>`
   display: flex;
   justify-content: space-between;
@@ -25,8 +24,14 @@ export const StyledAccordionHead = styled.button<{
 
   & > div,
   & > p {
-    ${({ isOpen, theme }) =>
-      isOpen
+    mark {
+      color: inherit;
+      background: transparent;
+      font-weight: ${({ isBoldTitle = true }) => (isBoldTitle ? 500 : 300)};
+    }
+
+    ${({ isOpen, hasTitle = false, theme }) =>
+      hasTitle && isOpen
         ? css`
             mark {
               background: linear-gradient(
@@ -37,14 +42,6 @@ export const StyledAccordionHead = styled.button<{
             }
           `
         : ''};
-    mark {
-      background: ${({ isOpen, theme, withUnderline }) =>
-        withUnderline && isOpen
-          ? `linear-gradient(to top, ${theme.colors.turquoise} 0 8px,transparent 8px 100%)`
-          : 'transparent'};
-      font-weight: ${({ isBoldTitle }) => (isBoldTitle ? 500 : 300)};
-      color: inherit;
-    }
   }
 
   svg {

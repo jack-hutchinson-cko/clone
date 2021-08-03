@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { abcFilePath } from 'constants/filePath';
+import { clientSettings } from 'constants/clientSettings';
 import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
@@ -31,7 +31,7 @@ const useAppInitState = (): {
   const [footerContent, setFooterContent] = useState<FooterContent>(initFooterContent);
 
   useEffect(() => {
-    fetch(`${window.location.origin}/api/docsTree?filePath=${abcFilePath}`)
+    fetch(`${window.location.origin}/api/docsTree?filePath=${clientSettings.docArticlesFilePath}`)
       .then((response) => response.json())
       .then((result) => setSidebarDocLinks(result));
 

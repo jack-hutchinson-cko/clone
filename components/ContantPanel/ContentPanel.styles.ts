@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div<{ isECommerceCard: boolean }>`
+import { VariantContentPanel } from './types';
+
+export const Container = styled.div<{ variant: VariantContentPanel }>`
   display: flex;
   align-items: flex-start;
   gap: 32px;
@@ -8,8 +10,8 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
   color: ${({ theme }) => theme.colors.base};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-  ${({ isECommerceCard }) =>
-    isECommerceCard &&
+  ${({ theme, variant }) =>
+    variant === 'eCommerce' &&
     css`
       flex: 1 0 0%;
       flex-direction: column;
@@ -18,13 +20,13 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
       height: 100%;
       margin-bottom: 24px;
       padding: 24px;
-      border: 1px solid ${({ theme }) => theme.colors.border};
+      border: 1px solid ${theme.colors.border};
       border-radius: 8px;
       background-clip: border-box;
       transition: background 0.5s, border 0.5s;
 
       &:hover {
-        border: 1px solid ${({ theme }) => theme.colors.borderHighlight};
+        border: 1px solid ${theme.colors.borderHighlight};
         box-shadow: 0px 8px 16px rgb(12 17 66 / 12%);
       }
 
@@ -35,6 +37,12 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
         font-size: 16px;
         line-height: 24px;
       }
+    `}
+
+  ${({ variant }) =>
+    variant === 'heading' &&
+    css`
+      gap: 16px;
     `}
 
   p {
@@ -50,16 +58,37 @@ export const Container = styled.div<{ isECommerceCard: boolean }>`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<{ variant: VariantContentPanel }>`
   display: block;
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
   margin-bottom: 8px;
+
+  ${({ variant }) =>
+    variant === 'heading' &&
+    css`
+      margin-bottom: 10px;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 24px;
+    `}
 `;
 
-export const ImageWrapper = styled.div<{ width: number }>`
+export const ImageWrapper = styled.div<{ variant: VariantContentPanel; width: number }>`
   display: block;
   min-width: ${({ width }) => width}px;
   width: ${({ width }) => width}px;
+
+  svg {
+    height: ${({ width }) => width}px;
+    width: ${({ width }) => width}px;
+  }
+
+  ${({ variant }) =>
+    variant === 'heading' &&
+    css`
+      min-width: 32px;
+      width: 32px;
+    `}
 `;

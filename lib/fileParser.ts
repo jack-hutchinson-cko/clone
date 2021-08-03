@@ -1,24 +1,41 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import { get, lowerCase } from 'lodash';
+import { get } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
+
+import { AnchorItem } from 'types/anchors';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
 import { NavTreeElementWithFilePatch } from 'types/navTree';
-import { ABCDocsPath } from 'constants/filePath';
+import { clientSettings } from 'constants/clientSettings';
 import { getAnchorUrl } from 'lib/url';
+import {
+  getTitleFromFileName,
+  getSlugFromTitle,
+  getAnchors,
+  getMdxFileData,
+} from './fileParserCommon';
+
+export type ArticleSectionSource = {
+  url?: string;
+  content: string;
+};
+
+export type ArticleSectionData = {
+  url?: string;
+  content: MDXRemoteSerializeResult;
+};
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
 
-const getAnchorsNavItems = ({
+export const getAnchorsNavItems = ({
   content = '',
   childrenArticles = [],
 }: {
   content: string;
   childrenArticles?: ChildArticlesType;
-}) => {
-  const contentAnchors = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
+}): AnchorItem[] => {
+  const contentAnchors: AnchorItem[] = getAnchors(content).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
     return {
       title,
@@ -26,7 +43,7 @@ const getAnchorsNavItems = ({
     };
   });
 
-  const childArticlesAnchors = childrenArticles.map(({ title }) => ({
+  const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) => ({
     title,
     href: getAnchorUrl(title),
   }));
@@ -45,9 +62,7 @@ export const getDocArticleData = async ({
   frontMatter: { [key: string]: string };
   anchorsNavItems: { title: string; href: string }[];
 }> => {
-  const source = fs.readFileSync(filePath);
-
-  const { content, data } = matter(source);
+  const { data, content } = getMdxFileData(filePath);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
@@ -75,15 +90,13 @@ type ArticleSettingsType = {
   docsPathUrl: DocsPathItem[];
 };
 
-const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
-const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
 const getFileIndex = (fileName: string) => {
   const result = fileName.match(/^[0-9]+/);
 
   return result ? Number(result[0]) : 0;
 };
 
-export const getDocArticlesSettings = (rootFilePath = ABCDocsPath): ArticleSettingsType => {
+export const getDocArticlesSettings = (rootFilePath: string): ArticleSettingsType => {
   const root = {
     filePath: rootFilePath,
     path: '',
@@ -144,8 +157,7 @@ export const getChildrenArticle = (
     if (fs.statSync(childFilePath).isDirectory()) {
       const title = getTitleFromFileName(child);
       const currentSlug = getSlugFromTitle(title);
-      const source = fs.readFileSync(`${childFilePath}/index.mdx`);
-      const { data } = matter(source);
+      const { data } = getMdxFileData(`${childFilePath}/index.mdx`);
       const description = get(data, 'description');
 
       if (description) {
@@ -161,7 +173,7 @@ export const getChildrenArticle = (
   return result;
 };
 
-export const docksArticleSettings = getDocArticlesSettings();
+export const docksArticleSettings = getDocArticlesSettings(clientSettings.fullFilePath);
 
 export const getDocsPathUrl = (): DocsPathItem[] => docksArticleSettings.docsPathUrl;
 
@@ -183,46 +195,4 @@ export const getFileNameFromPath = (docsPathParams: string[]): string => {
   const fullSlug = `/${docsPathParams.join('/')}`;
 
   return get(slugToFilePathMap, fullSlug, '');
-};
-
-type ForEachFileTreeParams = {
-  parentFilePath: string;
-  parentPath: string;
-  parentArticles: string[];
-};
-
-type CallBackParamsType = {
-  title: string;
-  path: string;
-  filePath: string;
-  parentArticles: string[];
-};
-
-export const forEachFileTree = (
-  { parentFilePath, parentPath, parentArticles = [] }: ForEachFileTreeParams,
-  callBack: (params: CallBackParamsType) => void,
-): void => {
-  const children = fs.readdirSync(parentFilePath);
-
-  for (const child of children) {
-    const filePath = `${parentFilePath}/${child}`;
-
-    if (fs.statSync(filePath).isDirectory()) {
-      const title = getTitleFromFileName(child);
-      const currentSlug = getSlugFromTitle(title);
-      const path = `${parentPath}/${currentSlug}`;
-
-      const childNode = { title, path, filePath, parentArticles };
-
-      callBack({ ...childNode });
-      forEachFileTree(
-        {
-          parentFilePath: filePath,
-          parentPath: path,
-          parentArticles: [...parentArticles, title],
-        },
-        callBack,
-      );
-    }
-  }
 };

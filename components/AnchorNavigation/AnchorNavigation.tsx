@@ -1,31 +1,33 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect, FC } from 'react';
-import { get } from 'lodash';
 import Link from 'next/link';
 
+import { AnchorItem } from 'types/anchors';
 import { withAnchorListener, WithAnchorListenerProps } from 'components/AnchorsProvider';
 import { getHashValue, updateNavigationHash } from 'lib/url';
 
 import { NavigationHeader, LinkWrapper, AnchorLink } from './AnchorNavigation.styles';
 
-type Anchor = { title: string; href: string };
-
 type Props = {
-  anchors: Anchor[];
+  anchors: AnchorItem[];
 };
 
-const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({ anchors, shownAnchors }) => {
+const AnchorNavigation: FC<WithAnchorListenerProps<Props>> = ({
+  anchors,
+  shownAnchors,
+  initialized,
+}) => {
   const router = useRouter();
-  const [initialized, setInitialized] = useState<boolean>(false);
   const [selectedHref, setSelectedHref] = useState<string>();
 
   useEffect(() => {
     const slug = getHashValue(router.asPath);
-    const selectedAnchor = anchors.find(({ href }) => href === `#${slug}`) ?? get(anchors, '[0]');
 
-    if (selectedAnchor) {
-      setSelectedHref(selectedAnchor.href);
-      setInitialized(true);
+    if (slug) {
+      setSelectedHref(`#${slug}`);
+    } else {
+      const [first] = anchors;
+      setSelectedHref(first.href);
     }
   }, [router, anchors]);
 

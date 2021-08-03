@@ -11,15 +11,25 @@ import {
   StyledTableTicCell,
   StyledTableCell,
 } from './Table.styles';
-import { TableSubheadProps, TableTicCellProps } from './types';
+import { TableSubheadProps, TableTicCellProps, TableHeadProps } from './types';
 
-const TableHead: FC<{ headers: string[] }> = ({ headers }) => {
+const TableHead: FC<TableHeadProps> = ({ headers, sizes = [] }) => {
   return (
     <thead>
       <TableRow>
-        {headers.map((title) => (
-          <StyledTH key={title}>{title}</StyledTH>
-        ))}
+        {headers.map((title, index) => {
+          let widthColumn = '';
+
+          if (sizes.length > 0) {
+            widthColumn = sizes[index];
+          }
+
+          return (
+            <StyledTH key={title} width={widthColumn}>
+              {title}
+            </StyledTH>
+          );
+        })}
       </TableRow>
     </thead>
   );
