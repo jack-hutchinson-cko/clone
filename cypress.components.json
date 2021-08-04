@@ -1,0 +1,4 @@
+{
+  "componentFolder": "./",
+  "testFiles": "**/@(components|hoc)/**/*.test.tsx"
+}

@@ -1,6 +1,4 @@
 {
-  "component": {
-    "componentFolder": "components",
-    "testFiles": "**/*test.{ts,tsx}"
-  }
+  "integrationFolder": "cypress/integration",
+  "testFiles": "**/*.*"
 }

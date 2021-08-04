@@ -18,7 +18,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "types": ["cypress"],
   },
   "include": [
     "next-env.d.ts",
