@@ -1,5 +1,5 @@
 {
-  "integrationFolder": "./",
-  "testFiles": "**/@(lib|tools)/**/*.test.ts",
+  "componentFolder": "lib",
+  "testFiles": "**/*.test.ts",
   "video": false
 }
