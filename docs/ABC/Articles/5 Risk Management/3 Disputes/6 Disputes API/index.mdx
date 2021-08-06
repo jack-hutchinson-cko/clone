@@ -228,13 +228,7 @@ You have accepted the dispute. There is no further implication or action require
 </TableCell>
 <TableCell>
 
-`dispute_expired`
-
-<InfoBox>
-
 There is no equivalent webhook because your action triggered the status change.
-
-</InfoBox>
 
 </TableCell>
 </TableRow>
@@ -244,69 +238,6 @@ There is no equivalent webhook because your action triggered the status change.
 ### Disputes API flow
 
 <img src="/docs/Risk Management/Disputes-api-flow.png" alt="Disputes flow" />
-
----
-
-## Using the Disputes API
-
-### Header and path parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the [Card Payouts page](https://docs.checkout.com/preview/drafts/abc/card-payouts).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`dispute_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The dispute identifier. It is prefixed by `dsp_`.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ---
 
@@ -550,6 +481,8 @@ If you wish to submit files as evidence, you will first need to upload them usin
 
 #### Endpoints
 
+For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
+
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="put">
@@ -723,6 +656,8 @@ Possible error codes
 Use the following endpoint to view a list of the evidence you provided for a specific dispute.
 
 #### Endpoints
+
+For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
 <tabs>
 <tab title="Live">

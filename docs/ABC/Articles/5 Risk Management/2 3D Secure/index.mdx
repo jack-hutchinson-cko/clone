@@ -108,40 +108,16 @@ Possible scenarios of OLO payments which are considered as out of scope for SCA:
 <TableHead headers={['Merchant/acquirer', 'Issuer']} />
 <TableBody>
 <TableRow>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-❌
-
-</TableCell>
+<TableTicCell />
+<TableTicCell type="error" />
 </TableRow>
 <TableRow>
-<TableCell>
-
-❌
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
 </TableRow>
 <TableRow>
-<TableCell>
-
-❌
-
-</TableCell>
-<TableCell>
-
-❌
-
-</TableCell>
+<TableTicCell type="error" />
+<TableTicCell type="error" />
 </TableRow>
 </TableBody>
 </Table>
@@ -470,4 +446,8 @@ Yes
 
 [Our 3DS2 solution](/display/DOCS/3D+Secure+2+API+integration) is integrated into your payment flow, gathering all the required information for you to comply with SCA. And it's built on our existing 3DS integration, so if you're already using that, you don't have to change anything.
 
+<TipBox variant="info">
+
 We're gradually switching European merchants' traffic over to 3DS2 in countries where card issuers widely support the new protocol. If they don't yet support the new version, the request will automatically default to the original 3DS.
+
+</TipBox>
