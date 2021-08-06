@@ -45,7 +45,7 @@ const getIndexArticleItem = ({
   const body = unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ');
 
   return {
-    title: data.title,
+    title: data?.title || '',
     name,
     path,
     parentArticles,

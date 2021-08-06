@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import matter from 'gray-matter';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import { serialize } from 'next-mdx-remote/serialize';
@@ -15,9 +14,11 @@ import {
 
 import { getAnchorUrl } from './url';
 
-type GetPAgeMetadataReturnType = {
+type GetPageMetadataReturnType = {
   title?: string;
   account?: string;
+  modifiedDate?: string;
+  lastAuthor?: string;
   breadcrumbs?: { url: string; title: string }[];
   sections?: { slug: string; title: string }[];
   children?: { url: string; title: string }[];
@@ -31,10 +32,10 @@ export const getPageMetadata = (
     path,
     breadcrumbs,
   }: { filePath: string; path: string; breadcrumbs: { url: string; title: string }[] },
-): GetPAgeMetadataReturnType => {
+): GetPageMetadataReturnType => {
   if (path === sourceUrl) {
     const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
-    const { title, account } = data;
+    const { title, account, modifiedDate, lastAuthor } = data;
 
     const sections = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
       const sectionTitle = headerItem.replace(/^#+ (.*$)/gim, '$1');
@@ -59,6 +60,8 @@ export const getPageMetadata = (
     return {
       title,
       account,
+      modifiedDate,
+      lastAuthor,
       breadcrumbs,
       sections,
       children,
