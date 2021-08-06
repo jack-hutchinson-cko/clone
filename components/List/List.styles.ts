@@ -49,11 +49,12 @@ export const ListIconItem = styled.p<{ type?: string }>`
         display: inline-flex;
         align-items: center;
         position: absolute;
-        top: calc(50% - 15px);
+        top: -4px;
         left: 0;
       }
 
       div + p {
+        display: inline-block;
         padding-left: 45px;
       }
     `}
