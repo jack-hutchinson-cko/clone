@@ -5,6 +5,7 @@ export type CodeSampleProps = {
   language: Language;
   isCollapsible: boolean;
   withBorder: boolean;
+  isEditMode: boolean;
 };
 
 type Token = {
@@ -19,4 +20,6 @@ export type PreLineProps = {
   getTokenProps: Highlight['getTokenProps'];
   isCollapsible: boolean;
   withBorder: boolean;
+  editorComponent: JSX.Element | null;
+  isEditMode: boolean;
 };

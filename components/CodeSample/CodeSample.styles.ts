@@ -4,16 +4,18 @@ import { IconActionChevronDown } from '../Icons/Icons';
 
 export const PreWrapper = styled.div<{
   withBorder: boolean;
-  showBlurBackground: boolean;
+  showBlurBackground?: boolean;
+  height?: number;
 }>`
   background: ${({ theme }) => theme.colors.codeLabelBackground};
   line-height: 24px;
-  padding: 24px;
+  padding: 0 24px;
   margin: 0;
   border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
   border: ${({ withBorder, theme }) => (withBorder ? `1px solid ${theme.colors.border}` : 'none')};
-  overflow-y: hidden;
-  overflow-x: ${({ showBlurBackground }) => (showBlurBackground ? 'hidden' : 'scroll')};
+  overflow: hidden;
+  height: ${({ height }) => (height ? `${height}px` : 'auto')};
+  transition: height 1s ease;
 
   &:after {
     content: '';
@@ -22,22 +24,68 @@ export const PreWrapper = styled.div<{
     display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
     left: 0;
-    bottom: 5px;
+    bottom: 0px;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,
       ${({ theme }) => theme.colors.codeLabelBackground} 85%
     );
+    border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
     pointer-events: none;
   }
+  display: flex;
+  gap: 16px;
 `;
 
-export const Pre = styled.pre<{
-  height: number;
-}>`
+export const HorizontalScrollWrapper = styled.div<{ isBlockScroll?: boolean }>`
+  overflow-y: hidden;
+  overflow-x: ${({ isBlockScroll }) => (isBlockScroll ? 'hidden' : 'scroll')};
+  padding: 24px 0;
+  flex-grow: 1;
+`;
+
+export const Pre = styled.pre`
   margin: 0;
-  height: ${({ height }) => `${height}px`};
-  transition: height 1s ease;
+  position: relative;
+  font-size: 14px;
+`;
+
+export const InputSizer = styled.div`
+  position: relative;
+  white-space: pre-wrap;
+  border: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: monospace;
+  font-size: 14px;
+  display: flex;
+`;
+
+export const StyledTextArea = styled.textarea<{ width: string; isHidden?: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${({ width }) => width};
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  line-height: 24px;
+  z-index: ${({ isHidden }) => (isHidden ? '-1' : '1')};
+  border: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: monospace;
+  font-size: 14px;
+  overflow: hidden;
+  &:focus-visible {
+    outline: none;
+  }
+  color: transparent;
+  background: transparent;
+  caret-color: ${({ theme }) => theme.colors.base};
+  tab-size: 1;
+  white-space: nowrap;
+  resize: none;
 `;
 
 export const Line = styled.div`
@@ -115,4 +163,16 @@ export const LineNo = styled.span`
   user-select: none;
   opacity: 0.5;
   color: ${({ theme }) => theme.colors.greyDark};
+`;
+
+export const LineNumber = styled.div`
+  color: ${({ theme }) => theme.colors.greyDark};
+  text-align: right;
+  user-select: none;
+  opacity: 0.5;
+`;
+
+export const LineCounterWrapper = styled.div`
+  padding: 24px 0;
+  flex-grow: 0;
 `;
