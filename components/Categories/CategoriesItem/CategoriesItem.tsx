@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ImageBox from '../../ImageBox';
 import { Container, Header, HeaderImage, Body } from './CategoriesItem.styles';
 
-const DEFAULT_IMG_WIDTH = 48;
+export const DEFAULT_IMG_WIDTH = 48;
 
 export type Props = {
   href: string;
@@ -18,10 +18,11 @@ const CategoriesItem: FC<Props> = ({
   imageSrc,
   imageMaxWidth = DEFAULT_IMG_WIDTH,
   children,
+  ...rest
 }) => {
   return (
     <Link href={href} passHref>
-      <Container>
+      <Container {...rest}>
         {title && (
           <Header>
             {imageSrc && (

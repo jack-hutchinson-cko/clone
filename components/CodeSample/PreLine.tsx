@@ -12,8 +12,9 @@ import {
 } from './CodeSample.styles';
 import { PreLineProps } from './type';
 
-const defaultLengthWithCollapsible = 11;
-const verticalPadding = 24;
+export const defaultLengthWithCollapsible = 11;
+
+export const defaultLineHeight = 24;
 
 const getCollapsibleProps = ({
   isCollapsible,
@@ -31,7 +32,7 @@ const getCollapsibleProps = ({
   const showCollapseIcon = isCollapsible && tokensLength > defaultLengthWithCollapsible;
   const height =
     (!showCollapseIcon || isOpen ? tokensLength : defaultLengthWithCollapsible) * 24 +
-    2 * verticalPadding;
+    2 * defaultLineHeight;
   const showBlurBackground = showCollapseIcon && !isOpen;
 
   return { showCollapseIcon, height, showBlurBackground };
@@ -44,6 +45,7 @@ const PreLine: FC<PreLineProps> = ({
   isCollapsible,
   withBorder,
   editorComponent,
+  ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -59,7 +61,12 @@ const PreLine: FC<PreLineProps> = ({
 
   return (
     <>
-      <PreWrapper height={height} withBorder={withBorder} showBlurBackground={showBlurBackground}>
+      <PreWrapper
+        height={height}
+        withBorder={withBorder}
+        showBlurBackground={showBlurBackground}
+        {...rest}
+      >
         <LineCounterWrapper>
           {tokens.map((line, i: number) => (
             <LineNumber key={i}>{i + 1}</LineNumber>

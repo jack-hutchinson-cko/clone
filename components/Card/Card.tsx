@@ -17,6 +17,7 @@ const Card: FC<Props> = ({
   imgSrc = '',
   imgAlt = '',
   variant = 'default',
+  ...rest
 }) => {
   const HeaderComponent = withAnchor ? TitleWithAnchor : Title;
 
@@ -47,7 +48,7 @@ const Card: FC<Props> = ({
 
   return (
     <Link href={href}>
-      <CardWrapper>{getCardContent()}</CardWrapper>
+      <CardWrapper {...rest}>{getCardContent()}</CardWrapper>
     </Link>
   );
 };

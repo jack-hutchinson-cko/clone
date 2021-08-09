@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Text } from '@cko/primitives';
-import { IconActionChevronDown } from '../Icons/Icons';
+import { IconActionChevronDown } from '../Icons';
 
 export const PreWrapper = styled.div<{
   withBorder: boolean;

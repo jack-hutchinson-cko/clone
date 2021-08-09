@@ -1,24 +1,18 @@
-import * as React from 'react';
 import { mount } from '@cypress/react';
 
-import { ThemeProvider } from 'theme/ThemeProvider';
-import Button, { Props } from './ButtonLink';
-
-const setup = (props: Props) => (
-  <ThemeProvider>
-    <Button {...props} />
-  </ThemeProvider>
-);
+import { withThemeWrapper } from 'tools/testing';
+import Button from './ButtonLink';
 
 describe('ButtonLink', () => {
-  it('Button', () => {
+  it('Default rendering', () => {
     mount(
-      setup({
-        href: 'www.test.com',
-        children: 'Test button',
-      }),
+      withThemeWrapper(
+        <Button data-cy="button-link" href="www.test.com">
+          Test button
+        </Button>,
+      ),
     );
 
-    cy.get('button').contains('Test button');
+    cy.get('*[data-cy=button-link]').contains('Test button');
   });
 });

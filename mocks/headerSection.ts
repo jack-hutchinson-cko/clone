@@ -1,5 +1,5 @@
 import { HeaderLink, SearchResultLink } from 'types/header';
-import { IconSourceCode, IconChat, IconDocSearch } from 'components/Icons/Icons';
+import { IconSourceCode, IconChat, IconDocSearch } from 'components/Icons';
 
 export const guidesList: HeaderLink[] = [
   {

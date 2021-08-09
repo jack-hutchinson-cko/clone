@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import CardLink from './CardLink';
-import { Props } from './types';
+import CardLink, { Props } from './CardLink';
 
 export const CardLinkStory: Story<Props> = ({ ...args }) => {
   return <CardLink {...args} />;

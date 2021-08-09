@@ -8,7 +8,7 @@ export type CodeSampleProps = {
   isEditMode: boolean;
 };
 
-type Token = {
+export type Token = {
   types: string[];
   content: string;
   empty?: boolean;

@@ -2,7 +2,8 @@
 import React, { FC, useState, useCallback } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { IconActionCopy, IconActionLink } from '../Icons/Icons';
+
+import { IconActionCopy, IconActionLink } from 'components/Icons';
 import { HighlightContainer, StyledIcons, StyledText, StyledIconLink } from './CodeSample.styles';
 import { CodeSampleProps } from './type';
 import PreLine from './PreLine';
@@ -16,6 +17,7 @@ const CodeSample: FC<CodeSampleProps> = ({
   isCollapsible = true,
   withBorder = true,
   isEditMode,
+  ...rest
 }) => {
   const [isCopied, setIsCopied] = useState(true);
   const [soursCode, setSoursCode] = useState(code);
@@ -26,21 +28,19 @@ const CodeSample: FC<CodeSampleProps> = ({
     return () => clearTimeout(timer);
   }, [isCopied]);
 
-  const onHandlerCopy = (
-    <StyledIcons>{isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}</StyledIcons>
-  );
-
   const editorComponent = isEditMode ? (
     <TextArea value={soursCode} onChange={setSoursCode} />
   ) : null;
 
   return (
-    <HighlightContainer>
+    <HighlightContainer {...rest}>
       <StyledIconLink>
         <IconActionLink />
       </StyledIconLink>
       <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
-        {onHandlerCopy}
+        <StyledIcons>
+          {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
+        </StyledIcons>
       </CopyToClipboard>
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (

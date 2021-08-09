@@ -19,13 +19,6 @@ jobs:
       - name: Run E2E tests
         uses: cypress-io/github-action@v2
 
-      - name: Run Component tests
-        uses: cypress-io/github-action@v2
-        with:
-           # we have already installed everything
-           install: false
-           # to run component tests we need to use "cypress run-ct"
-           command: npm run cy:run-components
       - name: Run Unit tests
         uses: cypress-io/github-action@v2
         with:
@@ -33,3 +26,11 @@ jobs:
            install: false
            # to run component tests we need to use "cypress run-ct"
            command: npm run cy:run-units
+
+      - name: Run Component tests
+        uses: cypress-io/github-action@v2
+        with:
+            # we have already installed everything
+            install: false
+            # to run component tests we need to use "cypress run-ct"
+            command: npm run cy:run-components

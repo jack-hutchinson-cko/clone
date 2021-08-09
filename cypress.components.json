@@ -1,4 +1,4 @@
 {
   "componentFolder": "components",
-  "testFiles": "**/*.test.tsx"
+  "testFiles": "**/*.test.{ts,tsx}"
 }

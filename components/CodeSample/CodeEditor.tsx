@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
-import React, { FC, useState, useCallback, useRef, useEffect } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { IconActionCopy, IconActionLink } from '../Icons/Icons';
+import { IconActionCopy, IconActionLink } from 'components/Icons';
 import {
   HighlightContainer,
   StyledIcons,
