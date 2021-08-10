@@ -108,7 +108,7 @@ const getBackgroundColorForSubhead = ({
 }) => {
   switch (color) {
     case 'blue':
-      return theme.colors.information;
+      return theme.colors.turquoise;
 
     default:
       return 'transparent';
