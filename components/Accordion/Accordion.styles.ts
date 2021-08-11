@@ -7,8 +7,8 @@ export const StyledAccordion = styled.div`
   font-family: inherit;
 `;
 
-export const AccordionBodyWrapper = styled.div<{ height: string }>`
+export const AccordionBodyWrapper = styled.div<{ height: string; overflow: string }>`
   height: ${({ height }) => `${height}px`};
-  overflow-y: hidden;
+  overflow-y: ${({ overflow }) => `${overflow}`};
   transition: height 1s ease;
 `;
