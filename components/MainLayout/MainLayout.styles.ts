@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { IconEarth } from 'components/Icons';
-
 export const MainWrapper = styled.div`
   position: relative;
   width: 100%;

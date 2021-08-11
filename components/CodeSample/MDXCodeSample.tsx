@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { toString } from 'lodash';
 import { Language } from 'prism-react-renderer';
 import CodeSample from './CodeSample';
-import CodeEditor from './CodeEditor';
 
 export type Props = {
   className?: string;

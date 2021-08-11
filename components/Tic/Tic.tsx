@@ -6,19 +6,20 @@ const Tic: FC<{ type: 'check' | 'error' | 'info' | 'decimal'; number?: number }>
   type = 'check',
   number = 0,
 }) => {
+  const extra = { 'data-tick-type': type };
   switch (type) {
     case 'error':
-      return <IconError />;
+      return <IconError {...extra} />;
 
     case 'info':
-      return <IconTicInfo />;
+      return <IconTicInfo {...extra} />;
 
     case 'decimal':
-      return <DecimalTic>{number}</DecimalTic>;
+      return <DecimalTic {...extra}>{number}</DecimalTic>;
 
     case 'check':
     default:
-      return <IconCheck />;
+      return <IconCheck {...extra} />;
   }
 };
 

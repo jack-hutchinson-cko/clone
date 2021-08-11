@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { StyledTabBody } from './TabBody.styles';
 
 type Props = {
-  children: ReactElement | ReactElement[];
+  children?: ReactElement | ReactElement[];
   activeTab?: number;
 };
 

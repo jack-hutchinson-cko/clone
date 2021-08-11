@@ -3,10 +3,7 @@ import {
   Box,
   PrimaryButton,
   TextHeadingOne as PrimitivesTextHeadingOne,
-  TextHeadingTwo,
   Text,
-  List,
-  Link as PrimitiveLink,
 } from '@cko/primitives';
 import { TextHeadingOne } from 'components/TextHeading';
 import {
