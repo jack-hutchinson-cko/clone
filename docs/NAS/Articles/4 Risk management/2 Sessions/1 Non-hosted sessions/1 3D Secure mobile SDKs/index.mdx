@@ -61,12 +61,11 @@ To provide a consistent experience across different devices and schemes, there a
 
 ## How it works
 
-To use one of our 3DS mobile SDKs, configure your iOS or Android app to:
+To use one of our 3DS mobile SDKs, first integrate the library into your project. Then, configure your iOS or Android app to:
 
-1. [Integrate](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-integrate) the 3DS SDK.
-2. [Initialize](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-initialize) the SDK with your preferred user interface options.
-3. Request the SDK to [authenticate the cardholder](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-authentication).
-4. [Consume the result](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-result) you get from the SDK to continue your payment flow.
+1. [Initialize](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-initialize) the SDK with your preferred user interface options.
+2. Configure the parameters for an authentication.
+3. Request authentication and handle the result to continue your payment flow.
 
 ---
 
@@ -238,100 +237,139 @@ checkout3DS.authenticate(authenticationParameters, result -> {
 
 ---
 
-## Step 1: Integrate the SDK 
+## Integrate the 3D Secure SDK into your app
 
-First, integrate the SDK into your mobile app.
+To gain access to the 3D Secure mobile SDKs, contact your Customer Success Manager or Integrations engineer, or email us at support@checkout.com.
 
-- **iOS**. Install the library using Cocoapods or Swift Package Manager.
-- **Android**. Add the library to your app as a gradle dependency.
+Then, on iOS, install the library in your app project using CocoaPods. For Android, add the library to your app as a Gradle dependency.
+
+<tabs>
+<tab title="Kotlin">
+
+```json withBorder=false
+// Add the following to your project’s top-level build.gradle.kts file.
+allprojects {
+    repositories {
+        maven {
+           url = uri("https://maven.pkg.github.com/checkout/checkout-3ds-sdk-android")
+           credentials {
+               username = ""
+               password = ""
+           }
+        }
+    }
+}
+
+// Add the following to the module level build.gradle.kts file.
+dependencies {
+    implementation("com.checkout:checkout-sdk-3ds-android:")
+}
+```
+
+</tab>
+<tab title="Groovy">
+
+```json withBorder=false
+// Add the following to your project’s top-level build.gradle file.
+allprojects {
+    repositories {
+        maven {
+            url 'https://maven.pkg.github.com/checkout/checkout-3ds-sdk-android'
+            credentials {
+                username ''
+                password ''
+            }
+        }
+    }
+}
+
+// Add the following to the module level build.gradle file.
+dependencies {
+    implementation 'com.checkout:checkout-sdk-3ds-android:'
+}
+```
+
+</tab>
+<tab title="iOS">
+
+```json withBorder=false
+pod 'Checkout3DS', :git => 'git@github.com:checkout/checkout-3ds-sdk-ios.git', :tag => ''
+```
+
+</tab>
+</tabs>
 
 ---
 
-## Step 2: Initialize the SDK 
+## Add the 3D Secure SDK to your app's payment flow
+
+### Step 1: Initialize the SDK 
 
 Initialize the SDK, setting the environment (production or sandbox), the locale, and your preferred [challenge user interface options](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization).
 
 <tabs>
 <tab title="Swift">
 
-<Box horizontal="sm">
-<Accordion title="See example Swift code"> 
+```json withBorder=false
+// 1a. Initialize with default arguments
+let checkout3DS = Checkout3DSService()
 
-```json
-// 1. Init with defaults
-let checkout3DS = Checkout3DS2Service()
-
-// 2. Init with explicit arguments
-let checkout3DS = Checkout3DS2Service(
+// 1b. Alternatively, initialize with explicit arguments
+let checkout3DS = Checkout3DSService(
    environment: .production,
    locale: Locale(identifier: "en_GB"),
    uiCustomization: uiCustomization,
-   appURL: URL(string: "myapp://my-app-url")!
+   appURL: URL(string: "https://my-app-url.com")!
 )
 ```
 
-</Accordion>
-</Box>
+</tab>
+<tab title="Objective-C">
 
-<Box horizontal="sm">
-<Accordion title="Obective-C"> 
+```json withBorder=false
+// 1a. Initialize with default arguments
+CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] init];
 
-```json
-// 1. Init with defaults
-CKOCheckout3DS2Service *checkout3DS2 = [[CKOCheckout3DS2Service alloc] init];
-
-// 2. Init with explicit arguments
-CKOCheckout3DS2Service *checkout3DS2 = [[CKOCheckout3DS2Service alloc] initWithEnvironment:CKOEnvironmentProduction
-                                                                                    locale:[NSLocale localeWithLocaleIdentifier:@"en_GB"]
-                                                                           uiCustomization:uiCustomization
-                                                                                    appURL:[NSURL URLWithString:@"myapp://my-app-url"]];
+// 1b. Alternatively, initialize with explicit arguments
+CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] initWithEnvironment:CKOEnvironmentProduction
+                                                                                  locale:[NSLocale localeWithLocaleIdentifier:@"en_GB"]
+                                                                         uiCustomization:uiCustomization
+                                                                                  appURL:[NSURL URLWithString:@"https://my-app-url.com"]];
 ```
 
-</Accordion>
-</Box>
-
 </tab>
-<tab title="Android">
+<tab title="Kotlin"> 
 
-<Box horizontal="sm">
-<Accordion title="Kotlin"> 
+```json withBorder=false
+// 1a. Initialize with default arguments
+val checkout3DS = Checkout3DSService(context)
 
-```json
-// 1. Init with defaults
-val checkout3DS = Checkout3DS2Service(context)
-
-// 2. Init with explicit arguments
+// 1b. Alternatively, initialize with explicit arguments
 val checkout3DS = Checkout3DSService(
         context,
         Environment.PRODUCTION,
         Locale.UK,
         uiCustomisation,
-        Uri.parse("sampleAppScheme://sampleAppName/3ds_authentication")
+        Uri.parse("https://sampleAppName.com/3ds_authentication")
 )
 ```
 
-</Accordion>
-</Box>
+</tab>
+<tab title="Java">
 
-<Box horizontal="sm">
-<Accordion title="Java"> 
+```json withBorder=false
+// 1a. Initialize with default arguments
+Checkout3DSService checkout3DS = new Checkout3DSService(context);
 
-```json
-// 1. Init with defaults
-Checkout3DS2Service checkout3DS = new Checkout3DS2Service(context);
-
-// 2. Init with explicit arguments
+// 1b. Alternatively, initialize with explicit arguments
 Checkout3DSService checkout3DS = new Checkout3DSService(
         context,
-        Environment.PRODUCTION.INSTANCE,
+        Environment.PRODUCTION,
         Locale.UK,
         uiCustomisation,
-        Uri.parse("sampleAppScheme://sampleAppName/3ds_authentication")
+        Uri.parse("https://sampleAppName.com/3ds_authentication")
 );
 ```
-
-</Accordion>
-</Box>
 
 </tab>
 </tabs>
@@ -603,7 +641,7 @@ Optionally, you can use the `getWarnings` method to check for any security warni
 </TableCell>
 <TableCell>
 
-The warning ID defined by the EMVCo spec in the format `SWxx`
+An identifier of the warning. Security warnings are in the format `SWxx`, and initialization warnings use the format `CWxx`.
 
 </TableCell>
 </TableRow>
@@ -628,14 +666,14 @@ The warning description
 
 `severity`
 
-<TypeTag type="severity" />
+<TypeTag type="string" />
 
 <StatusTag type="required" />
 
 </TableCell>
 <TableCell>
 
-The severity of the warning. Either `LOW`, `MEDIUM`, or `HIGH`.
+The severity of the warning. It can be either `low`, `medium`, or `high`.
 
 </TableCell>
 </TableRow>
@@ -644,9 +682,7 @@ The severity of the warning. Either `LOW`, `MEDIUM`, or `HIGH`.
 
 </Accordion>
 
----
-
-## Step 3: Request authentication 
+### Step 2: Configure the authentication parameters
 
 After your backend has requested an authentication session with our [Sessions API](/risk-management/sessions/non-hosted-sessions), you will receive a response.
 
@@ -705,7 +741,7 @@ AuthenticationParameters authenticationParameters = AuthenticationParameters(
 <tab title="iOS">
 <Box horizontal="sm">
 
-#### Authenticate method parameters
+#### authenticate method parameters
 
 <Table>
 <TableHead headers={['Parameter name', 'Parameter type', 'Description']} />
@@ -744,14 +780,14 @@ The authentication parameters, including `sessionId`, `sessionSecret`, and `sche
 </TableCell>
 <TableCell>
 
-Closure that is called with the error that occurred during authentication, or nil if the authentication is successful.
+Closure that is called with the error that occurred during authentication, or `nil` if the authentication is successful.
 
 </TableCell>
 </TableRow>
 </TableBody>
 </Table>
 
-#### Authentication Parameters properties
+#### authenticationParameters properties
 
 <Table>
 <TableHead headers={['Parameter name', 'Description']} />
@@ -814,7 +850,7 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 
 <Box horizontal="sm">
 
-#### Authenticate method parameters
+#### authenticate method parameters
 
 <Table>
 <TableHead headers={['Parameter name', 'Parameter type', 'Description']} />
@@ -848,19 +884,19 @@ The authentication parameters, including `sessionId`, `sessionSecret`, and `sche
 </TableCell>
 <TableCell>
 
-`(AuthenticationResult → Void)`
+`AuthenticationCallback`
 
 </TableCell>
 <TableCell>
 
-Lambda that is initialized with the result of authentication.
+The AuthenticationCallback listener to be invoked with the result of the authentication process.
 
 </TableCell>
 </TableRow>
 </TableBody>
 </Table>
 
-#### Authentication Parameters properties
+#### authenticationParameters properties
 
 <Table>
 <TableHead headers={['Parameter name', 'Description']} />
@@ -868,7 +904,7 @@ Lambda that is initialized with the result of authentication.
 <TableRow>
 <TableCell>
 
-`sessionID`
+`sessionId`
 
 <TypeTag type="string" />
 
@@ -923,13 +959,14 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 
 </Accordion>
 
----
+### Step 3: Request authentication and handle the result
 
-## Step 4: Handle the result 
+Once the authentication is completed, the SDK returns a result. 
 
-Once the authentication is completed, the SDK will return a result – either `Successful`, `Failed`, or `Error`. 
+- On Android, the result is either `Successful`, `Failed`, or `Error`. 
+- On iOS, the SDK returns an optional `AuthenticationError`. If the attempt was unsuccessful, this indicates the failure reason, otherwise this value is `nil`.
 
-If `Successful`, you can use our Payments API to complete the payment, or use another payment services provider to do so.
+If successful, you can use our Payments API to complete the payment, or use another payment services provider to do so.
 
 <tabs>
 <tab title="Swift">
@@ -949,7 +986,7 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 
 ```json withBorder=false
 [checkout3DS2 authenticateWithAuthenticationParameters:authenticationParameters
-                                     completionHandler:^(NSError * _Nullable error) {
+                                                                            completionHandler:^(NSError * _Nullable error) {
     if (error) {
         // Handle error.
     } else {
@@ -962,20 +999,18 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 <tab title="Kotlin">
 
 ```json withBorder=false
-checkout3DS.authenticate(authenticationParameters, context) { result: AuthenticationResult ->
-    when (result.eventType) {
-        Successful -> {
+checkout3DSService!!.authenticate(authenticationParams) { result: AuthenticationResult ->
+    when (result.resultType) {
+        ResultType.Successful -> {
             // continue with payment, show √
         }
-        Failed -> {
+        ResultType.Failed -> {
             // terminate payment, show X
         }
-        Error -> {
+        ResultType.Error -> {
             // handle error (result as AuthenticationError)
-  
             // handle error based on error type category
             val errorType: AuthenticationErrorType = (result as AuthenticationError).errorType
-  
             // Handle error based on fine grained error code or simply log the error
             val errorCode: String = (result as AuthenticationError).errorCode
         }
@@ -987,8 +1022,8 @@ checkout3DS.authenticate(authenticationParameters, context) { result: Authentica
 <tab title="Java">
 
 ```json withBorder=false
-checkout3DS.authenticate(authenticationParameters, result -> {
-    switch (result.getEventType()) {
+checkout3DSService.authenticate(authenticationParams, result -> {
+    switch (result.getResultType()) {
         case Successful:
             // continue with payment, show √
             break;
@@ -998,10 +1033,8 @@ checkout3DS.authenticate(authenticationParameters, result -> {
         case Error:
             // handle error
             AuthenticationError authenticationError = (AuthenticationError) result;
-
             // handle error based on error type category
             AuthenticationErrorType errorType = authenticationError.getErrorType();
-
             // Handle error based on fine grained error code.
             String errorCode = authenticationError.getErrorCode();
             break;
@@ -1028,6 +1061,13 @@ Swift uses `AuthenticationError`, but Objective-C uses `NSError`.
 
 </TipBox>
 
+</Box>
+
+</tab>
+<tab title="Android">
+
+<Box horizontal="sm">
+
 #### AuthenticationResult
 
 Represents the outcome of the authentication.
@@ -1039,35 +1079,28 @@ Represents the outcome of the authentication.
 <TableRow>
 <TableCell>
 
-`eventType`
+`resultType`
 
 </TableCell>
 <TableCell>
 
-`EventType`	
+`ResultType`	
 
 </TableCell>
 <TableCell>
 
-Gives the outcome of the authentication
+Returns the outcome of the authentication
 
 </TableCell>
 </TableRow>
 </TableBody>
 </Table>
 
-The eventType will be one of the following:
+The `resultType` will be one of the following:
 
 - `Successful` – Authentication was successful. You can proceed with the payment.
 - `Failed` – Authentication was unsuccessful. You cannot proceed with the payment.
 - `Error` – An error occurred during authentication. You will need to handle the error.
-
-</Box>
-
-</tab>
-<tab title="Android">
-
-<Box horizontal="sm">
 
 #### AuthenticationError
 
@@ -1079,17 +1112,17 @@ Represents the details of the error that occurred during authentication. The err
 <TableRow>
 <TableCell>
 
-`event`
+`resultType`
 
 </TableCell>
 <TableCell>
 
-`EventType`	
+`ResultType`	
 
 </TableCell>
 <TableCell>
 
-The authentication result. Will always be `Error`.
+The authentication result. It will always be `Error`.
 
 </TableCell>
 </TableRow>
@@ -1230,64 +1263,68 @@ To apply your own style, simply include a UI Customization object when you [init
 <tabs>
 <tab title="iOS">
 
-<Box horizontal="sm">
-<Accordion title="Customization example"> 
-
 ```json withBorder=false
-{
-  "source": {
-    "type": "currency_account",
-    "id": "ca_y3oqhf46pyzuxjbcn2giaqnb44"
-  },
-  "destination": {
-    "type": "bank_account",
-    "account_type": "current"
-    "account_number": "01008704"
-    "bank_code": "110350"
-    "country": "GB"
-    "account_holder": {
-      "type": "individual",
-      "first_name": "John",
-      "last_name": "Smith",
-      "billing_address": {
-        "address_line1": "99 Windsor Road",
-        "city": "London",
-        "zip": "N83 5QL",
-        "country_code": "GB"
-      }
-    }
-  },
-  "amount": 1000,
-  "currency": "GBP",
-  "reference": "PO-215-5721",
-  "billing_descriptor": {
-    "reference": "Withdrawal"
-  },
-  "sender": {
-    "type": "individual",
-    "first_name": "Jane"
-    "last_name": "Smith"
-    "address": {
-      "address_line1": "1 Broad Street",
-      "city": "London",
-      "zip": "W1T 3KL",
-      "country_code": "GB"
-    },
-    "reference": "8285282045818"
-  },
-  "instruction": {
-    "purpose": "Withdrawal",
-    "quote_id": "qte_mbabizu24mvu3mela5njyhpit4"
-  },
-  "processing_channel_id": "pc_hpswyyx23geezflc2ocz3exn4y"
+final class Customization1: UICustomization {
+    let toolbarCustomization: ToolbarCustomization = DefaultToolbarCustomization(
+        backgroundColor: .blue,
+        headerTitle: "3DS Check",
+        buttonTitle: "Cancel",
+        font: UIFont(name: "Optima-Bold", size: 20)!,
+        textColor: .black)
+    let labelCustomization: LabelCustomization = DefaultLabelCustomization(
+        headingTextColor: .purple,
+        headingFont: UIFont(name: "Optima-Bold", size: 16)!,
+        font: UIFont(name: "Optima-Regular", size: 16)!,
+        textColor: .orange)
+    let buttonCustomizations: ButtonCustomizations = DefaultButtonCustomizations(
+        verifyButtonCustomization: DefaultButtonCustomization(
+            backgroundColor: .red,
+            cornerRadius: 24,
+            cornerCurve: .circular,
+            font: UIFont(name: "Optima-Regular", size: 14)!,
+            textColor: .white,
+            borderWidth: 0,
+            borderColor: UIColor.clear.cgColor),
+        continueFlowButtonCustomization: DefaultButtonCustomization(
+            backgroundColor: UIColor.blue,
+            cornerRadius: 24,
+            cornerCurve: .circular,
+            font: UIFont(name: "Optima", size: 14)!,
+            textColor: .white,
+            borderWidth: 0,
+            borderColor: UIColor.clear.cgColor))
+    let whitelistCustomization: WhitelistCustomization = DefaultWhitelistCustomization(
+        font: UIFont(name: "Optima-Regular", size: 16)!,
+        textColor: .black,
+        switchTintColor: .green)
+    let footerCustomization: FooterCustomization = DefaultFooterCustomization(
+        backgroundColor: .clear,
+        font: UIFont(name: "Optima-Bold", size: 16)!,
+        textColor: .black,
+        labelFont: UIFont(name: "Optima-Regular", size: 16)!,
+        labelTextColor: .blue,
+        expandIndicatorColor: .green)
+    let entrySelectionCustomization: EntrySelectionCustomization = DefaultEntrySelectionCustomization(
+            borderWidth: 1,
+            borderColor: UIColor.blue.cgColor,
+            cornerRadius: 4,
+            cornerCurve: .continuous,
+            font: .systemFont(ofSize: 16),
+            textColor: .black,
+            borderStyle: .line,
+            backgroundColor: .white,
+            unselectedColor: .white,
+            selectedColor: .blue)
 }
 ```
 
-</Accordion> 
+</tab>
+<tab title="Android">
 
+<Box horizontal="sm">
 <Accordion title="Simplified customization"> 
 
-```json withBorder=false
+```json
 uiCustomization {
     all {
         textColor = R.color.styleGreenColor
@@ -1297,16 +1334,13 @@ uiCustomization {
 }
 ```
 
-</Accordion> 
+</Accordion>
 </Box>
-
-</tab>
-<tab title="Android">
 
 <Box horizontal="sm">
 <Accordion title="Full customization"> 
 
-```json withBorder=false
+```json
 uiCustomization {
     navigationBar {
         backgroundColor = R.color.customStyle1Color1
