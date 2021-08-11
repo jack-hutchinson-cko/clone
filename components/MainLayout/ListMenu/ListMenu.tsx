@@ -5,7 +5,12 @@ import NavigationTreeMenu, { NavigationTree } from '../../NavigationTreeMenu';
 import ListSection from './ListSection';
 import ListItem from './ListItem';
 import ListItemLink from './ListItemLink';
-import { StyledIconEarth, StyledChangeLogIcon, ChangeLogWrapper } from './ListMenu.styles';
+import {
+  StyledIconEarth,
+  StyledChangeLogIcon,
+  ChangeLogWrapper,
+  HomeWrapper,
+} from './ListMenu.styles';
 
 export type Props = {
   activeLink: string;
@@ -25,15 +30,17 @@ const ListMenu: FC<Props> = ({ docsTreeLinks, activeLink }) => (
           <ChangelogCounter />
         </ChangeLogWrapper>
       }
-      bottomPadding={16}
+      bottomMargin={16}
     />
     <ListItem
       isRoot
       icon={<StyledIconEarth />}
       link={
-        <ListItemLink href="/" isActive={activeLink === '/'}>
-          Home
-        </ListItemLink>
+        <HomeWrapper>
+          <ListItemLink href="/" isActive={activeLink === '/'}>
+            Home
+          </ListItemLink>
+        </HomeWrapper>
       }
     />
     <NavigationTree

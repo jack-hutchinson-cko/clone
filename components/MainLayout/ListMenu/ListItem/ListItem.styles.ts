@@ -1,6 +1,8 @@
+import { padding } from 'polished';
 import styled from 'styled-components';
 
-export const StyledListItem = styled.div<{ isRoot?: boolean; bottomPadding?: number }>`
+export const StyledListItem = styled.div<{ isRoot?: boolean; bottomMargin?: number }>`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -8,5 +10,6 @@ export const StyledListItem = styled.div<{ isRoot?: boolean; bottomPadding?: num
   font-weight: ${({ isRoot }) => (isRoot ? 500 : 300)};
   font-size: ${({ isRoot }) => (isRoot ? '16px' : '14px')};
   line-height: 24px;
-  ${({ bottomPadding }) => (bottomPadding ? `padding-bottom: ${bottomPadding}px;` : '')}
+  ${({ bottomMargin }) => (bottomMargin ? `margin-bottom: ${bottomMargin}px;` : '')};
+  padding-left: 36px;
 `;

@@ -60,8 +60,6 @@ export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobi
 
 export const IntroTitle = styled(PrimitivesTextHeadingOne)`
   color: ${({ theme }) => theme.colors.base};
-  letter-spacing: 0.02em;
-  word-spacing: 0.02em;
   font-size: 40px;
   line-height: 48px;
 
