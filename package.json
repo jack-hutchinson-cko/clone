@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "cy:run-units": "cypress run-ct --config-file=cypress.units.json",
-    "cy:open-units": "cypress run-ct --config-file=cypress.units.json",
+    "cy:open-units": "cypress open-ct --config-file=cypress.units.json",
     "cy:run-components": "cypress run-ct --config-file=cypress.components.json",
     "cy:open-components": "cypress open-ct --config-file=cypress.components.json",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",

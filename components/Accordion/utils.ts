@@ -1,6 +1,6 @@
 import { isNaN } from 'lodash';
 
-const getMarginStyle = (element: HTMLElement, property: string): number => {
+export const getMarginStyle = (element: HTMLElement, property: string): number => {
   const result = Number(
     getComputedStyle(element, null).getPropertyValue(property).replace('px', ''),
   );

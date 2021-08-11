@@ -6,7 +6,7 @@ import { Breakpoints } from 'constants/screen';
 import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
-import { getPathValue } from 'lib/url';
+import { cutOffHashValue } from 'lib/url';
 import MenuStateProvider from 'components/MenuStateProvider';
 
 import Header from '../Header';
@@ -32,7 +32,7 @@ export type Props = {
 
 const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerContent }) => {
   const { asPath } = useRouter();
-  const activeLink = useMemo(() => getPathValue(asPath), [asPath]);
+  const activeLink = useMemo(() => cutOffHashValue(asPath), [asPath]);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
 

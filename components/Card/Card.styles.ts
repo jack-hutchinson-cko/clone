@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Flex } from '@cko/primitives';
 import { ReactSVG } from 'react-svg';
 
-import { TextHeadingThree } from '../TextHeading/TextHeading.styles';
+import { TextHeadingThree } from '../TextHeading';
 import { Text } from '../Text';
 
 export const CardWrapper = styled(Flex)`
