@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Flex } from '@cko/primitives';
+import { ReactSVG } from 'react-svg';
 
 import { TextHeadingThree } from '../TextHeading/TextHeading.styles';
 import { Text } from '../Text';
@@ -32,10 +33,21 @@ export const TextContainer = styled(Text)<{ isMedia?: boolean }>`
     `};
 `;
 
-export const IconWrapper = styled.div`
-  max-width: 32px;
-  max-height: 32px;
-  margin-top: 22px;
+export const IconWrapper = styled.div<{
+  maxWidth?: number | undefined;
+  maxHeight: number | undefined;
+}>`
+  ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}px` : 'max-width : 32px')};
+  ${({ maxHeight }) => (maxHeight ? `max-height: ${maxHeight}px` : 'max-height : 32px')};
+  margin-top: 20px;
+`;
+
+export const StyledReactSVG = styled(ReactSVG)`
+  height: 100%;
+  & > div > svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const Title = styled(TextHeadingThree)<{ isMedia?: boolean }>`

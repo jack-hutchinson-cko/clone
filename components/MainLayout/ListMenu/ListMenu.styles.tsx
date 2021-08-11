@@ -46,6 +46,6 @@ export const StyledChangeLogIcon = styled(ChangeLogIcon)`
 
 export const ChangeLogWrapper = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
   gap: 16px;
 `;

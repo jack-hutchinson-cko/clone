@@ -8,4 +8,6 @@ export type Props = {
   variant?: CardVariant;
   imgSrc?: string;
   imgAlt?: string;
+  maxWidth?: number;
+  maxHeight?: number;
 };
