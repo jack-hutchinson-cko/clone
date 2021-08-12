@@ -12,7 +12,7 @@ This guide demonstrates how to onboard a sub-entity, process payments on its beh
 Check you've completed the following steps before starting your integration. 
 
 - Your account is able to onboard sub-entities.
-- You have your `client id` and `client secret`, so you can generate access tokens with the required scopes. See our [authentication workflow](/resources/access-key-authentication) for more information.
+- You have your `client id` and `client secret`, so you can generate access tokens with the required scopes. See our [authentication workflow](/resources/api-authentication/o-auth-2-0-client-credentials) for more information.
 - You have your processing channel ID, currency account and payment instrument IDs which will be required throughout the process.
 - You have configured your webhooks and subscribed to the relevant events through our [Workflow API](/workflows). 
 - You are familiar with our [account structure](/marketplaces/account-structure).
@@ -565,7 +565,7 @@ We will re-trigger due diligence checks if any of the required information is la
 <tab title="Company">
 <Box horizontal="sm">
 
-Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
+Vendors, retailers and service providers on your Platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
@@ -1242,7 +1242,7 @@ We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £1
 
 <TipBox variant="info">
 
-Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
+Funds will be routed and held in your Platform’s currency accounts as per the preferences agreed for your Platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
 
@@ -1390,7 +1390,7 @@ We’ll use **The Cake Shop’s** `id` from step 1 to process a payment for £10
 
 <TipBox variant="info">
 
-As per The Cake Shop’s profile.default_holding_currency, the funds from any payments processed on their behalf will routed and held in the Platform’s GBP currency account.
+As per The Cake Shop’s `profile.default_holding_currency`, the funds from any payments processed on their behalf will routed and held in the Platform’s GBP currency account.
 
 </TipBox>
 
