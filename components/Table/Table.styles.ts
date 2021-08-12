@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ThemeType } from 'constants/themes';
+import { ThemeType } from 'types/theme';
 import { Breakpoints } from 'constants/screen';
 
 import { SubheadBackgroundColor } from './types';

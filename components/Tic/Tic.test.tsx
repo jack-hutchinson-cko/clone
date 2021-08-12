@@ -5,11 +5,11 @@ import { withThemeWrapper } from 'tools/testing';
 
 import Tic from './Tic';
 
-type TestTikType = 'check' | 'error' | 'info' | 'decimal';
+type TestTikType = 'check' | 'error' | 'info';
 
 describe('Tic', () => {
   it('Check tik types', () => {
-    const types: TestTikType[] = ['check', 'error', 'info', 'decimal'];
+    const types: TestTikType[] = ['check', 'error', 'info'];
     mount(
       withThemeWrapper(
         <>
@@ -22,15 +22,9 @@ describe('Tic', () => {
       ),
     );
 
-    cy.get('*[data-tick-type]').should('have.length', 4);
+    cy.get('*[data-tick-type]').should('have.length', 3);
     cy.get('*[data-tick-type]').each((el, index) => {
       cy.wrap(el).should('have.attr', 'data-tick-type', types[index]);
     });
-  });
-
-  it('Check tik type "decimal" with number', () => {
-    mount(withThemeWrapper(<Tic type="decimal" number={66} />));
-
-    cy.contains('66').should('have.attr', 'data-tick-type', 'decimal');
   });
 });

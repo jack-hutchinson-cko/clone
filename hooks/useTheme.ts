@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
-type TypeTheme = 'light' | 'dark';
+import { ThemeVariantType } from 'types/theme';
 
-const useTheme = (): { theme: TypeTheme; toggleTheme: () => void } => {
-  const [theme, setTheme] = useState<TypeTheme>('light');
+const useTheme = (
+  defaultTheme: ThemeVariantType = 'light',
+): { theme: ThemeVariantType; toggleTheme: () => void } => {
+  const [theme, setTheme] = useState<ThemeVariantType>(defaultTheme);
   const toggleTheme = () => {
     if (theme !== 'dark') {
       localStorage.setItem('theme', 'dark');
@@ -15,7 +17,7 @@ const useTheme = (): { theme: TypeTheme; toggleTheme: () => void } => {
   };
 
   useEffect(() => {
-    const localTheme = localStorage.getItem('theme') as TypeTheme;
+    const localTheme = localStorage.getItem('theme') as ThemeVariantType;
 
     if (localTheme) {
       setTheme(localTheme);

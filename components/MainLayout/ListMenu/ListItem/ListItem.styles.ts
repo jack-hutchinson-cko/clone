@@ -1,4 +1,3 @@
-import { padding } from 'polished';
 import styled from 'styled-components';
 
 export const StyledListItem = styled.div<{ isRoot?: boolean; bottomMargin?: number }>`

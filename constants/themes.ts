@@ -317,5 +317,3 @@ export const themes = {
     },
   },
 };
-
-export type ThemeType = typeof themes['light'];

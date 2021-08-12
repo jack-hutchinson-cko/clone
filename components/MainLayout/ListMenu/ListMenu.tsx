@@ -17,8 +17,8 @@ export type Props = {
   docsTreeLinks: NavTreeElement[];
 };
 
-const ListMenu: FC<Props> = ({ docsTreeLinks, activeLink }) => (
-  <NavigationTreeMenu>
+const ListMenu: FC<Props> = ({ docsTreeLinks, activeLink, ...props }) => (
+  <NavigationTreeMenu {...props}>
     <ListItem
       isRoot
       icon={<StyledChangeLogIcon />}
