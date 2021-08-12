@@ -102,7 +102,7 @@ export const getMdxFileData = (
         .trim()
         .match(/(\S+) (\S.+)/) || [];
 
-    const modifiedDate = dateFormat(mtime, 'mm/dd/yyyy');
+    const modifiedDate = dateFormat(mtime, 'mmm d yyyy');
     const newData: FileDataType = {
       ...data,
       lastAuthor,
