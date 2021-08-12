@@ -10,25 +10,25 @@ This page describes the preliminary steps you need to take as an Okta administra
 ## Step 1: Create a Checkout.com application in Okta
 
 1. Log in to your Okta admin portal with Super Admin rights.
-2. In the top left corner, select Classic UI to make sure all features are visible.
-3. Click **Applications > Create New App > SAML 2.0 > Create**.
+2. In the top left corner, select _Classic UI_ to make sure all features are visible.
+3. Click _Applications > Create New App > SAML 2.0 > Create_.
 4. Fill the App Name field with `Checkout.com`.
-5. Upload the following App Logo and click Next.
+5. Upload the following App Logo and click _Next_.
 
 ---
 
 ## Step 2: Configure the SAML settings
 
-1. Set Single **Sign On URL** to `http://localhost` as a placeholder. Use this for the **Recipient URL** and **Destination URL**.
-2. Set **Audience URI** to `http://localhost` as a placeholder.
-3. Set **Default Relay** state to:
+1. Set Single Sign On URL to `http://localhost` as a placeholder. Use this for the Recipient URL and Destination URL.
+2. Set Audience URI to `http://localhost` as a placeholder.
+3. Set Default Relay state to:
     - `https://dashboard.checkout.com` for production
     - `https://dashboard.sandbox.checkout.com` for sandbox
-4. Set **Name ID** to `Unspecified`.
-5. Set **Application username** to your Okta username.
-6. Set **Update application username** on to **Create and update**.
-7. Leave the **Advanced SAML** settings on their default values.
-8. Set the **Attribute statements** as detailed below. These are mandatory attributes for the SAML assertion.
+4. Set Name ID to `Unspecified`.
+5. Set Application username to your Okta username.
+6. Set Update application username on to Create and update.
+7. Leave the Advanced SAML settings on their default values.
+8. Set the Attribute statements as detailed below. These are mandatory attributes for the SAML assertion.
 
 <Table>
 <TableHead headers={['Name','Name format','Value']}/>
@@ -118,16 +118,16 @@ You can use a more restrictive group regex filter if you'd like.
 
 </TipBox>
 
-10. Click on **Finish** then **Next** to complete the initial setup.
+10. Click on _Finish_ then _Next_ to complete the initial setup.
 
 ---
 
 ## Step 3: Extract the SSO configuration
 
-1. Go back to the application’s **Sign-On** tab and click **View Setup Instructions**.
-2. Copy the **Identity Provider Single Sign-On URL**.
-3. Copy the **Identity Provider Issuer**.
-4. Download the **Certificate**.
+1. Go back to the application’s Sign-On tab and click _View Setup Instructions_.
+2. Copy the Identity Provider Single Sign-On URL.
+3. Copy the Identity Provider Issuer.
+4. Download the Certificate.
 
 ---
 
