@@ -1,4 +1,4 @@
-import { getAnchorUrl, getHashValue, cutOffHashValue } from './url';
+import { getAnchorUrl, getHashValue, cutOffHashValue, updateNavigationHash } from './url';
 
 describe('getAnchorUrl', () => {
   it('Converting to slug', () => {
