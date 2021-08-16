@@ -1,7 +1,6 @@
 import { mount } from '@cypress/react';
 
 import { withThemeWrapper } from 'tools/testing';
-import Accordion from './Accordion';
 import AccordionHead from './AccordionHead';
 import AccordionBody from './AccordionBody';
 

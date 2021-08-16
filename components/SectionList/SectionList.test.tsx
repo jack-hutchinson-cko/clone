@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from '@cypress/react';
 
 import { ThemeProvider } from 'theme/ThemeProvider';
-import { SectionList as SectionListType } from 'types/sectionList';
+import { SectionListItem as SectionListType } from 'types/sectionList';
 import {
   IconMyAccount,
   IconIntegration,

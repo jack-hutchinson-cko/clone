@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import { SectionList as List } from 'types/sectionList';
+import { SectionListItem } from 'types/sectionList';
 import { SectionListWrapper } from './SectionList.styles';
 import SectionItem from './SectionItem';
 
 type Props = {
   activeItem: string;
-  list: List[];
+  list: SectionListItem[];
 };
 
 const SectionList: FC<Props> = ({ activeItem = '', list = [], ...props }) => {
