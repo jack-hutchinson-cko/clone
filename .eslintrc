@@ -2,9 +2,9 @@
     "extends": [
       "airbnb-typescript",
       "airbnb/hooks",
-      "plugin:jest/recommended",
       "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "plugin:cypress/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -18,8 +18,7 @@
     "env": {
       "browser": true,
       "node": true,
-      "es6": true,
-      "jest": true
+      "es6": true
     },
     "rules": {
       "jest/no-conditional-expect": "off",

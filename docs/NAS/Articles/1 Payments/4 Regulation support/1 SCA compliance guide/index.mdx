@@ -42,7 +42,7 @@ SCA is a sort of multi-factor authentication, verifying the identity of the card
 - Something the customer **has** (like a mobile phone or wearable device)
 - Something the customer **is** (like their fingerprint or facial recognition)
 
-### Does SCA apply to me? 
+### Does SCA apply to me?
 
 Strong authentication is required for customer-initiated online payments within Europe. For online card payments, SCA applies only to transactions where both your business's bank and the cardholder's bank are located in the European Economic Area (EEA) or the United Kingdom (UK).
 
@@ -55,7 +55,7 @@ Even if SCA applies to your business, some transactions fall [outside the scope 
 
 </TipBox>
 
-### When will SCA be enforced? 
+### When will SCA be enforced?
 
 The SCA requirements were originally meant to come into effect on 14 September 2019, but enforcement has been delayed.
 
@@ -64,17 +64,17 @@ The SCA requirements were originally meant to come into effect on 14 September 2
 
 <TipBox variant="info">
 
-Some issuing banks have started soft declining payments that are not SCA-ready (in other words, not authorizing some payments without [3DS authentication](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-3ds)) in preparation for the above deadlines, so we recommend you support 3DS authentication as soon as possible to avoid any potential issues.
+Some issuing banks have started soft declining payments that are not SCA-ready (in other words, not authorizing some payments without [3DS authentication](/payments/regulation-support/sca-compliance-guide#3D_Secure_authentication)) in preparation for the above deadlines, so we recommend you support 3DS authentication as soon as possible to avoid any potential issues.
 
 </TipBox>
 
 ---
 
-## Out-of-scope transactions 
+## Out-of-scope transactions
 
 Some transactions fall outside the scope of SCA, meaning they do not require strong authentication.
 
-### Merchant-initiated transactions 
+### Merchant-initiated transactions
 
 Scheduled and unscheduled merchant-initiated transactions (MITs) of a fixed or variable amount originating from the merchant, where you make the payment with a customer's previously saved card (like subscriptions and automatic account top-ups) are out of scope.
 
@@ -82,7 +82,7 @@ However, you will need to perform SCA when the card is saved or when the first p
 
 In addition, you must include additional parameters in your payment request to clearly identify such transactions as merchant-initiated. Learn more in our [stored card details guide](/payments/accept-payments/use-saved-details/about-stored-card-details).
 
-### MOTO payments 
+### MOTO payments
 
 Payments made by mail order or over the phone (MOTO) fall outside the scope of SCA.
 
@@ -96,7 +96,7 @@ If a customer uses an anonymous prepaid card, like a gift card, they do not need
 
 ---
 
-## Possible SCA exemptions 
+## Possible SCA exemptions
 
 For transactions that are in scope of SCA, you can request exemptions from strong authentication if the transactions meet certain criteria.
 
@@ -285,7 +285,7 @@ Corporate payments made with virtual and lodge cards (typically used for busines
 
 ## How to comply with SCA
 
-### 3D Secure authentication 
+### 3D Secure authentication
 
 The best way to comply with SCA for your online card payments is to use 3D Secure (3DS) authentication—an authentication protocol supported by the major card schemes.
 
@@ -301,7 +301,7 @@ Until all issuing banks support the latest version of the 3DS protocol, we recom
 
 <TipBox variant="success" title="Implement 3DS authentication">
 
-Use our [3D Secure API integration](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-3dssolution) to implement 3DS authentication on your card payments and request SCA exemptions. It supports both 3DS1 and 3DS2.
+Use our [3D Secure API integration](/payments/regulation-support/sca-compliance-guide#Implement_3DS_with_our_Payments_API) to implement 3DS authentication on your card payments and request SCA exemptions. It supports both 3DS1 and 3DS2.
 
 </TipBox>
 
@@ -309,13 +309,13 @@ Use our [3D Secure API integration](/payments/regulation-support/sca-compliance-
 
 Digital wallets and some local European payment methods should also support SCA: 
 
-- Card-based digital wallets like [Apple Pay](/payments/payment-methods/wallets/apple-pay) and [Google Pay](/payments/payment-methods/wallets/google-pay) have multi-factor authentication built in to their payment flows, offering a frictionless checkout experience that supports SCA.
+- Card-based digital wallets like [Apple Pay](/payments/payment-methods/apple-pay) and [Google Pay](/payments/payment-methods/google-pay) have multi-factor authentication built in to their payment flows, offering a frictionless checkout experience that supports SCA.
 
-- Many common European payment methods, like [Bancontact](/payments/payment-methods/cards/bancontact), [iDEAL](/payments/payment-methods/bank-transfers/ideal), and [Multibanco](/payments/payment-methods/cash-and-atm-payment/multibanco), should also follow the SCA requirements.
+- Many common European payment methods, like [Bancontact](/payments/payment-methods/cards/bancontact), [iDEAL](/payments/payment-methods/i-deal), and [Multibanco](/payments/payment-methods/cash-and-atm-payment/multibanco), should also follow the SCA requirements.
 
 ---
 
-## Business scenarios 
+## Business scenarios
 
 To show the impact of strong authentication, we’ve outlined below how it affects different business models and transactions.
 
@@ -335,7 +335,7 @@ Customer enters card details at checkout for one-off online payment.
 </TableCell>
 <TableCell>
 
-Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-exemptions) apply.
+Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#Possible_SCA_exemptions) apply.
 
 </TableCell>
 <TableCell>
@@ -352,7 +352,7 @@ Customer uses previously stored card details to make a one-off online payment.
 </TableCell>
 <TableCell>
 
-Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-exemptions) apply.	
+Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#Possible_SCA_exemptions) apply.	
 
 </TableCell>
 <TableCell>
@@ -379,7 +379,7 @@ Yes
 </TableCell>
 <TableCell>
 
-`"3ds.enabled": true "merchant_initiated": false And, if it's a Visa card: "payment_type": "Recurring"`
+`"3ds.enabled": true` `"merchant_initiated": false` And, if it's a Visa card: `"payment_type": "Recurring"`
 
 </TableCell>
 </TableRow>
@@ -391,7 +391,7 @@ Subsequent payments of the subscription.
 </TableCell>
 <TableCell>
 
-No. These qualify as [merchant-initiated transactions (MITs)](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-mits) which fall outside the scope of SCA.	
+No. These qualify as [merchant-initiated transactions (MITs)](/payments/regulation-support/sca-compliance-guide#Merchant-initiated_transactions) which fall outside the scope of SCA.	
 
 </TableCell>
 <TableCell>
@@ -430,7 +430,7 @@ Subsequent payments as agreed in the initial terms and conditions.
 </TableCell>
 <TableCell>
 
-No. These qualify as [MITs](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-mits), which are out of scope.	
+No. These qualify as [MITs](/payments/regulation-support/sca-compliance-guide#Merchant-initiated_transactions), which are out of scope.	
 
 </TableCell>
 <TableCell>
@@ -452,7 +452,7 @@ Payments made by mail order or over the phone.
 </TableCell>
 <TableCell>
 
-No. [MOTO payments](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-moto) are out of scope.	
+No. [MOTO payments](/payments/regulation-support/sca-compliance-guide#MOTO_payments) are out of scope.	
 
 </TableCell>
 <TableCell>
@@ -474,12 +474,12 @@ The first transaction, where the customer agrees to later merchant-initiated aut
 </TableCell>
 <TableCell>
 
-Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-exemptions) apply.	
+Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#Possible_SCA_exemptions) apply.	
 
 </TableCell>
 <TableCell>
 
-`"3ds.enabled": true or "3ds.exemption"`
+`"3ds.enabled": true` or `"3ds.exemption"`
 
 </TableCell>
 </TableRow>
@@ -491,7 +491,7 @@ Subsequent merchant-initiated incremental authorizations.
 </TableCell>
 <TableCell>
 
-No. These qualify as [MITs](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-mits), which are out of scope.	
+No. These qualify as [MITs](/payments/regulation-support/sca-compliance-guide#Merchant-initiated_transactions), which are out of scope.	
 
 </TableCell>
 <TableCell>
@@ -527,13 +527,13 @@ Yes. However, you can flag such transactions as [MOTO payments](/payments/regula
 
 <TipBox variant="info">
 
-For more details about the additional parameters required for payments using saved cards, see our stored [card details guide](/payments/accept-payments/use-saved-details/about-stored-card-details).
+For more details about the additional parameters required for payments using saved cards, see our [stored card details guide](/payments/accept-payments/use-saved-details/about-stored-card-details).
 
 </TipBox>
 
 ---
 
-## Implement 3DS with our Payments API 
+## Implement 3DS with our Payments API
 
 To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3d-secure/3d-secure-2-api-integration) for more details.
 

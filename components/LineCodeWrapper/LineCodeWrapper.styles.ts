@@ -4,7 +4,7 @@ export const StyledLineCodeWrapper = styled.div`
   display: flex;
   padding: 15px;
   color: ${({ theme }) => theme.colors.base};
-  background: ${({ theme }) => theme.colors.codeLabelBackground};
+  background-color: ${({ theme }) => theme.colors.codeLabelBackground};
   border-end-start-radius: 8px;
   border-end-end-radius: 8px;
   white-space: nowrap;

@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { ImageLoader } from 'next/image';
+
 import { ImgWrapper, StyledImage } from './ImageBoxStyles';
 
 export type Props = {
@@ -7,7 +9,7 @@ export type Props = {
   layout: 'fill';
   objectFit?: 'none' | 'contain' | 'cover' | 'fill' | 'scale-down';
   quality?: 100;
-  loader?: () => string;
+  loader?: ImageLoader;
   priority?: boolean;
   loading?: 'lazy' | 'eager';
   width?: '100%';

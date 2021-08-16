@@ -18,4 +18,5 @@ export const StyledLink = styled.a<{ isActive?: boolean }>`
   &:hover {
     text-decoration: ${({ isActive }) => (isActive ? 'none' : 'underline')};
   }
+  word-break: break-word;
 `;

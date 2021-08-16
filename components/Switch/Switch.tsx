@@ -15,6 +15,7 @@ const Switch: FC<Props> = ({
   checkedIcon = null,
   disabled = false,
   checked = false,
+  ...rest
 }) => {
   const [checkedInput, setCheckedInput] = useState(checked);
 
@@ -28,7 +29,7 @@ const Switch: FC<Props> = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper {...rest}>
       <IconWrapper>{checkedIcon}</IconWrapper>
       <IconWrapper>{icon}</IconWrapper>
       <Toggle checked={checkedInput}>

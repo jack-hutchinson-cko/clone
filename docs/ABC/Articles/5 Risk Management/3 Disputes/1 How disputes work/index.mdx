@@ -5,7 +5,6 @@ description: Learn about the disputes flow and what happens at each stage of the
 
 ---
 
-
 The dispute process begins when a transaction is questioned by the cardholder. It then goes through a number of stages before it is resolved. The process differs slightly depending on the card scheme, but all disputes follow a similar pattern.
 
 <img src="/docs/Risk Management/Disputes-flow.png" alt="Disputes flow" />
@@ -26,11 +25,11 @@ The issuer has 120 days from the date on which the goods or services were, or sh
 
 ### Next steps
 
-*   If you’ve **already refunded the customer**, we will automatically defend against the dispute by sending the issuer the refund information.
+- If you’ve **already refunded the customer**, we will automatically defend against the dispute by sending the issuer the refund information.
 
-*   If you **haven't refunded the customer**, you need to decide how to respond to the dispute (go to stage 2).
+- If you **haven't refunded the customer**, you need to decide how to respond to the dispute (go to stage 2).
 
-*   If you've **partially refunded the customer**, you still need to respond to the part of the dispute that covers the unrefunded amount. Once you've accepted or challenged that part of the dispute, we will send the evidence of your partial refund to the issuer.
+- If you've **partially refunded the customer**, you still need to respond to the part of the dispute that covers the unrefunded amount. Once you've accepted or challenged that part of the dispute, we will send the evidence of your partial refund to the issuer.
 
 <TipBox variant="info" title="Dispute canceled">
 
@@ -58,7 +57,7 @@ You've already refunded the customer, so we automatically submitted the relevant
 </TableCell>
 <TableCell>
 
-`[dispute_resolved](/display/DOCS/dispute_resolved)`
+[`dispute_resolved`](/display/DOCS/dispute_resolved)
 
 </TableCell>
 <TableCell>
@@ -80,7 +79,7 @@ You’ve received a dispute and you need to submit evidence if you want to defen
 </TableCell>
 <TableCell>
 
-`[dispute_evidence_required](/display/DOCS/dispute_evidence_required)`
+[`dispute_evidence_required`](/display/DOCS/dispute_evidence_required)
 
 </TableCell>
 <TableCell>
@@ -102,7 +101,7 @@ The issuer has canceled the dispute.
 </TableCell>
 <TableCell>
 
-`[dispute_canceled](/display/DOCS/dispute_canceled)`
+[`dispute_canceled`](/display/DOCS/dispute_canceled)
 
 </TableCell>
 <TableCell>
@@ -120,11 +119,11 @@ The issuer has canceled the dispute.
 
 You now need to decide how you want to respond to the dispute.
 
-*   **Accept**. If you agree with the dispute and the specific reason given, you should accept the dispute.
+- **Accept**. If you agree with the dispute and the specific reason given, you should accept the dispute.
 
-*   **Challenge**. If you want to defend against the dispute, you will need to submit evidence to make your case.
+- **Challenge**. If you want to defend against the dispute, you will need to submit evidence to make your case.
 
-*   **Ignore**. If you ignore the dispute, it will expire after a certain amount of time and you will not then be able to respond to it.
+- **Ignore**. If you ignore the dispute, it will expire after a certain amount of time and you will not then be able to respond to it.
 
 
 ### Challenging a dispute
@@ -233,9 +232,9 @@ They may take up to 55 days to get back to you with their decision.
 
 ### Outcomes
 
-*   **Dispute won**. If the issuer is satisfied with the evidence you've provided, you win the dispute and the disputed amount will be returned to your account.
+- **Dispute won**. If the issuer is satisfied with the evidence you've provided, you win the dispute and the disputed amount will be returned to your account.
 
-*   **Dispute lost**. If the issuer is not satisfied with your evidence, you lose the dispute. You can take your case to [arbitration](#Howdisputeswork-arbitration) if you want to argue your case further.
+- **Dispute lost**. If the issuer is not satisfied with your evidence, you lose the dispute. You can take your case to [arbitration](#Howdisputeswork-arbitration) if you want to argue your case further.
 
 <TipBox variant="info">
 
@@ -263,7 +262,7 @@ The issuer has accepted your evidence, and you have won the dispute.
 </TableCell>
 <TableCell>
 
-`[dispute_won](/display/DOCS/dispute_won)`
+[`dispute_won`](/display/DOCS/dispute_won)
 
 </TableCell>
 <TableCell>
@@ -285,7 +284,7 @@ The issuer is not satisfied with your evidence, and you have lost the dispute.
 </TableCell>
 <TableCell>
 
-`[dispute_lost](/display/DOCS/dispute_lost)`
+[`dispute_lost`](/display/DOCS/dispute_lost)
 
 </TableCell>
 <TableCell>
@@ -304,10 +303,9 @@ The issuer is not satisfied with your evidence, and you have lost the dispute.
 
 If you lost the dispute but you want to argue your case further, you can escalate the case to arbitration. But you should note the following points before considering it:
 
-*   You can submit additional evidence at this stage (unless it is a Visa [fraud](https://docs.checkout.com/resources/codes/chargeback-codes#Chargebackcodes-Fraud) or [authorization](https://docs.checkout.com/resources/codes/chargeback-codes#Chargebackcodes-Authorization) dispute). Your evidence should show why the dispute is now resolved, or why the issuer’s argument for rejecting your case is invalid.
+- You can submit additional evidence at this stage (unless it is a Visa [fraud](/resources/codes/chargeback-codes#Chargebackcodes-Fraud) or [authorization](/resources/codes/chargeback-codes#Chargebackcodes-Authorization) dispute). Your evidence should show why the dispute is now resolved, or why the issuer’s argument for rejecting your case is invalid.
 
-*   Arbitrations can cost a lot to pursue and take a long time to resolve. The costs of arbitration may well outweigh the disputed amount.
-
+- Arbitrations can cost a lot to pursue and take a long time to resolve. The costs of arbitration may well outweigh the disputed amount.
 
 If you do want to take your case to arbitration, contact our Disputes Team at [disputes@checkout.com](mailto:disputes@checkout.com) .
 
@@ -418,7 +416,7 @@ For American Express transactions, failure to respond quickly to a request for i
 
 ### Outcomes
 
-*   **Matter resolved** . If the issuer accepts your information, the matter is resolved. You don't need to do anything else.
+*   **Matter resolved**. If the issuer accepts your information, the matter is resolved. You don't need to do anything else.
 
 *   **Formal dispute begins**. If you fail to respond to the request in time, or the issuer deems your information insufficient, the issuer may start a formal dispute (if they are within the time limit).
 
@@ -443,7 +441,7 @@ Our API does not currently return retrieval requests.
 </TableCell>
 <TableCell>
 
-`[payment_retrieval](/display/DOCS/payment_retrieval)`
+[`payment_retrieval`](/display/DOCS/payment_retrieval)
 
 </TableCell>
 <TableCell>
@@ -467,7 +465,7 @@ This table outlines how much time you have to respond (in days) at each stage of
 <TableRow>
 <TableCell>
 
-Respond to request for information1
+Respond to request for information<sup>1</sup>
 
 </TableCell>
 <TableCell>
@@ -482,7 +480,7 @@ Optional
 </TableCell>
 <TableCell>
 
-202
+20<sup>2</sup>
 
 </TableCell>
 <TableCell>
@@ -504,7 +502,7 @@ Optional
 <TableRow>
 <TableCell>
 
-Submit evidence3
+Submit evidence<sup>3</sup>
 
 </TableCell>
 <TableCell>
@@ -546,7 +544,7 @@ Arbitration
 </TableCell>
 <TableCell colSpan={5}>
 
-For information about dealing with arbitrations, contact our Dispute Team.4
+For information about dealing with arbitrations, contact our Dispute Team.<sup>4</sup>
 
 </TableCell>
 <TableCell>
@@ -558,13 +556,13 @@ Not available
 </TableBody>
 </Table>
 
-1 From the date you received the request.
+- <sup>1</sup> From the date you received the request.
 
-2 Failure to respond to a retrieval request within this time may result in a formal dispute.
+- <sup>2</sup> Failure to respond to a retrieval request within this time may result in a formal dispute.
 
-3 From the date you received the dispute.
+- <sup>3</sup> From the date you received the dispute.
 
-4 You have five days to contact our Disputes Team at  [disputes@checkout.com](mailto:disputes@checkout.com) if want to take your case to arbitration.
+- <sup>4</sup> You have five days to contact our Disputes Team at [disputes@checkout.com](mailto:disputes@checkout.com) if want to take your case to arbitration.
 
 ### Timeframes for third-party acquirers
 
@@ -657,3 +655,21 @@ Discover
 </TableRow>
 </TableBody>
 </Table>
+
+---
+
+## Next steps
+
+<CardWrapper cardsInRow={{desktop:2,tablet:2,mobile:1}}>
+
+<Card href="/the-hub/manage-disputes" title="Manage disputes from the Hub">
+
+Learn how to handle diputes from your Hub account.
+
+</Card>
+<Card href="/risk-management/disputes/disputes-api" title="Manage disputes with our API">
+
+Learn how to handle diputes using our API.
+
+</Card>
+</CardWrapper>

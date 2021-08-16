@@ -1,6 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
+import { execSync } from 'child_process';
 import matter from 'gray-matter';
+import dateFormat from 'dateformat';
 import { lowerCase } from 'lodash';
 
 type ForEachFileTreeParams = {
@@ -76,18 +78,38 @@ const insertRelatedFiles = (data: string, filePath: string): string => {
   return data;
 };
 
+type FileDataType = {
+  title?: string;
+  account?: string;
+  modifiedDate?: string;
+  lastAuthor?: string;
+};
+
 export const getMdxFileData = (
   filePath: string,
 ): {
   content: string;
-  data: { [key: string]: string };
+  data: FileDataType;
 } => {
   try {
     const source = fs.readFileSync(filePath);
     const { content: rawContent, data } = matter(source);
     const content = insertRelatedFiles(rawContent, filePath);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [match, mtime, lastAuthor] =
+      execSync(`git log -1 --pretty=format:'%aI %an' "${filePath}"`)
+        .toString()
+        .trim()
+        .match(/(\S+) (\S.+)/) || [];
 
-    return { content, data };
+    const modifiedDate = dateFormat(mtime, 'mmm d yyyy');
+    const newData: FileDataType = {
+      ...data,
+      lastAuthor,
+      modifiedDate,
+    };
+
+    return { content, data: newData };
   } catch (error) {
     return { content: '', data: {} };
   }

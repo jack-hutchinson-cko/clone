@@ -5,11 +5,11 @@ import { StyledListItem } from './ListItem.styles';
 
 type Props = {
   icon?: ReactNode;
-  bottomPadding?: number;
+  bottomMargin?: number;
 };
 
-const ListItem: FC<NavigationItemProps<Props>> = ({ link, icon, isRoot, bottomPadding }) => (
-  <StyledListItem isRoot={isRoot} bottomPadding={bottomPadding}>
+const ListItem: FC<NavigationItemProps<Props>> = ({ link, icon, isRoot, bottomMargin }) => (
+  <StyledListItem isRoot={isRoot} bottomMargin={bottomMargin}>
     {icon} {link}
   </StyledListItem>
 );

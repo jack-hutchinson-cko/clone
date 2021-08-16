@@ -22,9 +22,6 @@ jobs:
                   MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
               run: npm ci --ignore-scripts
 
-            - name: Run all unit tests
-              run: npm run test
-
             - name: Lint
               run: npm run lint
 

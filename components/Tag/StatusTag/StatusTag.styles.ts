@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ThemeType } from 'constants/themes';
+import { ThemeType } from 'types/theme';
 import { StatusTagProps } from '../types';
 
 const getColorWithType = ({ type, theme }: { type: StatusTagProps['type']; theme: ThemeType }) => {

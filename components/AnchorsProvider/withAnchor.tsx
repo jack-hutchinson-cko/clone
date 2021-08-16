@@ -1,7 +1,9 @@
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { toString } from 'lodash';
+
 import { getAnchorUrl, getHashValue } from 'lib/url';
+import { writeTextToClipboard } from 'lib/cliboard';
 
 import Context, { Props } from './AnchorsContext';
 import { Anchor, Wrapper, Title, LinkIcon } from './withAnchor.styles';
@@ -24,7 +26,7 @@ const withAnchor =
     const [scrolled, setScrolled] = useState<boolean>(false);
     const { onUpdateState, offsetTop = DEFAULT_OFFSET } = useContext<Props>(Context);
     const anchorUrl = getAnchorUrl(toString(children)) || '';
-    const id = getHashValue(anchorUrl);
+    const hashValue = getHashValue(anchorUrl);
 
     useEffect(() => {
       setInitialized(true);
@@ -40,15 +42,19 @@ const withAnchor =
       if (!silentMode && initialized) onUpdateState?.(anchorUrl, scrolled);
     }, [initialized, anchorUrl, onUpdateState, scrolled]);
 
+    const onClickHandler = useCallback(async () => {
+      await writeTextToClipboard(anchorUrl);
+    }, [anchorUrl]);
+
     return (
       <>
-        <Anchor ref={anchorRef} id={id} offsetTop={offsetTop} />
+        <Anchor ref={anchorRef} id={hashValue} offsetTop={offsetTop} />
         <Wrapper>
           <Component {...restProps}>
             <Title>
               {children}
-              <Link href={anchorUrl} passHref>
-                <LinkIcon />
+              <Link href={anchorUrl}>
+                <LinkIcon onClick={onClickHandler} />
               </Link>
             </Title>
           </Component>

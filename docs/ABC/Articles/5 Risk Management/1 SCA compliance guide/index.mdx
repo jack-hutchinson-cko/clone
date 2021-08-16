@@ -123,26 +123,10 @@ If you request an exemption, and the customer’s bank approves it, you do not b
 Visa
 
 </TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
 </TableRow>
 <TableRow>
 <TableCell>
@@ -150,26 +134,10 @@ Visa
 Mastercard
 
 </TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-❌
-
-</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
 </TableRow>
 <TableRow>
 <TableCell>
@@ -177,26 +145,10 @@ Mastercard
 American Express
 
 </TableCell>
-<TableCell>
-
-❌
-
-</TableCell>
-<TableCell>
-
-❌
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-  🛈
-
-</TableCell>
+<TableTicCell type="error" />
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell type="info" />
 </TableRow>
 <TableRow>
 <TableCell>
@@ -204,26 +156,10 @@ American Express
 Diners Club (DCI)
 
 </TableCell>
-<TableCell>
-
-  ✅
-
-</TableCell>
-<TableCell>
-
-  ✅
-
-</TableCell>
-<TableCell>
-
-  ✅
-
-</TableCell>
-<TableCell>
-
-  ❌
-
-</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
 </TableRow>
 <TableRow>
 <TableCell>
@@ -231,26 +167,10 @@ Diners Club (DCI)
 Cartes Bancaires
 
 </TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-✅
-
-</TableCell>
-<TableCell>
-
-❌
-
-</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
 </TableRow>
 </TableBody>
 </Table>
@@ -575,15 +495,14 @@ The `3ds.challenge_indicator` field is not yet live.
 
 `3ds.enabled`
 
-</TableCell>
-<TableCell>
-
-BOOLEAN
-
+<TypeTag type="boolean" />
 </TableCell>
 <TableCell>
 
 Choose whether or not you want 3DS authentication to be performed for the payment.
+
+</TableCell>
+<TableCell>
 
 `true` – perform 3DS authentication
 
@@ -596,15 +515,14 @@ Choose whether or not you want 3DS authentication to be performed for the paymen
 
 `3ds.challenge_indicator`
 
-</TableCell>
-<TableCell>
-
-STRING
-
+<TypeTag type="string" />
 </TableCell>
 <TableCell>
 
 Indicate your preference for whether or not a 3DS challenge should be performed. The customer’s bank has the final say on whether the customer is challenged.
+
+</TableCell>
+<TableCell>
 
 `no_preference` (default) – You have no preference whether or not a challenge should be performed.
 
@@ -614,8 +532,6 @@ Indicate your preference for whether or not a 3DS challenge should be performed.
 
 `challenge_request_as_mandate` – Local requirements demand a challenge be performed.
 
-`3ds.exemption`
-
 </TableCell>
 </TableRow>
 <TableRow>
@@ -623,15 +539,14 @@ Indicate your preference for whether or not a 3DS challenge should be performed.
 
 `3ds.exemption`
 
-</TableCell>
-<TableCell>
-
-STRING
-
+<TypeTag type="string" />
 </TableCell>
 <TableCell>
 
 Request an SCA exemption for the transaction. The customer’s bank has the final say on whether or not it applies.
+
+</TableCell>
+<TableCell>
 
 `low_value` – Request the low value exemption.
 

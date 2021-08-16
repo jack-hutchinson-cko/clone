@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg';
 
 import { withAnchor as withAnchorWrapper } from 'components/AnchorsProvider';
 import { IconArrowRight } from '../Icons';
-import { Title, CardWrapper, TextContainer, IconWrapper } from './Card.styles';
+import { Title, CardWrapper, TextContainer, IconWrapper, StyledReactSVG } from './Card.styles';
 import { Props } from './types';
 
 const TitleWithAnchor = withAnchorWrapper(Title);
@@ -17,6 +17,9 @@ const Card: FC<Props> = ({
   imgSrc = '',
   imgAlt = '',
   variant = 'default',
+  maxWidth,
+  maxHeight,
+  ...rest
 }) => {
   const HeaderComponent = withAnchor ? TitleWithAnchor : Title;
 
@@ -25,8 +28,8 @@ const Card: FC<Props> = ({
       case 'media':
         return (
           <>
-            <IconWrapper>
-              <ReactSVG src={imgSrc} alt={imgAlt} />
+            <IconWrapper maxWidth={maxWidth} maxHeight={maxHeight}>
+              <StyledReactSVG src={imgSrc} alt={imgAlt} />
             </IconWrapper>
             <HeaderComponent isMedia={variant === 'media'}>{title}</HeaderComponent>
             <TextContainer isMedia={variant === 'media'}>{children}</TextContainer>
@@ -47,7 +50,7 @@ const Card: FC<Props> = ({
 
   return (
     <Link href={href}>
-      <CardWrapper>{getCardContent()}</CardWrapper>
+      <CardWrapper {...rest}>{getCardContent()}</CardWrapper>
     </Link>
   );
 };

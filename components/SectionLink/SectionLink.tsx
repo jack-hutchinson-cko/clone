@@ -9,13 +9,13 @@ type Props = {
   description: string;
 };
 
-const SectionLink: FC<Props> = ({ title, titleUrl, description, children }) => {
+const SectionLink: FC<Props> = ({ title, titleUrl, description, children, ...props }) => {
   return (
-    <Wrapper>
-      <Title>
+    <Wrapper {...props}>
+      <Title data-cy="section-link-title">
         <Link href={titleUrl}>{title}</Link>
       </Title>
-      {description && <Description>{description}</Description>}
+      {description && <Description data-cy="section-link-description">{description}</Description>}
       {children && <div>{children}</div>}
     </Wrapper>
   );

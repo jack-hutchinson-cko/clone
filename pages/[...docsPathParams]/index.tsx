@@ -10,6 +10,7 @@ import { BreadCrumbsItems } from 'types/content';
 import { AnchorItem } from 'types/anchors';
 import Card from 'components/Card';
 import CardWrapper from 'components/CardWrapper';
+import LastChange from 'components/LastChange';
 import {
   getFileNameFromPath,
   getDocArticleData,
@@ -24,6 +25,8 @@ type Props = {
   breadCrumbsItem: BreadCrumbsItems;
   frontMatter: {
     title: string;
+    modifiedDate: string;
+    lastAuthor: string;
   };
   source: MDXRemoteSerializeResult;
   anchorsNavItems: AnchorItem[];
@@ -51,6 +54,9 @@ const DocPost: NextPage<Props> = ({
         <header>
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           <Title>{frontMatter.title}</Title>
+          <LastChange>
+            {frontMatter.modifiedDate} – {frontMatter.lastAuthor}
+          </LastChange>
         </header>
         <MDXProvider source={source} />
         <CardWrapper cardsInRow={ChildArticlesPerRow}>

@@ -13,7 +13,7 @@ We've introduced a new `merchant_initiated` field to our API, which you must set
 
 <TipBox variant="success" title="Easily transfer recurring payments to Checkout.com">
 
-If you're considering us as your payment service provider but your subscriptions and other recurring payments are currently processed by another acquirer—no problem! You can use the scheme transaction ID from a payment processed by your current acquirer as your previous_payment_id to start processing those payments with us, with no need to take the customer's details again.
+If you're considering us as your payment service provider but your subscriptions and other recurring payments are currently processed by another acquirer—no problem! You can use the scheme transaction ID from a payment processed by your current acquirer as your `previous_payment_id` to start processing those payments with us, with no need to take the customer's details again.
 
 </TipBox>
 
@@ -261,7 +261,7 @@ Source ID
 
 ## Digital wallets
 
-For Visa payments with Google Pay or Apple Pay, the attribute previous_payment_id must be used.
+For Visa payments with Google Pay or Apple Pay, the attribute `previous_payment_id` must be used.
 
 ### Visa required attributes for digital wallets
 
@@ -301,7 +301,7 @@ Your previous payment ID will contain the prefix `pay_`, for example, `pay_fou2p
 Scheduled and unscheduled MITs can begin in two ways: a card verification or a payment. In the example below, you could reference the `previous_payment_id` as either row one or row four.
 
 <Table>
-<TableHead headers={['Series with card verification', 'Standart payment series']} />
+<TableHead headers={['Series with card verification', 'Standard payment series']} />
 <TableBody>
 <TableRow>
 <TableCell>

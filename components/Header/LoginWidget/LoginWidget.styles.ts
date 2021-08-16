@@ -12,7 +12,6 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: ${({ gap }) => gap ?? 6}px;
-  padding-top: 12px;
 
   @media ${Breakpoints.TABLET} {
     gap: 16px;
@@ -25,6 +24,7 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
       align-items: flex-start;
       flex-direction: column;
       padding-top: 0;
+      gap: 32px;
 
       ${Divider} {
         display: none;

@@ -1,7 +1,7 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
 import { NavigationSectionProps } from 'components/NavigationTreeMenu';
-import { StyledContent, StyledHeader, StyledIcon } from './ListSection.styles';
+import { StyledContent, StyledHeader, StyledIcon, StyledIconWrapper } from './ListSection.styles';
 
 export const ListSection: FC<NavigationSectionProps> = ({
   link,
@@ -23,7 +23,9 @@ export const ListSection: FC<NavigationSectionProps> = ({
   return (
     <div>
       <StyledHeader isRoot={isRoot}>
-        <StyledIcon isRotated={open} onClick={onToggleHandler} />
+        <StyledIconWrapper>
+          <StyledIcon isRotated={open} onClick={onToggleHandler} />
+        </StyledIconWrapper>
         {link}
       </StyledHeader>
       <StyledContent isShown={open}>{children}</StyledContent>

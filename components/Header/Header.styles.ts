@@ -143,7 +143,7 @@ export const NavigationLink = styled.a<{
 }>`
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   color: ${({ theme }) => theme.colors.base};
   font-weight: ${({ light }) => (light ? 400 : 500)};
   outline: none;
@@ -211,7 +211,7 @@ export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
 export const SearchFieldWrapper = styled.div`
   display: inline-block;
   width: 100%;
-  max-width: 370px;
+  max-width: 428px;
 `;
 
 export const SwitchIcon = styled.div`
@@ -231,4 +231,12 @@ export const DrawerBottomContentWrapper = styled.div`
   padding: 40px;
   width: 100%;
   flex: 1;
+`;
+
+export const LoginWidgetTopWrapper = styled.div`
+  padding-top: 16px;
+`;
+
+export const LiginWidgetBottomWrapper = styled.div`
+  padding-left: 30px;
 `;

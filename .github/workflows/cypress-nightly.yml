@@ -1,0 +1,35 @@
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "43 1 * * *"
+  pull_request:
+    branches:
+      - release/*
+name: Cypress test run
+env:
+  MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v2
+
+      - name: Run Component tests
+        uses: cypress-io/github-action@v2
+        with:
+           # we have already installed everything
+           install: false
+           # to run component tests we need to use "cypress run-ct"
+           command: npm run cy:run-components
+      - name: Run Unit tests
+        uses: cypress-io/github-action@v2
+        with:
+           # we have already installed everything
+           install: false
+           # to run component tests we need to use "cypress run-ct"
+           command: npm run cy:run-units

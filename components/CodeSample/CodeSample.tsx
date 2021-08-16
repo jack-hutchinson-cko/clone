@@ -2,17 +2,25 @@
 import React, { FC, useState, useCallback } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { IconActionCopy, IconActionLink } from '../Icons/Icons';
+
+import { IconActionCopy, IconActionLink } from 'components/Icons';
 import { HighlightContainer, StyledIcons, StyledText, StyledIconLink } from './CodeSample.styles';
 import { CodeSampleProps } from './type';
 import PreLine from './PreLine';
+import TextArea from './TextArea';
 
 const timeout = 3000;
 
-const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible, withBorder }) => {
+const CodeSample: FC<CodeSampleProps> = ({
+  code,
+  language,
+  isCollapsible = true,
+  withBorder = true,
+  isEditMode,
+  ...rest
+}) => {
   const [isCopied, setIsCopied] = useState(true);
-  // this is for converting the string 'true' or 'fasle' to Boolean type
-  const isWithBorder = typeof withBorder === 'boolean' ? withBorder : withBorder === 'true';
+  const [soursCode, setSoursCode] = useState(code);
 
   const onToggleHandler = useCallback(() => {
     setIsCopied(!isCopied);
@@ -20,36 +28,35 @@ const CodeSample: FC<CodeSampleProps> = ({ code, language, isCollapsible, withBo
     return () => clearTimeout(timer);
   }, [isCopied]);
 
-  const onHandlerCopy = (
-    <StyledIcons>{isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}</StyledIcons>
-  );
+  const editorComponent = isEditMode ? (
+    <TextArea value={soursCode} onChange={setSoursCode} />
+  ) : null;
 
   return (
-    <HighlightContainer>
+    <HighlightContainer {...rest}>
       <StyledIconLink>
         <IconActionLink />
       </StyledIconLink>
-      <CopyToClipboard text={code} onCopy={() => onToggleHandler()}>
-        {onHandlerCopy}
+      <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
+        <StyledIcons>
+          {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
+        </StyledIcons>
       </CopyToClipboard>
-      <Highlight {...defaultProps} code={code} language={language}>
+      <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <PreLine
+            isEditMode={isEditMode}
             tokens={tokens}
             getLineProps={getLineProps}
             getTokenProps={getTokenProps}
             isCollapsible={isCollapsible}
-            withBorder={isWithBorder}
+            withBorder={withBorder}
+            editorComponent={editorComponent}
           />
         )}
       </Highlight>
     </HighlightContainer>
   );
-};
-
-CodeSample.defaultProps = {
-  isCollapsible: true,
-  withBorder: true,
 };
 
 export default CodeSample;

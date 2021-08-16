@@ -1,17 +1,42 @@
 /* eslint-disable react/no-array-index-key */
-import React, { FC, useState, useCallback, useMemo } from 'react';
-import { get } from 'lodash';
+import React, { FC, useState, useCallback } from 'react';
 import {
   Pre,
   Line,
   IconArrowAction,
-  LineNo,
   IconArrowActionContainer,
   PreWrapper,
+  LineCounterWrapper,
+  LineNumber,
+  HorizontalScrollWrapper,
 } from './CodeSample.styles';
 import { PreLineProps } from './type';
 
-const defaultLengthWithCollapsible = 11;
+export const defaultLengthWithCollapsible = 11;
+
+export const defaultLineHeight = 24;
+
+const getCollapsibleProps = ({
+  isCollapsible,
+  isOpen,
+  tokensLength,
+}: {
+  isCollapsible: boolean;
+  isOpen: boolean;
+  tokensLength: number;
+}): { showCollapseIcon: boolean; showBlurBackground: boolean; height?: number } => {
+  if (!isCollapsible) {
+    return { showCollapseIcon: false, showBlurBackground: false };
+  }
+
+  const showCollapseIcon = isCollapsible && tokensLength > defaultLengthWithCollapsible;
+  const height =
+    (!showCollapseIcon || isOpen ? tokensLength : defaultLengthWithCollapsible) * 24 +
+    2 * defaultLineHeight;
+  const showBlurBackground = showCollapseIcon && !isOpen;
+
+  return { showCollapseIcon, height, showBlurBackground };
+};
 
 const PreLine: FC<PreLineProps> = ({
   tokens,
@@ -19,6 +44,8 @@ const PreLine: FC<PreLineProps> = ({
   getTokenProps,
   isCollapsible,
   withBorder,
+  editorComponent,
+  ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -26,31 +53,39 @@ const PreLine: FC<PreLineProps> = ({
     setIsOpen(!isOpen);
   }, [isOpen]);
 
-  const resultTokens = useMemo(() => {
-    const isLastEmpty = get(tokens, `[${tokens.length - 1}][0].empty`);
-    return isLastEmpty ? tokens.slice(0, tokens.length - 1) : tokens;
-  }, [tokens]);
-
-  const showCollapseIcon = isCollapsible && resultTokens.length > defaultLengthWithCollapsible;
-  const height =
-    (!showCollapseIcon || isOpen ? resultTokens.length : defaultLengthWithCollapsible) * 24;
-  const showBlurBackground = showCollapseIcon && !isOpen;
+  const { showCollapseIcon, height, showBlurBackground } = getCollapsibleProps({
+    isCollapsible,
+    isOpen,
+    tokensLength: tokens.length,
+  });
 
   return (
     <>
-      <PreWrapper withBorder={withBorder} showBlurBackground={showBlurBackground}>
-        <Pre height={height}>
-          {resultTokens.map((line, i: number) => {
-            return (
-              <Line key={i} {...getLineProps({ line, key: i })}>
-                <LineNo>{i + 1}</LineNo>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </Line>
-            );
-          })}
-        </Pre>
+      <PreWrapper
+        height={height}
+        withBorder={withBorder}
+        showBlurBackground={showBlurBackground}
+        {...rest}
+      >
+        <LineCounterWrapper>
+          {tokens.map((line, i: number) => (
+            <LineNumber key={i}>{i + 1}</LineNumber>
+          ))}
+        </LineCounterWrapper>
+        <HorizontalScrollWrapper isBlockScroll={showBlurBackground}>
+          <Pre>
+            {editorComponent}
+            {tokens.map((line, i: number) => {
+              return (
+                <Line key={i} {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token, key })} />
+                  ))}
+                </Line>
+              );
+            })}
+          </Pre>
+        </HorizontalScrollWrapper>
       </PreWrapper>
       {showCollapseIcon ? (
         <IconArrowActionContainer onClick={onToggleShowLine}>

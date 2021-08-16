@@ -1,0 +1,5 @@
+{
+  "componentFolder": "lib",
+  "testFiles": "**/*.test.ts",
+  "video": false
+}

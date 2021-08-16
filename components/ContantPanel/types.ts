@@ -1,7 +1,7 @@
 export type VariantContentPanel = 'default' | 'heading' | 'eCommerce';
 
 export type ContentPanelProps = {
-  title: string;
+  title?: string;
   imgSrc: string;
   imgAlt?: string;
   imgWidth?: number;

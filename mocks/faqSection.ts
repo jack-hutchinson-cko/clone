@@ -1,4 +1,4 @@
-import { SectionList } from 'types/sectionList';
+import { SectionListItem } from 'types/sectionList';
 import {
   IconMyAccount,
   IconIntegration,
@@ -8,7 +8,7 @@ import {
   IconEcommerce,
 } from 'components/Icons';
 
-export const sectionList: SectionList[] = [
+export const sectionList: SectionListItem[] = [
   {
     url: '/faq/my-account',
     title: 'My account',

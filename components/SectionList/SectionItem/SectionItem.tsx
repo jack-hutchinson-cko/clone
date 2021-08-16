@@ -9,9 +9,9 @@ type Props = {
   children: ReactNode;
 };
 
-const SectionItem: FC<Props> = ({ isActive = false, href, children }) => {
+const SectionItem: FC<Props> = ({ isActive = false, href, children, ...props }) => {
   return (
-    <SectionItemWrapper>
+    <SectionItemWrapper {...props}>
       <Link href={href} passHref>
         <StyledLink isActive={isActive}>{children}</StyledLink>
       </Link>

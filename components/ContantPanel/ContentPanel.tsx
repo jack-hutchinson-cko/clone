@@ -14,9 +14,10 @@ const ContentPanel: FC<ContentPanelProps> = ({
   imgAlt = '',
   imgWidth = DefaultImageWidth,
   variant = DefaultVariant,
+  ...rest
 }) => {
   return (
-    <Container variant={variant}>
+    <Container variant={variant} {...rest}>
       <ImageWrapper variant={variant} width={imgWidth}>
         <ReactSVG src={imgSrc} alt={imgAlt} />
       </ImageWrapper>

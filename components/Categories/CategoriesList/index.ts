@@ -1,1 +1,1 @@
-export { default } from './CategoriesList';
+export { default, DEFAULT_CARD_SIZE } from './CategoriesList';

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThemeType } from 'constants/themes';
+import { ThemeType } from 'types/theme';
 import { TipBoxVariant } from './types';
 
 const getVariantColor = ({ theme, variant }: { theme: ThemeType; variant: TipBoxVariant }) => {

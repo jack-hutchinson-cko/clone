@@ -1,9 +1,15 @@
-export const getHashValue = (url: string): string => url.split('#')[1];
+export const getHashValue = (url: string): string => {
+  if (url && url.includes('#')) return url.split('#')[1];
+  return url;
+};
 
-export const getPathValue = (url: string): string => url.split('#')[0];
+export const cutOffHashValue = (url: string): string => {
+  if (url && url.includes('#')) return url.split('#')[0];
+  return url;
+};
 
-export const updateNavigationHash = (slug: string): void => {
-  window.location.hash = slug;
+export const updateNavigationHash = (hash: string): void => {
+  window.location.replace(hash);
 };
 
 export const getAnchorUrl = (name: string, hash = true): string =>

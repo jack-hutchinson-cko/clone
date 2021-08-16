@@ -74,6 +74,8 @@ export const mdxComponents = {
   h2: withAnchor(TextHeadingTwo),
   h3: withAnchor(TextHeadingThree, { silentMode: true }),
   h4: withAnchor(TextHeadingFour, { silentMode: true }),
+  h5: withAnchor(TextHeadingThree, { silentMode: true }),
+  h6: withAnchor(TextHeadingFour, { silentMode: true }),
   p: Text,
   inlineCode: LineCode,
   a: TextLink,

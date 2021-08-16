@@ -37,15 +37,28 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
 `;
 
 export const StyledIconEarth = styled(IconEarth)`
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: ${({ theme }) => theme.colors.sectionIcon};
 `;
 
 export const StyledChangeLogIcon = styled(ChangeLogIcon)`
   color: ${({ theme }) => theme.colors.sectionIcon};
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 export const ChangeLogWrapper = styled.div`
+  position: relative;
   display: flex;
-  align-item: center;
+  align-items: center;
   gap: 16px;
+`;
+
+export const HomeWrapper = styled.div`
+  position: relative;
 `;

@@ -1,24 +1,21 @@
 import { FC } from 'react';
+
 import { IconCheck, IconError, IconTicInfo } from 'components/Icons';
-import { DecimalTic } from './Tic.styles';
 
 const Tic: FC<{ type: 'check' | 'error' | 'info' | 'decimal'; number?: number }> = ({
   type = 'check',
-  number = 0,
 }) => {
+  const extra = { 'data-tick-type': type };
   switch (type) {
     case 'error':
-      return <IconError />;
+      return <IconError {...extra} />;
 
     case 'info':
-      return <IconTicInfo />;
-
-    case 'decimal':
-      return <DecimalTic>{number}</DecimalTic>;
+      return <IconTicInfo {...extra} />;
 
     case 'check':
     default:
-      return <IconCheck />;
+      return <IconCheck {...extra} />;
   }
 };
 

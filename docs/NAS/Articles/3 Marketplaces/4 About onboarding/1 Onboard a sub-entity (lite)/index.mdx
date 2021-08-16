@@ -131,7 +131,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests.
 
-Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/display/x/About+onboarding) have been run and passed.
+Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/about-onboarding) have been run and passed.
 
 
 </Box>
@@ -165,7 +165,7 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 <Box horizontal='sm'>
 <Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled`}>
 
-Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/display/x/About+onboarding) to confirm you have sent all the required information.
+Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
 If you have provided all the information, we may be completing a manual review.
 
@@ -812,7 +812,7 @@ If you have provided all the information, we may be completing a manual review.
 
 ## Handle due diligence notifications
 
-Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows/webhook-event-types). You should expect to receive the following event types: 
+Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows). You should expect to receive the following event types: 
 
 - `vmss_passed` / `vmss_failed`
 - `match_passed` / `match_failed`

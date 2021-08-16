@@ -19,7 +19,7 @@ export const Container = styled.div<{ isMobile?: boolean }>`
 export const Content = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   width: 100%;
   margin: 0;
   padding: 32px;

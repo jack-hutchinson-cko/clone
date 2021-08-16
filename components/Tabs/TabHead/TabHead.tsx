@@ -7,7 +7,7 @@ export type Props = {
   setActiveTab: (tabIndex: number) => void;
 };
 
-const TabHead: FC<Props> = ({ setActiveTab, titles = [], activeTab = 0 }) => {
+const TabHead: FC<Props> = ({ setActiveTab, titles = [], activeTab = 0, ...rest }) => {
   const onClickHandler = (event: MouseEvent<HTMLButtonElement>): void => {
     const tabIndex = Number(event.currentTarget?.dataset?.tabIndex);
 
@@ -19,7 +19,7 @@ const TabHead: FC<Props> = ({ setActiveTab, titles = [], activeTab = 0 }) => {
   };
 
   return (
-    <StyledTabHead>
+    <StyledTabHead {...rest}>
       {titles.map((title, index) => (
         <li key={title}>
           <StyledTabHeadLink

@@ -1,1 +1,1 @@
-export * from './Tag';
+export { RequestTag, TypeTag, StatusTag, SectionTag } from './Tag';

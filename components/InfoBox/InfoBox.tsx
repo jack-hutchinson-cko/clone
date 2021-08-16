@@ -6,9 +6,9 @@ type Props = {
   showIcon?: boolean;
 };
 
-const InfoBox: FC<Props> = ({ children, showIcon = true }) => {
+const InfoBox: FC<Props> = ({ children, showIcon = true, ...rest }) => {
   return (
-    <StyledInfoBox>
+    <StyledInfoBox {...rest}>
       {showIcon && <IconActionInfo />}
       <div>{children}</div>
     </StyledInfoBox>

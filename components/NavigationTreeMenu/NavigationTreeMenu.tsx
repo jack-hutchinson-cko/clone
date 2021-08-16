@@ -7,8 +7,8 @@ type Props = {
   topLinks?: ReactNode;
 };
 
-const NavigationTreeMenu: FC<Props> = ({ isMobile, children, topLinks }) => (
-  <Container isMobile={isMobile}>
+const NavigationTreeMenu: FC<Props> = ({ isMobile, children, topLinks, ...rest }) => (
+  <Container isMobile={isMobile} {...rest}>
     {topLinks && <Navigation>{topLinks}</Navigation>}
     <Navigation>{children}</Navigation>
   </Container>

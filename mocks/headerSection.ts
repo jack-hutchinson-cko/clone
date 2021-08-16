@@ -1,10 +1,10 @@
 import { HeaderLink, SearchResultLink } from 'types/header';
-import { IconSourceCode, IconChat, IconDocSearch } from 'components/Icons/Icons';
+import { IconSourceCode, IconChat, IconDocSearch } from 'components/Icons';
 
 export const guidesList: HeaderLink[] = [
   {
     url: '/api-refs',
-    title: 'Api Reference',
+    title: 'API Reference',
     description: 'Our reference library for integrating with our API',
     Icon: IconSourceCode,
   },
@@ -16,7 +16,7 @@ export const guidesList: HeaderLink[] = [
   },
   {
     url: '/cdocs',
-    title: 'Classic Docs',
+    title: 'Classic docs',
     description: 'Documentation for our Classic API',
     Icon: IconDocSearch,
   },

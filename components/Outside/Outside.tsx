@@ -2,7 +2,7 @@ import { FC, useRef, useEffect, RefObject, ReactNode } from 'react';
 
 type Props = {
   children: (ref: RefObject<HTMLDivElement>) => ReactNode;
-  onOutsideClick: () => void;
+  onOutsideClick: (e: MouseEvent) => void;
 };
 
 const Outside: FC<Props> = ({ onOutsideClick, children }) => {
@@ -11,7 +11,7 @@ const Outside: FC<Props> = ({ onOutsideClick, children }) => {
   useEffect(() => {
     const handleClickOutside = (evt: MouseEvent) => {
       if (wrapperRef.current && !wrapperRef.current.contains(evt.target as Node)) {
-        onOutsideClick();
+        onOutsideClick(evt);
       }
     };
     document.addEventListener('click', handleClickOutside);

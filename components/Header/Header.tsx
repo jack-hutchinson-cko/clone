@@ -34,6 +34,8 @@ import {
   DrawerBottomContentWrapper,
   MiddleNavigationSection,
   MiddleNavigationItem,
+  LoginWidgetTopWrapper,
+  LiginWidgetBottomWrapper,
 } from './Header.styles';
 
 type Props = {
@@ -147,6 +149,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
         </NavigationSection>
         <MiddleNavigationSection>
           <NavigationItemHolder
+            offset={75}
             isMobile={isMobile}
             content={
               <GuidesLinks
@@ -167,7 +170,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             )}
           </NavigationItemHolder>
           {(isDesktop || isTablet) && (
-            <MiddleNavigationItem>
+            <MiddleNavigationItem withPointer={false}>
               <SearchFieldWrapper>{searchWidget}</SearchFieldWrapper>
             </MiddleNavigationItem>
           )}
@@ -177,46 +180,49 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             {isDesktop && (
               <>
                 <NavigationItemHolder
+                  offset={60}
                   contentAlign={ContentAlign.RIGHT}
                   content={
                     <SignInLinks
                       headerTitle={
                         <NavigationLink large>
-                          <IconTestAccount /> Test Account
+                          <IconTestAccount /> Test account
                         </NavigationLink>
                       }
                       headerDescription="Monitor transactions, business performance and customer trends."
-                      extraContent={loginWidget}
+                      extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
                       footerTitle={
                         <NavigationLink large>
                           <IconAccount /> The Hub
                         </NavigationLink>
                       }
                       footerExtraContent={
-                        <LoginWidget
-                          dividerText="or"
-                          link={
-                            <Link href={loginUrl} passHref>
-                              <NavigationLink target="_blank" light underlineAlways>
-                                Log in
-                              </NavigationLink>
-                            </Link>
-                          }
-                          alternativeLink={
-                            <Link href={testAccountUrl} passHref>
-                              <NavigationLink target="_blank" light underlineAlways>
-                                apply for a test account
-                              </NavigationLink>
-                            </Link>
-                          }
-                        />
+                        <LiginWidgetBottomWrapper>
+                          <LoginWidget
+                            dividerText="or"
+                            link={
+                              <Link href={loginUrl} passHref>
+                                <NavigationLink target="_blank" light underlineAlways>
+                                  Log in
+                                </NavigationLink>
+                              </Link>
+                            }
+                            alternativeLink={
+                              <Link href={testAccountUrl} passHref>
+                                <NavigationLink target="_blank" light underlineAlways>
+                                  apply for a test account
+                                </NavigationLink>
+                              </Link>
+                            }
+                          />
+                        </LiginWidgetBottomWrapper>
                       }
                     />
                   }
                 >
                   {(open) => (
                     <NavigationItem withHover isSelected={open}>
-                      Log In <ToggleIcon isOpen={open} />
+                      Log in <ToggleIcon isOpen={open} />
                     </NavigationItem>
                   )}
                 </NavigationItemHolder>

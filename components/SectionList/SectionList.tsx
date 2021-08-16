@@ -1,19 +1,24 @@
 import { FC } from 'react';
 
-import { SectionList as List } from 'types/sectionList';
+import { SectionListItem } from 'types/sectionList';
 import { SectionListWrapper } from './SectionList.styles';
 import SectionItem from './SectionItem';
 
 type Props = {
   activeItem: string;
-  list: List[];
+  list: SectionListItem[];
 };
 
-const SectionList: FC<Props> = ({ activeItem = '', list = [] }) => {
+const SectionList: FC<Props> = ({ activeItem = '', list = [], ...props }) => {
   return (
-    <SectionListWrapper>
+    <SectionListWrapper {...props}>
       {list.map(({ title, url, Icon }) => (
-        <SectionItem key={title} href={url} isActive={title === activeItem}>
+        <SectionItem
+          key={title}
+          data-cy="section-list-item"
+          href={url}
+          isActive={title === activeItem}
+        >
           <Icon />
           <mark>{title}</mark>
         </SectionItem>

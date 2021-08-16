@@ -15,6 +15,7 @@ const Accordion: FC<AccordionProps> = ({
   ...props
 }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
+  const [accordionOverflow, setAccordionOverflow] = useState<string>(isOpen ? 'unset' : 'hidden');
   const [accordionHeight, setAccordionHeight] = useState<string>(isOpen ? 'auto' : '0');
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const bodyElement = useRef(null);
@@ -29,6 +30,7 @@ const Accordion: FC<AccordionProps> = ({
   const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (isOpen) {
+      setAccordionOverflow('hidden');
       disableAccordionButton();
       setAccordionHeight(getHeightOfInnerContent(bodyElement.current).toString());
       setTimeout(() => {
@@ -36,14 +38,13 @@ const Accordion: FC<AccordionProps> = ({
       }, 0);
     } else {
       setAccordionHeight(getHeightOfInnerContent(bodyElement.current).toString());
-    }
-    setOpen(!isOpen);
-    if (!isOpen) {
       disableAccordionButton();
       setTimeout(() => {
         setAccordionHeight('auto');
+        setAccordionOverflow('unset');
       }, accordionAnimationTime);
     }
+    setOpen(!isOpen);
   };
 
   if (title) {
@@ -61,7 +62,7 @@ const Accordion: FC<AccordionProps> = ({
           </div>
           <IconActionChevronDown />
         </StyledAccordionHead>
-        <AccordionBodyWrapper height={accordionHeight}>
+        <AccordionBodyWrapper height={accordionHeight} overflow={accordionOverflow}>
           <div ref={bodyElement}>{children}</div>
         </AccordionBodyWrapper>
       </StyledAccordion>

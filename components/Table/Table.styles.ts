@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ThemeType } from 'constants/themes';
+import { ThemeType } from 'types/theme';
 import { Breakpoints } from 'constants/screen';
 
 import { SubheadBackgroundColor } from './types';
@@ -108,7 +108,7 @@ const getBackgroundColorForSubhead = ({
 }) => {
   switch (color) {
     case 'blue':
-      return theme.colors.information;
+      return theme.colors.turquoise;
 
     default:
       return 'transparent';
