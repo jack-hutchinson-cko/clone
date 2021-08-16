@@ -18,9 +18,7 @@ export const Wrapper = styled.div`
   ${LinkIcon} {
     position: absolute;
     right: -24px;
-    bottom: 50%;
     transform: translateY(50%);
-
     visibility: hidden;
     cursor: pointer;
   }
