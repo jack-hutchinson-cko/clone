@@ -50,6 +50,16 @@ import SectionLink from 'components/SectionLink';
 import { CategoriesList, CategoriesItem } from 'components/Categories';
 import TwoColumn from 'components/TwoColumn';
 import ArrowLink from 'components/ArrowLink';
+import {
+  IBuilder,
+  IBuilderHeader,
+  IBuilderFrameWorks,
+  IBuilderFrameworkTab,
+  IBuilderStep,
+  IBuilderDescriptionCard,
+  IBuilderCodeTab,
+  IBuilderCodePreview,
+} from 'components/IBuilder';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -112,6 +122,14 @@ export const mdxComponents = {
   CategoriesItem,
   TwoColumn: withBlockMargin(TwoColumn),
   ArrowLink,
+  IBuilder,
+  IBuilderHeader,
+  IBuilderFrameWorks,
+  IBuilderFrameworkTab,
+  IBuilderStep,
+  IBuilderDescriptionCard,
+  IBuilderCodeTab,
+  IBuilderCodePreview,
 };
 
 type Props = {

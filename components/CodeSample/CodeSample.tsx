@@ -17,6 +17,7 @@ const CodeSample: FC<CodeSampleProps> = ({
   isCollapsible = true,
   withBorder = true,
   isEditMode,
+  selectedLines = [],
   ...rest
 }) => {
   const [isCopied, setIsCopied] = useState(true);
@@ -45,6 +46,7 @@ const CodeSample: FC<CodeSampleProps> = ({
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <PreLine
+            selectedLines={selectedLines}
             isEditMode={isEditMode}
             tokens={tokens}
             getLineProps={getLineProps}

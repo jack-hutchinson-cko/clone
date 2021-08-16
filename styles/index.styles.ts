@@ -127,9 +127,14 @@ export const Content = styled.article`
   overflow-x: hidden;
 `;
 
-export const PageContent = styled.main`
+const contentBuilderPage = `
+  overflow-x: unset;
+  width: 100%;
+`;
+
+export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
-  overflow-x: hidden;
+  ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : '')}
 
   @media ${createBreakpointFrom(SIZE.M)} {
     padding: 32px 64px 64px 64px;

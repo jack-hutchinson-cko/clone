@@ -14,6 +14,7 @@ import {
   getSlugFromTitle,
   getAnchors,
   getMdxFileData,
+  isMdxSourceFolder,
 } from './fileParserCommon';
 
 export type ArticleSectionSource = {
@@ -120,7 +121,7 @@ export const getDocArticlesSettings = (rootFilePath: string): ArticleSettingsTyp
       for (const child of children) {
         const filePath = `${parentFilePath}/${child}`;
 
-        if (fs.statSync(filePath).isDirectory()) {
+        if (isMdxSourceFolder(filePath)) {
           const title = getTitleFromFileName(child);
           const currentSlug = getSlugFromTitle(title);
           const path = `${parentPath}/${currentSlug}`;
@@ -154,7 +155,7 @@ export const getChildrenArticle = (
   for (const child of children) {
     const childFilePath = `${folderPath}/${child}`;
 
-    if (fs.statSync(childFilePath).isDirectory()) {
+    if (isMdxSourceFolder(childFilePath)) {
       const title = getTitleFromFileName(child);
       const currentSlug = getSlugFromTitle(title);
       const { data } = getMdxFileData(`${childFilePath}/index.mdx`);

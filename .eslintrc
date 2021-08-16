@@ -54,5 +54,6 @@
           "moduleDirectory": ["node_modules", "src/"]
         }
       }
-    }
+    },
+    "ignorePatterns": ["**/docs/**"]
   }
