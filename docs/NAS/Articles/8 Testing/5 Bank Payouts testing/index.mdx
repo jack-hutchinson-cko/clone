@@ -704,11 +704,11 @@ A failed attempt means that the bank account payment instrument was not created,
 
 You can trigger this error by including one of the following bank codes, IBANs, or SWIFT BICs in your request when creating a payment instrument:
 
-- `bank_code: 507013, 000000000, 123456789, or 928934723`
+- `bank_code`: `507013`, `000000000`, `123456789`, or `928934723`
 
-- `iban: GB33BUZB50701355555552`
+- `iban`: `GB33BUZB50701355555552`
 
-- `swift_bic: NWBKGB2L, NWBKGB2LXXX, or ABCDPHEF`
+- `swift_bic`: `NWBKGB2L`, `NWBKGB2LXXX`, or `ABCDPHEF`
 
 ### The request
 
@@ -854,8 +854,8 @@ You can trigger this error by including one of the following bank codes, IBANs, 
 
 A quote expiry error indicates that your FX quote has expired and cannot be used to make a payout. You can trigger this by including one of the following bank codes or IBANs in your request to create a payment instrument:
 
-- `bank_code: 160008, 200407, 250631, or 504044`.
-- `iban: IE64IRCE92050112345678, CH5604835012345678009, IE70AIBK93006732013730, or CH5104835048708081000`.
+- `bank_code`: `160008`, `200407`, `250631`, or `504044`.
+- `iban`: `IE64IRCE92050112345678`, `CH5604835012345678009`, `IE70AIBK93006732013730`, or `CH5104835048708081000`.
 
 ### Step 1: Create a payment instrument in the Vault
 
@@ -940,7 +940,7 @@ A quote expiry error indicates that your FX quote has expired and cannot be used
 
 ### Step 2: Create a payout
 
-Include the following quote_id in your request to trigger the error: `qte_mbabizu24mvu3mela5njyhpit4`.
+Include the following `quote_id` in your request to trigger the error: `qte_mbabizu24mvu3mela5njyhpit4`.
 
 #### Endpoint
 
@@ -1017,6 +1017,8 @@ Include the following quote_id in your request to trigger the error: `qte_mbabiz
 }
 ```
 
+#### Response example
+
 ```json
 {
   "request_id": "71ccac67-5018-4917-9446-f2f6f2b8270e",
@@ -1033,8 +1035,8 @@ Include the following quote_id in your request to trigger the error: `qte_mbabiz
 
 The declined status indicates that the payout has failed. You can trigger this by including one of the following in your request to create a payment instrument:
 
-- `bank_code: 250631`
-- `iban: IE70AIBK93006732013730`
+- `bank_code`: `250631`
+- `iban`: `IE70AIBK93006732013730`
 
 ### Step 1: Create a payment instrument in the Vault
 
@@ -1262,8 +1264,8 @@ In response, you will receive the following `payment_declined` webhook.
 The paid status indicates that the payout was successful. You can trigger this by including one of the following in your request to create a payment instrument:
 
 
-- `bank_code: 200407`
-- `iban: CH5604835012345678009`
+- `bank_code`: `200407`
+- `iban`: `CH5604835012345678009`
 
 ### Step 1: Create a payment instrument in the Vault
 
@@ -1495,8 +1497,8 @@ In response, you will receive the following `payment_paid` webhook.
 
 The returned status indicates that the payout failed and has been returned. You can trigger this by including one of the following in your request to create a payment instrument:
 
-- `bank_code: 504044`
-- `iban: CH5104835048708081000`
+- `bank_code`: `504044`
+- `iban`: `CH5104835048708081000`
 
 ### Step 1: Create a payment instrument in the Vault
 
