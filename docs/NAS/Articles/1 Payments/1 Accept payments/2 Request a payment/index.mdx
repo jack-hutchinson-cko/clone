@@ -426,12 +426,14 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 ```json
 {
   "source": {
-    "type": "network_token",
-    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+    "type": "card",
+	"number": "4242424242424242",
+	"expiry_month": 12,
+	"expiry_year": 2022
   },
   "amount": 6500,
   "currency": "USD",
-  "processing_channel_id": "pc_ovo75iz4hdyudnx6tu74mum3fq",
+  "processing_channel_id": "processing_channel_id",
   "reference": "ORD-5023-4E89",
   "metadata": {
     "udf1": "TEST123",
