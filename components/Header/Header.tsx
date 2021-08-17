@@ -36,6 +36,7 @@ import {
   MiddleNavigationItem,
   LoginWidgetTopWrapper,
   LiginWidgetBottomWrapper,
+  WrapperIconActionArrowRight,
 } from './Header.styles';
 
 type Props = {
@@ -96,7 +97,9 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       alternativeLink={
         <Link href={testAccountUrl} passHref>
           <NavigationLink light={!isDesktop} underlineOnHover target="_blank">
-            Apply for an account <IconActionArrowRight />
+            <WrapperIconActionArrowRight>
+              Apply for an account <IconActionArrowRight />
+            </WrapperIconActionArrowRight>
           </NavigationLink>
         </Link>
       }
