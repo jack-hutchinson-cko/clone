@@ -9,7 +9,7 @@ export type Props = {
 
 const ButtonLink: FC<Props> = ({ children, href, onClick, ...rest }) => {
   return (
-    <StyledLink href={href}>
+    <StyledLink href={href} passHref>
       <Button onClick={onClick} {...rest}>
         {children}
       </Button>
