@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { ReactSVG } from 'react-svg';
 
 import { withAnchor as withAnchorWrapper } from 'components/AnchorsProvider';
 import { IconArrowRight } from '../Icons';
@@ -19,6 +18,7 @@ const Card: FC<Props> = ({
   variant = 'default',
   maxWidth,
   maxHeight,
+  isWithHover = true,
   ...rest
 }) => {
   const HeaderComponent = withAnchor ? TitleWithAnchor : Title;
@@ -50,7 +50,9 @@ const Card: FC<Props> = ({
 
   return (
     <Link href={href}>
-      <CardWrapper {...rest}>{getCardContent()}</CardWrapper>
+      <CardWrapper isWithHover={isWithHover} {...rest}>
+        {getCardContent()}
+      </CardWrapper>
     </Link>
   );
 };
