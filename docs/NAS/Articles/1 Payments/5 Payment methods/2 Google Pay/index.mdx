@@ -20,9 +20,9 @@ To start processing Google Pay payments, you must first integrate directly with 
 
 Google Pay integration and payments can be simplified into a three-step method:
 
-1.  [Integrate with Google Pay](#GooglePay-integratewithgooglepay)
-2.  [Tokenize the Google Pay payment data](#GooglePay-tokenizegooglepaypaymentdata)
-3.  [Request the payment](#GooglePay-requestapayment)
+1.  [Integrate with Google Pay](/payments/payment-methods/google-pay#Step_1:_Integrate_with_Google_Pay)
+2.  [Tokenize the Google Pay payment data](/payments/payment-methods/google-pay#Step_2:_Tokenize_the_Google_Pay_payment_data)
+3.  [Request the payment](/payments/payment-methods/google-pay#Step_3:_Request_a_payment_using_Google_Pay)
 
 <TipBox variant="note" title="There is no liability shift!">
 
@@ -56,7 +56,7 @@ When you submit a payment data request to the Google API, be sure to include the
 <tabs>
 <tab title="Google Pay API request (web)">
 
-```json
+```json withBorder={false}
     {
       'allowedPaymentMethods': ['CARD','TOKENIZED_CARD'],
       'paymentMethodTokenizationParameters': {
@@ -72,7 +72,7 @@ When you submit a payment data request to the Google API, be sure to include the
 </tab>
 <tab title="Google Pay API request (Android)">
 
-```
+```json withBorder={false}
   private PaymentDataRequest createPaymentDataRequest() {
     PaymentDataRequest.Builder request =
       PaymentDataRequest.newBuilder()
@@ -274,7 +274,7 @@ A serialized JSON string containing the `encryptedMessage`, `ephemeralPublicKey`
 
 ## Step 3: Request a payment using Google Pay
 
-Now you have the token, it's time to authorize the payment. Take the token, and use it in the body of a card token [payment request](/display/x/Request+a+payment) from your application or website's backend server.
+Now you have the token, it's time to authorize the payment. Take the token, and use it in the body of a card token [payment request](/payments/accept-payments/request-a-payment) from your application or website's backend server.
 
 ---
 
@@ -290,6 +290,6 @@ Google Pay does not allow the configuration of test cards within its online wall
 
 <TipBox variant="info">
 
-Find out more about [testing and simulating payments](/display/x/Testing).
+Find out more about [testing and simulating payments](/testing).
 
 </TipBox>
