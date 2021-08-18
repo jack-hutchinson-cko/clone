@@ -7,13 +7,13 @@ Learn how to manage your workflows using our API.
 
 Find out how to:
 
-- [Return all workflows](/workflows/manage-workflows#Manageworkflows-return_all_workflows)
-- [Return a single workflow](/workflows/manage-workflows#Manageworkflows-return_single_workflow)
-- [Add a new workflow](/workflows/manage-workflows#Manageworkflows-add_new_workflow)
-- [Update the name of a workflow](/workflows/manage-workflows#Manageworkflows_updatename)
-- [Update the actions of a workflow](/workflows/manage-workflows#Manageworkflows_update_action)
-- [Update the conditions of a workflow](/workflows/manage-workflows#Manageworkflows_update_condition)
-- [Delete a workflow](/workflows/manage-workflows#Manageworkflows-delete_workflow)
+- [Return all workflows](/workflows/manage-workflows#Return_all_workflows)
+- [Return a single workflow](/workflows/manage-workflows#Return_a_single_workflow)
+- [Add a new workflow](/workflows/manage-workflows#Add_a_new_workflow)
+- [Update the name of a workflow](/workflows/manage-workflows#Update_name_of_a_workflow)
+- [Update the actions of a workflow](/workflows/manage-workflows#Update_actions_of_a_workflow)
+- [Update the conditions of a workflow](/workflows/manage-workflows#Update_the_conditions_of_a_workflow)
+- [Delete a workflow](/workflows/manage-workflows#Delete_workflow)
 
 ---
 
@@ -33,7 +33,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 </LineCodeWrapper>
 </tab>
-<tab title='Production'>
+<tab title='Sandbox'>
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/workflows`
@@ -85,7 +85,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 </LineCodeWrapper>
 </tab>
-<tab title='Production'>
+<tab title='Sandbox'>
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/workflows/{workflowId}`
@@ -177,7 +177,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 </LineCodeWrapper>
 </tab>
-<tab title='Production'>
+<tab title='Sandbox'>
 <LineCodeWrapper type="post">
 
 `https://api.sandbox.checkout.com/workflows`
@@ -264,11 +264,15 @@ Other possible responses:
 
 ---
 
-## Update name of a workflow
+## Update the name of a workflow
 
 Use the following endpoint to update the name of a previously created workflow, passing the existing workflow's ID in the path and the new name for the workflow in the request body.
 
 You can find the full specification in our [API reference](https://api-reference.checkout.com/preview/crusoe/).
+
+### Endpoints
+
+For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
 <tabs>
 <tab title='Live'>
@@ -311,7 +315,7 @@ Below is an example successful response with the details of the additional workf
 
 ---
 
-## Update actions of a workflow
+## Update the actions of a workflow
 
 To update the actions of a workflow, use the following endpoint, passing the workflow's ID and action ID in the path, and the details you want to update in the request body.
 
@@ -435,7 +439,7 @@ Other possible responses:
 
 ---
 
-## Delete workflow
+## Delete a workflow
 
 Use this API request to delete an existing workflow. The actions of already executed workflows will be still processed.
 
