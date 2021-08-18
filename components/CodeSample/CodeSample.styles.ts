@@ -48,7 +48,7 @@ export const HightLighter = styled.div<{ selectedLines: number[] }>`
 
 export const HorizontalScrollWrapper = styled.div<{ isBlockScroll?: boolean }>`
   overflow-y: hidden;
-  overflow-x: ${({ isBlockScroll }) => (isBlockScroll ? 'hidden' : 'scroll')};
+  overflow-x: ${({ isBlockScroll }) => (isBlockScroll ? 'hidden' : 'auto')};
   padding: 24px 0;
   flex-grow: 1;
 `;
