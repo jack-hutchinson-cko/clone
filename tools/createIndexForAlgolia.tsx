@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import systemPath from 'path';
+import dotenv from 'dotenv';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import striptags from 'striptags';
@@ -8,9 +9,12 @@ import algoliasearch from 'algoliasearch';
 import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
 import { ThemeProvider } from 'theme/ThemeProvider';
 import { mdxComponents } from 'components/MDXProvider';
-import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
 import { forEachFileTree, getMdxFileData } from 'lib/fileParserCommon';
 import { unescape } from 'lib/unescape';
+
+dotenv.config();
+export const ApplicationID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+export const AdminAPIKey = process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY;
 
 type IndexItemType = {
   title: string;
@@ -42,7 +46,8 @@ const getIndexArticleItem = ({
     </ThemeProvider>,
   );
 
-  const body = unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ');
+  // need to remove .slice(0, 40000) after changing of plan
+  const body = (unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '').slice(0, 40000);
 
   return {
     title: data?.title || '',

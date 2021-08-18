@@ -1,2 +1,2 @@
-export const ApplicationID = 'XRCWKZSAD6';
-export const AdminAPIKey = '99fd65d381914c25e9c8d687408705d1';
+export const ApplicationID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '';
+export const AdminAPIKey = process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY || '';
