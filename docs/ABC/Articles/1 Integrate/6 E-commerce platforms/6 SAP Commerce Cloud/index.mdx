@@ -3,15 +3,429 @@ title: SAP Commerce Cloud
 account: ABC
 ---
 
-Our SAP Commerce Connector plugin integrates seamlessly with the SAP B2C Accelerator. It provides a fast and extensible mechanism to integrate our payment solution into your SAP Commerce Cloud (formerly Hybris) storefront and backend.
+SAP Commerce Cloud Connector integrates seamlessly with the SAP B2C Accelerator. The Connector for SAP Commerce Cloud (formerly Hybris) enables customers to implement a global payment strategy through a single integration in a secure, compliant and unified approach.
+
+We currently support: 
+
+* SAP CC v.1905 incl. B2C Accelerator
+* SAP CC v.2005 incl. B2C Accelerator
+* SAP CC v.2011 incl. B2C Accelerator
+* SAP Spartacus v3.2 front-end with SSR (server-side rendering) support, that can work with any of the above SAP CC suites.
 
 This guide explains how to get started with our plugin.
 
-<TipBox variant="note">
+## Supported features
 
-This guide assumes you have SAP Commerce Cloud 19.05 and the SAP B2C Accelerator installed.
+* **SAP Commerce Fulfilment process**: With Checkout.com's APIs for authorization, capture, refund and void. The same functionality has been brought onto our Spartacus v3.2 storefront connector.
+* **SAP Commerce Backoffice**: The connector provides specific customizations for the back office to ease the administration, configuration and management of all the operations related to the integration with the Checkout.com's payment solution.
+* **3DS 2.0 (PSD2)**: In case of a non-frictionless interaction, the user must enter additional information related to the Strong Customer Authentication (SCA).
+* **SAP WCMS (Web Content Management System)**: The connector enables business users to add cards and APMs using CMS components.
 
-</TipBox>
+## Supported payment methods
+
+<tabs>
+<tab title="Major debit and credit cards">
+
+<Table>
+<TableHead headers={['Payment method', 'Countries']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+American Express
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Diners
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Discover
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+JCB
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Maestro
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Mastercard
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Visa
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+</tab>
+<tab title="Local">
+
+<Table>
+<TableHead headers={['Payment method', 'Countries']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+ACH Direct Debit (awaiting product release, on roadmap)
+
+</TableCell>
+<TableCell>
+
+US
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+EPS
+
+</TableCell>
+<TableCell>
+
+Austria
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Fawry
+
+</TableCell>
+<TableCell>
+
+Egypt
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Giropay
+
+</TableCell>
+<TableCell>
+
+Germany
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+iDEAL
+
+</TableCell>
+<TableCell>
+
+Netherlands
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Klarna
+
+</TableCell>
+<TableCell>
+
+* Austria
+* Denmark
+* Finland
+* Germany
+* Netherlands
+* Norway
+* Sweden
+* UK
+* Isle of Man
+* Jersey
+* Guernsey
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Multibanco
+
+</TableCell>
+<TableCell>
+
+Portugal
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+OXXO
+
+</TableCell>
+<TableCell>
+
+Mexico
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Przelewy24
+
+</TableCell>
+<TableCell>
+
+Poland
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+POLi
+
+</TableCell>
+<TableCell>
+
+* Australia
+* New Zealand
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+SEPA Direct Debit
+
+</TableCell>
+<TableCell>
+
+EU
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Sofort
+
+</TableCell>
+<TableCell>
+
+* Austria
+* Belgium
+* Germany
+* Italy
+* Netherlands
+* Spain
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+</tab>
+<tab title="Domestic cards">
+
+<Table>
+<TableHead headers={['Payment method', 'Countries']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+Bancontact
+
+</TableCell>
+<TableCell>
+
+Belgium
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Cartes Bancaires
+
+</TableCell>
+<TableCell>
+
+France
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+KNET
+
+</TableCell>
+<TableCell>
+
+Kuwait
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+MADA
+
+</TableCell>
+<TableCell>
+
+Saudi Arabia
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Qpay
+
+</TableCell>
+<TableCell>
+
+Qatar
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+</tab>
+<tab title="Wallet">
+
+<Table>
+<TableHead headers={['Payment method', 'Countries']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+Alipay
+
+</TableCell>
+<TableCell>
+
+* China
+* US
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Apple Pay
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+BenefitPay
+
+</TableCell>
+<TableCell>
+
+Bahrain
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Google Pay
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+PayPal
+
+</TableCell>
+<TableCell>
+
+Global
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+</tab>
+</tabs>
 
 ---
 
@@ -30,7 +444,7 @@ To set up the SAP Commerce Connector, you'll need three API keys: a secret one, 
 
 <img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" />
 
-3.  Scroll down to the *Webhooks* section of the page and click **New webhook**.
+3.  Scroll down to the *Webhooks* section of the page and click _New webhook_.
 4.  Enter the following URL, replacing [`example.com`](http://example.com) with the URL of your shop: [`example.com/checkout_com/webhook/callback`](http://example.com/checkout_com/webhook/callback). (A webhook URL specific to your installation is available in the *Account Settings* section of the plugin configuration panel.)
 
 <TipBox variant="note">
@@ -39,8 +453,8 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 </TipBox>
 
-5.  Select **API - v2.0**.
-6.  Tick **Select all**, then click **Create webhook**.
+5.  Select _API - v2.0_.
+6.  Tick Select all, then click _Create webhook_.
 
 <img
   maxWidth={300}
@@ -101,283 +515,6 @@ Apart from card payments (available for all countries), other payment methods ca
 </TableRow>
 </TableBody>
 </Table>
-
-<Accordion title="Payment type breakdown">
-<Table>
-<TableHead headers={['Payment Type', 'Defined in CMS Component?', 'Country not restricted?', 'Currency not restricted?', 'Visible']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Card
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-APM
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Apple Pay
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-Decided by Apple Pay
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Google Pay
-
-</TableCell>
-<TableCell>
-
-YES
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-Decided by Google Pay
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell></TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-N/A
-
-</TableCell>
-<TableCell>
-
-NO
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-</Accordion>
 
 ## Install the plugin
 
