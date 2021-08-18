@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Breakpoints, MobileBreakPoints } from 'constants/screen';
-import { TextHeadingOne } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 
-export const Header = styled(TextHeadingOne)`
+export const Header = styled(TextHeadingTwo)`
   margin: 0;
   color: ${({ theme }) => theme.colors.base};
 `;

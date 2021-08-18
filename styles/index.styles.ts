@@ -5,7 +5,7 @@ import {
   TextHeadingOne as PrimitivesTextHeadingOne,
   Text,
 } from '@cko/primitives';
-import { TextHeadingOne } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 import {
   SIZE,
   Breakpoints,
@@ -149,7 +149,7 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   }
 `;
 
-export const Title = styled(TextHeadingOne)`
+export const Title = styled(TextHeadingTwo)`
   margin-top: 32px;
 `;
 

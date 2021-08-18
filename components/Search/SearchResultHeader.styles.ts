@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { TextHeadingOne } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 
-export const Header = styled(TextHeadingOne)`
+export const Header = styled(TextHeadingTwo)`
   margin: 0 0 16px 0;
   color: ${({ theme }) => theme.colors.base};
 `;
