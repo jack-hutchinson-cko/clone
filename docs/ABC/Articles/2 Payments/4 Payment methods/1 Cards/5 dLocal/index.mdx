@@ -15,26 +15,31 @@ To start accepting payments via dLocal, please contact your Customer Success Man
 
 ## Overview
 
-A dLocal payment request uses the same endpoint as a standard [card payment](/display/DOCS/Request+a+card+payment), and is structured similarly, but there are a few important differences.
+A dLocal payment request uses the same endpoint as a standard [card payment](/payments/accept-payments/request-a-card-payment), and is structured similarly, but there are a few important differences.
 
 For Latin American countries, merchants are required to provide their customers' identification numbers along with all authorization requests. Depending on the customer's country of residence, a differing type of identification number might be required, so a customer-specific country field needs to be sent in the authorization request.
 
 Also, the billing country associated with the payer's data may not be the same as the customer's country of residence (if, for instance, the payer is different from the customer). For this reason, a specific field for the merchant customer's country of residence needs to be specified explicitly.
 
-*   [Make a payment using an international card scheme](#dLocal-international)
-*   [Make a payment using a local card scheme](#dLocal-local)
+*   [Make a payment using an international card scheme](/payments/payment-methods/cards/d-local#International_card_schemes_payment_request)
+*   [Make a payment using a local card scheme](/payments/payment-methods/cards/d-local#Local_card_schemes_payment_request)
 
 ---
 
 ## International card schemes payment request
 
+<Accordion>
+    <AccordionHead>
+        Supported international schemes
+    </AccordionHead>
+<AccordionBody>
+
 <Table>
-<TableHead headers={['Supported international schemes', '']} />
 <TableBody>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Argentina
+**Argentina**
 
 </TableCell>
 <TableCell>
@@ -44,9 +49,9 @@ Visa, Mastercard, Amex, Diners, and Maestro.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Brazil
+**Brazil**
 
 </TableCell>
 <TableCell>
@@ -56,21 +61,9 @@ Visa, Mastercard, Amex, and JCB.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Chile
-
-</TableCell>
-<TableCell>
-
-Visa, Mastercard, Amex, and Diners.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Colombia
+**Chile**
 
 </TableCell>
 <TableCell>
@@ -80,9 +73,21 @@ Visa, Mastercard, Amex, and Diners.
 </TableCell>
 </TableRow>
 <TableRow>
+<TableCell withBackground>
+
+**Colombia**
+
+</TableCell>
 <TableCell>
 
-Ecuador
+Visa, Mastercard, Amex, and Diners.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Ecuador**
 
 </TableCell>
 <TableCell>
@@ -92,9 +97,9 @@ Visa and Mastercard.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Mexico
+**Mexico**
 
 </TableCell>
 <TableCell>
@@ -104,9 +109,9 @@ Visa, Mastercard, Amex, Visa Debit, and Mastercard Debit.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Peru
+**Peru**
 
 </TableCell>
 <TableCell>
@@ -116,9 +121,9 @@ Visa, Mastercard, Amex, and Visa Debit.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Uruguay
+**Uruguay**
 
 </TableCell>
 <TableCell>
@@ -129,6 +134,9 @@ Visa, Mastercard, and Diners.
 </TableRow>
 </TableBody>
 </Table>
+
+</AccordionBody>
+</Accordion>
 
 ### The request
 
@@ -258,13 +266,18 @@ If you received a `202` response, the payment requires a redirect. For example, 
 
 ## Local card schemes payment request
 
+<Accordion>
+    <AccordionHead>
+        Supported local schemes
+    </AccordionHead>
+<AccordionBody>
+
 <Table>
-<TableHead headers={['Supported local schemes', '']} />
 <TableBody>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Argentina
+**Argentina**
 
 </TableCell>
 <TableCell>
@@ -274,9 +287,9 @@ Cabal, Cabal Debito, Naranja, Cordinal, Cordobesa, Cencosud, and CMR Falabella.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Brazil
+**Brazil**
 
 </TableCell>
 <TableCell>
@@ -286,9 +299,9 @@ Elo, Hipercard, and Aura.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Chile
+**Chile**
 
 </TableCell>
 <TableCell>
@@ -298,9 +311,9 @@ Presto, CMR Falabella, and Magna.
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Ecuador
+**Ecuador**
 
 </TableCell>
 <TableCell>
@@ -310,9 +323,9 @@ Alia
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell>
+<TableCell withBackground>
 
-Uruguay
+**Uruguay**
 
 </TableCell>
 <TableCell>
@@ -323,6 +336,9 @@ OCA and Lider.
 </TableRow>
 </TableBody>
 </Table>
+
+</AccordionBody>
+</Accordion>
 
 ### The request
 

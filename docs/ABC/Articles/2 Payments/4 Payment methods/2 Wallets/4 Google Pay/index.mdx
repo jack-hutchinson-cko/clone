@@ -19,9 +19,9 @@ To start processing Google Pay payments, you must first integrate directly with 
 
 Google Pay integration and payments can be simplified into a three-step method:
 
-1.  [Integrate with Google Pay](#GooglePay-integratewithgooglepay)
-2.  [Tokenize the Google Pay payment data](#GooglePay-tokenizegooglepaypaymentdata)
-3.  [Request the payment](#GooglePay-requestapayment)
+1.  [Integrate with Google Pay](/payments/payment-methods/wallets/google-pay#Step_1:_Integrate_with_Google_Pay)
+2.  [Tokenize the Google Pay payment data](/payments/payment-methods/wallets/google-pay#Step_2:_Tokenize_the_Google_Pay_payment_data)
+3.  [Request the payment](/payments/payment-methods/wallets/google-pay#Step_3:_Request_a_payment_using_Google_Pay)
 
 <TipBox variant="note" title="There is no liability shift!">
 
@@ -47,57 +47,59 @@ For information on integrating with Google Pay, first, refer to the [Google Pay 
 
 When you submit a payment data request to the Google API, be sure to include the following parameters:
 
-*   `'gateway': 'checkoutltd'`
-*   `'gatewayMerchantId': '<your public key>'`
+- `'gateway': 'checkoutltd'`
+- `'gatewayMerchantId': '<your public key>'`
 
-### Examples
+### Examples
 
 <tabs>
   <tab title="Google Pay API request (web)" active>
 
-    {
-
-      'allowedPaymentMethods': ['CARD','TOKENIZED_CARD'],
-      'paymentMethodTokenizationParameters': {
-        'tokenizationType': 'PAYMENT_GATEWAY',
-        'parameters': {
-        'gateway': 'checkoutltd'
-        'gatewayMerchantId': ''
-      }
-    }
+```json withBorder={false}
+  'allowedPaymentMethods': ['CARD','TOKENIZED_CARD'],
+'paymentMethodTokenizationParameters': {
+   'tokenizationType': 'PAYMENT_GATEWAY',
+   'parameters': {
+     'gateway': 'checkoutltd'
+     'gatewayMerchantId': ''
+   }
+}
+```
 
   </tab>
   <tab title="Google Pay API request (Android)">
 
-      private PaymentDataRequest createPaymentDataRequest() {
-        PaymentDataRequest.Builder request =
-          PaymentDataRequest.newBuilder()
-            .setTransactionInfo(
-              TransactionInfo.newBuilder()
-              .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
-              .setTotalPrice("10.00")
-              .setCurrencyCode("USD")
-              .build())
-            .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_CARD).addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_TOKENIZED_CARD)
-            .setCardRequirements(
-              CardRequirements.newBuilder()
-              .addAllowedCardNetworks(
-                Arrays.asList(
-                  WalletConstants.CARD_NETWORK_VISA,
-                  WalletConstants.CARD_NETWORK_MASTERCARD))
+```json withBorder={false}
+private PaymentDataRequest createPaymentDataRequest() {
+  PaymentDataRequest.Builder request =
+    PaymentDataRequest.newBuilder()
+      .setTransactionInfo(
+        TransactionInfo.newBuilder()
+          .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
+            .setTotalPrice("10.00")
+            .setCurrencyCode("USD")
+            .build())
+      .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_CARD)                     .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_TOKENIZED_CARD)
+      .setCardRequirements(
+        CardRequirements.newBuilder()
+          .addAllowedCardNetworks(
+            Arrays.asList(
+              WalletConstants.CARD_NETWORK_VISA,
+              WalletConstants.CARD_NETWORK_MASTERCARD))
           .build());
+  
+  PaymentMethodTokenizationParameters params =
+    PaymentMethodTokenizationParameters.newBuilder()
+      .setPaymentMethodTokenizationType(
+        WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY)
+      .addParameter("gateway", "checkoutltd")
+      .addParameter("gatewayMerchantId", "")
+      .build();
 
-      PaymentMethodTokenizationParameters params =
-        PaymentMethodTokenizationParameters.newBuilder()
-          .setPaymentMethodTokenizationType(
-            WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY)
-            .addParameter("gateway", "checkoutltd")
-            .addParameter("gatewayMerchantId", "")
-            .build();
-
-      request.setPaymentMethodTokenizationParameters(params);
-      return request.build();
-    }
+  request.setPaymentMethodTokenizationParameters(params);
+  return request.build();
+}
+```
 
   </tab>
 </tabs>
@@ -188,6 +190,6 @@ Google Pay does not allow the configuration of test cards within its online wall
 
 <TipBox>
 
-Find out more about [testing and simulating payments](/display/DOCS/Testing).
+Find out more about [testing and simulating payments](/testing).
 
 </TipBox>

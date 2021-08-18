@@ -19,8 +19,8 @@ Boleto Bancário can be used by either redirecting the customer to a statically 
 
 Payments follow a two-step process:
 
-1.  [Request a payment](#BoletoBancário-request)
-2.  [Redirect the customer or render the ticket](#BoletoBancário-redirect-render)
+1.  [Request a payment](/payments/payment-methods/cash-and-atm-payment/boleto-bancario#Step_1:_Request_a_payment)
+2.  [Redirect the customer or render the ticket](/payments/payment-methods/cash-and-atm-payment/boleto-bancario#Step_2:_Redirect_the_customer_or_render_the_ticket)
 
 ---
 
@@ -351,7 +351,7 @@ The response will differ depending on which integration type (`redirect` or `dir
 
 ### Refund a payment
 
-You can refund a Boleto Bancário payment using our [refund API](/display/DOCS/Refund+a+payment). Partial and multiple – as well as full – refunds are allowed.
+You can refund a Boleto Bancário payment using our [refund API](/payments/manage-payments/refund-a-payment). Partial and multiple – as well as full – refunds are allowed.
 
 The customer will get an email (the email address is taken from the `source.payer.email` property in the initial payment request) from dLocal asking for their banking details. Once the customer has provided their details, dLocal transfer the money to the customer's bank account.
 
