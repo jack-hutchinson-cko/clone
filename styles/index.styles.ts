@@ -132,9 +132,13 @@ const contentBuilderPage = `
   width: 100%;
 `;
 
+const defaultSettings = `
+  overflow-x: hidden;
+`;
+
 export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
-  ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : '')}
+  ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.M)} {
     padding: 32px 64px 64px 64px;
