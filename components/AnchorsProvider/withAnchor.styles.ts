@@ -17,19 +17,21 @@ export const Wrapper = styled.div`
 
   ${LinkIcon} {
     position: absolute;
-    right: -24px;
-    transform: translateY(50%);
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     visibility: hidden;
-    cursor: pointer;
   }
+`;
+
+export const Title = styled.span`
+  position: relative;
+  padding-right: 24px;
+  cursor: pointer;
 
   &:hover {
     ${LinkIcon} {
       visibility: visible;
     }
   }
-`;
-
-export const Title = styled.span`
-  position: relative;
 `;
