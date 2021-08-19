@@ -10,6 +10,7 @@ import {
   TextHeadingThree,
   TextHeadingFour,
 } from 'components/TextHeading';
+import TextWrapper from 'components/TextWrapper';
 import TipBox from 'components/TipBox';
 import Tabs, { Tab } from 'components/Tabs';
 import { Text } from 'components/Text';
@@ -96,6 +97,7 @@ export const mdxComponents = {
   TypeTag,
   SectionTag,
   InfoBox,
+  TextWrapper,
   List: withBlockMargin(List),
   ListIconItem,
   ListNumberItem,
