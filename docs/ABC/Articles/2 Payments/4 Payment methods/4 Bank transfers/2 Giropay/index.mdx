@@ -19,8 +19,8 @@ To start accepting Giropay payments, please contact your Customer Success Manage
 
 Giropay payments follow a two-step process:
 
-1.  [Request a payment](#Giropay-requestapayment)
-2.  [Redirect the customer](#Giropay-redirectthecustomer)
+1.  [Request a payment](/payments/payment-methods/bank-transfers/giropay#Request_a_payment)
+2.  [Redirect the customer](/payments/payment-methods/bank-transfers/giropay#Redirect_the_customer)
 
 ## Request a payment
 
@@ -75,9 +75,69 @@ You can find the full list, as well as complete request and response examples, i
 
 ---
 
+## Redirect the customer
+
+Redirect your customer to the `redirect` link’s href in the response. This will send them to a Giropay bank selection page where they will select their bank before being transferred to that bank's page to enter their authorization details. If successful, the payment can be approved.
+
+Once they've completed this step, the customer is transferred to your predefined success or failure URL. Confirmation of a Giropay payment is **communicated only through webhooks**. When you receive a `payment_captured` webhook notification, the transaction has been completed successfully. Until the `payment_captured` webhook is received (response code `10000`), all payments are labeled as _Pending_.
+
+---
+
+## Get details about a payment
+
+Retrieve details about an existing Giropay payment with the following endpoint.
+
+### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
+<tabs>
+<tab title="Live" active>
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments/{payment_id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+## Response example
+
+```json
+{
+  "id": "pay_iilqeu2rsdqedkvkjhl2rxgbvy",
+  "created_on": "2018-03-28T14:50:26Z",
+  "source": {
+    "type": "giropay",
+    "purpose": "Set of three masks",
+    "bic": "TESTDETT421",
+    "iban": "DE46940594210000012345",
+    "account_holder_name": "Test GmbH & Co. KG"
+  },
+  "amount": 1914,
+  "currency": "EUR",
+  "payment_type": "Regular",
+  "status": "Captured",
+  "flagged": false,
+  "_links": {
+    "self": {
+      "href": "https://api.checkout.com/gateway/payments/pay_iilqeu2rsdqedkvkjhl2rxgbvy"
+    }
+  }
+}
+```
+---
+
 ## Refund a payment
 
-Giropay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/display/DOCS/Refund+a+payment).
+Giropay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
