@@ -1,7 +1,6 @@
-import { FC } from 'react';
-import { isEqual } from 'lodash';
+import { FC, useEffect, useRef } from 'react';
 import { TextHeadingFour } from 'components/TextHeading';
-import { SelectedBlockType } from './types';
+import { SelectedBlockType, RegisterDescriptionElementType } from './types';
 import { MainWrapper } from './IBuilderDescriptionCard.styles';
 
 type Props = {
@@ -10,6 +9,8 @@ type Props = {
   lines: number[];
   selectedBlock: SelectedBlockType;
   setSelectedBlock: (param: SelectedBlockType) => void;
+  registerDescriptionElement: (param: RegisterDescriptionElementType) => void;
+  id: number;
 };
 
 const IBuilderDescriptionCard: FC<Props> = ({
@@ -19,15 +20,23 @@ const IBuilderDescriptionCard: FC<Props> = ({
   lines,
   selectedBlock,
   setSelectedBlock,
+  registerDescriptionElement,
+  id,
 }) => {
+  const blockItemRef = useRef(null);
   const handelClick = () => {
-    setSelectedBlock({ lines, tab });
+    setSelectedBlock({ lines, tab, id });
   };
 
-  const isSelected = tab === selectedBlock.tab && isEqual(selectedBlock.lines, lines);
+  useEffect(() => {
+    registerDescriptionElement({ blockItem: { lines, tab, id }, blockItemRef });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const isSelected = id === selectedBlock.id;
 
   return (
-    <MainWrapper isSelected={isSelected} onClick={handelClick}>
+    <MainWrapper ref={blockItemRef} isSelected={isSelected} onClick={handelClick}>
       <TextHeadingFour>{title}</TextHeadingFour>
       {children}
     </MainWrapper>

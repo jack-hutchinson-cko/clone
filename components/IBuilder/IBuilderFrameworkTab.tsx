@@ -1,18 +1,23 @@
-import React, { FC, useState, ReactNode } from 'react';
+import React, { FC, useState, ReactNode, useEffect, useRef } from 'react';
 import TwoColumn from 'components/TwoColumn';
+import usePrevState from 'hooks/usePrevState';
 import { getChildComponentName, getChildWithProps } from './utils';
 import IBuilderCodeTabs from './IBuilderCodeTabs';
 import { MainWrapper, CodeTabWrapper } from './IBuilderFrameworkTab.styles';
-import { SelectedBlockType } from './types';
+import { SelectedBlockType, RegisterDescriptionElementType } from './types';
+
+const HEADER_HEIGHT = 80;
 
 const getInnerComponents = ({
   children,
   selectedBlock,
   setSelectedBlock,
+  registerDescriptionElement,
 }: {
   children: ReactNode;
   selectedBlock: SelectedBlockType;
   setSelectedBlock: (param: SelectedBlockType) => void;
+  registerDescriptionElement: (param: RegisterDescriptionElementType) => void;
 }): {
   codePreviewComponent: ReactNode;
   codeTabsComponents: ReactNode;
@@ -20,6 +25,7 @@ const getInnerComponents = ({
 } => {
   let codePreviewComponent = null;
   let currentStep = 1;
+  let currentDescriptionId = 0;
   const codeTabsComponents: ReactNode[] = [];
   const descriptionComponents: ReactNode[] = [];
 
@@ -32,7 +38,15 @@ const getInnerComponents = ({
       descriptionComponents.push(getChildWithProps(child, { currentStep }));
       currentStep += 1;
     } else if (componentName === 'IBuilderDescriptionCard') {
-      descriptionComponents.push(getChildWithProps(child, { selectedBlock, setSelectedBlock }));
+      descriptionComponents.push(
+        getChildWithProps(child, {
+          selectedBlock,
+          setSelectedBlock,
+          registerDescriptionElement,
+          id: currentDescriptionId,
+        }),
+      );
+      currentDescriptionId += 1;
     } else if (componentName === 'IBuilderCodeTab') {
       codeTabsComponents.push(child);
     }
@@ -47,11 +61,45 @@ type Props = {
 
 const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
   const [selectedBlock, setSelectedBlock] = useState<SelectedBlockType>({});
+  const descriptionElementsData = useRef<RegisterDescriptionElementType[]>([]);
+  const prevState = usePrevState(selectedBlock);
+  const registerDescriptionElement = (data: RegisterDescriptionElementType) => {
+    descriptionElementsData.current.push(data);
+  };
+
   const { codePreviewComponent, codeTabsComponents, descriptionComponents } = getInnerComponents({
     children,
     selectedBlock,
     setSelectedBlock,
+    registerDescriptionElement,
   });
+
+  useEffect(() => {
+    const onScrollHandler = () => {
+      const descriptionElements = descriptionElementsData.current;
+      if (descriptionElements.length) {
+        const descriptionItem = descriptionElements.find(({ blockItemRef }) => {
+          if (blockItemRef.current) {
+            const { top } = blockItemRef.current.getBoundingClientRect();
+            return top >= HEADER_HEIGHT;
+          }
+          return false;
+        });
+
+        if (descriptionItem && prevState.id !== descriptionItem.blockItem.id) {
+          setSelectedBlock(descriptionItem.blockItem);
+        }
+      }
+    };
+
+    document.addEventListener('scroll', onScrollHandler);
+    return () => document.removeEventListener('scroll', onScrollHandler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handelChangeTab = () => {
+    setSelectedBlock({});
+  };
 
   return (
     <MainWrapper>
@@ -62,7 +110,9 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
         </div>
         <CodeTabWrapper>
           <div>{codePreviewComponent}</div>
-          <IBuilderCodeTabs selectedBlock={selectedBlock}>{codeTabsComponents}</IBuilderCodeTabs>
+          <IBuilderCodeTabs onChangeTab={handelChangeTab} selectedBlock={selectedBlock}>
+            {codeTabsComponents}
+          </IBuilderCodeTabs>
         </CodeTabWrapper>
       </TwoColumn>
     </MainWrapper>

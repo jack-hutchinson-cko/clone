@@ -7,11 +7,12 @@ import { SelectedBlockType } from './types';
 
 type Props = {
   selectedBlock: SelectedBlockType;
+  onChangeTab: () => void;
 };
 
 export const SelectedLinesContext = React.createContext([]);
 
-const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock }) => {
+const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) => {
   const { titles, activeTab, setActiveTab } = useTabs({ children, selectedTab: selectedBlock.tab });
 
   const selectedChild = React.Children.toArray(children)[activeTab] || null;
@@ -20,17 +21,16 @@ const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock }) => {
       ? getChildWithProps(selectedChild, { selectedLines: selectedBlock.lines })
       : selectedChild;
 
+  const handelTabClick = (index: number) => () => {
+    setActiveTab(index);
+    onChangeTab();
+  };
+
   return (
     <>
       <TabHeader>
         {titles.map((tabItem, index) => (
-          <TabItem
-            key={tabItem}
-            isSelected={index === activeTab}
-            onClick={() => {
-              setActiveTab(index);
-            }}
-          >
+          <TabItem key={tabItem} isSelected={index === activeTab} onClick={handelTabClick(index)}>
             {tabItem}
           </TabItem>
         ))}
