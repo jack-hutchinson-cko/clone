@@ -80,7 +80,7 @@ export const getPageData = (
   { filePath, path }: { filePath: string; path: string },
 ): { isSelectedPage: boolean; content?: string; data?: ContentPageData } => {
   if (path === sourceUrl) {
-    const { data, content } = getMdxFileData(`${filePath}/index.mdx`);
+    const { data, content } = getMdxFileData(`${filePath}/index.mdx`, { addGitInfo: false });
 
     return {
       content,

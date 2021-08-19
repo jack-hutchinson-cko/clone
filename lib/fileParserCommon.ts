@@ -20,6 +20,10 @@ type CallBackParamsType = {
   breadcrumbs: { url: string; title: string }[];
 };
 
+type GetMdxFileDataOptions = {
+  addGitInfo?: boolean;
+};
+
 export const getAnchors = (content: string): string[] => content.match(/^(#|##) (.*$)/gim) || [];
 
 export const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
@@ -207,6 +211,7 @@ type FileDataType = {
 
 export const getMdxFileData = (
   filePath: string,
+  options: GetMdxFileDataOptions = { addGitInfo: true },
 ): {
   content: string;
   data: FileDataType;
@@ -214,26 +219,29 @@ export const getMdxFileData = (
   try {
     const source = fs.readFileSync(filePath);
     const { content: rawContent, data } = matter(source);
+
     const content = insertRelatedFiles({
       content: rawContent,
       filePath,
       frontMatter: data,
     });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [match, mtime, lastAuthor] =
-      execSync(`git log -1 --pretty=format:'%aI %an' "${filePath}"`)
-        .toString()
-        .trim()
-        .match(/(\S+) (\S.+)/) || [];
 
-    const modifiedDate = dateFormat(mtime, 'mmm d yyyy');
-    const newData: FileDataType = {
-      ...data,
-      lastAuthor,
-      modifiedDate,
-    };
+    if (options.addGitInfo) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [match, mtime, lastAuthor] =
+        execSync(`git log -1 --pretty=format:'%aI %an' "${filePath}"`)
+          .toString()
+          .trim()
+          .match(/(\S+) (\S.+)/) || [];
+      const newData: FileDataType = {
+        ...data,
+        lastAuthor,
+        modifiedDate: dateFormat(mtime, 'mmm d yyyy'),
+      };
 
-    return { content, data: newData };
+      return { content, data: newData };
+    }
+    return { content, data };
   } catch (error) {
     return { content: '', data: {} };
   }
