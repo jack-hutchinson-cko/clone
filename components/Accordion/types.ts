@@ -6,6 +6,7 @@ export type AccordionProps = {
   isExpanded?: boolean;
   isBoldTitle?: boolean;
   hasTitle?: boolean;
+  headerIcon?: ReactNode;
 };
 
 export type AccordionBodyProps = {

@@ -6,3 +6,8 @@ export const SectionListWrapper = styled.ul`
   list-style-type: none;
   overflow-x: hidden;
 `;
+
+export const ImgWrapper = styled.div`
+  width: 24px;
+  margin-right: 12px;
+`;

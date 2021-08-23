@@ -13,7 +13,7 @@ export const SectionItemWrapper = styled.li`
 export const StyledLink = styled.a<{ isActive: boolean }>`
   display: flex;
   align-items: center;
-  padding: 12px 0;
+  padding: 12px;
   border-radius: 4px;
   color: ${({ theme }) => theme.colors.base};
   font-size: 16px;

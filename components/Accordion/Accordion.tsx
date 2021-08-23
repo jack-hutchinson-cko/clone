@@ -1,7 +1,7 @@
 import React, { FC, useState, MouseEvent, useRef } from 'react';
 import { IconActionChevronDown } from '@cko/icons';
 import { StyledAccordionHead } from './AccordionHead';
-import { StyledAccordion, AccordionBodyWrapper } from './Accordion.styles';
+import { StyledAccordion, AccordionBodyWrapper, AccordionTitleWrapper } from './Accordion.styles';
 import { AccordionProps } from './types';
 import { getHeightOfInnerContent } from './utils';
 
@@ -12,6 +12,7 @@ const Accordion: FC<AccordionProps> = ({
   isExpanded,
   children,
   isBoldTitle,
+  headerIcon,
   ...props
 }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
@@ -57,9 +58,12 @@ const Accordion: FC<AccordionProps> = ({
           hasTitle
           disabled={isButtonDisabled}
         >
-          <div>
-            <mark>{title}</mark>
-          </div>
+          <AccordionTitleWrapper>
+            {headerIcon || null}
+            <div>
+              <mark>{title}</mark>
+            </div>
+          </AccordionTitleWrapper>
           <IconActionChevronDown />
         </StyledAccordionHead>
         <AccordionBodyWrapper height={accordionHeight} overflow={accordionOverflow}>

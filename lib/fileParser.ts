@@ -15,6 +15,9 @@ import {
   getAnchors,
   getMdxFileData,
   isMdxSourceFolder,
+  forEachFileTree,
+  getFAQItems,
+  getFAQHeaderProperty,
 } from './fileParserCommon';
 
 export type ArticleSectionSource = {
@@ -52,20 +55,16 @@ export const getAnchorsNavItems = ({
   return contentAnchors.concat(childArticlesAnchors);
 };
 
-export const getDocArticleData = async ({
-  filePath,
-  childrenArticles,
-}: {
-  filePath: string;
-  childrenArticles?: ChildArticlesType;
-}): Promise<{
-  source: MDXRemoteSerializeResult;
-  frontMatter: { [key: string]: string };
-  anchorsNavItems: { title: string; href: string }[];
-}> => {
-  const { data, content } = getMdxFileData(filePath);
+type SerializedMDXDataType = Promise<MDXRemoteSerializeResult>;
 
-  const mdxSource = await serialize(content, {
+export const serializeMdxData = ({
+  content,
+  data = {},
+}: {
+  content: string;
+  data: { [key: string]: string };
+}): SerializedMDXDataType =>
+  serialize(content, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       // eslint-disable-next-line global-require
@@ -75,6 +74,23 @@ export const getDocArticleData = async ({
     scope: data,
   });
 
+export const getDocArticleData = async ({
+  filePath,
+  childrenArticles,
+  options = { addGitInfo: true },
+}: {
+  filePath: string;
+  childrenArticles?: ChildArticlesType;
+  options?: {
+    addGitInfo?: boolean;
+  };
+}): Promise<{
+  source: MDXRemoteSerializeResult;
+  frontMatter: { [key: string]: string };
+  anchorsNavItems: { title: string; href: string }[];
+}> => {
+  const { data, content } = getMdxFileData(filePath, options);
+  const mdxSource = await serializeMdxData({ data, content });
   const anchorsNavItems = getAnchorsNavItems({ content, childrenArticles });
 
   return {
@@ -197,3 +213,94 @@ export const getFileNameFromPath = (docsPathParams: string[]): string => {
 
   return get(slugToFilePathMap, fullSlug, '');
 };
+
+const POPULAR_ITEMS_LENGTH = 10;
+
+type ParsedFAQItem = {
+  faqSection: string;
+  faqItem: string;
+  popularity?: string;
+};
+
+export const getPopularItemsMDXSource = (faqItems: ParsedFAQItem[]): string => {
+  const sortedItems = faqItems
+    .sort((item1, item2) => Number(item2.popularity) - Number(item1.popularity))
+    .slice(0, POPULAR_ITEMS_LENGTH);
+
+  let currentFaqSection = '';
+
+  return sortedItems.reduce((result, { faqSection, faqItem }) => {
+    const isSameFaqSection = faqSection === currentFaqSection;
+    const separator =
+      faqSection === currentFaqSection
+        ? '\n\n'
+        : `\n\n<FAQSectionLabel>${faqSection}</FAQSectionLabel>\n\n`;
+
+    if (!isSameFaqSection) {
+      currentFaqSection = faqSection;
+    }
+
+    return `${result}${separator}${faqItem}`;
+  }, '');
+};
+
+export type FAQSectionType = { href: string; imageSrc: string; title?: string; children: string };
+type FAQPathType = { params: { faqSection: string } };
+
+export const getFAQSectionSettings = (
+  faqFilePath: string,
+): {
+  popularFAQItems: string;
+  faqSections: FAQSectionType[];
+  pathUrls: FAQPathType[];
+  mapFaqSectionToFilePath: { [key: string]: string };
+} => {
+  const faqSections: FAQSectionType[] = [];
+  const pathUrls: FAQPathType[] = [];
+  const mapFaqSectionToFilePath: { [key: string]: string } = {};
+  let allFAQItems: ParsedFAQItem[] = [];
+
+  forEachFileTree({ parentFilePath: faqFilePath, parentPath: '/faq' }, (params) => {
+    const { path, filePath } = params;
+    const fileSourcePath = `${filePath}/index.mdx`;
+    const faqSection = path.replace('/faq/', '');
+
+    const {
+      data: { title, previewIcon: imageSrc = '', description: children = '' },
+      content,
+    } = getMdxFileData(fileSourcePath, { addGitInfo: false });
+
+    const faqItems = getFAQItems(content).map((faqItem) => {
+      const { popularity } = getFAQHeaderProperty(faqItem);
+      return {
+        faqSection: title || '',
+        popularity,
+        faqItem,
+      };
+    });
+
+    allFAQItems = allFAQItems.concat(faqItems);
+
+    mapFaqSectionToFilePath[faqSection] = fileSourcePath;
+    pathUrls.push({ params: { faqSection } });
+    faqSections.push({ href: path, title, imageSrc, children });
+  });
+
+  return {
+    popularFAQItems: getPopularItemsMDXSource(allFAQItems),
+    faqSections,
+    pathUrls,
+    mapFaqSectionToFilePath,
+  };
+};
+
+export const faqSectionSettings = getFAQSectionSettings(clientSettings.fullFaqPath);
+
+export const getFAQSections = (): FAQSectionType[] => faqSectionSettings.faqSections;
+export const getFAQPathUrls = (): FAQPathType[] => faqSectionSettings.pathUrls;
+export const getPopularFAQItems = (): SerializedMDXDataType => {
+  const { popularFAQItems } = faqSectionSettings;
+  return serializeMdxData({ data: {}, content: popularFAQItems });
+};
+export const getFileNameFromFAQPath = (faqPath: string): string =>
+  get(faqSectionSettings, `mapFaqSectionToFilePath.${faqPath}`) || '';

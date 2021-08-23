@@ -6,7 +6,7 @@ import { ImgWrapper, StyledImage } from './ImageBoxStyles';
 export type Props = {
   src: string;
   alt?: string;
-  layout: 'fill';
+  layout?: 'fill';
   objectFit?: 'none' | 'contain' | 'cover' | 'fill' | 'scale-down';
   quality?: 100;
   loader?: ImageLoader;

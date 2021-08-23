@@ -28,9 +28,16 @@ export type Props = {
   navTreeLinks: NavTreeElement[];
   headerContent: HeaderContent;
   footerContent: FooterContent;
+  isFAQSection?: boolean;
 };
 
-const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerContent }) => {
+const MainLayout: FC<Props> = ({
+  children,
+  navTreeLinks,
+  headerContent,
+  footerContent,
+  isFAQSection,
+}) => {
   const { asPath } = useRouter();
   const activeLink = useMemo(() => cutOffHashValue(asPath), [asPath]);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
@@ -53,14 +60,19 @@ const MainLayout: FC<Props> = ({ children, navTreeLinks, headerContent, footerCo
             testAccountUrl={headerContent.testAccountUrl}
           />
         </HeaderWrapper>
-        <ContentWrapper isDesktop={isDesktop}>
-          {isDesktop && (
-            <SideBarWrapper>
-              <SideBar menuWidget={menu} />
-            </SideBarWrapper>
-          )}
-          {children}
-        </ContentWrapper>
+        {isFAQSection ? (
+          children
+        ) : (
+          <ContentWrapper>
+            {isDesktop && (
+              <SideBarWrapper>
+                <SideBar menuWidget={menu} />
+              </SideBarWrapper>
+            )}
+            {children}
+          </ContentWrapper>
+        )}
+
         <FooterWrapper>
           <Footer
             navigation={footerContent.navigation}

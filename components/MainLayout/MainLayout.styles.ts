@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.div`
   z-index: 1;
 `;
 
-export const ContentWrapper = styled.div<{ isDesktop?: boolean }>`
+export const ContentWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   max-width: 1360px;

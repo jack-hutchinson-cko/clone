@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
@@ -61,6 +62,7 @@ import {
   IBuilderCodeTab,
   IBuilderCodePreview,
 } from 'components/IBuilder';
+import FAQSectionLabel from 'components/FAQSectionLabel';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -132,6 +134,8 @@ export const mdxComponents = {
   IBuilderDescriptionCard,
   IBuilderCodeTab,
   IBuilderCodePreview,
+  FAQItem,
+  FAQSectionLabel,
 };
 
 type Props = {

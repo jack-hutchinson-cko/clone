@@ -9,7 +9,14 @@ import algoliasearch from 'algoliasearch';
 import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
 import { ThemeProvider } from 'theme/ThemeProvider';
 import { mdxComponents } from 'components/MDXProvider';
-import { forEachFileTree, getMdxFileData } from 'lib/fileParserCommon';
+import {
+  forEachFileTree,
+  getMdxFileData,
+  getFAQItems,
+  getFAQItemBody,
+  getFAQHeaderProperty,
+  ForEachTreeCallBackParamsType,
+} from 'lib/fileParserCommon';
 import { unescape } from 'lib/unescape';
 
 dotenv.config();
@@ -32,6 +39,17 @@ type GetIndexArticleItemParams = {
   parentArticles: string[];
 };
 
+const getResultTextFromMdxFile = (content: string): string => {
+  const html = renderToString(
+    <ThemeProvider>
+      <MDX components={mdxComponents}>{content}</MDX>
+    </ThemeProvider>,
+  );
+
+  // need to remove .slice(0, 40000) after changing of plan
+  return (unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '').slice(0, 40000);
+};
+
 const getIndexArticleItem = ({
   title: name,
   path,
@@ -40,14 +58,7 @@ const getIndexArticleItem = ({
 }: GetIndexArticleItemParams): IndexItemType => {
   const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
 
-  const html = renderToString(
-    <ThemeProvider>
-      <MDX components={mdxComponents}>{content}</MDX>
-    </ThemeProvider>,
-  );
-
-  // need to remove .slice(0, 40000) after changing of plan
-  const body = (unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '').slice(0, 40000);
+  const body = getResultTextFromMdxFile(content);
 
   return {
     title: data?.title || '',
@@ -59,7 +70,7 @@ const getIndexArticleItem = ({
   };
 };
 
-export const createIndexForAlgolia = async (
+export const createDocArticlesIndex = async (
   filePath: string,
   searchIndexName: string,
 ): Promise<void> => {
@@ -96,21 +107,109 @@ export const createIndexForAlgolia = async (
   });
 };
 
-Promise.all(
-  (
-    Object.values(CLIENT_SETTINGS_BY_TYPE) as {
-      docArticlesFilePath: string;
-      searchIndexName: string;
-    }[]
-  ).map(({ docArticlesFilePath, searchIndexName }) =>
-    createIndexForAlgolia(docArticlesFilePath, searchIndexName),
-  ),
-)
-  .then(() => {
-    console.log('algolia search index was successfully generated/updated');
-    process.exit(0);
-  })
-  .catch((error) => {
+type FAQIndexItemType = {
+  faqSection: string;
+  path: string;
+  body: string;
+  title: string;
+  popularity: string;
+};
+
+const getFacSectionItem = (childData: ForEachTreeCallBackParamsType): FAQIndexItemType[] => {
+  const { filePath, path } = childData;
+
+  const {
+    content,
+    data: { title: faqSection = '' },
+  } = getMdxFileData(`${filePath}/index.mdx`);
+  const faqItems = getFAQItems(content);
+
+  return faqItems.map((faqItem) => {
+    const mdxBody = getFAQItemBody(faqItem);
+    const { title = '', popularity = '' } = getFAQHeaderProperty(faqItem);
+    const body = getResultTextFromMdxFile(mdxBody);
+
+    return {
+      faqSection,
+      path,
+      body,
+      title,
+      popularity,
+    };
+  });
+};
+
+export const createFAQIndex = async (filePath: string, searchIndexName: string): Promise<void> => {
+  if (!ApplicationID || !AdminAPIKey) {
+    throw new Error('ApplicationID or AdminAPIKey are not specified');
+  }
+
+  let indexResult: FAQIndexItemType[] = [];
+
+  forEachFileTree(
+    {
+      parentFilePath: systemPath.join(process.cwd(), filePath),
+      parentPath: '/faq',
+      parentArticles: [],
+    },
+    (childData) => {
+      indexResult = indexResult.concat(getFacSectionItem(childData));
+    },
+  );
+
+  const client = algoliasearch(ApplicationID, AdminAPIKey);
+  const index = client.initIndex(searchIndexName);
+
+  index.setSettings({
+    attributesToSnippet: ['body:20'],
+    snippetEllipsisText: '...',
+    searchableAttributes: ['title', 'body'],
+  });
+
+  await index.clearObjects();
+  await index.saveObjects(indexResult, {
+    autoGenerateObjectIDIfNotExist: true,
+  });
+};
+
+const createAllIndexes = async () => {
+  try {
+    await Promise.all(
+      (
+        Object.values(CLIENT_SETTINGS_BY_TYPE) as {
+          docArticlesFilePath: string;
+          searchIndexName: string;
+        }[]
+      ).map(({ docArticlesFilePath, searchIndexName }) =>
+        createDocArticlesIndex(docArticlesFilePath, searchIndexName),
+      ),
+    );
+
+    console.log('algolia docs article search index was successfully generated/updated');
+  } catch (error) {
     console.log(error);
     process.exit(1);
-  });
+  }
+
+  try {
+    await Promise.all(
+      (
+        Object.values(CLIENT_SETTINGS_BY_TYPE) as {
+          FAQFilePath: string;
+          searchFAQIndexName: string;
+        }[]
+      ).map(({ FAQFilePath, searchFAQIndexName }) =>
+        createFAQIndex(FAQFilePath, searchFAQIndexName),
+      ),
+    );
+
+    console.log('algolia FAQ search index was successfully generated/updated');
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+
+  process.exit(0);
+};
+
+createAllIndexes();

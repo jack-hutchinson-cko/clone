@@ -8,11 +8,11 @@ import dateFormat from 'dateformat';
 type ForEachFileTreeParams = {
   parentFilePath: string;
   parentPath: string;
-  parentArticles: string[];
+  parentArticles?: string[];
   breadcrumbs?: { url: string; title: string }[];
 };
 
-type CallBackParamsType = {
+export type ForEachTreeCallBackParamsType = {
   title: string;
   path: string;
   filePath: string;
@@ -37,7 +37,7 @@ export const isMdxSourceFolder = (filePath: string): boolean => {
 
 export const forEachFileTree = (
   { parentFilePath, parentPath, parentArticles = [], breadcrumbs = [] }: ForEachFileTreeParams,
-  callBack: (params: CallBackParamsType) => void | boolean,
+  callBack: (params: ForEachTreeCallBackParamsType) => void | boolean,
 ): void => {
   const children = fs.readdirSync(parentFilePath);
 
@@ -207,6 +207,8 @@ type FileDataType = {
   account?: string;
   modifiedDate?: string;
   lastAuthor?: string;
+  previewIcon?: string;
+  description?: string;
 };
 
 export const getMdxFileData = (
@@ -245,4 +247,35 @@ export const getMdxFileData = (
   } catch (error) {
     return { content: '', data: {} };
   }
+};
+
+const sectionReg = RegExp(/<FAQItem (.|\n)*?>(.|\n)*?<\/FAQItem>/g);
+const regStartTag = RegExp(/<FAQItem (.|\n)*?>/i);
+const regEndTag = RegExp(/<\/FAQItem>/i);
+const regTagProperty = RegExp(/(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"']))+.)["']?/g);
+
+export const getFAQItems = (mdxContent: string): string[] => mdxContent.match(sectionReg) || [];
+
+export const getFAQItemBody = (faqItem: string): string =>
+  faqItem.replace(regStartTag, '').replace(regEndTag, '');
+
+export const getFAQHeaderProperty = (faqItem: string): { [key: string]: string } => {
+  const header = (faqItem.match(regStartTag) || [])[0];
+
+  return (header.match(regTagProperty) || []).reduce((result, property) => {
+    if (property.includes('title')) {
+      return {
+        ...result,
+        title: property.slice(7, property.length - 1),
+      };
+    }
+    if (property.includes('popularity')) {
+      return {
+        ...result,
+        popularity: property.slice(12, property.length - 1),
+      };
+    }
+
+    return result;
+  }, {});
 };
