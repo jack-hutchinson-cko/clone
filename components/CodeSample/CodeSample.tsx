@@ -16,6 +16,7 @@ const CodeSample: FC<CodeSampleProps> = ({
   language,
   isCollapsible = true,
   withBorder = true,
+  withControls = true,
   isEditMode,
   selectedLines = [],
   ...rest
@@ -35,14 +36,18 @@ const CodeSample: FC<CodeSampleProps> = ({
 
   return (
     <HighlightContainer {...rest}>
-      <StyledIconLink>
-        <IconActionLink />
-      </StyledIconLink>
-      <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
-        <StyledIcons>
-          {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
-        </StyledIcons>
-      </CopyToClipboard>
+      {withControls && (
+        <>
+          <StyledIconLink>
+            <IconActionLink />
+          </StyledIconLink>
+          <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
+            <StyledIcons>
+              {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
+            </StyledIcons>
+          </CopyToClipboard>
+        </>
+      )}
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <PreLine

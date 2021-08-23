@@ -9,6 +9,7 @@ export type Props = {
   language?: Language;
   isCollapsible: boolean;
   withBorder: boolean;
+  withControls: boolean;
   isEditMode: boolean;
 };
 
@@ -19,6 +20,7 @@ const MDXCodeSample: FC<Props> = ({
   children,
   language,
   withBorder = true,
+  withControls = true,
   isCollapsible = true,
   isEditMode,
   ...otherProps
@@ -35,6 +37,7 @@ const MDXCodeSample: FC<Props> = ({
       language={language || languageFromClass}
       isCollapsible={getBoolMdxProps(isCollapsible) && !getBoolMdxProps(isEditMode)}
       withBorder={getBoolMdxProps(withBorder)}
+      withControls={getBoolMdxProps(withControls)}
       isEditMode={getBoolMdxProps(isEditMode)}
       selectedLines={selectedLines}
       {...otherProps}

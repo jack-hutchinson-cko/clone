@@ -24,7 +24,7 @@ const IBuilderDescriptionCard: FC<Props> = ({
   id,
 }) => {
   const blockItemRef = useRef(null);
-  const handelClick = () => {
+  const handleClick = () => {
     setSelectedBlock({ lines, tab, id });
   };
 
@@ -36,7 +36,7 @@ const IBuilderDescriptionCard: FC<Props> = ({
   const isSelected = id === selectedBlock.id;
 
   return (
-    <MainWrapper ref={blockItemRef} isSelected={isSelected} onClick={handelClick}>
+    <MainWrapper ref={blockItemRef} isSelected={isSelected} onClick={handleClick}>
       <TextHeadingFour>{title}</TextHeadingFour>
       {children}
     </MainWrapper>

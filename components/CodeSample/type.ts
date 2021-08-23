@@ -5,6 +5,7 @@ export type CodeSampleProps = {
   language: Language;
   isCollapsible: boolean;
   withBorder: boolean;
+  withControls?: boolean;
   isEditMode: boolean;
   selectedLines?: number[];
 };

@@ -8,7 +8,7 @@ export const TabHeader = styled.div`
 export const TabItem = styled.div<{ isSelected: boolean }>`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.white};
-  padding: 0px 10px;
+  padding: 0 10px;
   font-size: 12px;
   font-weight: ${({ isSelected }) => (isSelected ? 500 : 400)};
   height: 38px;
@@ -24,4 +24,16 @@ export const TabBody = styled.div`
   height: 100%;
   overflow-y: auto;
   scroll-behavior: smooth;
+`;
+
+export const ControlsPanel = styled.div`
+  align-self: center;
+  gap: 14px;
+  margin: 0 10px 0 auto;
+`;
+
+export const ControlButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
 `;

@@ -69,7 +69,7 @@ export const forEachFileTree = (
 
 const code = '```';
 const codeWithParams = ({ language }: { language: string }): string =>
-  `${code}${language} isCollapsible="false", withBorder="false"`;
+  `${code}${language} isCollapsible="false", withBorder="false", withControls="false"`;
 
 const getFolderPath = (filePath: string): string =>
   filePath.slice(0, filePath.lastIndexOf('/') + 1);
