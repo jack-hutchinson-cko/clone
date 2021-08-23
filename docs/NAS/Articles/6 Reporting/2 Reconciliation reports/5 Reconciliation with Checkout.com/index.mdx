@@ -55,7 +55,7 @@ Information on the mapping between Action Type, Breakdown Type, and the fee cate
 
 To reconcile between a fee category on your payouts report and the financial actions comprising it, filter the financial actions report by the **Action Types** and **Breakdown Types** related to the fee category. The sum of the **Holding Currency Amount** will then reconcile with the amount shown for the fee category.
 
-For example, to reconcile between **Card Payment Scheme Fees** for a given payout on your payouts report and the associated financial actions on the financial actions by payout id report:
+For example, to reconcile between **Card Payment Scheme Fees** for a given payout on your payouts report and the associated financial actions on the financial actions by payout ID report:
 
 - First, using your financial actions report, filter by **Action Type** to include only **authentication**, **authorization**, **capture**, and **void** actions.
 
@@ -91,20 +91,20 @@ For a given row on your financial actions report, the combination of the **Actio
 
 <TipBox variant="succes">
 
-For more details about sender data requirements, please contact your implementation manager.
+Information on the mapping between **Action Type**, **Breakdown Type**, and the fee category fields on the balance report is available [here](/reporting/reconciliation-reports/breakdown-types#General).
 
 </TipBox>
 
 To reconcile between a fee category on your balance report and the financial actions comprising it. First, filter the financial actions report by the **Currency Account ID**, **Action Type**, **Breakdown Type** and **Payment Method** (if applicable) related to the amount you are trying to reconcile on your balance report. The sum of the **Holding Currency Amount** column will then reconcile with the amount shown on the balance report.
 
-For example, to reconcile between **Card Payment Scheme Fees** for **Payment Method: Visa** for a given currency account on your balance report and the associated financial actions on the financial actions report over the same period.
+For example, to reconcile between **Card Payment Scheme Fees** for **Payment Method: Visa** for a given currency account on your balance report and the associated financial actions on the financial actions report over the same period:
 
 
-1. First, using the financial actions report, filter by the **Currency Account ID**.
+- First, using the financial actions report, filter by the **Currency Account ID**.
 
-2. Then filter by the **Payment Method** if applicable.
+- Then filter by the **Payment Method** if applicable.
 
-3. Then filter by **Action Type** to include only **authentication**, **authorization**, **capture**, and **void** actions.
+- Then filter by **Action Type** to include only **authentication**, **authorization**, **capture**, and **void** actions.
 
-4. Then filter on **Breakdown Type** filtered to include only **Scheme Fixed Fees** and **Scheme Variable Fees**. The sum of the **Holding Currency** column will reconcile with the **Card Payment Scheme Fees** displayed on your payouts report.
+- Then filter on **Breakdown Type** filtered to include only **Scheme Fixed Fees** and **Scheme Variable Fees**. The sum of the **Holding Currency** column will reconcile with the **Card Payment Scheme Fees** displayed on your payouts report.
 
