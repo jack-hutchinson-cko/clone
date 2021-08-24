@@ -43,7 +43,7 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 
 <Accordion title="Manual webhook creation">
 
-1. Scroll down to the _Webhooks_ section of the page and click **New webhook**.
+1. Scroll down to the _Webhooks_ section of the page and select _New webhook_.
 2. Enter the following URL, replacing `example.com` with the URL of your shop: `example.com/checkout_com/webhook/callback`. (A webhook URL specific to your installation is available in the Account Settings section of the plugin configuration panel.)
 
 <TipBox variant="note">
@@ -52,8 +52,8 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 </TipBox>
 
-3. Select **API - v2.0**.
-4. Tick **Select all**, then click **Create webhook**.
+3. Select _API - v2.0_.
+4. Tick _Select all_, then select _Create webhook_.
 
 <img
   maxWidth={300}
@@ -61,7 +61,7 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
   title="Create webhook Magento 2"
 />
 
-5. Click on the webhook you just created, and make a note of the private shared API key.
+5. Select the webhook you just created, and make a note of the private shared API key.
 
 <img
   maxWidth={300}
@@ -117,9 +117,9 @@ You're now ready to configure the Magento 2 plugin.
 ## Configure the plugin
 
 1. Log in to you Magento Admin Panel and go to _Stores > Configuration > Sales > Payment Methods_.
-2. Find the Checkout.com plugin and click **Configure**.
+2. Find the Checkout.com plugin and select _Configure_.
 3. In this configuration panel, go to _Configuration > Global Settings_.
-4. Make sure _Environment_ is set to **Test** so you can start testing card payments.
+4. Make sure Environment is set to Test so you can start testing card payments.
 
 <img
   maxWidth={800}
@@ -127,16 +127,19 @@ You're now ready to configure the Magento 2 plugin.
   title="Magento 2 plugin global settings"
 />
 
-5. Select the _Payment Action_. **Authorize and Capture** means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time. **Authorize** will only authorize the charge; you have to manually capture the payment yourself. If you're unsure, **Authorize and Capture** is likely the right choice.
-6. Then go to _Account Settings_.
-7. Enter your **Secret Key** and **Public Key**. If you're testing, make sure you use the API keys from your sandbox Hub account, then click *Set Webhooks* to automatically register your webhooks in [Checkout.com](http://checkout.com/) Hub.
+5. Select the _Payment Action_. 
+  * Authorize and Capture means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time. 
+  * Authorize will only authorize the charge; you have to manually capture the payment yourself. 
+  * If you're unsure, Authorize and Capture is likely the right choice.
+6. Then go to Account Setting.
+7. Enter your Secret Key and Public Key. If you're testing, make sure you use the API keys from your sandbox Hub account, then click *Set Webhooks* to automatically register your webhooks in [Checkout.com](http://checkout.com/) Hub.
 
 <img
   src="/docs/Integrate/Magento 2/Magento_2_payments_settings_2.gif"
   title="Magento 2 payments settings 2"
 />
 
-8. Click **Save Config**.
+8. Select _Save Config_.
 
 That's it! You're ready to start testing card payments.
 
@@ -147,16 +150,16 @@ That's it! You're ready to start testing card payments.
 1. Go to your storefront and add a product to your cart.
 2. Go to your cart and proceed to the checkout.
 3. Enter the required billing details. You can put anything here, though we recommend using a real email address so you can receive the order confirmation.
-4. Select the **Pay by Card with Checkout.com** method.
+4. Select the _Pay by Card with Checkout.com_ method.
 5. Enter the following card details:
 
 - Number: `4242 4242 4242 4242`
 - Expiry date: `12/25`
 - CVV: `100`
 
-6. Click **Place order**, and you will be redirected to the order confirmation page. If you entered a real email address in the billing details, you'll also receive an order confirmation email.
+6. Select _Place order_, and you will be redirected to the order confirmation page. If you entered a real email address in the billing details, you'll also receive an order confirmation email.
 7. Log in to your Magento Admin Panel.
-8. Go to _Sales > Orders_. Your test order will be displayed there with a `Processing` status (or `Pending Payment` if you choose the **Authorize only** payment action). This indicates that the payment has been successfully captured. The transaction will also appear in the _Payments_ section of your sandbox Hub account.
+8. Go to _Sales > Orders_. Your test order will be displayed there with a `Processing` status (or `Pending Payment` if you choose the Authorize only payment action). This indicates that the payment has been successfully captured. The transaction will also appear in the Payments section of your sandbox Hub account.
 
 <TipBox variant="tip">
 
