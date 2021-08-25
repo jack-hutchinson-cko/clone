@@ -49,7 +49,7 @@ export const ChangeLogWidget = styled.div`
 `;
 
 export const Counter = styled.div`
-  background-color: ${({ theme }) => theme.colors.turquoise};
+  background-color: ${({ theme }) => theme.colors.borderLight};
   color: ${({ theme }) => theme.colors.successDark};
   border-radius: 4px;
   font-size: 16px;
