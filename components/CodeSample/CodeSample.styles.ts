@@ -124,6 +124,7 @@ export const StyledIcons = styled.div`
   right: 20px;
   top: 20px;
   cursor: pointer;
+  z-index: 6;
 `;
 
 export const StyledIconLink = styled(StyledIcons)`
