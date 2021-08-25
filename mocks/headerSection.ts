@@ -3,7 +3,7 @@ import { IconSourceCode, IconChat, IconDocSearch } from 'components/Icons';
 
 export const guidesList: HeaderLink[] = [
   {
-    url: '/api-refs',
+    url: 'https://api-reference.checkout.com/',
     title: 'API Reference',
     description: 'Our reference library for integrating with our API',
     Icon: IconSourceCode,
@@ -15,7 +15,7 @@ export const guidesList: HeaderLink[] = [
     Icon: IconChat,
   },
   {
-    url: '/cdocs',
+    url: 'https://archive.docs.checkout.com/',
     title: 'Classic docs',
     description: 'Documentation for our Classic API',
     Icon: IconDocSearch,
@@ -32,6 +32,6 @@ export const popularSearchesTitle: string = 'Popular searches';
 
 export const emptySearchResult: string = "We couldn't find a match. Please try another term.";
 
-export const loginUrl: string = '/login';
+export const loginUrl: string = 'https://hub.checkout.com/login';
 
-export const testAccountUrl: string = '/get-test-account';
+export const testAccountUrl: string = 'https://www.checkout.com/get-test-account';
