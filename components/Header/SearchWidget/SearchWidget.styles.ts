@@ -68,11 +68,12 @@ export const PopularSearchesItem = styled.a`
   margin: 8px 16px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.base};
-  transition: transform 0.15s linear 0s;
+
   &:hover {
     text-decoration: underline;
   }
   &:hover svg {
+    transition: transform 0.15s linear 0s;
     transform: translateX(40%);
   }
   @media ${MobileBreakPoints.MOBILE_L} {
@@ -106,7 +107,7 @@ export const Button = styled.button`
   outline: 0;
   border: 0;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.base};
+    background-color: ${({ theme }) => theme.colors.fiordLight};
   }
 
   @media ${Breakpoints.MOBILE} {

@@ -65,6 +65,7 @@ export const themes = {
       underline: '#C0F2F4',
       sectionDescription: '#3D4168',
       highlightedLine: '#e6e6f9',
+      fiordLight: '#3d4168',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -224,6 +225,7 @@ export const themes = {
       underline: '#55587B',
       sectionDescription: '#9EA0B4',
       highlightedLine: '#e6e6f9',
+      fiordLight: '#ffffd8',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],

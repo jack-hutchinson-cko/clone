@@ -29,6 +29,7 @@ export const HighlightedBody = styled(Text)<{ mode: 'header' | 'page' }>`
 
   @media ${MobileBreakPoints.MOBILE_L} {
     font-size: ${({ mode }) => (mode === 'header' ? '24px' : '16px')};
+    line-height: 32px;
   }
   color: ${({ theme }) => theme.colors.baseLight};
 `;

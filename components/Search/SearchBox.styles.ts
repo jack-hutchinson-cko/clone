@@ -39,6 +39,7 @@ export const TextFieldHolder = styled.div`
 export const TextField = styled(TextFieldBase)`
   width: 100%;
   font-size: 16px;
+  font-weight: 500;
   font-family: inherit;
   color: ${({ theme }) => theme.colors.base};
   transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;

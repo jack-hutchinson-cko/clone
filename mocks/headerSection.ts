@@ -24,7 +24,7 @@ export const guidesList: HeaderLink[] = [
 
 export const popularSearches: SearchResultLink[] = [
   { title: 'Payment', url: '/payment' },
-  { title: 'Card Verification ', url: '/card-v' },
+  { title: 'Card verification ', url: '/card-v' },
   { title: '3D secure', url: '/3d-secure' },
 ];
 
