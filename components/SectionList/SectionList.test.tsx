@@ -82,6 +82,6 @@ describe('SectionItem', () => {
   });
 
   it('links should contains svg icon', () => {
-    cy.get('[data-cy=section-list-item]').children().get('a').children().get('svg').should('exist');
+    cy.get('[data-cy=section-list-item]').children().get('a').children().get('img').should('exist');
   });
 });
