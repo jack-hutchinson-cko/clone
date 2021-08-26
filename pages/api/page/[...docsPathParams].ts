@@ -4,7 +4,7 @@ import { findPageMetadata } from 'lib/apiFileParser';
 
 const filePathByAccount = {
   ABC: 'docs/ABC/Articles',
-  NAS: 'docs/NAC/Articles',
+  NAS: 'docs/NAS/Articles',
 };
 
 const handler = (_req: NextApiRequest, res: NextApiResponse): void => {
