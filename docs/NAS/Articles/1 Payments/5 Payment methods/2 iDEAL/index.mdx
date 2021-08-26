@@ -28,8 +28,6 @@ iDEAL payments follow a two-step process:
 
 ## Request a payment
 
-The POST request
-
 Use the details below to set up your request.
 
 <tabs>
@@ -49,173 +47,7 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`Bearer {OAuth access token}`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The payment source type. Set this to `ideal`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.bic`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The BIC. Also known as `issuerId` for iDEAL payments.
-
-Eight or 11 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.bic`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The BIC. Also known as `issuerId` for iDEAL payments.
-
-Eight or 11 characters.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.description`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-A description of the order. For example, an order reference number.
-
-Up to 35 characters. Do not use special characters or HTML tags.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.language`
-
-<StatusTag type="optional" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The customer's preferred language (two-letter ISO code).
-
-If you enter an unsupported language, the default language of the issuer is used.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="optional" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The currency in which the payment is being made (three-letter ISO 4217 code). Set this to `EUR`.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
+### Request example
 
 ```json
     {
@@ -236,11 +68,9 @@ If a customer ID or email is not provided in the request, then we automatically 
 
 </TipBox>
 
-### The POST response
+### Response example
 
 If you receive a `202 Success` response with a payment `id` and a `status` field set to `Pending`, your request was successful.
-
-#### Response example
 
 ```json
     {
@@ -286,7 +116,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### The GET request
+### Request example
 
 #### Endpoints
 
@@ -307,64 +137,8 @@ The `cko-session-id` expires 15 minutes after being created.
 </tab>
 </tabs>
 
-#### Header parameters
 
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`Bearer {OAuth access token}`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial response.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
+### Response example
 
 ```json
     {
@@ -542,9 +316,7 @@ Occurs when a refund is declined.
 
 Use the following request to get an up-to-date list of all issuers supporting iDEAL payments.
 
-### The GET request
-
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -563,45 +335,7 @@ Use the following request to get an up-to-date list of all issuers supporting iD
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`Bearer {OAuth access token}`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
+### Response example
 
 ```json
     {
@@ -644,7 +378,7 @@ To start testing, you'll need to:
 ### Test a payment request
 
 1.  Create an iDEAL transaction as above, following the redirect link in the response to the bank's website.
-2.  Click **Confirm transaction**. You should then be redirected to your predefined success URL.
+2.  Select _Confirm transaction_. You should then be redirected to your predefined success URL.
 
 <TipBox variant="note">
 

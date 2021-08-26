@@ -30,11 +30,11 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 </TipBox>
 
 1.  Log in to your test account on the [Hub sandbox](https://sandbox.checkout.com/).
-2.  In the left menu, go to **Settings** > **Channels**, and make a note of your secret and public API keys.
+2.  In the left menu, go to _Settings > Channels_, and make a note of your secret and public API keys.
 
 <img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" />
 
-3.  Scroll down to the **Webhooks** section of the page and click **New webhook**.
+3.  Scroll down to the Webhooks section of the page and select _New webhook_.
 4.  Enter the following URL, replacing `example.com` with the URL of your shop: `example.com/CKOMain-HandleWebhook`.
 
 <TipBox variant="note">
@@ -43,8 +43,8 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 </TipBox>
 
-5.  Select **API - v2.0**.
-6.  Tick **Select all**, then click **Create webhook**.
+5.  Select _API - v2.0_.
+6.  Tick _Select all_, then select _Create webhook_.
 
 <img
   maxWidth={300}
@@ -66,8 +66,8 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 2.  Upload the relevant [cartridges](https://github.com/checkout/link_checkoutcom/tree/master/Cartridges) to your server, using a tool like UX Studio:
     - If you're using SFRA, install `int_checkoutcom_sfra` and `bm_checkoutcom`.
     - If you're using SiteGenesis, install `int_checkoutcom` and `bm_checkoutcom`.
-3.  Log in to your Business Manager account, and go to **Administration > Sites > Manage Sites > \[your site\] > Settings**.
-4.  In the **Cartridges** field, add one of the following to the front of the cartridge path and click Apply:
+3.  Log in to your Business Manager account, and go to _Administration > Sites > Manage Sites > \[your site\] > Settings_.
+4.  In the Cartridges field, add one of the following to the front of the cartridge path and select _Apply+:
     - For SFRA, add `int_checkoutcom_sfra:bm_checkoutcom:`.
     - For SiteGenesis, add `int_checkoutcom:bm_checkoutcom:`.
 
@@ -82,9 +82,9 @@ SFRA example:
     - For SFRA, rename the `RefArchGlobal` folder to the name of your site.
     - For SiteGenesis, rename the `SiteGenesisGlobal` folder to the name of your site.
 3.  Navigate back to the package's root folder, and zip the `metadata` folder.
-4.  Next, log in to Business Manager and go to **Administration > Site Development > Site Import & Export**.
-5.  Under *Upload Archive*, select **Local** and then click **Choose file**.
-6.  Find the `metadata.zip` you just created, click **Open** and then **Upload**.
+4.  Next, log in to Business Manager and go to _Administration > Site Development > Site Import & Export_.
+5.  Under Upload Archive, select _Local_ and then _Choose file_.
+6.  Find the `metadata.zip` you just created, select _Open_ and then _Upload_.
 
 <img
   maxWidth={700}
@@ -133,9 +133,9 @@ The [Checkout.com](http://Checkout.com) credit card form is not compatible with 
 
 ## Configure the cartridges
 
-1.  Log in to Business Manager, and go to **Merchant Tools > Site Preferences > Custom Preferences > Checkout.com Sandbox API**.
-2.  Enter the public key, secret key, and private shared key from your sandbox Hub account, and click **Save**.
-3.  Go back to the custom site preferences page and click **Checkout.com Global Settings**.
+1.  Log in to Business Manager, and go to _Merchant Tools > Site Preferences > Custom Preferences > Checkout.com Sandbox API_.
+2.  Enter the public key, secret key, and private shared key from your sandbox Hub account, and select _Save_.
+3.  Go back to the custom site preferences page and select _Checkout.com Global Settings_.
 
 <img
   maxWidth={700}
@@ -144,11 +144,11 @@ The [Checkout.com](http://Checkout.com) credit card form is not compatible with 
 />
 
 4.  Make sure *Enable* is set to **Yes**, to enable the Checkout.com card payment form.
-5.  Set *Mode* to **Sandbox**, so you can start testing card payments.
-6.  Enter your *Business Name* (the name of your shop), and fill in the business address, city and country fields.
-7.  Choose whether or not you want to *Auto capture your payment*. Set to **Yes** if you want your payment to be captured (i.e., the money due from the customer's account is moved into your account) immediately after being authorized. Set to **No** if you want to capture the payment manually.
-8.  If you set *Auto capture* to **Yes**, you can specify the delay (in hours) before the payment is captured. For example, entering `1.5` would capture the payment one hour and 30 minutes after authorization. The default is `0`.
-9.  Click **Save**.
+5.  Set Mode to _Sandbox_, so you can start testing card payments.
+6.  Enter your business name (the name of your shop), and fill in the business address, city and country fields.
+7.  Choose whether or not you want to Auto capture your payment. Set to _Yes_ if you want your payment to be captured (i.e., the money due from the customer's account is moved into your account) immediately after being authorized. Set to _No_ if you want to capture the payment manually.
+8.  If you set Auto capture to _Yes_, you can specify the delay (in hours) before the payment is captured. For example, entering `1.5` would capture the payment one hour and 30 minutes after authorization. The default is `0`.
+9.  Select _Save_.
 
 That's it! You're ready to start testing card payments.
 
@@ -159,11 +159,11 @@ That's it! You're ready to start testing card payments.
 1.  Go to your storefront and add a product to your cart.
 2.  Go to your cart and proceed to the checkout.
 3.  Enter the required billing details. You can put anything here, though we recommend using a real email address so you can receive the order confirmation.
-4.  Select the **Pay by Card with Checkout.com** method.
+4.  Select the _Pay by Card with Checkout.com_ method.
 5.  Enter [test card details](/testing/test-card-numbers) (you can use any future expiry date).
-6.  Click **Place order**, and you will be redirected to the order confirmation page. If you entered a real email address in the billing details, you'll also receive an order confirmation email.
+6.  Select _Place order_, and you will be redirected to the order confirmation page. If you entered a real email address in the billing details, you'll also receive an order confirmation email.
 7.  Log in to Business Manager.
-8.  Go to **Merchant Tools > Ordering > Orders** and click **Find** to show your orders. Your test order will be displayed there with a `Created` status. This indicates that the payment has been successfully authorized and captured. The transaction will also appear in the *Payments* section of your sandbox Hub account.
+8.  Go to _Merchant Tools > Ordering > Orders_ and select _Find_ to show your orders. Your test order will be displayed there with a `Created` status. This indicates that the payment has been successfully authorized and captured. The transaction will also appear in the *Payments* section of your sandbox Hub account.
 
 <TipBox variant="tip">
 
