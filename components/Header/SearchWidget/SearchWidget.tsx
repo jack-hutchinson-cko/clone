@@ -89,7 +89,7 @@ const SearchWidget: FC<WithMenuStateProps<Props>> = ({
                 <SearchesTitle>{popularSearchesTitle}</SearchesTitle>
                 {popularSearches.map(({ title, url }) => (
                   <Link key={title} href={url} passHref>
-                    <PopularSearchesItem target="_blank">
+                    <PopularSearchesItem>
                       {title} <IconActionArrowRight />
                     </PopularSearchesItem>
                   </Link>

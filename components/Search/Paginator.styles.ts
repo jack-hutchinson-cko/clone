@@ -18,7 +18,7 @@ export const LinkContainer = styled.div`
     text-decoration: none;
     font-size: 14px;
     padding: 0 8px;
-    color: ${({ theme }) => theme.colors.successDark};
+    color: ${({ theme }) => theme.colors.base};
     font-size: 16px;
     &:hover {
       text-decoration: underline;

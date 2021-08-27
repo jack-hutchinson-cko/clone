@@ -23,9 +23,9 @@ export const guidesList: HeaderLink[] = [
 ];
 
 export const popularSearches: SearchResultLink[] = [
-  { title: 'Payment', url: '/payment' },
-  { title: 'Card verification ', url: '/card-v' },
-  { title: '3D secure', url: '/3d-secure' },
+  { title: 'Payment', url: 'search?query=payment&page=1' },
+  { title: 'Card verification ', url: '/search?query=card%20verfication&page=1' },
+  { title: '3D secure', url: '/search?query=3d%20secure&page=1' },
 ];
 
 export const popularSearchesTitle: string = 'Popular searches';
