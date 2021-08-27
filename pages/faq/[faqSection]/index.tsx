@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Head from 'components/Head';
 import BreadCrumbs from 'components/BreadCrumbs';
-import { TextHeadingThree, TextHeadingTwo } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 import MDXProvider from 'components/MDXProvider';
 import SectionList from 'components/SectionList';
 import {
@@ -21,6 +21,8 @@ import {
   Layout,
   MainContent,
   SectionLinksContainer,
+  QuestionsContainer,
+  TextHeadingThree,
 } from 'components/FAQStyledComponents';
 
 type Props = {
@@ -40,15 +42,17 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
     <>
       <Head title={frontMatter.title} />
       <ContentWrapper>
-        <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+        <BreadCrumbs withIcon breadCrumbsItem={breadCrumbsItem} />
         <Layout>
           <MainContent>
             <HeaderContainer>
               <TextHeadingTwo>{frontMatter.title}</TextHeadingTwo>
               <HeadDescription>{frontMatter.description}</HeadDescription>
             </HeaderContainer>
-            <TextHeadingThree>Question</TextHeadingThree>
-            <MDXProvider source={source} />
+            <QuestionsContainer>
+              <TextHeadingThree>Question</TextHeadingThree>
+              <MDXProvider source={source} />
+            </QuestionsContainer>
           </MainContent>
           <SectionLinksContainer>
             <SectionList list={sectionList} activeItem={router.asPath} />

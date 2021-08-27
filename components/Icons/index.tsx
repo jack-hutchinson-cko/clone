@@ -541,3 +541,9 @@ export const IconEcommerce: FC<Props> = (props) => (
     />
   </StyledIcon>
 );
+
+export const IconArrowLeft: FC<Props> = (props) => (
+  <StyledIcon width={8} height={14} {...props}>
+    <path d="M7 1.00195L1 7L7 12.998" stroke="#6D708E" fill="none" />
+  </StyledIcon>
+);

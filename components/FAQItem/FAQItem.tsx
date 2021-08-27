@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import Accordion from 'components/Accordion';
-import { QuestionWrapper } from './FAQItem.styles';
+import { QuestionWrapper, StyledAccordion } from './FAQItem.styles';
 
 type Props = {
   title: string;
@@ -10,9 +9,9 @@ const Question = () => <QuestionWrapper>Q:</QuestionWrapper>;
 
 const FAQItem: FC<Props> = ({ title, children, ...otherProps }) => {
   return (
-    <Accordion title={title} {...otherProps} headerIcon={<Question />}>
+    <StyledAccordion title={title} {...otherProps} headerIcon={<Question />}>
       {children}
-    </Accordion>
+    </StyledAccordion>
   );
 };
 

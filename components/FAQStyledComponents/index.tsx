@@ -7,6 +7,10 @@ import {
   MainContent,
   SectionLinksContainer,
   PopularFaqItems,
+  QuestionsContainer,
+  TextHeadingOne,
+  TextHeadingThree,
+  StyledCategoriesItem,
 } from './FAQStyledComponents.styles';
 
 export {
@@ -18,4 +22,8 @@ export {
   MainContent,
   SectionLinksContainer,
   PopularFaqItems,
+  QuestionsContainer,
+  TextHeadingOne,
+  TextHeadingThree,
+  StyledCategoriesItem,
 };
