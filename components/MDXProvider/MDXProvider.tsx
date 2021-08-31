@@ -63,6 +63,7 @@ import {
   IBuilderCodePreview,
 } from 'components/IBuilder';
 import FAQSectionLabel from 'components/FAQSectionLabel';
+import FullScreenView from 'components/FullScreenView';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -136,6 +137,7 @@ export const mdxComponents = {
   IBuilderCodePreview,
   FAQItem,
   FAQSectionLabel,
+  FullScreenView,
 };
 
 type Props = {

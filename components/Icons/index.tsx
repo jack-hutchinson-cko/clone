@@ -542,6 +542,36 @@ export const IconEcommerce: FC<Props> = (props) => (
   </StyledIcon>
 );
 
+export const IconFullScreen: FC<Props> = (props) => (
+  <StyledIcon width={40} height={40} {...props}>
+    <rect
+      x="1.68103"
+      y="1.61914"
+      width="36.8562"
+      height="36.8562"
+      rx="3.5"
+      fill="white"
+      stroke="currentColor"
+    />
+    <path
+      d="M22.3645 17.1012L28.4174 11.0483M28.4174 11.0483L28.4173 15.7918M28.4174 11.0483L23.6739 11.0484"
+      stroke="currentColor"
+    />
+    <path
+      d="M16.8392 22.6283L10.7863 28.6812M10.7863 28.6812L10.7864 23.9377M10.7863 28.6812L15.5298 28.6811"
+      stroke="currentColor"
+    />
+    <path
+      d="M17.1156 17.6218L11.0629 11.5691M11.0629 11.5691L15.8063 11.569M11.0629 11.5691L11.0628 16.3125"
+      stroke="currentColor"
+    />
+    <path
+      d="M22.6405 23.1482L28.6932 29.201M28.6932 29.201L23.9498 29.201M28.6932 29.201L28.6933 24.4575"
+      stroke="currentColor"
+    />
+  </StyledIcon>
+);
+
 export const IconArrowLeft: FC<Props> = (props) => (
   <StyledIcon width={8} height={14} {...props}>
     <path d="M7 1.00195L1 7L7 12.998" stroke="#6D708E" fill="none" />
