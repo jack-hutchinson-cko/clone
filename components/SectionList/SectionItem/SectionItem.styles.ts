@@ -15,11 +15,11 @@ export const StyledLink = styled.a<{ isActive: boolean }>`
   align-items: center;
   padding: 12px;
   border-radius: 4px;
-  color: ${({ theme }) => theme.colors.base};
+  color: ${({ theme }) => theme.colors.sectionIconLight};
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
-  line-height: 24px;
+  line-height: 20px;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.sectionListBackground};
@@ -27,7 +27,13 @@ export const StyledLink = styled.a<{ isActive: boolean }>`
     ${({ isActive }) => !isActive && 'text-decoration: underline;'}
   }
 
-  ${({ isActive, theme }) => isActive && `background-color: ${theme.colors.sectionListBackground};`}
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
+      background-color: ${theme.colors.sectionListBackground};
+      color: ${theme.colors.base};
+      font-weight: 500;
+    `}
 
   mark {
     color: inherit;
@@ -36,7 +42,7 @@ export const StyledLink = styled.a<{ isActive: boolean }>`
     ${({ isActive, theme }) =>
       isActive &&
       css`
-        background: linear-gradient(to top, ${theme.colors.underline} 0 4px, transparent 10px 100%);
+        background: linear-gradient(to top, ${theme.colors.underline} 0 6px, transparent 8px 100%);
       `}
   }
 `;
