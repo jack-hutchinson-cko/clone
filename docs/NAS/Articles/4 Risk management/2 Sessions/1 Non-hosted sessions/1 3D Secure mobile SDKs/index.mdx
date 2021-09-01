@@ -79,7 +79,7 @@ Below are some code examples for each platform.
 <Box horizontal="sm">
 <Accordion title="See example Swift code"> 
 
-```json
+```swift
 // 1. Init with defaults
 let checkout3DS = Checkout3DS2Service()
 
@@ -111,7 +111,7 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 <Box horizontal="sm">
 <Accordion title="See example Objective-C code"> 
 
-```json
+```objc
 // 1. Init with defaults
 CKOCheckout3DS2Service *checkout3DS2 = [[CKOCheckout3DS2Service alloc] init];
 
@@ -144,7 +144,7 @@ CKOAuthenticationParameters *authenticationParameters = [[CKOAuthenticationParam
 <Box horizontal="sm">
 <Accordion title="See example Kotlin code"> 
 
-```json
+```kotlin
 // 1. Init with defaults
 val checkout3DS = Checkout3DS2Service(context)
 
@@ -189,7 +189,7 @@ checkout3DS.authenticate(authenticationParameters, context) { result: Authentica
 <Box horizontal="sm">
 <Accordion title="See example Java code"> 
 
-```json
+```java
 // 1. Init with defaults
 Checkout3DS2Service checkout3DS = new Checkout3DS2Service(context);
 
@@ -246,7 +246,7 @@ Then, on iOS, install the library in your app project using CocoaPods. For Andro
 <tabs>
 <tab title="Kotlin">
 
-```json withBorder=false
+```kotlin withBorder=false
 // Add the following to your project’s top-level build.gradle.kts file.
 allprojects {
     repositories {
@@ -310,7 +310,7 @@ Initialize the SDK, setting the environment (production or sandbox), the locale,
 <tabs>
 <tab title="Swift">
 
-```json withBorder=false
+```swift withBorder=false
 // 1a. Initialize with default arguments
 let checkout3DS = Checkout3DSService()
 
@@ -326,7 +326,7 @@ let checkout3DS = Checkout3DSService(
 </tab>
 <tab title="Objective-C">
 
-```json withBorder=false
+```objc withBorder=false
 // 1a. Initialize with default arguments
 CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] init];
 
@@ -340,7 +340,7 @@ CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] initWithEnv
 </tab>
 <tab title="Kotlin"> 
 
-```json withBorder=false
+```kotlin withBorder=false
 // 1a. Initialize with default arguments
 val checkout3DS = Checkout3DSService(context)
 
@@ -357,7 +357,7 @@ val checkout3DS = Checkout3DSService(
 </tab>
 <tab title="Java">
 
-```json withBorder=false
+```java withBorder=false
 // 1a. Initialize with default arguments
 Checkout3DSService checkout3DS = new Checkout3DSService(context);
 
