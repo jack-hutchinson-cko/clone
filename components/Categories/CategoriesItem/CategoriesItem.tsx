@@ -9,6 +9,7 @@ export type Props = {
   href: string;
   title?: string;
   imageSrc?: string;
+  darkThemeImageSrc?: string;
   imageMaxWidth?: number;
 };
 
@@ -16,6 +17,7 @@ const CategoriesItem: FC<Props> = ({
   href,
   title,
   imageSrc,
+  darkThemeImageSrc,
   imageMaxWidth = DEFAULT_IMG_WIDTH,
   children,
   ...rest
@@ -27,7 +29,13 @@ const CategoriesItem: FC<Props> = ({
           <Header>
             {imageSrc && (
               <HeaderImage width={imageMaxWidth}>
-                <ImageBox src={imageSrc} alt={title} maxWidth={imageMaxWidth} layout="fill" />
+                <ImageBox
+                  src={imageSrc}
+                  darkThemeSrc={darkThemeImageSrc}
+                  alt={title}
+                  maxWidth={imageMaxWidth}
+                  layout="fill"
+                />
               </HeaderImage>
             )}
             <span>{title}</span>

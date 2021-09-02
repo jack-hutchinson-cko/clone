@@ -244,7 +244,13 @@ export const getPopularItemsMDXSource = (faqItems: ParsedFAQItem[]): string => {
   }, '');
 };
 
-export type FAQSectionType = { href: string; imageSrc: string; title?: string; children: string };
+export type FAQSectionType = {
+  href: string;
+  imageSrc: string;
+  darkThemeImageSrc?: string;
+  title?: string;
+  children: string;
+};
 type FAQPathType = { params: { faqSection: string } };
 
 export const getFAQSectionSettings = (
@@ -266,7 +272,12 @@ export const getFAQSectionSettings = (
     const faqSection = path.replace('/faq/', '');
 
     const {
-      data: { title, previewIcon: imageSrc = '', description: children = '' },
+      data: {
+        title,
+        previewIcon: imageSrc = '',
+        previewIconDark: darkThemeImageSrc = '',
+        description: children = '',
+      },
       content,
     } = getMdxFileData(fileSourcePath, { addGitInfo: false });
 
@@ -283,7 +294,7 @@ export const getFAQSectionSettings = (
 
     mapFaqSectionToFilePath[faqSection] = fileSourcePath;
     pathUrls.push({ params: { faqSection } });
-    faqSections.push({ href: path, title, imageSrc, children });
+    faqSections.push({ href: path, title, imageSrc, darkThemeImageSrc, children });
   });
 
   return {

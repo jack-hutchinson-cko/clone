@@ -208,6 +208,7 @@ type FileDataType = {
   modifiedDate?: string;
   lastAuthor?: string;
   previewIcon?: string;
+  previewIconDark?: string;
   description?: string;
 };
 
