@@ -12,7 +12,7 @@ This guide demonstrates how to onboard a sub-entity, process payments on its beh
 Check you've completed the following steps before starting your integration. 
 
 - Your account is able to onboard sub-entities.
-- You have your `client id` and `client secret`, so you can generate access tokens with the required scopes. See our [authentication workflow](/resources/api-authentication/o-auth-2-0-client-credentials) for more information.
+- You have your `client_id` and `client_secret`, so you can generate access tokens with the required scopes. See our [authentication workflow](/resources/api-authentication/o-auth-2-0-client-credentials) for more information.
 - You have your processing channel ID, currency account and payment instrument IDs which will be required throughout the process.
 - You have configured your webhooks and subscribed to the relevant events through our [Workflow API](/workflows). 
 - You are familiar with our [account structure](/marketplaces/account-structure).
@@ -35,98 +35,25 @@ Vendors, retailers and service providers on your Platform are represented by sub
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
-- **Onboard with the minimum required information**
-- **Retrieve details (optional)**
-- **Make updates to provide outstanding information (optional)**
-- **Upload identity documents**
-- **Keep up to date with webhook notifications**
+* **Onboard with the minimum required information**
+* **Upload identity documents**
+* **Keep up to date with webhook notifications**
 
 ---
 
-
 #### Step 1a: Onboard a sub-entity
-
-To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, **payment** and **payout** capabilities for this sub-entity will be enabled.
 
 <TipBox variant="info">
 
-Although not mentioned in the table below, `reference`, `contact_details` and `profile` are always required. See the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace) for more information.
+To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information page](/marketplaces/about-onboarding).
 
 </TipBox>
 
-<Table withTopBorder={false}>
-<TableHead headers={['Information', 'Description', 'To onboard', 'Ready to trigger checks']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Individual
-
-</TableCell>
-<TableCell>
-
-Information about the individual represented by the sub-entity.
-
-</TableCell>
-<TableCell>
-
-- First name
-- Last name
-- Trading name
-- Registered address
-
-</TableCell>
-<TableCell>
-
-- First name
-- Last name
-- Trading name
-- Registered address
-- Date of birth
-- Identification document
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
+#### Request
 
 We will use the example of **Daniel’s Donuts**, a donut seller (who is a sole proprietor) on our fictional platform, Desserts Delivered. We will provide the minimum required fields for Daniel’s Donuts to start its onboarding!
 
-Use <RequestTag type="post" /> `/marketplace/entities`
-
-#### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
+Use <RequestTag type="post" />`/marketplace/entities`.
 
 ```json
 {
@@ -168,7 +95,9 @@ Content-Type
 
 #### Response
 
-A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
+A successful response will include a unique sub-entity id, which you should store for future requests. Additionally, the response has the capabilities object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
+
+You will also notice there is a status field set to requirements_due. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/about-onboarding).
 
 ```json
 {
@@ -184,10 +113,6 @@ A successful response will include a unique sub-entity `id`, which you should st
     }
   },
  "requirements_due": [
-	{
-       "field": "individual.date_of_birth",
-       "reason": "required"
-    },
 	{
        "field": "individual.identification.document",
        "reason": "required"
@@ -209,284 +134,15 @@ That’s all it takes to create a sub-entity!
 
 #### Step 1b: Upload identity documentation
 
-We can see from the response in the previous step that there are **two** outstanding requirements due – one of which is an **identification document**. We can use <RequestTag type="post" /> `https://files.checkout.com` to upload an identity document for Daniel.
+Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/marketplaces/about-onboarding/upload-a-file).
 
-#### Request
+You then need to update the sub-entity with this identification documentz attached, so we trigger due diligence checks.
 
-Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to identification. For a full list of possible fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put). Please note that an identity document can be comprised of a front and back file [depending on its type](/marketplaces/about-onboarding/upload-a-file).
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`multipart/form-data`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<TipBox variant="info">
-
-Type can be:
-
-- "passport" 
-- "national_identity_card" 
-- "driving_license" 
-- "citizen_card" 
-- "residence_permit" 
-- "electoral_id".
-
-A back is required for all types other than "passport".
-
-</TipBox>
-</Box>
-
-```json withBorder=false
-curl https://files.checkout.com \
-  -F "type=passport" \
-  -F "front=dy_passport.jpg" \
-  -F "purpose=identification"
-```
-
-<Box horizontal="sm">
-
-#### Response
-
-If you received a file `id` in your response, the document was accepted.
-
-</Box>
-
-```json withBorder=false
-{
-  "id": "file_6lbss42ezvoufcb2beo76rvwly",
-  "_links": {
-    "self": {
-      "href": "https://files.sandbox.checkout.com/files/file_6lbss42ezvoufcb2beo76rvwly"
-    }
-  }
-}
-```
-
-<Box horizontal="sm">
-
-In the next step, we'll use this file `id` to attach Daniel's identification document.
+Read more about how to do this on our [onboarding page](/marketplaces/about-onboarding/onboard-a-sub-entity-full).
 
 ---
 
-#### Step 1c: Update sub-entity with additional details
-
-To trigger checks, we must provide the outstanding requirements detailed, so let’s do that next.
-
-Within the `individual` object, you now need to include the `identification.documentation` object with the following pieces of information.
-
-- **Type:** Read more about [what types are accepted](/marketplaces/about-onboarding/upload-a-file).
-- **Front:** Required for all identification types. This should be the `id` returned when you uploaded the file.
-
-We will update **Daniel’s Donuts** with Daniel’s date of birth and identification document.
-
-With the `id` returned in the response to step 1a, use <RequestTag type="put" /> `/marketplace/entities/{id}` to update the sub-entity representing Daniel’s Donuts with additional information - `individual.date_of_birth` and `individual.identification.document`.
-
-#### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-```json
-{
-  "reference":"0123456",
-  "contact_details":{
-    "phone":{
-      "number":"2345678910"
-    }
-  },
-  "profile":{
-    "urls":[
-      "https://www.daniels-donuts.com"
-    ],
-    "mccs":[
-      5814
-    ]
-  },
-  "individual":{
-    "first_name":"Daniel",
-    "last_name":"Yubi",
-    "trading_name":"Daniel's Donuts",
-    "national_tax_id":"1234567",
-    "registered_address":{
-      "address_line1":"90 Tottenham Court Road",
-      "city":"London",
-      "zip":"W1T4TJ",
-      "country":"GB"
-    },
-    "date_of_birth":{
-      "day":5,
-      "month":6,
-      "year":1995
-    },
-	identification": {
-      "document": {
-        "type": "passport",
-        "front": "file_jxaps37jnfaupfu6bsei7rj5iu"
-      }
-    }
-  }
-}
-```
-
-#### Response
-
-```json
-{
-  "id":"ent_fusptdy4pdj2x5gpvooyvsupby",
-  "reference":"0123456",
-  "status": "pending",
-  "capabilities":{
-    "payments":{
-      "enabled":false
-    },
-    "payouts":{
-      "enabled":false
-    }
-  },
- "requirements_due": [],
-  "_links":{
-    "self":{
-      "href":"https://api.sandbox.checkout.com/marketplace/entities/ent_fusptdy4pdj2x5gpvooyvsupby"
-    }
-  }
-}
-```
-
-#### Step 1c: Retrieve a sub-entity (optional)
-
-<TipBox variant="info">
-
-This step is completely optional, we are just demonstrating how details can be retrieved; however, it’s not necessary to do so at this stage and you may skip to step 1d.
-
-</TipBox>
-
-Use <RequestTag type="get" /> `/marketplace/entities/{id}` to retrieve the sub-entity representing Daniel’s Donuts. We can see that Daniel’s Donuts has all the details we provided earlier.
-
-#### Response
-
-```json
-{
-"id":"ent_vv2jjkuf2gzj5tcw2x7ptua7zy",
-  "reference":"0123456",
-  "status": "pending",
-  "capabilities":{
-    "payments":{
-      "enabled":false
-    },
-    "payouts":{
-      "enabled":false
-    }
-  },
-  "contact_details":{
-    "phone":{
-      "number":"2345678910"
-    }
-  },
-  "profile":{
-    "default_holding_currency":"GBP",
-    "urls":[
-      "https://www.daniels-donuts.com"
-    ],
-    "mccs":[
-      "5814"
-    ]
-  },
-  "individual":{
-    "first_name":"Daniel",
-    "last_name":"Yubi",
-    "trading_name":"Daniel's Donuts",
-    "national_tax_id":"1234567",
-    "registered_address":{
-      "address_line1":"90 Tottenham Court Road",
-      "city":"London",
-      "zip":"W1T4TJ",
-      "country":"GB"
-    },
-    "date_of_birth":{
-      "day":5,
-      "month":6,
-      "year":1995
-    },
-	identification": {
-      "document": {
-        "type": "passport",
-        "front": "file_jxaps37jnfaupfu6bsei7rj5iu"
-      }
-    }
-  },
- "instruments":[],
- "requirements_due": [],
-  "_links":{
-    "self":{
-      "href":"https://api.sandbox.checkout.com/marketplace/entities/ent_vv2jjkuf2gzj5tcw2x7ptua7zy"
-    }
-  }
-}
-```
-
-<TipBox variant="info">
-
-Please note that `individual.legal_name` is calculated by concatenating `individual.first_name`, `individual.middle_name`, and `individual.last_name` and may not be updated directly.
-
-</TipBox>
-
-#### Step 1d: Handle due diligence result and capability changes
+#### Step 1c: Handle due diligence result and capability changes
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows/webhook-event-types). You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our `legal_name` fail triggers is used for simulation, due diligence will always pass in Sandbox.
 
@@ -511,9 +167,9 @@ For **Daniel’s Donuts**, we receive the `full_dd_passed` with the following pa
 }
 ```
 
-If due diligence is passed, we will enable the sub-entity’s **payment** and **payout** capabilities. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
+If due diligence is passed, we will enable the sub-entity’s payment and payout capabilities. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
 
-For Daniel’s Donuts, we receive the `payments_enabled` and `payouts_enabled` with the following payloads:
+For **Daniel’s Donuts**, we receive the `payments_enabled` and payouts_enabled with the following payloads:
 
 ```json
 {
@@ -569,149 +225,48 @@ Vendors, retailers and service providers on your Platform are represented by sub
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
-- **Onboard with the minimum required information**
-- **Retrieve details (optional)**
-- **Make updates to provide outstanding information (optional)**
-- **Upload identity documents**
-- **Keep up to date with webhook notifications**
+* **Onboard with the minimum required information**
+* **Upload identity documentation**
+* **Keep up to date with webhook notifications**
 
 ---
 
 #### Step 1a: Onboard a sub-entity
 
-To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, **payment** and **payout** capabilities for this sub-entity will be enabled.
-
 <TipBox variant="info">
 
-Although not mentioned in the table below, `reference`, `contact_details` and `profile` are always required. See the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace) for more information.
+To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information](/marketplaces/about-onboarding) page.
 
 </TipBox>
 
-<Table withTopBorder={false}>
-<TableHead headers={['Information', 'Description', 'To onboard', 'Ready to trigger checks']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Company
-
-</TableCell>
-<TableCell>
-
-Information about the company represented by the sub-entity.
-
-</TableCell>
-<TableCell>
-
-- Legal name
-- Trading name
-- Principal address
-
-</TableCell>
-<TableCell>
-
-- Legal name
-- Trading name
-- Principal address
-- Registered address
-- Business registration number
-- All representative(s) ready to trigger checks
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Company representative(s)
-
-</TableCell>
-<TableCell>
-
-Information about representatives of this company.
-
-</TableCell>
-<TableCell>
-
-- First name
-- Last name
-
-</TableCell>
-<TableCell>
-
-- First name
-- Last name
-- Date of birth
-- Address
-- Identification document
-
-<InfoBox>
-
-Read about [uploading a file](/d-marketplaces/upload-a-file).
-
-</InfoBox>
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
 We will use the example of **The Cake Shop**, a cake seller on our fictional platform, Desserts Delivered. We will provide the minimum required fields for The Cake Shop to start its onboarding!
 
-Use <RequestTag type="post" /> `/marketplace/entities` to create a sub-entity representing The Cake Shop.
+Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity representing The Cake Shop.
 
 #### Request
 
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
 ```json
 {
-  "reference":"678910",
+  "reference":"0123456",
   "contact_details":{
     "phone":{
-      "number": "111222333"
+      "number":"2345678910"
     }
   },
   "profile":{
     "urls":[
-      "https://www.thecakeshop.com"
+      "https://www.daniels-donuts.com"
     ],
     "mccs":[
       5814
     ]
   },
-  "company":{
-    "legal_name":"The Cake Shop Inc.",
-    "trading_name":"The Cake Shop",
-    "principal_address":{
+  "individual":{
+    "first_name":"Daniel",
+    "last_name":"Yubi",
+    "trading_name":"Daniel's Donuts",
+    "national_tax_id":"1234567",
+    "registered_address":{
       "address_line1":"90 Tottenham Court Road",
       "city":"London",
       "zip":"W1T4TJ",
@@ -732,10 +287,12 @@ Content-Type
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
+You will also notice there is a status field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/about-onboarding).
+
 ```json
 {
-  "id":"ent_nofjig36ypra6236f4tfm5bvui",
-  "reference":"678910",
+  "id":"ent_vv2jjkuf2gzj5tcw2x7ptua7zy",
+  "reference":"0123456",
   "status": "requirements_due",
   "capabilities":{
     "payments":{
@@ -747,21 +304,13 @@ A successful response will include a unique sub-entity `id`, which you should st
   },
  "requirements_due": [
 	{
-       "field": "company.registered_address",
-       "reason": "required"
-    },
-	{
-       "field": "company.business_registration_number",
-       "reason": "required"
-    },
-    {
-       "field": "company.representatives",
+       "field": "individual.identification.document",
        "reason": "required"
     },
   ],
   "_links":{
     "self":{
-      "href":"https://api.sandbox.checkout.com/marketplace/entities/ent_nofjig36ypra6236f4tfm5bvui"
+      "href":"https://api.sandbox.checkout.com/marketplace/entities/ent_vv2jjkuf2gzj5tcw2x7ptua7zy"
     }
   }
 }
@@ -994,165 +543,19 @@ Use <RequestTag type="get" /> `/marketplace/entities/{id}` to retrieve the sub-e
 
 ---
 
-#### Step 1d: Upload an identity document for representative of sub-entity
+#### Step 1b: Upload an identity document for representative of sub-entity
 
-There is now only one outstanding requirement to trigger due diligence checks for our sub-entity, an **identification document**. We can use <RequestTag type="post" /> `https://files.checkout.com` to upload an identity document for Chrisi.
+Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/four/marketplaces/about-onboarding/upload-a-file).
 
-#### Request
+You then need to update the sub-entity with this identification documentz attached, so we trigger due diligence checks.
 
-Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an `identification` document, set this to identification. For a full list of possible fields, see our API reference. Please note that an identity document can be comprised of a front and back file [depending on its type](/marketplaces/about-onboarding/upload-a-file).
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`multipart/form-data`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<TipBox variant="info">
-
-Type can be:
-
-- "passport" 
-- "national_identity_card" 
-- "driving_license" 
-- "citizen_card" 
-- "residence_permit" 
-- "electoral_id".
-
-A back is required for all types other than "passport".
-
-</TipBox>
-</Box>
-
-```json withBorder=false
-curl https://files.checkout.com \
-  -F "type=passport" \
-  -F "front=cw_passport.jpg" \
-  -F "purpose=identification"
-```
-
-<Box horizontal="sm"> 
-
-#### Response
-
-If you received a file `id` in your response, the document was accepted.
-
-</Box>
-
-```json withBorder=false
-{
-  "id": "file_6lbss42ezvoufcb2beo76rvwly",
-  "_links": {
-    "self": {
-      "href": "https://files.sandbox.checkout.com/files/file_6lbss42ezvoufcb2beo76rvwly"
-    }
-  }
-}
-```
-
-<Box horizontal="sm"> 
+Read more about how to do this on our [onboarding page](/marketplaces/about-onboarding/onboard-a-sub-entity-full).
 
 ---
 
-#### Step 1d: Update the sub-entity with the identification document
+#### Step 1c: Handle due diligence result and capabilities changes
 
-Just as we did with step 1b, we need to update the sub-entity. Within the `company.representatives` array, we will be able to see our representative displayed as an object – this is where we need to include the `identification.documentation` object. It should include the following information.
-
-- **Type:** Read more about [what types are accepted](/marketplaces/about-onboarding/upload-a-file).
-- **Front:** Required for **all** identification types. This should be the id returned when you uploaded the file.
-
-```json
-{
-  "reference":"678910",
-  "contact_details":{
-    "phone":{
-      "number":"111222333"
-    }
-  },
-  "profile":{
-    "urls":[
-      "https://www.thecakeshop.com"
-    ],
-    "mccs":[
-      5814
-    ]
-  },
-  "company":{
-    "business_registration_number":"452349600005",
-    "legal_name":"The Cake Shop Inc.",
-    "trading_name":"The Cake Shop",
-    "principal_address":{
-      "address_line1":"90 Tottenham Court Road",
-      "city":"London",
-      "zip":"W1T4TJ",
-      "country":"GB"
-    },
-    "registered_address":{
-      "address_line1":"90 Tottenham Court Road",
-      "city":"London",
-      "zip":"W1T4TJ",
-      "country":"GB"
-    },
-    "representatives":[
-      {
-        "first_name":"Chrisi",
-        "last_name":"Webster",
-        "address":{
-          "address_line1":"123 ABC Close",
-          "city":"London",
-          "zip":"E1 5DP",
-          "country":"GB"
-        },
-        "date_of_birth":{
-          "day":5,
-          "month":6,
-          "year":1995
-        },
-	"identification": {
-      "document": {
-        "type": "passport",
-        "front": "file_jxaps37jnfaupfu6bsei7rj5iu"
-      }
-   	 }
-    }
-   ]
-  }
-}
-```
-
-You can check to see if the document was successfully added to that sub-entity by retrieving it again.
-
-And with that, we have met the requirements to trigger due diligence checks!
-
-#### Step 1f: Handle due diligence result and capabilities changes
-
-Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook](/workflows/webhook-event-types) notification. You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our `legal_name` fail triggers is used for simulation, due diligence will always pass in Sandbox. 
+Once we have conducted our due diligence checks, we will inform you of the outcome via webhook notification. You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our legal_name fail triggers is used for simulation, due diligence will always pass in Sandbox. 
 
 For **The Cake Shop**, we receive the `full_dd_passed` with the following payload:
 
@@ -1175,9 +578,9 @@ For **The Cake Shop**, we receive the `full_dd_passed` with the following payloa
 }
 ```
 
-If due diligence is passed, we will enable the sub-entity’s **payment** and **payout** capabilities. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
+If due diligence is passed, we will enable the sub-entity’s **payment** and **payout capabilities**. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
 
-For **The Cake Shop**, we receive the `payments_enabled` and `payouts_enabled` with the following payloads:
+For **The Cake Shop**, we receive the payments_enabled and payouts_enabled with the following payloads:
 
 ```json
 {
@@ -1196,6 +599,7 @@ For **The Cake Shop**, we receive the `payments_enabled` and `payouts_enabled` w
     }
   }
 }
+
 ```
 
 <br />
@@ -1236,7 +640,7 @@ We will re-trigger due diligence checks if any of the required information is la
 <tab title="Individual">
 <Box horizontal="sm">
 
-Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its ID in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
+Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its ID in the `marketplace.sub_entity_id` field when using <RequestTag type="post" />`/payments`.
 
 We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £10 on its behalf.
 
@@ -1247,38 +651,6 @@ Funds will be routed and held in your Platform’s currency accounts as per the 
 </TipBox>
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -1395,38 +767,6 @@ As per The Cake Shop’s `profile.default_holding_currency`, the funds from any 
 </TipBox>
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {

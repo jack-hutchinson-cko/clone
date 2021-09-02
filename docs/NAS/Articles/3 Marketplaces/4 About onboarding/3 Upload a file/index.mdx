@@ -5,7 +5,18 @@ account: NAS
 
 Use our Files API to upload identity documentation required for `full` due diligence as part of our Marketplace solution.
 
-When you upload a file, the API returns an `id` that represents that file. You can use this `id` to attach identity documentation when [creating or updating your sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full)
+When you upload a file, the API returns an `id` that represents that file. You can use this `id` to attach:
+* Identity documentation when [creating or updating your sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full)
+* Bank verification documentation when [creating a payment instrument](/marketplaces/about-payouts/make-a-payout)
+
+---
+
+## Before you begin
+
+If you are uploading a bank statement to verify a set of bank details, subscribe to the following webhook events: 
+
+* `payment_instrument_verification_passed`
+* `payment_instrument_verification_failed`
 
 ---
 
@@ -135,6 +146,23 @@ Y
 
 </TableCell>
 </TableRow>
+<TableRow>
+<TableCell>
+
+Bank statement
+
+</TableCell>
+<TableCell>
+
+Y
+
+</TableCell>
+<TableCell>
+
+N
+
+</TableCell>
+</TableRow>
 </TableBody>
 </Table>
 
@@ -142,7 +170,10 @@ Y
 
 ## Upload a file
 
-Your request must be multipart/form-data and the file must be in either JPEG/JPG or PNG format, and no larger than 4MB.
+Your request must be multipart/form-data and the file no larger than 4Mb.
+
+* **For identification documents**: the format must be in either JPEG/JPG or PNG format.
+* **For bank statements**: the format must be in JPEG/JPG, PNG or PDF no larger than 4Mb.
 
 Follow the steps to upload the document and receive an `id`. If the identification you are providing requires both the back and front, you will need to make **two requests** to the API.
 
@@ -223,7 +254,7 @@ curl https://files.checkout.com \
 <tab title='201 - Document accepted'>
 <Box horizontal='sm'>
 
-If you received a file `id` in your response, the document was accepted. We will automatically make the association between this document and its representative. You can see this association by [retrieving the sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full#Onboardasub-entity(full)-Retrieveasub-entity)
+If you received a file `id` in your response, the document was accepted. You can see this association by [retrieving the sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full#Onboardasub-entity(full)-Retrieveasub-entity)
 
 </Box>
 
@@ -354,6 +385,70 @@ A back file is not required for the type of document in your request. This curre
 
 ---
 
+## Example notifications for bank account verification
+
+<tabs>
+<tab title="Verification passed">
+<Box horizontal='sm'>
+
+```json
+{
+  "id": "evt_htielsmgcwgejgqaunl4yb2pou",
+  "type": "payment_instrument_verification_passed",
+  "version": "1.0.0",
+  "created_on": "2020-08-20T15:24:13.8431084Z",
+  "data": {
+    "sub_entity_id": "ent_wxglze3wwywujg4nna5fb7ldli",
+    "reference": "123456789101112",
+    "legal_name": "The Cake Shop Inc.",
+    "payment_instrument": {
+      "id": "src_h5qk7lfsp3ludfjxba256lduju",
+      "label": "The Cake Shop Barclays"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/workflows/events/evt_htielsmgcwgejgqaunl4yb2pou"
+    }
+  }
+}
+```
+</Box>
+</tab>
+<tab title="Verification failed">
+<Box horizontal='sm'>
+
+```json
+{
+  "id": "evt_htielsmgcwgejgqaunl4yb2pou",
+  "type": "payment_instrument_verification_failed",
+  "version": "1.0.0",
+  "created_on": "2020-08-20T15:24:13.8431084Z",
+  "data": {
+    "sub_entity_id": "ent_wxglze3wwywujg4nna5fb7ldli",
+    "reference": "123456789101112",
+    "legal_name": "The Cake Shop Inc.",
+	"reason_codes": [
+		"document_unreadable"
+	]
+    "payment_instrument": {
+      "id": "src_h5qk7lfsp3ludfjxba256lduju",
+      "label": "The Cake Shop Barclays"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/workflows/events/evt_htielsmgcwgejgqaunl4yb2pou"
+    }
+  }
+}
+```
+</Box>
+</tab>
+</tabs>
+
+---
+
 ## Where to next?
 
 <ContentPanel variant="heading" title="Update a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
@@ -361,5 +456,13 @@ A back file is not required for the type of document in your request. This curre
 Use the file `id` returned by the Files API to attach identity documentation required for `full` due diligence.
 
 <ButtonLinkSecondary href="/marketplaces/about-onboarding/onboard-a-sub-entity-full">Full account type</ButtonLinkSecondary>
+
+</ContentPanel>
+
+<ContentPanel variant="heading" title="Make a payout" imgSrc="/NAS/Marketplaces/about-making-payouts.svg">
+
+`Full` accounts on our Marketplace solution have payout capability. If you’re unsure, take a look at our [account structure page](/marketplaces/account-structure).
+
+<ButtonLinkSecondary href="/marketplaces/about-payouts/make-a-payout">Learn more</ButtonLinkSecondary>
 
 </ContentPanel>
