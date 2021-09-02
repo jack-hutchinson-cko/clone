@@ -34,6 +34,8 @@ export const themes = {
       tableCellBackground: '#e6e7ec',
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
+      errorPageLinkBorder: '#e6e7ec',
+      errorPageLinkHover: '#2bd4db',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
@@ -194,6 +196,8 @@ export const themes = {
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
       tableCellBackground: '#3D4168',
+      errorPageLinkBorder: '#3d4168',
+      errorPageLinkHover: '#ffffc8',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
