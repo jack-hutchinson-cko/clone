@@ -14,9 +14,7 @@ The quotes endpoint returns an exchange rate in your preferred operating currenc
 
 Generate an FX quote with the following endpoint. You can then use the unique quote `id` you get in the response to make a payout at the quoted rate.
 
-### The request
-
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -35,127 +33,7 @@ Generate an FX quote with the following endpoint. You can then use the unique qu
 </tab>
 </tabs>
 
-#### Header parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`Bearer {OAuth access token}`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Body parameters
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source.currency`
-
-<StatusTag type="required" />
-
-<TypeTag type="string" />
-
-</TableCell>
-<TableCell>
-
-The three-letter ISO code of the debiting currency of your chosen currency account.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.amount`
-
-<StatusTag type="optional" />
-
-<TypeTag type="integer" />
-
-</TableCell>
-<TableCell>
-
-The amount to be converted from the source currency.
-
-<InfoBox>
-
-The exact format [depends on the currency](/resources/calculating-the-amount).
-
-</InfoBox>
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`sdestination.currency`
-
-<StatusTag type="required" />
-
-<TypeTag type="string" />
-
-</TableCell>
-<TableCell>
-
-The destination three-letter [ISO currency code](/resources/codes/currency-codes).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`destination.amount`
-
-<StatusTag type="optional" />
-
-<TypeTag type="integer" />
-
-</TableCell>
-<TableCell>
-
-The amount to be converted to the destination currency.
-
-<InfoBox>
-
-The exact format [depends on the currency](/resources/calculating-the-amount).
-
-</InfoBox>
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Destination amount specified">
@@ -182,11 +60,9 @@ The exact format [depends on the currency](/resources/calculating-the-amount).
 </tab>
 </tabs>
 
-### The response
+### Response example
 
 You will receive a response containing the quote `id`, the exchange rate, and the date and time the quoted rate is valid until.
-
-#### Response examples
 
 <tabs>
 <tab title="Destination amount specified">

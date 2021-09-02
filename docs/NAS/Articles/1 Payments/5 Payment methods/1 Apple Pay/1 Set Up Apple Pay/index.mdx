@@ -28,7 +28,7 @@ We recommend that you create separate merchant IDs for your test environment and
 
 </TipBox>
 
-1.  In your Apple Developer account, go to the [Add Merchant IDs section](https://developer.apple.com/account/resources/identifiers/add/merchant), select **Merchant IDs** and click **Continue**.
+1.  In your Apple Developer account, go to the [Add Merchant IDs section](https://developer.apple.com/account/resources/identifiers/add/merchant), select _Merchant IDs_ and select _Continue_.
 2.  Add a useful description, like `merchant id for test environment`.
 3.  Type your desired merchant ID name in the Identifier section. We recommend that you use a descriptive name to indicate both the domain and the environment you will use it in, like `merchant.com.mywebsite.sandbox`.
 
@@ -58,7 +58,7 @@ Next, you need to generate a certificate signing request using the following end
 
 ### Request example
 
-```
+```bash
 curl --location --request POST 'https://api.sandbox.checkout.com/applepay/signing-requests' \
 --header 'Authorization: Bearer pk_xxxxxxxxxxxxxxxxxxxxxxxxxx' \
 ```
@@ -73,11 +73,11 @@ curl --location --request POST 'https://api.sandbox.checkout.com/applepay/signin
 
 ## Step 3: Create payment processing certificate
 
-1.  Log in to your Apple Developer account, go to the *Merchant IDs list* section, and click on the merchant ID you created in step 1.
-2.  In the *Apple Pay Payment Processing Certificate* section (make sure you’re not in the *Apple Pay Merchant Identity Certificate* section), click *Create Certificate*.
-3.  Respond *No* to the question about processing in China and click *Continue*.
-4.  Upload the `.csr` file from the previous step and click *Continue*.
-5.  Click *Download* to get your payment processing certificate – a `.cer` file.
+1.  Log in to your Apple Developer account, go to the Merchant IDs list section, and select the merchant ID you created in step 1.
+2.  In the _Apple Pay Payment Processing Certificate_ section (make sure you’re not in the _Apple Pay Merchant Identity Certificate_ section), select _Create Certificate_.
+3.  Respond _No_ to the question about processing in China and select _Continue_.
+4.  Upload the `.csr` file from the previous step and select _Continue_.
+5.  Select _Download_ to get your payment processing certificate – a `.cer` file.
 
 ## Step 4: Upload the signed payment processing certificate
 
@@ -89,7 +89,9 @@ The `.cer` file you downloaded in step 3 needs to be base64 encoded so you can p
 
 To convert the `.cer` file to a base64 string, use the following command:
 
-`openssl x509 -inform der -in apple_pay.cer -out base64_converted.cer`
+```bash
+openssl x509 -inform der -in apple_pay.cer -out base64_converted.cer
+```
 
 </TipBox>
 
@@ -115,7 +117,7 @@ To convert the `.cer` file to a base64 string, use the following command:
 
 ### Request example
 
-```
+```bash
 curl --location --request POST 'https://api.sandbox.checkout.com/applepay/certificates' \
 --header 'Authorization: Bearer pk_xxxxxxxxxxxxxxxxxxxxxxxxxx' \
 --header 'Content-Type: application/json' \
@@ -143,29 +145,29 @@ You must have a valid SSL certificate on your domain (meaning it begins with `ht
 
 </TipBox>
 
-1.  Log in to your Apple Developer account, go to the [Merchant IDs list section](https://developer.apple.com/account/resources/identifiers/list/merchant) and click on the merchant ID you created in step 1.
-2.  Under the *Merchant Domains* section, click **Add Domain**.
-3.  Enter your domain and click **Save**.
-4.  Click **Download** and you'll get a .txt file.
+1.  Log in to your Apple Developer account, go to the [Merchant IDs list section](https://developer.apple.com/account/resources/identifiers/list/merchant) and select the merchant ID you created in step 1.
+2.  Under the Merchant Domains section, select _Add Domain_.
+3.  Enter your domain and select _Save_.
+4.  Select _Download_ and you'll get a `.txt` file.
 5.  Upload this file to your server so it's accessible at the following location (replacing [yourdomain.com](http://yourdomain.com/) with the URL of your domain): [https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt](https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt). To do this, create a folder called `.well-known` in the root directory of your website and put the `.txt` file in that folder.
-6.  Once you've uploaded the file, click **Verify**.
+6.  Once you've uploaded the file, select _Verify_.
 
 ## Step 6: Create your Apple Pay certificates
 
 1.  Open a terminal and create a `.csr` and `.key` file using this command:
 
-```
+```bash
 openssl req -out uploadMe.csr -new -newkey rsa:2048 -nodes -keyout certificate_sandbox.key
 ```
 
-2.  In the prompt, enter your details, and when asked for a password, leave it blank and click Enter. You will get a `.csr` and `.key` file. Keep the `.key` file at hand.
-3.  Log in to your Apple Developer account, go to the [Merchant IDs list section](https://developer.apple.com/account/resources/identifiers/list/merchant) and click on the merchant ID you created in step 1.
-4.  Under the *Apple Pay Merchant Identity Certificate* section (make sure you're not in the *Apple Pay Payment Processing Certificate section*), click **Create Certificate**.
+2.  In the prompt, enter your details, and when asked for a password, leave it blank and select _Enter_. You will get a `.csr` and `.key` file. Keep the `.key` file at hand.
+3.  Log in to your Apple Developer account, go to the [Merchant IDs list section](https://developer.apple.com/account/resources/identifiers/list/merchant) and select the merchant ID you created in step 1.
+4.  Under the _Apple Pay Merchant Identity Certificate_ section (make sure you're not in the _Apple Pay Payment Processing Certificate_ section), select _Create Certificate_.
 5.  Upload the `.csr `file you just created from your terminal. It should be called `uploadMe.csr` if you copy-pasted the command.
-6.  Click **Continue** and then click **Download** to get your `.cer` file. It will probably be named `merchant_id.cer`.
+6.  Select _Continue_ and then select _Download_ to get your `.cer` file. It will probably be named `merchant_id.cer`.
 7.  Convert this `.cer` file into a `.pem` file so you can use it in your code. Enter the following command in your terminal:
 
-```
+```bash
 openssl x509 -inform der -in merchant_id.cer -out certificate_sandbox.pem
 ```
 
