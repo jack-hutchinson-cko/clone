@@ -253,7 +253,7 @@ export const getMdxFileData = (
 const sectionReg = RegExp(/<FAQItem (.|\n)*?>(.|\n)*?<\/FAQItem>/g);
 const regStartTag = RegExp(/<FAQItem (.|\n)*?>/i);
 const regEndTag = RegExp(/<\/FAQItem>/i);
-const regTagProperty = RegExp(/(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"']))+.)["']?/g);
+const regTagProperty = RegExp(/(\S+)=["]?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"]))+.)["']?/g);
 
 export const getFAQItems = (mdxContent: string): string[] => mdxContent.match(sectionReg) || [];
 

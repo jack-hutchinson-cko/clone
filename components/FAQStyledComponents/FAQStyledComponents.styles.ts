@@ -4,6 +4,7 @@ import {
   createBreakpointBetween,
   createBreakpointFrom,
   MobileBreakPoints,
+  createBreakpointTo,
 } from 'constants/screen';
 import CategoriesItem from '../Categories/CategoriesItem';
 
@@ -83,7 +84,7 @@ export const TextHeadingOne = styled.h1`
   max-width: 620px;
   margin: 0;
 
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.M)} {
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
     font-size: 56px;
     line-height: 64px;
   }
@@ -104,6 +105,7 @@ export const TextHeadingThree = styled.h3`
   font-size: 24px;
   line-height: 32px;
   margin-bottom: 16px;
+
   &:not(:first-child) {
     margin-top: 16px;
   }
@@ -145,5 +147,46 @@ export const StyledCategoriesItem = styled(CategoriesItem)`
       font-size: 14px;
       line-height: 24px;
     }
+  }
+`;
+
+export const SearchLabel = styled.div`
+  margin: 24px 0;
+  color: ${({ theme }) => theme.colors.baseLight};
+  font-size: 20px;
+  line-height: 32px;
+
+  @media ${createBreakpointTo(SIZE.SM)} {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @media ${createBreakpointTo(SIZE.XS)} {
+    font-size: 16px;
+    line-height: 24px;
+  }
+`;
+
+export const SearchFieldWrapper = styled.div`
+  margin: 32px 0;
+`;
+
+export const SearchExamples = styled.div`
+  > p {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    font-size: 14px;
+    line-height: 24px;
+
+    @media ${createBreakpointTo(SIZE.SM)} {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  > span {
+    margin: 4px;
   }
 `;

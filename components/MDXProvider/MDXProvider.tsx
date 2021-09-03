@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import MDX from '@mdx-js/runtime';
+
 import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
@@ -63,6 +65,7 @@ import {
   IBuilderCodePreview,
 } from 'components/IBuilder';
 import FAQSectionLabel from 'components/FAQSectionLabel';
+import { Highlight } from 'components/Highlight';
 import FullScreenView from 'components/FullScreenView';
 
 export const mdxComponents = {
@@ -137,6 +140,7 @@ export const mdxComponents = {
   IBuilderCodePreview,
   FAQItem,
   FAQSectionLabel,
+  'ais-highlight-0000000000': Highlight,
   FullScreenView,
 };
 
@@ -154,5 +158,7 @@ const MDXProvider: FC<Props> = ({ source }) => {
 
   return <MDXRemote key={key} {...source} components={mdxComponents} />;
 };
+
+export const MDXRuntime: FC = ({ children }) => <MDX components={mdxComponents}>{children}</MDX>;
 
 export default MDXProvider;

@@ -2,30 +2,31 @@ import { FC } from 'react';
 import Link from 'next/link';
 import { connectHits } from 'react-instantsearch-dom';
 import { get } from 'lodash';
+
+import { HitMode, HitType } from 'types/search';
 import SearchBreadCrumbs from './SearchBreadCrumbs';
 import Snippet from './Snippet';
-import { HitsContainer, HeadSection, PageSection, NoDataWrapper } from './DocsHits.styles';
-import { HitType } from './types';
+import { HitsContainer, HeadSection, PageSection, NoDataWrapper } from './Hits.styles';
 
 type DocsHintProps = {
   hit: HitType;
-  mode: 'header' | 'page';
+  mode: HitMode;
   onClickHit?: () => void;
 };
 
-const Hit: FC<DocsHintProps> = ({ hit, mode, onClickHit }) => {
-  const Section = mode === 'header' ? HeadSection : PageSection;
+const Hit: FC<DocsHintProps> = ({ hit, mode = HitMode.PAGE, onClickHit }) => {
+  const Section = HitMode.HEADER ? HeadSection : PageSection;
 
   return (
     <Link href={get(hit, 'path', '')}>
       <Section onClick={onClickHit}>
         <Snippet hit={hit} attribute="title" mode={mode} type="header" />
-        {mode === 'header' ? null : (
+        {HitMode.HEADER ? null : (
           <SearchBreadCrumbs parentArticles={get(hit, 'parentArticles', [])} />
         )}
         <Snippet
           hit={hit}
-          attribute={mode === 'header' ? 'headBody' : 'body'}
+          attribute={HitMode.HEADER ? 'headBody' : 'body'}
           mode={mode}
           type="body"
         />
@@ -39,7 +40,7 @@ type DocsHintsProps = {
   maxHeight?: number;
   maxHitsNumber?: number;
   NoDataComponent?: FC;
-  mode: 'header' | 'page';
+  mode: HitMode;
   onClickHit?: () => void;
 };
 
@@ -68,10 +69,6 @@ const DocsHits: FC<DocsHintsProps> = ({
       {children}
     </>
   );
-};
-
-DocsHits.defaultProps = {
-  mode: 'page',
 };
 
 export default connectHits(DocsHits);

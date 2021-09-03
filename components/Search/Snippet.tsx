@@ -1,8 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { connectHighlight } from 'react-instantsearch-dom';
+
+import { Highlight } from 'components/Highlight';
+import { HitMode, HitType } from 'types/search';
 import { HighlightedBody, HighlightedHeader } from './Snippet.styles';
-import { HitType } from './types';
 
 const TagToTypeMap = {
   header: HighlightedHeader,
@@ -12,7 +14,7 @@ const TagToTypeMap = {
 type Props = {
   attribute: string;
   type: 'header' | 'body';
-  mode: 'header' | 'page';
+  mode: HitMode;
   highlight: (data: { highlightProperty: string; attribute: string; hit: HitType }) => {
     value: string;
     isHighlighted: boolean;
@@ -22,7 +24,7 @@ type Props = {
 
 const Snippet: FC<Props> = ({ highlight, attribute, hit, type, mode }) => {
   const parsedHit = highlight({
-    highlightProperty: '_snippetResult',
+    highlightProperty: attribute !== 'mdxBody' ? '_snippetResult' : '_highlightResult',
     attribute,
     hit,
   });
@@ -33,7 +35,7 @@ const Snippet: FC<Props> = ({ highlight, attribute, hit, type, mode }) => {
     <Component mode={mode}>
       {parsedHit.map((part, index) =>
         part.isHighlighted ? (
-          <em key={index}>{part.value}</em>
+          <Highlight key={index}>{part.value}</Highlight>
         ) : (
           <span key={index}>{part.value}</span>
         ),

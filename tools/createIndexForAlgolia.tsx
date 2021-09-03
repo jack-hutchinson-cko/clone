@@ -115,7 +115,7 @@ type FAQIndexItemType = {
   popularity: string;
 };
 
-const getFacSectionItem = (childData: ForEachTreeCallBackParamsType): FAQIndexItemType[] => {
+const getFaqSectionItem = (childData: ForEachTreeCallBackParamsType): FAQIndexItemType[] => {
   const { filePath, path } = childData;
 
   const {
@@ -133,6 +133,7 @@ const getFacSectionItem = (childData: ForEachTreeCallBackParamsType): FAQIndexIt
       faqSection,
       path,
       body,
+      mdxBody,
       title,
       popularity,
     };
@@ -153,7 +154,7 @@ export const createFAQIndex = async (filePath: string, searchIndexName: string):
       parentArticles: [],
     },
     (childData) => {
-      indexResult = indexResult.concat(getFacSectionItem(childData));
+      indexResult = indexResult.concat(getFaqSectionItem(childData));
     },
   );
 
@@ -161,9 +162,9 @@ export const createFAQIndex = async (filePath: string, searchIndexName: string):
   const index = client.initIndex(searchIndexName);
 
   index.setSettings({
-    attributesToSnippet: ['body:20'],
+    attributesToSnippet: ['body:20', 'title:20'],
     snippetEllipsisText: '...',
-    searchableAttributes: ['title', 'body'],
+    searchableAttributes: ['title', 'body', 'mdxBody'],
   });
 
   await index.clearObjects();

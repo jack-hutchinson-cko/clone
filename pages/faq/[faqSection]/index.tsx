@@ -1,11 +1,25 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+import React from 'react';
 import Head from 'components/Head';
 import BreadCrumbs from 'components/BreadCrumbs';
 import { TextHeadingTwo } from 'components/TextHeading';
+import SearchWidget from 'components/Header/SearchWidget';
 import MDXProvider from 'components/MDXProvider';
 import SectionList from 'components/SectionList';
+import {
+  ContentWrapper,
+  HeadDescription,
+  HeaderContainer,
+  Layout,
+  MainContent,
+  SectionContent,
+  SectionLinksContainer,
+  QuestionsContainer,
+  TextHeadingThree,
+} from 'components/FAQStyledComponents';
 import {
   getFAQPathUrls,
   getFileNameFromFAQPath,
@@ -14,16 +28,7 @@ import {
 } from 'lib/fileParser';
 import { SectionListItem } from 'types/sectionList';
 import { BreadCrumbsItems } from 'types/content';
-import {
-  ContentWrapper,
-  HeadDescription,
-  HeaderContainer,
-  Layout,
-  MainContent,
-  SectionLinksContainer,
-  QuestionsContainer,
-  TextHeadingThree,
-} from 'components/FAQStyledComponents';
+import FAQSearchWidget from 'components/Search/FAQSearchWidget';
 
 type Props = {
   frontMatter: {
@@ -41,6 +46,11 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
   return (
     <>
       <Head title={frontMatter.title} />
+      <SectionContent>
+        <ContentWrapper>
+          <FAQSearchWidget />
+        </ContentWrapper>
+      </SectionContent>
       <ContentWrapper>
         <BreadCrumbs withIcon breadCrumbsItem={breadCrumbsItem} />
         <Layout>

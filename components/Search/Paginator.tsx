@@ -1,27 +1,30 @@
 import { FC } from 'react';
 import { connectPagination } from 'react-instantsearch-dom';
 import Link from 'next/link';
+import { QueryType } from 'types/search';
 import { PaginatorContainer, LinkContainer, ArrowLeft, ArrowRight } from './Paginator.styles';
-import { QueryType } from './types';
 
 type Props = {
   currentRefinement: number;
   nbPages: number;
   searchState: QueryType;
+  baseUrlRederection: string;
 };
 
-const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState }) => {
+const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState, baseUrlRederection }) => {
   if (!nbPages) {
     return null;
   }
 
   const nextLink =
     currentRefinement < nbPages
-      ? `/search?query=${searchState.query}&page=${currentRefinement + 1}`
+      ? `${baseUrlRederection}?query=${searchState.query}&page=${currentRefinement + 1}`
       : '';
 
   const prevLink =
-    currentRefinement > 1 ? `/search?query=${searchState.query}&page=${currentRefinement - 1}` : '';
+    currentRefinement > 1
+      ? `${baseUrlRederection}?query=${searchState.query}&page=${currentRefinement - 1}`
+      : '';
 
   return (
     <PaginatorContainer>

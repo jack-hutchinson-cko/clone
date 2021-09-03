@@ -9,11 +9,11 @@ import { ThemeContext } from 'theme/themeContext';
 import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import Switch from 'components/Switch';
+import DocsSearchWidget from 'components/Search/DocsSearchWidget';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
 import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
-import SearchWidget from './SearchWidget';
 import LoginWidget from './LoginWidget';
 import HeaderLogo from './HeaderLogo';
 import GuidesLinks from './GuidesLinks';
@@ -47,6 +47,7 @@ type Props = {
   popularSearchesTitle: string;
   loginUrl: string;
   testAccountUrl: string;
+  isFAQSection?: boolean;
 };
 
 const Header: FC<WithMenuStateProps<Props>> = ({
@@ -57,6 +58,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   popularSearchesTitle,
   loginUrl,
   testAccountUrl,
+  isFAQSection,
   menuState,
   onChangeMenuState,
   searchState,
@@ -107,7 +109,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   );
 
   const searchWidget = (
-    <SearchWidget
+    <DocsSearchWidget
       isMobile={isMobile}
       popularSearches={popularSearches}
       emptySearchResult={emptySearchResult}
@@ -172,7 +174,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
               </NavigationItem>
             )}
           </NavigationItemHolder>
-          {(isDesktop || isTablet) && (
+          {!isFAQSection && (isDesktop || isTablet) && (
             <MiddleNavigationItem withPointer={false}>
               <SearchFieldWrapper>{searchWidget}</SearchFieldWrapper>
             </MiddleNavigationItem>
@@ -271,7 +273,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             <DrawerBottomContentWrapper>{loginWidget}</DrawerBottomContentWrapper>
           </Drawer>
         )}
-        {isMobile && searchState && (
+        {isMobile && searchState && !isFAQSection && (
           <Drawer isMobile onClose={onToggleSearchDrawer}>
             {searchWidget}
           </Drawer>

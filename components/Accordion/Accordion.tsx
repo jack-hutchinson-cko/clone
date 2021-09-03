@@ -13,6 +13,7 @@ const Accordion: FC<AccordionProps> = ({
   children,
   isBoldTitle,
   headerIcon,
+  headerComponent,
   ...props
 }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
