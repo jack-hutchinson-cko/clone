@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { IconArrowLeft } from '../Icons';
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.div<{ withIcon?: boolean }>`
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -22,4 +24,8 @@ export const StyledLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+export const StyledIconArrowLeft = styled(IconArrowLeft)`
+  margin-right: 10px;
 `;

@@ -18,8 +18,8 @@ type Props = {
   pageProps?: any;
 };
 
-const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps, router }) => {
-  const { headlessMode, ...restPageProps } = pageProps;
+const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
+  const { headlessMode, isFAQSection, ...restPageProps } = pageProps;
   const { sidebarDocLinks, headerContent, footerContent } = useAppInitState();
 
   return (
@@ -31,6 +31,7 @@ const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps, router }) => {
         headerContent={headerContent}
         footerContent={footerContent}
         isHeadlessMode={headlessMode}
+        isFAQSection={isFAQSection}
       >
         <Component {...restPageProps} />
       </Layout>

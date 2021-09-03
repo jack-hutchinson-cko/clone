@@ -14,7 +14,7 @@ const SearchStatus: FC<Props> = ({ nbHits, currentPage }) => {
     return null;
   }
 
-  const firstItem = (currentPage - 1) * HITS_ON_PAGE;
+  const firstItem = (currentPage - 1) * HITS_ON_PAGE + 1;
   const lastItem = Math.min(currentPage * HITS_ON_PAGE, nbHits);
 
   return (

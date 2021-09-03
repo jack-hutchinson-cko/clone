@@ -10,6 +10,7 @@ import {
   forEachFileTree,
   getMdxFileData,
   getAnchors,
+  isMdxSourceFolder,
 } from './fileParserCommon';
 
 import { getAnchorUrl } from './url';
@@ -49,7 +50,7 @@ export const getPageMetadata = (
 
     const childrenFolders = fs.readdirSync(filePath);
     for (const child of childrenFolders) {
-      if (fs.statSync(`${filePath}/${child}`).isDirectory()) {
+      if (isMdxSourceFolder(`${filePath}/${child}`)) {
         const childTitle = getTitleFromFileName(child);
         const url = `${path}/${getSlugFromTitle(childTitle)}`;
 
@@ -79,7 +80,7 @@ export const getPageData = (
   { filePath, path }: { filePath: string; path: string },
 ): { isSelectedPage: boolean; content?: string; data?: ContentPageData } => {
   if (path === sourceUrl) {
-    const { data, content } = getMdxFileData(`${filePath}/index.mdx`);
+    const { data, content } = getMdxFileData(`${filePath}/index.mdx`, { addGitInfo: false });
 
     return {
       content,

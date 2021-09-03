@@ -5,19 +5,25 @@ import { ReactSVG } from 'react-svg';
 import { TextHeadingThree } from '../TextHeading';
 import { Text } from '../Text';
 
-export const CardWrapper = styled(Flex)`
+export const CardWrapper = styled(Flex)<{
+  isWithHover?: boolean;
+}>`
   flex-direction: column;
   padding: 32px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   transition: box-shadow 0.1s, border-color 0.7s;
   border-radius: 8px;
-  cursor: pointer;
+  cursor: ${({ isWithHover }) => (isWithHover ? 'pointer' : `auto`)};
   height: 100%;
 
-  &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.light};
-    border-color: ${({ theme }) => theme.colors.borderHighlight};
-  }
+  ${({ isWithHover }) =>
+    isWithHover &&
+    css`
+      &:hover {
+        box-shadow: ${({ theme }) => theme.shadows.light};
+        border-color: ${({ theme }) => theme.colors.borderHighlight};
+      }
+    `};
   svg {
     margin-left: auto;
   }

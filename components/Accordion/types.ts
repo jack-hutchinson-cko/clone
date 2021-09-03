@@ -1,11 +1,13 @@
 import { ReactNode, Dispatch, SetStateAction } from 'react';
 
 export type AccordionProps = {
-  title?: string;
+  title?: string | ReactNode;
   children: ReactNode;
   isExpanded?: boolean;
   isBoldTitle?: boolean;
   hasTitle?: boolean;
+  headerIcon?: ReactNode;
+  headerComponent?: ReactNode;
 };
 
 export type AccordionBodyProps = {

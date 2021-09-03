@@ -5,7 +5,7 @@ import {
   TextHeadingOne as PrimitivesTextHeadingOne,
   Text,
 } from '@cko/primitives';
-import { TextHeadingOne } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 import {
   SIZE,
   Breakpoints,
@@ -127,9 +127,18 @@ export const Content = styled.article`
   overflow-x: hidden;
 `;
 
-export const PageContent = styled.main`
-  flex-grow: 1;
+const contentBuilderPage = `
+  overflow-x: unset;
+  width: 100%;
+`;
+
+const defaultSettings = `
   overflow-x: hidden;
+`;
+
+export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
+  flex-grow: 1;
+  ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.M)} {
     padding: 32px 64px 64px 64px;
@@ -144,7 +153,7 @@ export const PageContent = styled.main`
   }
 `;
 
-export const Title = styled(TextHeadingOne)`
+export const Title = styled(TextHeadingTwo)`
   margin-top: 32px;
 `;
 

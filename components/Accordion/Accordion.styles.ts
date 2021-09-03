@@ -12,3 +12,9 @@ export const AccordionBodyWrapper = styled.div<{ height: string; overflow: strin
   overflow-y: ${({ overflow }) => `${overflow}`};
   transition: height 1s ease;
 `;
+
+export const AccordionTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;

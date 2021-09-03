@@ -33,11 +33,7 @@ describe('CardLink', () => {
     cy.get('*[data-cy=card-link]').children().eq(1).invoke('prop', 'tagName').should('eq', 'H4');
     cy.get('*[data-cy=card-link]').children().eq(1).should('contain', 'Test title 2');
 
-    cy.get('*[data-cy=card-link]')
-      .children()
-      .eq(2)
-      .invoke('prop', 'tagName')
-      .should('eq', 'BUTTON');
+    cy.get('*[data-cy=card-link]').children().eq(2).should('have.prop', 'tagName', 'A');
     cy.get('*[data-cy=card-link]').children().eq(2).should('contain', 'Test btn name');
   });
 });

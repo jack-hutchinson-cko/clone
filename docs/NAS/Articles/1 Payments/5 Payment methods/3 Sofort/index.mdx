@@ -21,14 +21,12 @@ To start accepting Sofort payments, please contact your Customer Success Manager
 
 You process a Sofort payment in two steps:
 
-1.  [Request a payment](#Sofort-requestapayment)
-2.  [Redirect the customer](#Sofort-redirectthecustomer)
+1.  [Request a payment](/payments/payment-methods/sofort#Request_a_payment)
+2.  [Redirect the customer](/payments/payment-methods/sofort#Redirect_the_customer)
 
 ---
 
 ## Request a payment
-
-### The POST request
 
 Use the details below to set up your request.
 
@@ -49,111 +47,7 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
-#### Header parameter
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`secret key`
-
-Use the valid secret key of your [Checkout.com](http://checkout.com/) account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Body parameters
-
-The table below describes the minimum recommended fields. You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
-
-<Table>
-<TableHead headers={['Field name', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`source`
-
-<StatusTag type="required" />
-<TypeTag type="object" />
-</TableCell>
-<TableCell>
-
-Details about the payment source.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`source.type`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The type of payment source. Set this to `sofort`.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`amount`
-
-<StatusTag type="optional" />
-<TypeTag type="integer" />
-</TableCell>
-<TableCell>
-
-The payment amount.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`currency`
-
-<StatusTag type="required" />
-<TypeTag type="string" />
-</TableCell>
-<TableCell>
-
-The three-letter ISO currency code. Set this to `EUR`.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Request example
+### Request example
 
 ```json
     {
@@ -167,11 +61,9 @@ The three-letter ISO currency code. Set this to `EUR`.
 
 If a customer ID or email is not provided in the request, we automatically create a customer profile and return the customer `id` in the response.
 
-### The POST response
+### Response example
 
 If you receive a `202 Success` response with a payment `id` and a `status` field set to `Pending`, your request was successful.
-
-#### Response example
 
 ```json
     {
@@ -207,9 +99,7 @@ You can retrieve details about an existing Sofort payment with the following req
 
 If the payment has been approved by a customer on the banking page, you’ll receive a `payment_capture_pending` webhook and the payment response will include the `bic`, `iban`, and `account_holder_name` fields.
 
-### The GET request
-
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -228,71 +118,12 @@ If the payment has been approved by a customer on the banking page, you’ll rec
 </tab>
 </tabs>
 
-#### Header and path parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`secret key`
-
-Use the valid secret key of your [Checkout.com](http://checkout.com/) account. You can find this in the [Hub](https://hub.checkout.com/v2).
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`payment_id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The payment ID found in the response of the initial response.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-### The GET response
-
-#### Response example
+### Response example
 
 <tabs>
 <tab title="Pending">
 
-```json
+```json withBorder={false}
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "requested_on": "2018-11-22T15:58:35Z",
@@ -320,7 +151,7 @@ The payment ID found in the response of the initial response.
 </tab>
 <tab title="Pending capture">
 
-```json
+```json withBorder={false}
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "requested_on": "2018-11-22T15:58:35Z",
@@ -351,7 +182,7 @@ The payment ID found in the response of the initial response.
 </tab>
 <tab title="Captured">
 
-```json
+```json withBorder={false}
     {
       "id": "pay_ylcikkxovyjunekfu7a444mmvy",
       "requested_on": "2018-11-22T16:04:35Z",
@@ -527,10 +358,10 @@ To start testing, you'll need to:
 </TipBox>
 
 1.  Create a Sofort transaction as above, and then follow the redirect link to Sofort/Klarna's website.
-2.  Into the **Bank name, BLZ, IBAN or BIC** field enter **88888888**, and then click **Next**.
-3.  Enter **88888888** in the **Account number** field, and **123456** in the **PIN** field. Click **Next**.
-4.  Select any account on the next page and then click **Next**.
-5.  Enter **12345** in the **TAN** field and click **Next**.
+2.  Enter `88888888` into the _Bank name_, _BLZ_, _IBAN_ or _BIC_ field. Select _Next_.
+3.  Enter `88888888` in the _Account number_ field, and `123456` in the _PIN_ field. Select _Next_.
+4.  Select any account on the next page and then select _Next_.
+5.  Enter `12345` in the _TAN_ field and select _Next_.
 6.  You should then be redirected to your predefined success URL.
 
 <TipBox variant="note">

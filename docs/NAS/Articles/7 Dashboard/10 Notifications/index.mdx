@@ -13,7 +13,7 @@ Create notifications through the Dashboard to keep on top of your payments.
 
 Each notification is split into three core parts: events, applications, business entities. As you progress through the creation of the notification, you will select the options that align with the updates you wish to receive.
 
-1. From the loading screen, go to ‘Notifications’.
+1. From the loading screen, go to _Notifications_.
 2. Select _New notification_. 
 
 ![notificiations](/NAS/Dashboard/Notifications/notifications.png)
@@ -23,8 +23,8 @@ Each notification is split into three core parts: events, applications, business
 ![name](/NAS/Dashboard/Notifications/name.png)
 
 4. Select the events you would like to receive notifications for. There isn’t a limit on the number of events you can select per notification.
-5. Choose the application you wish to receive notifications on. For now, only Webhooks is available.
-6. Enter a webhook URL that starts with either https:// or http://.
+5. Choose the application you wish to receive notifications on. For now, only _Webhooks_ is available.
+6. Enter a webhook URL that starts with either `https://` or `http://`.
 7. Enter an authorization key. This will be in the header of every webhook notification we send you to validate that the webhook is genuine.
 8. Enter a signature key. We generate a HMAC by taking the contents of the webhook notification and hashing it using the key provided in the webhook action of your workflow. The HMAC will be in every notification you receive.
 

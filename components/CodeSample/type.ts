@@ -5,7 +5,9 @@ export type CodeSampleProps = {
   language: Language;
   isCollapsible: boolean;
   withBorder: boolean;
+  withControls?: boolean;
   isEditMode: boolean;
+  selectedLines?: number[];
 };
 
 export type Token = {
@@ -22,4 +24,5 @@ export type PreLineProps = {
   withBorder: boolean;
   editorComponent: JSX.Element | null;
   isEditMode: boolean;
+  selectedLines?: number[];
 };

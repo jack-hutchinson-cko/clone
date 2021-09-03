@@ -24,3 +24,8 @@ export type DocHit = {
 export type HitType = { objectID: string; _highlightResult: never };
 
 export type QueryType = { query: string; page: string };
+
+export enum HitMode {
+  HEADER = 'header',
+  PAGE = 'page',
+}

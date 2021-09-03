@@ -1,5 +1,6 @@
-import { useState, useEffect, FC, ReactElement, Children, useCallback } from 'react';
+import { FC, ReactElement } from 'react';
 
+import { useTabs } from 'hooks/useTabs';
 import TabHead from './TabHead';
 import TabBody from './TabBody';
 import { StyledTabs } from './Tabs.styles';
@@ -9,32 +10,7 @@ type Props = {
 };
 
 const Tabs: FC<Props> = ({ children }) => {
-  const [titles, setTitles] = useState<string[]>([]);
-  const [activeTab, setActiveTab] = useState<number>(0);
-
-  const getTitlesAndActiveTab = useCallback(() => {
-    const childrenTitles: string[] = [];
-    let currentActiveTab = 0;
-
-    Children.forEach(children, (child, index) => {
-      if (child.props?.title) {
-        childrenTitles.push(child.props.title);
-      }
-
-      if (child.props?.active) {
-        currentActiveTab = index;
-      }
-    });
-
-    return { childrenTitles, currentActiveTab };
-  }, [children]);
-
-  useEffect(() => {
-    const { childrenTitles, currentActiveTab } = getTitlesAndActiveTab();
-
-    setTitles(childrenTitles);
-    setActiveTab(currentActiveTab);
-  }, [children, getTitlesAndActiveTab]);
+  const { titles, activeTab, setActiveTab } = useTabs({ children });
 
   return (
     <StyledTabs>

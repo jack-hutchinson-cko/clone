@@ -4,7 +4,7 @@ account: NAS
 description: Learn all about our reports, designed to help you reconcile between payments/payouts and fees, payouts settled to you and your bank statement, and manage your balances.
 ---
 
-We provide the following reports so you can reconcile between payments/payouts and fees, payouts settled to you and your bank statement, and manage your balances. Click on each one to find out more.
+We provide the following reports so you can reconcile between payments/payouts and fees, payouts settled to you and your bank statement, and manage your balances. Select each one to find out more.
 
 - [Financial actions reports](/reporting/reconciliation-reports/financial-actions-reports): provide an accurate representation of all actions during a payment's or payout's life-cycle that impact your currency account's available balance with us. Together with the payouts reports, you will be able to reconcile payments and any associated fees against payouts paid out to you.
 
@@ -28,7 +28,11 @@ We will set it up for you, providing you with an SFTP server, port, username and
 
 Reports will be uploaded in the following folder structure:
 
+<FullScreenView>
+
 <img src="/NAS/Reporting/sftp_delivery_folder_structure_v3.png" />
+
+</FullScreenView>
 
 Large .csv reports with more than 1,000,000 rows are split into multiple reports of 1,000,000 so they're easier deal with. Split files include a suffix `_#`. For example, if a financial actions report by date range has 2,400,000 rows, the following files would be created:
 

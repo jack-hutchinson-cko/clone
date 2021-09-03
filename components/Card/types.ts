@@ -10,4 +10,5 @@ export type Props = {
   imgAlt?: string;
   maxWidth?: number;
   maxHeight?: number;
+  isWithHover?: boolean;
 };

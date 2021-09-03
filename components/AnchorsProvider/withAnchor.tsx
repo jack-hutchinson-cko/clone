@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState, useCallback } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { toString } from 'lodash';
 
@@ -6,7 +6,7 @@ import { getAnchorUrl, getHashValue } from 'lib/url';
 import { writeTextToClipboard } from 'lib/cliboard';
 
 import Context, { Props } from './AnchorsContext';
-import { Anchor, Wrapper, Title, LinkIcon } from './withAnchor.styles';
+import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styles';
 
 const DEFAULT_OFFSET = 0;
 
@@ -51,12 +51,14 @@ const withAnchor =
         <Anchor ref={anchorRef} id={hashValue} offsetTop={offsetTop} />
         <Wrapper>
           <Component {...restProps}>
-            <Title>
-              {children}
-              <Link href={anchorUrl}>
-                <LinkIcon onClick={onClickHandler} />
-              </Link>
-            </Title>
+            <Link href={anchorUrl}>
+              <>
+                <Title>{children}</Title>
+                <IconWrapper>
+                  <LinkIcon onClick={onClickHandler} />
+                </IconWrapper>
+              </>
+            </Link>
           </Component>
         </Wrapper>
       </>

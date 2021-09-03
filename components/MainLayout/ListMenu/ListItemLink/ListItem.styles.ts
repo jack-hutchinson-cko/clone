@@ -11,7 +11,7 @@ export const StyledLink = styled.a<{ isActive?: boolean }>`
     isActive &&
     css`
       mark {
-        background: linear-gradient(to top, ${theme.colors.underline} 0 8px, transparent 8px 100%);
+        background: linear-gradient(to top, ${theme.colors.underline} 0 6px, transparent 6px 100%);
       }
     `}
 

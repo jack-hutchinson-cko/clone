@@ -34,6 +34,8 @@ export const themes = {
       tableCellBackground: '#e6e7ec',
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
+      errorPageLinkBorder: '#e6e7ec',
+      errorPageLinkHover: '#2bd4db',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
@@ -64,6 +66,8 @@ export const themes = {
       tabBorder: '#E6E7EC',
       underline: '#C0F2F4',
       sectionDescription: '#3D4168',
+      highlightedLine: '#e6e6f9',
+      fiordLight: '#3d4168',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -192,6 +196,8 @@ export const themes = {
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
       tableCellBackground: '#3D4168',
+      errorPageLinkBorder: '#3d4168',
+      errorPageLinkHover: '#ffffc8',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
@@ -201,8 +207,8 @@ export const themes = {
       baseLight: '#CECFD9',
       baseList: '#9EA0B4',
       border: '#3D4168',
-      borderLight: '#FEFFC8',
-      borderHighlight: '#FEFFC8',
+      borderLight: '#FFFFC8',
+      borderHighlight: '#FFFFC8',
       placeholderSearch: '#B6B8C6',
       background: '#090B30',
       backgroundDark: '#181C45',
@@ -222,6 +228,8 @@ export const themes = {
       tabBorder: '#3E4169',
       underline: '#55587B',
       sectionDescription: '#9EA0B4',
+      highlightedLine: '#e6e6f9',
+      fiordLight: '#ffffd8',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],

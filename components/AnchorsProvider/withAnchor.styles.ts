@@ -12,24 +12,21 @@ export const LinkIcon = styled(IconActionLink)`
   }
 `;
 
+export const IconWrapper = styled.span`
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+`;
+
 export const Wrapper = styled.div`
-  padding-right: 24px;
-
-  ${LinkIcon} {
-    position: absolute;
-    right: -24px;
-    transform: translateY(50%);
-    visibility: hidden;
-    cursor: pointer;
-  }
-
   &:hover {
-    ${LinkIcon} {
-      visibility: visible;
+    ${IconWrapper} {
+      opacity: 1;
     }
   }
 `;
 
 export const Title = styled.span`
-  position: relative;
+  cursor: pointer;
+  margin-right: 20px;
 `;

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-
+import ImageBox from 'components/ImageBox';
 import { SectionListItem } from 'types/sectionList';
-import { SectionListWrapper } from './SectionList.styles';
+import { SectionListWrapper, ImgWrapper } from './SectionList.styles';
 import SectionItem from './SectionItem';
 
 type Props = {
@@ -12,14 +12,16 @@ type Props = {
 const SectionList: FC<Props> = ({ activeItem = '', list = [], ...props }) => {
   return (
     <SectionListWrapper {...props}>
-      {list.map(({ title, url, Icon }) => (
+      {list.map(({ title, url, imageSrc }) => (
         <SectionItem
           key={title}
           data-cy="section-list-item"
           href={url}
-          isActive={title === activeItem}
+          isActive={url === activeItem}
         >
-          <Icon />
+          <ImgWrapper>
+            <ImageBox src={imageSrc} maxWidth={24} />
+          </ImgWrapper>
           <mark>{title}</mark>
         </SectionItem>
       ))}

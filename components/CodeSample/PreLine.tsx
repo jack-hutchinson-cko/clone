@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { FC, useState, useCallback } from 'react';
+import { isEmpty } from 'lodash';
 import {
   Pre,
   Line,
@@ -9,6 +10,7 @@ import {
   LineCounterWrapper,
   LineNumber,
   HorizontalScrollWrapper,
+  HightLighter,
 } from './CodeSample.styles';
 import { PreLineProps } from './type';
 
@@ -45,6 +47,7 @@ const PreLine: FC<PreLineProps> = ({
   isCollapsible,
   withBorder,
   editorComponent,
+  selectedLines = [],
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -67,6 +70,7 @@ const PreLine: FC<PreLineProps> = ({
         showBlurBackground={showBlurBackground}
         {...rest}
       >
+        {isEmpty(selectedLines) ? null : <HightLighter selectedLines={selectedLines} />}
         <LineCounterWrapper>
           {tokens.map((line, i: number) => (
             <LineNumber key={i}>{i + 1}</LineNumber>

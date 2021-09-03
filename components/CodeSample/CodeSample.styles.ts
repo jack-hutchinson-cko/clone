@@ -37,9 +37,18 @@ export const PreWrapper = styled.div<{
   gap: 16px;
 `;
 
+export const HightLighter = styled.div<{ selectedLines: number[] }>`
+  position: absolute;
+  top: ${({ selectedLines = [] }) => 24 + (selectedLines[0] - 1) * 24}px;
+  left: 0;
+  height: ${({ selectedLines = [] }) => (selectedLines[1] - selectedLines[0] + 1) * 24}px;
+  width: 100%;
+  background: ${({ theme }) => theme.colors.highlightedLine};
+`;
+
 export const HorizontalScrollWrapper = styled.div<{ isBlockScroll?: boolean }>`
   overflow-y: hidden;
-  overflow-x: ${({ isBlockScroll }) => (isBlockScroll ? 'hidden' : 'scroll')};
+  overflow-x: ${({ isBlockScroll }) => (isBlockScroll ? 'hidden' : 'auto')};
   padding: 24px 0;
   flex-grow: 1;
 `;
@@ -115,6 +124,7 @@ export const StyledIcons = styled.div`
   right: 20px;
   top: 20px;
   cursor: pointer;
+  z-index: 6;
 `;
 
 export const StyledIconLink = styled(StyledIcons)`

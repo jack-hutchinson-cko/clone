@@ -19,8 +19,8 @@ To start accepting Alipay payments, please contact your Customer Success Manager
 
 Alipay payments follow a two-step process:
 
-1.  [Request an Alipay payment](#Alipay-requestapayment)
-2.  [Redirect the customer](#Alipay-redirectthecustomer)
+1.  [Request an Alipay payment](/payments/payment-methods/wallets/alipay#Request_a_payment)
+2.  [Redirect the customer](/payments/payment-methods/wallets/alipay#Redirect_the_customer)
 
 ---
 
@@ -113,7 +113,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 </LineCodeWrapper>
 </tab>
-<tab title="SandBox">
+<tab title="Sandbox">
 <LineCodeWrapper type="get">
 
 `https://api.sandbox.checkout.com/payments/{payment_id}`
@@ -153,7 +153,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 ## Refund a payment
 
-Alipay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/display/DOCS/Refund+a+payment).
+Alipay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
@@ -175,8 +175,8 @@ To start testing, you'll need to:
 </TipBox>
 
 1.  Create an Alipay transaction as above, following the redirect link in the response to Alipay's website.
-2.  Click the button on the right and log in with the following details:
+2.  Select the button on the right and log in with the following details:
 *   **Username**: `alipaytest20091@gmail.com`
 *   **Password**: `111111`
-3.  Solve the captcha and then click the blue button at the bottom of the form to continue.
-4.  Enter `111111` into the box and then click the blue button to complete the payment. You should then be redirected to your predefined success URL.
+3.  Solve the captcha and then select the blue button at the bottom of the form to continue.
+4.  Enter `111111` into the box and then select the blue button to complete the payment. You should then be redirected to your predefined success URL.

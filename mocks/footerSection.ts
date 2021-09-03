@@ -8,12 +8,12 @@ export const policies: PoliciesList = [
   },
   {
     type: PolicyEntityType.LINK,
-    link: 'https://www.checkout.com/legal/terms-and-policies',
+    link: 'https://www.checkout.com/legal/privacy-policy',
     name: 'Privacy policy',
   },
   {
     type: PolicyEntityType.LINK,
-    link: 'https://www.checkout.com/legal/terms-and-policies',
+    link: 'https://www.checkout.com/legal/certificates',
     name: 'Certificates',
   },
   {
@@ -26,12 +26,12 @@ export const policies: PoliciesList = [
   },
   {
     type: PolicyEntityType.LINK,
-    link: 'https://www.checkout.com/legal/terms-and-policies',
+    link: 'https://www.checkout.com/Modern_Slavery_Statement.pdf',
     name: 'Modern Slavery Statement',
   },
   {
     type: PolicyEntityType.LINK,
-    link: 'https://www.checkout.com/legal/terms-and-policies',
+    link: 'https://www.checkout.com/2019_Supplier_Code_of_Conduct.pdf',
     name: 'Supplier Code of Conduct',
   },
 ];
@@ -53,7 +53,7 @@ export const social: SocialList = [
     iconName: 'instagram',
   },
   {
-    link: 'https://www.youtube.com/channel/UCC-VFhOEXmyaOekIOwZvxhg"',
+    link: 'https://www.youtube.com/channel/UCC-VFhOEXmyaOekIOwZvxhg',
     title: 'Checkout.com`s Youtube',
     iconName: 'youtube',
   },
@@ -63,7 +63,7 @@ export const social: SocialList = [
     iconName: 'glassdoor',
   },
   {
-    link: 'https://www.checkout.com/legal/terms-and-policies',
+    link: 'https://www.checkout.com/blog',
     title: 'heckout.com`s Blog',
     iconName: 'checkout',
   },
@@ -80,7 +80,7 @@ export const navigation: NavigationList = [
     items: [
       [
         {
-          link: 'https://www.checkout.com/legal/terms-and-policies',
+          link: 'https://www.checkout.com/connected-payments',
           name: 'Solution overview',
         },
         {
@@ -102,19 +102,19 @@ export const navigation: NavigationList = [
       ],
       [
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'https://www.checkout.com/data-and-reporting/risk-management/fraud',
           name: 'Fraud Protection',
         },
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'https://www.checkout.com/payment-methods',
           name: 'Payment methods',
         },
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'https://www.checkout.com/pricing',
           name: 'Pricing',
         },
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'https://www.checkout.com/partners',
           name: 'Partners',
         },
       ],
@@ -156,7 +156,7 @@ export const navigation: NavigationList = [
           name: 'Blog',
         },
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'https://www.checkout.com/case-studies',
           name: 'Customer stories',
         },
       ],
@@ -167,15 +167,15 @@ export const navigation: NavigationList = [
     items: [
       [
         {
-          link: 'https://www.checkout.com/solutions',
+          link: '/',
           name: 'Documentation',
         },
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'https://api-reference.checkout.com/',
           name: 'API Reference',
         },
         {
-          link: 'https://www.checkout.com/solutions',
+          link: 'mailto:support@checkout.com',
           name: 'Support',
         },
       ],

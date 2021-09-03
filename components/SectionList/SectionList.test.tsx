@@ -3,46 +3,38 @@ import { mount } from '@cypress/react';
 
 import { ThemeProvider } from 'theme/ThemeProvider';
 import { SectionListItem as SectionListType } from 'types/sectionList';
-import {
-  IconMyAccount,
-  IconIntegration,
-  IconPaymentsAndRefunds,
-  IconReporting,
-  IconRiskManagement,
-  IconEcommerce,
-} from 'components/Icons';
 import SectionList from '.';
 
 export const sectionList: SectionListType[] = [
   {
     url: '/faq/my-account',
     title: 'My account',
-    Icon: IconMyAccount,
+    imageSrc: '/faq/my-account',
   },
   {
     url: '/faq/integration',
     title: 'Integration',
-    Icon: IconIntegration,
+    imageSrc: '/faq/my-account',
   },
   {
     url: '/faq/payments-and-refunds',
     title: 'Payments and refunds',
-    Icon: IconPaymentsAndRefunds,
+    imageSrc: '/faq/my-account',
   },
   {
     url: '/faq/reporting',
     title: 'Reporting',
-    Icon: IconReporting,
+    imageSrc: '/faq/my-account',
   },
   {
     url: '/faq/risk-management',
     title: 'Risk management',
-    Icon: IconRiskManagement,
+    imageSrc: '/faq/my-account',
   },
   {
     url: '/faq/e-commerce-platforms',
     title: 'E-commerce platforms',
-    Icon: IconEcommerce,
+    imageSrc: '/faq/my-account',
   },
 ];
 
@@ -90,6 +82,6 @@ describe('SectionItem', () => {
   });
 
   it('links should contains svg icon', () => {
-    cy.get('[data-cy=section-list-item]').children().get('a').children().get('svg').should('exist');
+    cy.get('[data-cy=section-list-item]').children().get('a').children().get('img').should('exist');
   });
 });

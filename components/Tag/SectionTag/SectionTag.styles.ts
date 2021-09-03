@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledSectionTag = styled.span`
   display: inline-block;
-  padding: 0 8px;
+  padding: 4px 8px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.sectionTag};
 

@@ -1,42 +1,34 @@
 import { SectionListItem } from 'types/sectionList';
-import {
-  IconMyAccount,
-  IconIntegration,
-  IconPaymentsAndRefunds,
-  IconReporting,
-  IconRiskManagement,
-  IconEcommerce,
-} from 'components/Icons';
 
 export const sectionList: SectionListItem[] = [
   {
     url: '/faq/my-account',
     title: 'My account',
-    Icon: IconMyAccount,
+    imageSrc: '/faq/category-ecom.svg',
   },
   {
     url: '/faq/integration',
     title: 'Integration',
-    Icon: IconIntegration,
+    imageSrc: '/faq/category-ecom.svg',
   },
   {
     url: '/faq/payments-and-refunds',
     title: 'Payments and refunds',
-    Icon: IconPaymentsAndRefunds,
+    imageSrc: '/faq/category-ecom.svg',
   },
   {
     url: '/faq/reporting',
     title: 'Reporting',
-    Icon: IconReporting,
+    imageSrc: '/faq/category-ecom.svg',
   },
   {
     url: '/faq/risk-management',
     title: 'Risk management',
-    Icon: IconRiskManagement,
+    imageSrc: '/faq/category-ecom.svg',
   },
   {
     url: '/faq/e-commerce-platforms',
     title: 'E-commerce platforms',
-    Icon: IconEcommerce,
+    imageSrc: '/faq/category-ecom.svg',
   },
 ];

@@ -1,5 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import MDX from '@mdx-js/runtime';
+
+import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
@@ -10,6 +13,7 @@ import {
   TextHeadingThree,
   TextHeadingFour,
 } from 'components/TextHeading';
+import TextWrapper from 'components/TextWrapper';
 import TipBox from 'components/TipBox';
 import Tabs, { Tab } from 'components/Tabs';
 import { Text } from 'components/Text';
@@ -50,6 +54,19 @@ import SectionLink from 'components/SectionLink';
 import { CategoriesList, CategoriesItem } from 'components/Categories';
 import TwoColumn from 'components/TwoColumn';
 import ArrowLink from 'components/ArrowLink';
+import {
+  IBuilder,
+  IBuilderHeader,
+  IBuilderFrameWorks,
+  IBuilderFrameworkTab,
+  IBuilderStep,
+  IBuilderDescriptionCard,
+  IBuilderCodeTab,
+  IBuilderCodePreview,
+} from 'components/IBuilder';
+import FAQSectionLabel from 'components/FAQSectionLabel';
+import { Highlight } from 'components/Highlight';
+import FullScreenView from 'components/FullScreenView';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -86,6 +103,7 @@ export const mdxComponents = {
   TypeTag,
   SectionTag,
   InfoBox,
+  TextWrapper,
   List: withBlockMargin(List),
   ListIconItem,
   ListNumberItem,
@@ -112,6 +130,18 @@ export const mdxComponents = {
   CategoriesItem,
   TwoColumn: withBlockMargin(TwoColumn),
   ArrowLink,
+  IBuilder,
+  IBuilderHeader,
+  IBuilderFrameWorks,
+  IBuilderFrameworkTab,
+  IBuilderStep,
+  IBuilderDescriptionCard,
+  IBuilderCodeTab,
+  IBuilderCodePreview,
+  FAQItem,
+  FAQSectionLabel,
+  'ais-highlight-0000000000': Highlight,
+  FullScreenView,
 };
 
 type Props = {
@@ -128,5 +158,7 @@ const MDXProvider: FC<Props> = ({ source }) => {
 
   return <MDXRemote key={key} {...source} components={mdxComponents} />;
 };
+
+export const MDXRuntime: FC = ({ children }) => <MDX components={mdxComponents}>{children}</MDX>;
 
 export default MDXProvider;

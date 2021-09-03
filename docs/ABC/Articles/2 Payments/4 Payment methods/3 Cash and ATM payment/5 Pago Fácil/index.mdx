@@ -19,8 +19,8 @@ Pago Fácil can be used by either redirecting the customer to a statically hoste
 
 Payments follow a two-step process:
 
-1.  [Request payment](#PagoFácil-requestpayment)
-2.  [Redirect the customer or render the ticket](#PagoFácil-redirectorrender)
+1.  [Request payment](/payments/payment-methods/cash-and-atm-payment/pago-facil#Step_1:_Request_payment)
+2.  [Redirect the customer or render the ticket](/payments/payment-methods/cash-and-atm-payment/pago-facil#Step_2:_Redirect_the_customer_or_render_the_ticket)
 
 ---
 
@@ -156,14 +156,14 @@ Whether you used the direct or redirect `integration_type`, you should get a `20
 
 To capture and complete the payment, you need to provide the customer with a Pago Fácil ticket by following one of two flows:
 
-*   If you used the `redirect` method, [redirect the customer](#PagoFácil-redirect).
-*   If you used the `direct` method, [render the ticket](#PagoFácil-render).
+*   If you used the `redirect` method, [redirect the customer](/payments/payment-methods/cash-and-atm-payment/pago-facil#Redirect_the_customer).
+*   If you used the `direct` method, [render the ticket](/payments/payment-methods/cash-and-atm-payment/pago-facil#Render_the_ticket).
 
 ### Redirect the customer
 
 <TipBox variant="info">
 
-When using the `redirect` integration method, make sure your customer is aware that they will be redirected to the ticket page when they click your **Pay now** button, and that they should print or save the ticket.
+When using the `redirect` integration method, make sure your customer is aware that they will be redirected to the ticket page when they select your _Pay now_ button, and that they should print or save the ticket.
 
 </TipBox>
 
@@ -190,7 +190,7 @@ Your payment confirmation page should make it clear to the customer that their p
 
 </TipBox>
 
-To get the components necessary to render the ticket, use the ['get payment details' endpoint](#PagoFácil-getdetails) below. This will return a `ticket` object which contains the components to display the ticket.
+To get the components necessary to render the ticket, use the ['get payment details' endpoint](/payments/payment-methods/cash-and-atm-payment/pago-facil#Endpoints) below. This will return a `ticket` object which contains the components to display the ticket.
 
 <TipBox title="Tips for displaying the ticket">
 
@@ -341,7 +341,7 @@ The response will differ depending on which `integration_type` (`redirect` or `d
 
 ### Refund a payment
 
-You can refund a Pago Fácil payment using our [refund API](/display/DOCS/Refund+a+payment). Partial and multiple – as well as full – refunds are allowed.
+You can refund a Pago Fácil payment using our [refund API](/payments/manage-payments/refund-a-payment). Partial and multiple – as well as full – refunds are allowed.
 
 The customer will get an email (the email address is taken from the `source.payer.email` property in the initial payment request) from dLocal asking for their banking details. Once the customer has provided their details, dLocal will transfer the money to the customer's bank account.
 

@@ -1,49 +1,42 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { useMatchMedia } from '@cko/primitives';
 import algoliasearch from 'algoliasearch/lite';
-import Link from 'next/link';
 import { InstantSearch } from 'react-instantsearch-dom';
-import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
-import { DocsHits, SearchBox } from 'components/Search';
-import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
-import { clientSettings } from 'constants/clientSettings';
-import { IconActionArrowRight } from 'components/Icons';
-import Outside from 'components/Outside';
-import { SearchResultLink } from 'types/header';
-import { Breakpoints } from 'constants/screen';
-import {
-  TextFieldWrapper,
-  Results,
-  PopularSearches,
-  SearchesTitle,
-  PopularSearchesItem,
-  ButtonContainer,
-  ResultItemsContainer,
-  StyledLink,
-  Button,
-} from './SearchWidget.styles';
 
-type Props = {
-  isMobile?: boolean;
-  popularSearches: SearchResultLink[];
-  emptySearchResult: string;
-  popularSearchesTitle: string;
-};
+import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
+import { SearchBox } from 'components/Search';
+import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
+import Outside from 'components/Outside';
+import { Breakpoints } from 'constants/screen';
+import { TextFieldWrapper, Results, ResultItemsContainer } from './SearchWidget.styles';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
 const INITIAL_SEARCH_STATE = { query: '', page: 1 };
 
-const SearchWidget: FC<WithMenuStateProps<Props>> = ({
-  popularSearches,
-  popularSearchesTitle,
+type SearchWidgetProps = {
+  isFAQSection?: boolean;
+  baseUrlRederection?: string;
+  baseIndexName: string;
+  searchesTitleComponent: ReactNode;
+  popularSearchesComponent?: ReactNode;
+  renderHits: (args: { searchUrl: string; onCloseSearchPanel: () => void }) => ReactNode;
+};
+
+const SearchWidget: FC<WithMenuStateProps<SearchWidgetProps>> = ({
+  isFAQSection = false,
+  baseIndexName = '',
+  baseUrlRederection = '/search',
+  searchesTitleComponent,
+  popularSearchesComponent,
+  renderHits,
   onChangeSearchState,
 }) => {
   const router = useRouter();
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const [searchState, setSearchState] = useState(INITIAL_SEARCH_STATE);
 
-  const searchUrl = `/search?query=${searchState.query}&page=1`;
+  const searchUrl = `${baseUrlRederection}?query=${searchState.query}&page=1`;
 
   const onCloseSearchPanel = useCallback(() => {
     onChangeSearchState(false);
@@ -67,34 +60,19 @@ const SearchWidget: FC<WithMenuStateProps<Props>> = ({
         <TextFieldWrapper ref={refToElement} isMobile={isMobile}>
           <InstantSearch
             searchClient={searchClient}
-            indexName={clientSettings.searchIndexName}
+            indexName={baseIndexName}
             searchState={searchState}
             onSearchStateChange={setSearchState}
           >
-            <SearchBox onSubmit={onSubmitHandler} />
+            <SearchBox isFAQSection={isFAQSection} onSubmit={onSubmitHandler} />
             <Results isShown={isMobile || showResults}>
               {showResults && (
                 <ResultItemsContainer>
-                  <SearchesTitle>Search result</SearchesTitle>
-                  <DocsHits mode="header" maxHitsNumber={4} onClickHit={onCloseSearchPanel}>
-                    <ButtonContainer>
-                      <StyledLink href={searchUrl}>
-                        <Button onClick={onCloseSearchPanel}>View all search results</Button>
-                      </StyledLink>
-                    </ButtonContainer>
-                  </DocsHits>
+                  {searchesTitleComponent}
+                  {renderHits({ searchUrl, onCloseSearchPanel })}
                 </ResultItemsContainer>
               )}
-              <PopularSearches>
-                <SearchesTitle>{popularSearchesTitle}</SearchesTitle>
-                {popularSearches.map(({ title, url }) => (
-                  <Link key={title} href={url} passHref>
-                    <PopularSearchesItem target="_blank">
-                      {title} <IconActionArrowRight />
-                    </PopularSearchesItem>
-                  </Link>
-                ))}
-              </PopularSearches>
+              {popularSearchesComponent}
             </Results>
           </InstantSearch>
         </TextFieldWrapper>
@@ -103,4 +81,4 @@ const SearchWidget: FC<WithMenuStateProps<Props>> = ({
   );
 };
 
-export default withMenuState(SearchWidget) as FC<Props>;
+export default withMenuState(SearchWidget) as FC<SearchWidgetProps>;

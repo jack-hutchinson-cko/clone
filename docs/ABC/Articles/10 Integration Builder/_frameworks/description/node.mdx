@@ -1,0 +1,40 @@
+<IBuilderDescriptionCard title="Some info about Back End on Node.js 1" tab="server.js" lines={[1, 2]}>
+
+Install the package and import it in your code. Alternatively, if you’re starting from scratch and need a `package.json` file, download the project files using the link in the code editor.
+
+</IBuilderDescriptionCard>
+
+<IBuilderDescriptionCard title="Some info about Back End on Node.js 2" tab="server.js" lines={[33, 39]}>
+
+Card tokens (`tok_`) are single use and only have a 15-minute lifespan.
+Once youve successfully sent your request, youll receive a response containing a
+permanent card source ID (`src_`) which can be used in subsequent payment requests.
+
+</IBuilderDescriptionCard>
+
+
+<IBuilderDescriptionCard title="Some info about Back End on Node.js 3" tab="server.js" lines={[8, 26]}>
+
+Some issuing banks do not support card verification and reject the charge request even if all card
+details are accurate. If the issuing bank refuses the card verification request, a follow-up
+request will be sent automatically with a $1 total amount (or the equivalent in the submitted
+processing currency).
+
+<tabs>
+<tab title="Tab 1">
+
+```json withBorder="false"
+https://api.checkout.com/payments
+```
+
+</tab>
+<tab title="Tab 2" active>
+
+```json withBorder="false"
+https://api.sandbox.checkout.com/payments
+```
+
+</tab>
+</tabs>
+
+</IBuilderDescriptionCard>

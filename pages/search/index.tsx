@@ -5,7 +5,7 @@ import { InstantSearch } from 'react-instantsearch-dom';
 import { DocsHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'components/Search';
 import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
 import { clientSettings } from 'constants/clientSettings';
-import { QueryType } from 'components/Search/types';
+import { HitMode, QueryType } from 'types/search';
 import { PageContent } from 'styles/index.styles';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
@@ -30,8 +30,8 @@ const SearchPage: FC = () => {
           currentPage={Number(searchState.page) || 1}
         />
         <HiddenSearchInput />
-        <DocsHits mode="page" />
-        <Pagination searchState={searchState} />
+        <DocsHits mode={HitMode.PAGE} />
+        <Pagination searchState={searchState} baseUrlRederection="/search" />
       </InstantSearch>
     </PageContent>
   );

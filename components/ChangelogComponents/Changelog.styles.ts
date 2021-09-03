@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Breakpoints, MobileBreakPoints } from 'constants/screen';
-import { TextHeadingOne } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 
-export const Header = styled(TextHeadingOne)`
+export const Header = styled(TextHeadingTwo)`
   margin: 0;
   color: ${({ theme }) => theme.colors.base};
 `;
@@ -49,7 +49,7 @@ export const ChangeLogWidget = styled.div`
 `;
 
 export const Counter = styled.div`
-  background-color: ${({ theme }) => theme.colors.turquoise};
+  background-color: ${({ theme }) => theme.colors.borderLight};
   color: ${({ theme }) => theme.colors.successDark};
   border-radius: 4px;
   font-size: 16px;

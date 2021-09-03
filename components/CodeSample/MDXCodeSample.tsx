@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { toString } from 'lodash';
 import { Language } from 'prism-react-renderer';
+import { SelectedLinesContext } from 'components/IBuilder';
 import CodeSample from './CodeSample';
 
 export type Props = {
@@ -8,6 +9,7 @@ export type Props = {
   language?: Language;
   isCollapsible: boolean;
   withBorder: boolean;
+  withControls: boolean;
   isEditMode: boolean;
 };
 
@@ -18,6 +20,7 @@ const MDXCodeSample: FC<Props> = ({
   children,
   language,
   withBorder = true,
+  withControls = true,
   isCollapsible = true,
   isEditMode,
   ...otherProps
@@ -26,13 +29,17 @@ const MDXCodeSample: FC<Props> = ({
   const code = toString(children);
   const resultCode = code.charAt(code.length - 1) === '\n' ? code.slice(0, code.length - 1) : code;
 
+  const selectedLines = useContext(SelectedLinesContext);
+
   return (
     <CodeSample
       code={resultCode}
       language={language || languageFromClass}
       isCollapsible={getBoolMdxProps(isCollapsible) && !getBoolMdxProps(isEditMode)}
       withBorder={getBoolMdxProps(withBorder)}
+      withControls={getBoolMdxProps(withControls)}
       isEditMode={getBoolMdxProps(isEditMode)}
+      selectedLines={selectedLines}
       {...otherProps}
     />
   );

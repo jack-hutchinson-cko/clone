@@ -31,6 +31,7 @@ type Props = {
   source: MDXRemoteSerializeResult;
   anchorsNavItems: AnchorItem[];
   childrenArticles: { title: string; href: string; description: string }[];
+  isIntegrationBuilder: boolean;
 };
 
 const MIN_ANCHOR_COUNT = 2;
@@ -46,18 +47,21 @@ const DocPost: NextPage<Props> = ({
   frontMatter,
   source,
   childrenArticles,
+  isIntegrationBuilder,
 }) => {
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
-      <PageContent>
-        <header>
-          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-          <Title>{frontMatter.title}</Title>
-          <LastChange>
-            {frontMatter.modifiedDate} – {frontMatter.lastAuthor}
-          </LastChange>
-        </header>
+      <PageContent isIntegrationBuilder={isIntegrationBuilder}>
+        {!isIntegrationBuilder ? (
+          <header>
+            <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+            <Title>{frontMatter.title}</Title>
+            <LastChange>
+              {frontMatter.modifiedDate} – {frontMatter.lastAuthor}
+            </LastChange>
+          </header>
+        ) : null}
         <MDXProvider source={source} />
         <CardWrapper cardsInRow={ChildArticlesPerRow}>
           {childrenArticles.map((childItem) => (
@@ -67,11 +71,13 @@ const DocPost: NextPage<Props> = ({
           ))}
         </CardWrapper>
       </PageContent>
-      <Navigation>
-        {anchorsNavItems.length < MIN_ANCHOR_COUNT ? null : (
-          <AnchorNavigation anchors={anchorsNavItems} />
-        )}
-      </Navigation>
+      {!isIntegrationBuilder ? (
+        <Navigation>
+          {anchorsNavItems.length < MIN_ANCHOR_COUNT ? null : (
+            <AnchorNavigation anchors={anchorsNavItems} />
+          )}
+        </Navigation>
+      ) : null}
     </AnchorsProvider>
   );
 };
@@ -101,6 +107,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       frontMatter,
       source,
       childrenArticles,
+      isIntegrationBuilder: frontMatter.type === 'IBuilder',
     },
   };
 };

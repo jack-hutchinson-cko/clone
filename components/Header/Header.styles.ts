@@ -240,3 +240,13 @@ export const LoginWidgetTopWrapper = styled.div`
 export const LiginWidgetBottomWrapper = styled.div`
   padding-left: 30px;
 `;
+
+export const WrapperIconActionArrowRight = styled.span`
+  > svg {
+    margin-left: 5px;
+    transition: transform 0.15s linear 0s;
+  }
+  &:hover svg {
+    transform: translateX(40%);
+  }
+`;

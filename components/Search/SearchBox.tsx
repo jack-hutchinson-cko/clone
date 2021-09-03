@@ -6,6 +6,7 @@ import { IconSearch } from 'components/Icons';
 import { TextFieldHolder, TextField, CrossSearchIcon } from './SearchBox.styles';
 
 type Props = {
+  isFAQSection: boolean;
   currentRefinement: string;
   refine: (value: string) => void;
   onSubmit: () => void;
@@ -14,10 +15,11 @@ type Props = {
 const LARGE_SIZE = 30;
 const SMALL_SIZE = 16;
 
-const CustomSearchBox: FC<Props> = ({ currentRefinement, refine, onSubmit }) => {
+const CustomSearchBox: FC<Props> = ({ isFAQSection, currentRefinement, refine, onSubmit }) => {
   const isMobileL = useMatchMedia(MobileBreakPoints.MOBILE_L);
   const iconSize = isMobileL ? LARGE_SIZE : SMALL_SIZE;
   const Icon = currentRefinement.length ? CrossSearchIcon : IconSearch;
+  const placeholderText = isFAQSection ? 'Search for a question, topic or keyword...' : 'Search';
 
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
     refine(event.currentTarget.value);
@@ -35,9 +37,14 @@ const CustomSearchBox: FC<Props> = ({ currentRefinement, refine, onSubmit }) => 
         onSubmit();
       }}
     >
-      <TextFieldHolder>
-        <TextField value={currentRefinement} onChange={onChange} placeholder="Search" />
-        <Icon onClick={onClear} width={iconSize} height={iconSize} />
+      <TextFieldHolder isFAQSection={isFAQSection}>
+        <TextField
+          isFAQSection={isFAQSection}
+          value={currentRefinement}
+          onChange={onChange}
+          placeholder={placeholderText}
+        />
+        {!isFAQSection && <Icon onClick={onClear} width={iconSize} height={iconSize} />}
       </TextFieldHolder>
     </form>
   );
