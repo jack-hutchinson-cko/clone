@@ -138,6 +138,7 @@ export const themes = {
       ],
     },
     radii: [0, '3px', '30px', '50%'],
+    darkSemiOpacity: 'rgba(0, 0, 0, 0.64)',
     shadows: {
       none: 'none',
       focusLight: [
@@ -300,6 +301,7 @@ export const themes = {
       ],
     },
     radii: [0, '3px', '30px', '50%'],
+    darkSemiOpacity: ['rgba(0, 0, 0, 0.64)'],
     shadows: {
       none: 'none',
       focusLight: [

@@ -1,20 +1,20 @@
 import { Story, Meta } from '@storybook/react';
 import ImageBox, { Props } from '../ImageBox/ImageBox';
-import FullScreenView from '.';
+import ImageModalWrapper from '.';
 
-export const FullScreenViewStory: Story<Props> = ({ src }) => {
+export const ImageModalWrapperStory: Story<Props> = ({ src }) => {
   return (
-    <FullScreenView>
+    <ImageModalWrapper src={src}>
       <ImageBox src={src} />
-    </FullScreenView>
+    </ImageModalWrapper>
   );
 };
 
-FullScreenViewStory.args = {
+ImageModalWrapperStory.args = {
   src: 'https://via.placeholder.com/500x300.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide%20C/O%20https://placeholder.com/',
 };
 
 export default {
-  title: 'FullScreenView',
-  component: FullScreenView,
+  title: 'ImageModalWrapper',
+  component: ImageModalWrapper,
 } as Meta;
