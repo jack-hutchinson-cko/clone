@@ -160,8 +160,8 @@ mPaymentForm = findViewById(R.id.checkout_card_form);
 mPaymentForm.set3DSListener(m3DSecureListener); // pass the callback
 mPaymentForm.handle3DS(
   'https://sandbox.checkout.com/api2/v2/3ds/acs/687805', // the 3D Secure URL
-  'http://example.com/success', // the Redirection URL
-  'http://example.com/fail', // the Redirection Fail URL
+  'https://example.com/success', // the Redirection URL
+  'https://example.com/fail', // the Redirection Fail URL
 );
 ```
 
