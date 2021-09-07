@@ -66,6 +66,7 @@ import {
 } from 'components/IBuilder';
 import FAQSectionLabel from 'components/FAQSectionLabel';
 import { Highlight } from 'components/Highlight';
+import CountryCardLink from 'components/CountryCardLink/CountryCardLink';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -140,6 +141,7 @@ export const mdxComponents = {
   FAQItem,
   FAQSectionLabel,
   'ais-highlight-0000000000': Highlight,
+  CountryCardLink,
 };
 
 type Props = {
