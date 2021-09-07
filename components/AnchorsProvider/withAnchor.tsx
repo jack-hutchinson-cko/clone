@@ -1,8 +1,7 @@
-import React, { FC, useContext, useEffect, useRef, useState, useCallback } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState, useCallback, ReactNode } from 'react';
 import Link from 'next/link';
-import { toString } from 'lodash';
-
-import { getAnchorUrl, getHashValue } from 'lib/url';
+import { toString, get } from 'lodash';
+import { getAnchorUrl as getAnchorUrlFromText, getHashValue } from 'lib/url';
 import { writeTextToClipboard } from 'lib/cliboard';
 
 import Context, { Props } from './AnchorsContext';
@@ -10,37 +9,37 @@ import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styl
 
 const DEFAULT_OFFSET = 0;
 
-const checkReachedElement = (target: HTMLElement): boolean => {
-  const { top, bottom } = target.getBoundingClientRect();
-  return top >= 0 && bottom <= (window.innerHeight || document.documentElement.clientHeight);
+type Options = { silentMode?: boolean };
+
+const getIsChildLink = (children: ReactNode) => get(children, 'props.originalType') === 'a';
+
+const getAnchorUrl = (children: ReactNode): string => {
+  if (typeof children === 'string') {
+    return getAnchorUrlFromText(toString(children)) || '';
+  }
+  if (getIsChildLink(children)) {
+    return get(children, 'props.href', '');
+  }
+
+  return '';
 };
 
-type Options = { silentMode?: boolean };
+const getRenderedChildren = (children: ReactNode): ReactNode => {
+  if (getIsChildLink(children)) {
+    return get(children, 'props.children', '');
+  }
+
+  return children;
+};
 
 const withAnchor =
   (Component: FC, { silentMode }: Options = {}): FC =>
   (props) => {
     const { children, ...restProps } = props;
     const anchorRef = useRef<HTMLSpanElement>(null);
-    const [initialized, setInitialized] = useState<boolean>(false);
-    const [scrolled, setScrolled] = useState<boolean>(false);
-    const { onUpdateState, offsetTop = DEFAULT_OFFSET } = useContext<Props>(Context);
-    const anchorUrl = getAnchorUrl(toString(children)) || '';
+    const { offsetTop = DEFAULT_OFFSET } = useContext<Props>(Context);
+    const anchorUrl = getAnchorUrl(children);
     const hashValue = getHashValue(anchorUrl);
-
-    useEffect(() => {
-      setInitialized(true);
-
-      const onScrollHandler = () => {
-        if (anchorRef.current) setScrolled(checkReachedElement(anchorRef.current));
-      };
-      document.addEventListener('scroll', onScrollHandler);
-      return () => document.removeEventListener('scroll', onScrollHandler);
-    }, []);
-
-    useEffect(() => {
-      if (!silentMode && initialized) onUpdateState?.(anchorUrl, scrolled);
-    }, [initialized, anchorUrl, onUpdateState, scrolled]);
 
     const onClickHandler = useCallback(async () => {
       await writeTextToClipboard(anchorUrl);
@@ -48,12 +47,17 @@ const withAnchor =
 
     return (
       <>
-        <Anchor ref={anchorRef} id={hashValue} offsetTop={offsetTop} />
+        <Anchor
+          ref={anchorRef}
+          id={hashValue}
+          data-type={silentMode ? '' : 'anchor'}
+          offsetTop={offsetTop}
+        />
         <Wrapper>
           <Component {...restProps}>
             <Link href={anchorUrl}>
               <>
-                <Title>{children}</Title>
+                <Title>{getRenderedChildren(children)}</Title>
                 <IconWrapper>
                   <LinkIcon onClick={onClickHandler} />
                 </IconWrapper>

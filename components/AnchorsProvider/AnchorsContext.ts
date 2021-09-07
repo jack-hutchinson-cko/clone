@@ -1,17 +1,13 @@
 import { createContext } from 'react';
 
 const defaultValue = {
-  onUpdateState: () => {},
-  shownAnchors: [],
-  initialized: false,
   offsetTop: 0,
+  selectedHref: '',
 };
 
 export type Props = {
-  onUpdateState: (hash: string, state: boolean) => void;
-  shownAnchors: string[];
-  initialized: boolean;
   offsetTop: number;
+  selectedHref: string;
 };
 
 export default createContext<Props>(defaultValue);

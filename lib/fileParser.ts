@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
 import { get } from 'lodash';
@@ -32,6 +33,30 @@ export type ArticleSectionData = {
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
 
+const getAnchorPropsFromTitle = (
+  title: string,
+): {
+  title: string;
+  href: string;
+} => {
+  const regexMdLinks = RegExp(/\[([^\[]+)\](\(.*\))/gm);
+  const singleMatch = RegExp(/\[([^\[]+)\]\((.*)\)/);
+  const matchedLink = (title.match(regexMdLinks) || [])[0];
+  if (matchedLink) {
+    const result = singleMatch.exec(matchedLink) || [];
+
+    return {
+      title: result[1],
+      href: result[2],
+    };
+  }
+
+  return {
+    title,
+    href: getAnchorUrl(title),
+  };
+};
+
 export const getAnchorsNavItems = ({
   content = '',
   childrenArticles = [],
@@ -41,16 +66,13 @@ export const getAnchorsNavItems = ({
 }): AnchorItem[] => {
   const contentAnchors: AnchorItem[] = getAnchors(content).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
-    return {
-      title,
-      href: getAnchorUrl(title),
-    };
+
+    return getAnchorPropsFromTitle(title);
   });
 
-  const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) => ({
-    title,
-    href: getAnchorUrl(title),
-  }));
+  const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) =>
+    getAnchorPropsFromTitle(title),
+  );
 
   return contentAnchors.concat(childArticlesAnchors);
 };

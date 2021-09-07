@@ -1,6 +1,6 @@
-import { FC, useCallback, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useState, useEffect } from 'react';
 import { useMatchMedia } from '@cko/primitives';
-
 import { Breakpoints } from 'constants/screen';
 import AnchorsContext, { Props as ContextProps } from './AnchorsContext';
 
@@ -13,30 +13,54 @@ type Props = {
   areaHeight?: number;
 };
 
+const findAnchorHash = () => {
+  if (window.pageYOffset === 0) {
+    return '';
+  }
+
+  const anchorElements = document.querySelectorAll('[data-type=anchor]') || [];
+
+  for (let i = 0; i < anchorElements.length; i += 1) {
+    const element = anchorElements[i];
+    const { top } = element.getBoundingClientRect();
+
+    if (top >= 0) {
+      const hash = `#${element.getAttribute('id')}`;
+
+      return hash;
+    }
+  }
+
+  return '';
+};
+
 const AnchorsProvider: FC<Props> = ({ children }) => {
+  const router = useRouter();
+  const [selectedHref, setSelectedHref] = useState('');
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
-  const [initialized, setInitialized] = useState<boolean>(false);
-  const selectedMapRef = useRef<Map<string, boolean>>(new Map<string, boolean>());
-  const [shownAnchors, setShownAnchors] = useState<string[]>([]);
 
-  const onUpdateState = useCallback((href: string, state: boolean) => {
-    selectedMapRef.current.set(href, state);
+  useEffect(() => {
+    const onScrollHandler = () => {
+      const anchorHash = findAnchorHash();
 
-    const selected = [...selectedMapRef.current.entries()].reduce<string[]>(
-      (arr, [hash, shown]) => {
-        if (shown) arr.push(hash);
-        return arr;
-      },
-      [],
-    );
-    setShownAnchors(selected);
-    setInitialized(true);
+      if (window.location.hash !== anchorHash) {
+        window.history.replaceState(null, '', anchorHash || window.location.pathname);
+        setSelectedHref(anchorHash);
+      }
+    };
+
+    document.addEventListener('scroll', onScrollHandler);
+    return () => document.removeEventListener('scroll', onScrollHandler);
   }, []);
 
+  useEffect(() => {
+    const hashId = (router.asPath.split('#') || [])[1];
+    const fullHash = hashId ? `#${hashId}` : '';
+    setSelectedHref(fullHash);
+  }, [router.asPath]);
+
   const props: ContextProps = {
-    onUpdateState,
-    shownAnchors,
-    initialized,
+    selectedHref,
     offsetTop: isMobile ? Offset.MOBILE : Offset.DESKTOP,
   };
 
