@@ -96,15 +96,15 @@ We recommend this method, as it should install the latest version of the plugin.
 </TipBox>
 
 1. Go to the root directory of your Magento 2 server.
-2. Type the following command:
-   `composer require checkoutcom/magento2:*`
+2. Use one of the following commands:
+   - `composer require checkoutcom/magento2`
+   - `composer require checkoutcom/magento2:<VERSION_NUMBER>`
 3. You should get a success message confirming the installation of Checkout.com php sdk and Checkout.com plugin.
 4. The plugin is now installed, but you need to recompile your Magento 2 installation and clear the cache before configuring it. Type the following commands in turn:
-
-- `php bin/magento setup:upgrade`
-- `rm -rf var/cache var/generation/ var/di`
-- `php bin/magento setup:di:compile`
-- `php bin magento cache:clean`
+  - `php bin/magento setup:upgrade`
+  - `rm -rf var/cache var/generation/ var/di`
+  - `php bin/magento setup:di:compile`
+  - `php bin magento cache:clean`
 
 ### Using Magento Marketplace
 
@@ -130,9 +130,9 @@ You're now ready to configure the Magento 2 plugin.
   withFullscreenPreview
 />
 
-5. Select the _Payment Action_. 
-  * _Authorize and Capture_ means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time. 
-  * _Authorize_ will only authorize the charge; you have to manually capture the payment yourself. 
+5. Select the _Payment Action_.
+  * _Authorize and Capture_ means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time.
+  * _Authorize_ will only authorize the charge; you have to manually capture the payment yourself.
   * If you're unsure, _Authorize and Capture_ is likely the right choice.
 6. Then go to _Account Settings_.
 7. Enter your _Secret Key_ and _Public Key_. If you're testing, make sure you use the API keys from your sandbox Hub account, then select _Set Webhooks_ to automatically register your webhooks in [Checkout.com](https://checkout.com/) Hub.
