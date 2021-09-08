@@ -2,20 +2,23 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Wrapper, Title } from './CountryCardLink.styles';
+import { countriesMap } from './countriesMap';
 
 type Props = {
   url: string;
-  countryName: string;
-  flagImageSrc: string;
+  type: string;
 };
 
-const CountryCartLink: FC<Props> = (props) => {
-  const { url, countryName, flagImageSrc } = props;
+const flagImageHeight = 40;
+const flagImageWidth = 40;
+
+const CountryCartLink: FC<Props> = ({ url, type }) => {
+  const flagImageSrc = countriesMap.get(type.toLowerCase()) || '';
   return (
     <Link href={url} passHref>
       <Wrapper href={url}>
-        <Image src={flagImageSrc} width={40} height={40} />
-        <Title>{countryName}</Title>
+        <Image src={flagImageSrc} width={flagImageWidth} height={flagImageHeight} />
+        <Title>{type}</Title>
       </Wrapper>
     </Link>
   );
