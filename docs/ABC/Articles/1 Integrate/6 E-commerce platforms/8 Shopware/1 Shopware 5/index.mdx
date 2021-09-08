@@ -41,20 +41,25 @@ See our [Apple Pay documentation](/payments/payment-methods/wallets/apple-pay) f
 
 </TipBox>
 
-#### Checkout setup:
+#### Checkout setup
 
-1.  Navigate to the Apple Pay tab.
-2.  Fill out the required fields and select _Save._
+1. Navigate to [Set up Apple Pay](/payments/payment-methods/wallets/apple-pay/set-up-apple-pay) and complete steps 1 and 2.
+2. Under the Shopware plugin configuration, navigate to the _Apple Pay_ tab
+3. Fill out the required _Certificate Configuration_ fields and select _Save_. Note that _Country Name_ should be set to an [ISO2 country code](/resources/codes/country-codes), and _Common Name_ should be set to a store domain.
 
-#### Domain verification:
+#### Domain verification
 
-1.  Navigate to the Domain Verify tab.
-2.  Edit the path to match the path give by Apple Pay.
-3.  Upload the verification file from your Apple Pay Developer account.
-4.  Verify the upload by selecting _OK_ in your Apple Pay Developer account.
+1. Under your Apple Developer account, add your _Merchant Domain_ and download the resulting `.txt` file.
+2. Under the Shopware plugin configuration, navigate to the _Domain Verify_ tab.
+3. Upload the verification `.txt` file.
+4. Verify the upload by selecting _Verify_ from your Apple Developer account.
 
-#### Certification Upload
+#### Certification upload
 
-1.  Create and download the Apple Pay Payment Processing Certification from your Apple Pay Developer account.
-2.  Upload the certificate to the Shopware Backend and select _CSR Certificate._
-3.  The PEM certification will be needed to validate your merchant identification session.
+1. Under the Shopware plugin configuration, navigate to _Merchant Identify Certificate_ to generate a `.csr` file.
+2. Navigate to _Apple Pay Merchant Identity Certificate > Create Certificate_ in your Apple Developer account. 
+3. Upload the `.csr` file, and then download the resulting `.cer` file.
+4. Navigate to _Apple Pay Certificate File_ and upload the `.cer` file to Shopware.
+5. Select _Generate PEM Certificate_. Once complete, this certificate will be automatically saved to Shopware and you will be provided with the .pem file for backup purposes.
+
+With these steps complete, your storoe will have the necessary certification to validate your merchant identity and offer Apple Pay payments.
