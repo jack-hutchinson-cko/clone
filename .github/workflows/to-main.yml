@@ -1,0 +1,28 @@
+name: Main actions
+
+on:
+  push:
+    branches: [main]
+
+env:
+  MYGET_NPM_TOKEN: ''
+  CI: true
+
+jobs:
+  main-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+
+      - name: Install node modules
+        env:
+          MYGET_NPM_TOKEN: ${{ secrets.READ_MYGET_NPM_TOKEN }}
+        run: npm ci --ignore-scripts
+
+      - name: Create index for algolia
+        run: npm run create-index-for-algolia
