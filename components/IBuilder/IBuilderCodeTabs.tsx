@@ -8,16 +8,24 @@ import { IconActionDownload, IconActionCopy, IconActionCheckmark } from '@cko/ic
 import { useTabs } from 'hooks/useTabs';
 import { TabHeader, TabItem, ControlsPanel, ControlButton } from './IBuilderCodeTabs.styles';
 import { getChildWithProps, getSouceCodeFromMdxTab } from './utils';
-import { SelectedBlockType } from './types';
+import { SelectedBlockType, MediaFilesType } from './types';
 
 type Props = {
   selectedBlock: SelectedBlockType;
   onChangeTab: () => void;
+  mediaFiles: MediaFilesType;
+  mediaSource: string;
 };
 
 const timeout = 3000;
 
-const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) => {
+const IBuilderCodeTabs: FC<Props> = ({
+  children,
+  selectedBlock,
+  onChangeTab,
+  mediaFiles,
+  mediaSource = '',
+}) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const { titles, activeTab, setActiveTab } = useTabs({ children, selectedTab: selectedBlock.tab });
 
@@ -44,6 +52,17 @@ const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) =
 
       zip.file(name, content);
     });
+
+    if (mediaSource) {
+      let mediaFolder = zip;
+      mediaSource.split('/').forEach((currentFolderName) => {
+        mediaFolder = mediaFolder.folder(currentFolderName) as JSZip;
+      });
+
+      mediaFiles.forEach(({ name, src }) => {
+        mediaFolder.file(name, src, { base64: true });
+      });
+    }
 
     zip.generateAsync({ type: 'blob' }).then((content) => {
       saveAs(content, 'example-checkout-files.zip');

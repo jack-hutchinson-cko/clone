@@ -4,6 +4,7 @@ import { execSync } from 'child_process';
 import { last, lowerCase } from 'lodash';
 import matter from 'gray-matter';
 import dateFormat from 'dateformat';
+import { publicDir } from 'constants/clientSettings';
 
 type ForEachFileTreeParams = {
   parentFilePath: string;
@@ -119,6 +120,46 @@ const getIBuilderFrameworkTab = ({ folderPath }: { folderPath: string }): string
   }
 };
 
+const getMediaFilesData = ({ mediaSource }: { mediaSource: string }) => {
+  const folderPath = `${publicDir}/${mediaSource}`;
+
+  const children = fs.readdirSync(folderPath);
+  const result = [];
+
+  for (const child of children) {
+    const filePath = `${folderPath}/${child}`;
+    const fileReg = RegExp(/.*\.(gif|jpe?g|bmp|png|svg)$/i);
+
+    if (!fs.statSync(filePath).isDirectory() && fileReg.test(child)) {
+      const src = fs.readFileSync(filePath, { encoding: 'base64' });
+
+      result.push({ name: child, src });
+    }
+  }
+
+  return result;
+};
+
+const getIBuilderMediaFiles = ({ mediaSource }: { mediaSource: string }) => {
+  try {
+    if (!mediaSource) {
+      return '';
+    }
+
+    const mediaFiles = getMediaFilesData({ mediaSource });
+
+    if (!mediaFiles.length) {
+      return '';
+    }
+
+    return `\n\n<IBuilderMedia mediaSource="${mediaSource}" mediaFiles={${JSON.stringify(
+      mediaFiles,
+    )}}/>\n\n`;
+  } catch (error) {
+    return '';
+  }
+};
+
 type ContentParsingType = {
   content: string;
   frontMatter: { [key: string]: string };
@@ -137,14 +178,14 @@ const addIncludeOptionByFileType = ({
   }
 
   if (frontMatter.type === 'IBuilderFrameworksTab') {
-    const { frontendSource, backendSource } = frontMatter;
+    const { frontendSource, backendSource, mediaSource } = frontMatter;
     return `${content}${getIBuilderCodeTab({
       folderPath,
       sourcePath: frontendSource,
     })}${getIBuilderCodeTab({
       folderPath,
       sourcePath: backendSource,
-    })}`;
+    })}${getIBuilderMediaFiles({ mediaSource })}`;
   }
 
   return content;

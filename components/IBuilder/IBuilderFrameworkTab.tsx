@@ -1,10 +1,11 @@
 import React, { FC, useState, ReactNode, useEffect, useRef } from 'react';
+import { get } from 'lodash';
 import TwoColumn from 'components/TwoColumn';
 import usePrevState from 'hooks/usePrevState';
 import { getChildComponentName, getChildWithProps } from './utils';
 import IBuilderCodeTabs from './IBuilderCodeTabs';
 import { MainWrapper, CodeTabWrapper } from './IBuilderFrameworkTab.styles';
-import { SelectedBlockType, RegisterDescriptionElementType } from './types';
+import { SelectedBlockType, RegisterDescriptionElementType, MediaFilesType } from './types';
 
 const HEADER_HEIGHT = 80;
 
@@ -22,12 +23,17 @@ const getInnerComponents = ({
   codePreviewComponent: ReactNode;
   codeTabsComponents: ReactNode;
   descriptionComponents: ReactNode;
+  mediaFiles: MediaFilesType;
+  mediaSource: string;
 } => {
   let codePreviewComponent = null;
   let currentStep = 1;
   let currentDescriptionId = 0;
+  let mediaFiles: MediaFilesType = [];
+  let mediaSource = '';
   const codeTabsComponents: ReactNode[] = [];
   const descriptionComponents: ReactNode[] = [];
+  const codeMap: { [key: string]: string } = {};
 
   React.Children.toArray(children).forEach((child) => {
     const componentName = getChildComponentName(child);
@@ -48,11 +54,31 @@ const getInnerComponents = ({
       );
       currentDescriptionId += 1;
     } else if (componentName === 'IBuilderCodeTab') {
+      const title = get(child, 'props.title');
+      const code = get(child, 'props.children.props.children.props.children');
+
+      if (title && code) {
+        codeMap[title] = code;
+      }
+
       codeTabsComponents.push(child);
+    } else if (componentName === 'IBuilderMedia') {
+      mediaFiles = get(child, 'props.mediaFiles', []);
+      mediaSource = get(child, 'props.mediaSource', []);
     }
   });
 
-  return { codePreviewComponent, codeTabsComponents, descriptionComponents };
+  codePreviewComponent = getChildWithProps(codePreviewComponent, {
+    codeMap,
+  });
+
+  return {
+    codePreviewComponent,
+    codeTabsComponents,
+    descriptionComponents,
+    mediaFiles,
+    mediaSource,
+  };
 };
 
 type Props = {
@@ -67,7 +93,13 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
     descriptionElementsData.current.push(data);
   };
 
-  const { codePreviewComponent, codeTabsComponents, descriptionComponents } = getInnerComponents({
+  const {
+    codePreviewComponent,
+    codeTabsComponents,
+    descriptionComponents,
+    mediaFiles,
+    mediaSource,
+  } = getInnerComponents({
     children,
     selectedBlock,
     setSelectedBlock,
@@ -110,7 +142,12 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
         </div>
         <CodeTabWrapper>
           <div>{codePreviewComponent}</div>
-          <IBuilderCodeTabs onChangeTab={handelChangeTab} selectedBlock={selectedBlock}>
+          <IBuilderCodeTabs
+            onChangeTab={handelChangeTab}
+            selectedBlock={selectedBlock}
+            mediaFiles={mediaFiles}
+            mediaSource={mediaSource}
+          >
             {codeTabsComponents}
           </IBuilderCodeTabs>
         </CodeTabWrapper>

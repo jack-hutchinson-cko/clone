@@ -25,4 +25,6 @@ export const CLIENT_SETTINGS_BY_TYPE = {
   },
 };
 
+export const publicDir = path.join(process.cwd(), 'public');
+
 export const clientSettings = CLIENT_SETTINGS_BY_TYPE[CLIENT_TYPE as 'ABC' | 'NAS'];

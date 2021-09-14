@@ -15,3 +15,5 @@ export type RegisterDescriptionElementType = {
   };
   blockItem: SelectedBlockType;
 };
+
+export type MediaFilesType = { name: string; src: string }[];
