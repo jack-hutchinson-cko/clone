@@ -1,0 +1,38 @@
+<IBuilderDescriptionCard title="Initialize Frames" tab="app.js" lines={[6, 7]}>
+
+Initialize Frames with your public API key. This will render the secure input fields on your page.
+
+`Frames.init("pk_test_XXXX");`
+
+</IBuilderDescriptionCard>
+
+<IBuilderDescriptionCard title="Add validation event listener" tab="app.js" lines={[17, 21]}>
+
+Frames creates its own events to detect the payment method, whether the form is valid and more. To access these events, use `Frames.Events.<EVENT_NAME>`. See the [Frames reference](/integrate/frames/frames-reference) to learn about the events and what they do.
+
+First, we’ll focus on form validation. Use the `FRAMES_VALIDATION_CHANGED` event to listen out for field validation status changes. The second argument will be a function that checks if the card is valid. To do this, we can use a built-in action called `isCardValid()`, which returns a Boolean value.
+
+You can also create a second event listener on the validation event that handles error message styling. 
+
+```js
+//Frames event for validation change
+Frames.addEventHandler(
+   Frames.Events.FRAME_VALIDATION_CHANGED,
+   onValidationChanged
+);
+```
+<br />
+
+</IBuilderDescriptionCard>
+
+<IBuilderDescriptionCard title="Handle form submission" tab="app.js" lines={[160, 164]}>
+
+`Frames.submitCard()` is another built-in action in Frames. We can use this to send the card details securely once all the inputs are valid.
+
+</IBuilderDescriptionCard>
+
+<IBuilderDescriptionCard title="Add tokenization event listener" tab="app.js" lines={[18, 21]}>
+
+Use `Frames.Events.CARD_TOKENIZED` in an event listener to know when the card details have been successfully tokenized. We can then send the token to our back end to handle the payment.
+
+</IBuilderDescriptionCard>

@@ -6,12 +6,17 @@ backendSource: source/node
 mediaSource: IBuilder/card-icons
 ---
 
-<IBuilderStep name="Set up the server" />
+<IBuilderStep name="Step 1: Build the payment form (client side)" />
+
+include('description/html.mdx')
+include('description/app.mdx')
+
+<IBuilderStep name="Step 2: Set up the server (server side)" />
 
 include('description/node.mdx')
 
-<IBuilderStep name="Build your checkout" />
+<IBuilderStep name="Step 3: Optional: Customize Frames" />
 
-include('description/html.mdx')
+include('description/customize.mdx')
 
 <IBuilderCodePreview type="html" indexFile="payment-form.html" width="340" height="300" />

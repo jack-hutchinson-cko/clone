@@ -1,17 +1,15 @@
-<IBuilderDescriptionCard title="Some info about HTML 1" tab="app.js" lines={[6, 13]}>
+<IBuilderDescriptionCard title="Create the form" tab="payment-form.html" lines={[40, 81]}>
 
-Create a success page for the URL you provided as the Checkout Session `success_url` to display order confirmation messaging or order details to your customer. Stripe redirects to this page after the customer successfully completes the checkout.
+Frames handles the payment information through multiple iframes, so your website doesn’t touch sensitive information. We insert an iframe between each placeholder `div`. 
 
-</IBuilderDescriptionCard>
+- Card number: `<div class="card-number-frame"></div>`
+- Expiry date: `<div class="expiry-date-frame"></div>`
+- CVV frame: `<div class="cvv-frame"></div>`
 
-<IBuilderDescriptionCard title="Some info about HTML 2" tab="payment-form.html" lines={[6, 10]}>
+<TipBox variant="tip">
 
-Add another page for `cancel_url`. Stripe redirects to this page when the customer clicks the back button in Checkout.
+Remember to change the value for the action attribute to the URL the token needs to be sent to.
 
-</IBuilderDescriptionCard>
-
-<IBuilderDescriptionCard title="Some info about HTML 2" tab="style.css" lines={[10, 24]}>
-
-Finally, add a page to show a preview of the customer's order. Allow the customer to review or modify their order—once a customer is sent to the Checkout page, the order is final and cannot be modified without creating a new Checkout Session.
+</TipBox>
 
 </IBuilderDescriptionCard>

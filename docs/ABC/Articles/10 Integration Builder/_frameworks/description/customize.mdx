@@ -1,0 +1,100 @@
+<IBuilderDescriptionCard>
+
+You can customize the language, CSS and placeholders on input fields in the iframes. Do this when initializing Frames by specifying options as another argument. For example:
+
+```js
+Frames.init(
+‘pk_test_xxx’, {
+{
+	localization: "FR-FR",
+	style: {
+		base: {
+			color: "black",
+			fontSize: "18px",
+		},
+	},
+)
+```
+
+Available CSS options:
+
+<Table>
+<TableBody>
+<TableRow>
+<TableCell>
+
+`base`
+
+</TableCell>
+<TableCell>
+
+The default style.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`focus`
+
+</TableCell>
+<TableCell>
+
+Rules applied when the element is focused.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`hover`
+
+</TableCell>
+<TableCell>
+
+Rules applied when the element is hovered over.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`invalid`
+
+</TableCell>
+<TableCell>
+
+Rules applied when the element is invalid.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`placeholder`
+
+</TableCell>
+<TableCell>
+
+Accepts an object with base and focus.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`valid`
+
+</TableCell>
+<TableCell>
+
+Rules applied when the element is valid.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+See our [Frames customization guide](/integrate/frames/frames-customization-guide) for more examples.
+
+</IBuilderDescriptionCard>
