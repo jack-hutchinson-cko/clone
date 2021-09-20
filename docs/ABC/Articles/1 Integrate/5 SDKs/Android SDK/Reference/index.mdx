@@ -1,5 +1,5 @@
 ---
-title: Frames for Android reference
+title: Android SDK reference
 account: ABC
 ---
 
@@ -17,7 +17,7 @@ You can only create charges in currencies that have been enabled for your accoun
 
 First, you need to make sure you declare the form in XML.
 
-```json
+```xml
 <com.checkout.android_sdk.PaymentForm
    android:id="@+id/checkout_card_form"
    android:layout_width="match_parent"
@@ -139,7 +139,7 @@ When you send a 3D Secure charge request from your server, you will get back a 3
 
 ### Step 1: Create a callback
 
-```javascript
+```java
 PaymentForm.On3DSFinished m3DSecureListener =
   new PaymentForm.On3DSFinished() {
     @Override
@@ -155,7 +155,7 @@ PaymentForm.On3DSFinished m3DSecureListener =
 
 ### Step 2: Pass the callback to the module and handle 3D Secure
 
-```javascript
+```java
 mPaymentForm = findViewById(R.id.checkout_card_form);
 mPaymentForm.set3DSListener(m3DSecureListener); // pass the callback
 mPaymentForm.handle3DS(
@@ -173,7 +173,7 @@ The module allows you to handle a Google Pay token payload and retrieve a token 
 
 ### Step 1: Create a callback
 
-```javascript
+```java
 CheckoutAPIClient.OnGooglePayTokenGenerated mGooglePayListener =
   new CheckoutAPIClient.OnGooglePayTokenGenerated() {
     @Override
@@ -193,7 +193,7 @@ CheckoutAPIClient.OnGooglePayTokenGenerated mGooglePayListener =
 
 ### Step 2: Pass the callback to the module and generate the token
 
-```javascript
+```java
 mCheckoutAPIClient = new CheckoutAPIClient(
   context, // activity context
   'pk_XXXXX', // your public key
