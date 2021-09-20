@@ -1,6 +1,5 @@
-import { FC } from 'react';
-import { TextHeadingThree } from 'components/TextHeading';
-import { StepWrapper, Counter } from './IBuilderStep.styles';
+import React, { FC } from 'react';
+import { StepWrapper, Counter, TextHeadFour } from './IBuilderStep.styles';
 
 type Props = {
   name: string;
@@ -11,7 +10,7 @@ const IBuilderStep: FC<Props> = ({ name, currentStep }) => {
   return (
     <StepWrapper>
       <Counter>{currentStep}</Counter>
-      <TextHeadingThree>{name}</TextHeadingThree>
+      <TextHeadFour>{name}</TextHeadFour>
     </StepWrapper>
   );
 };

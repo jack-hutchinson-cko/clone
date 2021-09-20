@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef } from 'react';
-import { TextHeadingFour } from 'components/TextHeading';
 import { SelectedBlockType, RegisterDescriptionElementType } from './types';
-import { MainWrapper } from './IBuilderDescriptionCard.styles';
+import { MainWrapper, TextHeadFour, HighlightLinesWrapper } from './IBuilderDescriptionCard.styles';
 
 type Props = {
   title: string;
@@ -35,9 +34,17 @@ const IBuilderDescriptionCard: FC<Props> = ({
 
   const isSelected = id === selectedBlock.id;
 
+  const highlightedLines =
+    isSelected && lines ? (
+      <HighlightLinesWrapper>
+        Lines {lines[0]} – {lines[1]}
+      </HighlightLinesWrapper>
+    ) : null;
+
   return (
     <MainWrapper ref={blockItemRef} isSelected={isSelected} onClick={handleClick}>
-      <TextHeadingFour>{title}</TextHeadingFour>
+      {highlightedLines}
+      <TextHeadFour>{title}</TextHeadFour>
       {children}
     </MainWrapper>
   );
