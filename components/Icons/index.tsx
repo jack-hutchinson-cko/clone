@@ -578,6 +578,39 @@ export const IconArrowLeft: FC<Props> = (props) => (
   </StyledIcon>
 );
 
+export const IndividualPayment: FC<Props> = (props) => (
+  <StyledIcon style={{ transform: 'none' }} width={32} height={32} {...props}>
+    <path
+      d="M21.5 11.1875C21.5 14.2251 19.0376 16.6875 16 16.6875C12.9624 16.6875 10.5 14.2251 10.5 11.1875C10.5 8.14993 12.9624 5.6875 16 5.6875C19.0376 5.6875 21.5 8.14993 21.5 11.1875Z"
+      stroke="currentColor"
+    />
+    <path
+      d="M26.3125 26.3125C26.3125 21.7088 22.8495 17.3443 18.2221 16.2577M5.6875 26.3125C5.6875 21.7088 9.15053 17.3443 13.7779 16.2577"
+      stroke="currentColor"
+    />
+  </StyledIcon>
+);
+
+export const CorporatePayment: FC<Props> = (props) => (
+  <StyledIcon style={{ transform: 'none' }} width={32} height={32} {...props}>
+    <path
+      d="M26 13.3333V26C26 26.7333 25.4 27.3333 24.6667 27.3333H7.33333C6.6 27.3333 6 26.7333 6 26V13.3333"
+      stroke="currentColor"
+    />
+    <path d="M10 10V13.3333" stroke="currentColor" />
+    <path d="M16 5.22665V13.0333" stroke="currentColor" />
+    <path d="M22 10V13.3333" stroke="currentColor" />
+    <path
+      d="M27.3337 9.99999V12C27.3337 12.7333 26.7337 13.3333 26.0003 13.3333H6.00033C5.26699 13.3333 4.66699 12.7333 4.66699 12V9.99999L6.96699 5.40666C7.19366 4.95332 7.65366 4.66666 8.16033 4.66666H23.847C24.3537 4.66666 24.8137 4.95332 25.0403 5.40666L27.3337 9.99999Z"
+      stroke="currentColor"
+    />
+    <path d="M10 9.99999L11.3333 4.66666" stroke="currentColor" />
+    <path d="M22.0003 9.99999L20.667 4.66666" stroke="currentColor" />
+    <path d="M4.66699 10H27.3337" stroke="currentColor" />
+    <path d="M6 22.6667H26" stroke="currentColor" />
+  </StyledIcon>
+);
+
 export const IconClock: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} {...props}>
     <circle cx="8" cy="8" r="7.5" fill="none" stroke="currentColor" />

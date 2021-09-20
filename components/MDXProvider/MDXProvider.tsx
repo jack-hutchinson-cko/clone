@@ -67,6 +67,7 @@ import {
 import FAQSectionLabel from 'components/FAQSectionLabel';
 import { Highlight } from 'components/Highlight';
 import CountryCardLink from 'components/CountryCardLink/CountryCardLink';
+import { IndividualPayment, CorporatePayment } from 'components/Icons';
 import Select, { Option } from 'components/Select';
 
 export const mdxComponents = {
@@ -143,6 +144,8 @@ export const mdxComponents = {
   FAQSectionLabel,
   'ais-highlight-0000000000': Highlight,
   CountryCardLink,
+  IndividualPayment,
+  CorporatePayment,
   Select: withBlockMargin(Select),
   Option,
 };
