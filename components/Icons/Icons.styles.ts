@@ -14,3 +14,7 @@ export const StyledHeaderLogo = styled(StyledIcon)`
 export const StyledIconActionLink = styled(StyledIcon)`
   color: ${({ theme }) => theme.colors.success};
 `;
+
+export const StyledIconIB = styled(StyledIcon)`
+  color: ${({ theme }) => theme.colors.white};
+`;

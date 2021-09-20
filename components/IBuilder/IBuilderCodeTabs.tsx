@@ -3,10 +3,16 @@ import { get } from 'lodash';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { IconActionDownload, IconActionCopy, IconActionCheckmark } from '@cko/icons';
+import { IconActionDownload, IconActionCheckmark, IconActionCopyIB } from 'components/Icons';
 
 import { useTabs } from 'hooks/useTabs';
-import { TabHeader, TabItem, ControlsPanel, ControlButton } from './IBuilderCodeTabs.styles';
+import {
+  TabHeader,
+  TabItem,
+  ControlsPanel,
+  ControlButton,
+  TabsWrapper,
+} from './IBuilderCodeTabs.styles';
 import { getChildWithProps, getSouceCodeFromMdxTab } from './utils';
 import { SelectedBlockType, MediaFilesType } from './types';
 
@@ -77,11 +83,13 @@ const IBuilderCodeTabs: FC<Props> = ({
   return (
     <>
       <TabHeader>
-        {titles.map((tabItem, index) => (
-          <TabItem key={tabItem} isSelected={index === activeTab} onClick={handelTabClick(index)}>
-            {tabItem}
-          </TabItem>
-        ))}
+        <TabsWrapper>
+          {titles.map((tabItem, index) => (
+            <TabItem key={tabItem} isSelected={index === activeTab} onClick={handelTabClick(index)}>
+              {tabItem}
+            </TabItem>
+          ))}
+        </TabsWrapper>
         <ControlsPanel>
           {isCopied ? (
             <ControlButton>
@@ -90,7 +98,7 @@ const IBuilderCodeTabs: FC<Props> = ({
           ) : (
             <CopyToClipboard text={sourceCode} onCopy={onToggleHandler}>
               <ControlButton>
-                <IconActionCopy />
+                <IconActionCopyIB />
               </ControlButton>
             </CopyToClipboard>
           )}

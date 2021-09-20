@@ -2,21 +2,22 @@ import styled from 'styled-components';
 
 export const TabHeader = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.colors.base};
+  justify-content: space-between;
+  background: ${({ theme }) => theme.colors.baseLight};
 `;
 
 export const TabItem = styled.div<{ isSelected: boolean }>`
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.white};
-  padding: 0 10px;
-  font-size: 12px;
-  font-weight: ${({ isSelected }) => (isSelected ? 500 : 400)};
-  height: 38px;
-  border-top: 2px solid ${({ theme }) => theme.colors.base};
+  height: 50px;
+  font-size: 14px;
+  padding: 0 12px;
+  color: ${({ theme, isSelected }) =>
+    isSelected ? `${theme.colors.white}` : `${theme.colors.greyDark}`};
   display: flex;
   align-items: center;
-  border-bottom: 2px solid
+  white-space: nowrap;
+  border-bottom: 4px solid
     ${({ theme, isSelected }) => (isSelected ? `${theme.colors.white}` : 'transparent')};
+  cursor: pointer;
 `;
 
 export const TabBody = styled.div`
@@ -28,12 +29,16 @@ export const TabBody = styled.div`
 
 export const ControlsPanel = styled.div`
   align-self: center;
-  gap: 14px;
-  margin: 0 10px 0 auto;
+  flex-shrink: 0;
 `;
 
 export const ControlButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+`;
+
+export const TabsWrapper = styled.div`
+  display: flex;
+  overflow-x: auto;
 `;

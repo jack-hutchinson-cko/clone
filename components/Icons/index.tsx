@@ -1,6 +1,6 @@
 import { FC, CSSProperties, MouseEventHandler } from 'react';
 
-import { StyledIcon, StyledHeaderLogo, StyledIconActionLink } from './Icons.styles';
+import { StyledIcon, StyledHeaderLogo, StyledIconActionLink, StyledIconIB } from './Icons.styles';
 
 type Props = {
   onClick?: MouseEventHandler<SVGSVGElement>;
@@ -576,6 +576,39 @@ export const IconArrowLeft: FC<Props> = (props) => (
   <StyledIcon width={8} height={14} {...props}>
     <path d="M7 1.00195L1 7L7 12.998" stroke="#6D708E" fill="none" />
   </StyledIcon>
+);
+
+export const IconActionCopyIB: FC<Props> = (props) => (
+  <StyledIconIB width={14} height={14} viewBox="0 0 16 16" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      fill="currentColor"
+      d="M5.5 2c-.3 0-.5.2-.5.5a.5.5 0 01-1 0C4 1.7 4.7 1 5.5 1h8c.8 0 1.5.7 1.5 1.5v8c0 .8-.7 1.5-1.5 1.5a.5.5 0 010-1c.3 0 .5-.2.5-.5v-8c0-.3-.2-.5-.5-.5h-8zM2 13.5c0 .3.2.5.5.5h8c.3 0 .5-.2.5-.5v-8c0-.3-.2-.5-.5-.5h-8c-.3 0-.5.2-.5.5v8zm10-8v8c0 .8-.7 1.5-1.5 1.5h-8c-.8 0-1.5-.7-1.5-1.5v-8C1 4.7 1.7 4 2.5 4h8c.8 0 1.5.7 1.5 1.5z"
+    />
+  </StyledIconIB>
+);
+
+export const IconActionDownload: FC<Props> = (props) => (
+  <StyledIconIB width={14} height={14} viewBox="0 0 16 16" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M7.87159 8.99951C7.74359 8.99951 7.61559 8.95151 7.51759 8.85351L4.51759 5.85351C4.32259 5.65851 4.32259 5.34151 4.51759 5.14651C4.71259 4.95151 5.02959 4.95151 5.22459 5.14651L7.37159 7.29251V0.499512C7.37159 0.223512 7.59459 -0.000488281 7.87159 -0.000488281C8.14759 -0.000488281 8.37159 0.223512 8.37159 0.499512V7.29251L10.5176 5.14651C10.7126 4.95151 11.0296 4.95151 11.2246 5.14651C11.4196 5.34151 11.4196 5.65851 11.2246 5.85351L8.22459 8.85351C8.12659 8.95151 7.99859 8.99951 7.87159 8.99951ZM14.3711 9.50001C14.3711 9.22401 14.5951 9.00001 14.8711 9.00001C15.1471 9.00001 15.3711 9.22401 15.3711 9.50001V12.5C15.3711 13.879 14.2501 15 12.8711 15H2.87109C1.49309 15 0.371094 13.879 0.371094 12.5V9.50001C0.371094 9.22401 0.595094 9.00001 0.871094 9.00001C1.14709 9.00001 1.37109 9.22401 1.37109 9.50001V12.5C1.37109 13.327 2.04409 14 2.87109 14H12.8711C13.6981 14 14.3711 13.327 14.3711 12.5V9.50001Z"
+      fill="currentColor"
+    />
+  </StyledIconIB>
+);
+
+export const IconActionCheckmark: FC<Props> = (props) => (
+  <StyledIconIB width={14} height={14} viewBox="0 0 16 16" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      fill="currentColor"
+      d="M12.85,5.15a.48.48,0,0,0-.7,0L6.5,10.79,3.85,8.15a.49.49,0,0,0-.7.7l3,3a.48.48,0,0,0,.7,0l6-6A.48.48,0,0,0,12.85,5.15Z"
+    />
+  </StyledIconIB>
 );
 
 export const IndividualPayment: FC<Props> = (props) => (
