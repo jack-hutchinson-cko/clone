@@ -15,3 +15,7 @@ export const CodeTabWrapper = styled.div`
   border-radius: 5px;
   overflow: hidden;
 `;
+
+export const Portal = styled.div`
+  margin-bottom: 40px;
+`;

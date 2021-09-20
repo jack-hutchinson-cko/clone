@@ -4,7 +4,7 @@ import TwoColumn from 'components/TwoColumn';
 import usePrevState from 'hooks/usePrevState';
 import { getChildComponentName, getChildWithProps } from './utils';
 import IBuilderCodeTabs from './IBuilderCodeTabs';
-import { MainWrapper, CodeTabWrapper } from './IBuilderFrameworkTab.styles';
+import { MainWrapper, CodeTabWrapper, Portal } from './IBuilderFrameworkTab.styles';
 import { SelectedBlockType, RegisterDescriptionElementType, MediaFilesType } from './types';
 
 const HEADER_HEIGHT = 80;
@@ -140,17 +140,20 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
           <div>{headerComponent || null}</div>
           <div>{descriptionComponents}</div>
         </div>
-        <CodeTabWrapper>
-          <div>{codePreviewComponent}</div>
-          <IBuilderCodeTabs
-            onChangeTab={handelChangeTab}
-            selectedBlock={selectedBlock}
-            mediaFiles={mediaFiles}
-            mediaSource={mediaSource}
-          >
-            {codeTabsComponents}
-          </IBuilderCodeTabs>
-        </CodeTabWrapper>
+        <>
+          <Portal id="framework-switcher" />
+          <CodeTabWrapper>
+            <div>{codePreviewComponent}</div>
+            <IBuilderCodeTabs
+              onChangeTab={handelChangeTab}
+              selectedBlock={selectedBlock}
+              mediaFiles={mediaFiles}
+              mediaSource={mediaSource}
+            >
+              {codeTabsComponents}
+            </IBuilderCodeTabs>
+          </CodeTabWrapper>
+        </>
       </TwoColumn>
     </MainWrapper>
   );
