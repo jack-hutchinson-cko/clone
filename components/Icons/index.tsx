@@ -577,3 +577,10 @@ export const IconArrowLeft: FC<Props> = (props) => (
     <path d="M7 1.00195L1 7L7 12.998" stroke="#6D708E" fill="none" />
   </StyledIcon>
 );
+
+export const IconClock: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} {...props}>
+    <circle cx="8" cy="8" r="7.5" fill="none" stroke="currentColor" />
+    <path d="M8 3.5L8 8L10.5 10" stroke="currentColor" strokeLinecap="round" />
+  </StyledIcon>
+);

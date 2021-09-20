@@ -171,3 +171,9 @@ export const Navigation = styled.div`
     display: none;
   }
 `;
+
+export const FrontMatterContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+`;

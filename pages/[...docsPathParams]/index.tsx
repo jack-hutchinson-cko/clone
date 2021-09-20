@@ -11,6 +11,9 @@ import { AnchorItem } from 'types/anchors';
 import Card from 'components/Card';
 import CardWrapper from 'components/CardWrapper';
 import LastChange from 'components/LastChange';
+import TimeToComplete from 'components/TimeToComplete';
+import WarningMessage from 'components/WarningMessage';
+
 import {
   getFileNameFromPath,
   getDocArticleData,
@@ -19,7 +22,7 @@ import {
   getChildrenArticle,
 } from 'lib/fileParser';
 
-import { PageContent, Title, Navigation } from '../../styles/index.styles';
+import { PageContent, Title, Navigation, FrontMatterContainer } from '../../styles/index.styles';
 
 type Props = {
   breadCrumbsItem: BreadCrumbsItems;
@@ -27,6 +30,8 @@ type Props = {
     title: string;
     modifiedDate: string;
     lastAuthor: string;
+    timeToComplete?: string;
+    warningMessage?: string;
   };
   source: MDXRemoteSerializeResult;
   anchorsNavItems: AnchorItem[];
@@ -49,6 +54,7 @@ const DocPost: NextPage<Props> = ({
   childrenArticles,
   isIntegrationBuilder,
 }) => {
+  const { title, timeToComplete, warningMessage, modifiedDate, lastAuthor } = frontMatter;
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
@@ -56,9 +62,15 @@ const DocPost: NextPage<Props> = ({
         {!isIntegrationBuilder ? (
           <header>
             <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-            <Title>{frontMatter.title}</Title>
+            <Title>{title}</Title>
+            {timeToComplete && warningMessage && (
+              <FrontMatterContainer>
+                <TimeToComplete time={timeToComplete} />
+                <WarningMessage message={warningMessage} />
+              </FrontMatterContainer>
+            )}
             <LastChange>
-              {frontMatter.modifiedDate} – {frontMatter.lastAuthor}
+              {modifiedDate} – {lastAuthor}
             </LastChange>
           </header>
         ) : null}
