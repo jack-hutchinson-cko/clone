@@ -5,6 +5,7 @@ export type Props = {
   titles: string[];
   activeTab: number;
   setActiveTab: (tabIndex: number) => void;
+  withPadding?: boolean;
 };
 
 const TabHead: FC<Props> = ({ setActiveTab, titles = [], activeTab = 0, ...rest }) => {

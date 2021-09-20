@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const StyledTabHead = styled.ul`
+export const StyledTabHead = styled.ul<{ withPadding?: boolean }>`
   display: flex;
   margin: 0;
-  padding: 0 16px;
+  padding: ${({ withPadding }) => (withPadding ? `0 16px` : '0')};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   list-style: none;
   gap: 10px;
