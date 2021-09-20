@@ -38,7 +38,7 @@ const getInnerComponents = ({
   React.Children.toArray(children).forEach((child) => {
     const componentName = getChildComponentName(child);
 
-    if (componentName === 'IBuilderCodePreview') {
+    if (componentName === 'IBuilderCodePreview' || componentName === 'IBuilderFormPreview') {
       codePreviewComponent = child;
     } else if (componentName === 'IBuilderStep') {
       descriptionComponents.push(getChildWithProps(child, { currentStep }));

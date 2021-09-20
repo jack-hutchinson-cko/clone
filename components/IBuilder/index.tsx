@@ -6,6 +6,7 @@ import IBuilderStep from './IBuilderStep';
 import IBuilderDescriptionCard from './IBuilderDescriptionCard';
 import IBuilderCodeTab, { SelectedLinesContext } from './IBuilderCodeTab';
 import IBuilderCodePreview from './IBuilderCodePreview';
+import IBuilderFormPreview from './IBuilderFormPreview';
 
 export {
   IBuilder,
@@ -16,5 +17,6 @@ export {
   IBuilderDescriptionCard,
   IBuilderCodeTab,
   IBuilderCodePreview,
+  IBuilderFormPreview,
   SelectedLinesContext,
 };

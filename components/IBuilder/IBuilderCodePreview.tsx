@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
-import { IconActionAccordion } from 'components/Icons';
-import { Wrapper, Header, Body, IconContainer } from './IBuilderCodePreview.styles';
+import { FC } from 'react';
+
+import IBuilderPreview from './IBuilderPreview';
 
 const getSrcDoc = ({
   indexFile,
@@ -50,38 +50,22 @@ type Props = {
 };
 
 const IBuilderCodePreview: FC<Props> = ({ codeMap, indexFile, width = 340, height = 300 }) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handelClick = () => {
-    setIsOpen(!isOpen);
-  };
-
   const srcDoc = getSrcDoc({ indexFile, codeMap });
 
   return (
-    <Wrapper>
-      <Header onClick={handelClick}>
-        <IconContainer isOpen={isOpen}>
-          <IconActionAccordion width={12} height={6} />
-        </IconContainer>
-        <span>Preview</span>
-      </Header>
-      {isOpen ? (
-        <Body>
-          {srcDoc ? (
-            <iframe
-              width={width}
-              frameBorder={0}
-              height={height}
-              title="code preview"
-              srcDoc={srcDoc}
-            />
-          ) : (
-            'No preview available'
-          )}
-        </Body>
-      ) : null}
-    </Wrapper>
+    <IBuilderPreview>
+      {srcDoc ? (
+        <iframe
+          width={width}
+          frameBorder={0}
+          height={height}
+          title="code preview"
+          srcDoc={srcDoc}
+        />
+      ) : (
+        'No preview available'
+      )}
+    </IBuilderPreview>
   );
 };
 

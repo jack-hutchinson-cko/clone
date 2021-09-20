@@ -1,24 +1,27 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background: ${({ theme }) => theme.colors.base};
+  padding: 10px 20px 20px;
+  background: ${({ theme }) => theme.colors.cardFormBackground};
 `;
 
 export const Header = styled.div`
   cursor: pointer;
-  height: 38px;
   display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
   color: ${({ theme }) => theme.colors.white};
   font-size: 12px;
-  align-items: center;
-  padding: 0 10px;
-  gap: 8px;
 `;
 
 export const IconContainer = styled.div<{ isOpen: boolean }>`
   display: flex;
   transform: ${({ isOpen }) => (isOpen ? '' : 'rotate(180deg)')};
-  color: ${({ theme }) => theme.colors.white};
+
+  svg {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 export const Body = styled.div`
@@ -26,5 +29,10 @@ export const Body = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const Preview = styled.span`
   color: ${({ theme }) => theme.colors.white};
 `;

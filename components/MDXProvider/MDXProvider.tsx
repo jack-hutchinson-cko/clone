@@ -63,6 +63,7 @@ import {
   IBuilderDescriptionCard,
   IBuilderCodeTab,
   IBuilderCodePreview,
+  IBuilderFormPreview,
 } from 'components/IBuilder';
 import FAQSectionLabel from 'components/FAQSectionLabel';
 import { Highlight } from 'components/Highlight';
@@ -140,6 +141,7 @@ export const mdxComponents = {
   IBuilderDescriptionCard,
   IBuilderCodeTab,
   IBuilderCodePreview,
+  IBuilderFormPreview,
   FAQItem,
   FAQSectionLabel,
   'ais-highlight-0000000000': Highlight,
