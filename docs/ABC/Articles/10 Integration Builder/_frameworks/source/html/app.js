@@ -4,7 +4,15 @@ const form = document.getElementById("payment-form");
 let requestData;
 
 //Test key
-Frames.init("pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb");
+Frames.init("pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb", {
+  localization: "FR-FR",
+  style: {
+    base: {
+      color: "black",
+      fontSize: "18px",
+    },
+  },
+});
 
 const logos = generateLogos();
 

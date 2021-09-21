@@ -4,9 +4,10 @@ import IBuilderFrameWorks from './IBuilderFrameWorks';
 import IBuilderFrameworkTab from './IBuilderFrameworkTab';
 import IBuilderStep from './IBuilderStep';
 import IBuilderDescriptionCard from './IBuilderDescriptionCard';
-import IBuilderCodeTab, { SelectedLinesContext } from './IBuilderCodeTab';
+import IBuilderCodeTab from './IBuilderCodeTab';
 import IBuilderCodePreview from './IBuilderCodePreview';
 import IBuilderFormPreview from './IBuilderFormPreview';
+import IBuilderCodeControl from './IBuilderCodeControl';
 
 export {
   IBuilder,
@@ -18,5 +19,5 @@ export {
   IBuilderCodeTab,
   IBuilderCodePreview,
   IBuilderFormPreview,
-  SelectedLinesContext,
+  IBuilderCodeControl,
 };

@@ -98,6 +98,7 @@ export const StyledTextArea = styled.textarea<{ width: string; isHidden?: boolea
 `;
 
 export const Line = styled.div`
+  height: 24px;
   display: table-row;
   & > .property,
   & > .operator,
@@ -180,6 +181,8 @@ export const LineNumber = styled.div`
   text-align: right;
   user-select: none;
   opacity: 0.5;
+  font-size: 12px;
+  font-family: monospace;
 `;
 
 export const LineCounterWrapper = styled.div`

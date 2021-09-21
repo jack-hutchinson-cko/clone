@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.test-class {
+  /* Here will be font-size styles */
+  display: flex;
+  /* Here will be color styles */
+  /* And some additional info */
+}
+
 html {
   padding: 1rem;
   background-color: #fff;

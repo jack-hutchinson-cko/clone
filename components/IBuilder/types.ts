@@ -16,4 +16,22 @@ export type RegisterDescriptionElementType = {
   blockItem: SelectedBlockType;
 };
 
+export type ControlType = 'select' | 'multiSelect';
+export type ControlOptionType = 'frameColorSelector' | 'frameFontSizeSelector';
+export type SelectOptionType = {
+  option: string;
+  codeVariables: string[];
+};
+export type ControlValueType = {
+  selectedOption: string;
+  tab: string;
+  optionValue: string;
+  lines: number[];
+  insertedRowsCount: number;
+};
+
+export type CodeControlStateType = {
+  [key: string]: ControlValueType;
+};
+
 export type MediaFilesType = { name: string; src: string }[];

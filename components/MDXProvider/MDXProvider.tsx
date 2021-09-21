@@ -64,6 +64,7 @@ import {
   IBuilderCodeTab,
   IBuilderCodePreview,
   IBuilderFormPreview,
+  IBuilderCodeControl,
 } from 'components/IBuilder';
 import FAQSectionLabel from 'components/FAQSectionLabel';
 import { Highlight } from 'components/Highlight';
@@ -148,6 +149,7 @@ export const mdxComponents = {
   CountryCardLink,
   IndividualPayment,
   CorporatePayment,
+  IBuilderCodeControl,
   Select: withBlockMargin(Select),
   Option,
 };

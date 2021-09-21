@@ -4,7 +4,6 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { IconActionDownload, IconActionCheckmark, IconActionCopyIB } from 'components/Icons';
-
 import { useTabs } from 'hooks/useTabs';
 import {
   TabHeader,
@@ -13,14 +12,15 @@ import {
   ControlButton,
   TabsWrapper,
 } from './IBuilderCodeTabs.styles';
-import { getChildWithProps, getSouceCodeFromMdxTab } from './utils';
-import { SelectedBlockType, MediaFilesType } from './types';
+import { getChildWithProps, getResultSourceCode, getSelectedLines } from './utils';
+import { SelectedBlockType, MediaFilesType, CodeControlStateType } from './types';
 
 type Props = {
   selectedBlock: SelectedBlockType;
   onChangeTab: () => void;
   mediaFiles: MediaFilesType;
   mediaSource: string;
+  codeControlState: CodeControlStateType;
 };
 
 const timeout = 3000;
@@ -31,16 +31,21 @@ const IBuilderCodeTabs: FC<Props> = ({
   onChangeTab,
   mediaFiles,
   mediaSource = '',
+  codeControlState,
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const { titles, activeTab, setActiveTab } = useTabs({ children, selectedTab: selectedBlock.tab });
 
   const selectedChild = React.Children.toArray(children)[activeTab] || null;
-  const sourceCode = getSouceCodeFromMdxTab(selectedChild);
+  const sourceCode = getResultSourceCode({ child: selectedChild, codeControlState });
+  const codeTitle = get(selectedChild, 'props.title');
   const childWithProps =
-    get(selectedChild, 'props.title') === selectedBlock.tab
-      ? getChildWithProps(selectedChild, { selectedLines: selectedBlock.lines })
-      : selectedChild;
+    codeTitle === selectedBlock.tab
+      ? getChildWithProps(selectedChild, {
+          selectedLines: getSelectedLines({ selectedBlock, codeTitle, codeControlState }),
+          sourceCode,
+        })
+      : getChildWithProps(selectedChild, { sourceCode });
 
   const onToggleHandler = useCallback(() => {
     setIsCopied(!isCopied);
@@ -54,7 +59,7 @@ const IBuilderCodeTabs: FC<Props> = ({
 
     React.Children.toArray(children).forEach((child) => {
       const name = get(child, 'props.title');
-      const content = getSouceCodeFromMdxTab(child);
+      const content = getResultSourceCode({ child, codeControlState });
 
       zip.file(name, content);
     });

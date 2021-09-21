@@ -1,6 +1,9 @@
-import { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef, useContext } from 'react';
+import { get } from 'lodash';
+import { CodeHandler } from './IBuilderFrameworkTab';
 import { SelectedBlockType, RegisterDescriptionElementType } from './types';
 import { MainWrapper, TextHeadFour, HighlightLinesWrapper } from './IBuilderDescriptionCard.styles';
+import { getChildComponentName, getChildWithProps, getSelectedLines } from './utils';
 
 type Props = {
   title: string;
@@ -10,6 +13,34 @@ type Props = {
   setSelectedBlock: (param: SelectedBlockType) => void;
   registerDescriptionElement: (param: RegisterDescriptionElementType) => void;
   id: number;
+};
+
+type HightLightedLinesProps = {
+  isSelected: boolean;
+  tab: string;
+  lines: number[];
+  selectedBlock: SelectedBlockType;
+};
+
+const HightLightedLines: FC<HightLightedLinesProps> = ({
+  isSelected,
+  tab,
+  lines,
+  selectedBlock,
+}) => {
+  const { codeControlState } = useContext(CodeHandler);
+
+  if (!isSelected || !lines) {
+    return null;
+  }
+
+  const resultLines = getSelectedLines({ selectedBlock, codeTitle: tab, codeControlState });
+
+  return (
+    <HighlightLinesWrapper>
+      Lines {resultLines[0]} – {resultLines[1]}
+    </HighlightLinesWrapper>
+  );
 };
 
 const IBuilderDescriptionCard: FC<Props> = ({
@@ -34,18 +65,27 @@ const IBuilderDescriptionCard: FC<Props> = ({
 
   const isSelected = id === selectedBlock.id;
 
-  const highlightedLines =
-    isSelected && lines ? (
-      <HighlightLinesWrapper>
-        Lines {lines[0]} – {lines[1]}
-      </HighlightLinesWrapper>
-    ) : null;
-
   return (
     <MainWrapper ref={blockItemRef} isSelected={isSelected} onClick={handleClick}>
-      {highlightedLines}
+      <HightLightedLines
+        isSelected={isSelected}
+        tab={tab}
+        lines={lines}
+        selectedBlock={selectedBlock}
+      />
       <TextHeadFour>{title}</TextHeadFour>
-      {children}
+      {React.Children.toArray(children).map((child) => {
+        const componentName = getChildComponentName(child);
+
+        if (componentName === 'IBuilderCodeControl') {
+          const controlTab = get(child, 'props.tab', tab);
+          const controlLines = get(child, 'props.lines', lines);
+
+          return getChildWithProps(child, { tab: controlTab, lines: controlLines });
+        }
+
+        return child;
+      })}
     </MainWrapper>
   );
 };

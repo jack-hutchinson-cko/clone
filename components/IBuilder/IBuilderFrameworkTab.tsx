@@ -1,11 +1,27 @@
-import React, { FC, useState, ReactNode, useEffect, useRef } from 'react';
+import React, { FC, useState, ReactNode, useEffect, useRef, createContext } from 'react';
 import { get } from 'lodash';
 import TwoColumn from 'components/TwoColumn';
 import usePrevState from 'hooks/usePrevState';
 import { getChildComponentName, getChildWithProps } from './utils';
 import IBuilderCodeTabs from './IBuilderCodeTabs';
 import { MainWrapper, CodeTabWrapper, Portal } from './IBuilderFrameworkTab.styles';
-import { SelectedBlockType, RegisterDescriptionElementType, MediaFilesType } from './types';
+import {
+  SelectedBlockType,
+  RegisterDescriptionElementType,
+  MediaFilesType,
+  ControlValueType,
+  CodeControlStateType,
+} from './types';
+
+type CodeHandlerContextType = {
+  codeControlState: CodeControlStateType;
+  onChange: (param: { id: string; data: ControlValueType }) => void;
+};
+
+export const CodeHandler = createContext<CodeHandlerContextType>({
+  onChange: () => {},
+  codeControlState: {},
+});
 
 const HEADER_HEIGHT = 80;
 
@@ -86,6 +102,7 @@ type Props = {
 };
 
 const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
+  const [codeControlState, setCodeControlState] = useState({});
   const [selectedBlock, setSelectedBlock] = useState<SelectedBlockType>({});
   const descriptionElementsData = useRef<RegisterDescriptionElementType[]>([]);
   const prevState = usePrevState(selectedBlock);
@@ -133,12 +150,20 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
     setSelectedBlock({});
   };
 
+  const onCodeHandlerChange = ({ id, data }: { id: string; data: ControlValueType }) => {
+    setCodeControlState((prevCodeControlState) => ({ ...prevCodeControlState, [id]: data }));
+  };
+
   return (
     <MainWrapper>
       <TwoColumn gap={24} columSize={{ desktop: [40, 60] }}>
         <div>
           <div>{headerComponent || null}</div>
-          <div>{descriptionComponents}</div>
+          <div>
+            <CodeHandler.Provider value={{ onChange: onCodeHandlerChange, codeControlState }}>
+              {descriptionComponents}
+            </CodeHandler.Provider>
+          </div>
         </div>
         <>
           <Portal id="framework-switcher" />
@@ -149,6 +174,7 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
               selectedBlock={selectedBlock}
               mediaFiles={mediaFiles}
               mediaSource={mediaSource}
+              codeControlState={codeControlState}
             >
               {codeTabsComponents}
             </IBuilderCodeTabs>

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
@@ -33,6 +33,10 @@ const CodeSample: FC<CodeSampleProps> = ({
   const editorComponent = isEditMode ? (
     <TextArea value={soursCode} onChange={setSoursCode} />
   ) : null;
+
+  useEffect(() => {
+    setSoursCode(code);
+  }, [code]);
 
   return (
     <HighlightContainer {...rest}>
