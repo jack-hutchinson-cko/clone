@@ -4,6 +4,7 @@ import { CodeHandler } from './IBuilderFrameworkTab';
 import { SelectedBlockType, RegisterDescriptionElementType } from './types';
 import { MainWrapper, TextHeadFour, HighlightLinesWrapper } from './IBuilderDescriptionCard.styles';
 import { getChildComponentName, getChildWithProps, getSelectedLines } from './utils';
+import { HEADER_HEIGHT } from './constants';
 
 type Props = {
   title: string;
@@ -53,9 +54,15 @@ const IBuilderDescriptionCard: FC<Props> = ({
   registerDescriptionElement,
   id,
 }) => {
-  const blockItemRef = useRef(null);
+  const blockItemRef = useRef<HTMLDivElement>(null);
   const handleClick = () => {
     setSelectedBlock({ lines, tab, id });
+    if (blockItemRef.current) {
+      const { top, height } = blockItemRef.current.getBoundingClientRect();
+      if (top < HEADER_HEIGHT || top + height > window.innerHeight) {
+        window.scrollTo(0, top + window.scrollY - HEADER_HEIGHT);
+      }
+    }
   };
 
   useEffect(() => {

@@ -12,6 +12,7 @@ import {
   ControlValueType,
   CodeControlStateType,
 } from './types';
+import { HEADER_HEIGHT } from './constants';
 
 type CodeHandlerContextType = {
   codeControlState: CodeControlStateType;
@@ -22,8 +23,6 @@ export const CodeHandler = createContext<CodeHandlerContextType>({
   onChange: () => {},
   codeControlState: {},
 });
-
-const HEADER_HEIGHT = 80;
 
 const getInnerComponents = ({
   children,
