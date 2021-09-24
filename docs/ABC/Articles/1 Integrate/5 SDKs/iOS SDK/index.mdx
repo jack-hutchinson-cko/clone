@@ -272,9 +272,12 @@ Use our [test card numbers](/testing/test-card-numbers).
 </TipBox>
 
 ```swift
-// Verify card number
+// Verify card number.
 let cardNumber = "4242424242424242"
 let isValidCardNumber = cardUtils.isValid(cardNumber: cardNumber)
+
+print(isValidCardNumber) // true
+
 ```
 
 #### Validate a CVV with `CardUtils`
@@ -282,25 +285,79 @@ let isValidCardNumber = cardUtils.isValid(cardNumber: cardNumber)
 ```swift
 // Verify CVV.
 let cardNumber = "4242424242424242"
-
 guard let cardType = cardUtils.getTypeOf(cardNumber: cardNumber) else { return }
 
 let cvv = "100"
-
 let isValidCVV = cardUtils.isValid(cvv: cvv, cardType: cardType)
+
+print(isValidCVV) // true
 ```
 
-#### Validate an expiration data with `CardUtils`
+#### Validate an expiration date with `CardUtils`
 
 ```swift
 // Verify expiration date.
 let expirationMonth = "01"
-
 let expirationYear = "29"
 
 let isValidExpiration = cardUtils.isValid(
     expirationMonth: expirationMonth,
     expirationYear: expirationYear)
+
+print(isValidExpiration) // true
+```
+
+#### Get information about a card number with `CardUtils`
+
+```swift
+let cardNumber = "4242424242424242"
+guard let cardType = cardUtils.getTypeOf(cardNumber: cardNumber) else { return }
+print(cardType.name) // Visa
+```
+
+#### Format a card number with `CardUtils`
+
+```swift
+let cardNumber = "4242424242424242"
+guard let cardType = cardUtils.getTypeOf(cardNumber: cardNumber) else { return }
+
+let formattedCardNumber = cardUtils.format(cardNumber: cardNumber, cardType: cardType)
+
+print(formattedCardNumber) // 4242 4242 4242 4242
+```
+
+#### Standardize a card number with `CardUtils`
+
+```swift
+let cardNumber = "4242 | 4242 | 4242 | 4242 "
+let standardizedCardNumber = cardUtils.standardize(cardNumber: cardNumber)
+
+print(standardizedCardNumber) // "4242424242424242"
+```
+
+### Create a prompt for CVV confirmation 
+
+#### Create and configure a `CvvConfirmationViewController`
+
+```swift
+let cvvConfirmationViewController = CvvConfirmationViewController()
+cvvConfirmationViewController.delegate = self
+```
+
+#### Handle the result by adding conformance to `CvvConfirmationViewControllerDelegate`
+
+```swift
+CvvConfirmationViewControllerDelegate.
+extension ViewController: CvvConfirmationViewControllerDelegate {
+
+    func onConfirm(controller: CvvConfirmationViewController, cvv: String) {
+        // Handle cvv.
+    }
+
+    func onCancel(controller: CvvConfirmationViewController) {
+        // Handle cancellation.
+    }
+}
 ```
 
 ### Create a card token
@@ -347,6 +404,39 @@ checkoutAPIClient.createCardToken(card: cardTokenRequest) { result in
 ```
 
 The completion handler here provides a `Result<CkoCardTokenResponse, NetworkError>` value.
+
+---
+
+## Handle 3D Secure
+
+When you send a 3D secure charge request from your server, you will get back a 3D Secure URL. This is available from `_links.redirect.href` within the JSON response. You can then pass the 3D Secure URL to a `ThreedsWebViewController` in order to handle the verification.
+
+The redirection URLs (`success_url` and `failure_url`) are set in the Hub, but they can be overwritten in the charge request sent from your server. It is important to provide the correct URLs to ensure a successful payment flow.
+
+### Create and configure a `ThreedsWebViewController`
+
+```swift
+let threeDSWebViewController = ThreedsWebViewController(
+    successUrl: "http://example.com/success",
+    failUrl: "http://example.com/failure")
+threeDSWebViewController.url = "http://example.com/3ds"
+threeDSWebViewController.delegate = self
+```
+
+### Handle the result by adding conformance to `ThreedsWebViewController`
+
+```swift
+extension ViewController: ThreedsWebViewControllerDelegate {
+
+    func onSuccess3D() {
+        // Handle successful 3DS.
+    }
+
+    func onFailure3D() {
+        // Handle failed 3DS.
+    }
+}
+```
 
 ---
 
