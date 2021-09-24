@@ -30,6 +30,10 @@ You process a Sofort payment in two steps:
 
 Use the details below to set up your request. To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
 
+### Endpoints
+
+### Endpoints
+
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="post">
@@ -59,7 +63,11 @@ Use the details below to set up your request. To get a detailed view of all requ
     }
 ```
 
+<TipBox variant="info">
+
 If a customer ID or email is not provided in the request, we automatically create a customer profile and return the customer `id` in the response.
+
+</TipBox>
 
 ### Response example
 
@@ -118,7 +126,7 @@ If the payment has been approved by a customer on the banking page, you’ll rec
 </tab>
 </tabs>
 
-### Response example
+### Response examples
 
 <tabs>
 <tab title="Pending">

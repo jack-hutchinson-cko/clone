@@ -32,7 +32,7 @@ Unlike with some other wallets, payments made via Google Pay **do not** benefit 
 
 ---
 
-## Step 1: Integrate with Google Pay
+### Step 1: Integrate with Google Pay
 
 <TipBox variant="note">
 
@@ -51,7 +51,7 @@ When you submit a payment data request to the Google API, be sure to include the
 *   `'gateway': 'checkoutltd'`
 *   `'gatewayMerchantId': '<your public key>'`
 
-### Examples
+#### Examples
 
 <tabs>
 <tab title="Google Pay API request (web)">
@@ -115,13 +115,13 @@ You will need to specify which card types and card schemes to support in your pa
 
 ---
 
-## Step 2: Tokenize the Google Pay payment data
+### Step 2: Tokenize the Google Pay payment data
 
 Once you have received the payment data from Google, you then need to call Checkout.com’s endpoint for tokenizing the encrypted payment data; you can find this payment data in the `paymentMethodToken` property of the Google Pay payment data request's response.
 
 To find out more about Google Pay payment requests, read the [Google Pay object reference](https://developers.google.com/pay/api/web/object-reference).
 
-Use the details below to set up your request. To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
+Use the details below to set up your request.
 
 #### Endpoints
 
@@ -141,6 +141,8 @@ Use the details below to set up your request. To get a detailed view of all requ
 </LineCodeWrapper>
 </tab>
 </tabs>
+
+#### Request example
 
 ```json
     {
@@ -165,7 +167,7 @@ Use the details below to set up your request. To get a detailed view of all requ
 
 ---
 
-## Step 3: Request a payment using Google Pay
+### Step 3: Request a payment using Google Pay
 
 Now you have the token, it's time to authorize the payment. Take the token, and use it in the body of a card token [payment request](/payments/accept-payments/request-a-payment) from your application or website's backend server.
 
