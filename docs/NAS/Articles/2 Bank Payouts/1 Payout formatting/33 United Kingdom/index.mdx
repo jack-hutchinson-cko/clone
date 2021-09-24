@@ -5,9 +5,8 @@ account: NAS
 
 #### Basic information
 
-<tabs>
+<tabs withBorder={false}>
 <tab title="Local">
-<Box horizontal="sm">
 
 <Table>
 <TableBody>
@@ -43,11 +42,32 @@ GBP, EUR
 </TableCell>
 <TableCell colSpan={3}>
 
-SEPA:
+<Select>
+<Option title="Faster payments (GBP)">
+
+- **Minimum amount (local currency):** 0.01
+- **Maximum amount (local currency):** 250,000
+- **Cut-off time:** 15:40 GMT
+- **Settlement:** T+0 same day
+
+</Option>
+<Option title="CHAPS (GBP)">
+
 - **Minimum amount (local currency):** 0.01
 - **Maximum amount (local currency):** no maximum
+- **Cut-off time:** N/A
+- **Settlement:** T+0 same day
+
+</Option>
+<Option title="SEPA (EUR)">
+
+- **Minimum amount (local currency):** 0.01
+- **Maximum amount (local currency):** 250,000
 - **Cut-off time:** 11:30 GMT
 - **Settlement:** T+1 next day
+
+</Option>
+</Select>
 
 </TableCell>
 </TableRow>
@@ -173,9 +193,8 @@ This must be a [two-letter ISO code](/resources/codes/country-codes).
 
 #### Bank details
 
-<tabs>
+<tabs withBorder={false}>
 <tab title="Faster Payments and CHAPS (GBP)">
-<Box horizontal="sm">
 
 <Table>
 <TableBody>
@@ -220,10 +239,8 @@ The account holder's Sort Code.
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 <tab title="SEPA (EUR)">
-<Box horizontal="sm">
 
 <Table>
 <TableBody>
@@ -268,7 +285,6 @@ The account holder's SWIFT BIC.
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 </tabs>
 
@@ -382,9 +398,8 @@ This must be a [two-letter ISO code](/resources/codes/country-codes).
 
 #### Bank details
 
-<tabs>
+<tabs withBorder={false}>
 <tab title="Faster Payments   and CHAPS (GBP)">
-<Box horizontal="sm">
 
 <Table>
 <TableBody>
@@ -429,10 +444,8 @@ The account holder's Sort Code.
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 <tab title="SEPA (EUR)">
-<Box horizontal="sm">
 
 <Table>
 <TableBody>
@@ -477,7 +490,6 @@ The account holder's SWIFT BIC.
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 </tabs>
 
@@ -485,7 +497,7 @@ The account holder's SWIFT BIC.
 
 #### Example
 
-<tabs>
+<tabs withBorder={false}>
 <tab title="Payment instrument request (GBP)">
 
 ``` json withBorder=false
@@ -536,9 +548,6 @@ The account holder's SWIFT BIC.
 }
 ```
 </tab>
-</tabs>
-
-<tabs>
 <tab title="Payout request (GBP)">
 
 ``` json withBorder=false
@@ -573,7 +582,6 @@ The account holder's SWIFT BIC.
 </tab>
 </tabs>
 
-</Box>
 </tab>
 <tab title="International">
 <Box horizontal="sm">
