@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const TabHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => theme.colors.baseLight};
+  background: ${({ theme }) => theme.colors.codeTabsIBBackground};
+  gap: 6px;
+  padding: 0 9px 0 15px;
 `;
 
 export const TabItem = styled.div<{ isSelected: boolean }>`

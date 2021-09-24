@@ -77,6 +77,7 @@ export const themes = {
       cardFormBtnHover: '#15406B',
       cardFormBtnActive: '#0b2A49',
       cardFormBtnDisabled: '#697887',
+      codeTabsIBBackground: '#3D4168',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -247,7 +248,7 @@ export const themes = {
       sectionDescription: '#9EA0B4',
       highlightedLine: '#e6e6f9',
       fiordLight: '#ffffd8',
-      cardFormBackground: '#242855',
+      cardFormBackground: '#242955',
       cardFormPrimary: '#13395E',
       cardFormToken: '#B35E14',
       cardFormError: '#C9501C',
@@ -256,6 +257,7 @@ export const themes = {
       cardFormBtnHover: '#15406B',
       cardFormBtnActive: '#0b2A49',
       cardFormBtnDisabled: '#697887',
+      codeTabsIBBackground: '#3D4168',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],

@@ -21,7 +21,7 @@ const IBuilderPreview: FC = ({ children }) => {
       <Wrapper>
         <Header onClick={handelClick}>
           <IconContainer isOpen={isOpen}>
-            <IconActionAccordion width={12} height={6} />
+            <IconActionAccordion width={14} height={8} />
           </IconContainer>
           <Preview>Preview</Preview>
         </Header>

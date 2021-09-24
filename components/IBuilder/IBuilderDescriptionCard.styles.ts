@@ -30,6 +30,6 @@ export const HighlightLinesWrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: 8px;
+  top: 8px;
 `;

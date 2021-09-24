@@ -12,7 +12,7 @@ export const Header = styled.div`
   gap: 8px;
   height: 30px;
   color: ${({ theme }) => theme.colors.white};
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 export const IconContainer = styled.div<{ isOpen: boolean }>`

@@ -18,4 +18,6 @@ export const FrameWorkBtn = styled.div<{ isSelected?: boolean }>`
   border: 1px solid
     ${({ theme, isSelected }) => (isSelected ? theme.colors.base : theme.colors.border)};
   cursor: pointer;
+  background: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.codeLabelBackground : 'none'};
 `;
