@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
 import { IconActionCopy, IconActionLink } from 'components/Icons';
-import { HighlightContainer, StyledIcons, StyledText, StyledIconLink } from './CodeSample.styles';
+import { HighlightContainer, StyledIcons, StyledText } from './CodeSample.styles';
 import { CodeSampleProps } from './type';
 import PreLine from './PreLine';
 import TextArea from './TextArea';
@@ -41,16 +41,12 @@ const CodeSample: FC<CodeSampleProps> = ({
   return (
     <HighlightContainer {...rest}>
       {withControls && (
-        <>
-          <StyledIconLink>
-            <IconActionLink />
-          </StyledIconLink>
+        <StyledIcons>
+          <IconActionLink />
           <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
-            <StyledIcons>
-              {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
-            </StyledIcons>
+            {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
           </CopyToClipboard>
-        </>
+        </StyledIcons>
       )}
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (

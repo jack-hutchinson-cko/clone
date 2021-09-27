@@ -7,7 +7,6 @@ import {
   HighlightContainer,
   StyledIcons,
   StyledText,
-  StyledIconLink,
   Pre,
   Line,
   PreWrapper,
@@ -30,18 +29,14 @@ const CodeSample: FC<CodeSampleProps> = ({ code, language, withBorder }) => {
     return () => clearTimeout(timer);
   }, [isCopied]);
 
-  const onHandlerCopy = (
-    <StyledIcons>{isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}</StyledIcons>
-  );
-
   return (
     <HighlightContainer>
-      <StyledIconLink>
+      <StyledIcons>
         <IconActionLink />
-      </StyledIconLink>
-      <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
-        {onHandlerCopy}
-      </CopyToClipboard>
+        <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
+          {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
+        </CopyToClipboard>
+      </StyledIcons>
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <PreWrapper withBorder={withBorder}>

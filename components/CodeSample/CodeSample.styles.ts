@@ -7,7 +7,7 @@ export const PreWrapper = styled.div<{
   showBlurBackground?: boolean;
   height?: number;
 }>`
-  background: ${({ theme }) => theme.colors.codeLabelBackground};
+  background: ${({ theme }) => theme.colors.codeSampleBackground};
   line-height: 24px;
   padding: 0 24px;
   margin: 0;
@@ -24,11 +24,11 @@ export const PreWrapper = styled.div<{
     display: ${({ showBlurBackground }) => (showBlurBackground ? 'block' : 'none')};
     position: absolute;
     left: 0;
-    bottom: 0px;
+    bottom: 0;
     background: linear-gradient(
       180deg,
       rgba(245, 245, 252, 0) 0%,
-      ${({ theme }) => theme.colors.codeLabelBackground} 85%
+      ${({ theme }) => theme.colors.codeSampleBackground} 85%
     );
     border-radius: ${({ withBorder }) => (withBorder ? '8px' : `0`)};
     pointer-events: none;
@@ -43,7 +43,8 @@ export const HightLighter = styled.div<{ selectedLines: number[] }>`
   left: 0;
   height: ${({ selectedLines = [] }) => (selectedLines[1] - selectedLines[0] + 1) * 24}px;
   width: 100%;
-  background: ${({ theme }) => theme.colors.highlightedLine};
+  background: ${({ theme }) => theme.colors.codeSampleHighlightedLine};
+  opacity: 0.32;
 `;
 
 export const HorizontalScrollWrapper = styled.div<{ isBlockScroll?: boolean }>`
@@ -56,7 +57,7 @@ export const HorizontalScrollWrapper = styled.div<{ isBlockScroll?: boolean }>`
 export const Pre = styled.pre`
   margin: 0;
   position: relative;
-  font-size: 14px;
+  font-size: 13px;
 `;
 
 export const InputSizer = styled.div`
@@ -100,43 +101,75 @@ export const StyledTextArea = styled.textarea<{ width: string; isHidden?: boolea
 export const Line = styled.div`
   height: 24px;
   display: table-row;
-  & > .property,
-  & > .operator,
-  & > .selector,
-  & > .tag {
-    color: ${({ theme }) => theme.colors.base} !important;
-  }
-  & > .string,
-  & > .atrule {
-    color: ${({ theme }) => theme.colors.tokenString} !important;
-  }
-  & > .number,
-  & > .unit {
-    color: ${({ theme }) => theme.colors.tokenNumber} !important;
+
+  & > .comment,
+  & > .prolog,
+  & > .doctype,
+  & > .cdata {
+    color: ${({ theme }) => theme.colors.codeSampleTokenComment} !important;
   }
   & > .punctuation {
-    color: ${({ theme }) => theme.colors.greyDark} !important;
+    color: ${({ theme }) => theme.colors.codeSampleTokenPunctuation} !important;
+  }
+  & > .property,
+  & > .tag,
+  & > .boolean,
+  & > .number,
+  & > .constant,
+  & > .symbol,
+  & > .deleted {
+    color: ${({ theme }) => theme.colors.codeSampleTokenProperty} !important;
+  }
+  & > .selector,
+  & > .attr-name,
+  & > .string,
+  & > .char,
+  & > .builtin,
+  & > .inserted {
+    color: ${({ theme }) => theme.colors.codeSampleTokenSelector} !important;
+  }
+  & > .operator,
+  & > .entity,
+  & > .url {
+    color: ${({ theme }) => theme.colors.codeSampleTokenOperator} !important;
+  }
+  & > .atrule,
+  & > .attr-value,
+  & > .keyword {
+    color: ${({ theme }) => theme.colors.codeSampleTokenAtrule} !important;
+  }
+  & > .function {
+    color: ${({ theme }) => theme.colors.codeSampleTokenFunction} !important;
+  }
+  & > .regex,
+  & > .important,
+  & > .variable {
+    color: ${({ theme }) => theme.colors.codeSampleTokenRegex} !important;
   }
 `;
 
 export const StyledIcons = styled.div`
+  display: inline-flex;
+  align-items: center;
   position: absolute;
   opacity: 0;
   right: 20px;
   top: 20px;
   cursor: pointer;
+  gap: 14px;
   z-index: 6;
-`;
+  color: ${({ theme }) => theme.colors.stormGray};
 
-export const StyledIconLink = styled(StyledIcons)`
-  right: 50px;
+  svg {
+    color: inherit;
+    cursor: pointer;
+  }
 `;
 
 export const HighlightContainer = styled.div`
   position: relative;
   &:hover {
-    ${StyledIcons},
-    ${StyledIconLink} {
+    ${StyledIcons} {
       transition: 1s;
       opacity: 1;
     }
@@ -165,6 +198,7 @@ export const IconArrowAction = styled(IconActionChevronDown)<{ isOpen: boolean }
 
 export const StyledText = styled(Text)`
   font-size: 10px;
+  color: ${({ theme }) => theme.colors.stormGray};
 `;
 
 export const LineNo = styled.span`
@@ -177,7 +211,7 @@ export const LineNo = styled.span`
 `;
 
 export const LineNumber = styled.div`
-  color: ${({ theme }) => theme.colors.greyDark};
+  color: ${({ theme }) => theme.colors.codeSampleLineNumber};
   text-align: right;
   user-select: none;
   opacity: 0.5;

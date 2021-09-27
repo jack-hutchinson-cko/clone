@@ -42,15 +42,17 @@ describe('CodeSample', () => {
       ),
     );
 
-    cy.get('*[data-cy=code-sample]').children().should('have.length', 3);
-    cy.get('*[data-cy=code-sample]').children().eq(1).find('svg').should('have.length', 1);
+    cy.get('*[data-cy=code-sample]').children().should('have.length', 2);
+    cy.get('*[data-cy=code-sample]').children().eq(0).find('svg').should('have.length', 2);
 
     cy.get('*[data-cy=code-sample]')
+      .children()
+      .eq(0)
       .children()
       .eq(1)
       .click({ force: true })
       .then(() => {
-        cy.get('*[data-cy=code-sample]').children().eq(1).should('contain', 'Copied!');
+        cy.get('*[data-cy=code-sample]').children().eq(0).should('contain', 'Copied!');
         cy.task('getClipboard').should('equal', code);
       });
   });
