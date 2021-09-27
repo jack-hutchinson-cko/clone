@@ -16,14 +16,16 @@ export const HeroWrapper = styled.div`
   }
 `;
 
-export const HeroParts = styled.div`
+export const HeroParts = styled.div<{ transform: string; opacity: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   will-change: transform;
   transform-style: preserve-3d;
-  transition: all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s;
+  transform: ${({ transform }) => transform};
+  opacity: ${({ opacity }) => opacity};
+  transition: transform 1s cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s, opacity 1.5s;
 `;
 
 export const HeroPart01 = styled.div`
@@ -33,6 +35,7 @@ export const HeroPart01 = styled.div`
   left: 0;
   width: auto;
   transform-origin: center;
+  transform: translate3d(0px, 0px, 0px) perspective(0px);
 
   @media (min-width: 1023px) and (max-width: 1220px), (min-width: 768px) and (max-width: 950px) {
     width: 90%;
@@ -43,9 +46,9 @@ export const HeroPart02 = styled.div`
   position: absolute;
   z-index: 2;
   top: 19px;
-  right: -24px;
+  right: -19px;
   width: auto;
-  transform: translate3d(0px, 0px, 75px);
+  transform: translate3d(0px, 0px, 60px) perspective(0px);
   transform-style: preserve-3d;
   transform-origin: center;
 
@@ -60,9 +63,9 @@ export const HeroPart03 = styled.div`
   position: absolute;
   z-index: 4;
   top: 219px;
-  left: 62px;
+  left: 45px;
   width: auto;
-  transform: translate3d(0px, 0px, 55px);
+  transform: translate3d(0px, 0px, 55px) perspective(0px);
   transform-style: preserve-3d;
   transform-origin: center;
 
