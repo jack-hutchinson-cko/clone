@@ -31,21 +31,27 @@ const IBuilderCodeControl: FC<IBuilderCodeControlProps> = ({
   const { onChange, codeControlState } = useContext(CodeHandler);
   const { code, insertedRowsCount } = getCodeProperty(children);
 
-  const handelChange = ({
+  const handleChange = ({
     selectedOption,
     optionValue,
   }: {
     selectedOption: string;
     optionValue: string;
   }) => {
-    onChange({ id, data: { selectedOption, tab, optionValue, lines, insertedRowsCount } });
+    onChange({
+      id,
+      data: { selectedOption, tab, optionValue, optionType, lines, insertedRowsCount },
+    });
   };
 
   useEffect(() => {
-    const { selectedOption, optionValue } = getOptionValue({ optionItem: options[0] || {}, code });
+    const { selectedOption, optionValue } = getOptionValue({
+      optionItem: options[0] || {},
+      code,
+    });
 
     if (selectedOption) {
-      handelChange({ selectedOption, optionValue });
+      handleChange({ selectedOption, optionValue });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -60,7 +66,7 @@ const IBuilderCodeControl: FC<IBuilderCodeControlProps> = ({
   return (
     <ControlComponent
       controlValue={currentControlValue}
-      onChange={handelChange}
+      onChange={handleChange}
       options={options}
       code={code}
     />

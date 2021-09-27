@@ -4,12 +4,13 @@ const form = document.getElementById("payment-form");
 let requestData;
 
 //Test key
-Frames.init("pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb", {
-  localization: "FR-FR",
-  style: {
+Frames.init({
+	publicKey: "pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+	localization: "EN-GB",
+	style: {
     base: {
-      color: "black",
-      fontSize: "18px",
+      color: "#55657D",
+      fontSize: "14px",
     },
   },
 });
@@ -172,7 +173,7 @@ function onSubmit(event) {
 }
 
 Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, function (event) {
-	fetch("server.js", {
+	fetch("http://localhost:5000", {
 		method: "post",
 		headers: {
 			Accept: "application/json",

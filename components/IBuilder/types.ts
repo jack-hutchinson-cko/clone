@@ -26,6 +26,7 @@ export type ControlValueType = {
   selectedOption: string;
   tab: string;
   optionValue: string;
+  optionType: ControlOptionType;
   lines: number[];
   insertedRowsCount: number;
 };

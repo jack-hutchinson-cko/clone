@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 import { get, toArray } from 'lodash';
+import { FramesLanguages } from 'frames-react';
+
 import {
   ControlValueType,
   CodeControlStateType,
@@ -133,4 +135,30 @@ export const getSelectedLines = ({
   });
 
   return [startIndex + startIndexShift, endIndex + endIndexShift];
+};
+
+export const getDataPaymentForm = (
+  codeControlState: CodeControlStateType,
+): {
+  color: string;
+  fontSize: string;
+  localization: FramesLanguages;
+} => {
+  let color = 'black';
+  let fontSize = '16px';
+  let localization: FramesLanguages = 'EN-GB';
+
+  Object.values(codeControlState).forEach(({ selectedOption, optionType }) => {
+    if (selectedOption) {
+      if (optionType === 'frameColorSelector') {
+        color = selectedOption;
+      } else if (optionType === 'frameFontSizeSelector') {
+        fontSize = `${selectedOption}px`;
+      } else if (optionType === 'frameLanguageSelector') {
+        localization = selectedOption as FramesLanguages;
+      }
+    }
+  });
+
+  return { color, fontSize, localization };
 };

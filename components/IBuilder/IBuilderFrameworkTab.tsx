@@ -1,5 +1,6 @@
 import React, { FC, useState, ReactNode, useEffect, useRef, createContext } from 'react';
 import { get } from 'lodash';
+
 import TwoColumn from 'components/TwoColumn';
 import usePrevState from 'hooks/usePrevState';
 import { getChildComponentName, getChildWithProps } from './utils';
@@ -167,7 +168,9 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
         <>
           <Portal id="framework-switcher" />
           <CodeTabWrapper>
-            <div>{codePreviewComponent}</div>
+            <CodeHandler.Provider value={{ onChange: onCodeHandlerChange, codeControlState }}>
+              <div>{codePreviewComponent}</div>
+            </CodeHandler.Provider>
             <IBuilderCodeTabs
               onChangeTab={handelChangeTab}
               selectedBlock={selectedBlock}

@@ -18,10 +18,10 @@ export const Form = styled.form`
   }
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<{ color: string }>`
   display: block;
-  margin: 0 0 8px;
-  color: ${({ theme }) => theme.colors.cardFormPrimary};
+  margin: 8px 0;
+  color: ${({ theme, color }) => color || theme.colors.cardFormPrimary};
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -100,11 +100,6 @@ const Input = css`
 
   &.frame--activated {
     opacity: 1;
-    box-shadow: ${({ theme }) => theme.shadows.cardForm[3]};
-  }
-
-  &.frame--activated.frame--focus {
-    box-shadow: ${({ theme }) => theme.shadows.cardForm[2]};
   }
 
   &.frame--activated.frame--invalid {
@@ -145,20 +140,9 @@ export const PayButton = styled.button<{ color: string }>`
   height: 48px;
   width: 100%;
   background-color: ${({ theme, color }) => color || theme.colors.cardFormPrimary};
-  box-shadow: ${({ theme, color }) => color || theme.shadows.cardForm[0]};
-
-  &:active {
-    background-color: ${({ theme, color }) => color || theme.colors.cardFormBtnActive};
-    box-shadow: ${({ theme, color }) => color || theme.shadows.cardForm[0]};
-  }
-
-  &:hover {
-    background-color: ${({ theme, color }) => color || theme.colors.cardFormBtnHover};
-    box-shadow: ${({ theme, color }) => color || theme.shadows.cardForm[1]};
-  }
 
   &:disabled {
-    background-color: ${({ theme, color }) => color || theme.colors.cardFormBtnDisabled};
+    opacity: 0.4;
     box-shadow: none;
   }
 

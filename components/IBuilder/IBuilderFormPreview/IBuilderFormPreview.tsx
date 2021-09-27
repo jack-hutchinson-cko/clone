@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState, useRef } from 'react';
+import React, { FC, useState, useRef, useContext } from 'react';
 import {
   Frames,
   FrameCardTokenizedEvent,
@@ -6,9 +6,12 @@ import {
   FrameCardTokenizationFailedEvent,
   FramePaymentMethodChangedEvent,
   FramesLanguages,
+  FrameCardValidationChangedEvent,
 } from 'frames-react';
 
 import IBuilderPreview from '../IBuilderPreview';
+import { CodeHandler } from '../IBuilderFrameworkTab';
+import { getDataPaymentForm } from '../utils';
 import {
   FormWrapper,
   Form,
@@ -28,29 +31,46 @@ import {
 } from './IBuilderFormPreview.styles';
 
 type IBuilderFormPreviewProps = {
-  color: string;
-  fontSize: string;
-  localization: FramesLanguages;
+  color?: string;
+  fontColor?: string;
+  fontSize?: string;
+  localization?: FramesLanguages;
 };
 
+const DEFAULT_COLOR = '#00122C';
+const DEFAULT_FONTSIZE = '14px';
+const DEFAULT_LOCALIZATION = 'EN-GB';
 const PUBLIC_KEY = 'pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb';
 
 const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
-  color = '',
-  fontSize = '14px',
-  localization = 'EN-GB',
+  color,
+  fontColor,
+  fontSize,
+  localization,
 }) => {
-  const payButtonRef = useRef<HTMLButtonElement>(null);
-  const [successMessage, setSuccessMessage] = useState<ReactNode>(null);
-  const [paymentMethodIcon, setPaymentMethodIcon] = useState<string>('');
-  const [showLogoPaymentMethod, setShowLogoPaymentMethod] = useState<boolean>(false);
+  const [token, setToken] = useState<string>('');
+  const [showErrorCvv, setShowErrorCvv] = useState<boolean>(false);
   const [showErrorCardNumber, setShowErrorCardNumber] = useState<boolean>(false);
   const [showErrorExpiryDate, setShowErrorExpiryDate] = useState<boolean>(false);
-  const [showErrorCvv, setShowErrorCvv] = useState<boolean>(false);
+  const [showLogoPaymentMethod, setShowLogoPaymentMethod] = useState<boolean>(false);
+  const [paymentMethodIcon, setPaymentMethodIcon] = useState<string>('');
+  const payButtonRef = useRef<HTMLButtonElement>(null);
 
   const iconCardNumber = `IBuilder/card-icons/card${showErrorCardNumber ? '-error' : ''}.svg`;
   const iconExpiryDate = `IBuilder/card-icons/exp-date${showErrorExpiryDate ? '-error' : ''}.svg`;
   const iconCvv = `IBuilder/card-icons/cvv${showErrorCvv ? '-error' : ''}.svg`;
+
+  const { codeControlState } = useContext(CodeHandler);
+  const {
+    color: customColor,
+    fontSize: customFontSize,
+    localization: customLoc,
+  } = getDataPaymentForm(codeControlState);
+
+  const selectedColor = color || customColor || DEFAULT_COLOR;
+  const selectedFontColor = fontColor || DEFAULT_COLOR;
+  const selectedFontSize = fontSize || customFontSize || DEFAULT_FONTSIZE;
+  const selectedLocalization = localization || customLoc || DEFAULT_LOCALIZATION;
 
   const showPaymentMethodIcon = (paymentType?: string) => {
     setShowLogoPaymentMethod(true);
@@ -61,25 +81,33 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
     }
   };
 
+  const onFormReady = () => {
+    if (showErrorCvv) setShowErrorCvv(false);
+    if (showLogoPaymentMethod) setShowLogoPaymentMethod(false);
+    if (showErrorCardNumber) setShowErrorCardNumber(false);
+    if (showErrorExpiryDate) setShowErrorExpiryDate(false);
+  };
+
   const onFrameValidationChanged = (event: FrameValidationChangedEvent) => {
     const { element } = event;
+
     if (event.isValid || event.isEmpty) {
-      if (element === 'card-number') {
-        if (!event.isEmpty) {
-          showPaymentMethodIcon();
-        } else {
-          setShowErrorCardNumber(false);
-        }
+      if (element === 'card-number' && !event.isEmpty) {
+        showPaymentMethodIcon();
+        setShowErrorCardNumber(false);
       } else if (element === 'expiry-date') setShowErrorExpiryDate(false);
       else if (element === 'cvv') setShowErrorCvv(false);
-      return;
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (element === 'card-number') {
+        setShowLogoPaymentMethod(false);
+        setShowErrorCardNumber(true);
+      } else if (element === 'expiry-date') {
+        setShowErrorExpiryDate(true);
+      } else if (element === 'cvv') {
+        setShowErrorCvv(true);
+      }
     }
-
-    if (element === 'card-number') {
-      setShowLogoPaymentMethod(false);
-      setShowErrorCardNumber(true);
-    } else if (element === 'expiry-date') setShowErrorExpiryDate(true);
-    else if (element === 'cvv') setShowErrorCvv(true);
   };
 
   const onPaymentMethodChanged = (event: FramePaymentMethodChangedEvent) => {
@@ -94,18 +122,12 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
   };
 
   const onCardTokenized = (event: FrameCardTokenizedEvent) => {
-    setSuccessMessage(
-      <>
-        Card tokenization completed
-        <br />
-        Your card token is: <Token>${event.token}</Token>
-      </>,
-    );
+    setToken(event.token);
   };
 
-  const onCardValidationChanged = () => {
+  const onCardValidationChanged = (event: FrameCardValidationChangedEvent) => {
     if (payButtonRef.current) {
-      payButtonRef.current.disabled = !Frames.isCardValid();
+      payButtonRef.current.disabled = !event.isValid;
     }
   };
 
@@ -121,27 +143,30 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
   };
 
   return (
-    <IBuilderPreview>
+    <IBuilderPreview
+      key={JSON.stringify({ selectedFontColor, selectedFontSize, selectedLocalization })}
+    >
       <FormWrapper>
         <Form method="POST" action="/payment" onSubmit={onSubmit}>
           <Frames
             config={{
               publicKey: PUBLIC_KEY,
-              localization,
+              localization: selectedLocalization,
               style: {
                 base: {
-                  fontSize,
-                  color,
+                  color: selectedFontColor,
+                  fontSize: selectedFontSize,
                 },
               },
             }}
+            ready={onFormReady}
             frameValidationChanged={onFrameValidationChanged}
             paymentMethodChanged={onPaymentMethodChanged}
             cardTokenized={onCardTokenized}
             cardValidationChanged={onCardValidationChanged}
             cardTokenizationFailed={onCardTokenizationFailed}
           >
-            <Label>Card number</Label>
+            <Label color={selectedColor}>Card number</Label>
             <InputContainer>
               <IconContainer>
                 <img src={iconCardNumber} alt="PAN" />
@@ -154,7 +179,7 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
                 <img src="IBuilder/card-icons/error.svg" alt="error" />
               </IconContainer>
             </InputContainer>
-            <Label>Security code</Label>
+            <Label color={selectedColor}>Security code</Label>
             <DateAndCode>
               <div>
                 <InputContainer>
@@ -179,7 +204,7 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
                 </InputContainer>
               </div>
             </DateAndCode>
-            <PayButton type="submit" disabled ref={payButtonRef} color={color}>
+            <PayButton type="submit" disabled ref={payButtonRef} color={selectedColor}>
               Pay £25.00
             </PayButton>
 
@@ -192,7 +217,13 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
               </ExpiryDateError>
               <CvvError isShown={showErrorCvv}>Please enter a valid cvv code</CvvError>
             </div>
-            {successMessage && <SuccessPaymentMessage>{successMessage}</SuccessPaymentMessage>}
+            {token && (
+              <SuccessPaymentMessage>
+                Card tokenization completed
+                <br />
+                Your card token is: <Token>${token}</Token>
+              </SuccessPaymentMessage>
+            )}
           </Frames>
         </Form>
       </FormWrapper>
