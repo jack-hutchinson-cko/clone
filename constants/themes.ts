@@ -36,6 +36,8 @@ export const themes = {
       stormGray: '#6D708E',
       errorPageLinkBorder: '#e6e7ec',
       errorPageLinkHover: '#2bd4db',
+      manatee: '#E6E7EC',
+      athensGray: '#FFFFFF',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
@@ -75,6 +77,7 @@ export const themes = {
       cardFormInputInvalid: '#D96830',
       cardFormInputBorder: '#C5CCD6',
       cardFormBtnDisabled: '#697887',
+      dullLavender: '#8374DC',
       codeTabsIBBackground: '#3D4168',
       // CodeSample
       codeSampleBackground: '#242955',
@@ -226,6 +229,8 @@ export const themes = {
       tableCellBackground: '#3D4168',
       errorPageLinkBorder: '#3d4168',
       errorPageLinkHover: '#ffffc8',
+      manatee: '#8688A0',
+      athensGray: '#8688A0',
 
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
@@ -265,8 +270,9 @@ export const themes = {
       cardFormInputInvalid: '#D96830',
       cardFormInputBorder: '#C5CCD6',
       cardFormBtnDisabled: '#697887',
-      codeTabsIBBackground: '#3D4168',
+      dullLavender: '#8374DC',
       // CodeSample
+      codeTabsIBBackground: '#3D4168',
       codeSampleBackground: '#242955',
       codeSampleHighlightedLine: '#6D708E',
       codeSampleLineNumber: '#B6B8C6',

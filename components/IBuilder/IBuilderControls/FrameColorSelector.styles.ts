@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { ReactSVG } from 'react-svg';
+import { IconActionChevronDown } from 'components/Icons';
 
 export const ControlWrapper = styled.div`
   display: flex;
@@ -110,20 +112,47 @@ export const Wrapper = styled.div`
 `;
 
 export const DropDownHeader = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
   min-width: 300px;
-  padding: 8px;
+  padding: 12px 16px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.backgroundSearch};
+  background: ${({ theme }) => theme.colors.manatee};
   position: relative;
   color: ${({ theme }) => theme.colors.base};
   font-size: 14px;
+  line-height: 14px;
+`;
+
+export const StyledIconActionChevronDown = styled(IconActionChevronDown)<{ isOpen: boolean }>`
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : '')};
+  margin-left: auto;
+`;
+
+export const StyledReactSVG = styled(ReactSVG)<{ width?: number; height?: number }>`
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
+  div,
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+  svg {
+    border-radius: 2px;
+  }
+`;
+
+export const HeaderValue = styled.div`
+  margin-left: 8px;
 `;
 
 export const DropDownBody = styled.div`
   position: absolute;
   left: 0;
   min-width: 100%;
-  top: 100%;
+  top: calc(100% + 16px);
   z-index: 10;
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.base};
@@ -135,7 +164,11 @@ export const DropDownBody = styled.div`
 
 export const DropDownOption = styled.div<{ isSelected?: boolean }>`
   background: ${({ isSelected, theme }) =>
-    isSelected ? theme.colors.textHighlight : theme.colors.white};
+    isSelected ? theme.colors.dullLavender : theme.colors.athensGray};
   white-space: nowrap;
   padding: 8px;
+
+  &:hover {
+    background-color: ${({ theme, isSelected }) => !isSelected && theme.colors.backgroundDark};
+  }
 `;
