@@ -59,7 +59,7 @@ export const FooterListTitle = styled.p`
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
-  line-height: 24px;
+  line-height: 16px;
   letter-spacing: 1.76px;
 `;
 

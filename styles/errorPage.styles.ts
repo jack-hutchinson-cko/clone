@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MobileBreakPoints } from 'constants/screen';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -8,17 +9,29 @@ export const Wrapper = styled.div`
   text-align: center;
   padding: 0 48px;
   padding-block: min(120px, 10vh);
+  color: ${({ theme }) => theme.colors.base};
 
   h1 {
-    font-size: 100px;
-    line-height: 100px;
+    font-size: 120px;
+    line-height: 80px;
     margin: 0 0 24px 0;
   }
 
   .error-message {
     margin-top: 0;
     margin-bottom: 48px;
+    font-size: 18px;
     line-height: 32px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    h1 {
+      font-size: 100px;
+    }
+    .error-message {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 `;
 

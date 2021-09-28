@@ -19,6 +19,9 @@ export const SubFooterSocialLinksWrapper = styled.ul`
       width: 16px;
       height: auto;
     }
+    & svg:hover {
+      color: ${({ theme }) => theme.colors.stormGray};
+    }
   }
 
   @media ${createBreakpointTo(SIZE.L)} {

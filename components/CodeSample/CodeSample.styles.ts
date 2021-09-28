@@ -155,13 +155,10 @@ export const StyledIcons = styled.div`
   opacity: 0;
   right: 20px;
   top: 20px;
-  cursor: pointer;
   gap: 14px;
-  z-index: 6;
   color: ${({ theme }) => theme.colors.stormGray};
 
   svg {
-    color: inherit;
     cursor: pointer;
   }
 `;

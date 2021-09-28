@@ -40,14 +40,6 @@ const CodeSample: FC<CodeSampleProps> = ({
 
   return (
     <HighlightContainer {...rest}>
-      {withControls && (
-        <StyledIcons>
-          <IconActionLink />
-          <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
-            {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
-          </CopyToClipboard>
-        </StyledIcons>
-      )}
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <PreLine
@@ -62,6 +54,14 @@ const CodeSample: FC<CodeSampleProps> = ({
           />
         )}
       </Highlight>
+      {withControls && (
+        <StyledIcons>
+          <IconActionLink />
+          <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
+            {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
+          </CopyToClipboard>
+        </StyledIcons>
+      )}
     </HighlightContainer>
   );
 };

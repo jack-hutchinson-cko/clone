@@ -6,7 +6,7 @@ import CodeSample from './CodeSample';
 import PreLine, { defaultLineHeight, defaultLengthWithCollapsible } from './PreLine';
 import { Token } from './type';
 
-const code = '{"destination":{"type":"token"}}';
+const code = '{"destination":{"type":"token"}';
 
 const createLines = (rowsNumber: number): Token[][] =>
   new Array(rowsNumber).fill([
@@ -43,16 +43,16 @@ describe('CodeSample', () => {
     );
 
     cy.get('*[data-cy=code-sample]').children().should('have.length', 2);
-    cy.get('*[data-cy=code-sample]').children().eq(0).find('svg').should('have.length', 2);
+    cy.get('*[data-cy=code-sample]').children().eq(1).find('svg').should('have.length', 2);
 
     cy.get('*[data-cy=code-sample]')
       .children()
-      .eq(0)
+      .eq(1)
       .children()
       .eq(1)
       .click({ force: true })
       .then(() => {
-        cy.get('*[data-cy=code-sample]').children().eq(0).should('contain', 'Copied!');
+        cy.get('*[data-cy=code-sample]').children().eq(1).should('contain', 'Copied!');
         cy.task('getClipboard').should('equal', code);
       });
   });

@@ -1,6 +1,6 @@
 import { FC, CSSProperties, MouseEventHandler } from 'react';
 
-import { StyledIcon, StyledHeaderLogo, StyledIconActionLink, StyledIconIB } from './Icons.styles';
+import { StyledIcon, StyledHeaderLogo, StyledIconIB, StyledSocialIcon } from './Icons.styles';
 
 type Props = {
   onClick?: MouseEventHandler<SVGSVGElement>;
@@ -80,69 +80,69 @@ export const FooterLogo: FC<Props> = (props) => (
 );
 
 export const IconFacebook: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
+  <StyledSocialIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M6 5.33H4V8h2v8h3.33V8h2.43L12 5.33H9.33v-1.1c0-.64.14-.9.75-.9H12V0H9.47C7.07 0 6 1.05 6 3.08v2.25z"
-      fill="#FFF"
+      fill="currentColor"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconTwitter: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
+  <StyledSocialIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M16 2.9c-.6.28-1.23.46-1.88.54.69-.43 1.2-1.09 1.44-1.86-.65.39-1.35.67-2.1.82a3.2 3.2 0 00-4.97.23 3.35 3.35 0 00-.61 2.83 9.21 9.21 0 01-6.76-3.51 3.39 3.39 0 001.01 4.48 3.13 3.13 0 01-1.49-.41 3.35 3.35 0 002.67 3.33c-.5.12-1 .12-1.5 0a3.32 3.32 0 003.06 2.39A6.56 6.56 0 010 13.14a9.17 9.17 0 0011.85-1.46 9.41 9.41 0 002.51-7.01A6.56 6.56 0 0016 2.9z"
-      fill="#fff"
+      fill="currentColor"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconInstagram: FC<Props> = (props) => (
-  <StyledIcon width={16} height={17} viewBox="0 0 16 16" {...props}>
-    <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z" fill="#fff" />
+  <StyledSocialIcon width={16} height={17} viewBox="0 0 16 16" {...props}>
+    <path d="M8 10.67a2.67 2.67 0 110-5.34 2.67 2.67 0 010 5.34z" fill="currentColor" />
     <path
       d="M16 4.7A4.41 4.41 0 0011.3 0H4.7A4.41 4.41 0 000 4.7v6.6A4.43 4.43 0 004.7 16h6.6a4.41 4.41 0 004.7-4.7V8 4.7zm-8 7.4a4.1 4.1 0 110-8.2 4.1 4.1 0 010 8.2zM13.33 4H12V2.67h1.33V4z"
-      fill="#fff"
+      fill="currentColor"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconYoutube: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
+  <StyledSocialIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M13.08 1.47a99.32 99.32 0 00-10.16 0C.32 1.67 0 3.4 0 8c0 4.6.32 6.3 2.92 6.5 3.38.2 6.78.2 10.16 0C15.68 14.3 16 12.57 16 8c0-4.56-.32-6.33-2.92-6.53zm-7.75 9.2V5.33L12 8l-6.67 2.67z"
-      fill="#fff"
+      fill="currentColor"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconGlassdoor: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
+  <StyledSocialIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      fill="#fff"
+      fill="currentColor"
       d="M11.6 0c1.32 0 2.4.74 2.4 2H4v10H2V2.29A2.35 2.35 0 014.4 0h7.2zm0 14H2c0 1.26 1.08 2 2.4 2h7.2c1.32 0 2.4-.74 2.4-2V4h-2v10h-.4z"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconCheckout: FC<Props> = (props) => (
-  <StyledIcon width={16} height={17} viewBox="0 0 16 16" {...props}>
+  <StyledSocialIcon width={16} height={17} viewBox="0 0 16 16" {...props}>
     <path
       d="M4.33 13.84a2.17 2.17 0 11-4.34 0 2.17 2.17 0 014.34 0zM0 5.46v3.2A7.43 7.43 0 017.35 16h3.21A10.67 10.67 0 000 5.46zm0-2.24A12.81 12.81 0 0112.79 16H16A16 16 0 000 0v3.22z"
-      fill="#fff"
+      fill="currentColor"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconLinkedin: FC<Props> = (props) => (
-  <StyledIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
+  <StyledSocialIcon width={20} height={20} viewBox="0 0 16 16" {...props}>
     <path
       d="M3.32 1.74a1.7 1.7 0 01-1.65 1.74A1.7 1.7 0 010 1.74 1.7 1.7 0 011.67 0a1.7 1.7 0 011.65 1.74zm0 3.13H0V16h3.33L3.32 4.87zm5.33 0H5.33V16h3.32v-5.84c0-3.25 4-3.52 4 0V16H16V8.95a4 4 0 00-7.35-2.57V4.87z"
-      fill="#fff"
+      fill="currentColor"
     />
-  </StyledIcon>
+  </StyledSocialIcon>
 );
 
 export const IconEarth: FC<Props> = (props) => (
@@ -472,14 +472,14 @@ export const IconError: FC<Props> = (props) => (
 );
 
 export const IconActionLink: FC<Props> = (props) => (
-  <StyledIconActionLink width={14} height={14} viewBox="0 0 14 14" {...props}>
+  <StyledIcon width={14} height={14} viewBox="0 0 14 14" {...props}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M8.15349 1.1483C9.45049 -0.149695 11.5635 -0.149695 12.8605 1.1483C14.1585 2.4463 14.1585 4.5573 12.8605 5.8553L10.8605 7.8553C10.6615 8.0543 10.4385 8.22731 10.1975 8.37031C10.1175 8.4173 10.0305 8.4393 9.94349 8.4393C9.77249 8.4393 9.60549 8.35131 9.51249 8.19331C9.37249 7.95531 9.45149 7.6483 9.68949 7.5083C9.85749 7.4093 10.0135 7.2883 10.1535 7.1483L12.1535 5.1483C13.0615 4.2403 13.0615 2.7633 12.1535 1.8553C11.2455 0.947305 9.76849 0.947305 8.86049 1.8553L6.86049 3.8553C5.95249 4.7633 5.95249 6.2403 6.86049 7.1483C7.05549 7.3433 7.05549 7.6603 6.86049 7.8553C6.66549 8.0503 6.34849 8.0503 6.15349 7.8553C4.85549 6.5573 4.85549 4.4463 6.15349 3.1483L8.15349 1.1483ZM7.15349 6.8553C6.95849 6.6603 6.95849 6.3433 7.15349 6.1483C7.34849 5.9533 7.66549 5.9533 7.86049 6.1483C9.15849 7.4463 9.15849 9.5573 7.86049 10.8553L5.86049 12.8553C5.21149 13.5033 4.35949 13.8293 3.50749 13.8293C2.65449 13.8293 1.80249 13.5033 1.15349 12.8553C-0.144507 11.5573 -0.144507 9.4463 1.15349 8.1483L3.15349 6.1483C3.35349 5.9483 3.57549 5.7753 3.81649 5.6343C4.05349 5.4933 4.36049 5.5723 4.50049 5.8113C4.64049 6.0483 4.56149 6.3553 4.32349 6.4953C4.15649 6.5943 4.00049 6.7153 3.86049 6.8553L1.86049 8.8553C0.952493 9.7633 0.952493 11.2403 1.86049 12.1483C2.76849 13.0563 4.24549 13.0563 5.15349 12.1483L7.15349 10.1483C8.06149 9.2403 8.06149 7.7633 7.15349 6.8553Z"
       fill="currentColor"
     />
-  </StyledIconActionLink>
+  </StyledIcon>
 );
 
 export const IconActionAccordion: FC<Props> = ({ width = 20, height = 11, ...props }) => (

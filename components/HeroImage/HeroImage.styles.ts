@@ -25,7 +25,7 @@ export const HeroParts = styled.div<{ transform: string; opacity: number }>`
   transform-style: preserve-3d;
   transform: ${({ transform }) => transform};
   opacity: ${({ opacity }) => opacity};
-  transition: transform 1s cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s, opacity 1.5s;
+  transition: transform 1s cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s, opacity 1.2s;
 `;
 
 export const HeroPart01 = styled.div`

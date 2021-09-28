@@ -11,10 +11,10 @@ export const StyledHeaderLogo = styled(StyledIcon)`
   color: ${({ theme }) => theme.colors.success};
 `;
 
-export const StyledIconActionLink = styled(StyledIcon)`
-  color: ${({ theme }) => theme.colors.success};
+export const StyledIconIB = styled(StyledIcon)`
+  color: ${({ theme }) => theme.colors.white};
 `;
 
-export const StyledIconIB = styled(StyledIcon)`
+export const StyledSocialIcon = styled(StyledIcon)`
   color: ${({ theme }) => theme.colors.white};
 `;
