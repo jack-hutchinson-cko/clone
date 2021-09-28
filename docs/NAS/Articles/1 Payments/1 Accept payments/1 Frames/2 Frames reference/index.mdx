@@ -143,6 +143,58 @@ Allows you to customize the look and feel of Frames' controlled fields. Refer to
 </TableBody>
 </Table>
 
+--- 
+
+## Hide the CVV field
+
+When paying out to a card, the [CVV field](/risk-management/card-verification) is not mandatory, so you can initialize Frames with `CVV_HIDDEN` **or** `CVV_OPTIONAL`. 
+
+<tabs>
+<tab title="CVV_HIDDEN">
+<Box horizontal="sm">
+
+```javascript
+Frames.init({
+  publicKey: "pk_sbox_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  modes: [ Frames.modes.CVV_HIDDEN]
+});
+```
+
+</Box>
+</tab>
+<tab title="CVV_OPTIONAL">
+<Box horizontal="sm">
+
+```javascript
+Frames.init({
+  publicKey: "pk_sbox_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  modes: [ Frames.modes.CVV_OPTIONAL]
+});
+```
+
+</Box>
+</tab>
+</tabs>
+
+<TipBox variant="info">
+
+Please note that either the `CVV_HIDDEN` or `CVV_OPTIONAL` can be used. You cannot incorporate both.
+
+</TipBox>
+
+### Additional security
+
+To prevent copy pasting of card details within the iframe, you can use `DISABLE_COPY_PASTE`.
+
+```javascript
+Frames.init({
+  publicKey: "pk_sbox_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  modes: [ Frames.modes.DISABLE_COPY_PASTE ]
+});
+```
+
+---
+
 ### Customer details
 
 <Table>
