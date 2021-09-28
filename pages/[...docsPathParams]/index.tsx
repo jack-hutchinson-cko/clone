@@ -59,21 +59,23 @@ const DocPost: NextPage<Props> = ({
     <AnchorsProvider>
       <Head title={frontMatter.title} />
       <PageContent isIntegrationBuilder={isIntegrationBuilder}>
-        {!isIntegrationBuilder ? (
-          <header>
-            <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-            <Title>{title}</Title>
-            {timeToComplete && warningMessage && (
-              <FrontMatterContainer>
-                <TimeToComplete time={timeToComplete} />
-                <WarningMessage message={warningMessage} />
-              </FrontMatterContainer>
-            )}
-            <LastChange>
-              {modifiedDate} – {lastAuthor}
-            </LastChange>
-          </header>
-        ) : null}
+        <header>
+          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+          {!isIntegrationBuilder ? (
+            <>
+              <Title>{title}</Title>
+              {timeToComplete && warningMessage && (
+                <FrontMatterContainer>
+                  <TimeToComplete time={timeToComplete} />
+                  <WarningMessage message={warningMessage} />
+                </FrontMatterContainer>
+              )}
+              <LastChange>
+                {modifiedDate} – {lastAuthor}
+              </LastChange>
+            </>
+          ) : null}
+        </header>
         <MDXProvider source={source} />
         <CardWrapper cardsInRow={ChildArticlesPerRow}>
           {childrenArticles.map((childItem) => (

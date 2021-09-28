@@ -10,7 +10,7 @@ const TimeToComplete: FC<Props> = ({ time }) => {
   return (
     <Wrapper>
       <IconClock />
-      <span>{time} minutes</span>
+      <span>{+time} minutes</span>
     </Wrapper>
   );
 };
