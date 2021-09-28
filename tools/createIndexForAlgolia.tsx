@@ -46,8 +46,7 @@ const getResultTextFromMdxFile = (content: string): string => {
     </ThemeProvider>,
   );
 
-  // need to remove .slice(0, 40000) after changing of plan
-  return (unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '').slice(0, 40000);
+  return unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '';
 };
 
 const getIndexArticleItem = ({
@@ -199,9 +198,11 @@ const createAllIndexes = async () => {
           FAQFilePath: string;
           searchFAQIndexName: string;
         }[]
-      ).map(({ FAQFilePath, searchFAQIndexName }) =>
-        createFAQIndex(FAQFilePath, searchFAQIndexName),
-      ),
+      )
+        .filter(({ FAQFilePath, searchFAQIndexName }) => Boolean(FAQFilePath && searchFAQIndexName))
+        .map(({ FAQFilePath, searchFAQIndexName }) =>
+          createFAQIndex(FAQFilePath, searchFAQIndexName),
+        ),
     );
 
     console.log('algolia FAQ search index was successfully generated/updated');

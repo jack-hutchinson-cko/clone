@@ -17,10 +17,18 @@ import {
 } from 'components/FAQStyledComponents';
 import SectionTag from 'components/Tag/SectionTag';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
+import widthErrorPage from 'hoc/widthErrorPage';
+import { clientSettings } from 'constants/clientSettings';
 
 type Props = {
   faqCategories: FAQSectionType[];
   popularFAQItemsSource: MDXRemoteSerializeResult;
+};
+
+const CardsSettings = {
+  desktop: 3,
+  tablet: 2,
+  mobile: 1,
 };
 
 const FAQHomePage: NextPage<Props> = ({ faqCategories, popularFAQItemsSource }) => {
@@ -45,13 +53,7 @@ const FAQHomePage: NextPage<Props> = ({ faqCategories, popularFAQItemsSource }) 
       <SectionContent>
         <ContentWrapper>
           <TextHeadingThree>Browse by category</TextHeadingThree>
-          <CardWrapper
-            cardsInRow={{
-              desktop: 3,
-              tablet: 2,
-              mobile: 1,
-            }}
-          >
+          <CardWrapper cardsInRow={CardsSettings}>
             {faqCategories.map((faqItem) => (
               <StyledCategoriesItem key={faqItem.href} {...faqItem} />
             ))}
@@ -69,14 +71,16 @@ const FAQHomePage: NextPage<Props> = ({ faqCategories, popularFAQItemsSource }) 
 export const getStaticProps: GetStaticProps = async () => {
   const faqCategories = getFAQSections();
   const popularFAQItemsSource = await getPopularFAQItems();
+  const { FAQPageEnable } = clientSettings;
 
   return {
     props: {
       faqCategories,
       popularFAQItemsSource,
-      isFAQSection: true,
+      isFAQSection: FAQPageEnable,
+      isRedirectToErrorPage: !FAQPageEnable,
     },
   };
 };
 
-export default FAQHomePage;
+export default widthErrorPage(FAQHomePage);

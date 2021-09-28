@@ -288,36 +288,42 @@ export const getFAQSectionSettings = (
   const mapFaqSectionToFilePath: { [key: string]: string } = {};
   let allFAQItems: ParsedFAQItem[] = [];
 
-  forEachFileTree({ parentFilePath: faqFilePath, parentPath: '/faq' }, (params) => {
-    const { path, filePath } = params;
-    const fileSourcePath = `${filePath}/index.mdx`;
-    const faqSection = path.replace('/faq/', '');
+  try {
+    if (faqFilePath) {
+      forEachFileTree({ parentFilePath: faqFilePath, parentPath: '/faq' }, (params) => {
+        const { path, filePath } = params;
+        const fileSourcePath = `${filePath}/index.mdx`;
+        const faqSection = path.replace('/faq/', '');
 
-    const {
-      data: {
-        title,
-        previewIcon: imageSrc = '',
-        previewIconDark: darkThemeImageSrc = '',
-        description: children = '',
-      },
-      content,
-    } = getMdxFileData(fileSourcePath, { addGitInfo: false });
+        const {
+          data: {
+            title,
+            previewIcon: imageSrc = '',
+            previewIconDark: darkThemeImageSrc = '',
+            description: children = '',
+          },
+          content,
+        } = getMdxFileData(fileSourcePath, { addGitInfo: false });
 
-    const faqItems = getFAQItems(content).map((faqItem) => {
-      const { popularity } = getFAQHeaderProperty(faqItem);
-      return {
-        faqSection: title || '',
-        popularity,
-        faqItem,
-      };
-    });
+        const faqItems = getFAQItems(content).map((faqItem) => {
+          const { popularity } = getFAQHeaderProperty(faqItem);
+          return {
+            faqSection: title || '',
+            popularity,
+            faqItem,
+          };
+        });
 
-    allFAQItems = allFAQItems.concat(faqItems);
+        allFAQItems = allFAQItems.concat(faqItems);
 
-    mapFaqSectionToFilePath[faqSection] = fileSourcePath;
-    pathUrls.push({ params: { faqSection } });
-    faqSections.push({ href: path, title, imageSrc, darkThemeImageSrc, children });
-  });
+        mapFaqSectionToFilePath[faqSection] = fileSourcePath;
+        pathUrls.push({ params: { faqSection } });
+        faqSections.push({ href: path, title, imageSrc, darkThemeImageSrc, children });
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     popularFAQItems: getPopularItemsMDXSource(allFAQItems),
