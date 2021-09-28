@@ -51,7 +51,7 @@ const Form = ({
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				theSecureToken: event.token,
+				theSecureToken: e.token,
 			}),
 		});
 

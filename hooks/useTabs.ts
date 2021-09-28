@@ -1,13 +1,13 @@
 import { get } from 'lodash';
 import { ReactNode, useState, useEffect, Children } from 'react';
 
-const getTitlesAndActiveTab = (children: ReactNode) => {
+const getTitlesAndActiveTab = (children: ReactNode, { titleKey }: { titleKey: string }) => {
   const childrenTitles: string[] = [];
   let currentActiveTab = 0;
 
   Children.forEach(children, (child, index) => {
-    if (get(child, 'props.title')) {
-      childrenTitles.push(get(child, 'props.title'));
+    if (get(child, `props.${titleKey}`)) {
+      childrenTitles.push(get(child, `props.${titleKey}`));
     }
 
     if (get(child, 'props.active')) {
@@ -21,9 +21,11 @@ const getTitlesAndActiveTab = (children: ReactNode) => {
 export const useTabs = ({
   children,
   selectedTab,
+  titleKey = 'title',
 }: {
   children: ReactNode;
   selectedTab?: string;
+  titleKey?: string;
 }): {
   titles: string[];
   activeTab: number;
@@ -33,7 +35,9 @@ export const useTabs = ({
   const [activeTab, setActiveTab] = useState<number>(0);
 
   useEffect(() => {
-    const { childrenTitles, currentActiveTab } = getTitlesAndActiveTab(children);
+    const { childrenTitles, currentActiveTab } = getTitlesAndActiveTab(children, {
+      titleKey,
+    });
 
     setTitles(childrenTitles);
     setActiveTab(currentActiveTab);

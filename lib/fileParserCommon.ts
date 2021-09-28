@@ -5,6 +5,7 @@ import { last, lowerCase } from 'lodash';
 import matter from 'gray-matter';
 import dateFormat from 'dateformat';
 import { publicDir } from 'constants/clientSettings';
+import { isNotJunk } from './junk';
 
 type ForEachFileTreeParams = {
   parentFilePath: string;
@@ -68,6 +69,32 @@ export const forEachFileTree = (
   }
 };
 
+type ForEachSourceFileCallBackParams = { filePath: string; relatedPath: string; fileName: string };
+
+export const forEachSourceFileTree = (
+  { parentFilePath, parentRelatedPath }: { parentFilePath: string; parentRelatedPath?: string },
+  callBack: (params: { filePath: string; relatedPath: string; fileName: string }) => void,
+): void => {
+  const children = fs.readdirSync(parentFilePath);
+
+  for (const child of children) {
+    const filePath = `${parentFilePath}/${child}`;
+    const relatedPath = parentRelatedPath ? `${parentRelatedPath}/${child}` : child;
+
+    if (fs.statSync(filePath).isDirectory()) {
+      forEachSourceFileTree(
+        {
+          parentFilePath: filePath,
+          parentRelatedPath: relatedPath,
+        },
+        callBack,
+      );
+    } else if (isNotJunk(child)) {
+      callBack({ filePath, relatedPath, fileName: child });
+    }
+  }
+};
+
 const code = '```';
 const codeWithParams = ({ language }: { language: string }): string =>
   `${code}${language} isCollapsible="false", withBorder="false", withControls="false"`;
@@ -88,14 +115,21 @@ const getIBuilderCodeTab = ({
 
   try {
     const fullPath = `${folderPath}${sourcePath}`;
-    const children = fs.readdirSync(fullPath);
 
-    return children.reduce((result, child) => {
-      const extension = last(child.split('.')) || '';
+    const files = [] as ForEachSourceFileCallBackParams[];
+    forEachSourceFileTree({ parentFilePath: fullPath }, (data) => files.push(data));
+    const frameWorkFolder = last(sourcePath.split('/'));
 
-      return `${result}\n\n<IBuilderCodeTab title="${child}">\n\n${codeWithParams({
-        language: extension,
-      })}\ninclude('${sourcePath}/${child}')\n${code}\n\n</IBuilderCodeTab>\n`;
+    return files.reduce((result, { relatedPath }) => {
+      const extension = last(relatedPath.split('.')) || '';
+      const fullTitle = `${frameWorkFolder}/${relatedPath}`;
+      const displayTitle = last(fullTitle.split('/'));
+
+      return `${result}\n\n<IBuilderCodeTab frameWorkFolder="${frameWorkFolder}" title="${fullTitle}" displayTitle="${displayTitle}">\n\n${codeWithParams(
+        {
+          language: extension,
+        },
+      )}\ninclude('${sourcePath}/${relatedPath}')\n${code}\n\n</IBuilderCodeTab>\n`;
     }, '');
   } catch (error) {
     return '';
@@ -120,8 +154,15 @@ const getIBuilderFrameworkTab = ({ folderPath }: { folderPath: string }): string
   }
 };
 
-const getMediaFilesData = ({ mediaSource }: { mediaSource: string }) => {
+const getMediaFilesData = ({
+  mediaSource,
+  mediaSourceOutputFolder,
+}: {
+  mediaSource: string;
+  mediaSourceOutputFolder?: string;
+}) => {
   const folderPath = `${publicDir}/${mediaSource}`;
+  const folderPrefix = `${mediaSourceOutputFolder}/${mediaSource}`;
 
   const children = fs.readdirSync(folderPath);
   const result = [];
@@ -133,28 +174,32 @@ const getMediaFilesData = ({ mediaSource }: { mediaSource: string }) => {
     if (!fs.statSync(filePath).isDirectory() && fileReg.test(child)) {
       const src = fs.readFileSync(filePath, { encoding: 'base64' });
 
-      result.push({ name: child, src });
+      result.push({ name: `${folderPrefix}/${child}`, src });
     }
   }
 
   return result;
 };
 
-const getIBuilderMediaFiles = ({ mediaSource }: { mediaSource: string }) => {
-  try {
-    if (!mediaSource) {
-      return '';
-    }
+const getIBuilderMediaFiles = ({
+  mediaSource,
+  mediaSourceOutputFolder,
+}: {
+  mediaSource: string;
+  mediaSourceOutputFolder?: string;
+}) => {
+  if (!mediaSource) {
+    return '';
+  }
 
-    const mediaFiles = getMediaFilesData({ mediaSource });
+  try {
+    const mediaFiles = getMediaFilesData({ mediaSource, mediaSourceOutputFolder });
 
     if (!mediaFiles.length) {
       return '';
     }
 
-    return `\n\n<IBuilderMedia mediaSource="${mediaSource}" mediaFiles={${JSON.stringify(
-      mediaFiles,
-    )}}/>\n\n`;
+    return `\n\n<IBuilderMedia mediaFiles={${JSON.stringify(mediaFiles)}}/>\n\n`;
   } catch (error) {
     return '';
   }
@@ -178,14 +223,14 @@ const addIncludeOptionByFileType = ({
   }
 
   if (frontMatter.type === 'IBuilderFrameworksTab') {
-    const { frontendSource, backendSource, mediaSource } = frontMatter;
+    const { frontendSource, backendSource, mediaSource, mediaSourceOutputFolder } = frontMatter;
     return `${content}${getIBuilderCodeTab({
       folderPath,
       sourcePath: frontendSource,
     })}${getIBuilderCodeTab({
       folderPath,
       sourcePath: backendSource,
-    })}${getIBuilderMediaFiles({ mediaSource })}`;
+    })}${getIBuilderMediaFiles({ mediaSource, mediaSourceOutputFolder })}`;
   }
 
   return content;

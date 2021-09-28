@@ -34,7 +34,11 @@ const IBuilderCodeTabs: FC<Props> = ({
   codeControlState,
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const { titles, activeTab, setActiveTab } = useTabs({ children, selectedTab: selectedBlock.tab });
+  const { titles, activeTab, setActiveTab } = useTabs({
+    children,
+    selectedTab: selectedBlock.tab,
+    titleKey: 'displayTitle',
+  });
 
   const selectedChild = React.Children.toArray(children)[activeTab] || null;
   const sourceCode = getResultSourceCode({ child: selectedChild, codeControlState });
@@ -58,20 +62,15 @@ const IBuilderCodeTabs: FC<Props> = ({
     const zip = new JSZip();
 
     React.Children.toArray(children).forEach((child) => {
-      const name = get(child, 'props.title');
+      const { title: name, frameWorkFolder } = get(child, 'props', {});
       const content = getResultSourceCode({ child, codeControlState });
 
-      zip.file(name, content);
+      zip.file(`${frameWorkFolder}/${name}`, content);
     });
 
-    if (mediaSource) {
-      let mediaFolder = zip;
-      mediaSource.split('/').forEach((currentFolderName) => {
-        mediaFolder = mediaFolder.folder(currentFolderName) as JSZip;
-      });
-
+    if (mediaFiles && mediaFiles.length) {
       mediaFiles.forEach(({ name, src }) => {
-        mediaFolder.file(name, src, { base64: true });
+        zip.file(name, src, { base64: true });
       });
     }
 
