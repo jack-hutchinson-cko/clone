@@ -18,6 +18,7 @@ type IBuilderCodeControlProps = {
   tab: string;
   lines: number[];
   options: SelectOptionType[];
+  withCustomValue: boolean;
 };
 
 const IBuilderCodeControl: FC<IBuilderCodeControlProps> = ({
@@ -26,6 +27,7 @@ const IBuilderCodeControl: FC<IBuilderCodeControlProps> = ({
   lines,
   options,
   optionType,
+  withCustomValue,
 }) => {
   const id = `${tab}-${JSON.stringify(lines)}`;
   const { onChange, codeControlState } = useContext(CodeHandler);
@@ -69,6 +71,8 @@ const IBuilderCodeControl: FC<IBuilderCodeControlProps> = ({
       onChange={handleChange}
       options={options}
       code={code}
+      withCustomValue={withCustomValue}
+      id={id}
     />
   );
 };

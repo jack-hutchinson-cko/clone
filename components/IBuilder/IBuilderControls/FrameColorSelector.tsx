@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import ColorPicker from 'components/ColorPicker';
 import { SelectOptionType, ControlValueType } from '../types';
 import { InputContainer, InputIcon, ButtonIcon, RadioIcon } from './FrameColorSelector.styles';
 import FrameCardSelector from './FrameCardSelector';
@@ -8,6 +9,8 @@ type Props = {
   onChange: (data: { selectedOption: string; optionValue: string }) => void;
   options: SelectOptionType[];
   code: string;
+  withCustomValue: boolean;
+  id: string;
 };
 
 const renderCardBody = ({
@@ -31,7 +34,13 @@ const renderCardBody = ({
 );
 
 const FrameColorSelector: FC<Props> = (props) => {
-  return <FrameCardSelector {...props} renderCardBody={renderCardBody} />;
+  return (
+    <FrameCardSelector
+      {...props}
+      renderCardBody={renderCardBody}
+      CustomControlComponent={ColorPicker}
+    />
+  );
 };
 
 export default FrameColorSelector;

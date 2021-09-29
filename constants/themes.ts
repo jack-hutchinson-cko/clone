@@ -38,7 +38,9 @@ export const themes = {
       errorPageLinkHover: '#2bd4db',
       manatee: '#E6E7EC',
       athensGray: '#FFFFFF',
-
+      scooter: '#2db4db',
+      frenchGray: '#B6B8C6',
+      cloundBurst: '#fffff',
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
       blueTertiary: '#2BD4DB',
@@ -231,7 +233,9 @@ export const themes = {
       errorPageLinkHover: '#ffffc8',
       manatee: '#8688A0',
       athensGray: '#8688A0',
-
+      scooter: '#6964b2',
+      frenchGray: '#B6B8C6',
+      cloundBurst: '#242955',
       lightCyan: '#D5F6F8',
       white: '#FFFFFF',
       blueTertiary: '#2BD4DB',
