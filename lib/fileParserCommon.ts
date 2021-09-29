@@ -314,7 +314,7 @@ export const getMdxFileData = (
           .match(/(\S+) (\S.+)/) || [];
       const newData: FileDataType = {
         ...data,
-        lastAuthor,
+        ...(lastAuthor ? { lastAuthor } : {}),
         modifiedDate: dateFormat(mtime, 'mmm d yyyy'),
       };
 
