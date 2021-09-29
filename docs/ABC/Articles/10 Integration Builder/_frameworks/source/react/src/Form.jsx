@@ -21,7 +21,7 @@ const Form = ({
 
 		if (paymentType) {
 			const name = paymentType.toLowerCase();
-			setPaymentMethodIcon(`IBuilder/card-icons/${name}.svg`);
+			setPaymentMethodIcon(`media/card-icons/${name}.svg`);
 		}
 	};
 
@@ -122,7 +122,7 @@ const imgData = {
 };
 
 const InputIcon = ({ isError = false, type = 'card-number' }) => {
-	const iconPath = `IBuilder/card-icons/${imgData[type].name}${isError ? '-error' : ''}.svg`;
+	const iconPath = `media/card-icons/${imgData[type].name}${isError ? '-error' : ''}.svg`;
 	return (
 		<div className="icon-container">
 			<img src={iconPath} alt={imgData[type].alt} />
@@ -141,7 +141,7 @@ const PaymentIcon = ({ isShown = false, src = '' }) => {
 
 const ErrorIcon = ({ isShown = false }) => isShown && (
 	<div className="icon-container">
-		<img src="IBuilder/card-icons/error.svg" alt="Error" />
+		<img src="media/card-icons/error.svg" alt="Error" />
 	</div>
 );
 

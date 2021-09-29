@@ -40,13 +40,11 @@ const getInnerComponents = ({
   codeTabsComponents: ReactNode;
   descriptionComponents: ReactNode;
   mediaFiles: MediaFilesType;
-  mediaSource: string;
 } => {
   let codePreviewComponent = null;
   let currentStep = 1;
   let currentDescriptionId = 0;
   let mediaFiles: MediaFilesType = [];
-  let mediaSource = '';
   const codeTabsComponents: ReactNode[] = [];
   const descriptionComponents: ReactNode[] = [];
   const codeMap: { [key: string]: string } = {};
@@ -80,7 +78,6 @@ const getInnerComponents = ({
       codeTabsComponents.push(child);
     } else if (componentName === 'IBuilderMedia') {
       mediaFiles = get(child, 'props.mediaFiles', []);
-      mediaSource = get(child, 'props.mediaSource', []);
     }
   });
 
@@ -93,7 +90,6 @@ const getInnerComponents = ({
     codeTabsComponents,
     descriptionComponents,
     mediaFiles,
-    mediaSource,
   };
 };
 
@@ -110,18 +106,13 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
     descriptionElementsData.current.push(data);
   };
 
-  const {
-    codePreviewComponent,
-    codeTabsComponents,
-    descriptionComponents,
-    mediaFiles,
-    mediaSource,
-  } = getInnerComponents({
-    children,
-    selectedBlock,
-    setSelectedBlock,
-    registerDescriptionElement,
-  });
+  const { codePreviewComponent, codeTabsComponents, descriptionComponents, mediaFiles } =
+    getInnerComponents({
+      children,
+      selectedBlock,
+      setSelectedBlock,
+      registerDescriptionElement,
+    });
 
   useEffect(() => {
     const onScrollHandler = () => {
@@ -175,7 +166,6 @@ const IBuilderFrameworkTab: FC<Props> = ({ children, headerComponent }) => {
               onChangeTab={handelChangeTab}
               selectedBlock={selectedBlock}
               mediaFiles={mediaFiles}
-              mediaSource={mediaSource}
               codeControlState={codeControlState}
             >
               {codeTabsComponents}

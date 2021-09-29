@@ -4,7 +4,6 @@ import { execSync } from 'child_process';
 import { last, lowerCase } from 'lodash';
 import matter from 'gray-matter';
 import dateFormat from 'dateformat';
-import { publicDir } from 'constants/clientSettings';
 import { isNotJunk } from './junk';
 
 type ForEachFileTreeParams = {
@@ -69,7 +68,7 @@ export const forEachFileTree = (
   }
 };
 
-type ForEachSourceFileCallBackParams = { filePath: string; relatedPath: string; fileName: string };
+type SourceFileType = { filePath: string; relatedPath: string; fileName: string };
 
 export const forEachSourceFileTree = (
   { parentFilePath, parentRelatedPath }: { parentFilePath: string; parentRelatedPath?: string },
@@ -95,6 +94,21 @@ export const forEachSourceFileTree = (
   }
 };
 
+const getFilesProperty = ({
+  folderPath,
+  sourcePath,
+}: {
+  folderPath: string;
+  sourcePath: string;
+}) => {
+  const fullPath = `${folderPath}${sourcePath}`;
+  const files = [] as SourceFileType[];
+  forEachSourceFileTree({ parentFilePath: fullPath }, (data) => files.push(data));
+  const frameWorkFolder = last(sourcePath.split('/'));
+
+  return { files, frameWorkFolder };
+};
+
 const code = '```';
 const codeWithParams = ({ language }: { language: string }): string =>
   `${code}${language} isCollapsible="false", withBorder="false", withControls="false"`;
@@ -114,23 +128,50 @@ const getIBuilderCodeTab = ({
   }
 
   try {
-    const fullPath = `${folderPath}${sourcePath}`;
-
-    const files = [] as ForEachSourceFileCallBackParams[];
-    forEachSourceFileTree({ parentFilePath: fullPath }, (data) => files.push(data));
-    const frameWorkFolder = last(sourcePath.split('/'));
+    const { files, frameWorkFolder } = getFilesProperty({ folderPath, sourcePath });
 
     return files.reduce((result, { relatedPath }) => {
       const extension = last(relatedPath.split('.')) || '';
       const fullTitle = `${frameWorkFolder}/${relatedPath}`;
       const displayTitle = last(fullTitle.split('/'));
 
-      return `${result}\n\n<IBuilderCodeTab frameWorkFolder="${frameWorkFolder}" title="${fullTitle}" displayTitle="${displayTitle}">\n\n${codeWithParams(
+      return `${result}\n\n<IBuilderCodeTab title="${fullTitle}" displayTitle="${displayTitle}">\n\n${codeWithParams(
         {
           language: extension,
         },
       )}\ninclude('${sourcePath}/${relatedPath}')\n${code}\n\n</IBuilderCodeTab>\n`;
     }, '');
+  } catch (error) {
+    return '';
+  }
+};
+
+const getIBuilderMediaFiles = ({
+  folderPath,
+  sourcePath,
+  mediaSourceOutputFolder,
+}: {
+  folderPath: string;
+  sourcePath: string;
+  mediaSourceOutputFolder?: string;
+}) => {
+  if (!sourcePath) {
+    return '';
+  }
+
+  try {
+    const { files, frameWorkFolder } = getFilesProperty({ folderPath, sourcePath });
+
+    const mediaFiles = files.map(({ filePath, relatedPath }) => {
+      const src = fs.readFileSync(filePath, { encoding: 'base64' });
+      return { name: `${mediaSourceOutputFolder}/${frameWorkFolder}/${relatedPath}`, src };
+    });
+
+    if (!mediaFiles.length) {
+      return '';
+    }
+
+    return `\n\n<IBuilderMedia mediaFiles={${JSON.stringify(mediaFiles)}}/>\n\n`;
   } catch (error) {
     return '';
   }
@@ -149,57 +190,6 @@ const getIBuilderFrameworkTab = ({ folderPath }: { folderPath: string }): string
 
       return result;
     }, '');
-  } catch (error) {
-    return '';
-  }
-};
-
-const getMediaFilesData = ({
-  mediaSource,
-  mediaSourceOutputFolder,
-}: {
-  mediaSource: string;
-  mediaSourceOutputFolder?: string;
-}) => {
-  const folderPath = `${publicDir}/${mediaSource}`;
-  const folderPrefix = `${mediaSourceOutputFolder}/${mediaSource}`;
-
-  const children = fs.readdirSync(folderPath);
-  const result = [];
-
-  for (const child of children) {
-    const filePath = `${folderPath}/${child}`;
-    const fileReg = RegExp(/.*\.(gif|jpe?g|bmp|png|svg)$/i);
-
-    if (!fs.statSync(filePath).isDirectory() && fileReg.test(child)) {
-      const src = fs.readFileSync(filePath, { encoding: 'base64' });
-
-      result.push({ name: `${folderPrefix}/${child}`, src });
-    }
-  }
-
-  return result;
-};
-
-const getIBuilderMediaFiles = ({
-  mediaSource,
-  mediaSourceOutputFolder,
-}: {
-  mediaSource: string;
-  mediaSourceOutputFolder?: string;
-}) => {
-  if (!mediaSource) {
-    return '';
-  }
-
-  try {
-    const mediaFiles = getMediaFilesData({ mediaSource, mediaSourceOutputFolder });
-
-    if (!mediaFiles.length) {
-      return '';
-    }
-
-    return `\n\n<IBuilderMedia mediaFiles={${JSON.stringify(mediaFiles)}}/>\n\n`;
   } catch (error) {
     return '';
   }
@@ -230,7 +220,7 @@ const addIncludeOptionByFileType = ({
     })}${getIBuilderCodeTab({
       folderPath,
       sourcePath: backendSource,
-    })}${getIBuilderMediaFiles({ mediaSource, mediaSourceOutputFolder })}`;
+    })}${getIBuilderMediaFiles({ folderPath, sourcePath: mediaSource, mediaSourceOutputFolder })}`;
   }
 
   return content;

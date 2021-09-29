@@ -19,7 +19,6 @@ type Props = {
   selectedBlock: SelectedBlockType;
   onChangeTab: () => void;
   mediaFiles: MediaFilesType;
-  mediaSource: string;
   codeControlState: CodeControlStateType;
 };
 
@@ -30,7 +29,6 @@ const IBuilderCodeTabs: FC<Props> = ({
   selectedBlock,
   onChangeTab,
   mediaFiles,
-  mediaSource = '',
   codeControlState,
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
@@ -62,10 +60,10 @@ const IBuilderCodeTabs: FC<Props> = ({
     const zip = new JSZip();
 
     React.Children.toArray(children).forEach((child) => {
-      const { title: name, frameWorkFolder } = get(child, 'props', {});
+      const { title: name } = get(child, 'props', {});
       const content = getResultSourceCode({ child, codeControlState });
 
-      zip.file(`${frameWorkFolder}/${name}`, content);
+      zip.file(name, content);
     });
 
     if (mediaFiles && mediaFiles.length) {

@@ -84,7 +84,7 @@ function showPaymentMethodIcon(parent, pm) {
 	const logo = document.getElementById("logo-payment-method");
 	if (pm) {
 		const name = pm.toLowerCase();
-		logo.setAttribute("src", "IBuilder/card-icons/" + name + ".svg");
+		logo.setAttribute("src", "media/card-icons/" + name + ".svg");
 		logo.setAttribute("alt", pm || "payment method");
 	}
 	logo.style.removeProperty("display");
@@ -106,14 +106,14 @@ function setErrorMessage(el) {
 function setDefaultIcon(el) {
 	const selector = "icon-" + el;
 	const logo = document.getElementById(selector);
-	logo.setAttribute("src", "IBuilder/card-icons/" + logos[el].src + ".svg");
+	logo.setAttribute("src", "media/card-icons/" + logos[el].src + ".svg");
 	logo.setAttribute("alt", logos[el].alt);
 }
 
 function setDefaultErrorIcon(el) {
 	const selector = "icon-" + el;
 	const logo = document.getElementById(selector);
-	logo.setAttribute("src", "IBuilder/card-icons/" + logos[el].src + "-error.svg");
+	logo.setAttribute("src", "media/card-icons/" + logos[el].src + "-error.svg");
 	logo.setAttribute("alt", logos[el].alt);
 }
 
