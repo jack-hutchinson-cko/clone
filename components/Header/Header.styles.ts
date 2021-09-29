@@ -22,6 +22,10 @@ export const MiddleNavigationSection = styled(NavigationSection)`
   flex: 1;
   margin: 0 25px 0 50px;
 
+  @media (max-width: ${SIZE.SM}px) {
+    margin: 0;
+  }
+
   @media (min-width: ${SIZE.M}px) and (max-width: 870px) {
     margin: 0 20px 0 20px;
   }
@@ -58,12 +62,8 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         }
 
         &:not(:last-child) {
-          padding: 0 40px;
+          padding: 0 24px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-
-          @media ${MobileBreakPoints.MOBILE_S} {
-            padding: 0 24px;
-          }
         }
       }
     `}

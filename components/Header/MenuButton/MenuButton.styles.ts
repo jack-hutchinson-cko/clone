@@ -6,13 +6,8 @@ export const Button = styled.span<{ isActive?: boolean }>`
   display: flex;
   align-items: center;
   width: 32px;
-  height: 26px;
+  height: 24px;
   cursor: pointer;
-
-  @media ${Breakpoints.MOBILE} {
-    width: 40px;
-    height: 23px;
-  }
 
   @media ${MobileBreakPoints.MOBILE_S} {
     height: 17px;
@@ -24,14 +19,10 @@ export const Button = styled.span<{ isActive?: boolean }>`
   > span::after {
     display: block;
     position: absolute;
-    width: 32px;
+    width: 100%;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.base};
     transition-duration: 0.25s;
-
-    @media ${Breakpoints.MOBILE} {
-      width: 40px;
-    }
 
     @media ${MobileBreakPoints.MOBILE_S} {
       width: 25px;

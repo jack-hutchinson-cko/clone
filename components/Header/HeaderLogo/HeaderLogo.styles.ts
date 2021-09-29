@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints, MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const Container = styled.div`
   display: inline-flex;
@@ -16,14 +16,12 @@ export const Container = styled.div`
   }
 
   div {
-    width: 180px;
+    display: inline-block;
   }
 
   @media ${Breakpoints.MOBILE} {
     div {
-      width: 225px;
-      font-size: 30px;
-      line-height: 40px;
+      font-size: 24px;
     }
   }
 
@@ -39,4 +37,5 @@ export const Container = styled.div`
     svg {
       transform: scale(0.74);
     }
+  }
 `;
