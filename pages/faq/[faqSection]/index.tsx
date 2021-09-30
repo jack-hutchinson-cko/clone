@@ -2,11 +2,9 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import React from 'react';
-import Head from 'components/Head';
+import { PureHead as Head } from 'components/Head';
 import BreadCrumbs from 'components/BreadCrumbs';
 import { TextHeadingTwo } from 'components/TextHeading';
-import SearchWidget from 'components/Header/SearchWidget';
 import MDXProvider from 'components/MDXProvider';
 import SectionList from 'components/SectionList';
 import {

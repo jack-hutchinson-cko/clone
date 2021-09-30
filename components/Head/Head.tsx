@@ -9,15 +9,18 @@ import NoticeableWidget from './ChangeLog/NoticeableWidget';
 
 import OneTrustCookie from './Cookies/OneTrustCookie';
 
-type Props = {
-  title?: string;
+type PageHeadProps = {
   isHeadlessMode?: boolean;
 };
 
-const PageHead: FC<Props> = ({ title = 'Checkout.com', isHeadlessMode }) => (
+type PureHeadProps = {
+  title?: string;
+};
+
+const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => (
   <Head>
     {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
-    <title>{title} - Docs</title>
+    <title>Checkout.com - Docs</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -34,4 +37,11 @@ const PageHead: FC<Props> = ({ title = 'Checkout.com', isHeadlessMode }) => (
     <NoticeableWidget />
   </Head>
 );
+
+export const PureHead: FC<PureHeadProps> = ({ title = 'Checkout.com' }) => (
+  <Head>
+    <title>{title} - Docs</title>
+  </Head>
+);
+
 export default PageHead;

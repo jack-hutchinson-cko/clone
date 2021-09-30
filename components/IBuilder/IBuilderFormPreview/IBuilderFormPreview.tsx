@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useContext } from 'react';
+import React, { FC, useState, useRef, useContext, ReactNode } from 'react';
 import {
   Frames,
   FrameCardTokenizedEvent,
@@ -9,6 +9,21 @@ import {
   FrameCardValidationChangedEvent,
 } from 'frames-react';
 
+import {
+  IconAmericanExpressCard,
+  IconCard,
+  IconCardError,
+  IconCvv,
+  IconCvvError,
+  IconDinnersClub,
+  IconDiscover,
+  IconExpDate,
+  IconExpDateError,
+  IconMaestro,
+  IconMasterCard,
+  IconPaymentError,
+  IconVisa,
+} from 'components/Icons';
 import IBuilderPreview from '../IBuilderPreview';
 import { CodeHandler } from '../IBuilderFrameworkTab';
 import { getDataPaymentForm } from '../utils';
@@ -40,7 +55,16 @@ type IBuilderFormPreviewProps = {
 const DEFAULT_COLOR = '#00122C';
 const DEFAULT_FONTSIZE = '14px';
 const DEFAULT_LOCALIZATION = 'EN-GB';
-const PUBLIC_KEY = 'pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb';
+const PUBLIC_KEY = 'pk_test_6e40a700-d563-43cd-89d0-f9bb17d35e73';
+
+const paymentMethods: { [key: string]: ReactNode } = {
+  Visa: IconVisa,
+  Mastercard: IconMasterCard,
+  'American Express': IconAmericanExpressCard,
+  'Diners Club': IconDinnersClub,
+  Maestro: IconMaestro,
+  Discover: IconDiscover,
+};
 
 const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
   color,
@@ -53,12 +77,12 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
   const [showErrorCardNumber, setShowErrorCardNumber] = useState<boolean>(false);
   const [showErrorExpiryDate, setShowErrorExpiryDate] = useState<boolean>(false);
   const [showLogoPaymentMethod, setShowLogoPaymentMethod] = useState<boolean>(false);
-  const [paymentMethodIcon, setPaymentMethodIcon] = useState<string>('');
+  const [paymentMethodIcon, setPaymentMethodIcon] = useState<ReactNode>('');
   const payButtonRef = useRef<HTMLButtonElement>(null);
 
-  const iconCardNumber = `IBuilder/card-icons/card${showErrorCardNumber ? '-error' : ''}.svg`;
-  const iconExpiryDate = `IBuilder/card-icons/exp-date${showErrorExpiryDate ? '-error' : ''}.svg`;
-  const iconCvv = `IBuilder/card-icons/cvv${showErrorCvv ? '-error' : ''}.svg`;
+  const IconCardNumber = showErrorCardNumber ? IconCardError : IconCard;
+  const IconExpiryDate = showErrorExpiryDate ? IconExpDateError : IconExpDate;
+  const IconCVV = showErrorCvv ? IconCvvError : IconCvv;
 
   const { codeControlState } = useContext(CodeHandler);
   const {
@@ -76,8 +100,7 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
     setShowLogoPaymentMethod(true);
 
     if (paymentType) {
-      const name = paymentType.toLowerCase();
-      setPaymentMethodIcon(`IBuilder/card-icons/${name}.svg`);
+      setPaymentMethodIcon(paymentMethods[paymentType]);
     }
   };
 
@@ -169,14 +192,14 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
             <Label color={selectedColor}>Card number</Label>
             <InputContainer>
               <IconContainer>
-                <img src={iconCardNumber} alt="PAN" />
+                <IconCardNumber />
               </IconContainer>
               <StyledCardNumber />
               <IconContainer type="payment-method" isShown={showLogoPaymentMethod}>
-                <img src={paymentMethodIcon} alt="Payment method" />
+                {paymentMethodIcon}
               </IconContainer>
               <IconContainer type="error" isShown={showErrorCardNumber}>
-                <img src="IBuilder/card-icons/error.svg" alt="error" />
+                <IconPaymentError />
               </IconContainer>
             </InputContainer>
             <Label color={selectedColor}>Security code</Label>
@@ -184,22 +207,22 @@ const IBuilderFormPreview: FC<IBuilderFormPreviewProps> = ({
               <div>
                 <InputContainer>
                   <IconContainer>
-                    <img src={iconExpiryDate} alt="Expiry date" />
+                    <IconExpiryDate />
                   </IconContainer>
                   <StyledExpiryDate />
                   <IconContainer type="error" isShown={showErrorExpiryDate}>
-                    <img src="IBuilder/card-icons/error.svg" alt="error" />
+                    <IconPaymentError />
                   </IconContainer>
                 </InputContainer>
               </div>
               <div>
                 <InputContainer>
                   <IconContainer>
-                    <img src={iconCvv} alt="CVV" />
+                    <IconCVV />
                   </IconContainer>
                   <StyledCvv />
                   <IconContainer type="error" isShown={showErrorCvv}>
-                    <img src="IBuilder/card-icons/error.svg" alt="error" />
+                    <IconPaymentError />
                   </IconContainer>
                 </InputContainer>
               </div>

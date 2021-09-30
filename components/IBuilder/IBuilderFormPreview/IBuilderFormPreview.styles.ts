@@ -59,7 +59,7 @@ const getStylesForIconContainer = ({ isShown, type }: IconContainerProps) => {
           transform: translateY(-50%) rotateY(0deg);
         `}
 
-        img {
+        svg {
           width: 100%;
         }
       `;
@@ -68,7 +68,7 @@ const getStylesForIconContainer = ({ isShown, type }: IconContainerProps) => {
       return css`
         right: 0;
 
-        img {
+        svg {
           display: none;
 
           ${isShown && 'display: block;'}
@@ -86,6 +86,7 @@ export const IconContainer = styled.div<IconContainerProps>`
   bottom: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 20px;
   margin: 12px;
 
