@@ -17,7 +17,7 @@ import {
 } from 'components/FAQStyledComponents';
 import SectionTag from 'components/Tag/SectionTag';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
-import widthErrorPage from 'hoc/widthErrorPage';
+import withErrorPage from 'hoc/withErrorPage';
 import { clientSettings } from 'constants/clientSettings';
 
 type Props = {
@@ -83,4 +83,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default widthErrorPage(FAQHomePage);
+export default withErrorPage(FAQHomePage);

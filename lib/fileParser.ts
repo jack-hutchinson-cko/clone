@@ -4,6 +4,7 @@ import fs from 'fs';
 import { get } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import matter from 'gray-matter';
 
 import { AnchorItem } from 'types/anchors';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
@@ -168,8 +169,19 @@ export const getDocArticlesSettings = (rootFilePath: string): ArticleSettingsTyp
           slugToFilePathMap[path] = `${filePath}/index.mdx`;
           slugToArticleNameMap[path] = title;
 
+          const source = fs.readFileSync(slugToFilePathMap[path]);
+          const { data } = matter(source);
+
           docsPathUrl.push({ params: { docsPathParams } });
-          const childNode = { title, path, filePath, children: [], id: path };
+          const childNode = {
+            title,
+            type: data.type || 'Default',
+            path,
+            filePath,
+            children: [],
+            id: path,
+          };
+
           currentNode.children.push(childNode);
           stack.push(childNode);
         }

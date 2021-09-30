@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import ErrorPage from 'components/ErrorPage';
 
-type WithErrorPageProps = {
+export type WithErrorPageProps = {
   isRedirectToErrorPage: boolean;
   statusCode?: number;
   children: ReactNode;

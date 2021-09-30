@@ -1,13 +1,10 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
-import { BreadCrumbsItems } from 'types/content';
-import { AnchorItem } from 'types/anchors';
 import Card from 'components/Card';
 import CardWrapper from 'components/CardWrapper';
 import LastChange from 'components/LastChange';
@@ -22,22 +19,10 @@ import {
   getChildrenArticle,
 } from 'lib/fileParser';
 
+import { DocPostProps } from 'types/docpage';
+import withErrorPage from 'hoc/withErrorPage';
+import withFeatureFlag from 'hoc/withFeatureFlag';
 import { PageContent, Title, Navigation, FrontMatterContainer } from '../../styles/index.styles';
-
-type Props = {
-  breadCrumbsItem: BreadCrumbsItems;
-  frontMatter: {
-    title: string;
-    modifiedDate: string;
-    lastAuthor: string;
-    timeToComplete?: string;
-    warningMessage?: string;
-  };
-  source: MDXRemoteSerializeResult;
-  anchorsNavItems: AnchorItem[];
-  childrenArticles: { title: string; href: string; description: string }[];
-  isIntegrationBuilder: boolean;
-};
 
 const MIN_ANCHOR_COUNT = 2;
 
@@ -46,7 +31,7 @@ const ChildArticlesPerRow = {
   mobile: 1,
 };
 
-const DocPost: NextPage<Props> = ({
+const DocPost: NextPage<DocPostProps> = ({
   breadCrumbsItem,
   anchorsNavItems,
   frontMatter,
@@ -55,6 +40,7 @@ const DocPost: NextPage<Props> = ({
   isIntegrationBuilder,
 }) => {
   const { title, timeToComplete, warningMessage, modifiedDate, lastAuthor } = frontMatter;
+
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
@@ -96,7 +82,7 @@ const DocPost: NextPage<Props> = ({
   );
 };
 
-export default DocPost;
+export default withFeatureFlag(withErrorPage(DocPost));
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useFlags } from 'launchdarkly-react-client-sdk';
 import { clientSettings } from 'constants/clientSettings';
 import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
@@ -21,23 +22,48 @@ const initFooterContent = {
   policies: [],
 };
 
+const removeNavBuilderElement = (navTree: NavTreeElement[]): NavTreeElement[] => {
+  return navTree.reduce((accNavTree, navTreeItem) => {
+    if (navTreeItem.type !== 'IBuilder') {
+      if (navTreeItem.children && navTreeItem.children.length > 0) {
+        return [
+          ...accNavTree,
+          { ...navTreeItem, children: removeNavBuilderElement(navTreeItem.children) },
+        ];
+      }
+      return [...accNavTree, navTreeItem];
+    }
+    return accNavTree;
+  }, [] as NavTreeElement[]);
+};
+
 const useAppInitState = (): {
   sidebarDocLinks: NavTreeElement[];
   headerContent: HeaderContent;
   footerContent: FooterContent;
 } => {
+  const [tempDocLinks, setTempDocLinks] = useState<NavTreeElement[]>([]);
   const [sidebarDocLinks, setSidebarDocLinks] = useState<NavTreeElement[]>([]);
   const [headerContent, setHeaderContent] = useState<HeaderContent>(initHeaderContent);
   const [footerContent, setFooterContent] = useState<FooterContent>(initFooterContent);
+  const { docsIntegrationBuilderFrames } = useFlags();
 
   useEffect(() => {
     fetch(`${window.location.origin}/api/docsTree?filePath=${clientSettings.docArticlesFilePath}`)
       .then((response) => response.json())
-      .then((result) => setSidebarDocLinks(result));
+      .then((result) => setTempDocLinks(result));
 
     getHeaderContent().then((result) => setHeaderContent(result));
     getFooterContent().then((result) => setFooterContent(result));
   }, []);
+
+  useEffect(() => {
+    if (!docsIntegrationBuilderFrames) {
+      setSidebarDocLinks(removeNavBuilderElement(tempDocLinks));
+    } else {
+      setSidebarDocLinks(tempDocLinks);
+    }
+  }, [docsIntegrationBuilderFrames, tempDocLinks]);
 
   return { sidebarDocLinks, headerContent, footerContent };
 };
