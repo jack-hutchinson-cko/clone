@@ -34,7 +34,7 @@ export const StyledAccordionHead = styled.button<{
       hasTitle && isOpen
         ? css`
             mark,
-            mark > h3 {
+            mark > h3 > span {
               background: linear-gradient(
                 to top,
                 ${theme.colors.underline} 0 6px,
