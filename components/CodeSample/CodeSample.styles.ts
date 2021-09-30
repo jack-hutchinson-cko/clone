@@ -114,10 +114,11 @@ export const Line = styled.div`
   & > .property,
   & > .tag,
   & > .boolean,
-  & > .number,
+  & > .unit,
   & > .constant,
   & > .symbol,
-  & > .deleted {
+  & > .deleted,
+  & > .plain {
     color: ${({ theme }) => theme.colors.codeSampleTokenProperty} !important;
   }
   & > .selector,
@@ -145,6 +146,9 @@ export const Line = styled.div`
   & > .important,
   & > .variable {
     color: ${({ theme }) => theme.colors.codeSampleTokenRegex} !important;
+  }
+  & > .number {
+    color: ${({ theme }) => theme.colors.tokenNumber} !important;
   }
 `;
 

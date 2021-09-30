@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDX from '@mdx-js/runtime';
+import { themes } from 'constants/themes';
 
 import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
+import withStaticTheme from 'hoc/withStaticTheme';
 import {
   TextHeadingOne,
   TextHeadingTwo,
@@ -140,7 +142,7 @@ export const mdxComponents = {
   IBuilderFrameworkTab,
   IBuilderStep,
   IBuilderDescriptionCard,
-  IBuilderCodeTab,
+  IBuilderCodeTab: withStaticTheme(IBuilderCodeTab, themes.dark),
   IBuilderCodePreview,
   IBuilderFormPreview,
   FAQItem,
