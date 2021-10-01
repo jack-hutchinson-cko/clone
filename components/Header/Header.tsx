@@ -269,7 +269,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       <NavigationDrawers>
         {!isDesktop && menuState && (
           <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer}>
-            <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>
+            {isFAQSection ? null : <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>}
             <DrawerBottomContentWrapper>{loginWidget}</DrawerBottomContentWrapper>
           </Drawer>
         )}
