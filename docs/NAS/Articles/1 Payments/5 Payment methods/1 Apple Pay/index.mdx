@@ -34,7 +34,7 @@ The first step in processing an Apple Pay transaction is to convert this Apple P
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Tokens).
 
@@ -55,7 +55,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -73,7 +73,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response example
+#### Response example
 
 ```json
 {
@@ -100,7 +100,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 Using the token `(tok_...)` you got in the response above, make a standard payment request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout).
 
@@ -121,7 +121,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -134,7 +134,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response
+#### Response example
 
 If you get a `201 Success` response and the `approved` field is `true`, your payment was successful. If the transaction failed, it's likely that the payment request was made with an invalid/expired card, or a valid card with an insufficient available balance.
 

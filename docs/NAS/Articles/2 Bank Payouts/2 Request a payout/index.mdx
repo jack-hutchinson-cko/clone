@@ -135,7 +135,7 @@ Request a Bank Payout by using the relevant bank account fields or a bank accoun
 
 If your payout request was successfully sent, you will receive a 202 response, with the status `Pending`. If your request was unsuccessful, you will receive a 422 or 429 response containing the [error code](/bank-payouts/request-a-payout/payout-error-codes).
 
-You will then receive a [webhook notification](/bank-payouts/request-a-payout#Requestapayout-webhooks) indicating the status of your payout
+You will then receive a [webhook notification](/bank-payouts/request-a-payout#Webhooks) indicating the status of your payout
 
 <tabs>
 <tab title="Successful – 202">
@@ -194,11 +194,11 @@ After receiving the response to your payout request, you will get a webhook noti
 
 - If your payout is **successful**, you will receive a `payment_paid` webhook, with a `10000` response code and the `Approved` summary.
 - If your payout is **declined**, you will receive a `payment_declined` webhook with a `50001-50399` response code and a summary explaining the reason for the decline. You can view the list of response codes [here](/bank-payouts/request-a-payout/payout-response-codes).
-- If your payout is **,returned**,, you will receive a `payment_returned` webhook with `50401-50599` response code and a summary explaining the reason for the return. You can view the list of response codes [here](/bank-payouts/request-a-payout/payout-response-codes).
+- If your payout is **returned**, you will receive a `payment_returned` webhook with `50401-50599` response code and a summary explaining the reason for the return. You can view the list of response codes [here](/bank-payouts/request-a-payout/payout-response-codes).
 
 <TipBox variant="success">
 
-Use our [testing guide](/pay-to-bank/testing#Testing-Payoutrequests) to test different payout scenarios.
+Use our [testing guide](testing/bank-payouts-testing) to test different payout scenarios.
 
 </TipBox>
 

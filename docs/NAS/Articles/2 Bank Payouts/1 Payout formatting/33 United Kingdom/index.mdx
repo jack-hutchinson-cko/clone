@@ -232,7 +232,7 @@ The account holder's Sort Code.
 
 `bank_code`
 <StatusTag type="required" />
-<TypeTag type="string, string, ^[0-9]{6,6}$" />
+<TypeTag type="string, ^[0-9]{6,6}$" />
 
 </TableCell>
 </TableRow>
@@ -278,7 +278,7 @@ The account holder's SWIFT BIC.
 
 `swift_bic`
 <StatusTag type="required" />
-<TypeTag type="string, string, ^[a-z]{6}[a-z0-9]{2}([a-z0-9]{3})?$" />
+<TypeTag type="string, ^[a-z]{6}[a-z0-9]{2}([a-z0-9]{3})?$" />
 
 </TableCell>
 </TableRow>
@@ -399,7 +399,7 @@ This must be a [two-letter ISO code](/resources/codes/country-codes).
 #### Bank details
 
 <tabs withBorder={false}>
-<tab title="Faster Payments   and CHAPS (GBP)">
+<tab title="Faster Payments and CHAPS (GBP)">
 
 <Table>
 <TableBody>
@@ -437,7 +437,7 @@ The account holder's Sort Code.
 
 `bank_code`
 <StatusTag type="required" />
-<TypeTag type="string, string, ^[0-9]{6,6}$" />
+<TypeTag type="string, ^[0-9]{6,6}$" />
 
 </TableCell>
 </TableRow>
@@ -483,7 +483,7 @@ The account holder's SWIFT BIC.
 
 `swift_bic`
 <StatusTag type="required" />
-<TypeTag type="string, string, ^[a-z]{6}[a-z0-9]{2}([a-z0-9]{3})?$" />
+<TypeTag type="string, ^[a-z]{6}[a-z0-9]{2}([a-z0-9]{3})?$" />
 
 </TableCell>
 </TableRow>
