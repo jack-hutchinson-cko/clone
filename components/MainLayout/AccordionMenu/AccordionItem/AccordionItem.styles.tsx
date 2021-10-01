@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { MobileBreakPoints } from 'constants/screen';
+import { SIZE } from 'constants/screen';
 
 export const MenuItem = styled.div<{ isRoot?: boolean }>`
   display: flex;
@@ -17,14 +17,20 @@ export const MenuItem = styled.div<{ isRoot?: boolean }>`
       line-height: 32px;
       padding: 36px 0;
       border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+
+      @media (max-width: ${SIZE.SM}px) {
+        padding: 24px 0;
+        font-size: 18px;
+        line-height: 20px;
+      }
     `}
 
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 18px;
-    line-height: 20px;
-    padding: 24px 0;
-  }
   &:first-child {
     padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 `;

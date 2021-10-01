@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Accordion, { AccordionBody, AccordionHead } from 'components/Accordion';
-import { MobileBreakPoints } from 'constants/screen';
+import { MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const StyledAccordionBody = styled(AccordionBody)`
   padding: 10px 0 10px 15px;
@@ -20,7 +20,7 @@ export const StyledAccordionHead = styled(AccordionHead)<{ isRoot?: boolean }>`
   font-weight: 500;
   color: ${({ isRoot, theme }) => (isRoot ? theme.colors.base : theme.colors.baseList)};
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media (max-width: ${SIZE.M}px) {
     font-size: 16px;
     line-height: 20px;
   }
@@ -45,12 +45,12 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
         font-size: 32px;
         line-height: 32px;
 
-        @media ${MobileBreakPoints.MOBILE_S} {
+        @media (max-width: ${SIZE.M}px) {
           font-size: 18px;
           line-height: 20px;
         }
       }
-      @media ${MobileBreakPoints.MOBILE_S} {
+      @media (max-width: ${SIZE.M}px) {
         padding: 24px 0;
       }
     `}
