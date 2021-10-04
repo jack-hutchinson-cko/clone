@@ -7,11 +7,11 @@ export const StyledHeader = styled.div<{ isRoot?: boolean }>`
   font-size: ${({ isRoot }) => (isRoot ? '16px' : '14px')};
   font-weight: 500;
   line-height: 24px;
-  padding-left: 36px;
+  padding-left: 30px;
 `;
 export const StyledContent = styled.div<{ isShown: boolean }>`
   display: ${({ isShown }) => (isShown ? 'flex' : 'none')};
-  padding: 8px 0 8px 31px;
+  padding: 8px 0 8px 25px;
   flex-direction: column;
   gap: 8px;
 `;

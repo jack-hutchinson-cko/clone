@@ -4,8 +4,8 @@ export const StyledLink = styled.a<{ isActive?: boolean }>`
   mark {
     background: transparent;
     color: inherit;
-    font-weight: 300;
-    font-size: 16px;
+    font-weight: inherit;
+    font-size: inherit;
   }
 
   ${({ isActive, theme }) =>
