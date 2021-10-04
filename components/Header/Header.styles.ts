@@ -143,7 +143,7 @@ export const NavigationLink = styled.a<{
 }>`
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   color: ${({ theme }) => theme.colors.base};
   font-weight: ${({ light }) => (light ? 400 : 500)};
   outline: none;
