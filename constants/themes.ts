@@ -81,6 +81,7 @@ export const themes = {
       cardFormBtnDisabled: '#697887',
       dullLavender: '#8374DC',
       codeTabsIBBackground: '#3D4168',
+      btnHoverPrimary: '#6be1e6',
       // CodeSample
       codeSampleBackground: '#F5F5FC',
       codeSampleHighlightedLine: '#6D708E',
@@ -275,6 +276,7 @@ export const themes = {
       cardFormInputBorder: '#C5CCD6',
       cardFormBtnDisabled: '#697887',
       dullLavender: '#8374DC',
+      btnHoverPrimary: '#6be1e6',
       // CodeSample
       codeTabsIBBackground: '#3D4168',
       codeSampleBackground: '#242955',

@@ -69,8 +69,17 @@ export const Button = styled.button`
   cursor: pointer;
   outline: 0;
   border: 0;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.fiordLight};
+  }
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.catskillWhite};
   }
 
   @media ${Breakpoints.MOBILE} {

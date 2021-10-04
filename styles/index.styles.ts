@@ -95,12 +95,19 @@ export const GetStartedLink = styled(PrimaryButton)`
   color: ${({ theme }) => theme.colors.btnPrimaryFont};
   background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
 
-  &:hover,
-  :focus {
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.fiordLight};
+  }
+
+  &:focus {
     border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
     color: ${({ theme }) => theme.colors.btnPrimaryFont};
     background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
     box-shadow: inherit;
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.catskillWhite};
   }
 
   @media ${MobileBreakPoints.MOBILE_M} {

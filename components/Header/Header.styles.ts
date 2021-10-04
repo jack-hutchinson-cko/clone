@@ -194,6 +194,18 @@ export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
   line-height: 24px;
   text-align: center;
 
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.btnHoverPrimary};
+  }
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.blueTertiary};
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.catskillWhite};
+  }
+
   ${({ fullWidth }) =>
     fullWidth &&
     css`

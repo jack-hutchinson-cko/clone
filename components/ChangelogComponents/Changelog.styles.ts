@@ -16,6 +16,7 @@ export const HeaderContainer = styled.div`
 export const Button = styled.a`
   text-decoration: none;
   background-color: transparent;
+
   & > div {
     display: flex;
     background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
@@ -28,7 +29,15 @@ export const Button = styled.a`
     cursor: pointer;
     align-items: center;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.base};
+      background-color: ${({ theme }) => theme.colors.fiordLight};
+    }
+
+    &:focus {
+      background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+    }
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.catskillWhite};
     }
     height: 48px;
 
