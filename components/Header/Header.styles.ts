@@ -64,6 +64,10 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         &:not(:last-child) {
           padding: 0 24px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+
+          @media (min-width: ${SIZE.SM}px) {
+            padding: 0 40px;
+          }
         }
       }
     `}
@@ -78,10 +82,6 @@ export const NavigationDrawers = styled.div`
   height: calc(100vh - 81px);
   pointer-events: none;
   z-index: 2;
-
-  @media ${Breakpoints.MOBILE} {
-    top: 109.5px;
-  }
 
   @media ${MobileBreakPoints.MOBILE_S} {
     top: 66px;
@@ -119,7 +119,6 @@ export const NavigationItem = styled.div<{
   }
 
   @media ${Breakpoints.MOBILE} {
-    height: 108.5px;
     font-size: 24px;
     line-height: 32px;
   }
@@ -234,13 +233,17 @@ export const SwitchIcon = styled.div`
 `;
 
 export const DrawerTopContentWrapper = styled.div`
-  padding: 40px;
+  padding: 24px;
   background: ${({ theme }) => theme.colors.background};
+
+  @media (min-width: ${SIZE.SM}px) {
+    padding: 40px;
+  }
 `;
 
 export const DrawerBottomContentWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundDark};
-  padding: 40px;
+  background: ${({ theme }) => theme.colors.mobileSidebarBackground};
+  padding: 24px;
   width: 100%;
   flex: 1;
 `;

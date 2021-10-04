@@ -1,13 +1,18 @@
 import styled, { css } from 'styled-components';
-import { MobileBreakPoints, Breakpoints } from 'constants/screen';
+import { MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
   width: 32px;
-  height: 24px;
+  height: 32px;
   cursor: pointer;
+
+  @media (max-width: ${SIZE.XS}px) {
+    width: 24px;
+    height: 24px;
+  }
 
   @media ${MobileBreakPoints.MOBILE_S} {
     height: 17px;
@@ -21,6 +26,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
     position: absolute;
     width: 100%;
     height: 2px;
+    border-radius: 80px;
     background-color: ${({ theme }) => theme.colors.base};
     transition-duration: 0.25s;
 

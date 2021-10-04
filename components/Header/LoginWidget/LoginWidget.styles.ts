@@ -24,7 +24,7 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
       align-items: flex-start;
       flex-direction: column;
       padding-top: 0;
-      gap: 32px;
+      gap: 16px;
 
       ${Divider} {
         display: none;

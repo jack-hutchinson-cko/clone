@@ -14,11 +14,11 @@ export const StyledAccordionBody = styled(AccordionBody)`
   }
 `;
 
-export const StyledAccordionHead = styled(AccordionHead)<{ isRoot?: boolean }>`
+export const StyledAccordionHead = styled(AccordionHead)`
   padding-bottom: 0;
   font-size: 24px;
   font-weight: 500;
-  color: ${({ isRoot, theme }) => (isRoot ? theme.colors.base : theme.colors.baseList)};
+  color: ${({ theme }) => theme.colors.base};
 
   @media (max-width: ${SIZE.M}px) {
     font-size: 16px;

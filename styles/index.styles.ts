@@ -151,11 +151,11 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
     padding: 32px 64px 64px 64px;
   }
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 24px 40px 40px 40px;
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding: 24px 40px;
   }
 
-  @media ${createBreakpointTo(SIZE.XS)} {
+  @media ${createBreakpointTo(SIZE.SM)} {
     padding: 24px;
   }
 `;

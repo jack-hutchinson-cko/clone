@@ -1,7 +1,5 @@
 import { FC } from 'react';
-
-import { HeaderLogo as Logo } from 'components/Icons';
-import { Container } from './HeaderLogo.styles';
+import { Container, Logo } from './HeaderLogo.styles';
 
 type Props = {
   onClick?: () => void;
@@ -9,7 +7,7 @@ type Props = {
 
 const HeaderLogo: FC<Props> = ({ onClick }) => (
   <Container onClick={onClick}>
-    <Logo />
+    <Logo src="assets/images/Logo.svg" />
     <div>Documentation</div>
   </Container>
 );
