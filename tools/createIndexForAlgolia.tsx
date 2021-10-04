@@ -39,10 +39,27 @@ type GetIndexArticleItemParams = {
   parentArticles: string[];
 };
 
+const omitComponents = (omitArray: string[]) => {
+  const omitComponentsObject = omitArray.reduce(
+    (result, tagName) => ({ ...result, [tagName]: () => null }),
+    {},
+  );
+
+  return { ...mdxComponents, ...omitComponentsObject };
+};
+
+const mdxComponentsForSearch = omitComponents([
+  'code',
+  'IBuilderFormPreview',
+  'IBuilderCodePreview',
+  'IBuilderCodeTab',
+  'IBuilderCodeControl',
+]);
+
 const getResultTextFromMdxFile = (content: string): string => {
   const html = renderToString(
     <ThemeProvider>
-      <MDX components={mdxComponents}>{content}</MDX>
+      <MDX components={mdxComponentsForSearch}>{content}</MDX>
     </ThemeProvider>,
   );
 
@@ -95,7 +112,7 @@ export const createDocArticlesIndex = async (
   const index = client.initIndex(searchIndexName);
 
   index.setSettings({
-    attributesToSnippet: ['body:40', 'title:20', 'headBody:12'],
+    attributesToSnippet: ['body:40', 'title:20', 'headBody:16'],
     snippetEllipsisText: '...',
     searchableAttributes: ['title', 'body', 'headBody'],
   });

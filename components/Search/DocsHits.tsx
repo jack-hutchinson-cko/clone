@@ -15,18 +15,18 @@ type DocsHintProps = {
 };
 
 const Hit: FC<DocsHintProps> = ({ hit, mode = HitMode.PAGE, onClickHit }) => {
-  const Section = HitMode.HEADER ? HeadSection : PageSection;
+  const Section = mode === HitMode.HEADER ? HeadSection : PageSection;
 
   return (
     <Link href={get(hit, 'path', '')}>
       <Section onClick={onClickHit}>
         <Snippet hit={hit} attribute="title" mode={mode} type="header" />
-        {HitMode.HEADER ? null : (
+        {mode === HitMode.HEADER ? null : (
           <SearchBreadCrumbs parentArticles={get(hit, 'parentArticles', [])} />
         )}
         <Snippet
           hit={hit}
-          attribute={HitMode.HEADER ? 'headBody' : 'body'}
+          attribute={mode === HitMode.HEADER ? 'headBody' : 'body'}
           mode={mode}
           type="body"
         />
