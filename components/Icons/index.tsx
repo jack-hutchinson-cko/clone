@@ -339,6 +339,24 @@ export const IconClose: FC<Props> = (props) => (
     />
   </StyledIcon>
 );
+
+export const IconBannerClose: FC<Props> = (props) => (
+  <StyledIcon width={24} height={24} {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M19.8 21.2l-17-17 1.4-1.4 17 17-1.4 1.4z"
+      fill="currentColor"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M21.2 4.2l-17 17-1.4-1.4 17-17 1.4 1.4z"
+      fill="currentColor"
+    />
+  </StyledIcon>
+);
+
 export const IconAccount: FC<Props> = (props) => (
   <StyledIcon width={17} height={16} {...props}>
     <path

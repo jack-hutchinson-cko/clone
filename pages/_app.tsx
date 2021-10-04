@@ -5,9 +5,11 @@ import { datadogRum } from '@datadog/browser-rum';
 import withLDProvider from 'hoc/withLDProvider';
 import withHeadlessMode from 'hoc/withHeadlessMode';
 import { ThemeProvider } from 'theme/ThemeProvider';
-import MainLayout, { Props as LayoutProps } from 'components/MainLayout';
 import useAppInitState from 'hooks/useAppInitState';
 import Head from 'components/Head';
+import NASBanner from 'components/NASBanner';
+import MainLayout, { Props as LayoutProps } from 'components/MainLayout';
+import { clientSettings } from 'constants/clientSettings';
 
 import GlobalStyles from '../styles/globalStyles';
 
@@ -27,6 +29,7 @@ const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
     <ThemeProvider>
       <Head isHeadlessMode={headlessMode} />
       <GlobalStyles />
+      {clientSettings.NASBannerShown && <NASBanner />}
       <Layout
         navTreeLinks={sidebarDocLinks}
         headerContent={headerContent}

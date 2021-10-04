@@ -13,6 +13,7 @@ export const CLIENT_SETTINGS_BY_TYPE = {
     homePagePath: path.join(process.cwd(), 'docs/ABC/Home/index.mdx'),
     fullFaqPath: path.join(process.cwd(), 'docs/ABC/FAQ'),
     FAQPageEnable: true,
+    NASBannerShown: false,
   },
   NAS: {
     docArticlesFilePath: 'docs/NAS/Articles',
@@ -24,6 +25,7 @@ export const CLIENT_SETTINGS_BY_TYPE = {
     homePagePath: path.join(process.cwd(), 'docs/NAS/Home/index.mdx'),
     fullFaqPath: '',
     FAQPageEnable: false,
+    NASBannerShown: true,
   },
 };
 

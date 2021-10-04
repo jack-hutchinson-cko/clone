@@ -82,6 +82,8 @@ export const themes = {
       dullLavender: '#8374DC',
       codeTabsIBBackground: '#3D4168',
       btnHoverPrimary: '#6be1e6',
+      nasBannerBG: '#0C1142',
+      nasBannerText: '#FFFFFF',
       // CodeSample
       codeSampleBackground: '#F5F5FC',
       codeSampleHighlightedLine: '#6D708E',
@@ -277,6 +279,8 @@ export const themes = {
       cardFormBtnDisabled: '#697887',
       dullLavender: '#8374DC',
       btnHoverPrimary: '#6be1e6',
+      nasBannerBG: '#FFFFC8',
+      nasBannerText: '#0C1142',
       // CodeSample
       codeTabsIBBackground: '#3D4168',
       codeSampleBackground: '#242955',
