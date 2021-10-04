@@ -186,18 +186,18 @@ As a general rule, the shift occurs when a payment is successfully authenticated
 
 Specifically:
 
-*   If the **card is enrolled for 3DS and authentication is successful**, the liability shifts from you to the issuer, and you can authorize the payment. [See Electronic Commerce Indicator (ECI) values 05 / 02](#id-3DSecure-liabilityshiftrules).
+*   If the **card is enrolled for 3DS and authentication is successful**, the liability shifts from you to the issuer, and you can authorize the payment. [See Electronic Commerce Indicator (ECI) values 05 / 02](/risk-management/3-d-secure#Our_3DS2_solution).
 
 
-*   If you **attempt authentication but the issuer doesn't support 3DS or its access control server doesn't respond**, the liability shifts to the issuer, as long as the attempt includes a cryptogram (CAVV/AVV) from the card scheme's directory server. [See ECI 06 (non-Mastercard) / 01](#id-3DSecure-liabilityshiftrules).
+*   If you **attempt authentication but the issuer doesn't support 3DS or its access control server doesn't respond**, the liability shifts to the issuer, as long as the attempt includes a cryptogram (CAVV/AVV) from the card scheme's directory server. [See ECI 06 (non-Mastercard) / 01](/risk-management/3-d-secure#Our_3DS2_solution).
 
 
-*   If the **card supports 3DS but authentication could not be attempted for technical reasons** (for example, there's a network error, or the customer closes the window during verification), liability remains with you, but you can decide whether or not to authorize the transaction. [See ECI 07 (non-Mastercard) / 00](#id-3DSecure-liabilityshiftrules).
+*   If the **card supports 3DS but authentication could not be attempted for technical reasons** (for example, there's a network error, or the customer closes the window during verification), liability remains with you, but you can decide whether or not to authorize the transaction. [See ECI 07 (non-Mastercard) / 00](/risk-management/3-d-secure#Our_3DS2_solution).
 
 
-*   If **authentication fails because the cardholder does not pass the challenge**, liability remains with you and you should not proceed with the payment. [See ECI 07 (non-Mastercard) / 00](#id-3DSecure-liabilityshiftrules).
+*   If **authentication fails because the cardholder does not pass the challenge**, liability remains with you and you should not proceed with the payment. [See ECI 07 (non-Mastercard) / 00](/risk-management/3-d-secure#Our_3DS2_solution).
 
-*   Mastercard also has some **rules specific to 3DS2**. [See Mastercard ECIs 04, 06, 07](#id-3DSecure-liabilityshiftrules).
+*   Mastercard also has some **rules specific to 3DS2**. [See Mastercard ECIs 04, 06, 07](/risk-management/3-d-secure#Our_3DS2_solution).
 
 
 <Accordion title="Liability shift rules">
