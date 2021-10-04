@@ -9,7 +9,7 @@ export const Container = styled.div`
   gap: 12px;
   font-weight: 500;
   font-size: 24px;
-  letter-spacing: 1px;
+  line-height: 32px;
   color: ${({ theme }) => theme.colors.base};
 
   svg {
