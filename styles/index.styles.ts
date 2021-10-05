@@ -147,7 +147,7 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.M)} {
-    padding: 32px 64px 64px 64px;
+    padding: 32px 64px 64px 49px;
   }
 
   @media ${createBreakpointTo(SIZE.M)} {

@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   z-index: 0;
-  display: none;
+  display: flex;
   justify-content: space-around;
   align-items: center;
   width: 48px;

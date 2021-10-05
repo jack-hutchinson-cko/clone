@@ -238,30 +238,12 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                     </NavigationLink>
                   </Link>
                 </NavigationItem>
-                <NavigationItem withPointer={false}>
-                  <Switch
-                    icon={switchUncheckedIcon}
-                    checked={isDarkTheme}
-                    checkedIcon={switchCheckedIcon}
-                    onChange={toggleTheme}
-                  />
-                </NavigationItem>
               </>
             )}
             {isTablet && (
-              <>
-                <NavigationItem withPointer={false}>
-                  <Switch
-                    icon={switchUncheckedIcon}
-                    checked={isDarkTheme}
-                    checkedIcon={switchCheckedIcon}
-                    onChange={toggleTheme}
-                  />
-                </NavigationItem>
-                <NavigationItem>
-                  <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
-                </NavigationItem>
-              </>
+              <NavigationItem>
+                <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
+              </NavigationItem>
             )}
           </NavigationSection>
         )}

@@ -20,7 +20,7 @@ export const NavigationSection = styled.div<{ isMobile?: boolean }>`
 
 export const MiddleNavigationSection = styled(NavigationSection)`
   flex: 1;
-  margin: 0 25px 0 50px;
+  margin: 0 25px 0 55px;
 
   @media (max-width: ${SIZE.SM}px) {
     margin: 0;
