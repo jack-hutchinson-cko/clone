@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { datadogRum } from '@datadog/browser-rum';
-
 import withLDProvider from 'hoc/withLDProvider';
 import withHeadlessMode from 'hoc/withHeadlessMode';
 import { ThemeProvider } from 'theme/ThemeProvider';
@@ -10,6 +9,7 @@ import Head from 'components/Head';
 import NASBanner from 'components/NASBanner';
 import MainLayout, { Props as LayoutProps } from 'components/MainLayout';
 import { clientSettings } from 'constants/clientSettings';
+import withHandlerBackButton from 'hoc/withHandlerBackButton';
 
 import GlobalStyles from '../styles/globalStyles';
 
@@ -53,4 +53,4 @@ datadogRum.init({
   trackInteractions: false,
 });
 
-export default withLDProvider(MyApp);
+export default withLDProvider(withHandlerBackButton(MyApp));
