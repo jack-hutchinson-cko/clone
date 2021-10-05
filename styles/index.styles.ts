@@ -79,8 +79,9 @@ export const IntroDescription = styled(Text)`
   line-height: 24px;
 
   @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 24px;
+    font-size: 23px;
     line-height: 32px;
+    width: 100%;
   }
 `;
 
@@ -112,6 +113,7 @@ export const GetStartedLink = styled(PrimaryButton)`
   @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 24px;
     line-height: 32px;
+    padding: 16px 32px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
@@ -154,7 +156,7 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
     padding: 24px 40px;
   }
 
-  @media ${createBreakpointTo(SIZE.SM)} {
+  @media ${createBreakpointTo(SIZE.XS)} {
     padding: 24px;
   }
 `;

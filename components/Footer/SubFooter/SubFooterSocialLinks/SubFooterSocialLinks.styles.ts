@@ -40,7 +40,7 @@ export const SubFooterSocialLinksWrapper = styled.ul`
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    margin-top: 80px;
+    margin-top: 60px;
 
     li {
       svg {

@@ -23,10 +23,13 @@ export const Container = styled.div`
   }
 
   @media (max-width: ${SIZE.SM}px) {
-    div {
-      font-size: 16px;
-      line-height: 24px;
-    }
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_L} {
+    font-size: 30px;
+    line-height: 40px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {

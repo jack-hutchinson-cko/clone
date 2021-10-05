@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { IconActionChevronDown } from 'components/Icons';
-import { Breakpoints, MobileBreakPoints, SIZE } from 'constants/screen';
+import { Breakpoints, MobileBreakPoints, SIZE, createBreakpointTo } from 'constants/screen';
 
 export const NavigationContent = styled.nav`
   position: relative;
@@ -62,11 +62,14 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         }
 
         &:not(:last-child) {
-          padding: 0 24px;
+          padding: 0 40px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
           @media (min-width: ${SIZE.SM}px) {
             padding: 0 40px;
+          }
+          @media ${createBreakpointTo(SIZE.XS)} {
+            padding: 0 24px;
           }
         }
       }
