@@ -10,7 +10,6 @@ import {
   SIZE,
   Breakpoints,
   MobileBreakPoints,
-  createBreakpointBetween,
   createBreakpointFrom,
   createBreakpointTo,
 } from 'constants/screen';
