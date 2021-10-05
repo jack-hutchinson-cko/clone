@@ -1,15 +1,17 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState, useCallback, useEffect } from 'react';
 import { NavTreeElement } from 'types/navTree';
 
 export type NavigationItemProps<T = unknown> = {
   link: ReactNode;
-  isRoot?: boolean;
+  isRoot: boolean;
 } & T;
 
 export type NavigationSectionProps<T = unknown> = {
+  id: string;
   link: ReactNode;
-  isRoot?: boolean;
-  isOpen?: boolean;
+  isRoot: boolean;
+  isOpen: boolean;
+  onToggleOpen?: (id: string, state: boolean) => void;
 } & T;
 
 export type NavigationLinkProps<T = unknown> = {
@@ -26,7 +28,20 @@ export type Props = {
 };
 
 const NavigationTree: FC<Props> = ({ docsTreeLinks, activeLink, NavSection, NavItem, NavLink }) => {
-  const renderSegment = (el: NavTreeElement, currentLink: string, isRoot?: boolean): ReactNode => {
+  const [visible, setVisible] = useState<Record<string, boolean>>({});
+
+  const handleToggleOpen = useCallback(
+    (id, state) => {
+      setVisible({ ...visible, [id]: state });
+    },
+    [visible],
+  );
+
+  useEffect(() => {
+    setVisible({});
+  }, [activeLink]);
+
+  const renderSegment = (el: NavTreeElement, currentLink: string, isRoot: boolean): ReactNode => {
     const { id, title, path, children } = el;
     const isActive = path === currentLink;
     const link = (
@@ -36,10 +51,17 @@ const NavigationTree: FC<Props> = ({ docsTreeLinks, activeLink, NavSection, NavI
     );
 
     if (children?.length) {
-      const isOpen = currentLink.includes(`${path}/`);
+      const isOpen = currentLink.startsWith(path);
       return (
-        <NavSection key={id} isRoot={isRoot} link={link} isOpen={isActive || isOpen}>
-          {children.map((n) => renderSegment(n, currentLink))}
+        <NavSection
+          key={id}
+          id={id}
+          isRoot={isRoot}
+          link={link}
+          isOpen={visible[id] ?? isOpen ?? isActive}
+          onToggleOpen={handleToggleOpen}
+        >
+          {children.map((n) => renderSegment(n, currentLink, false))}
         </NavSection>
       );
     }
