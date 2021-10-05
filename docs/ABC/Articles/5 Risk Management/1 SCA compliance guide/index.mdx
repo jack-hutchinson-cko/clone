@@ -528,9 +528,9 @@ Indicate your preference for whether or not a 3DS challenge should be performed.
 
 `no_challenge_requested` – You don't want a challenge to be performed.
 
-`challenge_request_by_merchant` – You want a challenge to be performed.
+`challenge_requested` – You want a challenge to be performed.
 
-`challenge_request_as_mandate` – Local requirements demand a challenge be performed.
+`challenge_requested_mandate` – Local requirements demand a challenge be performed.
 
 </TableCell>
 </TableRow>
@@ -554,6 +554,8 @@ Request an SCA exemption for the transaction. The customer’s bank has the fina
 
 `trusted_listing` – Request the trusted merchant list exemption.
 
+Alternatively, you may request a TRA exemption if the payment meets the transaction risk assessment criteria. For more details on TRA exemption, please contact your Customer Success Manager.
+
 </TableCell>
 </TableRow>
 </TableBody>
@@ -561,7 +563,7 @@ Request an SCA exemption for the transaction. The customer’s bank has the fina
 
 <TipBox variant="info">
 
-If the customer's bank denies your exemption request, you'll receive a soft decline code (`20154`) in the response, meaning SCA authentication is required for the transaction. You’ll need to resubmit the payment with the `3ds.enabled` field set to `true`, and, optionally, the `3ds.challenge_indicator` set to `challenge_request_as_mandate`.
+If the customer's bank denies your exemption request, you'll receive a soft decline code (`20154`) in the response, meaning SCA authentication is required for the transaction. You’ll need to resubmit the payment with the `3ds.enabled` field set to `true`, and, optionally, the `3ds.challenge_indicator` set to `challenge_requested_mandate`.
 
 </TipBox>
 
@@ -581,7 +583,7 @@ If the customer's bank denies your exemption request, you'll receive a soft decl
       "currency": "USD",
       "3ds": {
         "enabled": true,
-        "challenge_indicator": "challenge_request_by_merchant"
+        "challenge_indicator": "challenge_requested_mandate"
       }
     }
 ```
