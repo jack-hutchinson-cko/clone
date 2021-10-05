@@ -12,6 +12,7 @@ import {
   MobileBreakPoints,
   createBreakpointFrom,
   createBreakpointTo,
+  createBreakpointBetween,
 } from 'constants/screen';
 
 export const IntroWrapper = styled.div`
@@ -148,11 +149,15 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
-  @media ${createBreakpointFrom(SIZE.M)} {
+  @media ${createBreakpointFrom(SIZE.L)} {
+    padding: 32px 64px 64px 29px;
+  }
+
+  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
     padding: 32px 64px 64px 49px;
   }
 
-  @media ${createBreakpointTo(SIZE.M)} {
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
     padding: 24px 40px;
   }
 
