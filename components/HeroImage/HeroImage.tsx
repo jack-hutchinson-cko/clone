@@ -48,7 +48,7 @@ const HeroImage: FC = () => {
 
   return (
     <HeroWrapper>
-      <Image src="/assets/images/HeroImg/hero.home.bg.svg" layout="fill" />
+      <Image src="/docs/assets/images/HeroImg/hero.home.bg.svg" layout="fill" />
       <HeroParts
         transform={transform}
         onMouseMove={onMouseMoveHandler}
@@ -56,13 +56,13 @@ const HeroImage: FC = () => {
         opacity={opacity}
       >
         <HeroPart01>
-          <Image src="/assets/images/HeroImg/hero.home.el.01.svg" width="397" height="300" />
+          <Image src="/docs/assets/images/HeroImg/hero.home.el.01.svg" width="397" height="300" />
         </HeroPart01>
         <HeroPart02>
-          <Image src="/assets/images/HeroImg/hero.home.el.02.svg" width="200" height="356" />
+          <Image src="/docs/assets/images/HeroImg/hero.home.el.02.svg" width="200" height="356" />
         </HeroPart02>
         <HeroPart03>
-          <Image src="/assets/images/HeroImg/hero.home.el.03.svg" width="204" height="145" />
+          <Image src="/docs/assets/images/HeroImg/hero.home.el.03.svg" width="204" height="145" />
         </HeroPart03>
       </HeroParts>
     </HeroWrapper>

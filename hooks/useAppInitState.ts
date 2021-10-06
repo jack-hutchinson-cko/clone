@@ -49,7 +49,9 @@ const useAppInitState = (): {
   const { docsIntegrationBuilderFrames } = useFlags();
 
   useEffect(() => {
-    fetch(`${window.location.origin}/api/docsTree?filePath=${clientSettings.docArticlesFilePath}`)
+    fetch(
+      `${window.location.origin}/docs/api/docsTree?filePath=${clientSettings.docArticlesFilePath}`,
+    )
       .then((response) => response.json())
       .then((result) => setTempDocLinks(result));
 
