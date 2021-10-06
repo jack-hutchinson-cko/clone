@@ -22,7 +22,7 @@ describe('BreadCrumbs', () => {
       .eq(0)
       .find('a')
       .invoke('attr', 'href')
-      .should('eq', '/test1');
+      .should('eq', 'test1');
 
     cy.get('*[data-cy=breadcrumbs]').children().eq(1).contains('Test2');
     cy.get('*[data-cy=breadcrumbs]')
@@ -30,7 +30,7 @@ describe('BreadCrumbs', () => {
       .eq(1)
       .find('a')
       .invoke('attr', 'href')
-      .should('eq', '/test1/test2');
+      .should('eq', 'test1/test2');
 
     cy.get('*[data-cy=breadcrumbs]').children().eq(2).contains('Test3');
     cy.get('*[data-cy=breadcrumbs]')
@@ -38,6 +38,6 @@ describe('BreadCrumbs', () => {
       .eq(2)
       .find('a')
       .invoke('attr', 'href')
-      .should('eq', '/test1/test2/test3');
+      .should('eq', 'test1/test2/test3');
   });
 });

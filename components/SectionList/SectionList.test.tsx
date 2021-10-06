@@ -68,7 +68,7 @@ describe('SectionItem', () => {
         .children()
         .eq(index)
         .invoke('attr', 'href')
-        .should('eq', sectionList[index].url);
+        .should('eq', `/docs${sectionList[index].url}`);
     });
   });
 

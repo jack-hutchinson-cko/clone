@@ -29,7 +29,7 @@ describe('Tag', () => {
     mount(withThemeWrapper(<SectionTag title="test title" url="/test" />));
 
     cy.get(`${StyledSectionTag}`).children().should('have.length', 1);
-    cy.get(`${StyledSectionTag}`).find('a').invoke('attr', 'href').should('eq', '/test');
+    cy.get(`${StyledSectionTag}`).find('a').invoke('attr', 'href').should('eq', '/docs/test');
     cy.get(`${StyledSectionTag}`).children().eq(0).should('contain', 'test title');
   });
 });
