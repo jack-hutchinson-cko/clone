@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import { basePathAddition } from '../../tools/basePathAddition';
 import { Container, Title, ImageWrapper } from './ContentPanel.styles';
 import { ContentPanelProps } from './types';
 
@@ -16,10 +17,11 @@ const ContentPanel: FC<ContentPanelProps> = ({
   variant = DefaultVariant,
   ...rest
 }) => {
+  const imgSrcWithBasePath = basePathAddition(imgSrc);
   return (
     <Container variant={variant} {...rest}>
       <ImageWrapper variant={variant} width={imgWidth}>
-        <ReactSVG src={imgSrc} alt={imgAlt} />
+        <ReactSVG src={imgSrcWithBasePath} alt={imgAlt} />
       </ImageWrapper>
       <div>
         {title ? <Title variant={variant}>{title}</Title> : null}
