@@ -59,7 +59,7 @@ const useAppInitState = (): {
 
     getHeaderContent().then((result) => setHeaderContent(result));
     getFooterContent().then((result) => setFooterContent(result));
-  }, []);
+  }, [basePath]);
 
   useEffect(() => {
     if (!docsIntegrationBuilderFrames) {

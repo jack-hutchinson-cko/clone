@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { TextHeadingTwo } from 'components/TextHeading';
-import { MainWrapper } from './IBuilderHeader.styles';
 import { FrontMatterContainer } from 'styles/index.styles';
-import TimeToComplete from '../TimeToComplete';
 import WarningMessage from 'components/WarningMessage';
+import TimeToComplete from '../TimeToComplete';
+import { MainWrapper } from './IBuilderHeader.styles';
 
 type Props = {
   title: string;
