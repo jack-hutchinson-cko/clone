@@ -5,7 +5,7 @@ import ContentPanel from './ContentPanel';
 
 export const ContentPanelDefaultStory: Story = () => {
   return (
-    <ContentPanel variant="default" title="Frames" imgSrc="/docs/docs/Collect payment/Frames.svg">
+    <ContentPanel variant="default" title="Frames" imgSrc="/docs/Collect payment/Frames.svg">
       <p>
         Frames is a highly customizable payment form, which allows customers to enter their payment
         details directly on your checkout page or in your app. We process these and exchange them
@@ -25,7 +25,7 @@ export const ContentPanelHeadingStory: Story = () => {
     <ContentPanel
       variant="heading"
       title="Marketplace API reference"
-      imgSrc="/docs/docs/Collect payment/SDKs.svg"
+      imgSrc="/docs/Collect payment/SDKs.svg"
     >
       <p>
         Our API reference lists all the endpoints and methods provided in the Marketplace solution.
@@ -43,7 +43,7 @@ export const ContentPanelECommerceStory: Story = () => {
       variant="eCommerce"
       imgWidth={200}
       title="Magento 2"
-      imgSrc="/docs/docs/Integrate/SDKs/magento.svg"
+      imgSrc="/docs/Integrate/SDKs/magento.svg"
     >
       <p>Integrating commerce, content and community to create engaging Web experiences.</p>
 

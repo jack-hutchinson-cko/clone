@@ -48,9 +48,11 @@ const useAppInitState = (): {
   const [footerContent, setFooterContent] = useState<FooterContent>(initFooterContent);
   const { docsIntegrationBuilderFrames } = useFlags();
 
+  const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/docs/four';
+
   useEffect(() => {
     fetch(
-      `${window.location.origin}/docs/api/docsTree?filePath=${clientSettings.docArticlesFilePath}`,
+      `${window.location.origin}${basePath}/api/docsTree?filePath=${clientSettings.docArticlesFilePath}`,
     )
       .then((response) => response.json())
       .then((result) => setTempDocLinks(result));

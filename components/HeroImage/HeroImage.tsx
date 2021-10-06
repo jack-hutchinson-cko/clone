@@ -1,5 +1,6 @@
 import { FC, MouseEvent, useState, useEffect } from 'react';
 import Image from 'next/image';
+import { basePathLoader } from '../ImageBox';
 
 import { HeroWrapper, HeroParts, HeroPart01, HeroPart02, HeroPart03 } from './HeroImage.styles';
 
@@ -48,7 +49,7 @@ const HeroImage: FC = () => {
 
   return (
     <HeroWrapper>
-      <Image src="/docs/assets/images/HeroImg/hero.home.bg.svg" layout="fill" />
+      <Image src="/assets/images/HeroImg/hero.home.bg.svg" layout="fill" loader={basePathLoader} />
       <HeroParts
         transform={transform}
         onMouseMove={onMouseMoveHandler}
@@ -56,13 +57,28 @@ const HeroImage: FC = () => {
         opacity={opacity}
       >
         <HeroPart01>
-          <Image src="/docs/assets/images/HeroImg/hero.home.el.01.svg" width="397" height="300" />
+          <Image
+            src="/assets/images/HeroImg/hero.home.el.01.svg"
+            width="397"
+            height="300"
+            loader={basePathLoader}
+          />
         </HeroPart01>
         <HeroPart02>
-          <Image src="/docs/assets/images/HeroImg/hero.home.el.02.svg" width="200" height="356" />
+          <Image
+            src="/assets/images/HeroImg/hero.home.el.02.svg"
+            width="200"
+            height="356"
+            loader={basePathLoader}
+          />
         </HeroPart02>
         <HeroPart03>
-          <Image src="/docs/assets/images/HeroImg/hero.home.el.03.svg" width="204" height="145" />
+          <Image
+            src="/assets/images/HeroImg/hero.home.el.03.svg"
+            width="204"
+            height="145"
+            loader={basePathLoader}
+          />
         </HeroPart03>
       </HeroParts>
     </HeroWrapper>
