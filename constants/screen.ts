@@ -7,15 +7,15 @@ export enum SIZE {
 }
 
 export const Breakpoints = {
-  DESKTOP: `(min-width: ${SIZE.L}px)`,
-  TABLET: `(min-width: ${SIZE.M}px) and (max-width: ${SIZE.L - 1}px)`,
-  MOBILE: `(max-width: ${SIZE.M - 1}px)`,
+  DESKTOP: `(min-width: ${SIZE.L}px)`, // < 1024
+  TABLET: `(min-width: ${SIZE.M}px) and (max-width: ${SIZE.L - 1}px)`, // 768 - 1023
+  MOBILE: `(max-width: ${SIZE.M - 1}px)`, // < 767
 };
 
 export const MobileBreakPoints = {
-  MOBILE_L: `(min-width: ${SIZE.SM}px) and (max-width: ${SIZE.M - 1}px)`,
-  MOBILE_M: `(min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM - 1}px)`,
-  MOBILE_S: `(max-width: ${SIZE.XS - 1}px)`,
+  MOBILE_L: `(min-width: ${SIZE.SM}px) and (max-width: ${SIZE.M - 1}px)`, // 600 - 767
+  MOBILE_M: `(min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM - 1}px)`, // 375 - 599
+  MOBILE_S: `(max-width: ${SIZE.XS - 1}px)`, // < 374
 };
 
 export const createBreakpointBetween = (start: SIZE, end: SIZE): string =>

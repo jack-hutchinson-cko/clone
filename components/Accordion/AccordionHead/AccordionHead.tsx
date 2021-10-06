@@ -26,7 +26,7 @@ const AccordionHead: FC<AccordionHeadProps> = ({
     <StyledAccordionHead onClick={onClickHandler} isOpen={isOpen} {...props}>
       <div>{children}</div>
       <span ref={iconRef}>
-        <IconActionAccordion />
+        <IconActionAccordion width={18} />
       </span>
     </StyledAccordionHead>
   );

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { MobileBreakPoints, SIZE } from 'constants/screen';
+import { createBreakpointTo, MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;
@@ -27,7 +27,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
     position: absolute;
     width: 100%;
     height: 2px;
-    border-radius: 80px;
+    border-radius: 8px;
     background-color: ${({ theme }) => theme.colors.base};
     transition-duration: 0.25s;
 
@@ -67,4 +67,10 @@ export const Button = styled.span<{ isActive?: boolean }>`
         transform: rotate(90deg);
       }
     `}
+`;
+
+export const Wrapper = styled.div`
+  @media ${createBreakpointTo(SIZE.M)} {
+    min-width: 48px;
+  }
 `;

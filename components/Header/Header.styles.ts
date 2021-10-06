@@ -1,7 +1,13 @@
 import styled, { css } from 'styled-components';
 
 import { IconActionChevronDown } from 'components/Icons';
-import { Breakpoints, MobileBreakPoints, SIZE, createBreakpointTo } from 'constants/screen';
+import {
+  Breakpoints,
+  MobileBreakPoints,
+  SIZE,
+  createBreakpointTo,
+  createBreakpointBetween,
+} from 'constants/screen';
 
 export const NavigationContent = styled.nav`
   position: relative;
@@ -82,7 +88,7 @@ export const NavigationDrawers = styled.div`
   top: 81px;
   display: flex;
   width: 100vw;
-  height: calc(100vh - 81px);
+  height: calc(100vh - 66px);
   pointer-events: none;
   z-index: 2;
 
@@ -91,11 +97,13 @@ export const NavigationDrawers = styled.div`
   }
 `;
 
-export const NavigationItem = styled.div<{
-  withHover?: boolean;
+type NavigationItemProps = {
   isSelected?: boolean;
+  withHover?: boolean;
   withPointer?: boolean;
-}>`
+};
+
+export const NavigationItem = styled.div<NavigationItemProps>`
   display: flex;
   height: 80px;
   align-items: center;
@@ -183,6 +191,16 @@ export const NavigationLink = styled.a<{
     font-size: 14px;
     line-height: 20px;
   }
+
+  @media ${Breakpoints.MOBILE} {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 
 export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
@@ -214,6 +232,26 @@ export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
       display: block;
       width: 100%;
     `}
+
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
+    padding: 16px 32px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+`;
+
+export const HeaderLogoWrapper = styled.div`
+  display: flex;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    color: ${({ theme }) => theme.colors.base};
+  }
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    padding: 0 20px;
+  }
 `;
 
 export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
@@ -236,19 +274,27 @@ export const SwitchIcon = styled.div`
 `;
 
 export const DrawerTopContentWrapper = styled.div`
-  padding: 24px;
+  padding: 40px;
   background: ${({ theme }) => theme.colors.background};
 
-  @media (min-width: ${SIZE.SM}px) {
-    padding: 40px;
+  @media ${MobileBreakPoints.MOBILE_S} {
+    padding: 24px;
   }
 `;
 
 export const DrawerBottomContentWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.mobileSidebarBackground};
-  padding: 24px;
+  background: ${({ theme }) => theme.colors.backgroundSearch};
+  padding: 40px;
   width: 100%;
   flex: 1;
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding: 48px 40px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    padding: 24px;
+  }
 `;
 
 export const LoginWidgetTopWrapper = styled.div`

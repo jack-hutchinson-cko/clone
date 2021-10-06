@@ -1,5 +1,5 @@
-import { SIZE } from 'constants/screen';
 import styled, { css } from 'styled-components';
+import { SIZE } from 'constants/screen';
 
 export const Wrapper = styled.div`
   position: relative;

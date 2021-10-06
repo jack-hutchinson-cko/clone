@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button } from './MenuButton.styles';
+import { Button, Wrapper } from './MenuButton.styles';
 
 type Props = {
   onClick: () => void;
@@ -7,9 +7,11 @@ type Props = {
 };
 
 const MenuButton: FC<Props> = ({ isActive, onClick }) => (
-  <Button isActive={isActive} onClick={onClick}>
-    <span />
-  </Button>
+  <Wrapper>
+    <Button isActive={isActive} onClick={onClick}>
+      <span />
+    </Button>
+  </Wrapper>
 );
 
 export default MenuButton;
