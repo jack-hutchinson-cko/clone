@@ -8,9 +8,5 @@ export const cutOffHashValue = (url: string): string => {
   return url;
 };
 
-export const updateNavigationHash = (hash: string): void => {
-  window.location.replace(hash);
-};
-
 export const getAnchorUrl = (name: string, hash = true): string =>
   `${hash ? '#' : ''}${name.replace(/ /g, '_')}`;

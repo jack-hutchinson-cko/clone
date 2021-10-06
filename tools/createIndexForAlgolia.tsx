@@ -39,15 +39,31 @@ type GetIndexArticleItemParams = {
   parentArticles: string[];
 };
 
+const omitComponents = (omitArray: string[]) => {
+  const omitComponentsObject = omitArray.reduce(
+    (result, tagName) => ({ ...result, [tagName]: () => null }),
+    {},
+  );
+
+  return { ...mdxComponents, ...omitComponentsObject };
+};
+
+const mdxComponentsForSearch = omitComponents([
+  'code',
+  'IBuilderFormPreview',
+  'IBuilderCodePreview',
+  'IBuilderCodeTab',
+  'IBuilderCodeControl',
+]);
+
 const getResultTextFromMdxFile = (content: string): string => {
   const html = renderToString(
     <ThemeProvider>
-      <MDX components={mdxComponents}>{content}</MDX>
+      <MDX components={mdxComponentsForSearch}>{content}</MDX>
     </ThemeProvider>,
   );
 
-  // need to remove .slice(0, 40000) after changing of plan
-  return (unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '').slice(0, 40000);
+  return unescape(striptags(html, [], ' ')).replace(/\s+/g, ' ') || '';
 };
 
 const getIndexArticleItem = ({
@@ -96,7 +112,7 @@ export const createDocArticlesIndex = async (
   const index = client.initIndex(searchIndexName);
 
   index.setSettings({
-    attributesToSnippet: ['body:40', 'title:20', 'headBody:12'],
+    attributesToSnippet: ['body:40', 'title:20', 'headBody:16'],
     snippetEllipsisText: '...',
     searchableAttributes: ['title', 'body', 'headBody'],
   });
@@ -199,9 +215,11 @@ const createAllIndexes = async () => {
           FAQFilePath: string;
           searchFAQIndexName: string;
         }[]
-      ).map(({ FAQFilePath, searchFAQIndexName }) =>
-        createFAQIndex(FAQFilePath, searchFAQIndexName),
-      ),
+      )
+        .filter(({ FAQFilePath, searchFAQIndexName }) => Boolean(FAQFilePath && searchFAQIndexName))
+        .map(({ FAQFilePath, searchFAQIndexName }) =>
+          createFAQIndex(FAQFilePath, searchFAQIndexName),
+        ),
     );
 
     console.log('algolia FAQ search index was successfully generated/updated');

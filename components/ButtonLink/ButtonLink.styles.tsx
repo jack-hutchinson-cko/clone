@@ -17,7 +17,15 @@ export const Button = styled.a`
     margin-right: 16px;
   }
   &:hover {
-    opacity: 0.8;
+    background-color: ${({ theme }) => theme.colors.fiordLight};
+  }
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.catskillWhite};
   }
 `;
 

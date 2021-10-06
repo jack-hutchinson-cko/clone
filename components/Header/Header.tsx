@@ -3,10 +3,17 @@ import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import { HeaderLink, SearchResultLink } from 'types/header';
-import { Breakpoints } from 'constants/screen';
+import { Breakpoints, MobileBreakPoints } from 'constants/screen';
 import useScrollDisabled from 'hooks/useScrollDisabled';
 import { ThemeContext } from 'theme/themeContext';
-import { IconAccount, IconTestAccount, IconActionArrowRight } from 'components/Icons';
+import {
+  IconAccount,
+  IconTestAccount,
+  IconActionArrowRight,
+  HeaderLogoL,
+  HeaderLogoSM,
+  HeaderLogoXS,
+} from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import Switch from 'components/Switch';
 import DocsSearchWidget from 'components/Search/DocsSearchWidget';
@@ -15,7 +22,6 @@ import SearchButton from './SearchButton';
 import Drawer from './Drawer';
 import NavigationItemHolder, { ContentAlign } from './NavigationItemHolder';
 import LoginWidget from './LoginWidget';
-import HeaderLogo from './HeaderLogo';
 import GuidesLinks from './GuidesLinks';
 import SignInLinks from './SignInLinks';
 
@@ -37,6 +43,7 @@ import {
   LoginWidgetTopWrapper,
   LiginWidgetBottomWrapper,
   WrapperIconActionArrowRight,
+  HeaderLogoWrapper,
 } from './Header.styles';
 
 type Props = {
@@ -64,11 +71,14 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   searchState,
   onChangeSearchState,
 }) => {
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
+  const isMobile = useMatchMedia(Breakpoints.MOBILE);
+  const isMobileM = useMatchMedia(MobileBreakPoints.MOBILE_M);
+  const isMobileXS = useMatchMedia(MobileBreakPoints.MOBILE_S);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isDarkTheme = theme === 'dark';
+  let HeaderLogo = HeaderLogoL;
 
   useScrollDisabled((searchState || menuState) && isMobile);
 
@@ -83,6 +93,12 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   const onClickLogo = useCallback(() => {
     onChangeMenuState(false);
   }, [onChangeMenuState]);
+
+  if (isMobileM) {
+    HeaderLogo = HeaderLogoSM;
+  } else if (isMobileXS) {
+    HeaderLogo = HeaderLogoXS;
+  }
 
   const loginWidget = (
     <LoginWidget
@@ -133,19 +149,24 @@ const Header: FC<WithMenuStateProps<Props>> = ({
           <NavigationItem>
             <Link href="/" passHref>
               <NavigationLink>
-                <HeaderLogo onClick={onClickLogo} />
+                <HeaderLogoWrapper>
+                  <HeaderLogo onClick={onClickLogo} />
+                </HeaderLogoWrapper>
               </NavigationLink>
             </Link>
           </NavigationItem>
           {isMobile && (
             <NavigationItem>
               {menuState ? (
-                <Switch
-                  icon={switchUncheckedIcon}
-                  checked={isDarkTheme}
-                  checkedIcon={switchCheckedIcon}
-                  onChange={toggleTheme}
-                />
+                // Temporarily hidden. Remove div when it needed.
+                <div style={{ visibility: 'hidden' }}>
+                  <Switch
+                    icon={switchUncheckedIcon}
+                    checked={isDarkTheme}
+                    checkedIcon={switchCheckedIcon}
+                    onChange={toggleTheme}
+                  />
+                </div>
               ) : (
                 <SearchButton isActive={searchState} onClick={onToggleSearchDrawer} />
               )}
@@ -238,26 +259,32 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                     </NavigationLink>
                   </Link>
                 </NavigationItem>
-                <NavigationItem withPointer={false}>
-                  <Switch
-                    icon={switchUncheckedIcon}
-                    checked={isDarkTheme}
-                    checkedIcon={switchCheckedIcon}
-                    onChange={toggleTheme}
-                  />
-                </NavigationItem>
+                {/* Temporarily hidden. Remove div when it needed. */}
+                <div style={{ display: 'none' }}>
+                  <NavigationItem withPointer={false}>
+                    <Switch
+                      icon={switchUncheckedIcon}
+                      checked={isDarkTheme}
+                      checkedIcon={switchCheckedIcon}
+                      onChange={toggleTheme}
+                    />
+                  </NavigationItem>
+                </div>
               </>
             )}
             {isTablet && (
               <>
-                <NavigationItem withPointer={false}>
-                  <Switch
-                    icon={switchUncheckedIcon}
-                    checked={isDarkTheme}
-                    checkedIcon={switchCheckedIcon}
-                    onChange={toggleTheme}
-                  />
-                </NavigationItem>
+                {/* Temporarily hidden. Remove div when it needed. */}
+                <div style={{ display: 'none' }}>
+                  <NavigationItem withPointer={false}>
+                    <Switch
+                      icon={switchUncheckedIcon}
+                      checked={isDarkTheme}
+                      checkedIcon={switchCheckedIcon}
+                      onChange={toggleTheme}
+                    />
+                  </NavigationItem>
+                </div>
                 <NavigationItem>
                   <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
                 </NavigationItem>
@@ -269,7 +296,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       <NavigationDrawers>
         {!isDesktop && menuState && (
           <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer}>
-            <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>
+            {isFAQSection ? null : <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>}
             <DrawerBottomContentWrapper>{loginWidget}</DrawerBottomContentWrapper>
           </Drawer>
         )}

@@ -1,7 +1,13 @@
 import styled, { css } from 'styled-components';
 
 import { IconActionChevronDown } from 'components/Icons';
-import { Breakpoints, MobileBreakPoints, SIZE } from 'constants/screen';
+import {
+  Breakpoints,
+  MobileBreakPoints,
+  SIZE,
+  createBreakpointTo,
+  createBreakpointBetween,
+} from 'constants/screen';
 
 export const NavigationContent = styled.nav`
   position: relative;
@@ -20,7 +26,11 @@ export const NavigationSection = styled.div<{ isMobile?: boolean }>`
 
 export const MiddleNavigationSection = styled(NavigationSection)`
   flex: 1;
-  margin: 0 25px 0 50px;
+  margin: 0 25px 0 55px;
+
+  @media (max-width: ${SIZE.SM}px) {
+    margin: 0;
+  }
 
   @media (min-width: ${SIZE.M}px) and (max-width: 870px) {
     margin: 0 20px 0 20px;
@@ -61,7 +71,10 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
           padding: 0 40px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-          @media ${MobileBreakPoints.MOBILE_S} {
+          @media (min-width: ${SIZE.SM}px) {
+            padding: 0 40px;
+          }
+          @media ${createBreakpointTo(SIZE.XS)} {
             padding: 0 24px;
           }
         }
@@ -75,24 +88,22 @@ export const NavigationDrawers = styled.div`
   top: 81px;
   display: flex;
   width: 100vw;
-  height: calc(100vh - 81px);
+  height: calc(100vh - 66px);
   pointer-events: none;
   z-index: 2;
-
-  @media ${Breakpoints.MOBILE} {
-    top: 109.5px;
-  }
 
   @media ${MobileBreakPoints.MOBILE_S} {
     top: 66px;
   }
 `;
 
-export const NavigationItem = styled.div<{
-  withHover?: boolean;
+type NavigationItemProps = {
   isSelected?: boolean;
+  withHover?: boolean;
   withPointer?: boolean;
-}>`
+};
+
+export const NavigationItem = styled.div<NavigationItemProps>`
   display: flex;
   height: 80px;
   align-items: center;
@@ -119,7 +130,6 @@ export const NavigationItem = styled.div<{
   }
 
   @media ${Breakpoints.MOBILE} {
-    height: 108.5px;
     font-size: 24px;
     line-height: 32px;
   }
@@ -143,7 +153,7 @@ export const NavigationLink = styled.a<{
 }>`
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   color: ${({ theme }) => theme.colors.base};
   font-weight: ${({ light }) => (light ? 400 : 500)};
   outline: none;
@@ -181,6 +191,16 @@ export const NavigationLink = styled.a<{
     font-size: 14px;
     line-height: 20px;
   }
+
+  @media ${Breakpoints.MOBILE} {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 
 export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
@@ -194,12 +214,44 @@ export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
   line-height: 24px;
   text-align: center;
 
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.btnHoverPrimary};
+  }
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.blueTertiary};
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.catskillWhite};
+  }
+
   ${({ fullWidth }) =>
     fullWidth &&
     css`
       display: block;
       width: 100%;
     `}
+
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
+    padding: 16px 32px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+`;
+
+export const HeaderLogoWrapper = styled.div`
+  display: flex;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    color: ${({ theme }) => theme.colors.base};
+  }
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    padding: 0 20px;
+  }
 `;
 
 export const ToggleIcon = styled(IconActionChevronDown)<{ isOpen?: boolean }>`
@@ -224,13 +276,25 @@ export const SwitchIcon = styled.div`
 export const DrawerTopContentWrapper = styled.div`
   padding: 40px;
   background: ${({ theme }) => theme.colors.background};
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    padding: 24px;
+  }
 `;
 
 export const DrawerBottomContentWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: ${({ theme }) => theme.colors.backgroundSearch};
   padding: 40px;
   width: 100%;
   flex: 1;
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding: 48px 40px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
+    padding: 24px;
+  }
 `;
 
 export const LoginWidgetTopWrapper = styled.div`

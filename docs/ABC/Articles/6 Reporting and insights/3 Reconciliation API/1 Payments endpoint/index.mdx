@@ -645,7 +645,7 @@ This link allows you to focus on a particular payment that has been included in 
 ```json
 "_links": {
   "self": {
-    "href": "http://api.checkout.com/reporting/payments/pay_sv6ikhu36mgepkm3l22pztvywa"
+    "href": "https://api.checkout.com/reporting/payments/pay_sv6ikhu36mgepkm3l22pztvywa"
   }
 }
 ```
@@ -657,7 +657,7 @@ This link lets you move to the next page of results. Results are paginated at a 
 ```json
 "_links": {
   "next": {
-    "href": "http://api.checkout.com/reporting/payments?from=01%2F03%2F2019%2000%3A00%3A00&to=01%2F03%2F2019%2000%3A00%3A00&limit=1&after=11111111"
+    "href": "https://api.checkout.com/reporting/payments?from=01%2F03%2F2019%2000%3A00%3A00&to=01%2F03%2F2019%2000%3A00%3A00&limit=1&after=11111111"
   }
 }
 ```
@@ -669,7 +669,7 @@ This link provides the URL associated with the current request.
 ```json
 "_links": {
   "self": {
-    "href": "http://api.checkout.com/reporting/payments?from=01%2F03%2F2019%2000%3A00%3A00&to=01%2F03%2F2019%2000%3A00%3A00&limit=1"
+    "href": "https://api.checkout.com/reporting/payments?from=01%2F03%2F2019%2000%3A00%3A00&to=01%2F03%2F2019%2000%3A00%3A00&limit=1"
   }
 }
 ```
@@ -712,19 +712,19 @@ Regardless of the parameters in your request, the payments endpoint’s CSV file
 
 This section displays all payment and card attributes in accordance with your chosen parameters.
 
-<img src="/docs/Reporting_and_insights/Payments endpoint/payment_card_attributes.png" />
+<img src="/docs/Reporting_and_insights/Payments endpoint/payment_card_attributes.png" withFullscreenPreview />
 
 #### 2. Actions
 
 This section outlines all the actions — authorization, void, capture, refund and chargeback — which have been administered to a payment.
 
-<img maxWidth={380} src="/docs/Reporting_and_insights/Payments endpoint/actions.png" />
+<img maxWidth={380} src="/docs/Reporting_and_insights/Payments endpoint/actions.png" withFullscreenPreview />
 
 #### 3. Breakdown
 
 This section provides details of the associated amounts to an action in both the processing and the payout currencies.
 
-<img maxWidth={380} src="/docs/Reporting_and_insights/Payments endpoint/breakdown.png" />
+<img maxWidth={380} src="/docs/Reporting_and_insights/Payments endpoint/breakdown.png" withFullscreenPreview />
 
 ---
 
@@ -737,7 +737,7 @@ To limit your results, add `limit=` followed by a number of your choice (up to 5
 For example:
 
 ```json
-http://api.checkout.com/reporting/payments?from=01%2F03%2F2019%2000%3A00%3A00&to=01%2F03%2F2019%2000%3A00%3A00&limit=100
+https://api.checkout.com/reporting/payments?from=01%2F03%2F2019%2000%3A00%3A00&to=01%2F03%2F2019%2000%3A00%3A00&limit=100
 ```
 
 <TipBox variant="info">

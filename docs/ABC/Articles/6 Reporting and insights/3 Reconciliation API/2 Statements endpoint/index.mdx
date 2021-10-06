@@ -110,24 +110,24 @@ If your summary is returned, the request was successful.
           "payout_fee": -5,
           "_links": {
             "payments": {
-              "href": "http://api.checkout.com/reporting/statements/190110B107654/payments?payout_id=ABCDEFGH"
+              "href": "https://api.checkout.com/reporting/statements/190110B107654/payments?payout_id=ABCDEFGH"
             }
           }
         }
       ],
       "_links": {
         "payments": {
-          "href":  "http://api.checkout.com/reporting/statements/190110B107654/payments"
+          "href":  "https://api.checkout.com/reporting/statements/190110B107654/payments"
         }
       }
     }
   ],
   "_links": {
     "next": {
-      "href": "http://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1&skip=1"
+      "href": "https://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1&skip=1"
     },
     "self": {
-      "href": "http://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1" }
+      "href": "https://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1" }
     }
   }
 }
@@ -316,7 +316,7 @@ This link allows you to move to the next page of results in the response. Respon
 ```json
 "_links": {
   "next": {
-    "href": "http://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1&skip=1"
+    "href": "https://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1&skip=1"
   }
 }
 ```
@@ -328,7 +328,7 @@ This is a direct link to the response associated with the submitted request.
 ```json
 "_links": {
   "self": {
-    "href": "http://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1"
+    "href": "https://api.checkout.com/reporting/statements?from=01%2F01%2F2019%2000%3A00%3A00&to=01%2F11%2F2019%2000%3A00%3A00&limit=1"
   }
 }
 ```
@@ -513,7 +513,7 @@ In the URL for the statements endpoint, add `/download` after `/statements`.
 For example:
 
 ```json
-http://api.checkout.com/reporting/statements/download?from={start-date-time}&to={end-date-time}
+https://api.checkout.com/reporting/statements/download?from={start-date-time}&to={end-date-time}
 ```
 
 #### Statement with payout breakdown
@@ -523,7 +523,7 @@ To include the payout breakdown, add `&include=payout_breakdown` at the end of t
 For example:
 
 ```json
-http://api.checkout.com/reporting/statements/download?from={start-date-time}&to={end-date-time}&include=payout_breakdown
+https://api.checkout.com/reporting/statements/download?from={start-date-time}&to={end-date-time}&include=payout_breakdown
 ```
 
 #### Statement ID/payments

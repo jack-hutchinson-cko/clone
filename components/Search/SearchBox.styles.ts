@@ -9,7 +9,7 @@ export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
   align-items: center;
   gap: 10px;
   padding: 8px 16px;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.border};
   box-sizing: border-box;
@@ -56,7 +56,8 @@ export const TextField = styled(TextFieldBase)<{ isFAQSection?: boolean }>`
   transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
 
   &::placeholder {
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 300;
     color: ${({ theme }) => theme.colors.placeholderSearch};
   }
 

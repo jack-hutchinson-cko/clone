@@ -1,5 +1,6 @@
 import { FC, useContext } from 'react';
 import { ImageLoader } from 'next/image';
+import ImgModalWrapper from 'components/ImageModalWrapper';
 import { ThemeContext } from 'theme/themeContext';
 
 import { ImgWrapper, StyledImage } from './ImageBoxStyles';
@@ -18,15 +19,28 @@ export type Props = {
   loading?: 'lazy' | 'eager';
   width?: '100%';
   maxWidth?: number;
+  withFullscreenPreview?: boolean;
 };
 
-const ImageBox: FC<Props> = ({ src, darkThemeSrc = '', maxWidth, ...props }) => {
+const ImageBox: FC<Props> = ({
+  src,
+  darkThemeSrc = '',
+  maxWidth,
+  withFullscreenPreview,
+  ...props
+}) => {
   const { theme } = useContext(ThemeContext);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
-  return (
+  const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
       <StyledImage src={finalSrc} {...props} />
     </ImgWrapper>
+  );
+
+  return withFullscreenPreview ? (
+    <ImgModalWrapper src={finalSrc}>{imageBox}</ImgModalWrapper>
+  ) : (
+    imageBox
   );
 };
 

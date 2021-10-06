@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDX from '@mdx-js/runtime';
+import { themes } from 'constants/themes';
 
 import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContantPanel';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
+import withStaticTheme from 'hoc/withStaticTheme';
 import {
   TextHeadingOne,
   TextHeadingTwo,
@@ -63,10 +65,14 @@ import {
   IBuilderDescriptionCard,
   IBuilderCodeTab,
   IBuilderCodePreview,
+  IBuilderFormPreview,
+  IBuilderCodeControl,
 } from 'components/IBuilder';
 import FAQSectionLabel from 'components/FAQSectionLabel';
 import { Highlight } from 'components/Highlight';
-import FullScreenView from 'components/FullScreenView';
+import CountryCardLink from 'components/CountryCardLink/CountryCardLink';
+import { IndividualPayment, CorporatePayment } from 'components/Icons';
+import Select, { Option } from 'components/Select';
 
 export const mdxComponents = {
   TipBox: withBlockMargin(TipBox),
@@ -136,12 +142,18 @@ export const mdxComponents = {
   IBuilderFrameworkTab,
   IBuilderStep,
   IBuilderDescriptionCard,
-  IBuilderCodeTab,
+  IBuilderCodeTab: withStaticTheme(IBuilderCodeTab, themes.dark),
   IBuilderCodePreview,
+  IBuilderFormPreview,
   FAQItem,
   FAQSectionLabel,
   'ais-highlight-0000000000': Highlight,
-  FullScreenView,
+  CountryCardLink,
+  IndividualPayment,
+  CorporatePayment,
+  IBuilderCodeControl,
+  Select: withBlockMargin(Select),
+  Option,
 };
 
 type Props = {

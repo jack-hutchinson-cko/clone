@@ -1,16 +1,16 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import Head from 'components/Head';
+import { PureHead as Head } from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
 import BreadCrumbs from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
-import { BreadCrumbsItems } from 'types/content';
-import { AnchorItem } from 'types/anchors';
 import Card from 'components/Card';
 import CardWrapper from 'components/CardWrapper';
 import LastChange from 'components/LastChange';
+import TimeToComplete from 'components/TimeToComplete';
+import WarningMessage from 'components/WarningMessage';
+
 import {
   getFileNameFromPath,
   getDocArticleData,
@@ -19,20 +19,10 @@ import {
   getChildrenArticle,
 } from 'lib/fileParser';
 
-import { PageContent, Title, Navigation } from '../../styles/index.styles';
-
-type Props = {
-  breadCrumbsItem: BreadCrumbsItems;
-  frontMatter: {
-    title: string;
-    modifiedDate: string;
-    lastAuthor: string;
-  };
-  source: MDXRemoteSerializeResult;
-  anchorsNavItems: AnchorItem[];
-  childrenArticles: { title: string; href: string; description: string }[];
-  isIntegrationBuilder: boolean;
-};
+import { DocPostProps } from 'types/docpage';
+import withErrorPage from 'hoc/withErrorPage';
+import withFeatureFlag from 'hoc/withFeatureFlag';
+import { PageContent, Title, Navigation, FrontMatterContainer } from '../../styles/index.styles';
 
 const MIN_ANCHOR_COUNT = 2;
 
@@ -41,7 +31,7 @@ const ChildArticlesPerRow = {
   mobile: 1,
 };
 
-const DocPost: NextPage<Props> = ({
+const DocPost: NextPage<DocPostProps> = ({
   breadCrumbsItem,
   anchorsNavItems,
   frontMatter,
@@ -49,19 +39,29 @@ const DocPost: NextPage<Props> = ({
   childrenArticles,
   isIntegrationBuilder,
 }) => {
+  const { title, timeToComplete, warningMessage, modifiedDate, lastAuthor } = frontMatter;
+
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
       <PageContent isIntegrationBuilder={isIntegrationBuilder}>
-        {!isIntegrationBuilder ? (
-          <header>
-            <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
-            <Title>{frontMatter.title}</Title>
-            <LastChange>
-              {frontMatter.modifiedDate} – {frontMatter.lastAuthor}
-            </LastChange>
-          </header>
-        ) : null}
+        <header>
+          <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
+          {!isIntegrationBuilder ? (
+            <>
+              <Title>{title}</Title>
+              {timeToComplete && warningMessage && (
+                <FrontMatterContainer>
+                  <TimeToComplete time={timeToComplete} />
+                  <WarningMessage message={warningMessage} />
+                </FrontMatterContainer>
+              )}
+              <LastChange>
+                {modifiedDate} – {lastAuthor}
+              </LastChange>
+            </>
+          ) : null}
+        </header>
         <MDXProvider source={source} />
         <CardWrapper cardsInRow={ChildArticlesPerRow}>
           {childrenArticles.map((childItem) => (
@@ -82,7 +82,7 @@ const DocPost: NextPage<Props> = ({
   );
 };
 
-export default DocPost;
+export default withFeatureFlag(withErrorPage(DocPost));
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { SIZE } from 'constants/screen';
 import { TextHeadingTwo } from 'components/TextHeading';
 
 export const Header = styled(TextHeadingTwo)`
@@ -10,36 +10,56 @@ export const Header = styled(TextHeadingTwo)`
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  flex-direction: row;
+
+  @media (max-width: ${SIZE.SM}px) {
+    flex-direction: column;
+  }
+  @media (min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM}px) {
+    gap: 40px;
+  }
+
+  @media (max-width: ${SIZE.XS - 1}px) {
+    gap: 16px;
+  }
 `;
 
 export const Button = styled.a`
   text-decoration: none;
   background-color: transparent;
+
   & > div {
     display: flex;
     background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
     color: ${({ theme }) => theme.colors.btnPrimaryFont};
     padding: 8px 24px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
-    font-weight: 500;
     cursor: pointer;
     align-items: center;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.base};
-    }
+    justify-content: center;
     height: 48px;
-
-    @media ${Breakpoints.MOBILE} {
-      width: 100%;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.fiordLight};
     }
 
-    @media ${MobileBreakPoints.MOBILE_L} {
+    &:focus {
+      background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
+    }
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.catskillWhite};
+    }
+
+    @media (min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM}px) {
       font-size: 24px;
-      line-height: 24px;
-      padding: 24px 24px;
+      height: 76px;
+    }
+
+    @media (max-width: ${SIZE.SM}px) {
+      width: 100%;
     }
   }
 `;

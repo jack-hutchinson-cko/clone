@@ -1,17 +1,18 @@
 import styled, { css } from 'styled-components';
-import { MobileBreakPoints, Breakpoints } from 'constants/screen';
+
+import { createBreakpointTo, MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
   width: 32px;
-  height: 26px;
+  height: 32px;
   cursor: pointer;
 
-  @media ${Breakpoints.MOBILE} {
-    width: 40px;
-    height: 23px;
+  @media (max-width: ${SIZE.XS}px) {
+    width: 24px;
+    height: 24px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
@@ -24,14 +25,11 @@ export const Button = styled.span<{ isActive?: boolean }>`
   > span::after {
     display: block;
     position: absolute;
-    width: 32px;
+    width: 100%;
     height: 2px;
+    border-radius: 8px;
     background-color: ${({ theme }) => theme.colors.base};
     transition-duration: 0.25s;
-
-    @media ${Breakpoints.MOBILE} {
-      width: 40px;
-    }
 
     @media ${MobileBreakPoints.MOBILE_S} {
       width: 25px;
@@ -69,4 +67,10 @@ export const Button = styled.span<{ isActive?: boolean }>`
         transform: rotate(90deg);
       }
     `}
+`;
+
+export const Wrapper = styled.div`
+  @media ${createBreakpointTo(SIZE.M)} {
+    min-width: 48px;
+  }
 `;

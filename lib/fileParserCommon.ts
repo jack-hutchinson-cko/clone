@@ -4,6 +4,7 @@ import { execSync } from 'child_process';
 import { last, lowerCase } from 'lodash';
 import matter from 'gray-matter';
 import dateFormat from 'dateformat';
+import { isNotJunk } from './junk';
 
 type ForEachFileTreeParams = {
   parentFilePath: string;
@@ -67,6 +68,47 @@ export const forEachFileTree = (
   }
 };
 
+type SourceFileType = { filePath: string; relatedPath: string; fileName: string };
+
+export const forEachSourceFileTree = (
+  { parentFilePath, parentRelatedPath }: { parentFilePath: string; parentRelatedPath?: string },
+  callBack: (params: { filePath: string; relatedPath: string; fileName: string }) => void,
+): void => {
+  const children = fs.readdirSync(parentFilePath);
+
+  for (const child of children) {
+    const filePath = `${parentFilePath}/${child}`;
+    const relatedPath = parentRelatedPath ? `${parentRelatedPath}/${child}` : child;
+
+    if (fs.statSync(filePath).isDirectory()) {
+      forEachSourceFileTree(
+        {
+          parentFilePath: filePath,
+          parentRelatedPath: relatedPath,
+        },
+        callBack,
+      );
+    } else if (isNotJunk(child)) {
+      callBack({ filePath, relatedPath, fileName: child });
+    }
+  }
+};
+
+const getFilesProperty = ({
+  folderPath,
+  sourcePath,
+}: {
+  folderPath: string;
+  sourcePath: string;
+}) => {
+  const fullPath = `${folderPath}${sourcePath}`;
+  const files = [] as SourceFileType[];
+  forEachSourceFileTree({ parentFilePath: fullPath }, (data) => files.push(data));
+  const frameWorkFolder = last(sourcePath.split('/'));
+
+  return { files, frameWorkFolder };
+};
+
 const code = '```';
 const codeWithParams = ({ language }: { language: string }): string =>
   `${code}${language} isCollapsible="false", withBorder="false", withControls="false"`;
@@ -86,16 +128,50 @@ const getIBuilderCodeTab = ({
   }
 
   try {
-    const fullPath = `${folderPath}${sourcePath}`;
-    const children = fs.readdirSync(fullPath);
+    const { files, frameWorkFolder } = getFilesProperty({ folderPath, sourcePath });
 
-    return children.reduce((result, child) => {
-      const extension = last(child.split('.')) || '';
+    return files.reduce((result, { relatedPath }) => {
+      const extension = last(relatedPath.split('.')) || '';
+      const fullTitle = `${frameWorkFolder}/${relatedPath}`;
+      const displayTitle = last(fullTitle.split('/'));
 
-      return `${result}\n\n<IBuilderCodeTab title="${child}">\n\n${codeWithParams({
-        language: extension,
-      })}\ninclude('${sourcePath}/${child}')\n${code}\n\n</IBuilderCodeTab>\n`;
+      return `${result}\n\n<IBuilderCodeTab title="${fullTitle}" displayTitle="${displayTitle}">\n\n${codeWithParams(
+        {
+          language: extension,
+        },
+      )}\ninclude('${sourcePath}/${relatedPath}')\n${code}\n\n</IBuilderCodeTab>\n`;
     }, '');
+  } catch (error) {
+    return '';
+  }
+};
+
+const getIBuilderMediaFiles = ({
+  folderPath,
+  sourcePath,
+  mediaSourceOutputFolder,
+}: {
+  folderPath: string;
+  sourcePath: string;
+  mediaSourceOutputFolder?: string;
+}) => {
+  if (!sourcePath) {
+    return '';
+  }
+
+  try {
+    const { files, frameWorkFolder } = getFilesProperty({ folderPath, sourcePath });
+
+    const mediaFiles = files.map(({ filePath, relatedPath }) => {
+      const src = fs.readFileSync(filePath, { encoding: 'base64' });
+      return { name: `${mediaSourceOutputFolder}/${frameWorkFolder}/${relatedPath}`, src };
+    });
+
+    if (!mediaFiles.length) {
+      return '';
+    }
+
+    return `\n\n<IBuilderMedia mediaFiles={${JSON.stringify(mediaFiles)}}/>\n\n`;
   } catch (error) {
     return '';
   }
@@ -137,14 +213,14 @@ const addIncludeOptionByFileType = ({
   }
 
   if (frontMatter.type === 'IBuilderFrameworksTab') {
-    const { frontendSource, backendSource } = frontMatter;
+    const { frontendSource, backendSource, mediaSource, mediaSourceOutputFolder } = frontMatter;
     return `${content}${getIBuilderCodeTab({
       folderPath,
       sourcePath: frontendSource,
     })}${getIBuilderCodeTab({
       folderPath,
       sourcePath: backendSource,
-    })}`;
+    })}${getIBuilderMediaFiles({ folderPath, sourcePath: mediaSource, mediaSourceOutputFolder })}`;
   }
 
   return content;
@@ -238,7 +314,7 @@ export const getMdxFileData = (
           .match(/(\S+) (\S.+)/) || [];
       const newData: FileDataType = {
         ...data,
-        lastAuthor,
+        ...(lastAuthor ? { lastAuthor } : {}),
         modifiedDate: dateFormat(mtime, 'mmm d yyyy'),
       };
 

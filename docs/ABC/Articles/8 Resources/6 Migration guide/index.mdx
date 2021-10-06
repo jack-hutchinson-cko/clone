@@ -41,7 +41,7 @@ We now support securely storing multiple sources of payments, including cards an
 
 Payments replace what we previously referred to as a charge. A payment can have one or more actions that represent an interaction with a payment provider, for example Visa. This provides you with granular visibility into the lifecycle of a payment and a single ID that can be used to obtain the current status.
 
-<img src="/docs/Resources/payment-actions.png" alt="Boleto ticket render example" />
+<img src="/docs/Resources/payment-actions.png" alt="Boleto ticket render example" withFullscreenPreview />
 
 Because any subsequent actions performed on a payment only requires you to reference the payment ID in your API call, it is the only identifier that you need to store for future use.
 
@@ -625,7 +625,7 @@ The unified payments endpoint is used to [request a payment using an alternative
 <tab title="Live" active>
 
 ```json withBorder=false
-http://api2.checkout.com/v2/charges/localpayment
+https://api2.checkout.com/v2/charges/localpayment
 ```
 
 </tab>
@@ -756,7 +756,7 @@ The [Checkout.js](https://docs.checkout.com/archive/checkout-js) solution no lon
 <tab title="Live" active>
 
 ```json withBorder=false
-http://api2.checkout.com/v2/tokens/payment
+https://api2.checkout.com/v2/tokens/payment
 ```
 
 </tab>

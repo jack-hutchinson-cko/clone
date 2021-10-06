@@ -1,15 +1,16 @@
 import React, { FC, useRef, useEffect } from 'react';
+import { get } from 'lodash';
+import { MDXCodeSample } from 'components/CodeSample';
 import { TabBody } from './IBuilderCodeTabs.styles';
 
 type Props = {
   selectedLines?: never[];
+  sourceCode: string;
 };
 
 const HEIGHT_OF_THE_LINE = 24;
 
-export const SelectedLinesContext = React.createContext([]);
-
-const IBuilderCodeTab: FC<Props> = ({ children, selectedLines = [] }) => {
+const IBuilderCodeTab: FC<Props> = ({ children, selectedLines = [], sourceCode }) => {
   const tabBody = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,11 +20,24 @@ const IBuilderCodeTab: FC<Props> = ({ children, selectedLines = [] }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLines[0]]);
 
+  const { withBorder, withControls, isCollapsible, isEditMode, className } = get(
+    children,
+    'props.children.props',
+    {},
+  );
+
   return (
     <TabBody ref={tabBody}>
-      <SelectedLinesContext.Provider value={selectedLines}>
-        {children}
-      </SelectedLinesContext.Provider>
+      <MDXCodeSample
+        className={className}
+        withBorder={withBorder}
+        withControls={withControls}
+        isCollapsible={isCollapsible}
+        isEditMode={isEditMode}
+        selectedLines={selectedLines}
+      >
+        {sourceCode}
+      </MDXCodeSample>
     </TabBody>
   );
 };

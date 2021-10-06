@@ -1,7 +1,8 @@
 import { HeaderLink, SearchResultLink } from 'types/header';
 import { IconSourceCode, IconChat, IconDocSearch } from 'components/Icons';
+import { CLIENT_TYPE } from 'constants/clientSettings';
 
-export const guidesList: HeaderLink[] = [
+export const guidesListABC: HeaderLink[] = [
   {
     url: 'https://api-reference.checkout.com/',
     title: 'API Reference',
@@ -21,6 +22,28 @@ export const guidesList: HeaderLink[] = [
     Icon: IconDocSearch,
   },
 ];
+
+export const guidesListNAS: HeaderLink[] = [
+  {
+    url: 'https://api-reference.checkout.com/',
+    title: 'API Reference',
+    description: 'Our reference library for integrating with our API',
+    Icon: IconSourceCode,
+  },
+  {
+    url: 'https://archive.docs.checkout.com/',
+    title: 'Classic docs',
+    description: 'Documentation for our Classic API',
+    Icon: IconDocSearch,
+  },
+];
+
+const guidesListByClientType = {
+  ABC: guidesListABC,
+  NAS: guidesListNAS,
+}
+
+export const guidesList = guidesListByClientType[CLIENT_TYPE as 'ABC' | 'NAS'] || []
 
 export const popularSearches: SearchResultLink[] = [
   { title: 'Payment', url: 'search?query=payment&page=1' },

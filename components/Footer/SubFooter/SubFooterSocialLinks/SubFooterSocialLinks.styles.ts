@@ -19,6 +19,9 @@ export const SubFooterSocialLinksWrapper = styled.ul`
       width: 16px;
       height: auto;
     }
+    & svg:hover {
+      color: ${({ theme }) => theme.colors.stormGray};
+    }
   }
 
   @media ${createBreakpointTo(SIZE.L)} {
@@ -37,7 +40,7 @@ export const SubFooterSocialLinksWrapper = styled.ul`
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    margin-top: 80px;
+    margin-top: 60px;
 
     li {
       svg {

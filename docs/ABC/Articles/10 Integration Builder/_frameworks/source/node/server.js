@@ -1,48 +1,34 @@
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-const express = require('express');
+const express = require("express");
+const path = require("path");
+const cors = require("cors");
+const port = 5000;
 const app = express();
-app.use(express.static('.'));
 
-const YOUR_DOMAIN = 'http://localhost:4242';
+const { Checkout } = require("checkout-sdk-node");
+const cko = new Checkout("sk_test_XXXX");
 
-app.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: [
-      'card',
-    ],
-    line_items: [
-      {
-        // TODO: replace this with the `price` of the product you want to sell
-        price: '{{PRICE_ID}}',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
-  });
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '.'), {
+    index: 'payment-form.html'
+}));
 
-  res.redirect(303, session.url)
+app.route("/");
+app.use(cors());
+
+app.post("/", async (req, res) => {
+	const payment = await cko.payments.request({
+		source: { token: req.body.theSecureToken },
+		customer: {
+			email: "user@email.com",
+			name: "James Bond",
+		},
+		currency: "EUR",
+		amount: 1000,
+		reference: "ORDER123",
+	});
 });
 
-app.post('/create-checkout-session 2', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: [
-      'card',
-    ],
-    line_items: [
-      {
-        // TODO: replace this with the `price` of the product you want to sell
-        price: '{{PRICE_ID}}',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
-  });
-
-  res.redirect(303, session.url)
+app.listen(port, () => {
+	console.log(`Now listening on port http://localhost:${port}`);
 });
-
-app.listen(4242, () => console.log('Running on port 4242'));

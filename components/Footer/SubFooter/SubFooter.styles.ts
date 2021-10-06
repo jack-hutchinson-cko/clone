@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-
-import { createBreakpointBetween, createBreakpointTo, SIZE } from 'constants/screen';
+import {
+  MobileBreakPoints,
+  createBreakpointBetween,
+  createBreakpointTo,
+  SIZE,
+} from 'constants/screen';
 
 type SubFooterProps = {
   isMobile?: boolean;
@@ -45,17 +49,17 @@ export const SubFooterTitle = styled.p`
   line-height: 16px;
   font-weight: 500;
 
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.L)} {
+  @media ${MobileBreakPoints.MOBILE_L} {
     font-size: 16px;
     line-height: 24px;
   }
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
+  @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 18px;
-    line-height: 32px;
+    line-height: 24px;
   }
 
-  @media ${createBreakpointTo(SIZE.XS)} {
+  @media ${MobileBreakPoints.MOBILE_S} {
     font-size: 14px;
     line-height: 20px;
   }
@@ -82,8 +86,8 @@ export const SubFooterDescription = styled.div<SubFooterProps>`
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 18px;
-    line-height: 32px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {

@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import { getChildComponentName, getChildWithProps } from './utils';
 import { FrameWorkSwitcher } from './IBuilder.styles';
 import { SelectedFramework } from './types';
+import FrameWorkSwitcherPortal from './FrameworkSwitcherPortal';
 
 const getInnerComponents = (
   children: ReactNode,
@@ -81,9 +82,15 @@ const IBuilder: FC = ({ children }) => {
     setSelectedFrameWorks,
   });
 
+  const isBrowser = typeof window !== 'undefined';
+
   return (
     <div>
-      <FrameWorkSwitcher>{iBuilderFrameWorks}</FrameWorkSwitcher>
+      {isBrowser ? (
+        <FrameWorkSwitcherPortal rootId="framework-switcher">
+          <FrameWorkSwitcher>{iBuilderFrameWorks}</FrameWorkSwitcher>
+        </FrameWorkSwitcherPortal>
+      ) : null}
       <div>{frameWorkTab}</div>
     </div>
   );

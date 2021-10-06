@@ -1,40 +1,30 @@
-<IBuilderDescriptionCard title="Some info about Back End on Node.js 1" tab="server.js" lines={[1, 2]}>
+<IBuilderDescriptionCard title="Install our Node SDK" tab="node/server.js" lines={[7, 8]}>
 
-Install the package and import it in your code. Alternatively, if you’re starting from scratch and need a `package.json` file, download the project files using the link in the code editor.
+To access everything in our Node SDK, install the `checkout-sdk-node` package into your codebase. We’re using [npm](https://www.npmjs.com/package/frames-react) as our package manager in this example.
+
+`npm install checkout-sdk-node`
+
+
+</IBuilderDescriptionCard>
+<IBuilderDescriptionCard title="Import our Node SDK into your server file" tab="node/server.js" lines={[7, 8]}>
+
+Import `checkout-sdk-node` at the top of your server file, so you have access to the whole package. Before you can use the SDK’s functions, you need to initialize it (similar to what we did with `Frames.init`). 
+
+Create a new instance of the Node SDK with your secret key as the first argument, and store it in a variable, so you can use it later on. In our example, we store it in a variable called `cko`.
+
 
 </IBuilderDescriptionCard>
 
-<IBuilderDescriptionCard title="Some info about Back End on Node.js 2" tab="server.js" lines={[33, 39]}>
+<IBuilderDescriptionCard title="Create a payment request" tab="node/server.js" lines={[20, 29]}>
 
-Card tokens (`tok_`) are single use and only have a 15-minute lifespan.
-Once youve successfully sent your request, youll receive a response containing a
-permanent card source ID (`src_`) which can be used in subsequent payment requests.
+Your back end securely sends a payment request with the payment token it receives from the front end in the body of the request.
 
-</IBuilderDescriptionCard>
+To do this, you need to access the `payments` object of the Node SDK by using the variable you stored the SDK instance in. In our example, we used `cko`, so we send a payment request by calling `cko.payments.request`. 
 
+<TipBox variant="tip">
 
-<IBuilderDescriptionCard title="Some info about Back End on Node.js 3" tab="server.js" lines={[8, 26]}>
+Remember that `cko` here represents all pre-built functions from the Node SDK.
 
-Some issuing banks do not support card verification and reject the charge request even if all card
-details are accurate. If the issuing bank refuses the card verification request, a follow-up
-request will be sent automatically with a $1 total amount (or the equivalent in the submitted
-processing currency).
-
-<tabs>
-<tab title="Tab 1">
-
-```json withBorder="false"
-https://api.checkout.com/payments
-```
-
-</tab>
-<tab title="Tab 2" active>
-
-```json withBorder="false"
-https://api.sandbox.checkout.com/payments
-```
-
-</tab>
-</tabs>
+</TipBox>
 
 </IBuilderDescriptionCard>

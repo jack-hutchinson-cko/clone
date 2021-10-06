@@ -3,11 +3,13 @@ title: Hosted Payments Page
 account: ABC
 ---
 
-Accept card payments with a Hosted Payments Page—a fast and easy way to collect your customer’s payment information, process the payment request and handle authentication. We've created a table that lists [supported](https://docs.checkout.com/integrate/product-support) [payment](https://docs.checkout.com/integrate/product-support) [methods](https://docs.checkout.com/integrate/product-support), languages and other features.
+Accept card payments with a Hosted Payments Page—a fast and easy way to collect your customer’s payment information, process the payment request and handle authentication. We've created a table that lists [supported payment methods](https://docs.checkout.com/integrate/product-support), languages and other features.
 
 <TipBox variant="info">
 
-Hosted Payments Page now accepts [15 more languages!](https://docs.checkout.com/integrate/product-support)
+[New payment methods supported](/integrate/product-support#Integrated_payment_methods)
+
+Hosted Payments Page and Payment Links now support seven more payment methods.
 
 </TipBox>
 
@@ -20,7 +22,7 @@ When your customer is ready to check out:
 3. Once your customer fills in the required payment details, we will process the payment and handle the authentication flow.
 4. And after the payment has been successfully processed, you will be notified by a [webhook](https://docs.checkout.com/reporting-and-insights/webhooks).
 
-<img src="/docs/Integrate/Hosted Payments/Hosted+Payments+page.png" />
+<img src="/docs/Integrate/Hosted Payments/Hosted+Payments+page.png" withFullscreenPreview />
 
 ---
 
@@ -85,7 +87,7 @@ To create a Hosted Payments Page on which your customers can make their payment,
 
 ### The request
 
-For the full specification, see our [API reference](https://api-reference.checkout.com/#tag/Hosted-Payments-Page).
+For the full specification, see our [API reference](https://api-reference.checkout.com/#operation/createAHostedPaymentsSession).
 
 #### Endpoints
 
@@ -93,14 +95,14 @@ For the full specification, see our [API reference](https://api-reference.checko
 <tab title="Live">
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/hosted-payments`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/hosted-payments`
 
 </LineCodeWrapper>
 </tab>
@@ -112,119 +114,7 @@ http://localhost/ can only be used for the URL fields during testing and will no
 
 </TipBox>
 
-<Accordion title="Parameters for supported payment methods">
-
-<Table>
-<TableHead headers={['Payment method', 'billing.address.country', 'currency', 'reference']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-KNET
-
-</TableCell>
-<TableCell>
-
-`KW` - Kuwait
-
-</TableCell>
-<TableCell>
-
-`KWD`
-
-</TableCell>
-<TableCell>
-
-<StatusTag type="optional" />
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Mada
-
-</TableCell>
-<TableCell>
-
-`SA` - Saudi Arabia
-
-</TableCell>
-<TableCell>
-
-`SAR`
-
-</TableCell>
-<TableCell>
-
-<StatusTag type="optional" />
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-PayPal
-
-</TableCell>
-<TableCell>
-
-Any supported
-
-</TableCell>
-<TableCell>
-
-Any supported
-
-</TableCell>
-<TableCell>
-
-<StatusTag type="required" />
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Sofort
-
-</TableCell>
-<TableCell>
-
-`AT` - Austria
-
-`BE` - Belgium
-
-`DE` - Germany
-
-`IT` - Italy
-
-`NL` - Netherlands
-
-`ES` - Spain
-
-</TableCell>
-<TableCell>
-
-EUR
-
-</TableCell>
-<TableCell>
-
-<StatusTag type="optional" />
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-</Accordion>
-
-#### Request examples
-
-<tabs>
-<tab title="Card">
+#### Request example
 
 ```json withBorder=false
 {
@@ -237,8 +127,8 @@ EUR
     }
   },
   "customer": {
-    "name": "Jack Napier",
-    "email": "jokershere@gmail.com"
+    "name": "Bruce Wayne",
+    "email": "brucewayne@gmail.com"
   },
   "success_url": "https://example.com/payments/success",
   "failure_url": "https://example.com/payments/failure",
@@ -246,83 +136,173 @@ EUR
 }
 ```
 
-</tab>
-<tab title="KNET">
+#### Alternative payment methods
 
-```json withBorder=false
-{
-  "amount": 1000,
-  "currency": "KWD",
-  "reference": "ORD-123A",
-  "billing": {
-    "address": {
-      "country": "KW"
-    }
-  },
-  "customer": {
-    "name": "Jack Napier",
-    "email": "jokershere@gmail.com"
-  },
-  "success_url": "https://example.com/payments/success",
-  "failure_url": "https://example.com/payments/failure",
-  "cancel_url": "https://example.com/payments/checkout"
-}
-```
+We've listed the available alternative payment methods for the Hosted Payments Page below.
 
-</tab>
-<tab title="Mada">
+Different payment methods have different required and optional fields when making a request. We've listed these below.
 
-```json withBorder=false
-{
-  "amount": 1000,
-  "currency": "SAR",
-  "reference": "ORD-123A",
-  "billing": {
-    "address": {
-      "country": "SA"
-    }
-  },
-  "customer": {
-    "name": "Jack Napier",
-    "email": "jokershere@gmail.com"
-  },
-  "success_url": "https://example.com/payments/success",
-  "failure_url": "https://example.com/payments/failure",
-  "cancel_url": "https://example.com/payments/checkout"
-}
-```
+You can view a request example with all of these fields on our [API reference](https://api-reference.checkout.com/#operation/createAHostedPaymentsSession).
 
-</tab>
-<tab title="Sofort">
+<Table>
+<TableHead headers={["Payment method", "Field requirements"]}/>
+<TableBody>
+<TableRow>
+<TableCell>
 
-```json withBorder=false
-{
-  "amount": 1000,
-  "currency": "EUR",
-  "reference": "ORD-123A",
-  "billing": {
-    "address": {
-      "country": "BE"
-    }
-  },
-  "customer": {
-    "name": "Jack Napier",
-    "email": "jokershere@gmail.com"
-  },
-  "success_url": "https://example.com/payments/success",
-  "failure_url": "https://example.com/payments/failure",
-  "cancel_url": "https://example.com/payments/checkout"
-}
-```
+KNET
 
-</tab>
-</tabs>
+</TableCell>
+<TableCell>
 
-### The response
+* `billing.address.country`: `KW` for Kuwait.
+* `currency` to `KWD`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Mada
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `SA` for Saudi Arabia
+* `currency`: `SAR`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+PayPal
+
+</TableCell>
+<TableCell>
+
+* `reference` is required.
+* `billing.address.country` and `currency` is required and can be any [that are supported](/payments/payment-methods/wallets).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Sofort
+
+</TableCell>
+<TableCell>
+
+* `currency` should be set to `EUR`
+* `billing.address.country` is required and can be any [country that is supported](/payments/payment-methods/bank-transfers).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Bancontact 
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `BE` for Belgium.
+* `currency`: `EUR`.
+* `customer.name` is required.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+EPS
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `AT` for Austria.
+* `currency`: `EUR`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Giropay 
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `DE` for Germany.
+* `currency`: `EUR`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Multibanco
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `PT` for Portugal.
+* `currency`: `EUR`.
+* `customer.name` is required.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Przelewey24
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `PL` for Poland.
+* `currency`: `EUR` or `PLN`.
+* `customer.name` is required.
+* `customer.email` is required.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+SEPA 
+
+</TableCell>
+<TableCell>
+
+* `currency` should be set to `EUR`
+* `billing.address.country` is required and can be any [country that is supported](/payments/payment-methods/direct-debit).
+
+</TableCell>
+</TableRow>
+{/* <TableRow>
+<TableCell>
+
+Fawry
+
+</TableCell>
+<TableCell>
+
+* `billing.address.country`: `EG` for Egypt.
+* `currency`: `EGP`.
+* `customer.email` is required.
+* `billing.phone.number` is required.
+* `products` is required.
+
+</TableCell>
+</TableRow> */}
+</TableBody>
+</Table>
+
+### Response example
 
 The response will include the `redirect` link to which you should redirect your customer to finalize the payment.
-
-#### Response example
 
 ```json
 {

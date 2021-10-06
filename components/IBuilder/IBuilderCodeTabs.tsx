@@ -3,30 +3,51 @@ import { get } from 'lodash';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { IconActionDownload, IconActionCopy, IconActionCheckmark } from '@cko/icons';
-
+import { IconActionDownload, IconActionCheckmark, IconActionCopyIB } from 'components/Icons';
 import { useTabs } from 'hooks/useTabs';
-import { TabHeader, TabItem, ControlsPanel, ControlButton } from './IBuilderCodeTabs.styles';
-import { getChildWithProps, getSouceCodeFromMdxTab } from './utils';
-import { SelectedBlockType } from './types';
+import {
+  TabHeader,
+  TabItem,
+  ControlsPanel,
+  ControlButton,
+  TabsWrapper,
+} from './IBuilderCodeTabs.styles';
+import { getChildWithProps, getResultSourceCode, getSelectedLines } from './utils';
+import { SelectedBlockType, MediaFilesType, CodeControlStateType } from './types';
 
 type Props = {
   selectedBlock: SelectedBlockType;
   onChangeTab: () => void;
+  mediaFiles: MediaFilesType;
+  codeControlState: CodeControlStateType;
 };
 
 const timeout = 3000;
 
-const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) => {
+const IBuilderCodeTabs: FC<Props> = ({
+  children,
+  selectedBlock,
+  onChangeTab,
+  mediaFiles,
+  codeControlState,
+}) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const { titles, activeTab, setActiveTab } = useTabs({ children, selectedTab: selectedBlock.tab });
+  const { titles, activeTab, setActiveTab } = useTabs({
+    children,
+    selectedTab: selectedBlock.tab,
+    titleKey: 'displayTitle',
+  });
 
   const selectedChild = React.Children.toArray(children)[activeTab] || null;
-  const sourceCode = getSouceCodeFromMdxTab(selectedChild);
+  const sourceCode = getResultSourceCode({ child: selectedChild, codeControlState });
+  const codeTitle = get(selectedChild, 'props.title');
   const childWithProps =
-    get(selectedChild, 'props.title') === selectedBlock.tab
-      ? getChildWithProps(selectedChild, { selectedLines: selectedBlock.lines })
-      : selectedChild;
+    codeTitle === selectedBlock.tab
+      ? getChildWithProps(selectedChild, {
+          selectedLines: getSelectedLines({ selectedBlock, codeTitle, codeControlState }),
+          sourceCode,
+        })
+      : getChildWithProps(selectedChild, { sourceCode });
 
   const onToggleHandler = useCallback(() => {
     setIsCopied(!isCopied);
@@ -39,11 +60,17 @@ const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) =
     const zip = new JSZip();
 
     React.Children.toArray(children).forEach((child) => {
-      const name = get(child, 'props.title');
-      const content = getSouceCodeFromMdxTab(child);
+      const { title: name } = get(child, 'props', {});
+      const content = getResultSourceCode({ child, codeControlState });
 
       zip.file(name, content);
     });
+
+    if (mediaFiles && mediaFiles.length) {
+      mediaFiles.forEach(({ name, src }) => {
+        zip.file(name, src, { base64: true });
+      });
+    }
 
     zip.generateAsync({ type: 'blob' }).then((content) => {
       saveAs(content, 'example-checkout-files.zip');
@@ -58,11 +85,13 @@ const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) =
   return (
     <>
       <TabHeader>
-        {titles.map((tabItem, index) => (
-          <TabItem key={tabItem} isSelected={index === activeTab} onClick={handelTabClick(index)}>
-            {tabItem}
-          </TabItem>
-        ))}
+        <TabsWrapper>
+          {titles.map((tabItem, index) => (
+            <TabItem key={tabItem} isSelected={index === activeTab} onClick={handelTabClick(index)}>
+              {tabItem}
+            </TabItem>
+          ))}
+        </TabsWrapper>
         <ControlsPanel>
           {isCopied ? (
             <ControlButton>
@@ -71,7 +100,7 @@ const IBuilderCodeTabs: FC<Props> = ({ children, selectedBlock, onChangeTab }) =
           ) : (
             <CopyToClipboard text={sourceCode} onCopy={onToggleHandler}>
               <ControlButton>
-                <IconActionCopy />
+                <IconActionCopyIB />
               </ControlButton>
             </CopyToClipboard>
           )}

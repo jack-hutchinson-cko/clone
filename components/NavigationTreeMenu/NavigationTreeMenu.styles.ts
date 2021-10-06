@@ -9,6 +9,11 @@ export const Navigation = styled.nav`
   &:not(:first-child) {
     margin-top: 24px;
   }
+
+  > div:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 `;
 
 export const Container = styled.div<{ isMobile?: boolean }>`

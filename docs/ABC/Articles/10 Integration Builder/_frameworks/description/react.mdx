@@ -1,17 +1,23 @@
-<IBuilderDescriptionCard title="Some info about Back End on React 1" tab="app.js" lines={[6, 15]}>
+<IBuilderDescriptionCard>
 
-Add a page to show a preview of the customer's order. Allow the customer to review or modify their order—once a customer is sent to the Checkout page, the order is final and cannot be modified without creating a new Checkout Session.
+We have created a React wrapper that contains functions and components to get you up and running with our Frames product. We’ll walk you through how to install the package and then import them into your React project.
 
 </IBuilderDescriptionCard>
 
-<IBuilderDescriptionCard title="Some info about Back End on React 2" tab="app.js" lines={[48, 52]}>
+<IBuilderDescriptionCard title="Install the Frames package">
 
-Only changes to the placeholder text
+To access everything in our React wrapper, install the `frames-react` package into your codebase. We’re using [npm](https://www.npmjs.com/package/frames-react) as our package manager in this example.
 
-<TipBox variant="warning">
+`npm install frames-react`
 
-For more details about sender data requirements, please contact your implementation manager.
+</IBuilderDescriptionCard>
 
-</TipBox>
+<IBuilderDescriptionCard title="Import the React components" tab="react/src/Form.jsx" lines={[1, 1]}>
+
+Frames is a collection of iframes that we host. When a customer enters payment details into these iframes, we handle this sensitive information and take the responsibility away from you. 
+
+Our React wrapper contains pre-built React components: `Frames`, `CardNumber`, `ExpiryDate` and `Cvv`. `CardNumber`, `ExpiryDate` and `Cvv` are components for the iframes that handle their named data. Imagine the Frames component as a container that wraps around each of these iframes, much like a form is used to describe a collection of input fields.
+
+At the top of the file that hosts the payment form, import these four components from the `frames-react` package.
 
 </IBuilderDescriptionCard>

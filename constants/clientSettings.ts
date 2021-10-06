@@ -12,17 +12,23 @@ export const CLIENT_SETTINGS_BY_TYPE = {
     changelogPath: path.join(process.cwd(), 'docs/ABC/Changelog/index.mdx'),
     homePagePath: path.join(process.cwd(), 'docs/ABC/Home/index.mdx'),
     fullFaqPath: path.join(process.cwd(), 'docs/ABC/FAQ'),
+    FAQPageEnable: true,
+    NASBannerShown: false,
   },
   NAS: {
     docArticlesFilePath: 'docs/NAS/Articles',
-    FAQFilePath: 'docs/NAS/FAQ',
+    FAQFilePath: '',
     searchIndexName: 'NAS_DOCS',
-    searchFAQIndexName: 'NAS_FAQ',
+    searchFAQIndexName: '',
     fullFilePath: path.join(process.cwd(), 'docs/NAS/Articles'),
     changelogPath: path.join(process.cwd(), 'docs/NAS/Changelog/index.mdx'),
     homePagePath: path.join(process.cwd(), 'docs/NAS/Home/index.mdx'),
-    fullFaqPath: path.join(process.cwd(), 'docs/NAS/FAQ'),
+    fullFaqPath: '',
+    FAQPageEnable: false,
+    NASBannerShown: true,
   },
 };
+
+export const publicDir = path.join(process.cwd(), 'public');
 
 export const clientSettings = CLIENT_SETTINGS_BY_TYPE[CLIENT_TYPE as 'ABC' | 'NAS'];

@@ -3,9 +3,7 @@ import { IconArrowLeft } from '../Icons';
 
 export const StyledContainer = styled.div<{ withIcon?: boolean }>`
   position: relative;
-  display: inline-flex;
   align-items: center;
-  gap: 5px;
 `;
 
 export const StyledLinkContainer = styled.span`

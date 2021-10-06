@@ -18,11 +18,11 @@ If you plan to process Apple Pay payment through an entity outside the European 
 
 </TipBox>
 
-### Make a payment
+## Make a payment
 
 Once you've set up and configured Apple Pay, you're ready to accept Apple Pay payments through our payment gateway.
 
-## Step 1: Generate a Checkout.com token from the Apple Pay token
+### Step 1: Generate a Checkout.com token from the Apple Pay token
 
 After your customer validates their transaction with biometrics, Apple will generate a [payment token](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken).
 
@@ -34,7 +34,7 @@ The first step in processing an Apple Pay transaction is to convert this Apple P
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Tokens).
 
@@ -55,7 +55,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -73,7 +73,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response example
+#### Response example
 
 ```json
 {
@@ -96,11 +96,11 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 ---
 
-## Step 2: Request a payment
+### Step 2: Request a payment
 
 Using the token `(tok_...)` you got in the response above, make a standard payment request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout).
 
@@ -121,7 +121,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -134,7 +134,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response
+#### Response example
 
 If you get a `201 Success` response and the `approved` field is `true`, your payment was successful. If the transaction failed, it's likely that the payment request was made with an invalid/expired card, or a valid card with an insufficient available balance.
 

@@ -1,8 +1,10 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
 import { get } from 'lodash';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import matter from 'gray-matter';
 
 import { AnchorItem } from 'types/anchors';
 import { BreadCrumbsItems, DocsPathItem } from 'types/content';
@@ -32,6 +34,30 @@ export type ArticleSectionData = {
 
 type ChildArticlesType = { title: string; href: string; description: string }[];
 
+const getAnchorPropsFromTitle = (
+  title: string,
+): {
+  title: string;
+  href: string;
+} => {
+  const regexMdLinks = RegExp(/\[([^\[]+)\](\(.*\))/gm);
+  const singleMatch = RegExp(/\[([^\[]+)\]\((.*)\)/);
+  const matchedLink = (title.match(regexMdLinks) || [])[0];
+  if (matchedLink) {
+    const result = singleMatch.exec(matchedLink) || [];
+
+    return {
+      title: result[1],
+      href: result[2],
+    };
+  }
+
+  return {
+    title,
+    href: getAnchorUrl(title),
+  };
+};
+
 export const getAnchorsNavItems = ({
   content = '',
   childrenArticles = [],
@@ -41,16 +67,13 @@ export const getAnchorsNavItems = ({
 }): AnchorItem[] => {
   const contentAnchors: AnchorItem[] = getAnchors(content).map((headerItem) => {
     const title = headerItem.replace(/^#+ (.*$)/gim, '$1');
-    return {
-      title,
-      href: getAnchorUrl(title),
-    };
+
+    return getAnchorPropsFromTitle(title);
   });
 
-  const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) => ({
-    title,
-    href: getAnchorUrl(title),
-  }));
+  const childArticlesAnchors: AnchorItem[] = childrenArticles.map(({ title }) =>
+    getAnchorPropsFromTitle(title),
+  );
 
   return contentAnchors.concat(childArticlesAnchors);
 };
@@ -146,8 +169,19 @@ export const getDocArticlesSettings = (rootFilePath: string): ArticleSettingsTyp
           slugToFilePathMap[path] = `${filePath}/index.mdx`;
           slugToArticleNameMap[path] = title;
 
+          const source = fs.readFileSync(slugToFilePathMap[path]);
+          const { data } = matter(source);
+
           docsPathUrl.push({ params: { docsPathParams } });
-          const childNode = { title, path, filePath, children: [], id: path };
+          const childNode = {
+            title,
+            type: data.type || 'Default',
+            path,
+            filePath,
+            children: [],
+            id: path,
+          };
+
           currentNode.children.push(childNode);
           stack.push(childNode);
         }
@@ -266,36 +300,42 @@ export const getFAQSectionSettings = (
   const mapFaqSectionToFilePath: { [key: string]: string } = {};
   let allFAQItems: ParsedFAQItem[] = [];
 
-  forEachFileTree({ parentFilePath: faqFilePath, parentPath: '/faq' }, (params) => {
-    const { path, filePath } = params;
-    const fileSourcePath = `${filePath}/index.mdx`;
-    const faqSection = path.replace('/faq/', '');
+  try {
+    if (faqFilePath) {
+      forEachFileTree({ parentFilePath: faqFilePath, parentPath: '/faq' }, (params) => {
+        const { path, filePath } = params;
+        const fileSourcePath = `${filePath}/index.mdx`;
+        const faqSection = path.replace('/faq/', '');
 
-    const {
-      data: {
-        title,
-        previewIcon: imageSrc = '',
-        previewIconDark: darkThemeImageSrc = '',
-        description: children = '',
-      },
-      content,
-    } = getMdxFileData(fileSourcePath, { addGitInfo: false });
+        const {
+          data: {
+            title,
+            previewIcon: imageSrc = '',
+            previewIconDark: darkThemeImageSrc = '',
+            description: children = '',
+          },
+          content,
+        } = getMdxFileData(fileSourcePath, { addGitInfo: false });
 
-    const faqItems = getFAQItems(content).map((faqItem) => {
-      const { popularity } = getFAQHeaderProperty(faqItem);
-      return {
-        faqSection: title || '',
-        popularity,
-        faqItem,
-      };
-    });
+        const faqItems = getFAQItems(content).map((faqItem) => {
+          const { popularity } = getFAQHeaderProperty(faqItem);
+          return {
+            faqSection: title || '',
+            popularity,
+            faqItem,
+          };
+        });
 
-    allFAQItems = allFAQItems.concat(faqItems);
+        allFAQItems = allFAQItems.concat(faqItems);
 
-    mapFaqSectionToFilePath[faqSection] = fileSourcePath;
-    pathUrls.push({ params: { faqSection } });
-    faqSections.push({ href: path, title, imageSrc, darkThemeImageSrc, children });
-  });
+        mapFaqSectionToFilePath[faqSection] = fileSourcePath;
+        pathUrls.push({ params: { faqSection } });
+        faqSections.push({ href: path, title, imageSrc, darkThemeImageSrc, children });
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     popularFAQItems: getPopularItemsMDXSource(allFAQItems),

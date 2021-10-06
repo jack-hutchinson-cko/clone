@@ -4,10 +4,18 @@ account: ABC
 type: IBuilder
 ---
 
-<IBuilderFrameWorks frontEnd={['React', 'HTML']} backEnd={['Node', 'Python']} default={['React', 'Node']} />
+<IBuilderFrameWorks frontEnd={['React', 'HTML']} backEnd={['Node']} default={['HTML', 'Node']} />
 
-<IBuilderHeader title="Frames builder">
+<IBuilderHeader title='Frames Builder' time={20} message='Not installed'>
 
-Explore a full, working code sample of an integration with Checkout. The client- and server-side code redirects to a prebuilt payment page hosted on Checkout.
+Understand the requirements to integrate with our Frames product by walking through a working code sample. We’ll take you through set up to tokenization of the card details, so you are ready to request a payment.
+
+This integration builder assumes you have already created an account and have access to your API keys. If you don’t, [create your Hub account](https://www.checkout.com/get-test-account) and go to _Settings > Channels_.
+
+<TipBox variant="warning">
+
+Use your public key on the client side. You should **never** include your secret key on the client side for security reasons. Only use the secret key on the server side.
+
+</TipBox>
 
 </IBuilderHeader>

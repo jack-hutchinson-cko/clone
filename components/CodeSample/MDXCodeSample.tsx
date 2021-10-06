@@ -1,7 +1,6 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { toString } from 'lodash';
 import { Language } from 'prism-react-renderer';
-import { SelectedLinesContext } from 'components/IBuilder';
 import CodeSample from './CodeSample';
 
 export type Props = {
@@ -11,6 +10,7 @@ export type Props = {
   withBorder: boolean;
   withControls: boolean;
   isEditMode: boolean;
+  selectedLines?: never[];
 };
 
 const getBoolMdxProps = (prop: string | boolean): boolean =>
@@ -23,13 +23,12 @@ const MDXCodeSample: FC<Props> = ({
   withControls = true,
   isCollapsible = true,
   isEditMode,
+  selectedLines,
   ...otherProps
 }) => {
   const languageFromClass = (otherProps.className || '').replace('language-', '') as Language;
   const code = toString(children);
   const resultCode = code.charAt(code.length - 1) === '\n' ? code.slice(0, code.length - 1) : code;
-
-  const selectedLines = useContext(SelectedLinesContext);
 
   return (
     <CodeSample

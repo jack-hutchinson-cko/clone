@@ -442,7 +442,7 @@ To set up the SAP Commerce Cloud Connector, you'll need three API keys: a secret
 1.  Log in to your test account on the [Hub sandbox](https://sandbox.checkout.com/).
 2.  In the left menu, go to _Settings > Channels_, and make a note of your secret and public API keys.
 
-<img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" />
+<img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" withFullscreenPreview />
 
 3.  Scroll down to the _Webhooks section_ of the page and select _New webhook_.
 4.  Enter the following URL, replacing [`example.com`](http://example.com) with the URL of your shop: [`example.com/checkout_com/webhook/callback`](http://example.com/checkout_com/webhook/callback). (A webhook URL specific to your installation is available in the Account Settings section of the plugin configuration panel.)
@@ -460,11 +460,12 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
   maxWidth={300}
   src="/docs/Integrate/SAP/create_webhook-magento-2.png"
   title="Create webhook Magento 2"
+  withFullscreenPreview
 />
 
 7.  Click on the webhook you just created, and make a note of the private shared API key.
 
-<img maxWidth={350} src="/docs/Integrate/SAP/webhook–magento-2.png" title="Webhook Magento 2" />
+<img maxWidth={350} src="/docs/Integrate/SAP/webhook–magento-2.png" title="Webhook Magento 2" withFullscreenPreview />
 
 ---
 
@@ -573,13 +574,10 @@ The recipe generates the `local.properties` file with the properties defined in 
 In order to install the add-on using one of the recipes detailed in that folder, run the following commands:
 
 ```bash
-# This will create a solution from the accelerator templates, and install the addons.
 HYBRIS_HOME/installer$ ./install.sh -r [RECIPE_NAME] setup
 
-# This will build and initialize the platform
 HYBRIS_HOME/installer$ ./install.sh -r [RECIPE_NAME] initialize
 
-# This will start a commerce suite instance
 HYBRIS_HOME/installer$ ./install.sh -r [RECIPE_NAME] start
 ```
 

@@ -1,17 +1,29 @@
-<IBuilderDescriptionCard title="Some info about HTML 1" tab="success.html" lines={[6, 13]}>
+<IBuilderDescriptionCard title="Include our script tag in your project" tab="html/payment-form.html" lines={[8, 8]}>
 
-Create a success page for the URL you provided as the Checkout Session `success_url` to display order confirmation messaging or order details to your customer. Stripe redirects to this page after the customer successfully completes the checkout.
+Include our script tag into the head of your payment HTML page. This is how you will be able to access Frames features.  
+
+```html
+<script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
+```
+
+<br />
 
 </IBuilderDescriptionCard>
 
-<IBuilderDescriptionCard title="Some info about HTML 2" tab="cancel.html" lines={[6, 10]}>
+<IBuilderDescriptionCard title="Create the form" tab="html/payment-form.html" lines={[15, 64]}>
 
-Add another page for `cancel_url`. Stripe redirects to this page when the customer clicks the back button in Checkout.
+Frames is a collection of iframes that we host. When a customer enters payment details into these iframes, we handle this sensitive information and take the responsibility away from you. We insert an iframe between each placeholder `div`. 
+
+- Card number: `<div class="card-number-frame"></div>`
+- Expiry date: `<div class="expiry-date-frame"></div>`
+- CVV frame: `<div class="cvv-frame"></div>`
 
 </IBuilderDescriptionCard>
 
-<IBuilderDescriptionCard title="Some info about HTML 2" tab="checkout.html" lines={[10, 24]}>
+<IBuilderDescriptionCard title="Initialize Frames" tab="html/app.js" lines={[6, 8]}>
 
-Finally, add a page to show a preview of the customer's order. Allow the customer to review or modify their order—once a customer is sent to the Checkout page, the order is final and cannot be modified without creating a new Checkout Session.
+Before the input fields appear on your website and app, you need to initialize Frames. To do this, call the init (short for initialize) action on the Frames object and include your public API key within the brackets. Think of this process as similar to entering a password to be able to access a specific website.
+
+`Frames.init("pk_test_XXXX");`
 
 </IBuilderDescriptionCard>

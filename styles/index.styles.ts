@@ -10,9 +10,9 @@ import {
   SIZE,
   Breakpoints,
   MobileBreakPoints,
-  createBreakpointBetween,
   createBreakpointFrom,
   createBreakpointTo,
+  createBreakpointBetween,
 } from 'constants/screen';
 
 export const IntroWrapper = styled.div`
@@ -80,8 +80,9 @@ export const IntroDescription = styled(Text)`
   line-height: 24px;
 
   @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 24px;
+    font-size: 23px;
     line-height: 32px;
+    width: 100%;
   }
 `;
 
@@ -95,17 +96,25 @@ export const GetStartedLink = styled(PrimaryButton)`
   color: ${({ theme }) => theme.colors.btnPrimaryFont};
   background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
 
-  &:hover,
-  :focus {
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.fiordLight};
+  }
+
+  &:focus {
     border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
     color: ${({ theme }) => theme.colors.btnPrimaryFont};
     background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
     box-shadow: inherit;
   }
 
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.catskillWhite};
+  }
+
   @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 24px;
     line-height: 32px;
+    padding: 16px 32px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
@@ -140,12 +149,16 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
-  @media ${createBreakpointFrom(SIZE.M)} {
-    padding: 32px 64px 64px 64px;
+  @media ${createBreakpointFrom(SIZE.L)} {
+    padding: 32px 64px 29px 64px;
+  }
+
+  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
+    padding: 32px 64px 49px 64px;
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 24px 40px 40px 40px;
+    padding: 24px 40px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
@@ -170,4 +183,10 @@ export const Navigation = styled.div`
   @media ${createBreakpointTo(SIZE.XL)} {
     display: none;
   }
+`;
+
+export const FrontMatterContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
 `;

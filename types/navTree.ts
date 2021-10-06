@@ -6,6 +6,7 @@ export type NavTreeElement = {
   path: string;
   children?: NavTreeElement[];
   icon?: ReactNode;
+  type?: string;
 };
 
 export type NavTreeElementWithFilePatch = {

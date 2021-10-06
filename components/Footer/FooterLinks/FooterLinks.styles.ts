@@ -23,7 +23,7 @@ export const FooterAccordion = styled(Accordion)`
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
     margin-top: 40px;
-    padding: 0 0 40px;
+    padding: 0 0 32px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
@@ -44,7 +44,11 @@ export const FooterAccordionHead = styled(AccordionHead)`
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
     font-size: 18px;
-    line-height: 18px;
+    line-height: 16px;
+    & svg {
+      width: 12px;
+      height: 6px;
+    }
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
@@ -59,7 +63,7 @@ export const FooterListTitle = styled.p`
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
-  line-height: 24px;
+  line-height: 16px;
   letter-spacing: 1.76px;
 `;
 

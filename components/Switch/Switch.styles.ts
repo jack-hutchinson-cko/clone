@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { SIZE } from 'constants/screen';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -13,6 +14,12 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.switchBackground};
   cursor: pointer;
   overflow: hidden;
+
+  @media (max-width: ${SIZE.SM}) {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+  }
 `;
 
 export const IconWrapper = styled.div`

@@ -56,7 +56,7 @@ export const ChangeLogWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 `;
 
 export const HomeWrapper = styled.div`

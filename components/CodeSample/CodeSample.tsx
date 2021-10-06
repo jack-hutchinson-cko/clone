@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key */
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
 import { IconActionCopy, IconActionLink } from 'components/Icons';
-import { HighlightContainer, StyledIcons, StyledText, StyledIconLink } from './CodeSample.styles';
+import { HighlightContainer, StyledIcons, StyledText } from './CodeSample.styles';
 import { CodeSampleProps } from './type';
 import PreLine from './PreLine';
 import TextArea from './TextArea';
@@ -34,20 +34,12 @@ const CodeSample: FC<CodeSampleProps> = ({
     <TextArea value={soursCode} onChange={setSoursCode} />
   ) : null;
 
+  useEffect(() => {
+    setSoursCode(code);
+  }, [code]);
+
   return (
     <HighlightContainer {...rest}>
-      {withControls && (
-        <>
-          <StyledIconLink>
-            <IconActionLink />
-          </StyledIconLink>
-          <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
-            <StyledIcons>
-              {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
-            </StyledIcons>
-          </CopyToClipboard>
-        </>
-      )}
       <Highlight {...defaultProps} code={soursCode} language={language}>
         {({ tokens, getLineProps, getTokenProps }) => (
           <PreLine
@@ -62,6 +54,14 @@ const CodeSample: FC<CodeSampleProps> = ({
           />
         )}
       </Highlight>
+      {withControls && (
+        <StyledIcons>
+          <IconActionLink />
+          <CopyToClipboard text={soursCode} onCopy={() => onToggleHandler()}>
+            {isCopied ? <IconActionCopy /> : <StyledText>Copied!</StyledText>}
+          </CopyToClipboard>
+        </StyledIcons>
+      )}
     </HighlightContainer>
   );
 };
