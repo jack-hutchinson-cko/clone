@@ -56,7 +56,7 @@ When you create a session, you will receive the available `payment_method_catego
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -96,7 +96,7 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <Table>
 <TableHead headers={['Field name', 'Description']} />
@@ -199,7 +199,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
 
 </TipBox>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -221,7 +221,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
     }
 ```
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title="201 Successfully created Klarna session" active>
@@ -298,7 +298,7 @@ To do so, you first need to insert the below code into your page to load the Kla
 //]]>
 ```
 
-#### Initialize the SDK
+### Initialize the SDK
 
 Then initialize the Klarna Payments Library. To do this, call `init` and pass the `client_token` that you got in the response when you created the session in the first step.
 
@@ -314,7 +314,7 @@ Then initialize the Klarna Payments Library. To do this, call `init` and pass th
     }
 ```
 
-#### Add a container to your page
+### Add a container to your page
 
 Next, specify where you want the widget by adding a container to your checkout page with the following snippet.
 
@@ -330,7 +330,7 @@ The Klarna Payments iframe requires a minimum width of 280px.
 
 ### Display available payment methods
 
-To show your customer the Klarna payment options open to them (i.e. _Pay later_ and _Slice it_), use the following `payment_method_categories` array, which you'll find in the response you received when you created the session in step one.
+To show your customers the Klarna payment options open to them (i.e. _Pay later_ and _Slice it_), use the following `payment_method_categories` array, which you'll find in the response you received when you created the session in step one.
 
 ```json
     {
@@ -1269,11 +1269,11 @@ If unsuccessful, you may receive a `403 Capture not allowed` or `404 Payment not
 
 </TipBox>
 
-### Refund a payment
+## Refund a payment
 
 Klarna supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
 
-### Void a payment
+## Void a payment
 
 #### Endpoints
 
@@ -1428,5 +1428,26 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 <TipBox variant="info">
 
 If unsuccessful, you may get a `403 Void not allowed` or `404 Payment not found` error.
+
+</TipBox>
+
+
+## Testing Klarna 
+
+<TipBox variant="note">
+
+To start testing, you'll need to:
+
+*   [create a test account](https://www.checkout.com/get-test-account), and
+*   contact your Customer Success Manager or Integrations engineer to activate Klarna payments in the sandbox environment.
+
+</TipBox>
+
+1. Follow the steps above to display the Klarna widget ready for payment.
+2. Select the desired payment method and pay.
+
+<TipBox variant="note">
+
+When testing, you may be asked to verify your details. If so, follow [Klarna’s testing guide](https://docs.klarna.com/resources/test-environment).
 
 </TipBox>
