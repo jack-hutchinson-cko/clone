@@ -3,6 +3,7 @@
  */
 
 const nextConfig = {
+  basePath: '/docs',
   webpack: (config, { isServer }) => {
     // this is where you add custom configuration for webpack
     if (!isServer) {
