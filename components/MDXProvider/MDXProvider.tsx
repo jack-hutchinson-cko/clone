@@ -9,6 +9,7 @@ import ContentPanel from 'components/ContentPanel';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
 import withStaticTheme from 'hoc/withStaticTheme';
+import withYOverflow from 'hoc/withYOverflow';
 import {
   TextHeadingOne,
   TextHeadingTwo,
@@ -85,8 +86,8 @@ export const mdxComponents = {
   TableHeadSticky,
   TableRow,
   TableSubhead,
-  Table: withBlockMargin(Table),
-  table: withBlockMargin(Table),
+  Table: withBlockMargin(withYOverflow(Table)),
+  table: withBlockMargin(withYOverflow(Table)),
   tbody: TableBody,
   tr: TableRow,
   th: StyledTH,
