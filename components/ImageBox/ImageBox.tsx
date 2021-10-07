@@ -38,15 +38,16 @@ const ImageBox: FC<Props> = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
+  const newSrc = encodeURIComponent(finalSrc);
 
   const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
-      <StyledImage src={finalSrc} loader={loader} {...props} />
+      <StyledImage src={newSrc} loader={loader} {...props} />
     </ImgWrapper>
   );
 
   return withFullscreenPreview ? (
-    <ImgModalWrapper src={finalSrc}>{imageBox}</ImgModalWrapper>
+    <ImgModalWrapper src={newSrc}>{imageBox}</ImgModalWrapper>
   ) : (
     imageBox
   );
