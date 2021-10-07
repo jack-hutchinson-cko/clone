@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ChangelogCounter } from 'components/ChangelogComponents';
+import { WhatsNewCounter } from 'components/WhatsNewComponents';
 import { NavTreeElement } from 'types/navTree';
 import NavigationTreeMenu, { NavigationTree } from 'components/NavigationTreeMenu';
 import ListItemLink from '../ListMenu/ListItemLink';
@@ -17,10 +17,10 @@ const AccordionMenu: FC<Props> = ({ docsTreeLinks, activeLink }) => (
       isRoot
       link={
         <>
-          <ListItemLink href="/changelog" isActive={activeLink === '/changelog'}>
-            Changelog
+          <ListItemLink href="/whats-new" isActive={activeLink === '/whats-new'}>
+            Whats New
           </ListItemLink>
-          <ChangelogCounter />
+          <WhatsNewCounter />
         </>
       }
     />

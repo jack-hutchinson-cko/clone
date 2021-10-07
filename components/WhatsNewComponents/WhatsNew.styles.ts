@@ -64,7 +64,7 @@ export const Button = styled.a`
   }
 `;
 
-export const ChangeLogWidget = styled.div`
+export const WhatsNewWidget = styled.div`
   margin: 24px 0;
 `;
 

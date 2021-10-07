@@ -6,7 +6,7 @@ import GoogleTags from './Trackers/GoogleTags';
 import Boomerang from './Trackers/Boomerang';
 import HeapIO from './Trackers/HeapIO';
 import HotJar from './Trackers/HotJar';
-import NoticeableWidget from './ChangeLog/NoticeableWidget';
+import NoticeableWidget from './WhatsNew/NoticeableWidget';
 
 import OneTrustCookie from './Cookies/OneTrustCookie';
 

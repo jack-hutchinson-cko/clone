@@ -1,9 +1,9 @@
 import { useEffect, FC, useState } from 'react';
 import { NOTICEABLE_COUNTER_ID } from 'constants/keys';
 import { WindowWithNoticeableType } from './types';
-import { Counter, CounterWrapper } from './Changelog.styles';
+import { Counter, CounterWrapper } from './WhatsNew.styles';
 
-const ChangelogCounter: FC = () => {
+const WhatsNewCounter: FC = () => {
   const [counter, setCounter] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -35,4 +35,4 @@ const ChangelogCounter: FC = () => {
   );
 };
 
-export default ChangelogCounter;
+export default WhatsNewCounter;

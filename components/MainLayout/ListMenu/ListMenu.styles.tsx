@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { IconEarth, ChangeLogIcon } from 'components/Icons';
+import { IconEarth, WhatsNewIcon } from 'components/Icons';
 import Accordion, { AccordionBody, AccordionHead } from 'components/Accordion';
 
 export const StyledAccordionBody = styled(AccordionBody)`
@@ -44,7 +44,7 @@ export const StyledIconEarth = styled(IconEarth)`
   color: ${({ theme }) => theme.colors.sectionIcon};
 `;
 
-export const StyledChangeLogIcon = styled(ChangeLogIcon)`
+export const StyledWhatsNewIcon = styled(WhatsNewIcon)`
   color: ${({ theme }) => theme.colors.sectionIcon};
   position: absolute;
   left: 0;
@@ -52,7 +52,7 @@ export const StyledChangeLogIcon = styled(ChangeLogIcon)`
   transform: translateY(-50%);
 `;
 
-export const ChangeLogWrapper = styled.div`
+export const WhatsNewWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
