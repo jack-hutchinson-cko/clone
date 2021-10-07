@@ -62,6 +62,7 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         justify-content: center;
         flex: 1;
         gap: 0;
+        margin: 0;
 
         &:first-child {
           justify-content: space-between;
@@ -312,5 +313,24 @@ export const WrapperIconActionArrowRight = styled.span`
   }
   &:hover svg {
     transform: translateX(40%);
+  }
+`;
+
+export const WrapperWidgedGuidse = styled.span`
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
+    li > a {
+      font-size: 32px;
+      line-height: 32px;
+    }
+    & svg {
+      transform: scale(1.4);
+    }
+  }
+
+  @media ${createBreakpointTo(SIZE.XS)} {
+    li > a {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 `;
