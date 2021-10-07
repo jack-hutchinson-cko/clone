@@ -16,6 +16,7 @@ import {
 } from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import Switch from 'components/Switch';
+import Button from 'components/Button';
 import DocsSearchWidget from 'components/Search/DocsSearchWidget';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
@@ -33,7 +34,6 @@ import {
   NavigationLink,
   ToggleIcon,
   SwitchIcon,
-  ButtonLogin,
   NavigationDrawers,
   SearchFieldWrapper,
   DrawerTopContentWrapper,
@@ -108,9 +108,16 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       dividerText="or"
       link={
         <Link href={loginUrl} passHref>
-          <ButtonLogin fullWidth={!isDesktop} target="_blank">
+          <Button
+            as="a"
+            target="_blank"
+            variant="secondary"
+            size="large"
+            fullWidth={!isDesktop}
+            fullHeight={isTablet || isMobile}
+          >
             Log in
-          </ButtonLogin>
+          </Button>
         </Link>
       }
       alternativeLink={

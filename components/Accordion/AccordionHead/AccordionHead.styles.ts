@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { SIZE, MobileBreakPoints } from 'constants/screen';
+import { createBreakpointTo, MobileBreakPoints, SIZE } from 'constants/screen';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
@@ -54,7 +54,7 @@ export const StyledAccordionHead = styled.button<{
     & > g {
       fill: ${({ theme }) => theme.colors.stormGray};
     }
-    @media (max-width: ${SIZE.SM}px) {
+    @media ${createBreakpointTo(SIZE.M)} {
       width: 12px;
       height: 6px;
     }

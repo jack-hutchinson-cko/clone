@@ -204,43 +204,6 @@ export const NavigationLink = styled.a<{
   }
 `;
 
-export const ButtonLogin = styled.a<{ fullWidth?: boolean }>`
-  display: inline-block;
-  padding: 12px 24px;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.btnTertiaryFont};
-  background: ${({ theme }) => theme.colors.blueTertiary};
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.btnHoverPrimary};
-  }
-
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.blueTertiary};
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.catskillWhite};
-  }
-
-  ${({ fullWidth }) =>
-    fullWidth &&
-    css`
-      display: block;
-      width: 100%;
-    `}
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 16px 32px;
-    font-size: 24px;
-    line-height: 32px;
-  }
-`;
-
 export const HeaderLogoWrapper = styled.div`
   display: flex;
 

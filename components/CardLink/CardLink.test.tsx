@@ -1,6 +1,7 @@
 import { mount } from '@cypress/react';
 
 import { withThemeWrapper } from 'tools/testing';
+import ArrowLink from 'components/ArrowLink';
 import CardLink from './CardLink';
 
 describe('CardLink', () => {
@@ -10,14 +11,8 @@ describe('CardLink', () => {
 
     mount(
       withThemeWrapper(
-        <CardLink
-          data-cy="card-link"
-          srcImg={testImage}
-          title="Test title 2"
-          linkName="Test btn name"
-          href="www.test.com"
-        >
-          Card text
+        <CardLink data-cy="card-link" srcImg={testImage} title="Test title 2">
+          <ArrowLink title="Test btn name" href="www.test.com" />
         </CardLink>,
       ),
     );

@@ -32,6 +32,10 @@ export const IntroWrapper = styled.div`
 export const ContentBlock = styled(Box)`
   flex: 1;
 
+  button {
+    margin-top: 30px;
+  }
+
   @media ${Breakpoints.DESKTOP} {
     &:first-child {
       padding-right: 20px;
@@ -82,47 +86,6 @@ export const IntroDescription = styled(Text)`
   @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 23px;
     line-height: 32px;
-    width: 100%;
-  }
-`;
-
-export const GetStartedLink = styled(PrimaryButton)`
-  margin-top: 30px;
-  padding: 12px 24px;
-  font-size: 16px;
-  line-height: 24px;
-  border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.btnPrimaryFont};
-  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.fiordLight};
-  }
-
-  &:focus {
-    border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
-    color: ${({ theme }) => theme.colors.btnPrimaryFont};
-    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-    box-shadow: inherit;
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.catskillWhite};
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 24px;
-    line-height: 32px;
-    padding: 16px 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  @media (max-width: ${SIZE.SM}px) {
     width: 100%;
   }
 `;

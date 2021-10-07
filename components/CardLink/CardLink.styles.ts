@@ -5,7 +5,7 @@ export const CardWrapper = styled(Flex)<{ isMobile: boolean }>`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: 278px;
+  min-height: 278px;
   ${({ isMobile }) => (isMobile ? 'width: 236px; margin: auto;' : '')}
   padding: 32px;
   border-radius: 8px;
