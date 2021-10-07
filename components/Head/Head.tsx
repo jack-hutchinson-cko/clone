@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
+import { basePathAddition } from '../../tools/basePathAddition';
 import GoogleTags from './Trackers/GoogleTags';
 import Boomerang from './Trackers/Boomerang';
 import HeapIO from './Trackers/HeapIO';
@@ -18,16 +19,18 @@ type PureHeadProps = {
 };
 
 const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
+  const addCssSrc = basePathAddition('/assets/fonts/add.css');
+  const faviconSrc = basePathAddition('/favicon.ico');
   const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
   return (
     <Head>
       {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
       <title>Checkout.com - Docs</title>
-      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="shortcut icon" href={faviconSrc} />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       {isNAS && <meta name="robots" content="noindex" />}
-      <link href="/assets/fonts/add.css" rel="stylesheet" />
+      <link href={addCssSrc} rel="stylesheet" />
       <script src="https://cdn.checkout.com/js/framesv2.min.js" />
       <GoogleTags id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       <Boomerang id={process.env.NEXT_PUBLIC_BOOMERANG_ID} />
