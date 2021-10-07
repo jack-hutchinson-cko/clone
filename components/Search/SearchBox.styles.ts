@@ -39,10 +39,12 @@ export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
 
           @media ${MobileBreakPoints.MOBILE_M} {
             margin: 24px 24px 2px 24px;
+            padding: 18px 24px;
           }
 
           @media ${MobileBreakPoints.MOBILE_S} {
             margin: 24px 24px 2px 24px;
+            padding: 13px 16px;
           }
         `}
 `;
@@ -66,7 +68,7 @@ export const TextField = styled(TextFieldBase)<{ isFAQSection?: boolean }>`
   }
 
   @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 18px;
+    font-size: 32px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {

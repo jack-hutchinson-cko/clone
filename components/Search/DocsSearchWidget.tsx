@@ -21,11 +21,17 @@ type Props = {
   emptySearchResult?: string;
   popularSearches?: SearchResultLink[];
   popularSearchesTitle?: string;
+  onLinkClick: () => void;
 };
 
 const MAX_DOCS_HITS_NUMBER = 4;
 
-const DocsSearchWidget: FC<Props> = ({ popularSearches = [], popularSearchesTitle, ...props }) => {
+const DocsSearchWidget: FC<Props> = ({
+  popularSearches = [],
+  popularSearchesTitle,
+  onLinkClick,
+  ...props
+}) => {
   return (
     <SearchWidget
       baseUrlRederection="/search"
@@ -51,7 +57,7 @@ const DocsSearchWidget: FC<Props> = ({ popularSearches = [], popularSearchesTitl
           <SearchesTitle>{popularSearchesTitle}</SearchesTitle>
           {popularSearches.map(({ title, url }) => (
             <Link key={title} href={url} passHref>
-              <PopularSearchesItem>
+              <PopularSearchesItem onClick={onLinkClick}>
                 {title} <IconActionArrowRight />
               </PopularSearchesItem>
             </Link>

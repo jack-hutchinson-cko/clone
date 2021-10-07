@@ -83,6 +83,10 @@ const Header: FC<WithMenuStateProps<Props>> = ({
 
   useScrollDisabled((searchState || menuState) && isMobile);
 
+  const onCloseSearchDrawer = useCallback(() => {
+    if (searchState) onChangeSearchState(false);
+  }, [searchState, onChangeSearchState]);
+
   const onToggleSearchDrawer = useCallback(() => {
     onChangeSearchState(!searchState);
   }, [searchState, onChangeSearchState]);
@@ -138,6 +142,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       popularSearches={popularSearches}
       emptySearchResult={emptySearchResult}
       popularSearchesTitle={popularSearchesTitle}
+      onLinkClick={onCloseSearchDrawer}
     />
   );
 
