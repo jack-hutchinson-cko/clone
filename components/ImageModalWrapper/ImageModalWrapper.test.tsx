@@ -20,11 +20,6 @@ describe('ImageModalWrapper', () => {
 
     cy.get('*[data-cy=fullScreen]').children().should('have.length', 2);
     cy.get('*[data-cy=fullScreen]').children().find('img').should('have.length', 1);
-    cy.get('*[data-cy=fullScreen]')
-      .children()
-      .find('img')
-      .invoke('attr', 'src')
-      .should('eq', testImage);
     cy.get('*[data-cy=fullScreen]').find('svg').should('have.length', 1);
     cy.get('*[data-cy=fullScreen]').children().eq(1).invoke('prop', 'tagName').should('eq', 'svg');
   });

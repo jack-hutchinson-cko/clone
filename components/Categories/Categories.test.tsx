@@ -55,12 +55,6 @@ describe('CategoriesItem', () => {
     cy.get('*[data-cy=category-item]').invoke('attr', 'href').should('eq', 'www.test.com');
     cy.get('*[data-cy=category-item]').children().should('have.length', 2);
     cy.get('*[data-cy=category-item]').children().eq(0).should('contain', "I's test title");
-    cy.get('*[data-cy=category-item]')
-      .children()
-      .eq(0)
-      .find('img')
-      .invoke('attr', 'src')
-      .should('eq', testImage);
     cy.get('*[data-cy=category-item]').children().eq(1).should('contain', 'Test content');
   });
 
