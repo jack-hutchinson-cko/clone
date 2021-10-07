@@ -5,7 +5,7 @@ type Props = {
   title: string;
 };
 
-const ChangelogHeader: FC<Props> = ({ title }) => {
+const WhatsNewHeader: FC<Props> = ({ title }) => {
   return (
     <HeaderContainer>
       <Header>{title}</Header>
@@ -16,4 +16,4 @@ const ChangelogHeader: FC<Props> = ({ title }) => {
   );
 };
 
-export default ChangelogHeader;
+export default WhatsNewHeader;
