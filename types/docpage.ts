@@ -15,4 +15,5 @@ export type DocPostProps = {
   anchorsNavItems: AnchorItem[];
   childrenArticles: { title: string; href: string; description: string }[];
   isIntegrationBuilder: boolean;
+  showAuthorSection: boolean;
 };
