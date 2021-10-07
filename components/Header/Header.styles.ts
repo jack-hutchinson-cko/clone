@@ -275,11 +275,15 @@ export const SwitchIcon = styled.div`
 `;
 
 export const DrawerTopContentWrapper = styled.div`
-  padding: 40px;
+  padding: 35px 40px 48px 40px;
   background: ${({ theme }) => theme.colors.background};
 
+  @media ${Breakpoints.TABLET} {
+    padding: 32px 40px 40px;
+  }
+
   @media ${MobileBreakPoints.MOBILE_S} {
-    padding: 24px;
+    padding: 24px 24px 32px;
   }
 `;
 
