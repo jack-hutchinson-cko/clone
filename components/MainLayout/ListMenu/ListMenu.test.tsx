@@ -4,8 +4,8 @@ import { withThemeWrapper } from 'tools/testing';
 import ListMenu from './ListMenu';
 
 const staticLinksData: [string, string][] = [
-  ['Home', '/'],
-  ['Changelog', '/changelog'],
+  ['Home', '/docs'],
+  ['Changelog', '/docs/changelog'],
 ];
 
 describe('ListMenu', () => {

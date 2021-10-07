@@ -5,7 +5,7 @@ import { themes } from 'constants/themes';
 
 import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
-import ContentPanel from 'components/ContantPanel';
+import ContentPanel from 'components/ContentPanel';
 import { withAnchor } from 'components/AnchorsProvider';
 import withBlockMargin from 'hoc/withBlockMargin';
 import withStaticTheme from 'hoc/withStaticTheme';

@@ -39,7 +39,7 @@ describe('SectionLink', () => {
       .children()
       .first()
       .invoke('attr', 'href')
-      .should('eq', mockProps.titleUrl);
+      .should('eq', `/docs${mockProps.titleUrl}`);
   });
 
   it('should render SectionLink with children', () => {

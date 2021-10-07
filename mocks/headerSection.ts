@@ -46,7 +46,7 @@ const guidesListByClientType = {
 export const guidesList = guidesListByClientType[CLIENT_TYPE as 'ABC' | 'NAS'] || []
 
 export const popularSearches: SearchResultLink[] = [
-  { title: 'Payment', url: 'search?query=payment&page=1' },
+  { title: 'Payment', url: '/search?query=payment&page=1' },
   { title: 'Card verification ', url: '/search?query=card%20verfication&page=1' },
   { title: '3D secure', url: '/search?query=3d%20secure&page=1' },
 ];

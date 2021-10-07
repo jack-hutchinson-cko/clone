@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Wrapper } from './TimeToComplete.styles';
 import { IconClock } from '../Icons';
+import { Wrapper } from './TimeToComplete.styles';
 
 type Props = {
   time: string;
