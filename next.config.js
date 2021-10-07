@@ -6,7 +6,6 @@ const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/doc
 
 const nextConfig = {
   basePath,
-  assetPrefix: basePath,
   webpack: (config, { isServer }) => {
     // this is where you add custom configuration for webpack
     if (!isServer) {
