@@ -16,6 +16,7 @@ export const IconWrapper = styled.span`
   opacity: 0;
   white-space: nowrap;
   transition: opacity 0.3s ease;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`

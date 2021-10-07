@@ -49,8 +49,8 @@ const AnchorsProvider: FC<Props> = ({ children }) => {
       }
     };
 
-    document.addEventListener('scroll', onScrollHandler);
-    return () => document.removeEventListener('scroll', onScrollHandler);
+    document.addEventListener('mousewheel', onScrollHandler);
+    return () => document.removeEventListener('mousewheel', onScrollHandler);
   }, []);
 
   useEffect(() => {
