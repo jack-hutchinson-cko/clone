@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDXProvider from 'components/MDXProvider';
 import { PageContent } from 'styles/index.styles';
-import { ChangelogHeader, Changelog } from 'components/ChangelogComponents';
+import { WhatsNewHeader, WhatsNew } from 'components/WhatsNewComponents';
 import { getDocArticleData } from 'lib/fileParser';
 import { clientSettings } from 'constants/clientSettings';
 
@@ -12,19 +12,19 @@ type Props = {
   frontMatter: { [key: string]: string };
 };
 
-const ChangeLogPage: FC<Props> = ({ frontMatter, source }) => {
+const WhatsNewPage: FC<Props> = ({ frontMatter, source }) => {
   return (
     <PageContent>
-      <ChangelogHeader title={frontMatter.title} />
+      <WhatsNewHeader title={frontMatter.title} />
       <MDXProvider source={source} />
-      <Changelog />
+      <WhatsNew />
     </PageContent>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const { source, frontMatter } = await getDocArticleData({
-    filePath: clientSettings.changelogPath,
+    filePath: clientSettings.whatsNewPath,
   });
 
   return {
@@ -35,4 +35,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default ChangeLogPage;
+export default WhatsNewPage;

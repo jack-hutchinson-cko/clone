@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useRef, useState, useCallback, ReactN
 import Link from 'next/link';
 import { toString, get } from 'lodash';
 import { getAnchorUrl as getAnchorUrlFromText, getHashValue } from 'lib/url';
-import { writeTextToClipboard } from 'lib/cliboard';
+import { writeTextToClipboard } from 'lib/clipboard';
 
 import Context, { Props } from './AnchorsContext';
 import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styles';

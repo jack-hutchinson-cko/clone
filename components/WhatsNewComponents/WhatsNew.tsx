@@ -1,9 +1,9 @@
 import { useEffect, FC } from 'react';
 import { NOTICEABLE_WIDGET_ID } from 'constants/keys';
-import { ChangeLogWidget } from './Changelog.styles';
+import { WhatsNewWidget } from './WhatsNew.styles';
 import { WindowWithNoticeableType } from './types';
 
-const Changelog: FC = () => {
+const WhatsNew: FC = () => {
   useEffect(() => {
     const windowWithNoticeable = window as WindowWithNoticeableType;
     if (windowWithNoticeable.noticeable) {
@@ -16,7 +16,7 @@ const Changelog: FC = () => {
     };
   }, []);
 
-  return <ChangeLogWidget id="noticeable-widget" />;
+  return <WhatsNewWidget id="noticeable-widget" />;
 };
 
-export default Changelog;
+export default WhatsNew;

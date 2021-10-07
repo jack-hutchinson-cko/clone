@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { HeaderContainer, Header, Button } from './Changelog.styles';
+import { HeaderContainer, Header, Button } from './WhatsNew.styles';
 
 type Props = {
   title: string;

@@ -5,7 +5,7 @@ import ListMenu from './ListMenu';
 
 const staticLinksData: [string, string][] = [
   ['Home', '/docs'],
-  ['Changelog', '/docs/changelog'],
+  ["What's New", '/docs/whats-new'],
 ];
 
 describe('ListMenu', () => {
