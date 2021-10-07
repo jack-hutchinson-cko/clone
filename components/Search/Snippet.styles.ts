@@ -1,31 +1,63 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { TextHeadingThree } from 'components/TextHeading';
 import { Text } from 'components/Text';
-import { MobileBreakPoints } from 'constants/screen';
+import { createBreakpointBetween, createBreakpointTo, SIZE } from 'constants/screen';
 import { HitMode } from 'types/search';
 
 export const HighlightedHeader = styled(TextHeadingThree)<{ mode: HitMode }>`
-  margin: ${({ mode }) => (mode === HitMode.HEADER ? 0 : '0px 0 8px 0')};
-  font-size: ${({ mode }) => (mode === HitMode.HEADER ? '16px' : '24px')};
   font-weight: 500;
   color: ${({ theme }) => theme.colors.base};
-  ${({ mode }) => (mode === HitMode.HEADER ? 'line-height: 20px;' : '')}
 
-  @media ${MobileBreakPoints.MOBILE_L} {
+  ${({ mode }) =>
+    mode === HitMode.HEADER &&
+    css`
+      margin: 0;
+      font-size: 16px;
+      line-height: 24px;
+    `}
+
+  ${({ mode }) =>
+    mode === HitMode.PAGE &&
+    css`
+      margin: 0 0 4px 0;
+      font-size: 24px;
+    `}
+
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
     font-size: 24px;
-    margin: ${({ mode }) => (mode === HitMode.HEADER ? '0px 0 8px 0' : '0px 0 8px 0')};
+    line-height: 32px;
+    margin: 0 0 4px 0;
+  }
+
+  @media ${createBreakpointTo(SIZE.XS)} {
+    font-size: 18px;
+    line-height: 24px;
   }
 `;
 
 export const HighlightedBody = styled(Text)<{ mode: HitMode }>`
-  margin: ${({ mode }) => (mode === HitMode.HEADER ? 0 : '16px 0 0px 0')};
-  font-size: ${({ mode }) => (mode === HitMode.HEADER ? '14px' : '16px')};
+  color: ${({ theme }) => theme.colors.baseLight};
   word-break: break-word;
 
-  @media ${MobileBreakPoints.MOBILE_L} {
-    font-size: ${({ mode }) => (mode === HitMode.HEADER ? '24px' : '16px')};
+  ${({ mode }) =>
+    mode === HitMode.HEADER &&
+    css`
+      margin: 0;
+      font-size: 14px;
+      line-height: 24px;
+    `}
+
+  ${({ mode }) =>
+    mode === HitMode.PAGE &&
+    css`
+      margin: 16px 0 0 0;
+      font-size: 16px;
+      line-height: 24px;
+    `}
+
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
+    font-size: 24px;
     line-height: 32px;
   }
-  color: ${({ theme }) => theme.colors.baseLight};
 `;

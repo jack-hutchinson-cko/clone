@@ -20,6 +20,7 @@ type PureHeadProps = {
 
 const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
   const addCssSrc = basePathAddition('/assets/fonts/add.css');
+  const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
   return (
     <Head>
       {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
@@ -27,6 +28,7 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
       <link rel="shortcut icon" href="/favicon.ico" />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
+      {isNAS && <meta name="robots" content="noindex" />}
       <link href={addCssSrc} rel="stylesheet" />
       <script src="https://cdn.checkout.com/js/framesv2.min.js" />
       <GoogleTags id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />

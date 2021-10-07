@@ -4,6 +4,8 @@ export const CardsWrapper = styled.div<{ gap?: number }>`
   display: flex;
   gap: ${({ gap = 24 }) => `${gap}px`};
   flex-wrap: wrap;
+  padding-top: 32px;
+  padding-bottom: 60px;
 `;
 
 export const CardContainer = styled.div<{ cardsInRow: number; gap?: number }>`

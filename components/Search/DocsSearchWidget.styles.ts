@@ -55,44 +55,6 @@ export const ButtonContainer = styled.div`
   margin: 8px 16px;
 `;
 
-export const Button = styled.button`
-  display: inline-block;
-  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-  color: ${({ theme }) => theme.colors.btnPrimaryFont};
-  padding: 8px 24px;
-  border-radius: 8px;
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 500;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  outline: 0;
-  border: 0;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.fiordLight};
-  }
-
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.catskillWhite};
-  }
-
-  @media ${Breakpoints.MOBILE} {
-    width: 100%;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_L} {
-    font-size: 24px;
-    line-height: 24px;
-    padding: 24px 24px;
-  }
-`;
-
 export const StyledLink = styled(Link)`
   text-decoration: none;
   background-color: transparent;

@@ -315,7 +315,7 @@ export const getMdxFileData = (
       const newData: FileDataType = {
         ...data,
         ...(lastAuthor ? { lastAuthor } : {}),
-        modifiedDate: dateFormat(mtime, 'mmm d yyyy'),
+        modifiedDate: dateFormat(mtime, 'dS mmmm yyyy'),
       };
 
       return { content, data: newData };

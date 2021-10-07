@@ -5,7 +5,7 @@ type Props = {
   title: string;
 };
 
-const SearchResultHeader: FC<Props> = ({ title }) => {
+const ChangelogHeader: FC<Props> = ({ title }) => {
   return (
     <HeaderContainer>
       <Header>{title}</Header>
@@ -16,4 +16,4 @@ const SearchResultHeader: FC<Props> = ({ title }) => {
   );
 };
 
-export default SearchResultHeader;
+export default ChangelogHeader;
