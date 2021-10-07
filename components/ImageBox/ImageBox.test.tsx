@@ -24,7 +24,6 @@ describe('ImageBox', () => {
     );
 
     cy.get('*[data-cy=image-box]').should('have.length', 1);
-    cy.get('*[data-cy=image-box]').invoke('attr', 'src').should('eq', testImgUrl);
     cy.get('*[data-cy=image-box]').parent().parent().should('have.css', 'max-width', `${170}px`);
   });
 });
