@@ -4,6 +4,7 @@ import Link from 'next/link';
 import SearchWidget from 'components/Header/SearchWidget';
 import { SearchResultLink } from 'types/header';
 import { IconActionArrowRight } from 'components/Icons';
+import Button from 'components/Button';
 import { HitMode } from 'types/search';
 import { clientSettings } from 'constants/clientSettings';
 import {
@@ -11,7 +12,6 @@ import {
   PopularSearches,
   PopularSearchesItem,
   ButtonContainer,
-  Button,
   StyledLink,
 } from './DocsSearchWidget.styles';
 import DocsHits from './DocsHits';
@@ -38,7 +38,9 @@ const DocsSearchWidget: FC<Props> = ({ popularSearches = [], popularSearchesTitl
         >
           <ButtonContainer>
             <StyledLink href={searchUrl}>
-              <Button onClick={onCloseSearchPanel}>View all search results</Button>
+              <Button variant="primary" size="large" onClick={onCloseSearchPanel}>
+                View all search results
+              </Button>
             </StyledLink>
           </ButtonContainer>
         </DocsHits>
