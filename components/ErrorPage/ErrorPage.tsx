@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import ErrorPageLink from 'components/ErrorPageLink/ErrorPageLink';
-import { basePathAddition } from 'tools/basePathAddition';
 import { LinksContainer, Wrapper } from './ErrorPage.styles';
 
 type Props = {
@@ -9,8 +8,6 @@ type Props = {
 
 const ErrorPage: FC<Props> = ({ statusCode }) => {
   let errorMessage: string;
-  const docsImgUrl = basePathAddition('/errorPage/docs.svg');
-  const apiRefImgUrl = basePathAddition('/errorPage/api.svg');
 
   switch (statusCode) {
     case 404:
@@ -28,10 +25,10 @@ const ErrorPage: FC<Props> = ({ statusCode }) => {
       <h1>{statusCode}</h1>
       <p className="error-message">{errorMessage}</p>
       <LinksContainer>
-        <ErrorPageLink imageUrl={docsImgUrl} url="/">
+        <ErrorPageLink imageUrl="/errorPage/docs.svg" url="/">
           Go to Docs home
         </ErrorPageLink>
-        <ErrorPageLink imageUrl={apiRefImgUrl} url="https://api-reference.checkout.com">
+        <ErrorPageLink imageUrl="/errorPage/api.svg" url="https://api-reference.checkout.com">
           Go to API reference
         </ErrorPageLink>
       </LinksContainer>

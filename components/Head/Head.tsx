@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
-import { basePathAddition } from '../../tools/basePathAddition';
 import GoogleTags from './Trackers/GoogleTags';
 import Boomerang from './Trackers/Boomerang';
 import HeapIO from './Trackers/HeapIO';
@@ -19,7 +18,6 @@ type PureHeadProps = {
 };
 
 const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
-  const addCssSrc = basePathAddition('/assets/fonts/add.css');
   const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
   return (
     <Head>
@@ -29,7 +27,7 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       {isNAS && <meta name="robots" content="noindex" />}
-      <link href={addCssSrc} rel="stylesheet" />
+      <link href="/assets/fonts/add.css" rel="stylesheet" />
       <script src="https://cdn.checkout.com/js/framesv2.min.js" />
       <GoogleTags id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       <Boomerang id={process.env.NEXT_PUBLIC_BOOMERANG_ID} />

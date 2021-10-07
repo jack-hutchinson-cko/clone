@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import { withAnchor as withAnchorWrapper } from 'components/AnchorsProvider';
 import { IconArrowRight } from '../Icons';
-import { basePathAddition } from '../../tools/basePathAddition';
 import { Title, CardWrapper, TextContainer, IconWrapper, StyledReactSVG } from './Card.styles';
 import { Props } from './types';
 
@@ -23,7 +22,6 @@ const Card: FC<Props> = ({
   ...rest
 }) => {
   const HeaderComponent = withAnchor ? TitleWithAnchor : Title;
-  const imgSrcWithBasePath = basePathAddition(imgSrc);
 
   const getCardContent = () => {
     switch (variant) {
@@ -31,7 +29,7 @@ const Card: FC<Props> = ({
         return (
           <>
             <IconWrapper maxWidth={maxWidth} maxHeight={maxHeight}>
-              <StyledReactSVG src={imgSrcWithBasePath} alt={imgAlt} />
+              <StyledReactSVG src={imgSrc} alt={imgAlt} />
             </IconWrapper>
             <HeaderComponent isMedia={variant === 'media'}>{title}</HeaderComponent>
             <TextContainer isMedia={variant === 'media'}>{children}</TextContainer>

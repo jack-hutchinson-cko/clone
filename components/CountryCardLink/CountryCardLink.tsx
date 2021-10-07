@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { basePathAddition } from 'tools/basePathAddition';
 import { Wrapper, Title } from './CountryCardLink.styles';
 import { countriesMap } from './countriesMap';
 
@@ -15,11 +14,10 @@ const flagImageWidth = 40;
 
 const CountryCartLink: FC<Props> = ({ url, type }) => {
   const flagImageSrc = countriesMap.get(type.toLowerCase()) || '';
-  const imgSrcWithBasePath = basePathAddition(flagImageSrc);
   return (
     <Link href={url} passHref>
       <Wrapper href={url}>
-        <Image src={imgSrcWithBasePath} width={flagImageWidth} height={flagImageHeight} />
+        <Image src={flagImageSrc} width={flagImageWidth} height={flagImageHeight} />
         <Title>{type}</Title>
       </Wrapper>
     </Link>
