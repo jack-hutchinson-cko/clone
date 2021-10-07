@@ -28,10 +28,6 @@ export const StyledAccordionHead = styled.button<{
       color: inherit;
       background: transparent;
       font-weight: ${({ isBoldTitle = true }) => (isBoldTitle ? 500 : 300)};
-      font-size: 16px;
-      @media ${MobileBreakPoints.MOBILE_M} {
-        font-size: 24px;
-      }
     }
 
     ${({ isOpen, hasTitle = false, theme }) =>
