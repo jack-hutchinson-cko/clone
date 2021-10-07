@@ -57,7 +57,7 @@ const DocPost: NextPage<DocPostProps> = ({
                 </FrontMatterContainer>
               )}
               <LastChange>
-                {modifiedDate} – {lastAuthor}
+                Last updated: {modifiedDate} by {lastAuthor}
               </LastChange>
             </>
           ) : null}
