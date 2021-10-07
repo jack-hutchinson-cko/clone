@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react';
 import { NavTreeElement } from 'types/navTree';
 import { WhatsNewCounter } from 'components/WhatsNewComponents';
