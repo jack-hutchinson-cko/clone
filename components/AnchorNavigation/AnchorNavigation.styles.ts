@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 export const NavigationHeader = styled.h3`
   font-size: 11px;
   line-height: 24px;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   margin: 0;
   color: ${({ theme }) => theme.colors.base};
