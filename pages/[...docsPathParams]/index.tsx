@@ -22,7 +22,13 @@ import {
 import { DocPostProps } from 'types/docpage';
 import withErrorPage from 'hoc/withErrorPage';
 import withFeatureFlag from 'hoc/withFeatureFlag';
-import { PageContent, Title, Navigation, FrontMatterContainer } from '../../styles/index.styles';
+import {
+  PageContent,
+  Title,
+  Navigation,
+  FrontMatterContainer,
+  WrapperMDXContent,
+} from '../../styles/index.styles';
 
 const MIN_ANCHOR_COUNT = 2;
 
@@ -64,7 +70,9 @@ const DocPost: NextPage<DocPostProps> = ({
             </>
           ) : null}
         </header>
-        <MDXProvider source={source} />
+        <WrapperMDXContent>
+          <MDXProvider source={source} />
+        </WrapperMDXContent>
         {!!childrenArticles.length && (
           <CardWrapper cardsInRow={ChildArticlesPerRow}>
             {childrenArticles.map((childItem) => (

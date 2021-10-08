@@ -153,3 +153,15 @@ export const FrontMatterContainer = styled.div`
   gap: 16px;
   margin-bottom: 20px;
 `;
+
+export const WrapperMDXContent = styled.div`
+  padding-bottom: 43px;
+
+  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
+    padding-bottom: 23px;
+  }
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding-bottom: 48px;
+  }
+`;
