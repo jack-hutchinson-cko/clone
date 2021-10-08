@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MobileBreakPoints } from 'constants/screen';
 
 export const StyledTabHead = styled.ul<{ withPadding?: boolean }>`
   display: flex;
@@ -10,6 +11,7 @@ export const StyledTabHead = styled.ul<{ withPadding?: boolean }>`
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   background-color: ${({ theme }) => theme.colors.tabBackground};
+  overflow-y: auto;
 `;
 
 export const StyledTabHeadLink = styled.button<{ active: boolean }>`
@@ -24,4 +26,8 @@ export const StyledTabHeadLink = styled.button<{ active: boolean }>`
   line-height: 24px;
   white-space: nowrap;
   cursor: pointer;
+
+  @media ${MobileBreakPoints.MOBILE_M} {
+    font-size: 18px;
+  }
 `;

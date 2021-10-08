@@ -1,7 +1,7 @@
 import { FC, useRef, useState, useCallback } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { RequestTag } from '../Tag';
 import { RequestTagProps } from '../Tag/types';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   StyledLineCodeWrapper,
   Wrapper,

@@ -22,7 +22,13 @@ import {
 import { DocPostProps } from 'types/docpage';
 import withErrorPage from 'hoc/withErrorPage';
 import withFeatureFlag from 'hoc/withFeatureFlag';
-import { PageContent, Title, Navigation, FrontMatterContainer } from '../../styles/index.styles';
+import {
+  PageContent,
+  Title,
+  Navigation,
+  FrontMatterContainer,
+  WrapperMDXContent,
+} from '../../styles/index.styles';
 
 const MIN_ANCHOR_COUNT = 2;
 
@@ -38,9 +44,9 @@ const DocPost: NextPage<DocPostProps> = ({
   source,
   childrenArticles,
   isIntegrationBuilder,
+  showAuthorSection,
 }) => {
   const { title, timeToComplete, warningMessage, modifiedDate, lastAuthor } = frontMatter;
-
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
@@ -56,20 +62,26 @@ const DocPost: NextPage<DocPostProps> = ({
                   <WarningMessage message={warningMessage} />
                 </FrontMatterContainer>
               )}
-              <LastChange>
-                {modifiedDate} – {lastAuthor}
-              </LastChange>
+              {showAuthorSection && (
+                <LastChange>
+                  Last updated: {modifiedDate} by {lastAuthor}
+                </LastChange>
+              )}
             </>
           ) : null}
         </header>
-        <MDXProvider source={source} />
-        <CardWrapper cardsInRow={ChildArticlesPerRow}>
-          {childrenArticles.map((childItem) => (
-            <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
-              {childItem.description}
-            </Card>
-          ))}
-        </CardWrapper>
+        <WrapperMDXContent>
+          <MDXProvider source={source} />
+        </WrapperMDXContent>
+        {!!childrenArticles.length && (
+          <CardWrapper cardsInRow={ChildArticlesPerRow}>
+            {childrenArticles.map((childItem) => (
+              <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
+                {childItem.description}
+              </Card>
+            ))}
+          </CardWrapper>
+        )}
       </PageContent>
       {!isIntegrationBuilder ? (
         <Navigation>
@@ -108,6 +120,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       source,
       childrenArticles,
       isIntegrationBuilder: frontMatter.type === 'IBuilder',
+      showAuthorSection: !childrenArticles.length,
     },
   };
 };

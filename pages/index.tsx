@@ -1,17 +1,18 @@
 import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
+
 import { getDocArticleData } from 'lib/fileParser';
 import { clientSettings } from 'constants/clientSettings';
 import HeroImage from 'components/HeroImage';
 import { HomePageContent } from 'types/homepage';
 import MDXProvider from 'components/MDXProvider';
+import Button from 'components/Button';
 
 import {
   IntroWrapper,
   ContentBlock,
   IntroTitle,
   IntroDescription,
-  GetStartedLink,
   PageContent,
   ImageBoxWrapper,
 } from '../styles/index.styles';
@@ -26,7 +27,9 @@ const HomePage: NextPage<Props> = ({ source, title, description, getStartedLink 
           <IntroTitle>{title}</IntroTitle>
           <IntroDescription>{description}</IntroDescription>
           <Link href={getStartedLink}>
-            <GetStartedLink>Get started</GetStartedLink>
+            <Button variant="primary" size="large">
+              Get started
+            </Button>
           </Link>
         </ContentBlock>
         <ContentBlock>

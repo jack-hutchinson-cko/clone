@@ -32,6 +32,10 @@ export const IntroWrapper = styled.div`
 export const ContentBlock = styled(Box)`
   flex: 1;
 
+  button {
+    margin-top: 30px;
+  }
+
   @media ${Breakpoints.DESKTOP} {
     &:first-child {
       padding-right: 20px;
@@ -78,51 +82,11 @@ export const IntroDescription = styled(Text)`
   width: 85%;
   font-size: 16px;
   line-height: 24px;
+  font-weight: 400;
 
   @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 23px;
     line-height: 32px;
-    width: 100%;
-  }
-`;
-
-export const GetStartedLink = styled(PrimaryButton)`
-  margin-top: 30px;
-  padding: 12px 24px;
-  font-size: 16px;
-  line-height: 24px;
-  border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.btnPrimaryFont};
-  background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.fiordLight};
-  }
-
-  &:focus {
-    border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBackground};
-    color: ${({ theme }) => theme.colors.btnPrimaryFont};
-    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-    box-shadow: inherit;
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.colors.catskillWhite};
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 24px;
-    line-height: 32px;
-    padding: 16px 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  @media (max-width: ${SIZE.SM}px) {
     width: 100%;
   }
 `;
@@ -150,7 +114,7 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.L)} {
-    padding: 32px 64px 29px 64px;
+    padding: 32px 64px 29px 32px;
   }
 
   @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
@@ -189,4 +153,16 @@ export const FrontMatterContainer = styled.div`
   display: flex;
   gap: 16px;
   margin-bottom: 20px;
+`;
+
+export const WrapperMDXContent = styled.div`
+  padding-bottom: 43px;
+
+  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
+    padding-bottom: 23px;
+  }
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding-bottom: 48px;
+  }
 `;

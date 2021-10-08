@@ -9,4 +9,8 @@ export const CardsWrapper = styled.div<{ gap?: number }>`
 export const CardContainer = styled.div<{ cardsInRow: number; gap?: number }>`
   width: ${({ cardsInRow, gap = 24 }) =>
     `calc(${(1 / cardsInRow) * 100}% - ${((cardsInRow - 1) * gap) / cardsInRow}px)`};
+
+  & > div {
+    margin: 0;
+  }
 `;

@@ -1,5 +1,5 @@
 import React, { FC, useState, MouseEvent, useRef } from 'react';
-import { IconActionChevronDown } from '@cko/icons';
+import { IconActionAccordion } from 'components/Icons';
 import { StyledAccordionHead } from './AccordionHead';
 import { StyledAccordion, AccordionBodyWrapper, AccordionTitleWrapper } from './Accordion.styles';
 import { AccordionProps } from './types';
@@ -65,7 +65,7 @@ const Accordion: FC<AccordionProps> = ({
               <mark>{title}</mark>
             </div>
           </AccordionTitleWrapper>
-          <IconActionChevronDown />
+          <IconActionAccordion width={12} height={8} />
         </StyledAccordionHead>
         <AccordionBodyWrapper height={accordionHeight} overflow={accordionOverflow}>
           <div ref={bodyElement}>{children}</div>

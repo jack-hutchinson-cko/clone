@@ -12,12 +12,13 @@ type Props = {
   onSubmit: () => void;
 };
 
-const LARGE_SIZE = 30;
+const LARGE_SIZE = 32;
 const SMALL_SIZE = 16;
 
 const CustomSearchBox: FC<Props> = ({ isFAQSection, currentRefinement, refine, onSubmit }) => {
   const isMobileL = useMatchMedia(MobileBreakPoints.MOBILE_L);
-  const iconSize = isMobileL ? LARGE_SIZE : SMALL_SIZE;
+  const isMobileM = useMatchMedia(MobileBreakPoints.MOBILE_M);
+  const iconSize = isMobileL || isMobileM ? LARGE_SIZE : SMALL_SIZE;
   const Icon = currentRefinement.length ? CrossSearchIcon : IconSearch;
   const placeholderText = isFAQSection ? 'Search for a question, topic or keyword...' : 'Search';
 

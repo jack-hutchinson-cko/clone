@@ -1,14 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react';
 import { NavTreeElement } from 'types/navTree';
-import { ChangelogCounter } from 'components/ChangelogComponents';
+import { WhatsNewCounter } from 'components/WhatsNewComponents';
 import NavigationTreeMenu, { NavigationTree } from '../../NavigationTreeMenu';
 import ListSection from './ListSection';
 import ListItem from './ListItem';
 import ListItemLink from './ListItemLink';
 import {
   StyledIconEarth,
-  StyledChangeLogIcon,
-  ChangeLogWrapper,
+  StyledWhatsNewIcon,
+  WhatsNewWrapper,
   HomeWrapper,
 } from './ListMenu.styles';
 
@@ -21,14 +22,14 @@ const ListMenu: FC<Props> = ({ docsTreeLinks, activeLink, ...props }) => (
   <NavigationTreeMenu {...props}>
     <ListItem
       isRoot
-      icon={<StyledChangeLogIcon />}
+      icon={<StyledWhatsNewIcon />}
       link={
-        <ChangeLogWrapper>
-          <ListItemLink href="/changelog" isActive={activeLink === '/changelog'}>
-            Changelog
+        <WhatsNewWrapper>
+          <ListItemLink href="/whats-new" isActive={activeLink === '/whats-new'}>
+            What's New
           </ListItemLink>
-          <ChangelogCounter />
-        </ChangeLogWrapper>
+          <WhatsNewCounter />
+        </WhatsNewWrapper>
       }
       bottomMargin={16}
     />

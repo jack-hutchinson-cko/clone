@@ -4,6 +4,7 @@ import Link from 'next/link';
 import SearchWidget from 'components/Header/SearchWidget';
 import { SearchResultLink } from 'types/header';
 import { IconActionArrowRight } from 'components/Icons';
+import Button from 'components/Button';
 import { HitMode } from 'types/search';
 import { clientSettings } from 'constants/clientSettings';
 import {
@@ -11,7 +12,6 @@ import {
   PopularSearches,
   PopularSearchesItem,
   ButtonContainer,
-  Button,
   StyledLink,
 } from './DocsSearchWidget.styles';
 import DocsHits from './DocsHits';
@@ -21,11 +21,17 @@ type Props = {
   emptySearchResult?: string;
   popularSearches?: SearchResultLink[];
   popularSearchesTitle?: string;
+  onLinkClick: () => void;
 };
 
 const MAX_DOCS_HITS_NUMBER = 4;
 
-const DocsSearchWidget: FC<Props> = ({ popularSearches = [], popularSearchesTitle, ...props }) => {
+const DocsSearchWidget: FC<Props> = ({
+  popularSearches = [],
+  popularSearchesTitle,
+  onLinkClick,
+  ...props
+}) => {
   return (
     <SearchWidget
       baseUrlRederection="/search"
@@ -38,7 +44,9 @@ const DocsSearchWidget: FC<Props> = ({ popularSearches = [], popularSearchesTitl
         >
           <ButtonContainer>
             <StyledLink href={searchUrl}>
-              <Button onClick={onCloseSearchPanel}>View all search results</Button>
+              <Button variant="primary" size="large" onClick={onCloseSearchPanel}>
+                View all search results
+              </Button>
             </StyledLink>
           </ButtonContainer>
         </DocsHits>
@@ -49,7 +57,7 @@ const DocsSearchWidget: FC<Props> = ({ popularSearches = [], popularSearchesTitl
           <SearchesTitle>{popularSearchesTitle}</SearchesTitle>
           {popularSearches.map(({ title, url }) => (
             <Link key={title} href={url} passHref>
-              <PopularSearchesItem>
+              <PopularSearchesItem onClick={onLinkClick}>
                 {title} <IconActionArrowRight />
               </PopularSearchesItem>
             </Link>

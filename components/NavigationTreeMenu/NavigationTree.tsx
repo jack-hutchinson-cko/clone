@@ -29,7 +29,6 @@ export type Props = {
 
 const NavigationTree: FC<Props> = ({ docsTreeLinks, activeLink, NavSection, NavItem, NavLink }) => {
   const [visible, setVisible] = useState<Record<string, boolean>>({});
-
   const handleToggleOpen = useCallback(
     (id, state) => {
       setVisible({ ...visible, [id]: state });

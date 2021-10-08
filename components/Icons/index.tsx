@@ -333,7 +333,7 @@ export const IconEarth: FC<Props> = (props) => (
   </StyledIcon>
 );
 
-export const ChangeLogIcon: FC<Props> = (props) => (
+export const WhatsNewIcon: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} viewBox="0 0 16 17" {...props}>
     <g clipPath="url(#clip0)">
       <path d="M3.5 5H8.5" stroke="currentColor" strokeLinecap="round" />

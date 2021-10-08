@@ -22,23 +22,32 @@ export type Props = {
   withFullscreenPreview?: boolean;
 };
 
+// keep this in sync with Next default loader
+export const basePathLoader: ImageLoader = ({ src, width, quality }) => {
+  const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/docs/four';
+  return `${basePath}/_next/image?url=${basePath + src}&w=${width}&q=${quality || 70}`;
+};
+
 const ImageBox: FC<Props> = ({
   src,
   darkThemeSrc = '',
   maxWidth,
   withFullscreenPreview,
+  loader = basePathLoader,
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
+  const newSrc = encodeURIComponent(finalSrc);
+
   const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
-      <StyledImage src={finalSrc} {...props} />
+      <StyledImage src={newSrc} loader={loader} {...props} />
     </ImgWrapper>
   );
 
   return withFullscreenPreview ? (
-    <ImgModalWrapper src={finalSrc}>{imageBox}</ImgModalWrapper>
+    <ImgModalWrapper src={newSrc}>{imageBox}</ImgModalWrapper>
   ) : (
     imageBox
   );

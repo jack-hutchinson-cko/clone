@@ -1,23 +1,28 @@
 import styled, { css } from 'styled-components';
 
-import { createBreakpointTo, MobileBreakPoints, SIZE } from 'constants/screen';
+import {
+  createBreakpointTo,
+  MobileBreakPoints,
+  createBreakpointBetween,
+  SIZE,
+} from 'constants/screen';
 
 export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
   width: 32px;
-  height: 32px;
+  height: 22px;
   cursor: pointer;
 
-  @media (max-width: ${SIZE.XS}px) {
-    width: 24px;
-    height: 24px;
+  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
+    width: 40px;
+    height: 27px;
   }
 
-  @media ${MobileBreakPoints.MOBILE_S} {
-    height: 17px;
-    width: 25px;
+  @media ${createBreakpointTo(SIZE.XS)} {
+    width: 18px;
+    height: 18px;
   }
 
   > span,
@@ -33,6 +38,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
 
     @media ${MobileBreakPoints.MOBILE_S} {
       width: 25px;
+      height: 1px;
     }
   }
   > span::before {

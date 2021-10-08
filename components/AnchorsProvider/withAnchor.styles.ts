@@ -16,6 +16,7 @@ export const IconWrapper = styled.span`
   opacity: 0;
   white-space: nowrap;
   transition: opacity 0.3s ease;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`
@@ -26,7 +27,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<{ rightIndent?: number }>`
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: ${({ rightIndent }) => rightIndent ?? 20}px;
 `;

@@ -30,6 +30,7 @@ export const CardWrapper = styled(Flex)<{
 `;
 
 export const TextContainer = styled(Text)<{ isMedia?: boolean }>`
+  margin-top: 0px;
   flex-grow: 1;
 
   ${({ isMedia = false }) =>
@@ -57,6 +58,8 @@ export const StyledReactSVG = styled(ReactSVG)`
 `;
 
 export const Title = styled(TextHeadingThree)<{ isMedia?: boolean }>`
+  margin: 0 0 16px 0;
+
   ${({ isMedia = false }) =>
     isMedia &&
     css`

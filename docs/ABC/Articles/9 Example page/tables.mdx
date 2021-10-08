@@ -1,0 +1,860 @@
+<Table>
+<TableHead headers={['Javascript key', 'Description', 'Default']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`init(object)`
+
+</TableCell>
+<TableCell>
+
+Initializes (or re-initializes) Frames.
+Examples:
+
+- `init({ publicKey: '...' })` initializes with your configuration
+- `init()` reinitializes Frames with the current configuration (if there is one) and empties the fields. This is useful, for example, in single page apps where you want to reinitialize with a clean slate without reloading
+- `init({...})` reinitializes Frames with another configuration
+
+</TableCell>
+<TableCell>
+
+`undefined`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`isCardValid()`
+
+</TableCell>
+<TableCell>
+
+Returns the state of the card form validation.
+Example:
+`Frames.isCardValid()`
+
+</TableCell>
+<TableCell>
+
+boolean
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`submitCard()`
+
+</TableCell>
+<TableCell>
+
+Submits the card form if all form values are valid.
+Example:
+`Frames.submitCard()`
+
+</TableCell>
+<TableCell>
+
+Promise
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`addEventHandler(event, handler)`
+
+</TableCell>
+<TableCell>
+
+Adds a handler that is called when the specified event is triggered. Call the `Frames.Events` object to retrieve the list of accepted events.
+Example:
+`event: Events.CARD_TOKENIZED handler: function(event){}`
+
+</TableCell>
+<TableCell>
+
+`undefined`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Evidence type', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`proof_of_delivery_or_service`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Your proof of delivery or service. Please make sure to add the date of delivery here too.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`invoice_or_receipt`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+The invoice or receipt of the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`invoice_showing_distinct_transactions`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Your invoice showing two distinct transactions. This is relevant in case the cardholder claims a payment was charged twice (duplicate).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`customer_communication`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Customer communication relevant to the case which proves that the payment was valid.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`refund_or_cancellation_policy`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Your refund or cancellation policy. Please always just upload the part of the document that is relevant to this case.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`recurring_transaction_agreement`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Your recurring transaction agreement. Please always just upload the part of the document that is relevant to this case.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`additional_evidence`
+
+<StatusTag type="optional" />
+<TypeTag type="string" />
+</TableCell>
+<TableCell>
+
+Additional evidence supporting your case that does not fall under the above categories.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Scheme', 'Low-value payment', 'Low-risk payment', 'Secure corporate payment', 'Trusted merchant list']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+Visa
+
+</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Mastercard
+
+</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell>
+
+American Express
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell type="info" />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Diners Club (DCI)
+
+</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Cartes Bancaires
+
+</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Webhook event type', 'Description']} />
+<TableBody>
+
+<TableRow>
+<TableCell>
+
+`card_verified`
+
+<InfoBox>
+
+View a [card verified webhook example](https://docs.checkout.com/reporting-and-insights/webhooks/webhook-examples/card_verified).
+
+</InfoBox>
+
+</TableCell>
+<TableCell>
+
+**Card verified**
+
+Occurs when a [card verification](https://docs.checkout.com/risk-management/card-verification) is successful.
+
+</TableCell>
+</TableRow>
+
+<TableRow>
+<TableCell>
+
+`card_verification_declined`
+
+<InfoBox>
+
+View a [card verification declined webhook example](https://docs.checkout.com/reporting-and-insights/webhooks/webhook-examples/card_verification_declined).
+
+</InfoBox>
+
+</TableCell>
+<TableCell>
+
+**Card verification declined**
+
+Occurs when a [card verification](https://docs.checkout.com/risk-management/card-verification) is not approved.
+
+</TableCell>
+</TableRow>
+
+<TableRow>
+<TableCell>
+
+`dispute_canceled`
+
+<InfoBox>
+
+View a [dispute canceled webhook example](https://docs.checkout.com/reporting-and-insights/webhooks/webhook-examples/dispute_canceled).
+
+</InfoBox>
+
+</TableCell>
+<TableCell>
+
+**Dispute canceled**
+
+Occurs when a dispute is canceled by the issuing bank and your account is credited back the disputed amount.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table withTopBorder={false}>
+<TableHead headers={['Field name', 'Description']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`payment_method`
+
+<TypeTag type="string" />
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The payment method.
+
+`checkoutcom_card_payment` / `checkoutcom_vault`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`quote_id`
+
+<TypeTag type="number" />
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The shopping cart identifier.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment_token`
+
+<TypeTag type="string" />
+<StatusTag type="required" />
+<InfoBox> 
+
+For card payments
+
+</InfoBox>
+</TableCell>
+<TableCell>
+
+The [Checkout.com](http://checkout.com/) payment token.
+
+<InfoBox showIcon={false}>
+
+Use [Frames](/integrate/frames), or another of our integration methods, to tokenize customers' cards.
+
+</InfoBox>
+<TipBox variant="info">
+
+This is only for card payments.
+
+</TipBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`public_hash`
+
+<TypeTag type="number" />
+<StatusTag type="required" />
+<InfoBox>
+
+For Vault payments
+
+</InfoBox>
+</TableCell>
+<TableCell>
+
+The Vault public hash.
+
+<TipBox variant="info">
+
+This is only for payments through Vault.
+
+</TipBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`card_bin`
+
+<TypeTag type="string" />
+<StatusTag type="optional" />
+</TableCell>
+<TableCell>
+
+The bank identification number (BIN) of a card.
+
+<InfoBox>
+
+Required if the payment is made with a Mada card.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`card_cvv`
+
+<TypeTag type="number" />
+<StatusTag type="optional" />
+</TableCell>
+<TableCell>
+
+The card verification value (CVV) of a card.
+
+<TipBox variant="info">
+
+This is only for card payments and users who are logged in.
+
+</TipBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`save_card`
+
+<TypeTag type="boolean" />
+<StatusTag type="optional" />
+<InfoBox>
+
+For card payment and logged in users
+
+</InfoBox>
+</TableCell>
+<TableCell>
+
+Save card option for `checkoutcom_card_payment`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`success_url`
+
+<TypeTag type="string" />
+<StatusTag type="optional" />
+</TableCell>
+<TableCell>
+
+The URL to which the customer is redirected following a successful payment. Allows you to have a different redirection URL for the storefront from the one on your Magento 2 instance.
+
+<InfoBox>
+
+If not provided, your existing `success_url` will be used.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`failure_url`
+
+<TypeTag type="string" />
+<StatusTag type="optional" />
+</TableCell>
+<TableCell>
+
+The URL to which the customer is redirected following a failed payment. Allows you to have a different redirection URL for the storefront from the one on your Magento 2 instance.
+
+<InfoBox>
+
+If not provided, your existing `failure_url` will be used.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Feature', 'Frames', 'Hosted Payments', 'Payment Links']} />
+<TableBody>
+<TableSubhead colspan="4" color="blue">
+
+#### Payment flow
+
+</TableSubhead>
+<TableRow>
+<TableCell>
+
+Card tokenization
+
+</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Payment request
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Authentication
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableSubhead colspan="4" color="blue">
+
+#### Integrated payment methods
+
+</TableSubhead>
+<TableSubhead colspan="4">
+<TipBox variant="info">
+
+You can still integrate different [payment methods](/payments/payment-methods) yourself. Listed below are the ones offered in each solution out of the box.
+
+</TipBox>
+</TableSubhead>
+
+<TableSubhead colspan="4">
+<Accordion title="View available payment methods">
+<Table>
+{/* <TableHead headers={['Method', 'Frames', 'Hosted Payments', 'Payment Links']} /> */}
+<TableBody>
+<TableRow>
+<TableCell>
+
+[Cards](/payments/payment-methods/cards)
+
+</TableCell>
+<TableTicCell type="check" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[KNET](https://docs.checkout.com/payments/payment-methods/cards/knet)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[Mada](https://docs.checkout.com/payments/payment-methods/cards/mada)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[PayPal](/payments/payment-methods/wallets/pay-pal)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[Sofort](/payments/payment-methods/bank-transfers/sofort)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[iDEAL](/payments/payment-methods/bank-transfers/ideal)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[Bancontact](/payments/payment-methods/cards/bancontact)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[EPS](/payments/payment-methods/bank-transfers/eps)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[PayPal](/payments/payment-methods/wallets/paypal)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[Giropay](/payments/payment-methods/bank-transfers/giropay)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[Multibanco](/payments/payment-methods/cash-and-atm-payment/multibanco)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[Przelewey24](/payments/payment-methods/bank-transfers/przelewy-24)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+[SEPA](/payments/payment-methods/direct-debit/sepa-direct-debit)
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+</TableBody>
+</Table>
+
+</Accordion>
+</TableSubhead>
+
+<TableSubhead colspan="4" color="blue">
+
+#### Payment form customization
+
+</TableSubhead>
+<TableRow>
+<TableCell>
+
+iFrame
+
+</TableCell>
+<TableTicCell />
+<TableTicCell />
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Full redirect
+
+</TableCell>
+<TableTicCell type="error" />
+<TableTicCell />
+<TableTicCell />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Payment field customization
+
+</TableCell>
+<TableTicCell type="check">
+<InfoBox>
+
+Placeholder text, base (default), valid, invalid, focus
+
+</InfoBox>
+</TableTicCell>
+<TableTicCell type="error" />
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell>
+
+Languages supported
+
+</TableCell>
+<TableCell>
+
+Only changes to the placeholder text:
+
+- English
+- Dutch
+- French
+- German
+- Italian
+- Korean
+- Spanish
+
+</TableCell>
+<TableCell>
+
+- English
+- French
+- Italian
+- Dutch
+- German
+- Spanish
+- Chinese (Hong Kong, Taiwan, China)
+- Japanese
+- Filipino
+- Indonesian
+- Malay
+- Thai
+- Vietnamese
+- Hindi
+
+</TableCell>
+<TableCell>
+
+- English
+- French
+- Italian
+- Dutch
+- German
+- Spanish
+- Chinese (Hong Kong, Taiwan, China)
+- Japanese
+- Filipino
+- Indonesian
+- Malay
+- Thai
+- Vietnamese
+- Hindi
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Country code**
+
+</TableCell>
+<TableCell colSpan={3}>
+
+GB
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Supported currency**
+
+</TableCell>
+<TableCell colSpan={3}>
+
+GBP, EUR
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Scheme**
+
+</TableCell>
+<TableCell colSpan={3}>
+
+<Select>
+<Option title="Faster payments (GBP)">
+
+- **Minimum amount (local currency):** 0.01
+- **Maximum amount (local currency):** 250,000
+- **Cut-off time:** 15:40 GMT
+- **Settlement:** T+0 same day
+
+</Option>
+<Option title="CHAPS (GBP)">
+
+- **Minimum amount (local currency):** 0.01
+- **Maximum amount (local currency):** no maximum
+- **Cut-off time:** N/A
+- **Settlement:** T+0 same day
+
+</Option>
+<Option title="SEPA (EUR)">
+
+- **Minimum amount (local currency):** 0.01
+- **Maximum amount (local currency):** 250,000
+- **Cut-off time:** 11:30 GMT
+- **Settlement:** T+1 next day
+
+</Option>
+</Select>
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>

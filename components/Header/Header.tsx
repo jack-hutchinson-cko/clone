@@ -16,6 +16,7 @@ import {
 } from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import Switch from 'components/Switch';
+import Button from 'components/Button';
 import DocsSearchWidget from 'components/Search/DocsSearchWidget';
 import MenuButton from './MenuButton';
 import SearchButton from './SearchButton';
@@ -33,7 +34,6 @@ import {
   NavigationLink,
   ToggleIcon,
   SwitchIcon,
-  ButtonLogin,
   NavigationDrawers,
   SearchFieldWrapper,
   DrawerTopContentWrapper,
@@ -43,6 +43,7 @@ import {
   LoginWidgetTopWrapper,
   LiginWidgetBottomWrapper,
   WrapperIconActionArrowRight,
+  WrapperWidgedGuidse,
   HeaderLogoWrapper,
 } from './Header.styles';
 
@@ -82,6 +83,10 @@ const Header: FC<WithMenuStateProps<Props>> = ({
 
   useScrollDisabled((searchState || menuState) && isMobile);
 
+  const onCloseSearchDrawer = useCallback(() => {
+    if (searchState) onChangeSearchState(false);
+  }, [searchState, onChangeSearchState]);
+
   const onToggleSearchDrawer = useCallback(() => {
     onChangeSearchState(!searchState);
   }, [searchState, onChangeSearchState]);
@@ -107,9 +112,16 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       dividerText="or"
       link={
         <Link href={loginUrl} passHref>
-          <ButtonLogin fullWidth={!isDesktop} target="_blank">
+          <Button
+            as="a"
+            target="_blank"
+            variant="secondary"
+            size="large"
+            fullWidth={!isDesktop}
+            fullHeight={isTablet || isMobile}
+          >
             Log in
-          </ButtonLogin>
+          </Button>
         </Link>
       }
       alternativeLink={
@@ -130,6 +142,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       popularSearches={popularSearches}
       emptySearchResult={emptySearchResult}
       popularSearchesTitle={popularSearchesTitle}
+      onLinkClick={onCloseSearchDrawer}
     />
   );
 
@@ -178,15 +191,17 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             offset={75}
             isMobile={isMobile}
             content={
-              <GuidesLinks
-                isMobile={isMobile}
-                guides={guides}
-                mapTitle={(title, Icon) => (
-                  <NavigationLink target="_blank" large underlineOnHover>
-                    <Icon /> {title}
-                  </NavigationLink>
-                )}
-              />
+              <WrapperWidgedGuidse>
+                <GuidesLinks
+                  isMobile={isMobile}
+                  guides={guides}
+                  mapTitle={(title, Icon) => (
+                    <NavigationLink target="_blank" large underlineOnHover>
+                      <Icon /> {title}
+                    </NavigationLink>
+                  )}
+                />
+              </WrapperWidgedGuidse>
             }
           >
             {(open) => (

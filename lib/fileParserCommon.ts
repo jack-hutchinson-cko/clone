@@ -14,6 +14,7 @@ type ForEachFileTreeParams = {
 };
 
 export type ForEachTreeCallBackParamsType = {
+  category: string;
   title: string;
   path: string;
   filePath: string;
@@ -50,7 +51,17 @@ export const forEachFileTree = (
       const currentSlug = getSlugFromTitle(title);
       const path = `${parentPath}/${currentSlug}`;
 
-      const childNode = { title, path, filePath, parentArticles, breadcrumbs };
+      const source = fs.readFileSync(`${parentFilePath}/${child}/index.mdx`);
+      const { data } = matter(source);
+
+      const childNode = {
+        title,
+        path,
+        filePath,
+        parentArticles,
+        breadcrumbs,
+        category: data.type || parentArticles[parentArticles.length - 1],
+      };
 
       if (callBack({ ...childNode })) {
         return;
@@ -315,7 +326,7 @@ export const getMdxFileData = (
       const newData: FileDataType = {
         ...data,
         ...(lastAuthor ? { lastAuthor } : {}),
-        modifiedDate: dateFormat(mtime, 'mmm d yyyy'),
+        modifiedDate: dateFormat(mtime, 'dS mmmm yyyy'),
       };
 
       return { content, data: newData };
