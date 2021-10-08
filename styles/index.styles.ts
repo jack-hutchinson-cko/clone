@@ -82,6 +82,7 @@ export const IntroDescription = styled(Text)`
   width: 85%;
   font-size: 16px;
   line-height: 24px;
+  font-weight: 400;
 
   @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 23px;

@@ -6,7 +6,7 @@ export const Text = styled.p`
   font-size: 16px;
   margin: 16px 0;
   line-height: 24px;
-  font-weight: 300;
+  font-weight: 400;
 
   @media ${MobileBreakPoints.MOBILE_M} {
     font-size: 24px;
