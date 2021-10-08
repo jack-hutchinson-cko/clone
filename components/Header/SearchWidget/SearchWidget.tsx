@@ -2,13 +2,14 @@ import { FC, useState, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { useMatchMedia } from '@cko/primitives';
 import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch } from 'react-instantsearch-dom';
+import { Configure, InstantSearch } from 'react-instantsearch-dom';
 
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
 import { SearchBox } from 'components/Search';
 import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
 import Outside from 'components/Outside';
 import { Breakpoints } from 'constants/screen';
+import useFilterSettings from 'hooks/useFilterSettings';
 import { TextFieldWrapper, Results, ResultItemsContainer } from './SearchWidget.styles';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
@@ -33,6 +34,7 @@ const SearchWidget: FC<WithMenuStateProps<SearchWidgetProps>> = ({
   onChangeSearchState,
 }) => {
   const router = useRouter();
+  const { filterSettings } = useFilterSettings();
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const [searchState, setSearchState] = useState(INITIAL_SEARCH_STATE);
 
@@ -64,6 +66,7 @@ const SearchWidget: FC<WithMenuStateProps<SearchWidgetProps>> = ({
             searchState={searchState}
             onSearchStateChange={setSearchState}
           >
+            <Configure filters={filterSettings} />
             <SearchBox isFAQSection={isFAQSection} onSubmit={onSubmitHandler} />
             <Results isShown={isMobile || showResults}>
               {showResults && (

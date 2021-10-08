@@ -30,6 +30,7 @@ type IndexItemType = {
   parentArticles: string[];
   body: string;
   headBody: string;
+  category: string;
 };
 
 type GetIndexArticleItemParams = {
@@ -37,6 +38,7 @@ type GetIndexArticleItemParams = {
   path: string;
   filePath: string;
   parentArticles: string[];
+  category: string;
 };
 
 const omitComponents = (omitArray: string[]) => {
@@ -71,6 +73,7 @@ const getIndexArticleItem = ({
   path,
   filePath,
   parentArticles,
+  category,
 }: GetIndexArticleItemParams): IndexItemType => {
   const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
 
@@ -83,6 +86,7 @@ const getIndexArticleItem = ({
     parentArticles,
     body,
     headBody: body,
+    category,
   };
 };
 
@@ -115,6 +119,7 @@ export const createDocArticlesIndex = async (
     attributesToSnippet: ['body:40', 'title:20', 'headBody:16'],
     snippetEllipsisText: '...',
     searchableAttributes: ['title', 'body', 'headBody'],
+    attributesForFaceting: ['searchable(category)'],
   });
 
   await index.clearObjects();
