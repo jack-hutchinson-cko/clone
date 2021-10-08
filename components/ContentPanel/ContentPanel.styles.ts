@@ -18,7 +18,6 @@ export const Container = styled.div<{ variant: VariantContentPanel }>`
       gap: 50px;
       min-height: 600px;
       height: 100%;
-      margin-bottom: 24px;
       padding: 24px;
       border: 1px solid ${theme.colors.border};
       border-radius: 8px;
@@ -50,7 +49,6 @@ export const Container = styled.div<{ variant: VariantContentPanel }>`
     margin: 0px 0 24px 0;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 300;
   }
 
   a {
