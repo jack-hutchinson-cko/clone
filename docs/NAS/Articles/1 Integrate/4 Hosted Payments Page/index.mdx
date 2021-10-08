@@ -1,15 +1,13 @@
 ---
 title: Hosted Payments Page
-account: ABC
+account: NAS
 ---
 
-Accept card payments with a Hosted Payments Page—a fast and easy way to collect your customer’s payment information, process the payment request and handle authentication. We've created a table that lists [supported payment methods](https://docs.checkout.com/integrate/product-support), languages and other features.
+Accept card payments with a Hosted Payments Page—a fast and easy way to collect your customer’s payment information, process the payment request and handle authentication. 
 
 <TipBox variant="info">
 
-[New payment methods supported](/integrate/product-support#Integrated_payment_methods)
-
-Hosted Payments Page and Payment Links now support seven more payment methods.
+Hosted Payments Page and Payment Links now support six more payment methods.
 
 </TipBox>
 
@@ -20,7 +18,7 @@ When your customer is ready to check out:
 1. Create a Hosted Payments Page session and pass through all the payment information, like the amount, currency, country and reference.
 2. We'll use this information to render the Hosted Payments Page to which you will redirect your customer to make their payment.
 3. Once your customer fills in the required payment details, we will process the payment and handle the authentication flow.
-4. And after the payment has been successfully processed, you will be notified by a [webhook](https://docs.checkout.com/reporting-and-insights/webhooks).
+4. And after the payment has been successfully processed, you will be notified by a [webhook](/workflows).
 
 <img src="/docs/Integrate/Hosted Payments/Hosted+Payments+page.png" withFullscreenPreview />
 
@@ -28,13 +26,13 @@ When your customer is ready to check out:
 
 ### Try it out
 
-Preview a Hosted Payments Page using one of our [test cards](/testing/test-card-numbers) with any future expiry date, or use the details below for a basic payment flow:
+Preview a Hosted Payments Page using one of our [test cards](/testing/test-cards) with any future expiry date, or use the details below for a basic payment flow:
 
 <tabs>
 <tab title="Card">
 <Box horizontal="sm">
 
-Use one of our [test cards](https://docs.checkout.com/testing/test-card-numbers) with any future expiry date, or use the details below:
+Use one of our [test cards](/testing/test-cards) with any future expiry date, or use the details below:
 
 - **Card number**: 4242 4242 4242 4242
 - **Expiry date**: Any future date
@@ -69,7 +67,7 @@ To get started with our Hosted Payments Page, contact your Solutions Engineer or
 
 <TipBox variant="success">
 
-If you haven't already, [create a free test account now](https://www.checkout.com/get-test-account). This will give you access to the [Hub](https://hub.checkout.com/login), where you'll find your `secret_key` and `public_key`, which you'll need to make requests to our API.
+If you haven't already, [create a free test account now](https://www.checkout.com/get-test-account). This will give you access to the [Dashboard](https://dashboard.checkout.com/login), where you'll find your `secret_key` and `public_key`, which you'll need to make requests to our API.
 
 </TipBox>
 
@@ -87,7 +85,7 @@ To create a Hosted Payments Page on which your customers can make their payment,
 
 ### The request
 
-For the full specification, see our [API reference](https://api-reference.checkout.com/#operation/createAHostedPaymentsSession).
+For the full specification, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession).
 
 #### Endpoints
 
@@ -142,12 +140,12 @@ We've listed the available alternative payment methods for the Hosted Payments P
 
 Different payment methods have different required and optional fields when making a request. We've listed these below.
 
-You can view a request example with all of these fields on our [API reference](https://api-reference.checkout.com/#operation/createAHostedPaymentsSession).
+You can view a request example with all of these fields on our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession).
 
 <Table>
 <TableHead headers={["Payment method", "Field requirements"]}/>
 <TableBody>
-<TableRow>
+{/* <TableRow>
 <TableCell>
 
 KNET
@@ -185,20 +183,7 @@ PayPal
 * `billing.address.country` and `currency` is required and can be any [that are supported](/payments/payment-methods/wallets).
 
 </TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Sofort
-
-</TableCell>
-<TableCell>
-
-* `currency` should be set to `EUR`
-* `billing.address.country` is required and can be any [country that is supported](/payments/payment-methods/bank-transfers).
-
-</TableCell>
-</TableRow>
+</TableRow> */}
 <TableRow>
 <TableCell>
 
@@ -213,6 +198,19 @@ iDEAL
 </TableCell>
 </TableRow>
 <TableRow>
+<TableCell>
+
+Sofort
+
+</TableCell>
+<TableCell>
+
+* `currency` should be set to `EUR`
+* `billing.address.country` is required and can be any [country that is supported](/payments/payment-methods/bank-transfers).
+
+</TableCell>
+</TableRow>
+{/* <TableRow>
 <TableCell>
 
 Bancontact 
@@ -293,7 +291,7 @@ SEPA
 * `billing.address.country` is required and can be any [country that is supported](/payments/payment-methods/direct-debit).
 
 </TableCell>
-</TableRow>
+</TableRow> */}
 {/* <TableRow>
 <TableCell>
 
@@ -332,7 +330,7 @@ The response will include the `redirect` link to which you should redirect your 
 
 ### Step 3: Redirect your customer
 
-Redirect the customer to the `\_links.redirect` URL you received in the response above, using either a server-side or client-side call.
+Redirect the customer to the `_links.redirect` URL you received in the response above, using either a server-side or client-side call.
 
 <tabs>
 <tab title="Server-side redirect">
@@ -358,11 +356,11 @@ When your customer completes the payment, they will be redirected to the `succes
 - `http://example.com/success?cko-session-id=sid_ubfj2q76miwundwlk72vxt2i7`
 - `http://example.com/success?cko-payment-id=pay_mbabizu24mvu3mela5njyhpit4`
 
-You can set up [webhooks](https://docs.checkout.com/reporting-and-insights/webhooks) to be notified when the payment has been approved to continue the sales fulfilment flow.
+You can set up [webhooks](/workflows) to be notified when the payment has been approved to continue the sales fulfilment flow.
 
 ---
 
 ## Next steps
 
-- Learn how to [refund](https://docs.checkout.com/payments/manage-payments/refund-a-payment) a payment, [and more](https://docs.checkout.com/payments/manage-payments).
-- [Set up webhooks](https://docs.checkout.com/reporting-and-insights/webhooks) to be notified about the status of payments.
+- Learn how to [refund](/payments/manage-payments/refund-a-payment) a payment, [and more](/payments/manage-payments).
+- [Set up webhooks](workflows) to be notified about the status of payments.

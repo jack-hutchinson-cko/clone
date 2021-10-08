@@ -1,6 +1,6 @@
 ---
 title: Manage Payment Links
-account: ABC
+account: NAS
 ---
 
 On this page, find out how to:
@@ -13,7 +13,7 @@ On this page, find out how to:
 ## Before you begin
 
 - Have you registered to begin using Payment Links? Contact your Solution Engineer or [integration@checkout.com](mailto:integration@checkout.com). During integration, you'll be able to specify your payment capture and 3D Secure settings.
-- You can set up [webhooks](https://docs.checkout.com/integrate/payment-links/manage-payment-links#) to be notified when the payment has been approved, so you can continue the sales fulfilment flow.
+- You can set up [webhooks](/workflows) to be notified when the payment has been approved, so you can continue the sales fulfilment flow.
 - To practise API calls [request a test account](https://www.checkout.com/get-test-account) and use the Sandbox version of the endpoint.
 
 ---
@@ -24,7 +24,7 @@ On this page, find out how to:
 
 When requesting a payment from a customer using Payment Links solution, you can to create a Payment Links session. This can be sent to the customer through a method that best suits you.
 
-To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put).
+To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
 <TipBox variant="success">
 
@@ -91,12 +91,12 @@ We've listed the available alternative payment methods for the Payment Links bel
 
 Different payment methods have different required and optional fields when making a request. We've shown examples of these below.
 
-You can view a request example with all of these fields on our [API reference](https://api-reference.checkout.com/#operation/createAPaymentLinkSession).
+You can view a request example with all of these fields on our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/createAPaymentLinkSession).
 
 <Table>
 <TableHead headers={["Payment method", "Field requirements"]}/>
 <TableBody>
-<TableRow>
+{/* <TableRow>
 <TableCell>
 
 KNET
@@ -134,7 +134,7 @@ PayPal
 * `billing.address.country` and `currency` is required and can be any [that are supported](/payments/payment-methods/wallets).
 
 </TableCell>
-</TableRow>
+</TableRow> */}
 <TableRow>
 <TableCell>
 
@@ -149,6 +149,19 @@ Sofort
 </TableCell>
 </TableRow>
 <TableRow>
+<TableCell>
+
+iDEAL
+
+</TableCell>
+<TableCell>
+
+* `currency` should be set to `EUR`
+* `billing.address.country`: `NL` for Netherlands
+
+</TableCell>
+</TableRow>
+{/* <TableRow>
 <TableCell>
 
 Bancontact 
@@ -229,7 +242,7 @@ SEPA
 * `billing.address.country` is required and can be any [country that is supported](/payments/payment-methods/direct-debit).
 
 </TableCell>
-</TableRow>
+</TableRow> */}
 {/* <TableRow>
 <TableCell>
 
@@ -266,7 +279,7 @@ Fawry
 
 ### Step 2: Send the link to your customer
 
-Send the Payment Link you received in the `\_links.redirect` object of the above response to your customer.
+Send the Payment Link you received in the `_links.redirect` object of the above response to your customer.
 
 This could be by email, text message, social media, live chat—wherever your customer wants to pay.
 
@@ -286,7 +299,7 @@ There are three statuses:
 
 #### Endpoints
 
-For a full explanation of the fields, see our [API reference](https://api-reference.checkout.com/#tag/Payment-Links).
+For a full explanation of the fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payment-Links).
 
 <tabs>
 <tab title="Live">
