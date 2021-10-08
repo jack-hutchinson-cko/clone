@@ -10,7 +10,7 @@ import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styl
 
 const DEFAULT_OFFSET = 0;
 
-type Options = { silentMode?: boolean };
+type Options = { silentMode?: boolean; iconIndent?: number };
 
 const getIsChildLink = (children: ReactNode) => get(children, 'props.originalType') === 'a';
 
@@ -34,7 +34,7 @@ const getRenderedChildren = (children: ReactNode): ReactNode => {
 };
 
 const withAnchor =
-  (Component: FC, { silentMode }: Options = {}): FC =>
+  (Component: FC, { silentMode, iconIndent }: Options = {}): FC =>
   (props) => {
     const router = useRouter();
     const { children, ...restProps } = props;
@@ -61,7 +61,7 @@ const withAnchor =
           <Component {...restProps}>
             <Link href={anchorUrl}>
               <>
-                <Title>{getRenderedChildren(children)}</Title>
+                <Title rightIndent={iconIndent}>{getRenderedChildren(children)}</Title>
                 <IconWrapper>
                   <LinkIcon />
                 </IconWrapper>

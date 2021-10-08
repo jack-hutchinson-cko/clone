@@ -7,7 +7,7 @@ import { basePathAddition } from '../../tools/basePathAddition';
 import { Title, CardWrapper, TextContainer, IconWrapper, StyledReactSVG } from './Card.styles';
 import { Props } from './types';
 
-const TitleWithAnchor = withAnchorWrapper(Title);
+const TitleWithAnchor = withAnchorWrapper(Title, { iconIndent: 8 });
 
 const Card: FC<Props> = ({
   href,

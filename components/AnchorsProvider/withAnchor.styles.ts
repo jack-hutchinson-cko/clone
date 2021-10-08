@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<{ rightIndent?: number }>`
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: ${({ rightIndent }) => rightIndent ?? 20}px;
 `;
