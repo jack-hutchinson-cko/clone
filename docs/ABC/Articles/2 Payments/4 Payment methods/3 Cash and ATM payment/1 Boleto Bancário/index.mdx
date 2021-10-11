@@ -54,7 +54,7 @@ You can find the full list, as well as complete request and response examples, i
 <tabs>
 <tab title="Redirect" active>
 
-```json withBorder=false
+```json
       {
         "source": {
           "type": "boleto",
@@ -75,7 +75,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 <tab title="Direct">
 
-```json withBorder=false
+```json
       {
         "source": {
           "type": "boleto",
@@ -103,7 +103,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
 <tabs>
 <tab title="Redirect" active>
 
-```json withBorder=false
+```json
     {
       "id": "pay_hcklpcd45ymepcr7thciirbdaa",
       "status": "Pending",
@@ -124,7 +124,7 @@ Whether you used the direct or redirect method, you should get a `202` response 
 </tab>
 <tab title="Direct">
 
-```json withBorder=false
+```json
     {
       "id": "pay_gxw65fs6rijepgn4rb5tqqvp5u",
       "status": "Pending",
@@ -234,7 +234,7 @@ The response will differ depending on which integration type (`redirect` or `dir
 <tabs>
 <tab title="Payment pending" active>
 
-```json withBorder=false
+```json
       {
         "id": "pay_hcklpcd45ymepcr7thciirbdaa",
         "requested_on": "2020-03-17T09:13:18Z",
@@ -266,7 +266,7 @@ The response will differ depending on which integration type (`redirect` or `dir
 </tab>
 <tab title="Payment captured">
 
-```json withBorder=false
+```json
       {
         "id": "pay_wflckd47jlwetk6zbm472m7vjm",
         "requested_on": "2020-04-27T12:59:26Z",

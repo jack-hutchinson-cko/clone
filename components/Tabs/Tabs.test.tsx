@@ -81,7 +81,7 @@ describe('TabBody', () => {
     const activeTab = 1;
     mount(
       withThemeWrapper(
-        <TabBody data-cy="tab-body" activeTab={activeTab}>
+        <TabBody data-cy="tab-body" activeTab={activeTab} CEOMode>
           {children.map((child) => (
             <div data-child-cy="true">{child}</div>
           ))}

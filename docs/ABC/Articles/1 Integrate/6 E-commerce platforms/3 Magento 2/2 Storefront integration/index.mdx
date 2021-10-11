@@ -302,7 +302,7 @@ If not provided, your existing `failure_url` will be used.
 <tabs>
 <tab title="Card payment">
 
-```json withBorder=false
+```json
 {
     "paymentRequest": {
         "payment_method": "checkoutcom_card_payment",
@@ -316,7 +316,7 @@ If not provided, your existing `failure_url` will be used.
 </tab>
 <tab title="Vault payment">
 
-```json withBorder=false
+```json
 {
     "paymentRequest": {
         "payment_method": "checkoutcom_vault",
@@ -351,7 +351,7 @@ If unsuccessful, you will get one of the following error messages:
 <tabs>
 <tab title="3DS disabled">
 
-```json withBorder=false
+```json
 {
   "success": true,
   "orderID": 000000028
@@ -521,7 +521,7 @@ If not provided, your existing `failure_url` will be used.
 #### **Request example**
 </Box>
 
-```json withBorder=false
+```json
 {
   "payment_token": "tok_4gzeau5o2uqubbk6fufs3m7p54",
   "quote_id": 12345,
@@ -552,7 +552,7 @@ If unsuccessful, you will get one of the following error messages:
 #### **Success response example - 3DS disabled**
 </Box>
 
-```json withBorder=false
+```json
 {
   "success": true,
   "orderID": 000000028
@@ -565,7 +565,7 @@ If unsuccessful, you will get one of the following error messages:
 
 </Box>
 
-```json withBorder=false
+```json
 {
   "success": true,
   "order_id": 000000028,
@@ -687,7 +687,7 @@ Required if the payment is made with a Mada card.
 #### **Request example**
 </Box>
 
-```json withBorder=false
+```json
 {
   "payment_token": "tok_4gzeau5o2uqubbk6fufs3m7p54",
   "quote_id": 12345,
@@ -714,7 +714,7 @@ If unsuccessful, you will get one of the following error messages:
 #### **Success response example**
 </Box>
 
-```json withBorder=false
+```json
 {
   "success": true,
   "orderID": 000000028

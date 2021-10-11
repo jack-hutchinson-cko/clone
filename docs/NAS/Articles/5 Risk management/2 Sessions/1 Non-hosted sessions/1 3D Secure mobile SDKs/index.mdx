@@ -246,7 +246,7 @@ Then, on iOS, install the library in your app project using CocoaPods. For Andro
 <tabs>
 <tab title="Kotlin">
 
-```kotlin withBorder=false
+```kotlin
 // Add the following to your project’s top-level build.gradle.kts file.
 allprojects {
     repositories {
@@ -269,7 +269,7 @@ dependencies {
 </tab>
 <tab title="Groovy">
 
-```json withBorder=false
+```json
 // Add the following to your project’s top-level build.gradle file.
 allprojects {
     repositories {
@@ -292,7 +292,7 @@ dependencies {
 </tab>
 <tab title="iOS">
 
-```json withBorder=false
+```json
 pod 'Checkout3DS', :git => 'git@github.com:checkout/checkout-3ds-sdk-ios.git', :tag => ''
 ```
 
@@ -310,7 +310,7 @@ Initialize the SDK, setting the environment (production or sandbox), the locale,
 <tabs>
 <tab title="Swift">
 
-```swift withBorder=false
+```swift
 // 1a. Initialize with default arguments
 let checkout3DS = Checkout3DSService()
 
@@ -326,7 +326,7 @@ let checkout3DS = Checkout3DSService(
 </tab>
 <tab title="Objective-C">
 
-```objc withBorder=false
+```objc
 // 1a. Initialize with default arguments
 CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] init];
 
@@ -340,7 +340,7 @@ CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] initWithEnv
 </tab>
 <tab title="Kotlin"> 
 
-```kotlin withBorder=false
+```kotlin
 // 1a. Initialize with default arguments
 val checkout3DS = Checkout3DSService(context)
 
@@ -357,7 +357,7 @@ val checkout3DS = Checkout3DSService(
 </tab>
 <tab title="Java">
 
-```java withBorder=false
+```java
 // 1a. Initialize with default arguments
 Checkout3DSService checkout3DS = new Checkout3DSService(context);
 
@@ -694,7 +694,7 @@ The SDK will then gather the device data, share the information with the custome
 <tab title="Swift">
 
 
-```json withBorder=false
+```json
 let authenticationParameters = AuthenticationParameters(
     sessionID: sessionID, 
     sessionSecret: sessionSecret, 
@@ -705,7 +705,7 @@ let authenticationParameters = AuthenticationParameters(
 <tab title="Objective-C">
 
 
-```json withBorder=false
+```json
 
 CKOAuthenticationParameters *authenticationParameters = [[CKOAuthenticationParameters alloc] initWithSessionID:sessionID
                                                                                                  sessionSecret:sessionSecret
@@ -715,7 +715,7 @@ CKOAuthenticationParameters *authenticationParameters = [[CKOAuthenticationParam
 </tab>
 <tab title="Kotlin">
 
-```json withBorder=false
+```json
 val authenticationParameters = AuthenticationParameters(
     sessionId, 
     sessionSecret, 
@@ -725,7 +725,7 @@ val authenticationParameters = AuthenticationParameters(
 </tab>
 <tab title="Java">
 
-```json withBorder=false
+```json
 AuthenticationParameters authenticationParameters = AuthenticationParameters(
     sessionId,
     sessionSecret,
@@ -971,7 +971,7 @@ If successful, you can use our Payments API to complete the payment, or use anot
 <tabs>
 <tab title="Swift">
 
-```json withBorder=false
+```json
 checkout3DS.authenticate(authenticationParameters: authenticationParameters) { error in
     if let error = error {
         // Handle error.
@@ -984,7 +984,7 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 </tab>
 <tab title="Objective-C">
 
-```json withBorder=false
+```json
 [checkout3DS2 authenticateWithAuthenticationParameters:authenticationParameters
                                                                             completionHandler:^(NSError * _Nullable error) {
     if (error) {
@@ -998,7 +998,7 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 </tab>
 <tab title="Kotlin">
 
-```json withBorder=false
+```json
 checkout3DSService!!.authenticate(authenticationParams) { result: AuthenticationResult ->
     when (result.resultType) {
         ResultType.Successful -> {
@@ -1021,7 +1021,7 @@ checkout3DSService!!.authenticate(authenticationParams) { result: Authentication
 </tab>
 <tab title="Java">
 
-```json withBorder=false
+```json
 checkout3DSService.authenticate(authenticationParams, result -> {
     switch (result.getResultType()) {
         case Successful:
@@ -1263,7 +1263,7 @@ To apply your own style, simply include a UI Customization object when you [init
 <tabs>
 <tab title="iOS">
 
-```json withBorder=false
+```json
 final class Customization1: UICustomization {
     let toolbarCustomization: ToolbarCustomization = DefaultToolbarCustomization(
         backgroundColor: .blue,

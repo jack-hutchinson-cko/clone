@@ -68,7 +68,7 @@ When requesting a 3D Secure payment, the cardholder may need to be redirected to
 <tabs>
 <tab title="Payment request example" active>
 
-```json withBorder=false
+```json
   {
     "source" : {
       "type" : "card",
@@ -89,7 +89,7 @@ When requesting a 3D Secure payment, the cardholder may need to be redirected to
 </tab>
 <tab title="Payment response example">
 
-```json withBorder=false
+```json
   {
     "id": "pay_g3avvtweex5e7prna4vkupdkle",
     "status": "Pending",
@@ -163,14 +163,14 @@ If you instead receive an HTTP status of `201 - Created`, it means that it was p
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/charges/token
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/charges/token
 ```
 
@@ -182,14 +182,14 @@ https://sandbox.checkout.com/api2/v2/charges/token
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -206,7 +206,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API" active>
 
-```json withBorder=false
+```json
     {
       "email": "s.mitchell@checkout.com",
       "value": "2000",
@@ -219,7 +219,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
     {
       "source": {
         "type":"token",
@@ -275,14 +275,14 @@ The unified payments endpoint is used to [request a payment using a card ID or s
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/charges/token
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/charges/token
 ```
 
@@ -295,14 +295,14 @@ https://sandbox.checkout.com/api2/v2/charges/token
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -319,7 +319,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API" active>
 
-```json withBorder=false
+```json
 {
   "autoCapture": "Y",
   "email": "sarah.mitchell@checkout.com",
@@ -334,7 +334,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
 {
   "source": {
     "type": "id",
@@ -390,14 +390,14 @@ The unified payments endpoint is used to [request a payment using a customer ID]
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/charges/customer
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/charges/customer
 ```
 
@@ -410,14 +410,14 @@ https://sandbox.checkout.com/api2/v2/charges/customer
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -434,7 +434,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API" active>
 
-```json withBorder=false
+```json
       {
         "autoCapture": "Y",
         "value": "2000",
@@ -447,7 +447,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
     {
       "source": {
         "type": "customer",
@@ -500,14 +500,14 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/charges/card
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/charges/card
 ```
 
@@ -520,14 +520,14 @@ https://sandbox.checkout.com/api2/v2/charges/card
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -544,7 +544,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API" active>
 
-```json withBorder=false
+```json
   {
     "email": "sarah.mitchell@checkout.com",
     "value": "2000",
@@ -563,7 +563,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
   {
     "source": {
       "type": "card",
@@ -624,14 +624,14 @@ The unified payments endpoint is used to [request a payment using an alternative
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/charges/localpayment
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/charges/localpayment
 ```
 
@@ -644,14 +644,14 @@ https://sandbox.checkout.com/api2/v2/charges/localpayment
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -668,7 +668,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API" active>
 
-```json withBorder=false
+```json
     // Payment token request
 
     {
@@ -681,7 +681,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
     // Payment request
 
     {
@@ -755,14 +755,14 @@ The [Checkout.js](https://docs.checkout.com/archive/checkout-js) solution no lon
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/tokens/payment
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/tokens/payment
 ```
 
@@ -775,14 +775,14 @@ https://sandbox.checkout.com/api2/v2/tokens/payment
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -799,7 +799,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API">
 
-```json withBorder=false
+```json
 {
   "value": "2000",
   "currency": "EUR",
@@ -809,7 +809,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
 {
   "source" : {
     "type": "sofort",
@@ -867,14 +867,14 @@ Your existing integration with the digital wallet provider, allowing you to rece
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api2.checkout.com/v2/charges/token
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://sandbox.checkout.com/api2/v2/charges/token
 ```
 
@@ -887,14 +887,14 @@ https://sandbox.checkout.com/api2/v2/charges/token
 <tabs>
 <tab title="Live" active>
 
-```json withBorder=false
+```json
 https://api.checkout.com/payments
 ```
 
 </tab>
 <tab title="Sandbox">
 
-```json withBorder=false
+```json
 https://api.sandbox.checkout.com/payments
 ```
 
@@ -911,7 +911,7 @@ https://api.sandbox.checkout.com/payments
 <tabs>
 <tab title="Classic API" active>
 
-```json withBorder=false
+```json
     {
       "autoCapture": "Y",
       "email": "s.mitchell@checkout.com",
@@ -925,7 +925,7 @@ https://api.sandbox.checkout.com/payments
 </tab>
 <tab title="Unified Payments API">
 
-```json withBorder=false
+```json
   {
     "source": {
       "type": "token",

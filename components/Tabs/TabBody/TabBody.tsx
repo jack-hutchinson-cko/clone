@@ -4,9 +4,10 @@ import { StyledTabBody } from './TabBody.styles';
 type Props = {
   children?: ReactElement | ReactElement[];
   activeTab?: number;
+  CEOMode?: boolean;
 };
 
-const TabBody: FC<Props> = ({ activeTab = 0, children }) => {
+const TabBody: FC<Props> = ({ activeTab = 0, children, CEOMode = false }) => {
   if (!children) {
     return <StyledTabBody isVisible>Empty</StyledTabBody>;
   }
@@ -15,12 +16,14 @@ const TabBody: FC<Props> = ({ activeTab = 0, children }) => {
 
   return (
     <div>
-      {childrenArray.map((childrenItem, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <StyledTabBody key={index} isVisible={index === activeTab}>
-          {childrenItem}
-        </StyledTabBody>
-      ))}
+      {childrenArray.map((childrenItem, index) =>
+        index === activeTab || CEOMode ? (
+          // eslint-disable-next-line react/no-array-index-key
+          <StyledTabBody key={index} isVisible={index === activeTab}>
+            {childrenItem}
+          </StyledTabBody>
+        ) : null,
+      )}
     </div>
   );
 };

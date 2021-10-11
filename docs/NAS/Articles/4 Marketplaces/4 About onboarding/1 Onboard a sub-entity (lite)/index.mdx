@@ -61,7 +61,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 <tabs>
 <tab title='Company'>
 
-```json withBorder=false
+```json
 {
   "reference":"678910",
   "contact_details":{
@@ -93,7 +93,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 <tab title='Individual'>
 
-```json withBorder=false
+```json
 {
     "reference": "0123456",
     "contact_details": {
@@ -136,7 +136,7 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 
 </Box>
 
-```json withBorder=false
+```json
 {
   "id": "ent_aotj3m5ggi2ecpfmxu4su5ctx4",
   "reference": "MnuaOoPZanDbJwT",
@@ -180,7 +180,7 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 
 </Box>
 
-```json withBorder=false
+```json
 {
     "_links": {
         "self": {
@@ -197,7 +197,7 @@ When you receive a `422`, please check the API request to make sure you've inclu
 
 </Box>
 
-```json withBorder=false
+```json
 {
     "request_id": "0HM72UMS6H39C:00000003",
     "error_type": "invalid_request",
@@ -325,7 +325,7 @@ The specified field is mandatory but was not provided in the request. For exampl
 
 Once your sub-entity has been successfully created, we will send you a `sub_entity_created` webhook notification, which will look similar to:
 
-```json withBorder=false
+```json
 {
   "id": "evt_jqv4f6zedawetlilolhqun6m4m",
   "source": "marketplace",
@@ -383,7 +383,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 <tabs>
 <tab title='Company'>
 
-```json withBorder=false
+```json
 {
   "reference":"78910",
   "contact_details":{
@@ -432,7 +432,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 </tab>
 <tab title='Individual'>
 
-```json withBorder=false
+```json
 {
   "reference":"0123456",
   "contact_details":{
@@ -481,7 +481,7 @@ If the request was successful, you will receive `200 - Sub-entity updated succes
 
 </Box>
 
-```json withBorder=false
+```json
 {
   "id": "ent_wxglze3wwywujg4nna5fb7ldli",
   "reference": "superhero1234",
@@ -521,7 +521,7 @@ In the `error_codes` object, we will let you know what data was invalid.
 
 </Box>
 
-```json withBorder=false{
+```json{
     {
     "request_id": "0HM1I9VJUDPHV:00000002",
     "error_type": "invalid_request",
@@ -669,7 +669,7 @@ The response allows you to retrieve all data that has been provided about the su
 <tabs>
 <tab title="Individual">
 
-```json withBorder=false
+```json
 {
     "id": "ent_vv2jjkuf2gzj5tcw2x7ptua7zy",
     "reference": "0123456",
@@ -742,7 +742,7 @@ If you have provided all the information, we may be completing a manual review.
 </tab>
 <tab title="Company">
 
-```json withBorder=false
+```json
 {
   "id": "ent_nofjig36ypra6236f4tfm5bvui",
   "reference": "678910",
@@ -832,7 +832,7 @@ We've described the different webhook notifications on our [webhook event type p
 <tabs>
 <tab title='VMSS passed'>
 
-```json withBorder=false
+```json
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "vmss_passed",
@@ -855,7 +855,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 <tab title='VMSS failed'>
 
-  ```json withBorder=false
+  ```json
   {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "vmss_failed",
@@ -887,7 +887,7 @@ We will re-trigger due diligence checks if `legal_name`, `trading_name` and `pro
 
 **Payments enabled webhook example**
 
-```json withBorder=false
+```json
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "payments_enabled",

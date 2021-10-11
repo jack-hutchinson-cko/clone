@@ -164,7 +164,7 @@ Your Checkout.com access key secret.
 <tabs>
 <tab title="Payload">
 
-```json withBorder=false
+```json
 grant_type=client_credentials&client_id= ack_3kgxgdj773yubf4sfmiht3r4h4
 &client_secret=PddTMk1FBjk1MDQHtBt1U8cHjZvS+Guc80NmcUHp3pHevOpt7EgYkT/DWae7gnOTlF6kPCPo+RZEu9xut/5VVA==
 ```
@@ -172,7 +172,7 @@ grant_type=client_credentials&client_id= ack_3kgxgdj773yubf4sfmiht3r4h4
 </tab>
 <tab title="cURL">
 
-```json withBorder=false
+```json
 curl --location --request POST 'https://access.sandbox.checkout.com/connect/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials' \

@@ -224,7 +224,7 @@ If your request is accepted, we will attempt to create a payment instrument asyn
 </tab>
 <tab title="422 - Invalid data was sent">
 
-```json withBorder=false
+```json
 {
   "request_id": "71ccac67-5018-4917-9446-f2f6f2b8270e",
   "error_type": "request_invalid",
@@ -250,7 +250,7 @@ We've described the different webhook notifications on our [webhook event type p
 <tabs>
 <tab title="Created">
 
-```json withBorder=false
+```json
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "payment_instrument_created",
@@ -277,7 +277,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 <tab title="Error">
 
-```json withBorder=false
+```json
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "payment_instrument_error",
@@ -454,7 +454,7 @@ The payout will be attempted asynchronously (behind the scenes). You will be inf
 <tabs>
 <tab title="202 - Payment asynchronous">
 
-```json withBorder=false
+```json
 {
   "id":"pay_xvyvcgxx7hmu3iw2kdfunegh3m",
   "status":"Pending",
@@ -480,7 +480,7 @@ If your payout request is unsuccessful, you will receive an error object in the 
 
 </Box>
 
-```json withBorder=false
+```json
 {
   "request_id": "71ccac67-5018-4917-9446-f2f6f2b8270e",
   "error_type": "processing_error",

@@ -6,8 +6,8 @@ export const StyledLineCodeWrapper = styled.div`
   padding: 15px;
   color: ${({ theme }) => theme.colors.base};
   background-color: ${({ theme }) => theme.colors.codeLabelBackground};
-  border-end-start-radius: 8px;
-  border-end-end-radius: 8px;
+  border-radius: 8px;
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   white-space: nowrap;
   overflow: auto;
 

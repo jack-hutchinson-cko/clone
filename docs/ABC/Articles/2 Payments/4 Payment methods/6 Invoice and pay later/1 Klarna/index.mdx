@@ -226,7 +226,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
 <tabs>
 <tab title="201 Successfully created Klarna session" active>
 
-```json withBorder=false
+```json
     {
       "session_id": "kcs_55xomnyd3ftujckeoyuvtkx2ue",
       "client_token": "eyJhbGciOiJub25lIn0.ewogICJzZXNzaW9uX2lkIiA6ICI1MGEzYTNiOS02NGE5LTYwNjMtODNmNC1hMzRlM2Q4MjRiNGIiLAogICJiYXNlX3VybCIgOiAiaHR0cHM6Ly9rbGFybmEtcGF5bWVudHMtZXUucGxheWdyb3VuZC5rbGFybmEuY29tIiwKICAiZGVzaWduIiA6ICJrbGFybmEiLAogICJsYW5ndWFnZSIgOiAiZW4iLAogICJwdXJjaGFzZV9jb3VudHJ5IiA6ICJHQiIsCiAgImFuYWx5dGljc19wcm9wZXJ0eV9pZCIgOiAiVUEtMzYwNTMxMzctMTEiLAogICJ0cmFjZV9mbG93IiA6IGZhbHNlLAogICJlbnZpcm9ubWVudCIgOiAicGxheWdyb3VuZCIsCiAgIm1lcmNoYW50X25hbWUiIDogIlBsYXlncm91bmQgRGVtbyBNZXJjaGFudCIsCiAgInNlc3Npb25fdHlwZSIgOiAiUEFZTUVOVFMiLAogICJjbGllbnRfZXZlbnRfYmFzZV91cmwiIDogImh0dHBzOi8vZXZ0LnBsYXlncm91bmQua2xhcm5hLmNvbSIKfQ.",
@@ -259,7 +259,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
 </tab>
 <tab title="422 Request could not be accepted">
 
-```json withBorder=false
+```json
     {
       "request_id": "0HLK56US9BH1E:0000005B",
       "error_type": "request_invalid",
@@ -670,7 +670,7 @@ Catches the response from `Klarna.Payments.load()` for further processing.
 <tabs>
 <tab title="Positive response: Klarna offered" active>
 
-```json withBorder=false
+```json
       {
         show_form: true
       }
@@ -679,7 +679,7 @@ Catches the response from `Klarna.Payments.load()` for further processing.
 </tab>
 <tab title="Adjust and try again">
 
-```json withBorder=false
+```json
       {
         show_form: true,
         error: {
@@ -691,7 +691,7 @@ Catches the response from `Klarna.Payments.load()` for further processing.
 </tab>
 <tab title="Klarna not offered">
 
-```json withBorder=false
+```json
       {
         show_form: false
       }
@@ -807,7 +807,7 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
 <tabs>
 <tab title="Successful" active>
 
-```json withBorder=false
+```json
     {
       authorization_token: "b4bd3423-24e3",
       approved: true,
@@ -818,7 +818,7 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
 </tab>
 <tab title="Rejected with solvable errors">
 
-```json withBorder=false
+```json
     {
       approved: false,
       show_form: true,
@@ -831,7 +831,7 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
 </tab>
 <tab title="Rejected">
 
-```json withBorder=false
+```json
     {
       approved: false,
       show_form: false
@@ -1240,7 +1240,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
 <tabs>
 <tab title="Capture accepted" active>
 
-```json withBorder=false
+```json
     {
       "action_id": "act_4sz4seltcrzuvcgaetumnlamq4"
     }
@@ -1249,7 +1249,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
 </tab>
 <tab title="Invalid data was sent">
 
-```json withBorder=false
+```json
     {
       "request_id": "beug8y83h978yh",
       "error_type": "request_invalid",
@@ -1403,7 +1403,7 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 <tabs>
 <tab title="Void accepted" active>
 
-```json withBorder=false
+```json
     {
       "action_id": "act_v6572a7elpuupbaljmoi4tk3ma"
     }
@@ -1412,7 +1412,7 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 </tab>
 <tab title="Invalid data was sent">
 
-```json withBorder=false
+```json
     {
       "request_id": "0HL80RJLS76I7",
       "error_type": "request_invalid",

@@ -114,7 +114,7 @@ http://localhost/ can only be used for the URL fields during testing and will no
 
 #### Request example
 
-```json withBorder=false
+```json
 {
   "amount": 1000,
   "currency": "GBP",
@@ -335,14 +335,14 @@ Redirect the customer to the `_links.redirect` URL you received in the response 
 <tabs>
 <tab title="Server-side redirect">
 
-```json withBorder=false
+```json
 res.redirect(hostedPaymentsResponse._links.redirect.href);
 ```
 
 </tab>
 <tab title="Client-side redirect">
 
-```json withBorder=false
+```json
 window.location.href(hostedPaymentsResponse._links.redirect.href);
 ```
 

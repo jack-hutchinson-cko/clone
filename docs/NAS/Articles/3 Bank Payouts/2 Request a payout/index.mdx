@@ -47,7 +47,7 @@ Request a Bank Payout by using the relevant bank account fields or a bank accoun
 <tabs>
 <tab title="Payment instrument">
 
-```json withBorder=false
+```json
 {
   "source": {
     "type": "currency_account",
@@ -79,7 +79,7 @@ Request a Bank Payout by using the relevant bank account fields or a bank accoun
 </tab>
 <tab title="Bank account fields">
 
-```json withBorder=false
+```json
 {
   "source": {
     "type": "currency_account",
@@ -140,7 +140,7 @@ You will then receive a [webhook notification](/bank-payouts/request-a-payout#We
 <tabs>
 <tab title="Successful – 202">
 
-```json withBorder=false
+```json
 {
   "id": "pay_dvxl6j6stpqufkzfgbaahmfrzm",
   "status": "Pending",
@@ -162,7 +162,7 @@ You will then receive a [webhook notification](/bank-payouts/request-a-payout#We
 </tab>
 <tab title="Unsuccessful – 422">
 
-```json withBorder=false
+```json
 {
   "request_id": "0HM5M8APSODP0:00000018",
   "error_type": "request_invalid",
@@ -175,7 +175,7 @@ You will then receive a [webhook notification](/bank-payouts/request-a-payout#We
 </tab>
 <tab title="Duplicate or too many requests – 429">
 
-```json withBorder=false
+```json
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",
@@ -207,7 +207,7 @@ Use our [testing guide](testing/bank-payouts-testing) to test different payout s
 <tabs>
 <tab title="payment_paid">
 
-```json withBorder=false
+```json
 {
   "id": "evt_ooratpvrc4yezkrjjrfohi26te",
   "type": "payment_paid",
@@ -248,7 +248,7 @@ Use our [testing guide](testing/bank-payouts-testing) to test different payout s
 </tab>
 <tab title="payment_declined">
 
-```json withBorder=false
+```json
 {
   "id": "evt_6ebhaydlc3kepmacp22s5smodq",
   "type": "payment_declined",
@@ -286,7 +286,7 @@ Use our [testing guide](testing/bank-payouts-testing) to test different payout s
 </tab>
 <tab title="payment_returned">
 
-```json withBorder=false
+```json
 {
   "id": "evt_djb3apm54d2ehg2pt4kmtlrfqu",
   "type": "payment_returned",
