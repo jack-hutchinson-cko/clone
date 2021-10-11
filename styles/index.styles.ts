@@ -1,10 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  Box,
-  PrimaryButton,
-  TextHeadingOne as PrimitivesTextHeadingOne,
-  Text,
-} from '@cko/primitives';
+import { Box, TextHeadingOne as PrimitivesTextHeadingOne, Text } from '@cko/primitives';
 import { TextHeadingTwo } from 'components/TextHeading';
 import {
   SIZE,
@@ -114,19 +109,19 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.L)} {
-    padding: 32px 64px 29px 32px;
+    padding: 32px 64px 36px 32px;
   }
 
   @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding: 32px 64px 49px 64px;
+    padding: 32px 64px 20px 64px;
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 24px 40px;
+    padding: 24px 40px 0;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    padding: 24px;
+    padding: 0 24px;
   }
 `;
 
@@ -156,13 +151,13 @@ export const FrontMatterContainer = styled.div`
 `;
 
 export const WrapperMDXContent = styled.div`
-  padding-bottom: 43px;
+  padding-bottom: 36px;
 
   @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding-bottom: 23px;
+    padding-bottom: 52px;
   }
 
   @media ${createBreakpointTo(SIZE.M)} {
-    padding-bottom: 48px;
+    padding-bottom: 72px;
   }
 `;

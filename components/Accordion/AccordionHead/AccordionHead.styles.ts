@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { createBreakpointTo, MobileBreakPoints, SIZE } from 'constants/screen';
+import { createBreakpointTo, SIZE } from 'constants/screen';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;

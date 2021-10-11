@@ -8,6 +8,7 @@ export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 40px;
   padding: 8px 16px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.background};
@@ -52,7 +53,6 @@ export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
 export const TextField = styled(TextFieldBase)<{ isFAQSection?: boolean }>`
   width: 100%;
   font-size: 16px;
-  font-weight: 500;
   font-family: inherit;
   color: ${({ theme }) => theme.colors.base};
   transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;

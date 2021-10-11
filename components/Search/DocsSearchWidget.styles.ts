@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { MobileBreakPoints } from 'constants/screen';
 
 export const SearchesTitle = styled.div`
   color: ${({ theme }) => theme.colors.grayFaded};
