@@ -12,7 +12,7 @@ For Visa and Mastercard payments, you can submit a void request on a partially c
 
 </TipBox>
 
-### The request
+#### The request
 
 Use the endpoint below to void an authorized—but not yet captured—payment.
 
@@ -37,7 +37,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -49,7 +49,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response examples
+#### Response examples
 
 If you receive a `202 Void accepted` response, your void request has been accepted for processing. To get the full void response, you will need to subscribe to the `payment_voided` webhook.
 

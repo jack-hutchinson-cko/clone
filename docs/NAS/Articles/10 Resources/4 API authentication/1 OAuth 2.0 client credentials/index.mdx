@@ -19,13 +19,13 @@ The access token is a JSON Web Token (JWT), a special format that allows the sec
 
 The issued access tokens are designed to be short-lived, increasing their security. As such, the token also includes an expiry after which time the token will no longer work and the Application must request another token to continue access to the Resource Server. The expiry time of the JWT token will be included in the create token response.
 
-## Set up an OAuth 2.0 authentication
+### Set up an OAuth 2.0 authentication
 
 The OAuth authentication should be set up by our Solutions Engineering team. Your access keys will be provided to you in an encrypted format so during this process, we will request that you provide us with a public RSA key.
 
 The RSA key needs to have a length of at least 2048 bits. We recommend creating a dedicated key only for this purpose as described below.
 
-### Creating a public and private RSA key pair
+#### Creating a public and private RSA key pair
 
 You need to create a public and private RSA key pair with a bit length of at least 2048.
 
@@ -41,7 +41,7 @@ openssl rsa -in private-key.pem -outform PEM -passin pass:password123 -pubout -o
 
 You need to keep the private key file and the password private at all times. These can be later used to unencrypt the secret you received from us. You only ever need to communicate the public key file to us.
 
-### Secret decryption
+#### Secret decryption
 
 You will receive the encrypted secret associated with your access key in a file (e.g. ack_clckqmmnyfiupexjew7shh5ahe.enc). You can decrypt it in the command line using the following command:
 
@@ -53,13 +53,13 @@ The output of this command will give you the client_secret needed for token crea
 
 For additional security, you can also store the encrypted secret in your integration’ configuration store (e.g., AWS Secrets Manager or Azure Key Vault), and decrypt it during token creation.
 
-## Using OAuth 2.0 authentication
+### Using OAuth 2.0 authentication
 
 To use an access token in your request, you should provide it within the Authorization header. As per the OAuth 2.0 standards outlined in RFC6750, for subsequent API requests sent after obtaining the token, the ‘Bearer’ prefix should be included in the header alongside the access token.
 
 The OAuth 2.0 Framework recommends to authorize via the Basic “Authorization” Header.
 
-### Request example (Basic “Authorization” Header)
+#### Request example (Basic “Authorization” Header)
 
 ```bash
 curl --location --request POST 'https://access.sandbox.checkout.com/connect/token' \
@@ -77,7 +77,7 @@ The following pseudocode shows how to get the value for the Basic “Authorizati
 
 Don't forget the colon character (:) separating the two string values.
 
-### Request example (“client_id” and “client_secret” x-www-form-urlencoded body parameters)
+#### Request example (“client_id” and “client_secret” x-www-form-urlencoded body parameters)
 
 ```bash
 curl --location --request POST 'https://access.sandbox.checkout.com/connect/token' \
@@ -88,7 +88,7 @@ curl --location --request POST 'https://access.sandbox.checkout.com/connect/toke
 --data-urlencode 'scope=gateway vault fx'
 ```
 
-## Successful response
+### Successful response
 
 The token server will return a Bearer access_token in JSON Web Token (JWT) format.
 
@@ -113,14 +113,14 @@ curl --location --request POST 'https://api.checkout.com/payments' \
 --data-raw '{ "amount": 10000, "currency": "USD", "reference": "Visa-USD-Test", ... }'
 ```
 
-## Manage OAuth 2.0 authentication in the Dashboard
+### Manage OAuth 2.0 authentication in the Dashboard
 
 In the Dashboard, you can:
 
 * list and view your access keys
 * generate new access key secrets
 
-### View and list access keys
+#### View and list access keys
 
 <img src="/NAS/Resources/access_keys.png" />
 
@@ -136,7 +136,7 @@ Access your Dashboard > Select _Menu_ > _Settings_ then choose the option _Acces
 
 You'll see all access keys configured (client-level) and the scope for each of them.
 
-### Generate new access key secrets
+#### Generate new access key secrets
 
 <TipBox variant="note">
 

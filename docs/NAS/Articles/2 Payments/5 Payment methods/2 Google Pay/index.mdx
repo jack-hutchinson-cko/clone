@@ -14,7 +14,7 @@ To enable Google Pay in the UAE or Saudi Arabia, please request activation from 
 
 ---
 
-## Overview
+### Overview
 
 To start processing Google Pay payments, you must first integrate directly with Google. Once integration is complete, you can add the _Google Pay_ button to your checkout page and start requesting your customers' encrypted payment information.
 
@@ -32,7 +32,7 @@ Unlike with some other wallets, payments made via Google Pay **do not** benefit 
 
 ---
 
-### Step 1: Integrate with Google Pay
+#### Step 1: Integrate with Google Pay
 
 <TipBox variant="note">
 
@@ -115,7 +115,7 @@ You will need to specify which card types and card schemes to support in your pa
 
 ---
 
-### Step 2: Tokenize the Google Pay payment data
+#### Step 2: Tokenize the Google Pay payment data
 
 Once you have received the payment data from Google, you then need to call Checkout.com’s endpoint for tokenizing the encrypted payment data; you can find this payment data in the `paymentMethodToken` property of the Google Pay payment data request's response.
 
@@ -167,13 +167,13 @@ Use the details below to set up your request. To get a detailed view of all requ
 
 ---
 
-### Step 3: Request a payment using Google Pay
+#### Step 3: Request a payment using Google Pay
 
 Now you have the token, it's time to authorize the payment. Take the token, and use it in the body of a card token [payment request](/payments/accept-payments/request-a-payment) from your application or website's backend server.
 
 ---
 
-## Test Google Pay
+### Test Google Pay
 
 <TipBox variant="note">
 

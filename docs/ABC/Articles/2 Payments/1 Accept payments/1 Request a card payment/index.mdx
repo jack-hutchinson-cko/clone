@@ -8,7 +8,7 @@ Once _you've_ successfully set up your integration, you're able to start receivi
 
 ---
 
-## How it works
+### How it works
 
 <img src="/docs/Payments/Card+token.png" withFullscreenPreview />
 
@@ -18,9 +18,9 @@ Card tokens (`tok_`) are single use and only have a 15-minute lifespan. Once you
 
 </TipBox>
 
-## Request a card payment
+### Request a card payment
 
-### Endpoint
+#### Endpoint
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
 
@@ -41,7 +41,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -60,7 +60,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response example
+#### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -189,6 +189,6 @@ Possibly fraudulent authorization requests return the message `risk.flagged: tru
 
 ---
 
-## Next step
+### Next step
 
 Once you've successfully processed a card payment request, you're able to easily [reuse those card details](/payments/accept-payments/pay-with-stored-details) for subsequent payments.

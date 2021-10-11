@@ -18,7 +18,7 @@ The Unified Payments API is able to process a number of different authorization 
 
 ---
 
-## Request a final or estimated authorization
+### Request a final or estimated authorization
 
 When requesting a payment in the Unified Payments API, you can specify whether you want the authorization to be final or estimated using the `authorization_type` field. If omitted, the authorization will be requested as final.
 
@@ -28,7 +28,7 @@ If the authorization type is estimated, we will automatically disable auto captu
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
@@ -49,7 +49,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -67,7 +67,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
   "capture": false
 }
 ```
-### Response example
+#### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
@@ -147,13 +147,13 @@ Use the `approved` field to check whether or not the authorization was successfu
 ```
 ---
 
-## Request an incremental authorization
+### Request an incremental authorization
 
 If a payment was requested with an estimated authorization, you can increase the authorization amount for that payment by submitting incremental authorizations, or extend the authorization validity period (Mastercard only).
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
@@ -174,7 +174,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -182,7 +182,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
   "reference": "ORD-752-814"
 }
 ```
-### Response example
+#### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
@@ -235,13 +235,13 @@ Use the `approved` field to check whether or not the authorization was successfu
 ```
 ---
 
-## Retrieve a payment's balances
+### Retrieve a payment's balances
 
 To retrieve the balances of a payment, you can use the following endpoint.
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
@@ -262,7 +262,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Response example
+#### Response example
 
 In the response, you will be provided with the details of your payment. This includes a  `balances`  object containing the following fields:
 

@@ -7,7 +7,7 @@ Genuine card numbers will produce an error in your test environment. To simulate
 
 ---
 
-## Estimated/final authorization response
+### Estimated/final authorization response
 
 <tabs>
 <tab title="Visa" active>
@@ -207,7 +207,7 @@ With this card, Capture and Void actions are declined.
 
 ---
 
-## Incremental authorization
+### Incremental authorization
 
 <Table>
 <TableHead headers={['Card number', 'Scheme', 'Response code', 'Error code']} sizes={['30%', 'auto', 'auto', '30%']}/>
@@ -308,7 +308,7 @@ N/A
 
 ---
 
-## Commercial cards
+### Commercial cards
 
 You can use these cards to trigger a fallback to 3DS1. A fallback occurs when the cardholder or issuer is not using 3DS2.
 
@@ -362,7 +362,7 @@ Mastercard
 
 ---
 
-## Non-3D Secure enabled cards
+### Non-3D Secure enabled cards
 
 To simulate a non-3DS card payment, use one of the following test cards.
 
@@ -408,13 +408,13 @@ Mastercard
 
 ---
 
-## AVS match
+### AVS match
 
 Providing any valid value in the `source.billing_address.address_line1` will result in an AVS match A (Street Match).
 
 ---
 
-## CVV check code
+### CVV check code
 
 Providing any valid CVV will result in a `Y` CVV check code.
 

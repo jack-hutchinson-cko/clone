@@ -34,7 +34,7 @@ The `3ds.challenge_indicator` field is not yet live.
 
 ---
 
-## What is Strong Customer Authentication?
+### What is Strong Customer Authentication?
 
 SCA is a sort of multi-factor authentication, verifying the identity of the cardholder and increasing the security of online payments. The customer has to provide at least two of the following three elements to satisfy it:
 
@@ -42,7 +42,7 @@ SCA is a sort of multi-factor authentication, verifying the identity of the card
 - Something the customer **has** (like a mobile phone or wearable device)
 - Something the customer **is** (like their fingerprint or facial recognition)
 
-### Does SCA apply to me?
+#### Does SCA apply to me?
 
 Strong authentication is required for customer-initiated online payments within Europe. For online card payments, SCA applies only to transactions where both your business's bank and the cardholder's bank are located in the European Economic Area (EEA) or the United Kingdom (UK).
 
@@ -55,7 +55,7 @@ Even if SCA applies to your business, some transactions fall [outside the scope 
 
 </TipBox>
 
-### When will SCA be enforced?
+#### When will SCA be enforced?
 
 The SCA requirements were originally meant to come into effect on 14 September 2019, but enforcement has been delayed.
 
@@ -70,11 +70,11 @@ Some issuing banks have started soft declining payments that are not SCA-ready (
 
 ---
 
-## Out-of-scope transactions
+### Out-of-scope transactions
 
 Some transactions fall outside the scope of SCA, meaning they do not require strong authentication.
 
-### Merchant-initiated transactions
+#### Merchant-initiated transactions
 
 Scheduled and unscheduled merchant-initiated transactions (MITs) of a fixed or variable amount originating from the merchant, where you make the payment with a customer's previously saved card (like subscriptions and automatic account top-ups) are out of scope.
 
@@ -82,21 +82,21 @@ However, you will need to perform SCA when the card is saved or when the first p
 
 In addition, you must include additional parameters in your payment request to clearly identify such transactions as merchant-initiated. Learn more in our [stored card details guide](/payments/accept-payments/use-saved-details/about-stored-card-details).
 
-### MOTO payments
+#### MOTO payments
 
 Payments made by mail order or over the phone (MOTO) fall outside the scope of SCA.
 
-### One leg out payments
+#### One leg out payments
 
 One leg out (OLO) payments – transactions where you and/or the customer's bank are based outside the European Economic Area (EEA) or the UK – are out of scope.
 
-### Anonymous prepaid card
+#### Anonymous prepaid card
 
 If a customer uses an anonymous prepaid card, like a gift card, they do not need to go through SCA.
 
 ---
 
-## Possible SCA exemptions
+### Possible SCA exemptions
 
 For transactions that are in scope of SCA, you can request exemptions from strong authentication if the transactions meet certain criteria.
 
@@ -112,7 +112,7 @@ If you request an exemption, and the customer’s bank approves it, you do not b
 
 </TipBox>
 
-### Summary of exemptions
+#### Summary of exemptions
 
 <Table>
 <TableHead headers={['Scheme', 'Low-value payment', 'Low-risk payment', 'Secure corporate payment', 'Trusted merchant list']} />
@@ -261,11 +261,11 @@ American Express handles the trusted merchant list exemption itself, so you do n
 
 </TipBox>
 
-### Low-value payments
+#### Low-value payments
 
 Payments below €30 are considered low-value and may be exempt. However, the customer’s bank may still trigger strong authentication if, within a 24-hour period, this exemption has been used five times since the customer's last successful authentication or the total value spent on the card without SCA exceeds €100.
 
-### Low-risk payments
+#### Low-risk payments
 
 The payment may be exempted if the acquirer's and/or issuer’s average fraud levels for card payments and the amount do not exceed the following thresholds:
 
@@ -273,19 +273,19 @@ The payment may be exempted if the acquirer's and/or issuer’s average fraud le
 - Below 0.06% and the payment is less than €250
 - Below 0.01% and the payment is less than €500
 
-### Payments to trusted businesses
+#### Payments to trusted businesses
 
 The customer may add a merchant to a whitelist after the initial strong authentication, meaning all subsequent payments to that business will be exempt.
 
-### Secure corporate payments
+#### Secure corporate payments
 
 Corporate payments made with virtual and lodge cards (typically used for business travel expenses) or from central travel accounts are exempt.
 
 ---
 
-## How to comply with SCA
+### How to comply with SCA
 
-### 3D Secure authentication
+#### 3D Secure authentication
 
 The best way to comply with SCA for your online card payments is to use 3D Secure (3DS) authentication—an authentication protocol supported by the major card schemes.
 
@@ -305,7 +305,7 @@ Use our [3D Secure API integration](/payments/regulation-support/sca-compliance-
 
 </TipBox>
 
-### Alternative payment methods
+#### Alternative payment methods
 
 Digital wallets and some local European payment methods should also support SCA:
 
@@ -315,7 +315,7 @@ Digital wallets and some local European payment methods should also support SCA:
 
 ---
 
-## Business scenarios
+### Business scenarios
 
 To show the impact of strong authentication, we’ve outlined below how it affects different business models and transactions.
 
@@ -533,7 +533,7 @@ For more details about the additional parameters required for payments using sav
 
 ---
 
-## Implement 3DS with our Payments API
+### Implement 3DS with our Payments API
 
 To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3d-secure/3d-secure-2-api-integration) for more details.
 
@@ -624,7 +624,7 @@ If the customer's bank denies your exemption request, you'll receive a soft decl
 
 </TipBox>
 
-## 3DS request examples
+### 3DS request examples
 
 
 <tabs>

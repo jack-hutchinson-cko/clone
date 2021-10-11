@@ -13,7 +13,7 @@ To start accepting payments via dLocal, please contact your Customer Success Man
 
 ---
 
-## Overview
+### Overview
 
 A dLocal payment request uses the same endpoint as a standard [card payment](/payments/accept-payments/request-a-card-payment), and is structured similarly, but there are a few important differences.
 
@@ -26,7 +26,7 @@ Also, the billing country associated with the payer's data may not be the same a
 
 ---
 
-## International card schemes payment request
+### International card schemes payment request
 
 <Accordion>
     <AccordionHead>
@@ -138,7 +138,7 @@ Visa, Mastercard, and Diners.
 </AccordionBody>
 </Accordion>
 
-### The request
+#### The request
 
 Use the details below to set up your request.
 
@@ -160,7 +160,7 @@ This endpoint is only available in a live environment.
 
 </TipBox>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -195,7 +195,7 @@ This endpoint is only available in a live environment.
     }
 ```
 
-### Response example
+#### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -264,7 +264,7 @@ If you received a `202` response, the payment requires a redirect. For example, 
 
 ---
 
-## Local card schemes payment request
+### Local card schemes payment request
 
 <Accordion>
     <AccordionHead>
@@ -340,7 +340,7 @@ OCA and Lider.
 </AccordionBody>
 </Accordion>
 
-### The request
+#### The request
 
 Make a payment request using the same endpoint and parameters [as above](#dLocal-international), with two differences:
 
@@ -390,7 +390,7 @@ Because Latin American card numbers vary in length and structure, they cannot be
 
 ---
 
-## Pay in installments
+### Pay in installments
 
 <TipBox variant="info">
 
@@ -404,14 +404,14 @@ When a customer pays via an installment plan, the purchase is split into multipl
 
 To make an installment payment, include the `processing.dlocal.installments` object in your request, and set the number of payments to be made each year with the `processing.dlocal.installments.count` field.
 
-### Number of payments per year
+#### Number of payments per year
 
 The number of payments a customer can make per year in an installment plan varies by country:
 
 *   In **Argentina**, **Brazil**, **Chile**, **Colombia** and **Peru**, the customer can make **1 to 12 payments a year**.
 *   In **Mexico**, the customer can make either **3, 6, 9 or 12 payments a year**.
 
-### Fees
+#### Fees
 
 The customer will be charged a fee by their bank for making payments via an installment plan, and you must make these fees clear to your customers.
 

@@ -8,7 +8,7 @@ Start seamlessly accepting credit card payments from your customers via Touch ID
 
 ---
 
-## Before you start
+### Before you start
 
 Before you can accept Apple Pay payments, you need to [set up and configure Apple Pay](https://docs.checkout.com/preview/drafts/nas/apple-pay/set-up-apple-pay).
 
@@ -18,11 +18,11 @@ If you plan to process Apple Pay payment through an entity outside the European 
 
 </TipBox>
 
-## Make a payment
+### Make a payment
 
 Once you've set up and configured Apple Pay, you're ready to accept Apple Pay payments through our payment gateway.
 
-### Step 1: Generate a Checkout.com token from the Apple Pay token
+#### Step 1: Generate a Checkout.com token from the Apple Pay token
 
 After your customer validates their transaction with biometrics, Apple will generate a [payment token](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken).
 
@@ -96,7 +96,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 ---
 
-### Step 2: Request a payment
+#### Step 2: Request a payment
 
 Using the token `(tok_...)` you got in the response above, make a standard payment request.
 
@@ -140,16 +140,16 @@ If you get a `201 Success` response and the `approved` field is `true`, your pay
 
 ---
 
-## Testing Apple Pay
+### Testing Apple Pay
 
-### Before you start
+#### Before you start
 
 To test Apple Pay payments, you'll need the following:
 
 *   An [Apple Pay compatible device](https://support.apple.com/en-us/HT208531).
 *   A [sandbox Apple Pay wallet](https://developer.apple.com/apple-pay/sandbox-testing/). (You cannot use a real Apple Pay wallet with real cards to test in sandbox.)
 
-### Apple Pay test cards
+#### Apple Pay test cards
 
 Once you've got a compatible device and a sandbox Apple Pay wallet, you can add one of the following test cards to it. See our [testing guide](https://docs.checkout.com/four/testing) for more information.
 
@@ -276,15 +276,15 @@ American Express
 </TableBody>
 </Table>
 
-### Troubleshooting
+#### Troubleshooting
 
 If something goes wrong, make sure you're using the correct keys, merchant ID and certificates. This is the most common issue we encounter. We recommend using descriptive names for your merchant IDs to clearly separate between your test and production environments.
 
-### Displaying the Apple Pay button
+#### Displaying the Apple Pay button
 
 If you don't have a card in your Apple Pay wallet, or you have a card that is not accepted based on the settings configured for Apple Pay (supported networks), your Apple Pay button might not be displayed if you display it conditionally `(session.canMakePaymentsWithActiveCard(...))`.
 
-### Validating the Apple Pay Session
+#### Validating the Apple Pay Session
 
 When validating the Apple Pay Session, keep note of the following:
 

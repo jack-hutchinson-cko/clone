@@ -21,7 +21,7 @@ Our iOS SDK is released under the MIT license.
 
 </TipBox>
 
-## How it works
+### How it works
 
 1. Choose whether to use the pre-built UI, or build your own payment form and use our iOS SDK in a headless mode.
 2. Our iOS SDK is then used to take your customer's sensitive information and exchange them for a secure token. This process is called tokenization. Once you have the card token, you're ready to make the payment request.
@@ -30,19 +30,19 @@ Our iOS SDK is released under the MIT license.
 
 ---
 
-## Demo (our pre-built UI)
+### Demo (our pre-built UI)
 
 <img maxWidth={170} src="/docs/Integrate/SDKS/iOS SDK/demo-ios.gif" />
 
 ---
 
-## Integrate with our iOS SDK
+### Integrate with our iOS SDK
 
-### Before you start
+#### Before you start
 
 Make sure you have your `public_key`. You can find it in the [Hub](https://hub.checkout.com/), under _Settings > Channels_. If you don't have an account with us yet, you can [request a free test one](https://checkout.com/get-test-account).
 
-### Step 1: Install project dependencies
+#### Step 1: Install project dependencies
 
 We've provided examples for the dependency managers `CocoaPods`, `Carthage` and `Swift Package Manager`.
 
@@ -122,7 +122,7 @@ If you are planning to run release builds for the simulator, make sure to exclud
 
 We regularly release new versions of the iOS SDK with additional features and bug fixes, so please routinely update and test your app with the latest framework version.
 
-### Step 2: Import the iOS SDK and choose your approach
+#### Step 2: Import the iOS SDK and choose your approach
 
 Import the SDK into your class. 
 
@@ -234,11 +234,11 @@ checkoutAPIClient.createCardToken(card: cardTokenRequest) { result in
 
 ---
 
-## Available methods
+### Available methods
 
 Two classes are available globally: `CheckoutAPIClient` and `CardUtils`. `CheckoutAPIClient` is used to call the Checkout API with your public key. `CardUtils` contains methods to use for handling a payment form.
 
-### Create an API Client instance
+#### Create an API Client instance
 
 <TipBox>
 
@@ -253,7 +253,7 @@ let checkoutAPIClient = CheckoutAPIClient(
     environment: .sandbox)
 ```
 
-### CardUtils
+#### CardUtils
 
 When building your own custom UI using the headless mode, you can use the `CardUtils` class to verify card information.
 
@@ -335,7 +335,7 @@ let standardizedCardNumber = cardUtils.standardize(cardNumber: cardNumber)
 print(standardizedCardNumber) // "4242424242424242"
 ```
 
-### Create a prompt for CVV confirmation 
+#### Create a prompt for CVV confirmation 
 
 #### Create and configure a `CvvConfirmationViewController`
 
@@ -360,7 +360,7 @@ extension ViewController: CvvConfirmationViewControllerDelegate {
 }
 ```
 
-### Create a card token
+#### Create a card token
 
 Here we use the method `createCardToken`.
 
@@ -407,13 +407,13 @@ The completion handler here provides a `Result<CkoCardTokenResponse, NetworkErro
 
 ---
 
-## Handle 3D Secure
+### Handle 3D Secure
 
 When you send a 3D secure charge request from your server, you will get back a 3D Secure URL. This is available from `_links.redirect.href` within the JSON response. You can then pass the 3D Secure URL to a `ThreedsWebViewController` in order to handle the verification.
 
 The redirection URLs (`success_url` and `failure_url`) are set in the Hub, but they can be overwritten in the charge request sent from your server. It is important to provide the correct URLs to ensure a successful payment flow.
 
-### Create and configure a `ThreedsWebViewController`
+#### Create and configure a `ThreedsWebViewController`
 
 ```swift
 let threeDSWebViewController = ThreedsWebViewController(
@@ -423,7 +423,7 @@ threeDSWebViewController.url = "http://example.com/3ds"
 threeDSWebViewController.delegate = self
 ```
 
-### Handle the result by adding conformance to `ThreedsWebViewControllerDelegate`
+#### Handle the result by adding conformance to `ThreedsWebViewControllerDelegate`
 
 ```swift
 extension ViewController: ThreedsWebViewControllerDelegate {
@@ -441,7 +441,7 @@ extension ViewController: ThreedsWebViewControllerDelegate {
 
 ---
 
-## Apple Pay example
+### Apple Pay example
 
 Our iOS SDK also supports handling `PKPayment` token data from Apple Pay.
 
@@ -472,14 +472,14 @@ func handle(payment: PKPayment) {
 
 ---
 
-## Learn more about the iOS SDK
+### Learn more about the iOS SDK
 
-### Customization
+#### Customization
 
 Although we kept our demo simple, you have a lot of control over the appearance of your form – from the colors and styling, to whether you want to display one input field or several. Check out our [customization guide](/integrate/sdks/ios-sdk/customization-guide) for more details and examples.
 
 ---
 
-## Next steps
+### Next steps
 
 Now that you've got your card token, you're ready to [request a card payment](/payments/accept-payments/request-a-card-payment).

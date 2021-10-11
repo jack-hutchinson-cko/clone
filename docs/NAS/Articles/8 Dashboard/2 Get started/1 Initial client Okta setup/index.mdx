@@ -7,7 +7,7 @@ This page describes the preliminary steps you need to take as an Okta administra
 
 ---
 
-## Step 1: Create a Checkout.com application in Okta
+### Step 1: Create a Checkout.com application in Okta
 
 1. Log in to your Okta admin portal with Super Admin rights.
 2. In the top left corner, select _Classic UI_ to make sure all features are visible.
@@ -17,7 +17,7 @@ This page describes the preliminary steps you need to take as an Okta administra
 
 ---
 
-## Step 2: Configure the SAML settings
+### Step 2: Configure the SAML settings
 
 1. Set Single Sign On URL to `http://localhost` as a placeholder. Use this for the Recipient URL and Destination URL.
 2. Set Audience URI to `http://localhost` as a placeholder.
@@ -122,7 +122,7 @@ You can use a more restrictive group regex filter if you'd like.
 
 ---
 
-## Step 3: Extract the SSO configuration
+### Step 3: Extract the SSO configuration
 
 1. Go back to the application’s Sign-On tab and select _View Setup Instructions_.
 2. Copy the Identity Provider Single Sign-On URL.
@@ -131,7 +131,7 @@ You can use a more restrictive group regex filter if you'd like.
 
 ---
 
-## Step 4: Define group access rights
+### Step 4: Define group access rights
 
 Checkout.com currently supports two types of user roles: **Admin** and **Read Only** (more will follow).
 
@@ -264,7 +264,7 @@ Create a `.json` file that defines a mapping between the propagated groups to Ch
 
 ---
 
-## Step 5: Securely share your configuration with Checkout.com
+### Step 5: Securely share your configuration with Checkout.com
 
 You will be provided with a set of SFTP login credentials with which they will securely share the following configurations:
 

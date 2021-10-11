@@ -7,11 +7,11 @@ Authorize a payment with us, using the authentication data from another 3DS prov
 
 ---
 
-## The request
+### The request
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Payments).
 
@@ -32,7 +32,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Additional body parameters
+#### Additional body parameters
 
 <Table>
 <TableHead headers={['Parameter', 'Descripttion']} />
@@ -152,7 +152,7 @@ Indicates the version of 3D Secure used for authentication. Defaults to `1.0.0 `
 </TableBody>
 </Table>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -175,7 +175,7 @@ Indicates the version of 3D Secure used for authentication. Defaults to `1.0.0 `
 ```
 ---
 
-## The response
+### The response
 
 If the `approved` field is `true`, your authorization was successful. If unsuccessful, the card used for the payment may be invalid/expired or the account has an insufficient available balance.
 

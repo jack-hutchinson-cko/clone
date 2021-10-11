@@ -19,7 +19,7 @@ On this page, we will walk through the complete onboarding of a sub-entity:
 
 ---
 
-## Before you begin
+### Before you begin
 
 [Configure your webhooks](/workflows) and subscribe to:
 
@@ -33,7 +33,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 
 ---
 
-## Onboard a sub-entity
+### Onboard a sub-entity
 
 #### Endpoints
 
@@ -357,11 +357,11 @@ Once your sub-entity has been successfully created, we will send you a `sub_enti
 
 ---
 
-## Update a sub-entity
+### Update a sub-entity
 
 Use this endpoint to update all fields under the `contact_details`, `profile`, and `company` objects. To fulfil due diligence requirements, your sub-entity needs to provide identity documents; this endpoint also allows you to add identification documents.
 
-### Add an identification document
+#### Add an identification document
 
 Use our [files API](/marketplaces/about-onboarding/upload-a-file) to upload identity documentation. When you upload a file, the API returns an `id` that represents that file, which you can use to attach identity documentation when creating or updating your sub-entity. 
 
@@ -790,7 +790,7 @@ The specified field is mandatory but was not provided in the request. For exampl
 
 ---
 
-## Retrieve a sub-entity
+### Retrieve a sub-entity
 
 If you need to retrieve a sub-entity's details, you can use our Get sub-entity details endpoint. Just include the id of the sub-entity returned during the initial onboarding in your request. For example, `https://api.checkout.com/marketplace/entities/ent_wxglze3wwywujg4nna5fb7ldli` .
 
@@ -969,7 +969,7 @@ If you have provided all the information, we may be completing a manual review.
 </tab>
 </tabs>
 
-## Handle due diligence notifications
+### Handle due diligence notifications
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows). You should expect to receive the following event types: 
 
@@ -1108,7 +1108,7 @@ We will re-trigger due diligence checks if any of the required information is la
 
 ---
 
-## Where to next?
+### Where to next?
 
 <ContentPanel variant="heading" title="Accept a payment" imgSrc="/NAS/Marketplaces/accept-a-payment.svg">
 
@@ -1120,7 +1120,7 @@ Process payments on behalf of your sub-entities.
 
 <br/>
 
-## Find out more
+### Find out more
 
 <ContentPanel variant="heading" title="Status types" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
 

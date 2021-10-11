@@ -58,7 +58,7 @@ Challenge (browser only)
 
 ---
 
-## Authenticating your requests
+### Authenticating your requests
 
 #### Access tokens
 
@@ -80,11 +80,11 @@ Note that any endpoint accessible with `session_secret` can also be accessed wit
 
 ---
 
-## Step 1: Request a session 
+### Step 1: Request a session 
 
 This is the first step to starting a 3DS authentication flow with Sessions. Authenticate the call with an access token and perform it from your backend.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
@@ -117,7 +117,7 @@ If you create a session with channel data, there is no need to update the channe
 
 </TipBox>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -148,7 +148,7 @@ If you create a session with channel data, there is no need to update the channe
   }
 }
 ```
-### Response example 
+#### Response example 
 
 You should receive a `202 - Accepted` response, with a `status` of `pending`. It will also contain:
 
@@ -189,7 +189,7 @@ You should receive a `202 - Accepted` response, with a `status` of `pending`. It
 ```
 ---
 
-## Step 2: Get session details 
+### Step 2: Get session details 
 
 Next, you need to gather the device data (meaning the details of the browser or mobile app that initiated the session) in order to make an authentication request. To do so, get the current session details with the following request.
 
@@ -199,7 +199,7 @@ You can skip this step if your backend forwards the response of requesting a new
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
@@ -220,7 +220,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Response 
+#### Response 
 
 You will get a response with the property `next_actions`, which will tell you what you need to do next.
 
@@ -286,13 +286,13 @@ The status of the session. Should be `pending`.
 
 ---
 
-## Step 3: Issuer fingerprint (browser only) 
+### Step 3: Issuer fingerprint (browser only) 
 
 If one of the next actions after creating the session was `issuer_fingerprint`, this step must be completed before proceeding with the session.
 
 This involves the customer's browser contacting the Access Control Server directly so that the latter can calculate a fingerprint of it.
 
-### Create payload
+#### Create payload
 
 To do this, you first need to construct the following payload:
 
@@ -305,7 +305,7 @@ To do this, you first need to construct the following payload:
 
 This payload needs to be base64 encoded and sent to the `three_ds_method_url` property of the `_links` object of the session using a POST request and putting the base64 encoded data in a form field called `threeDSMethodData`.
 
-### Redirect
+#### Redirect
 
 This will trigger a POST redirect to the `threeDSMethodNotificationURL` with a form parameter named `threeDSMethodData`. This will be a base64 encoded payload that, when decoded, will look like the following:
 
@@ -334,7 +334,7 @@ If you do not wish to handle the notification manually you can use our intercept
 </tab>
 </tabs>
 
-### Notification of completion
+#### Notification of completion
 
 After you POST the `threeDSMethodData`, you can be notified about the completion by listening for a browser event as follows:
 
@@ -358,7 +358,7 @@ And `event.data` will contain the following object:
 }
 ```
 
-### Fingerprint completed
+#### Fingerprint completed
 
 Once you've received the message, the fingerprint has completed successfully and you can set the `three_ds_method_completion` property to `Y`.
 
@@ -372,7 +372,7 @@ The issuer fingerprint part of the flow can be combined with collecting the chan
 
 ---
 
-## Step 4: Collect channel data 
+### Step 4: Collect channel data 
 
 Once you've completed the relevant actions indicated by the `next_actions` property, you need to update the session with the collected device data to make the authentication request.
 
@@ -382,7 +382,7 @@ If you created the session with channel data, there is no need to complete this 
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
@@ -404,7 +404,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Body parameters 
+#### Body parameters 
 
 <tabs>
 <tab title="Browser authentication">
@@ -753,7 +753,7 @@ Values: text, single_select, multi_select, oob, html_other.
 </tab>
 </tabs>
 
-### The response
+#### The response
 
 Once the update is received, an authentication request will be sent, returning an authentication response from the issuer with the outcome of the authentication: approved, attempted, unavailable, declined, rejected, or challenged.
 
@@ -825,7 +825,7 @@ The status of the session. Should be `processing`. If `expired`, the authenticat
 
 ---
 
-## Step 5 a: 3DS2 (browser only) 
+### Step 5 a: 3DS2 (browser only) 
 
 <TipBox variant="info">
 
@@ -879,7 +879,7 @@ If not, the cardholder will now be challenged to provide additional information 
 
 </Accordion>
 
-### Create challenge request
+#### Create challenge request
 
 The `next_actions` field will contain the `challenge_cardholder` action (see example above). To proceed, create the challenge request (CReq) message as follows:
 
@@ -988,7 +988,7 @@ The style of the challenge window style is dependent on the issuer, so the above
 
 </TipBox>
 
-### Render the challenge
+#### Render the challenge
 
 Once the CReq message is constructed, it needs to be base64 encoded and posted to the `acs.url` property of the session in a form field named `creq`. If successful, the response will be the HTML needed to render the challenge.
 
@@ -1038,7 +1038,7 @@ The challenge is dependent on the card issuer, so the actual HTML may look diffe
 
 </TipBox>
 
-### Notification of outcome
+#### Notification of outcome
 
 If you want to be notified about the completion of the challenge, you can register an event handler on your page as follows:
 
@@ -1130,7 +1130,7 @@ Authentication/Account Verification Rejected (issuer has rejected transaction)
 </TableBody>
 </Table>
 
-### Challenge completed
+#### Challenge completed
 
 Once the challenge has been completed, the session should move to a final state, allowing you to (optionally) complete the session.
 
@@ -1148,7 +1148,7 @@ The challenge flow should be completed within 10 minutes of initiating the flow.
 
 ---
 
-## Step 5 b: 3DS1 challenge (browser only)
+### Step 5 b: 3DS1 challenge (browser only)
 
 <TipBox variant="info">
 
@@ -1202,7 +1202,7 @@ When this downgrade happens your session will typically look like this:
 
 The `next_action` is `authenticate` and the protocol version is `1.0.2`. The 3DS1 flow always contains a challenge and the challenge is always browser-based. Let us see how to initiate the challenge.
 
-### Render the challenge
+#### Render the challenge
 
 To render the challenge you need to POST the following form fields to the `session._links.acs_url`:
 
@@ -1256,7 +1256,7 @@ The above fields can be case-sensitive depending on the ACS, so please make sure
 
 The result of this POST will be the challenge form. Once the cardholder completes this successfully, the `TermUrl` will receive the `PaRes` (Payer Authentication Response) and the outcome of that will be rendered in place of the challenge (see next section).
 
-### Notification of outcome
+#### Notification of outcome
 
 If you want to be notified about the completion of the challenge, you can register an event handler on your page as follows:
 
@@ -1291,7 +1291,7 @@ If an unexpected error occurred during the validation of the PaRes, the event da
 
 Similar to an error Sessions API would respond with.  
 
-### Challenge completed
+#### Challenge completed
 
 Once the 3DS1 challenge has been completed, the session should move to a final state, allowing you to (optionally) complete the session.
 
@@ -1309,7 +1309,7 @@ The challenge flow should be completed within 10 minutes of initiating the flow.
 
 ---
 
-## Step 6: Complete session (optional)
+### Step 6: Complete session (optional)
 
 <TipBox variant="info">
 
@@ -1321,7 +1321,7 @@ Once the session is in a final state (approved, declined, rejected, unavailable,
 
 This triggers a POST to the `completion.callback_url` field of the session and will respond with `204` if the call was successful or `500` otherwise. Alternatively, you can GET the session details to inspect it and verify its final status.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
@@ -1342,7 +1342,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### The response
+#### The response
 
 If successful, we will use the `callback_url` to share the authentication outcome with you (see example below). If we receive a `2XX` response from you, you will then get a successful `204` response with no content. If the payment was authenticated, you're now ready to authorize and complete the payment.
 
@@ -1640,7 +1640,7 @@ Indicates whether this session involved a challenge.
 </TableBody>
 </Table>
 
-### Session properties
+#### Session properties
 
 #### Session statuses 
 
@@ -1862,7 +1862,7 @@ Browser and app
 
 ---
 
-## Additional authentication data 
+### Additional authentication data 
 
 When requesting a session, you can add additional data fields to increase the chances of a frictionless authentication. Below is a summary of the optional data you can add to your request.
 

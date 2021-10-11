@@ -15,7 +15,7 @@ To start accepting Klarna payments, please contact your Customer Success Manager
 
 ---
 
-## Overview
+### Overview
 
 To integrate Klarna into your checkout process and start accepting payments, follow these five steps:
 
@@ -27,7 +27,7 @@ To integrate Klarna into your checkout process and start accepting payments, fol
 
 ---
 
-## Create a session
+### Create a session
 
 First, you need to create a Klarna session for your customer.
 
@@ -37,7 +37,7 @@ If, however, your checkout process is designed in a way that you don't have all 
 
 When you create a session, you will receive the available `payment_method_categories`, a `session_id` and a `client_token`. You can use the `session_id` to update the session using our API, and the `client_token` should be passed to the browser. A session is valid for 48 hours.
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live" active>
@@ -56,7 +56,7 @@ When you create a session, you will receive the available `payment_method_catego
 </tab>
 </tabs>
 
-### Header parameters
+#### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -96,7 +96,7 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 </TableBody>
 </Table>
 
-### Body parameters
+#### Body parameters
 
 <Table>
 <TableHead headers={['Field name', 'Description']} />
@@ -199,7 +199,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
 
 </TipBox>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -221,7 +221,7 @@ This object is passed directly to Klarna as order\_lines. See [Klarna's document
     }
 ```
 
-### Response examples
+#### Response examples
 
 <tabs>
 <tab title="201 Successfully created Klarna session" active>
@@ -280,11 +280,11 @@ If something goes wrong, you may get a `400 Bad request` or `401 Unauthorized to
 
 ---
 
-## Display widget
+### Display widget
 
 Next, load the widget on your page so your customer can choose one of the Klarna payment methods.
 
-### Add the JavaScript SDK to your page
+#### Add the JavaScript SDK to your page
 
 To do so, you first need to insert the below code into your page to load the Klarna Payments Library in your client.
 
@@ -298,7 +298,7 @@ To do so, you first need to insert the below code into your page to load the Kla
 //]]>
 ```
 
-### Initialize the SDK
+#### Initialize the SDK
 
 Then initialize the Klarna Payments Library. To do this, call `init` and pass the `client_token` that you got in the response when you created the session in the first step.
 
@@ -314,7 +314,7 @@ Then initialize the Klarna Payments Library. To do this, call `init` and pass th
     }
 ```
 
-### Add a container to your page
+#### Add a container to your page
 
 Next, specify where you want the widget by adding a container to your checkout page with the following snippet.
 
@@ -328,7 +328,7 @@ The Klarna Payments iframe requires a minimum width of 280px.
 
 </TipBox>
 
-### Display available payment methods
+#### Display available payment methods
 
 To show your customers the Klarna payment options open to them (i.e. _Pay later_ and _Slice it_), use the following `payment_method_categories` array, which you'll find in the response you received when you created the session in step one.
 
@@ -357,7 +357,7 @@ To show your customers the Klarna payment options open to them (i.e. _Pay later_
     }
 ```
 
-### Load the Klarna widget
+#### Load the Klarna widget
 
 When that's done, present the Klarna widget to your customer by calling `load`, passing the ID of the container you added earlier and specifying the `payment_method_categories`.
 
@@ -702,7 +702,7 @@ Catches the response from `Klarna.Payments.load()` for further processing.
 
 ---
 
-## Authorize the order
+### Authorize the order
 
 When your customer presses the **buy now** button, you can authorize the order. In return, you'll receive an authorization token, which you'll then use to complete the payment.
 
@@ -843,7 +843,7 @@ Catches the response from `Klarna.Payments.authorize()` for further processing.
 
 ---
 
-## Place the order
+### Place the order
 
 If the authorization was successful, you will have received an `authorization_token`, which you can now use to place the customer's order.
 
@@ -971,7 +971,7 @@ The 202 response with an `approved: true` flag confirms that Klarna will process
 
 ---
 
-## Capture the payment
+### Capture the payment
 
 Once you've shipped your goods to the customer, you can capture the payment. If, however, you provide the customer with immediate access to your product (e.g., you provide them with an online service), you can capture the payment as soon as the order is placed.
 
@@ -1269,11 +1269,11 @@ If unsuccessful, you may receive a `403 Capture not allowed` or `404 Payment not
 
 </TipBox>
 
-## Refund a payment
+### Refund a payment
 
 Klarna supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
 
-## Void a payment
+### Void a payment
 
 #### Endpoints
 
@@ -1432,7 +1432,7 @@ If unsuccessful, you may get a `403 Void not allowed` or `404 Payment not found`
 </TipBox>
 
 
-## Testing Klarna 
+### Testing Klarna 
 
 <TipBox variant="note">
 
