@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MobileBreakPoints } from 'constants/screen';
 
 export const StyledTabHead = styled.ul<{ withPadding?: boolean }>`
   display: flex;
@@ -26,8 +25,4 @@ export const StyledTabHeadLink = styled.button<{ active: boolean }>`
   line-height: 24px;
   white-space: nowrap;
   cursor: pointer;
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 18px;
-  }
 `;

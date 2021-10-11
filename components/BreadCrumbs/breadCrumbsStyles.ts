@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MobileBreakPoints } from 'constants/screen';
 import { IconArrowLeft } from '../Icons';
 
 export const StyledContainer = styled.div<{ withIcon?: boolean }>`
@@ -14,11 +13,6 @@ export const StyledLinkContainer = styled.span`
 
   &:last-child {
     font-weight: 500;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 18px;
-    line-height: 24px;
   }
 `;
 

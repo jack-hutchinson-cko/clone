@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MobileBreakPoints } from 'constants/screen';
 
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.baseLight};
@@ -7,9 +6,4 @@ export const Text = styled.p`
   margin: 16px 0;
   line-height: 24px;
   font-weight: 400;
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 24px;
-    line-height: 32px;
-  }
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link as PrimitiveLink } from '@cko/primitives';
-import { MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 
 export const BlockLink = styled(PrimitiveLink)`
   cursor: pointer;
@@ -15,17 +15,7 @@ export const BlockLink = styled(PrimitiveLink)`
     transition: transform 0.15s linear 0s;
   }
 
-  @media ${MobileBreakPoints.MOBILE_L} {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 24px;
-    line-height: 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     font-size: 16px;
     line-height: 24px;
   }

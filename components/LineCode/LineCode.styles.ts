@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MobileBreakPoints } from 'constants/screen';
 
 export const LineCode = styled.code<{ wordBreak?: string }>`
   padding: 2px 8px;
@@ -11,8 +10,4 @@ export const LineCode = styled.code<{ wordBreak?: string }>`
   line-height: 24px;
   font-weight: normal;
   word-break: ${({ wordBreak = 'normal' }) => wordBreak};
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 16px;
-  }
 `;

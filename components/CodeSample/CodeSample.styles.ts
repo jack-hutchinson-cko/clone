@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Text } from '@cko/primitives';
-import { MobileBreakPoints } from 'constants/screen';
 import { IconActionChevronDown } from '../Icons';
 
 export const PreWrapper = styled.div<{
@@ -60,9 +59,6 @@ export const Pre = styled.pre`
   position: relative;
   font-size: 14px;
   border-spacing: 0px;
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 16px;
-  }
 `;
 
 export const InputSizer = styled.div`
@@ -224,9 +220,6 @@ export const LineNumber = styled.div`
   font-family: monospace;
   line-height: 24px;
   height: 24px;
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 14px;
-  }
 `;
 
 export const LineCounterWrapper = styled.div`

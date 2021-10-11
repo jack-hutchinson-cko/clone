@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ThemeType } from 'types/theme';
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 
 import { SubheadBackgroundColor } from './types';
 
@@ -15,10 +15,6 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
   vertical-align: top;
   line-height: 24px;
   background-color: ${({ theme }) => theme.colors.border};
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 18px;
-    line-height: 24px;
-  }
 
   & tr th p {
     margin: 0;
@@ -26,10 +22,6 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
     color: ${({ theme }) => theme.colors.base};
     font-size: 16px;
     line-height: 24px;
-    @media ${MobileBreakPoints.MOBILE_M} {
-      font-size: 18px;
-      line-height: 24px;
-    }
   }
 
   ${({ withTopBorder = true }) =>
@@ -78,10 +70,6 @@ export const TableCell = styled.td<{ isNoWrap?: boolean; withBackground?: boolea
   li {
     margin: 14px 0;
     font-size: 14px;
-    @media ${MobileBreakPoints.MOBILE_M} {
-      font-size: 18px;
-      line-height: 24px;
-    }
   }
   @media ${Breakpoints.TABLET}, ${Breakpoints.MOBILE} {
     white-space: normal;
