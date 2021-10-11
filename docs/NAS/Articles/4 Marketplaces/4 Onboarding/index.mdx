@@ -1,19 +1,17 @@
 ---
-title: About onboarding
+title: About onboarding sub-entities
 account: NAS
 ---
 
-Vendors, retailers and service providers on your Platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
+Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
-You will onboard your sub-entities through our Marketplace API.
-
-On this page, we'll discuss what information you need to start onboarding sub-entities to your Platform and the difference between account types.
+On this page, we'll discuss what information you need to start onboarding sub-entities to your platform and the difference between account types.
 
 ---
 
 ## Account types
 
-Your Platform's account type will determine:
+Your platform's account type will determine:
 
 - The due diligence checks performed on your sub-entities.
 - The capabilities available to your sub-entities (and enabled once checks are passed).
@@ -188,6 +186,7 @@ If 'Company' is selected during onboarding with Checkout.com.
 </Table>
 
 #### Manual reviews
+
 On occasion, our team will need to manually review a sub-entity before the result of our due diligence checks can be confirmed. Manual reviews can take a little longer to complete and may delay the check result and capability update notifications that you should expect to receive. If you have provided all the required sub-entity information and have left sufficient time to receive notifications regarding the outcome, then it’s likely that the sub-entity is being manually reviewed. However, if you have any concerns, please contact us.
 
 We are working hard on creating a notification to inform you on manual reviews to provide more visibility.
@@ -310,193 +309,14 @@ We are working hard on creating a notification to inform you on manual reviews t
 
 ---
 
-## Sub-entity status
-
-To provide you with visibility to what's going on with your sub-entities, our API responses include a `status` field.
-
-You can also subscribe to the status [webhook notification](/workflows) to keep up to date with any asynchronous changes.
-
-<tabs>
-<tab title='Requirements due' active>
-<Box horizontal='sm'>
-
-If we're expecting you to provide us with more information, your sub-entity will have a status of `requirements_due`. With this status, the `requirements_due` array will also be populated to inform you of the information that is missing.
-
-<TipBox variant="tip">
-
-Use the [information required table](#Aboutonboarding-information) to find out what information is required to trigger due diligence checks.
-
-</TipBox>
-
-**Example response**
-
-In this example, we have created a company sub-entity without any representatives or a registered address.
-
-
-</Box>
-
-```json
-{
-   "id": "ent_vjmdzvijizs7o26kiuiakywvyi",
-   "reference": "tmvhWvvZfFSkJy4",
-   "status": "requirements_due",
-   "capabilities": {
-       "payments": {
-           "enabled": false
-       },
-       "payouts": {
-           "enabled": false
-       }
-   },
-   "requirements_due": [
-       {
-           "field": "company.representatives",
-           "reason": "required"
-       },
-       {
-           "field": "company.registered_address",
-           "reason": "required"
-       }
-   ],
-   "_links": {
-       "self": {
-           "href": "https://api.checkout.com/marketplace/entities/ent_vjmdzvijizs7o26kiuiakywvyi"
-       }
-   }
-}
-```
-
-</tab>
-<tab title='Pending'>
-<Box horizontal='sm'>
-
-We will only trigger due diligence checks when we have all the [information required](#Aboutonboarding-information). Once the checks are triggered, the sub-entity's status will be `pending`.
-
-We may make changes to this sub-entity's capabilities based on the outcome of these checks.
-
-</Box>
-
-```json
-{
-   "id": "ent_vjmdzvijizs7o26kiuiakywvyi",
-   "reference": "tmvhWvvZfFSkJy4",
-   "status": "pending",
-   "capabilities": {
-       "payments": {
-           "enabled": false
-       },
-       "payouts": {
-           "enabled": false
-       }
-   },
-   "requirements_due": [],
-   "_links": {
-       "self": {
-           "href": "https://api.checkout.com/marketplace/entities/ent_vjmdzvijizs7o26kiuiakywvyi"
-       }
-   }
-}
-```
-
-</tab>
-<tab title='Active'>
-<Box horizontal='sm'>
-
-If the due diligence checks have passed, we will enable the sub-entity's payments and/or payouts capabilities, which will give that sub-entity a status of `active`. This means there are no outstanding requirements at this time.
-
-<TipBox variant="info">
-
-- This status change is asynchronous (happening behind the scenes), so you can optionally subscribe to the `status_changed` [webhook notification](/workflows/webhook-event-types) to keep up to date or see the status by retrieving the sub-entity.
-- If you update information after this point, new checks will be triggered and the status of this sub-entity will go back to `pending`.
-
-</TipBox>
-
-#### Example webhook notification
-
-</Box>
-
-```json
-{
-   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
-   "type": "status_changed",
-   "version": "1.0.0",
-   "created_on": "2020-08-20T15:24:13.8431084Z",
-   "data": {
-     "sub_entity_id": "ent_vjmdzvijizs7o26kiuiakywvyi",
-     "status": "active"
-     "reference": "tmvhWvvZfFSkJy4",
-     "legal_name": "Super Hero Masks Inc."
-   },
-   "_links": {
-       "self": {
-          "href": "https://api.checkout.com/workflows/events/evt_htielsmgcwgejgqaunl4yb2pou"
-        }
-    }
-}
-```
-</tab>
-<tab title='Rejected'>
-<Box horizontal='sm'>
-
-If due diligence checks do not pass, we will disable the sub-entity's payment and payouts capabilities. This status will change from `pending` to `rejected`. A sub-entity is rejected if we have identified reasons during our due diligence checks – this decision is final and you will not be able to resume onboarding.
-
-To challenge the direction, please contact us directly.
-
-<TipBox variant="info">
-
-- This status change is asynchronous (happening behind the scenes), so you can optionally subscribe to the `status_changed` [webhook notification](/workflows/webhook-event-types) to keep up to date or see the status by retrieving the sub-entity.
-- An attempt to update a rejected sub-entity will return a 442 response with the error code `status_invalid`.
-
-</TipBox>
-
-#### Example webhook notification
-
-</Box>
-
-```json
-{
-   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
-   "type": "status_changed",
-   "version": "1.0.0",
-   "created_on": "2020-08-20T15:24:13.8431084Z",
-   "data": {
-     "sub_entity_id": "ent_vjmdzvijizs7o26kiuiakywvyi",
-     "status": "rejected"
-     "reference": "tmvhWvvZfFSkJy4",
-     "legal_name": "Super Hero Masks Inc."
-   },
-   "_links": {
-       "self": {
-          "href": "https://api.checkout.com/workflows/events/evt_htielsmgcwgejgqaunl4yb2pou"
-        }
-    }
-}
-```
-
-</tab>
-</tabs>
-
----
-
 ## Where to next?
 
 <ContentPanel variant="heading" title="Onboard a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
 
-We'll walk you through the entire process for onboarding a sub-entity onto your platform.
+We'll walk you through the entire process for onboarding a sub-entity onto your platform by using our Marketplace API, or our friendly user interface.
 
-<ButtonLinkSecondary href="/marketplaces/about-onboarding/onboard-a-sub-entity-lite">Lite account type</ButtonLinkSecondary>
-<ButtonLinkSecondary href="/marketplaces/about-onboarding/onboard-a-sub-entity-full">Full account type</ButtonLinkSecondary>
-
-</ContentPanel>
-
-<br/>
-
-## Find out more
-
-<ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
-
-We'll explain how to upload a file to the Marketplace API.
-
-<ButtonLinkSecondary href="/marketplaces/about-onboarding/upload-a-file">Find out more</ButtonLinkSecondary>
+<ButtonLinkSecondary href="/marketplaces/onboarding/api">Marketplace API</ButtonLinkSecondary>
+&nbsp;
+<ButtonLinkSecondary href="/marketplaces/onboarding/dashboard">Dashboard</ButtonLinkSecondary>
 
 </ContentPanel>

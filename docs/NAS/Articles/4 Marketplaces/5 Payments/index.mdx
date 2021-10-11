@@ -64,7 +64,7 @@ The following pages can help you understand the response message:
 <tabs>
 <tab title="201 - Success">
 
-```json
+```json withBorder=false
 {
     "id": "pay_kwrzpz644g6uxmdkpe5u6ruecm",
     "action_id": "act_ehwckitpyywunkxzou4e64iwhm",
@@ -126,7 +126,7 @@ The following pages can help you understand the response message:
 </tab>
 <tab title="202 - Payment asynchronous / further action required">
 
-```json
+```json withBorder=false
 {
   "id": "pay_mbabizu24mvu3mela5njyhpit4",
   "status": "Pending",
@@ -152,7 +152,7 @@ The following pages can help you understand the response message:
 </tab>
 <tab title="422 - Invalid data was sent">
 
-```json
+```json withBorder=false
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",
@@ -171,14 +171,14 @@ When you make a payment, we will let you know what stage the payment is at throu
 <tab title="Lite">
 <Box horizontal="sm">
 
-Funds will be routed and held in your Platform’s currency accounts as per the preferences agreed for your platform during onboarding. This will include a default currency (e.g. I want all of my payments, regardless of processing currency, to be routed to and held in GBP), and possibly some like-for-like preferences (e.g. I specifically want any payments in EUR to be routed to and held in EUR).
+Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. This will include a default currency (e.g. I want all of my payments, regardless of processing currency, to be routed to and held in GBP), and possibly some like-for-like preferences (e.g. I specifically want any payments in EUR to be routed to and held in EUR).
 
 </Box>
 </tab>
 <tab title="Full">
 <Box horizontal="sm">
 
-Funds will be routed and held in your Platform’s currency accounts as per the default holding currency of your sub-entity (specified when onboarding via the Marketplace API). Please note that funds are aggregated based on currency, so if you onboard two sub-entities both with the default holding currency of GBP, funds for both of these sub-entities will be routed to your GBP currency account.
+Funds will be routed and held in your platform’s currency accounts as per the default holding currency of your sub-entity (specified when onboarding via the Marketplace API). Please note that funds are aggregated based on currency, so if you onboard two sub-entities both with the default holding currency of GBP, funds for both of these sub-entities will be routed to your GBP currency account.
 
 </Box>
 </tab>
@@ -192,7 +192,7 @@ Funds will be routed and held in your Platform’s currency accounts as per the 
 
 **`Full`** sub-entities have payout capability. Use this page to find out what you can do.
 
-<ButtonLink href="/marketplaces/about-payouts">Learn more</ButtonLink>
+<ButtonLink href="/marketplaces/payouts">Learn more</ButtonLink>
 </ContentPanel>
 
 ## Find out more

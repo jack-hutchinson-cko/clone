@@ -3,7 +3,7 @@ title: Quick start (full)
 account: NAS
 ---
 
-This guide demonstrates how to onboard a sub-entity, process payments on its behalf and later payout directly to their bank account.
+This guide demonstrates the full process, from onboarding a sub-entity to processsing payments on its behalf and later payout directly to their bank account.
 
 ---
 
@@ -31,13 +31,13 @@ Unless otherwise agreed during your onboarding, your sub-entities will undergo *
 <tab title="Individual">
 <Box horizontal="sm">
 
-Vendors, retailers and service providers on your Platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
+Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
-* **Onboard with the minimum required information**
-* **Upload identity documents**
-* **Keep up to date with webhook notifications**
+* Onboard with the minimum required information
+* Upload identity documents
+* Keep up to date with webhook notifications
 
 ---
 
@@ -45,7 +45,7 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 <TipBox variant="info">
 
-To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information page](/marketplaces/about-onboarding).
+To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information page](/marketplaces/onboarding).
 
 </TipBox>
 
@@ -89,15 +89,15 @@ Use <RequestTag type="post" />`/marketplace/entities`.
 <TipBox variant="info">
 
 - You will only be able to specify the `individual.registered_address.country`, `profile.mccs` and `profile.default_holding_currency` to those that were configured for your scope during onboarding.
-- Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of Daniel’s Donuts would be routed and held in the Platform's GBP currency account.
+- Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of Daniel’s Donuts would be routed and held in the platform's GBP currency account.
 
 </TipBox>
 
 #### Response
 
-A successful response will include a unique sub-entity id, which you should store for future requests. Additionally, the response has the capabilities object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
+A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
-You will also notice there is a status field set to requirements_due. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/about-onboarding).
+You will also notice there is a `status` field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/onboarding#Sub-entity_status).
 
 ```json
 {
@@ -134,11 +134,11 @@ That’s all it takes to create a sub-entity!
 
 #### Step 1b: Upload identity documentation
 
-Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/marketplaces/about-onboarding/upload-a-file).
+Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/marketplaces/onboarding/api/full/upload-a-file).
 
-You then need to update the sub-entity with this identification documentz attached, so we trigger due diligence checks.
+You then need to update the sub-entity with this identification document attached, so we trigger due diligence checks.
 
-Read more about how to do this on our [onboarding page](/marketplaces/about-onboarding/onboard-a-sub-entity-full).
+Read more about how to do this on our [onboarding page](/marketplaces/onboarding/api/full).
 
 ---
 
@@ -221,13 +221,13 @@ We will re-trigger due diligence checks if any of the required information is la
 <tab title="Company">
 <Box horizontal="sm">
 
-Vendors, retailers and service providers on your Platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
+Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
-* **Onboard with the minimum required information**
-* **Upload identity documentation**
-* **Keep up to date with webhook notifications**
+* Onboard with the minimum required information
+* Upload identity documentation
+* Keep up to date with webhook notifications
 
 ---
 
@@ -235,7 +235,7 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 <TipBox variant="info">
 
-To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information](/marketplaces/about-onboarding) page.
+To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information](/marketplaces/onboarding) page.
 
 </TipBox>
 
@@ -279,7 +279,7 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 <TipBox variant="info">
 
 - You will only be able to specify the `company.principal_address.country`, `profile.mccs` and `profile.default_holding_currency` to those that were configured for your scope during onboarding.
-- Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of The Cake Shop would be routed and held in the Platform's GBP currency account.
+- Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of The Cake Shop would be routed and held in the platform's GBP currency account.
 
 </TipBox>
 
@@ -287,7 +287,7 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
-You will also notice there is a status field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/about-onboarding).
+You will also notice there is a status field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/onboarding#Sub-entity_status).
 
 ```json
 {
@@ -324,7 +324,7 @@ That’s all it takes to create a sub-entity!
 
 #### Step 1b: Update sub-entity with additionl details
 
-As we onboarded our sub-entity with the minimum required information, due diligence checks have not yet been conducted. To trigger checks we must provide the outstanding requirements detailed in the previous step, so let’s do that next.
+Due diligence checks have not yet been conducted. To trigger checks we must provide the outstanding requirements detailed in the previous step, so let’s do that next.
 
 We will update **The Cake Shop** with its:
 
@@ -337,38 +337,6 @@ The Cake Shop has a single representative, Chrisi Webster, for who we will provi
 With the `id` returned in the response to step 1a, use <RequestTag type="put" /> `/marketplace/entities/{id}` to update the sub-entity representing The Cake Shop with additional information - `company.registered_address`, `company.business_registration_number` and `company.representatives`.
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -545,17 +513,17 @@ Use <RequestTag type="get" /> `/marketplace/entities/{id}` to retrieve the sub-e
 
 #### Step 1b: Upload an identity document for representative of sub-entity
 
-Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/four/marketplaces/about-onboarding/upload-a-file).
+Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/marketplaces/onboarding/api/full/upload-a-file).
 
 You then need to update the sub-entity with this identification documentz attached, so we trigger due diligence checks.
 
-Read more about how to do this on our [onboarding page](/marketplaces/about-onboarding/onboard-a-sub-entity-full).
+Read more about how to do this on our [onboarding page](/marketplaces/onboarding/api/full).
 
 ---
 
 #### Step 1c: Handle due diligence result and capabilities changes
 
-Once we have conducted our due diligence checks, we will inform you of the outcome via webhook notification. You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our legal_name fail triggers is used for simulation, due diligence will always pass in Sandbox. 
+Once we have conducted our due diligence checks, we will inform you of the outcome via webhook notification. You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our `legal_name` fail triggers is used for simulation, due diligence will always pass in Sandbox. 
 
 For **The Cake Shop**, we receive the `full_dd_passed` with the following payload:
 
@@ -578,7 +546,7 @@ For **The Cake Shop**, we receive the `full_dd_passed` with the following payloa
 }
 ```
 
-If due diligence is passed, we will enable the sub-entity’s **payment** and **payout capabilities**. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
+If due diligence is passed, we will enable the sub-entity’s **payment** and **payout** capabilities. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
 
 For **The Cake Shop**, we receive the payments_enabled and payouts_enabled with the following payloads:
 
@@ -640,13 +608,13 @@ We will re-trigger due diligence checks if any of the required information is la
 <tab title="Individual">
 <Box horizontal="sm">
 
-Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its ID in the `marketplace.sub_entity_id` field when using <RequestTag type="post" />`/payments`.
+Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id in the `marketplace.sub_entity_id` field when using <RequestTag type="post" />`/payments`.
 
 We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £10 on its behalf.
 
 <TipBox variant="info">
 
-Funds will be routed and held in your Platform’s currency accounts as per the preferences agreed for your Platform during onboarding. In this example all payments are being routed to GBP.
+Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
 
@@ -762,7 +730,7 @@ We’ll use **The Cake Shop’s** `id` from step 1 to process a payment for £10
 
 <TipBox variant="info">
 
-As per The Cake Shop’s `profile.default_holding_currency`, the funds from any payments processed on their behalf will routed and held in the Platform’s GBP currency account.
+As per The Cake Shop’s `profile.default_holding_currency`, the funds from any payments processed on their behalf will routed and held in the platform’s GBP currency account.
 
 </TipBox>
 
@@ -873,10 +841,10 @@ Now that we’ve successfully processed a payment on behalf of our sub-entity, w
 
 In this step we’re going to walk through the steps that will enable us to do this:
 
-- **Retrieve currency account balance**
-- **Store sub-entity bank account details**
-- **Make a payout**
-- **Collect platform fees**
+- Retrieve currency account balance
+- Store sub-entity bank account details
+- Make a payout
+- Collect platform fees
 
 ---
 
@@ -892,7 +860,7 @@ A payment instrument is a set of bank account details securely stored in our vau
 
 <TipBox variant="note">
 
-Your Platform's bank account is also represented as a payment instrument, and will be used as the destination when making payouts to yourself to collect your Platform’s fees. Your platform payment instrument ID(s) will be provided to you after we have completed your setup.
+Your platform's bank account is also represented as a payment instrument, and will be used as the destination when making payouts to yourself to collect your platform’s fees. Your platform payment instrument ID(s) will be provided to you after we have completed your setup.
 
 </TipBox>
 
@@ -1112,9 +1080,9 @@ For **Daniel’s Donuts**, we receive the `payment_paid` with the following payl
 }
 ```
 
-#### Step 3d: Collect Platform fees
+#### Step 3d: Collect platform fees
 
-Collection of your Platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the `destination.id` will be your Platform’s payment instrument `id`.
+Collection of your platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the `destination.id` will be your platform’s payment instrument `id`.
 
 <TipBox variant="info">
 
@@ -1122,41 +1090,9 @@ In this example we (Desserts Delivered) will simply collect a £1 fee from **Dan
 
 </TipBox>
 
-Use <RequestTag type="post" /> `/payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your Platform to collect your fees. Instead use the payment instrument representing your bank account as the `destination.id`.
+Use <RequestTag type="post" /> `/payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your platform to collect your fees. Instead use the payment instrument representing your bank account as the `destination.id`.
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -1240,10 +1176,10 @@ Now that we’ve successfully processed a payment on behalf of our sub-entity, w
 
 In this step we’re going to walk through the steps that will enable us to do this:
 
-- **Retrieve currency account balance**
-- **Store sub-entity bank account details**
-- **Make a payout**
-- **Collect platform fees**
+- Retrieve currency account balance
+- Store sub-entity bank account details
+- Make a payout
+- Collect platform fees
 
 ---
 
@@ -1259,45 +1195,13 @@ A payment instrument is a set of bank account details securely stored in our vau
 
 <TipBox variant="note">
 
-Your Platform's bank account is also represented as a payment instrument, and will be used as the destination when making payouts to yourself to collect your Platform’s fees. Your platform payment instrument ID(s) will be provided to you after we have completed your setup.
+Your platform's bank account is also represented as a payment instrument, and will be used as the destination when making payouts to yourself to collect your platform’s fees. Your platform payment instrument ID(s) will be provided to you after we have completed your setup.
 
 </TipBox>
 
 We will create a payment instrument representing The Cake Shop’s Barclays bank account details in this step. Use <RequestTag type="post" /> `/marketplace/entities/{id}/instruments` to create a sub-entity payment instrument.
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -1366,38 +1270,6 @@ Similar to processing payments, our Unified Payments API enables you to make pay
 We’ll make a payout to **The Cake Shop** for £8. The funds will come from Desserts Delivered’s GBP currency account (`source.id`) and be sent to The Cake Shop’s bank account (`destination.id`).
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -1482,47 +1354,15 @@ We have cut out most of the response so you can focus on the instrument array. Y
 
 </TipBox>
 
-#### Step 3d: Collect Platform fees
+#### Step 3d: Collect platform fees
 
-Collection of your Platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the destination.id will be your Platform’s payment instrument `id`.
+Collection of your platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the destination.id will be your platform’s payment instrument `id`.
 
 In this example we (Desserts Delivered) will simply collect a £1 fee from **The Cake Shop**; however, please note that because funds for multiple sub-entities are aggregated based on currency, you can actually collect fees from multiple sub-entities in a single request, which reduces the effort required. 
 
-Use <RequestTag type="post" /> `/payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your Platform to collect your fees, and use the payment instrument representing your bank account as the `destination.id`.
+Use <RequestTag type="post" /> `/payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your platform to collect your fees, and use the payment instrument representing your bank account as the `destination.id`.
 
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -1613,7 +1453,7 @@ That's it! You've successfully completed your first payment flow in Marketplaces
 
 ## FAQs
  
-<Accordion title="Why haven't my capabilities been enabled?">
+<Accordion title="Why haven't my sub-entity's capabilities been enabled?">
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `full_dd_passed` or `full_dd_failed` – it is likely there are outstanding requirements due. Please check our onboarding information page to confirm you have sent all the required information.
 
