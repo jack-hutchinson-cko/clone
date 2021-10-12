@@ -20,40 +20,6 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const Button = styled.a`
-  text-decoration: none;
-  background-color: transparent;
-
-  & > div {
-    display: flex;
-    background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-    color: ${({ theme }) => theme.colors.btnPrimaryFont};
-    padding: 8px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    line-height: 24px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    height: 48px;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.fiordLight};
-    }
-
-    &:focus {
-      background-color: ${({ theme }) => theme.colors.btnPrimaryBackground};
-    }
-
-    &:disabled {
-      background-color: ${({ theme }) => theme.colors.catskillWhite};
-    }
-
-    @media (max-width: ${SIZE.SM}px) {
-      width: 100%;
-    }
-  }
-`;
-
 export const WhatsNewWidget = styled.div`
   margin: 24px 0;
 `;

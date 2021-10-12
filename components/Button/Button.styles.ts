@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { Breakpoints, createBreakpointTo, SIZE } from 'constants/screen';
 import { ThemeType } from 'types/theme';
+import { spacing } from 'constants/spacingSize';
 
 type Props = {
   fullWidth?: boolean;
@@ -49,7 +50,7 @@ const getButtonFontStyles = ({ size }: Props) => {
     case 'small':
       return css`
         min-height: 40px;
-        padding: 8px 24px;
+        padding: ${spacing.s20}px ${spacing.s50}px;
         font-size: 14px;
         line-height: 24px;
       `;
@@ -69,9 +70,10 @@ const Button = styled.button<Props>`
   justify-content: center;
   align-items: center;
   min-height: 48px;
-  padding: 12px 24px;
+  padding: ${spacing.s30}px ${spacing.s50}px;
   border: none;
   border-radius: 8px;
+  font-family: inherit;
   font-weight: 500;
   white-space: nowrap;
 
