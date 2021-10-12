@@ -16,7 +16,7 @@ import {
   SectionContent,
   SectionLinksContainer,
   QuestionsContainer,
-  TextHeadingThree,
+  HeadingThree,
 } from 'components/FAQStyledComponents';
 import {
   getFAQPathUrls,
@@ -58,7 +58,7 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
               <HeadDescription>{frontMatter.description}</HeadDescription>
             </HeaderContainer>
             <QuestionsContainer>
-              <TextHeadingThree>Question</TextHeadingThree>
+              <HeadingThree>Question</HeadingThree>
               <MDXProvider source={source} />
             </QuestionsContainer>
           </MainContent>

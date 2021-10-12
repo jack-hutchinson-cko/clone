@@ -10,8 +10,6 @@ export const StyledAccordion = styled(Accordion)<{ withHorizontal?: boolean }>`
   @media ${createBreakpointBetween(SIZE.SM, SIZE.M)} {
     padding: 28px 0px;
     button {
-      font-size: 24px;
-      line-height: 32px;
       font-weight: 500;
     }
   }

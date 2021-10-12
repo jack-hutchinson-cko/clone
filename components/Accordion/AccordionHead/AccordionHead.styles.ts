@@ -17,9 +17,9 @@ export const StyledAccordionHead = styled.button<{
   color: inherit;
   font-family: inherit;
   font-size: 16px;
+  line-height: 24px;
   font-weight: 300;
   text-align: left;
-  line-height: 32px;
   cursor: pointer;
 
   & > div,

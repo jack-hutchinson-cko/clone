@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
-import { Box, TextHeadingOne as PrimitivesTextHeadingOne, Text } from '@cko/primitives';
-import { TextHeadingTwo } from 'components/TextHeading';
+import { Box } from '@cko/primitives';
+import { TextHeadingTwo, TextHeadingOne } from 'components/TextHeading';
+import { Text } from 'components/Text';
+
 import {
   SIZE,
   Breakpoints,
@@ -55,20 +57,9 @@ export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobi
     `}
 `;
 
-export const IntroTitle = styled(PrimitivesTextHeadingOne)`
+export const IntroTitle = styled(TextHeadingOne)`
   color: ${({ theme }) => theme.colors.base};
-  font-size: 40px;
-  line-height: 48px;
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 56px;
-    line-height: 64px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 32px;
-    line-height: 40px;
-  }
+  margin: 0;
 `;
 
 export const IntroDescription = styled(Text)`
@@ -76,15 +67,7 @@ export const IntroDescription = styled(Text)`
   color: ${({ theme }) => theme.colors.baseLight};
   font-family: inherit;
   width: 85%;
-  font-size: 16px;
-  line-height: 24px;
   font-weight: 400;
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 23px;
-    line-height: 32px;
-    width: 100%;
-  }
 `;
 
 export const MainWrapper = styled.div`

@@ -64,13 +64,8 @@ export const TextField = styled(TextFieldBase)<{ isFAQSection?: boolean }>`
   ${({ isFAQSection = false }) =>
     isFAQSection
       ? css`
-          font-size: 18px;
+          font-size: 14px;
           line-height: 24px;
-
-          @media ${MobileBreakPoints.MOBILE_L} {
-            font-size: 24px;
-            line-height: 32px;
-          }
         `
       : ''}
 `;

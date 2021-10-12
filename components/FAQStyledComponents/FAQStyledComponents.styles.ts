@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import { TextHeadingOne, TextHeadingThree } from 'components/TextHeading';
 import {
   SIZE,
   createBreakpointBetween,
   createBreakpointFrom,
-  MobileBreakPoints,
   createBreakpointTo,
 } from 'constants/screen';
 import CategoriesItem from '../Categories/CategoriesItem';
@@ -77,33 +77,19 @@ export const QuestionsContainer = styled.div`
   }
 `;
 
-export const TextHeadingOne = styled.h1`
+export const HeadingOne = styled(TextHeadingOne)`
   color: ${({ theme }) => theme.colors.base};
-  font-size: 32px;
-  line-height: 40px;
   max-width: 620px;
   margin: 0;
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 56px;
-    line-height: 64px;
-  }
-
-  @media ${createBreakpointFrom(SIZE.M)} {
-    font-size: 48px;
-    line-height: 56px;
-  }
 
   @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
     margin: 24px 0;
   }
 `;
 
-export const TextHeadingThree = styled.h3`
+export const HeadingThree = styled(TextHeadingThree)`
   margin: 0;
   color: ${({ theme }) => theme.colors.base};
-  font-size: 24px;
-  line-height: 32px;
   margin-bottom: 16px;
 
   &:not(:first-child) {
@@ -111,41 +97,29 @@ export const TextHeadingThree = styled.h3`
   }
 
   @media ${createBreakpointFrom(SIZE.SM)} {
-    font-size: 40px;
-    line-height: 48px;
     margin-bottom: 32px;
+
     &:not(:first-child) {
       margin-top: 64px;
     }
   }
-  @media ${createBreakpointFrom(SIZE.M)} {
-    font-size: 24px;
-    line-height: 32px;
-  }
 `;
 
 export const StyledCategoriesItem = styled(CategoriesItem)`
-  span,
-  div {
-    font-size: 16px;
-    line-height: 24px;
+  border-radius: 8px;
+  line-height: 24px;
+
+  span {
+    font-size: 18px;
   }
 
-  @media ${MobileBreakPoints.MOBILE_L} {
-    border-radius: 8px;
-    span {
-      font-size: 32px;
-      line-height: 32px;
-    }
-    div {
-      font-size: 24px;
-      line-height: 32px;
-    }
+  div {
+    font-size: 16px;
   }
+
   @media ${createBreakpointFrom(SIZE.M)} {
     div {
       font-size: 14px;
-      line-height: 24px;
     }
   }
 `;
@@ -153,18 +127,8 @@ export const StyledCategoriesItem = styled(CategoriesItem)`
 export const SearchLabel = styled.div`
   margin: 24px 0;
   color: ${({ theme }) => theme.colors.baseLight};
-  font-size: 20px;
-  line-height: 32px;
-
-  @media ${createBreakpointTo(SIZE.SM)} {
-    font-size: 24px;
-    line-height: 32px;
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    font-size: 16px;
-    line-height: 24px;
-  }
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export const SearchFieldWrapper = styled.div`
@@ -175,14 +139,12 @@ export const SearchExamples = styled.div`
   > p {
     display: inline-block;
     margin: 0 10px 0 0;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
 
-    @media ${createBreakpointTo(SIZE.SM)} {
+    @media ${createBreakpointTo(SIZE.XS)} {
       display: block;
       margin-bottom: 10px;
-      font-size: 24px;
-      line-height: 32px;
     }
   }
 

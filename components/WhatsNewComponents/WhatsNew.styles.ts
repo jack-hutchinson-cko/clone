@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SIZE } from 'constants/screen';
 import { TextHeadingTwo } from 'components/TextHeading';
+import { spacing } from 'constants/spacingSize';
 
 export const Header = styled(TextHeadingTwo)`
   margin: 0;
@@ -15,13 +16,7 @@ export const HeaderContainer = styled.div`
 
   @media (max-width: ${SIZE.SM}px) {
     flex-direction: column;
-  }
-  @media (min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM}px) {
-    gap: 40px;
-  }
-
-  @media (max-width: ${SIZE.XS - 1}px) {
-    gap: 16px;
+    gap: ${spacing.s40}px;
   }
 `;
 
@@ -51,11 +46,6 @@ export const Button = styled.a`
 
     &:disabled {
       background-color: ${({ theme }) => theme.colors.catskillWhite};
-    }
-
-    @media (min-width: ${SIZE.XS}px) and (max-width: ${SIZE.SM}px) {
-      font-size: 24px;
-      height: 76px;
     }
 
     @media (max-width: ${SIZE.SM}px) {
