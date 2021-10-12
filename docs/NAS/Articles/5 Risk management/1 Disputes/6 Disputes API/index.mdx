@@ -32,7 +32,7 @@ With our disputes API, you can:
 
 ---
 
-## Dispute reasons
+### Dispute reasons
 
 Most of the time, customers dispute a payment because of fraudulent charges. However, there are many other possible reasons. You can tell why a dispute was raised by looking at the `category` field of the response.
 
@@ -40,7 +40,7 @@ Learn more about the [reasons for disputes and the type of evidence we suggest s
 
 ---
 
-## Dispute statuses
+### Dispute statuses
 
 Each dispute has an associated `status` that describes which stage of the dispute process it has reached.
 
@@ -391,11 +391,11 @@ action is required from you.
 
 ---
 
-## View disputes and dispute details
+### View disputes and dispute details
 
 You can use our API to view a list of disputes or to retrieve information about a specific dispute.
 
-### Get a list of disputes
+#### Get a list of disputes
 
 Use the endpoint below to retrieve a list of disputes against your business. These will be returned in reverse chronological order, showing the last modified dispute (for example, where you've recently added a piece of evidence) first. You can use the additional body parameters to skip or limit results.
 
@@ -484,7 +484,7 @@ const disputes = await cko.disputes.get({
 }
 ```
 
-### Get details about a dispute
+#### Get details about a dispute
 
 Use the following endpoint to retrieve all the information relating to a specific dispute.
 
@@ -572,11 +572,11 @@ const disputeDetails = await cko.disputes.getDetails('dsp_bc94ebda8d275i461229')
 
 ---
 
-## Respond to a dispute
+### Respond to a dispute
 
 In order to win a dispute, you will need to provide relevant evidence to your case. This could be the invoice, the proof of delivery, or even customer communication regarding the payment that was charged back. You can use our API to upload evidence, review this evidence, and submit it when you're ready.
 
-### Provide evidence
+#### Provide evidence
 
 Use the endpoint below to add supporting evidence to a dispute. Note that this only attaches the evidence to the dispute, it does not send it to us. Once ready, you will need to [submit it](#Submit_evidence) to us.
 
@@ -818,7 +818,7 @@ If you receive a `4XX` response, then something went wrong. Check the error code
 
 </Accordion>
 
-### Retrieve evidence
+#### Retrieve evidence
 
 Use the following endpoint to view a list of the evidence you provided for a specific dispute.
 
@@ -869,7 +869,7 @@ const getEvidence = await cko.disputes.getEvidence('dsp_bc94ebda8d275i461229');
 }
 ```
 
-### Submit evidence
+#### Submit evidence
 
 Use the following endpoint to submit the evidence that you've provided.
 
@@ -940,7 +940,7 @@ If you receive a `4XX` response, then something went wrong. Check the error code
 
 </Accordion>
 
-### Accept a dispute
+#### Accept a dispute
 
 If a dispute is legitimate, you can use the following endpoint to accept it. This will close it for you and remove it from your list of open disputes. There are no further financial implications.
 

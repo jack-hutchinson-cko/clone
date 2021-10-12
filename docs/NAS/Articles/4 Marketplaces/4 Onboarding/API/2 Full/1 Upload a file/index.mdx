@@ -11,7 +11,7 @@ When you upload a file, the API returns an `id` that represents that file. You c
 
 ---
 
-## Before you begin
+### Before you begin
 
 If you are uploading a bank statement to verify a set of bank details, subscribe to the following webhook events: 
 
@@ -20,7 +20,7 @@ If you are uploading a bank statement to verify a set of bank details, subscribe
 
 ---
 
-## Types of identification and requirements
+### Types of identification and requirements
 
 The API accepts the following types of documentation. Depending on the identification type, you may need to provide both the back and the front. Use the table below to find out more.
 
@@ -168,7 +168,7 @@ N
 
 ---
 
-## Upload a file
+### Upload a file
 
 Your request must be multipart/form-data and the file no larger than 4Mb.
 
@@ -177,7 +177,7 @@ Your request must be multipart/form-data and the file no larger than 4Mb.
 
 Follow the steps to upload the document and receive an `id`. If the identification you are providing requires both the back and front, you will need to make **two requests** to the API.
 
-### Endpoints
+#### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
 
@@ -204,7 +204,7 @@ Notice that the sub-domain – files.checkout.com – is slightly different to C
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our [API reference.](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/)
 
@@ -248,7 +248,7 @@ curl https://files.checkout.com \
   -F "purpose=identification"
 ```
 
-### Response examples
+#### Response examples
 
 <tabs>
 <tab title='201 - Document accepted'>
@@ -385,7 +385,7 @@ A back file is not required for the type of document in your request. This curre
 
 ---
 
-## Example notifications for bank account verification
+### Example notifications for bank account verification
 
 <tabs>
 <tab title="Verification passed">
@@ -449,7 +449,7 @@ A back file is not required for the type of document in your request. This curre
 
 ---
 
-## Where to next?
+### Where to next?
 
 <ContentPanel variant="heading" title="Update a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
 

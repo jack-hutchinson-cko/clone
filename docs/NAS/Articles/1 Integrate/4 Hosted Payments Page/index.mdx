@@ -11,7 +11,7 @@ Hosted Payments Page and Payment Links now support six more payment methods.
 
 </TipBox>
 
-### How it works
+#### How it works
 
 When your customer is ready to check out:
 
@@ -24,7 +24,7 @@ When your customer is ready to check out:
 
 ---
 
-### Try it out
+#### Try it out
 
 Preview a Hosted Payments Page using one of our [test cards](/testing/test-cards) with any future expiry date, or use the details below for a basic payment flow:
 
@@ -59,9 +59,9 @@ Use the following details to test a Sofort payment flow:
 
 ---
 
-## Get started
+### Get started
 
-### Step 1: Register to use Hosted Payments Pages
+#### Step 1: Register to use Hosted Payments Pages
 
 To get started with our Hosted Payments Page, contact your Solutions Engineer or [integration@checkout.com](mailto:integration@checkout.com).
 
@@ -71,7 +71,7 @@ If you haven't already, [create a free test account now](https://www.checkout.co
 
 </TipBox>
 
-### Step 2: Create a Hosted Payments Page session
+#### Step 2: Create a Hosted Payments Page session
 
 To get started with our Hosted Payments Page, contact your Solutions Engineer or [integration@checkout.com](mailto:integration@checkout.com).
 
@@ -83,7 +83,7 @@ Hosted Payments Page sessions expire after 30 minutes.
 
 To create a Hosted Payments Page on which your customers can make their payment, use the endpoint below.
 
-### The request
+#### The request
 
 For the full specification, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession).
 
@@ -311,7 +311,7 @@ Fawry
 </TableBody>
 </Table>
 
-### Response example
+#### Response example
 
 The response will include the `redirect` link to which you should redirect your customer to finalize the payment.
 
@@ -328,7 +328,7 @@ The response will include the `redirect` link to which you should redirect your 
 
 ---
 
-### Step 3: Redirect your customer
+#### Step 3: Redirect your customer
 
 Redirect the customer to the `_links.redirect` URL you received in the response above, using either a server-side or client-side call.
 
@@ -349,7 +349,7 @@ window.location.href(hostedPaymentsResponse._links.redirect.href);
 </tab>
 </tabs>
 
-### Step 4: Confirm the payment status
+#### Step 4: Confirm the payment status
 
 When your customer completes the payment, they will be redirected to the `success_url`. The `session ID` or `payment ID` is provided in the query parameter included in the redirect URL. It should look something either of the links below:
 
@@ -360,7 +360,7 @@ You can set up [webhooks](/workflows) to be notified when the payment has been a
 
 ---
 
-## Next steps
+### Next steps
 
 - Learn how to [refund](/payments/manage-payments/refund-a-payment) a payment, [and more](/payments/manage-payments).
 - [Set up webhooks](workflows) to be notified about the status of payments.

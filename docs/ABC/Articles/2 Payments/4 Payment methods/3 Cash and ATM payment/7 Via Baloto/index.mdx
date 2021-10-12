@@ -13,7 +13,7 @@ If you want to use a gateway model for accepting Via Baloto payments, you will n
 
 ---
 
-## Overview
+### Overview
 
 Via Baloto payments follow a two-step process:
 
@@ -22,9 +22,9 @@ Via Baloto payments follow a two-step process:
 
 ---
 
-## Step 1: Request payment
+### Step 1: Request payment
 
-### Endpoints
+#### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
@@ -45,7 +45,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -64,7 +64,7 @@ You can find the full list, as well as complete request and response examples, i
     }
 ```
 
-### Response example
+#### Response example
 
 You should get a `202` response with the `status` field set to `Pending`. This means your request has been accepted.
 
@@ -92,7 +92,7 @@ You should get a `202` response with the `status` field set to `Pending`. This m
     }
 ```
 
-## Step 2: Redirect the customer
+### Step 2: Redirect the customer
 
 To capture and complete the payment, you need to provide the customer with the Via Baloto ticket.
 
@@ -116,13 +116,13 @@ Your payment confirmation page should make it clear to the customer that their p
 </TipBox>
 
 
-## Get details about a payment
+### Get details about a payment
 
 Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45ymepcr7thciirbdaa`) from the payment response to get details about the payment.
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
@@ -143,7 +143,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-### Response examples
+#### Response examples
 
 <tabs>
 <tab title="Payment pending" active>
@@ -230,9 +230,9 @@ You can find the full list, as well as complete request and response examples, i
 
 ---
 
-## Refunds and chargebacks
+### Refunds and chargebacks
 
-### Refund a payment
+#### Refund a payment
 
 You can refund a Via Baloto payment using our [refund API](/payments/manage-payments/refund-a-payment). Partial and multiple – as well as full – refunds are allowed.
 
@@ -242,13 +242,13 @@ The payment status will update to `refunded` and you will receive a `payment_ref
 
 A refund processing fee may apply.
 
-### Chargebacks
+#### Chargebacks
 
 There is no chargeback mechanism for Via Baloto.
 
 ---
 
-## Webhooks
+### Webhooks
 
 <Table>
 <TableHead headers={['Webhooks', 'Description']} />
@@ -360,7 +360,7 @@ Learn more about [webhooks and how to subscribe to them](/reporting-and-insights
 
 ---
 
-## Testing
+### Testing
 
 <TipBox variant="info">
 

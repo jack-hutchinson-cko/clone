@@ -13,7 +13,7 @@ Currently, you cannot view or manage your API keys through the Dashboard. If you
 
 ---
 
-## Public keys
+### Public keys
 
 Public keys are used for client-side authentication and only have access to a limited set of our APIs – mostly those called as part of your payment environment. You'll use them when tokenizing card information through [Frames](/payments/accept-payments/frames) or for [Google Pay](/payments/payment-methods/google-pay).
 
@@ -25,7 +25,7 @@ Your public API key is **not** the same as your public RSA key. You use your pub
 
 ---
 
-## Secret keys
+### Secret keys
 
 Secret keys are used for server-to-server authentication and are supported across most of our APIs. They can currently be used across the following endpoints:
 
@@ -42,7 +42,7 @@ If you want to use API key authentication on another endpoint, contact our Custo
 
 </TipBox>
 
-### Secret keys configuration
+#### Secret keys configuration
 
 You can choose how you want your secret keys configured:
 
@@ -58,7 +58,7 @@ For example, let's say you have you have separate systems for processing payment
 
 ---
 
-## Multiple processing channels
+### Multiple processing channels
 
 A processing channel contains a set of configurations used when processing a payment. If you have complex processing requirements, we may have set up multiple processing channels for you during onboarding.
 
@@ -78,13 +78,13 @@ If you need help setting up multiple processing channels and API key configurati
 
 ---
 
-## Setting up your API keys
+### Setting up your API keys
 
 When we send you your API keys, they will be in an encrypted form. To access them you need to provide us with a public RSA key. And to use it in authenticating your calls to our API, you need to decrypt it using a secret RSA key.
 
 Create a public and private RSA key pair by following the steps below.
 
-### Step 1: Create an RSA key pair
+#### Step 1: Create an RSA key pair
 
 Enter the following command into your command line. This will create a 2048-bit RSA key pair – a public RSA key and a secret RSA key.
 
@@ -100,7 +100,7 @@ openssl rsa -in private-key.pem -outform PEM -passin pass:password123 -pubout -o
 
 Keep your private RSA key file and the password private at all times. You'll use these to unencrypt the secret API key you received from us. You only ever need to share your public RSA key file with us.
 
-### Step 2: Decrypt the secret
+#### Step 2: Decrypt the secret
 
 You can now use your RSA key pair to decrypt your secret API key, ready for use in authenticating your calls to our APIs.
 
@@ -120,7 +120,7 @@ For additional security, you can store the encrypted secret in your integration'
 
 ---
 
-## Using API key authentication
+### Using API key authentication
 
 To use an API key in your request, you should provide it in the Authorization header.
 
@@ -130,7 +130,7 @@ The Bearer prefix should be included in the header alongside the key itself.
 
 </TipBox>
 
-### Request example
+#### Request example
 
 ```json
 curl --location --request POST 'https://api.sandbox.checkout.com/payments/' \

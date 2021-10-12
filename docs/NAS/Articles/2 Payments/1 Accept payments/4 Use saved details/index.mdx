@@ -14,13 +14,13 @@ The `source ID` must be one received in response to a card payment request. An I
 
 ---
 
-## Request a payment using an ID
+### Request a payment using an ID
 
-### Before you start
+#### Before you start
 
 Make sure you have your source ID at hand. You can find this in the `source` object of your card payment request's response. It is prefixed by `src_`.
 
-### The request
+#### The request
 
 Use the details below to set up your request.
 
@@ -69,7 +69,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
   }
 }
 ```
-### The response
+#### The response
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 

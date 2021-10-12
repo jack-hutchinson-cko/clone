@@ -41,12 +41,6 @@ export const Trigger = styled.div`
 
   @media ${Breakpoints.MOBILE} {
     > div {
-      height: 65.5px;
-    }
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    > div {
       height: 45px;
     }
   }

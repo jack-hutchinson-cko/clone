@@ -1,13 +1,8 @@
 import styled, { css } from 'styled-components';
 
 import { IconActionChevronDown } from 'components/Icons';
-import {
-  Breakpoints,
-  MobileBreakPoints,
-  SIZE,
-  createBreakpointTo,
-  createBreakpointBetween,
-} from 'constants/screen';
+import { Breakpoints, MobileBreakPoints, SIZE, createBreakpointTo } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const NavigationContent = styled.nav`
   position: relative;
@@ -86,7 +81,7 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
 export const NavigationDrawers = styled.div`
   position: absolute;
   left: 0;
-  top: 81px;
+  top: 66px;
   display: flex;
   width: 100vw;
   height: calc(100vh - 66px);
@@ -131,11 +126,6 @@ export const NavigationItem = styled.div<NavigationItemProps>`
   }
 
   @media ${Breakpoints.MOBILE} {
-    font-size: 24px;
-    line-height: 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
     height: 65px;
     font-size: 16px;
   }
@@ -150,20 +140,15 @@ export const NavigationLink = styled.a<{
   fullWidth?: boolean;
   underlineOnHover?: boolean;
   underlineAlways?: boolean;
-  large?: boolean;
 }>`
   display: inline-flex;
   align-items: center;
   gap: 12px;
   color: ${({ theme }) => theme.colors.base};
+  font-size: 16px;
   font-weight: ${({ light }) => (light ? 400 : 500)};
+  line-height: 24px;
   outline: none;
-
-  ${({ large }) =>
-    large &&
-    css`
-      font-size: 16px;
-    `};
 
   ${({ underlineAlways }) =>
     underlineAlways &&
@@ -186,21 +171,6 @@ export const NavigationLink = styled.a<{
 
   svg {
     color: ${({ theme }) => theme.colors.sectionIcon};
-  }
-
-  @media ${Breakpoints.TABLET} {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  @media ${Breakpoints.MOBILE} {
-    font-size: 24px;
-    line-height: 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 16px;
-    line-height: 20px;
   }
 `;
 
@@ -238,15 +208,15 @@ export const SwitchIcon = styled.div`
 `;
 
 export const DrawerTopContentWrapper = styled.div`
-  padding: 35px 40px 48px 40px;
+  padding: ${spacing.s70 - 5}px ${spacing.s70}px ${spacing.s80}px;
   background: ${({ theme }) => theme.colors.background};
 
-  @media ${Breakpoints.TABLET} {
-    padding: 32px 40px 40px;
+  @media ${Breakpoints.MOBILE} {
+    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s60}px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
-    padding: 24px 24px 32px;
+    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s60}px;
   }
 `;
 
@@ -256,12 +226,12 @@ export const DrawerBottomContentWrapper = styled.div`
   width: 100%;
   flex: 1;
 
-  @media ${createBreakpointTo(SIZE.M)} {
-    padding: 48px 40px;
+  @media ${Breakpoints.MOBILE} {
+    padding: ${spacing.s50}px ${spacing.s70}px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
-    padding: 24px;
+    padding: ${spacing.s50}px;
   }
 `;
 
@@ -283,21 +253,4 @@ export const WrapperIconActionArrowRight = styled.span`
   }
 `;
 
-export const WrapperWidgedGuidse = styled.span`
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    li > a {
-      font-size: 32px;
-      line-height: 32px;
-    }
-    & svg {
-      transform: scale(1.4);
-    }
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    li > a {
-      font-size: 16px;
-      line-height: 24px;
-    }
-  }
-`;
+export const WrapperWidgedGuidse = styled.span``;

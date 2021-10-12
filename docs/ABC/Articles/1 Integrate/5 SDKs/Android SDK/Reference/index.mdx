@@ -13,7 +13,7 @@ You can only create charges in currencies that have been enabled for your accoun
 
 ---
 
-## Required when using our pre-built UI
+### Required when using our pre-built UI
 
 First, you need to make sure you declare the form in XML.
 
@@ -69,7 +69,7 @@ The setter used to decide which environment will be used. Possible values: `Envi
 
 ---
 
-## Required when using your own UI
+### Required when using your own UI
 
 <Table>
 <TableHead headers={['Parameter/setter', 'Description']} />
@@ -127,7 +127,7 @@ Your callback used to handle the tokenization outcome.
 
 ---
 
-## Handling 3D Secure
+### Handling 3D Secure
 
 The module allows you to handle 3D Secure URLs within your mobile app.
 
@@ -137,7 +137,7 @@ When you send a 3D Secure charge request from your server, you will get back a 3
 
 </TipBox>
 
-### Step 1: Create a callback
+#### Step 1: Create a callback
 
 ```java
 PaymentForm.On3DSFinished m3DSecureListener =
@@ -153,7 +153,7 @@ PaymentForm.On3DSFinished m3DSecureListener =
   };
 ```
 
-### Step 2: Pass the callback to the module and handle 3D Secure
+#### Step 2: Pass the callback to the module and handle 3D Secure
 
 ```java
 mPaymentForm = findViewById(R.id.checkout_card_form);
@@ -167,11 +167,11 @@ mPaymentForm.handle3DS(
 
 ---
 
-## Handling Google Pay
+### Handling Google Pay
 
 The module allows you to handle a Google Pay token payload and retrieve a token which can be used to create a charge from your backend.
 
-### Step 1: Create a callback
+#### Step 1: Create a callback
 
 ```java
 CheckoutAPIClient.OnGooglePayTokenGenerated mGooglePayListener =
@@ -191,7 +191,7 @@ CheckoutAPIClient.OnGooglePayTokenGenerated mGooglePayListener =
   };
 ```
 
-### Step 2: Pass the callback to the module and generate the token
+#### Step 2: Pass the callback to the module and generate the token
 
 ```java
 mCheckoutAPIClient = new CheckoutAPIClient(
@@ -205,7 +205,7 @@ mCheckoutAPIClient.generateGooglePayToken(payload); // the payload is the JSON s
 
 ---
 
-## Payment form methods
+### Payment form methods
 
 <Table>
 <TableHead headers={['Method name', 'Description']} />
@@ -359,7 +359,7 @@ Sets a callback for when the form is submitted.
 
 ---
 
-## CardTokenisationResponse Object
+### CardTokenisationResponse Object
 
 All the properties have getters.
 
@@ -573,7 +573,7 @@ String
 </TableBody>
 </Table>
 
-## CardTokenisationFail Object
+### CardTokenisationFail Object
 
 All the properties have getters.
 

@@ -17,7 +17,7 @@ To start accepting Sofort payments, please contact your Customer Success Manager
 
 ---
 
-## Overview
+### Overview
 
 You process a Sofort payment in two steps:
 
@@ -26,11 +26,11 @@ You process a Sofort payment in two steps:
 
 ---
 
-## Request a payment
+### Request a payment
 
 Use the details below to set up your request. To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -49,7 +49,7 @@ Use the details below to set up your request. To get a detailed view of all requ
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -67,7 +67,7 @@ If a customer ID or email is not provided in the request, we automatically creat
 
 </TipBox>
 
-### Response example
+#### Response example
 
 If you receive a `202 Success` response with a payment `id` and a `status` field set to `Pending`, your request was successful.
 
@@ -91,7 +91,7 @@ If you receive a `202 Success` response with a payment `id` and a `status` field
 
 ---
 
-## Redirect the customer
+### Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the above response. The redirect transfers the customer to their bank's website where they will be asked to enter their authorization details; if successful, the payment can be approved.
 
@@ -99,13 +99,13 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ---
 
-## Get details about a payment
+### Get details about a payment
 
 You can retrieve details about an existing Sofort payment with the following request.
 
 If the payment has been approved by a customer on the banking page, you’ll receive a `payment_capture_pending` webhook and the payment response will include the `bic`, `iban`, and `account_holder_name` fields. To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
 
-### Endpoints
+#### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -124,7 +124,7 @@ If the payment has been approved by a customer on the banking page, you’ll rec
 </tab>
 </tabs>
 
-### Response examples
+#### Response examples
 
 <tabs>
 <tab title="Pending">
@@ -228,13 +228,13 @@ If the payment has been approved by a customer on the banking page, you’ll rec
 
 ---
 
-## Refund a payment
+### Refund a payment
 
 Sofort supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund endpoint](https://api-reference.checkout.com/#operation/refundAPayment) of the Unified Payments API.
 
 ---
 
-## Cancel a payment
+### Cancel a payment
 
 <TipBox variant="info">
 
@@ -244,7 +244,7 @@ If the customer cancels or fails to complete the transaction at any point after 
 
 ---
 
-## Webhooks
+### Webhooks
 
 When using Sofort, you may receive the following webhooks.
 
@@ -352,7 +352,7 @@ Occurs when a refund is declined.
 
 ---
 
-## Testing Sofort
+### Testing Sofort
 
 <TipBox variant="note">
 

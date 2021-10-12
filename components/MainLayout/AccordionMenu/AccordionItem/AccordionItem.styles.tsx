@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 
 export const MenuItem = styled.div<{ isRoot?: boolean }>`
   display: flex;
@@ -10,7 +10,7 @@ export const MenuItem = styled.div<{ isRoot?: boolean }>`
   line-height: 30px;
   color: ${({ isRoot, theme }) => (isRoot ? theme.colors.base : theme.colors.baseList)};
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     font-size: 14px;
     line-height: 24px;
   }
@@ -18,17 +18,11 @@ export const MenuItem = styled.div<{ isRoot?: boolean }>`
   ${({ isRoot }) =>
     isRoot &&
     css`
+      padding: 24px 0;
+      font-size: 16px !important;
       font-weight: 500;
-      font-size: 32px;
-      line-height: 40px;
-      padding: 36px 0;
+      line-height: 24px;
       border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-
-      @media ${MobileBreakPoints.MOBILE_S} {
-        padding: 24px 0;
-        font-size: 16px;
-        line-height: 24px;
-      }
     `}
 
   &:first-child {

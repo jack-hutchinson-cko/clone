@@ -28,11 +28,11 @@ Hosted sessions are suitable for authentications initiated from **browsers only*
 
 ---
 
-## Step 1: Request a session 
+### Step 1: Request a session 
 
 To begin, make a session request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
@@ -59,7 +59,7 @@ To increase the likelihood of frictionless authentication, [add additional data 
 
 </TipBox>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -92,7 +92,7 @@ To increase the likelihood of frictionless authentication, [add additional data 
 }
 ```
 
-### The response
+#### The response
 
 You should receive a `202 - Accepted` response with a `_links.redirect` link. For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
 
@@ -297,7 +297,7 @@ The URL of the session.
 </TableBody>
 </Table>
 
-### Response example
+#### Response example
 
 ```json
 {
@@ -326,7 +326,7 @@ The URL of the session.
 
 ---
 
-## Step 2: Redirect the customer 
+### Step 2: Redirect the customer 
 
 Redirect the customer using the `_links.redirect` URL you received in the response.
 
@@ -338,7 +338,7 @@ If the authentication is approved or attempted, the customer will be redirected 
 
 </TipBox>
 
-### Session properties
+#### Session properties
 
 #### Session statuses 
 
@@ -470,7 +470,7 @@ Authentication has been started but the channel data could not be collected, mea
 </TableBody>
 </Table>
 
-### Next actions 
+#### Next actions 
 
 Below are the possible values for the `next_actions` field. When present, they identify what action to take in order to complete the session.
 
@@ -526,7 +526,7 @@ Browser and app
 
 ---
 
-## Additional authentication data 
+### Additional authentication data 
 
 When requesting a session, you can add additional data fields to increase the chances of a frictionless authentication. Below is a summary of the optional data you can add to your request.
 

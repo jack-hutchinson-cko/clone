@@ -15,7 +15,7 @@ To start accepting Alipay payments, please contact your Customer Success Manager
 
 ---
 
-## Overview
+### Overview
 
 Alipay payments follow a two-step process:
 
@@ -24,9 +24,9 @@ Alipay payments follow a two-step process:
 
 ---
 
-## Request a payment
+### Request a payment
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post)
 
@@ -47,7 +47,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -65,7 +65,7 @@ If a customer ID or email is not provided in the request, then we automatically 
 
 </TipBox>
 
-### Response example
+#### Response example
 
 If a payment `id` is returned, then your request was successful.
 
@@ -87,7 +87,7 @@ If a payment `id` is returned, then your request was successful.
     }
 ```
 
-### Redirect the customer
+#### Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the response. The redirect transfers the customer to their bank's website where they are required to enter their authorization details; if successful, the payment can be approved.
 
@@ -95,13 +95,13 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ---
 
-## Get details about a payment
+### Get details about a payment
 
 You can retrieve details about an existing Alipay payment.
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com)
 
@@ -122,7 +122,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Response example
+#### Response example
 
 ```json
     {
@@ -151,19 +151,19 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 ---
 
-## Refund a payment
+### Refund a payment
 
 Alipay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
-## Cancel a payment
+### Cancel a payment
 
 If the customer cancels or fails to complete the transaction at any point after the payment is created, it will automatically be voided, and we'll send you a `payment_voided` webhook.
 
 ---
 
-## Testing Alipay
+### Testing Alipay
 
 <TipBox variant="note">
 

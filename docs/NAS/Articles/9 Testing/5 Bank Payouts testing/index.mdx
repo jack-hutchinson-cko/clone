@@ -5,9 +5,9 @@ account: NAS
 
 Use the sample requests on this page to test a number of Bank Payouts scenarios.
 
-## Payment instruments
+### Payment instruments
 
-### Successful creation
+#### Successful creation
 
 A successful attempt means that the bank account payment instrument was created and stored in the Vault.
 
@@ -322,7 +322,7 @@ Israel
 </TableBody>
 </Table>
 
-### The request
+#### The request
 
 #### Endpoint
 
@@ -463,7 +463,7 @@ Israel
 </tab>
 </tabs>
 
-### The response
+#### The response
 
 #### Response example
 
@@ -483,13 +483,13 @@ Israel
 
 ---
 
-## Successful creation with enriched data
+### Successful creation with enriched data
 
 Sometimes we're able to get more information about the bank account you're trying to store in the Vault, meaning you can store additional fields in the payment instrument, such as the bank name and branch.
 
 You can trigger this by including `"iban": "GB29NWBK60161331926819"` in your request to create a payment instrument.
 
-### The request
+#### The request
 
 #### Endpoint
 
@@ -555,7 +555,7 @@ You can trigger this by including `"iban": "GB29NWBK60161331926819"` in your req
 }
 ```
 
-### The response
+#### The response
 
 #### Response example
 
@@ -589,13 +589,13 @@ You can trigger this by including `"iban": "GB29NWBK60161331926819"` in your req
 
 ---
 
-## Successful creation with corrected data
+### Successful creation with corrected data
 
 Sometimes we're able to correct some of the bank account fields in your payment instrument when you create it.
 
 You can trigger this by including `"iban": "GB29NWBK60161331926819"` and `"swift_bic": "NWBKGB2TXXX"` in your request to create a payment instrument.
 
-### The request
+#### The request
 
 #### Endpoint
 
@@ -662,7 +662,7 @@ You can trigger this by including `"iban": "GB29NWBK60161331926819"` and `"swift
 }
 ```
 
-### The response
+#### The response
 
 In the response, you'll notice that the `swift_bic` value has been corrected from `NWBKGB2TXXX` to `NWBKGB2LXXX`.
 
@@ -698,7 +698,7 @@ In the response, you'll notice that the `swift_bic` value has been corrected fro
 
 ---
 
-## Failed attempt
+### Failed attempt
 
 A failed attempt means that the bank account payment instrument was not created, owing to some error.
 
@@ -710,7 +710,7 @@ You can trigger this error by including one of the following bank codes, IBANs, 
 
 - `swift_bic`: `NWBKGB2L`, `NWBKGB2LXXX`, or `ABCDPHEF`
 
-### The request
+#### The request
 
 #### Endpoint
 
@@ -826,7 +826,7 @@ You can trigger this error by including one of the following bank codes, IBANs, 
 </tab>
 </tabs>
 
-### The response
+#### The response
 
 #### Response example
 
@@ -848,16 +848,16 @@ You can trigger this error by including one of the following bank codes, IBANs, 
 
 ---
 
-## Payout requests
+### Payout requests
 
-### Quote expiry when requesting a payout
+#### Quote expiry when requesting a payout
 
 A quote expiry error indicates that your FX quote has expired and cannot be used to make a payout. You can trigger this by including one of the following bank codes or IBANs in your request to create a payment instrument:
 
 - `bank_code`: `160008`, `200407`, `250631`, or `504044`.
 - `iban`: `IE64IRCE92050112345678`, `CH5604835012345678009`, `IE70AIBK93006732013730`, or `CH5104835048708081000`.
 
-### Step 1: Create a payment instrument in the Vault
+#### Step 1: Create a payment instrument in the Vault
 
 #### Endpoint
 
@@ -938,7 +938,7 @@ A quote expiry error indicates that your FX quote has expired and cannot be used
 }
 ```
 
-### Step 2: Create a payout
+#### Step 2: Create a payout
 
 Include the following `quote_id` in your request to trigger the error: `qte_mbabizu24mvu3mela5njyhpit4`.
 
@@ -1031,14 +1031,14 @@ Include the following `quote_id` in your request to trigger the error: `qte_mbab
 
 ---
 
-## Payout with 'Declined' status
+### Payout with 'Declined' status
 
 The declined status indicates that the payout has failed. You can trigger this by including one of the following in your request to create a payment instrument:
 
 - `bank_code`: `250631`
 - `iban`: `IE70AIBK93006732013730`
 
-### Step 1: Create a payment instrument in the Vault
+#### Step 1: Create a payment instrument in the Vault
 
 #### Endpoint
 
@@ -1119,7 +1119,7 @@ The declined status indicates that the payout has failed. You can trigger this b
 }
 ```
 
-### Step 2: Create a payout
+#### Step 2: Create a payout
 
 #### Endpoint
 
@@ -1217,7 +1217,7 @@ The declined status indicates that the payout has failed. You can trigger this b
 }
 ```
 
-### Step 3: Payment declined webhook notification
+#### Step 3: Payment declined webhook notification
 
 In response, you will receive the following `payment_declined` webhook.
 
@@ -1259,7 +1259,7 @@ In response, you will receive the following `payment_declined` webhook.
 
 ---
 
-## Payout with 'Paid' status
+### Payout with 'Paid' status
 
 The paid status indicates that the payout was successful. You can trigger this by including one of the following in your request to create a payment instrument:
 
@@ -1267,7 +1267,7 @@ The paid status indicates that the payout was successful. You can trigger this b
 - `bank_code`: `200407`
 - `iban`: `CH5604835012345678009`
 
-### Step 1: Create a payment instrument in the Vault
+#### Step 1: Create a payment instrument in the Vault
 
 #### Endpoint
 
@@ -1348,7 +1348,7 @@ The paid status indicates that the payout was successful. You can trigger this b
 }
 ```
 
-### Step 2: Create a payout
+#### Step 2: Create a payout
 
 #### Endpoint
 
@@ -1447,7 +1447,7 @@ The paid status indicates that the payout was successful. You can trigger this b
 }
 ```
 
-### Step 3: Payment paid webhook notification
+#### Step 3: Payment paid webhook notification
 
 In response, you will receive the following `payment_paid` webhook.
 
@@ -1493,14 +1493,14 @@ In response, you will receive the following `payment_paid` webhook.
 
 ---
 
-## Payout with 'Returned' status
+### Payout with 'Returned' status
 
 The returned status indicates that the payout failed and has been returned. You can trigger this by including one of the following in your request to create a payment instrument:
 
 - `bank_code`: `504044`
 - `iban`: `CH5104835048708081000`
 
-### Step 1: Create a payment instrument in the Vault
+#### Step 1: Create a payment instrument in the Vault
 
 #### Endpoint
 
@@ -1581,7 +1581,7 @@ The returned status indicates that the payout failed and has been returned. You 
 }
 ```
 
-### Step 2: Create a payout
+#### Step 2: Create a payout
 
 #### Endpoint
 
@@ -1679,7 +1679,7 @@ The returned status indicates that the payout failed and has been returned. You 
 }
 ```
 
-### Step 3: Payment paid webhook notification
+#### Step 3: Payment paid webhook notification
 
 In response, you will receive the following `payment_paid` webhook.
 
@@ -1722,7 +1722,7 @@ In response, you will receive the following `payment_paid` webhook.
 }
 ```
 
-### Step 4: Payment returned webhook notification
+#### Step 4: Payment returned webhook notification
 
 You will then receive the following `payment_returned` webhook.
 

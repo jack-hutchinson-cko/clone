@@ -27,17 +27,17 @@ If you need any additional support during the migration process, do not hesitate
 
 ---
 
-## Single payments endpoint
+### Single payments endpoint
 
 The Unified Payments solution provides a single payments endpoint supporting both new and existing payment methods. Whether you accept cards, alternative payment methods or digital wallets, all your payment requests will be sent to the same endpoint.
 
-## Payment sources
+### Payment sources
 
 We now support securely storing multiple sources of payments, including cards and bank accounts. Each payment source will have a unique ID that can be used to make a payment request. Your existing card IDs can still be used when requesting a payment and you will be provided with the updated source ID in the payment response.
 
 ---
 
-## Payments and actions
+### Payments and actions
 
 Payments replace what we previously referred to as a charge. A payment can have one or more actions that represent an interaction with a payment provider, for example Visa. This provides you with granular visibility into the lifecycle of a payment and a single ID that can be used to obtain the current status.
 
@@ -47,13 +47,13 @@ Because any subsequent actions performed on a payment only requires you to refer
 
 ---
 
-## Updated SDKs
+### Updated SDKs
 
 As a part of the Unified Payments solution, we have introduced new SDKs for [.NET](https://github.com/checkout/checkout-sdk-net), [Python](https://github.com/checkout/checkout-sdk-python/tree/unified-payments), and [PHP](https://github.com/checkout/checkout-sdk-php) that may make your migration process even easier.
 
 ---
 
-## Handling response codes
+### Handling response codes
 
 Captures, refunds and voids are performed asynchronously in the Unified Payments solution, meaning that you will get an HTTP status code of `202 - Accepted` in your API response rather than a `201 - Created`. To get final confirmation that these actions were performed successfully, we recommend that you use webhook notifications. API validation response codes (i.e., `7xxx` response codes) have also been replaced with more descriptive and user-friendly error codes. More details on this can be found [response codes](/resources/codes/response-codes).
 
@@ -61,7 +61,7 @@ We have also introduced an `approved` field to the request payment and retrieve 
 
 ---
 
-## 3D Secure payments
+### 3D Secure payments
 
 When requesting a 3D Secure payment, the cardholder may need to be redirected to a separate page to authenticate themselves. If this is the case, you will receive an HTTP status code of `202 - Accepted` and a redirect link in the response’s hypermedia.
 
@@ -121,14 +121,14 @@ If you instead receive an HTTP status of `201 - Created`, it means that it was p
 
 ---
 
-## Card token flow
+### Card token flow
 
-### What doesn't change
+#### What doesn't change
 
 *   Your existing front-end solution (e.g., Frames, [Checkout.js](https://docs.checkout.com/archive/checkout-js), SDKs) can still be used to collect your customer's card information.
 *   Checkout.com still returns a card token once your customer has confirmed the purchase.
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API ']} />
@@ -151,7 +151,7 @@ If you instead receive an HTTP status of `201 - Created`, it means that it was p
 </TableBody>
 </Table>
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -236,14 +236,14 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Card ID flow
+### Card ID flow
 
-### What doesn’t change
+#### What doesn’t change
 
 *   When a payment using a card token or full card details is made, the Unified Payments API provides an identifier for the tokenized card information in its response. This identifier, previous called a card ID, is now called a source ID.
 *   This source ID can be used to make payments using its underlying card information.
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API']} />
@@ -263,7 +263,7 @@ The unified payments endpoint is used to [request a payment using a card ID or s
 </TableBody>
 </Table>
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -352,13 +352,13 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Default card/customer flow
+### Default card/customer flow
 
-### What doesn’t change
+#### What doesn’t change
 
 When a payment is made, the Unified Payments API continues to provide an identifier for the customer in its response. This identifier can be used to make further payments using the default card associated with that customer.
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API']} />
@@ -378,7 +378,7 @@ The unified payments endpoint is used to [request a payment using a customer ID]
 </TableBody>
 </Table>
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -464,9 +464,9 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Full card details
+### Full card details
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API']} />
@@ -488,7 +488,7 @@ https://api.sandbox.checkout.com/payments
 </TableBody>
 </Table>
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -583,9 +583,9 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Alternative payment methods
+### Alternative payment methods
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API']} />
@@ -606,13 +606,13 @@ The unified payments endpoint is used to [request a payment using an alternative
 </TableBody>
 </Table>
 
-### What doesn't change
+#### What doesn't change
 
 *   The payment response contains a redirect URL that your customer should be redirected to.
 *   After your customer completes the payment, they are redirected back to your predefined success or failure URL.
 *   You will be provided with a session ID in the URL, which can be used to retrieve the payment details.
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -708,13 +708,13 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Alternative payment methods - Checkout.JS
+### Alternative payment methods - Checkout.JS
 
-### What changes
+#### What changes
 
 The [Checkout.js](https://docs.checkout.com/archive/checkout-js) solution no longer supports alternative payment methods. Instead, a direct integration with the Unified Payments API should be used to request payments using alternative payment methods.
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API']} />
@@ -738,12 +738,12 @@ The [Checkout.js](https://docs.checkout.com/archive/checkout-js) solution no lon
 </TableBody>
 </Table>
 
-### What doesn't change
+#### What doesn't change
 
 *   After your customer completes the payment, they are redirected back to your predefined success or failure URL.
 *   You will be provided with a session ID in the URL, which can be used to retrieve the payment details.
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -825,13 +825,13 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Digital wallets
+### Digital wallets
 
-### What doesn’t change
+#### What doesn’t change
 
 Your existing integration with the digital wallet provider, allowing you to receive their tokens, does not change.
 
-### What changes
+#### What changes
 
 <Table>
 <TableHead headers={['Classic API', 'Unified Payments API']} />
@@ -855,7 +855,7 @@ Your existing integration with the digital wallet provider, allowing you to rece
 </TableBody>
 </Table>
 
-### The request
+#### The request
 
 #### Endpoints
 
@@ -942,7 +942,7 @@ https://api.sandbox.checkout.com/payments
 
 ---
 
-## Attribute comparisons
+### Attribute comparisons
 
 Below is a list of the key attributes that have changed in the Unified Payments API when requesting a payment.
 
@@ -1483,7 +1483,7 @@ User defined fields
 </TableBody>
 </Table>
 
-### Payment response
+#### Payment response
 
 <Table>
 <TableHead headers={['Attribute type', 'Classic API', 'Unified Payments API']} />
@@ -1734,7 +1734,7 @@ Response code: `10000`
 </TableBody>
 </Table>
 
-### Webhook events
+#### Webhook events
 
 The Unified Payments solution supports all of our existing webhook event types and introduces a number of new ones, aiming to provide you with a more granular level of notification. If you request a payment using the Unified Payments API, you will receive only its associated webhook event types.
 

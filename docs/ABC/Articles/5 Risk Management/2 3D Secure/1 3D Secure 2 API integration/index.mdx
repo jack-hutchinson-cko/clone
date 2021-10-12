@@ -13,7 +13,7 @@ We currently support version 2.1.0 of the 3DS protocol.
 
 ---
 
-## Request a 3DS2 payment with a card token
+### Request a 3DS2 payment with a card token
 
 Simply submit a payment request with `"3ds.enabled": true`, and then we'll redirect your customer to a Checkout.com page to gather all the 3DS2-relevant data and add the required fields to your request—meaning no extra work for you.
 
@@ -111,7 +111,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/).
 
@@ -249,15 +249,15 @@ The response includes an `actions` object, which only applies to 3D Secure payme
 
 ---
 
-## Non-3DS authorization request flows
+### Non-3DS authorization request flows
 
-### Successful non-3DS authorization request flow
+#### Successful non-3DS authorization request flow
 
 <img src="/docs/Risk Management/Non-3DS-authorization.png" alt="Non-3DS authorization" withFullscreenPreview />
 
 If you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer does not require 3DS authorization for the transaction, the payment will complete successfully.
 
-### Non-3DS authorization request flow with soft decline
+#### Non-3DS authorization request flow with soft decline
 
 <img src="/docs/Risk Management/Non-3DS-authorization-with-soft-decline.png" alt="Non-3DS authorization with soft decline" withFullscreenPreview />
 
@@ -265,7 +265,7 @@ If, however, you make a payment request without the `3ds` object, or with `"3ds.
 
 ---
 
-## Handling non-enrolled cards
+### Handling non-enrolled cards
 
 To handle cases where the customer's card is not enrolled for any version of 3DS, you can set the `attempt_n3d` field to `true` (see the example request below) to downgrade the transaction to non-3DS. This means that if the customer's bank does not support 3DS, we will automatically attempt to process the payment without 3DS authentication instead.
 

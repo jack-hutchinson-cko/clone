@@ -9,6 +9,7 @@ import {
   createBreakpointTo,
   createBreakpointBetween,
 } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const IntroWrapper = styled.div`
   display: flex;
@@ -109,19 +110,19 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.L)} {
-    padding: 32px 64px 36px 32px;
+    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s70 - 4}px ${spacing.s60}px;
   }
 
   @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding: 32px 64px 20px 64px;
+    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s50 - 4}px ${spacing.s90}px;
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 24px 40px 0;
+    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s00};
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    padding: 0 24px;
+    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s00};
   }
 `;
 

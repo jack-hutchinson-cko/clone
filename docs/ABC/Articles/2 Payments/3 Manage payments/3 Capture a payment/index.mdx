@@ -16,7 +16,7 @@ You can [void](/payments/manage-payments/void-a-payment) an authorized payment
 
 ---
 
-## Overview
+### Overview
 
 If a payment is created with `"capture": "false"`, you can either use this endpoint to capture the payment or capture it from the [Hub](https://hub.checkout.com/v2). Manual capture is not allowed if `capture` is set to `true`.
 
@@ -28,11 +28,11 @@ Any capture amount less than the original payment will be treated as a partial c
 
 ---
 
-## Capture a payment
+### Capture a payment
 
 Use the endpoint below to capture a payment.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/).
 
@@ -85,7 +85,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Response examples
+#### Response examples
 
 If you receive a `202 Capture accepted` response, your capture request has been accepted for processing. To get the full capture response, you will need to subscribe to the `payment_captured` webhook.
 

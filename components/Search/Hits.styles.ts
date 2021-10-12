@@ -1,17 +1,14 @@
 import styled, { css } from 'styled-components';
 
-import { createBreakpointBetween, createBreakpointFrom, SIZE } from 'constants/screen';
+import { createBreakpointFrom, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const HeadSection = styled.section<{ isFAQSection?: boolean }>`
-  padding: 8px 16px;
+  padding: ${spacing.s20}px;
   cursor: pointer;
   border-radius: 8px;
   &:hover {
     background-color: ${({ theme }) => theme.colors.backgroundSearch};
-  }
-
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.M)} {
-    padding: 16px;
   }
 
   ${({ isFAQSection }) =>
@@ -62,7 +59,7 @@ export const NoDataWrapper = styled.div<{ mode: 'header' | 'page' }>`
   color: ${({ theme }) => theme.colors.base};
   font-size: ${({ mode }) => (mode === 'header' ? '16px' : '24px')};
   font-weight: 500;
-  padding: 16px;
+  padding: ${spacing.s40}px ${spacing.s00};
 `;
 
 export const HitSection = styled.div`

@@ -18,17 +18,17 @@ If you're considering us as your payment service provider but your subscriptions
 
 ---
 
-## Additional attributes for your saved card payment requests
+### Additional attributes for your saved card payment requests
 
 Below is a summary of the attributes you need to add to payment requests that use stored card details. These additional details help fulfill Strong Customer Authentication (SCA) requirements, and give the issuing bank what they need to approve such payments.
 
 See the sections on  [cardholder-initiated transactions](#Cardholder-initiated_transactions) and  [merchant-initiated transactions](#Merchant-initiated_transactions) further down for more detail.
 
-### Cardholder-initiated and merchant-initiated transactions
+#### Cardholder-initiated and merchant-initiated transactions
 
 - If you use our full card API, storing customers' full card details on your server, you need to flag that you are using previously stored card details by including `source.stored: true` in the request.
 
-### Merchant-initiated transactions only
+#### Merchant-initiated transactions only
 
 - For both [scheduled](#Scheduled) and [unscheduled](#Unscheduled) MITs, you must include the `merchant_initiated: true` flag to mark the payment as merchant-initiated, and reference either the [original cardholder-initiated payment or the previous payment](#Previous_payment_ID_explained) in the series of transactions using the `previous_payment_id` attribute.
 
@@ -36,11 +36,11 @@ See the sections on  [cardholder-initiated transactions](#Cardholder-initiated_
 
 ---
 
-## Cardholder-initiated transactions
+### Cardholder-initiated transactions
 
 In cardholder-initiated transactions (CITs), the cardholder initiates the payment and authorizes the use of their stored card details. For example, a cardholder ordering takeaway food and using a card previously stored with the merchant.
 
-### Required attributes for CITs
+#### Required attributes for CITs
 
 <Table>
 <TableHead headers={['Payment source', 'First payment attributes', 'Second payment attributes']} />
@@ -84,11 +84,11 @@ n/a
 
 ---
 
-## Merchant-initiated transactions
+### Merchant-initiated transactions
 
 Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be [scheduled](#Scheduled) (such as recurring payments and installments) or [unscheduled](#Unscheduled) (like account top-ups triggered by balance thresholds and no-show charges).
 
-### Scheduled
+#### Scheduled
 
 These are regular payments using stored card details, like installments or a monthly subscription fee.
 
@@ -201,7 +201,7 @@ Source ID
 </tab>
 </tabs>
 
-### Unscheduled
+#### Unscheduled
 
 These are payments using stored card details that do not occur on a regular schedule, like top-ups for a digital wallet triggered by the balance falling below a certain threshold.
 
@@ -252,14 +252,14 @@ Source ID
 
 ---
 
-## Previous payment ID explained
+### Previous payment ID explained
 
 
 Use the attribute `previous_payment_id` to reference either the previous transaction or the opening transaction of the payment series. The `previous_payment_id` is the `payment_id` issued after the authorization of the relevant payment.
 
 Your previous payment ID will contain the prefix `pay_`, for example, `pay_fou2pabzc6we5obvmcwum5ns5e`.
 
-### Using the previous payment ID
+#### Using the previous payment ID
 
 Scheduled and unscheduled MITs can begin in two ways: a card verification or a payment. In the example below, you could reference the `previous_payment_id` as either row one or row four.
 
@@ -339,7 +339,7 @@ Can be used for previous payment ID.
 
 ---
 
-## FAQs
+### FAQs
 
 <Accordion title="What do I do if a subscription flow involves both scheduled and unscheduled payments?">
 

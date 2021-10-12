@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useMatchMedia } from '@cko/primitives';
 
 import { HeaderLink, SearchResultLink } from 'types/header';
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 import useScrollDisabled from 'hooks/useScrollDisabled';
 import { ThemeContext } from 'theme/themeContext';
 import {
@@ -11,7 +11,6 @@ import {
   IconTestAccount,
   IconActionArrowRight,
   HeaderLogoL,
-  HeaderLogoSM,
   HeaderLogoXS,
 } from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
@@ -75,8 +74,6 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   const isTablet = useMatchMedia(Breakpoints.TABLET);
   const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
-  const isMobileM = useMatchMedia(MobileBreakPoints.MOBILE_M);
-  const isMobileXS = useMatchMedia(MobileBreakPoints.MOBILE_S);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isDarkTheme = theme === 'dark';
   let HeaderLogo = HeaderLogoL;
@@ -99,9 +96,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
     onChangeMenuState(false);
   }, [onChangeMenuState]);
 
-  if (isMobileM) {
-    HeaderLogo = HeaderLogoSM;
-  } else if (isMobileXS) {
+  if (isMobile) {
     HeaderLogo = HeaderLogoXS;
   }
 
@@ -112,14 +107,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       dividerText="or"
       link={
         <Link href={loginUrl} passHref>
-          <Button
-            as="a"
-            target="_blank"
-            variant="secondary"
-            size="large"
-            fullWidth={!isDesktop}
-            fullHeight={isTablet || isMobile}
-          >
+          <Button as="a" target="_blank" variant="secondary" size="large" fullWidth={!isDesktop}>
             Log in
           </Button>
         </Link>
@@ -196,7 +184,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                   isMobile={isMobile}
                   guides={guides}
                   mapTitle={(title, Icon) => (
-                    <NavigationLink target="_blank" large underlineOnHover>
+                    <NavigationLink target="_blank" underlineOnHover>
                       <Icon /> {title}
                     </NavigationLink>
                   )}
@@ -226,14 +214,14 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                   content={
                     <SignInLinks
                       headerTitle={
-                        <NavigationLink large>
+                        <NavigationLink>
                           <IconTestAccount /> Test account
                         </NavigationLink>
                       }
                       headerDescription="Monitor transactions, business performance and customer trends."
                       extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
                       footerTitle={
-                        <NavigationLink large>
+                        <NavigationLink>
                           <IconAccount /> The Hub
                         </NavigationLink>
                       }

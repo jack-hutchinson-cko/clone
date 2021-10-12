@@ -14,14 +14,14 @@ We currently support:
 
 This guide explains how to get started with our plugin.
 
-## Supported features
+### Supported features
 
 * **SAP Commerce Fulfilment process**: With Checkout.com's APIs for authorization, capture, refund and void. The same functionality has been brought onto our Spartacus v3.2 storefront connector.
 * **SAP Commerce Backoffice**: The connector provides specific customizations for the back office to ease the administration, configuration and management of all the operations related to the integration with the Checkout.com's payment solution.
 * **3DS 2.0 (PSD2)**: In case of a non-frictionless interaction, the user must enter additional information related to the Strong Customer Authentication (SCA).
 * **SAP WCMS (Web Content Management System)**: The connector enables business users to add cards and APMs using CMS components.
 
-## Supported payment methods
+### Supported payment methods
 
 <tabs>
 <tab title="Major debit and credit cards">
@@ -429,13 +429,13 @@ Global
 
 ---
 
-## Before you start
+### Before you start
 
-### Create a test account
+#### Create a test account
 
 If you haven't already, [create a test Checkout.com account](https://www.checkout.com/get-test-account).
 
-### Get your API keys
+#### Get your API keys
 
 To set up the SAP Commerce Cloud Connector, you'll need three API keys: a secret one, a public one, and a private shared one. The first two are generated automatically when you create your account. The last one is generated when you create a webhook for your business.
 
@@ -469,7 +469,7 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 ---
 
-## Payment method configuration
+### Payment method configuration
 
 As summarised by the table below, the visibility (availability) of the payment methods in SAP Commerce Cloud is defined by three attributes:
 
@@ -517,7 +517,7 @@ Apart from card payments (available for all countries), other payment methods ca
 </TableBody>
 </Table>
 
-## Install the plugin
+### Install the plugin
 
 1.  [Download the latest Checkout.com SAP Commerce Cloud Connector](https://store.sap.com/dcp/en/product/display-0000059364_live_v1/Checkout.com%20Payments%20for%20SAP%20Commerce%20Cloud). This contains the installer recipes and connector extensions.
 2.  Unzip the Connector .zip file.
@@ -542,7 +542,7 @@ The extensions do not rely on any absolute paths, so you can place the extension
 ant addoninstall -Daddonnames="checkoutaddon" DaddonStorefront.yacceleratorstorefront="yacceleratorstorefront"
 ```
 
-### Add Checkout sample data add-on (optional)
+#### Add Checkout sample data add-on (optional)
 
 The Checkout sample data add-on is optional and allows you to add fields to the checkout page, which can be used to gather information from your customers, upsell services and products, and much more. To install:
 
@@ -565,7 +565,7 @@ The add-ons are independent and can be installed on separate server instances.
 
 </TipBox>
 
-### Installing the plugin using the provided recipes
+#### Installing the plugin using the provided recipes
 
 The add-on comes with one Gradle recipe to be used with the Hybris installer. The recipe is `b2c_acc_plus_checkout_com` with b2c and Checkout.com functionality, and is based on the `b2b_acc_plus` recipes provided by Hybris.
 
@@ -583,7 +583,7 @@ HYBRIS_HOME/installer$ ./install.sh -r [RECIPE_NAME] start
 
 ---
 
-## Configure the global settings of the plugin
+### Configure the global settings of the plugin
 
 <TipBox variant="info">
 
@@ -603,7 +603,7 @@ Our SAP Commerce Cloud Connector supports multiple Checkout.com channels, where 
 
 That's it! You're ready to start testing card payments.
 
-### Set up webhooks
+#### Set up webhooks
 
 We will send payment events for all the webhooks configured in the Hub. There should be at least one webhook created (per environment) pointing to the webhook event receiver. Read our [webhook documentation](/reporting-and-insights/webhooks) for more information.
 
@@ -625,7 +625,7 @@ This is reflecting your `checkoutComPaymentEventTypes` configuration property. I
 
 ---
 
-## Next steps
+### Next steps
 
 #### [Extend your configuration](/integrate/e-commerce-platforms/sap-commerce-cloud/go-further-with-sap-commerce-cloud)
 

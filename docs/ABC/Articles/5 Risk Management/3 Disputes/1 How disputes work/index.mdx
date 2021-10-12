@@ -11,7 +11,7 @@ The dispute process begins when a transaction is questioned by the cardholder. I
 
 ---
 
-## Stage 1: Dispute received
+### Stage 1: Dispute received
 
 The customer’s bank (the issuer) creates a formal dispute and assigns it a [chargeback code](/display/DOCS/Chargeback+codes), which describes why they are reversing the payment.
 
@@ -23,7 +23,7 @@ The issuer has 120 days from the date on which the goods or services were, or sh
 
 </TipBox>
 
-### Next steps
+#### Next steps
 
 - If you’ve **already refunded the customer**, we will automatically defend against the dispute by sending the issuer the refund information.
 
@@ -37,7 +37,7 @@ The issuer can cancel a dispute (for instance, because the reason code given was
 
 </TipBox>
 
-### Statuses and webhooks
+#### Statuses and webhooks
 
 These are the statuses and webhooks associated with this stage.
 
@@ -115,7 +115,7 @@ The issuer has canceled the dispute.
 
 ---
 
-## Stage 2: Challenge or accept the dispute
+### Stage 2: Challenge or accept the dispute
 
 You now need to decide how you want to respond to the dispute.
 
@@ -126,7 +126,7 @@ You now need to decide how you want to respond to the dispute.
 - **Ignore**. If you ignore the dispute, it will expire after a certain amount of time and you will not then be able to respond to it.
 
 
-### Challenging a dispute
+#### Challenging a dispute
 
 To challenge a dispute, submit all the relevant evidence to us and we will send it on to the issuer. Each scheme has a different [timeframe](#Howdisputeswork-timeframes) in which you need to respond, but it's best to respond as soon as possible.
 
@@ -146,7 +146,7 @@ Once you've submitted your evidence, you cannot change the submitted documents o
 
 </TipBox>
 
-### Statuses and webhooks
+#### Statuses and webhooks
 
 These are the statuses and webhooks associated with this stage.
 
@@ -224,13 +224,13 @@ n/a
 
 ---
 
-## Stage 3: Await the outcome
+### Stage 3: Await the outcome
 
 Once you've submitted your evidence, the issuer will review it and decide whether to accept or decline liability for the disputed amount.
 
 They may take up to 55 days to get back to you with their decision.
 
-### Outcomes
+#### Outcomes
 
 - **Dispute won**. If the issuer is satisfied with the evidence you've provided, you win the dispute and the disputed amount will be returned to your account.
 
@@ -242,7 +242,7 @@ Dispute outcomes can be partial, meaning you only recover part of the disputed a
 
 </TipBox>
 
-### Statuses and webhooks
+#### Statuses and webhooks
 
 These are the statuses and webhooks associated with this stage.
 
@@ -299,7 +299,7 @@ The issuer is not satisfied with your evidence, and you have lost the dispute.
 
 ---
 
-## Arbitration
+### Arbitration
 
 If you lost the dispute but you want to argue your case further, you can escalate the case to arbitration. But you should note the following points before considering it:
 
@@ -315,7 +315,7 @@ Arbitration rulings can be partial, meaning you only recover part of the dispute
 
 </TipBox>
 
-### Statuses and webhooks
+#### Statuses and webhooks
 
 These are the statuses and webhooks associated with this stage.
 
@@ -394,7 +394,7 @@ n/a
 
 ---
 
-## Request for information
+### Request for information
 
 Sometimes, the issuer will request more information about a transaction (also known as a retrieval request or soft chargeback).
 
@@ -414,14 +414,14 @@ For American Express transactions, failure to respond quickly to a request for i
 
 </TipBox>
 
-### Outcomes
+#### Outcomes
 
 *   **Matter resolved**. If the issuer accepts your information, the matter is resolved. You don't need to do anything else.
 
 *   **Formal dispute begins**. If you fail to respond to the request in time, or the issuer deems your information insufficient, the issuer may start a formal dispute (if they are within the time limit).
 
 
-### Statuses and webhooks
+#### Statuses and webhooks
 
 These are the statuses and webhooks associated with this stage.
 
@@ -455,7 +455,7 @@ n/a
 
 ---
 
-## Defense timeframes
+### Defense timeframes
 
 This table outlines how much time you have to respond (in days) at each stage of the dispute process. We recommend, however, that you act as quickly as possible at each stage.
 
@@ -564,7 +564,7 @@ Not available
 
 - <sup>4</sup> You have five days to contact our Disputes Team at [disputes@checkout.com](mailto:disputes@checkout.com) if want to take your case to arbitration.
 
-### Timeframes for third-party acquirers
+#### Timeframes for third-party acquirers
 
 If you use a third-party acquirer to process your payments, but manage your disputes with us, the time you have to respond is shorter, because we need to work with your acquirer to submit the evidence.
 
@@ -658,7 +658,7 @@ Discover
 
 ---
 
-## Next steps
+### Next steps
 
 <CardWrapper cardsInRow={{desktop:2,tablet:2,mobile:1}}>
 

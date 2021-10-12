@@ -15,7 +15,7 @@ To start accepting iDEAL payments, please contact your Customer Success Manager.
 
 ---
 
-## Overview
+### Overview
 
 iDEAL payments follow a two-step process:
 
@@ -24,11 +24,11 @@ iDEAL payments follow a two-step process:
 
 ---
 
-## Request a payment
+### Request a payment
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
@@ -50,7 +50,7 @@ You can find the full list, as well as complete request and response examples, i
 </tabs>
 
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -71,7 +71,7 @@ If a customer ID or email is not provided in the request, then we automatically 
 
 </TipBox>
 
-### Response example
+#### Response example
 
 If a payment id is returned, then your request was successful.
 
@@ -95,7 +95,7 @@ If a payment id is returned, then your request was successful.
 
 ---
 
-## Redirect the customer
+### Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the above response. The redirect transfers the customer to their bank's website where they are required to enter their authorization details; if successful, the payment can be approved.
 
@@ -109,7 +109,7 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ---
 
-## Get details about a payment
+### Get details about a payment
 
 You can use the `payment_id` found in the payment response, or the `cko-session-id` from the success/failure URL (e.g., `https://www.checkout.com/order/succeeded?cko-session-id=**sid_vii64oquze5u3h2x6hh4rurc4y**`) to retrieve details about the payment.
 
@@ -119,7 +119,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
@@ -140,7 +140,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-### Response example
+#### Response example
 
 ```json
     {
@@ -180,13 +180,13 @@ You can find the full list, as well as complete request and response examples, i
 
 ---
 
-## Refund a payment
+### Refund a payment
 
 iDEAL supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
-## Cancel a payment
+### Cancel a payment
 
 If the customer fails to complete their payment, we will automatically void the payment and send a `payment_expired` webhook.
 
@@ -194,7 +194,7 @@ If the customer cancels their payment, we will send `payment_canceled` webhook.
 
 ---
 
-## Get a list of supported issuers
+### Get a list of supported issuers
 
 Use the following request to get an up-to-date list of all issuers supporting iDEAL payments.
 
@@ -219,7 +219,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-### Response example
+#### Response example
 
 ```json
     {
@@ -248,7 +248,7 @@ You can find the full list, as well as complete request and response examples, i
 
 ---
 
-## Testing iDEAL
+### Testing iDEAL
 
 <TipBox variant="note">
 
@@ -259,12 +259,12 @@ To start testing, you'll need to:
 
 </TipBox>
 
-### Test a payment request
+#### Test a payment request
 
 1.  Create an iDEAL transaction as above, following the redirect link in the response to the bank's website.
 2.  Click **Confirm transaction**. You should then be redirected to your predefined success URL.
 
-### Simulate payment states
+#### Simulate payment states
 
 In the sandbox environment, you can test different payment states by putting one of the following values in the `amount` field of your payment request.
 

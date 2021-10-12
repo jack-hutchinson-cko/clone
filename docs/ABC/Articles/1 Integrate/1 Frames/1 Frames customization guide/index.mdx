@@ -5,11 +5,11 @@ account: ABC
 
 ---
 
-## Customize Frames
+### Customize Frames
 
 Frames can be rendered either as a single iframe (displayed as one input field) or as multiple iframes (displayed as multiple input fields).
 
-### Single iframe
+#### Single iframe
 
 In the single iframe case, Frames' JavaScript library will dynamically apply an `--invalid` modifier to the container element class.
 
@@ -27,7 +27,7 @@ In the single iframe case, Frames' JavaScript library will dynamically apply an 
   </ButtonLink>
 </Box>
 
-### Multiple iframes
+#### Multiple iframes
 
 In the multiple iframes case, Frames' JavaScript library will dynamically apply an `--invalid` modifier to each container element class.
 
@@ -51,11 +51,11 @@ The default approach is to hide the borders of input fields within the iframe in
 
 ---
 
-### Localization
+#### Localization
 
 Make your customers feel at home by using our localization settings to change the language of your payment form. Use one of our pre-defined languages or create your own.
 
-### Pre-defined localization
+#### Pre-defined localization
 
 If the language you would like to use appears in our pre-defined list, then just set the localization parameter, for example `localization: 'FR-FR'`.
 
@@ -69,7 +69,7 @@ The pre-defined languages are:
 - Korean = KO-KR
 - Spanish = ES-ES
 
-### Custom placeholders
+#### Custom placeholders
 
 Placeholders are defined by the selected localization. For further customization, you can pass an object to `localization`.
 
@@ -87,7 +87,7 @@ Frames.init({
 
 ---
 
-## Custom CSS
+### Custom CSS
 
 If you want to override the default style of Frames and customize the input element's CSS, pass a style object to the init method.
 
