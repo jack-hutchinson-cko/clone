@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { IconFullScreen } from '../Icons';
 
@@ -19,7 +20,7 @@ export const ContentWrapper = styled.div`
   }
 `;
 
-export const StyledImage = styled.img`
+export const StyledImage = styled(Image)`
   object-fit: contain;
   object-position: 50% 50%;
   min-width: 100%;

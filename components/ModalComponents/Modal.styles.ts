@@ -25,6 +25,7 @@ export const IconClose = styled.span`
   top: 37px;
   width: 25px;
   height: 25px;
+  z-index: 10;
 
   &:before,
   &:after {
