@@ -1,27 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { createBreakpointTo, createBreakpointBetween, SIZE } from 'constants/screen';
 
 export const Container = styled.div<{ isMobile?: boolean }>`
   box-shadow: ${({ theme }) => theme.shadows.itemHolder};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
+  font-size: 14px;
+  line-height: 24px;
 
-  ${({ isMobile }) =>
-    isMobile
-      ? css`
-          width: 100%;
-          font-size: 24px;
-          line-height: 32px;
-        `
-      : css`
-          width: 420px;
-          font-size: 14px;
-          line-height: 24px;
-        `}
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    font-size: 16px;
-    line-height: 20px;
-  }
+  width: ${({ isMobile }) => (isMobile ? '100%' : '420px')};
 `;
 export const Content = styled.ul`
   display: flex;
@@ -33,9 +19,9 @@ export const Content = styled.ul`
   background-color: ${({ theme }) => theme.colors.background};
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 40px;
-    gap: 40px;
+    padding: 24px 40px;
   }
+
   @media ${createBreakpointTo(SIZE.XS)} {
     padding: 24px;
   }

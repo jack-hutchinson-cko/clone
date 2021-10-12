@@ -14,10 +14,6 @@ export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
   gap: ${({ gap }) => gap ?? 6}px;
 
   @media ${Breakpoints.MOBILE} {
-    gap: 32px;
-  }
-
-  @media ${Breakpoints.TABLET}, ${MobileBreakPoints.MOBILE_S} {
     gap: 16px;
   }
 

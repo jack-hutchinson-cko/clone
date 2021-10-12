@@ -25,14 +25,7 @@ export const HighlightedHeader = styled(TextHeadingThree)<{ mode: HitMode }>`
     `}
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 24px;
-    line-height: 32px;
     margin: 0 0 4px 0;
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    font-size: 18px;
-    line-height: 24px;
   }
 `;
 
@@ -55,9 +48,4 @@ export const HighlightedBody = styled(Text)<{ mode: HitMode }>`
       font-size: 16px;
       line-height: 24px;
     `}
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 24px;
-    line-height: 32px;
-  }
 `;

@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { MobileBreakPoints } from 'constants/screen';
+import { Breakpoints, createBreakpointTo, SIZE } from 'constants/screen';
 import { ThemeType } from 'types/theme';
 
 type Props = {
   fullWidth?: boolean;
-  fullHeight?: boolean;
   variant: 'primary' | 'secondary';
   size: 'large' | 'small';
 };
@@ -64,9 +63,6 @@ const getButtonFontStyles = ({ size }: Props) => {
   }
 };
 
-const getFullHeight = ({ fullHeight }: { fullHeight?: boolean }) =>
-  fullHeight && MobileBreakPoints.MOBILE_L;
-
 const Button = styled.button<Props>`
   cursor: pointer;
   display: inline-flex;
@@ -88,15 +84,11 @@ const Button = styled.button<Props>`
 
   ${({ fullWidth }) => fullWidth && 'width: 100%;'}
 
-  @media ${MobileBreakPoints.MOBILE_M}, ${getFullHeight} {
+  @media ${createBreakpointTo(SIZE.SM)} {
     width: 100%;
-    min-height: 76px;
-    font-size: 24px;
-    line-height: 32px;
   }
 
-  @media ${MobileBreakPoints.MOBILE_S} {
-    width: 100%;
+  @media ${Breakpoints.MOBILE} {
     min-height: 48px;
     font-size: 16px;
     line-height: 24px;

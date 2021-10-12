@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { createBreakpointTo, MobileBreakPoints, SIZE } from 'constants/screen';
+import { createBreakpointTo, SIZE } from 'constants/screen';
 
 export const Button = styled.div`
   display: flex;
@@ -8,9 +8,6 @@ export const Button = styled.div`
 
   @media ${createBreakpointTo(SIZE.M)} {
     min-width: 48px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
     line-height: 16px;
   }
 
@@ -19,7 +16,7 @@ export const Button = styled.div`
     height: 27px;
     color: ${({ theme }) => theme.colors.base} !important;
 
-    @media ${MobileBreakPoints.MOBILE_S} {
+    @media ${createBreakpointTo(SIZE.M)} {
       width: 22px;
       height: 22px;
     }

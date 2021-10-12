@@ -27,9 +27,13 @@ export const Results = styled.div<{ isShown: boolean }>`
 `;
 
 const innerContainerStyles = `
-  padding: 16px 8px;
+  padding: 16px 24px;
 
-  @media ${MobileBreakPoints.MOBILE_L} {
+  @media ${Breakpoints.MOBILE} {
+    padding: 16px 40px;
+  }
+
+  @media ${MobileBreakPoints.MOBILE_S} {
     padding: 32px 24px;
   }
 `;

@@ -1,15 +1,16 @@
 import styled, { css } from 'styled-components';
 import { TextFieldBase } from '@cko/primitives';
 
-import { MobileBreakPoints } from 'constants/screen';
+import { Breakpoints, MobileBreakPoints } from 'constants/screen';
 import { CrossSearch } from 'components/Icons';
+import { spacing } from 'constants/spacingSize';
 
 export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
   display: flex;
   align-items: center;
   gap: 10px;
   height: 40px;
-  padding: 8px 16px;
+  padding: ${spacing.s20}px ${spacing.s40}px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -33,19 +34,14 @@ export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
           border-radius: 8px;
         `
       : css`
-          @media ${MobileBreakPoints.MOBILE_L} {
-            margin: 40px 40px 2px 40px;
-            padding: 18px 24px;
-          }
-
-          @media ${MobileBreakPoints.MOBILE_M} {
-            margin: 24px 24px 2px 24px;
-            padding: 18px 24px;
+          @media ${Breakpoints.MOBILE} {
+            margin: ${spacing.s50}px ${spacing.s70}px ${spacing.s10 - 2}px;
+            padding: ${spacing.s20}px ${spacing.s40}px;
           }
 
           @media ${MobileBreakPoints.MOBILE_S} {
-            margin: 24px 24px 2px 24px;
-            padding: 13px 16px;
+            margin: ${spacing.s50}px ${spacing.s50}px ${spacing.s10 - 2}px;
+            padding: ${spacing.s20}px ${spacing.s40}px;
           }
         `}
 `;
@@ -54,6 +50,8 @@ export const TextField = styled(TextFieldBase)<{ isFAQSection?: boolean }>`
   width: 100%;
   font-size: 16px;
   font-family: inherit;
+  font-weight: 500;
+  line-height: 24px;
   color: ${({ theme }) => theme.colors.base};
   transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
 
@@ -61,18 +59,6 @@ export const TextField = styled(TextFieldBase)<{ isFAQSection?: boolean }>`
     font-style: normal;
     font-weight: 300;
     color: ${({ theme }) => theme.colors.placeholderSearch};
-  }
-
-  @media ${MobileBreakPoints.MOBILE_L} {
-    font-size: 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 32px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 18px;
   }
 
   ${({ isFAQSection = false }) =>
