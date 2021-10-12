@@ -13,7 +13,7 @@ The dispute process begins when a transaction is questioned by the cardholder. I
 
 ### Stage 1: Dispute received
 
-The customer’s bank (the issuer) creates a formal dispute and assigns it a [chargeback code](/display/DOCS/Chargeback+codes), which describes why they are reversing the payment.
+The customer’s bank (the issuer) creates a formal dispute and assigns it a [chargeback code](/resources/codes/chargeback-codes), which describes why they are reversing the payment.
 
 Once the dispute is issued, the disputed amount, and a separate dispute fee, will be immediately deducted from your account.
 
@@ -57,7 +57,7 @@ You've already refunded the customer, so we automatically submitted the relevant
 </TableCell>
 <TableCell>
 
-[`dispute_resolved`](/display/DOCS/dispute_resolved)
+[`dispute_resolved`](/reporting-and-insights/webhooks/webhook-examples/dispute_resolved)
 
 </TableCell>
 <TableCell>
@@ -79,7 +79,7 @@ You’ve received a dispute and you need to submit evidence if you want to defen
 </TableCell>
 <TableCell>
 
-[`dispute_evidence_required`](/display/DOCS/dispute_evidence_required)
+[`dispute_evidence_required`](/reporting-and-insights/webhooks/webhook-examples/dispute_evidence_required)
 
 </TableCell>
 <TableCell>
@@ -101,7 +101,7 @@ The issuer has canceled the dispute.
 </TableCell>
 <TableCell>
 
-[`dispute_canceled`](/display/DOCS/dispute_canceled)
+[`dispute_canceled`](/reporting-and-insights/webhooks/webhook-examples/dispute_canceled)
 
 </TableCell>
 <TableCell>
@@ -132,7 +132,7 @@ To challenge a dispute, submit all the relevant evidence to us and we will send 
 
 The evidence you need to provide depends on the reason for the dispute. See our responding to disputes guide to learn more.
 
-You can submit evidence through [the Hub](/display/DOCS/Manage+disputes), or with our [API](https://docs.checkout.com/risk-management/disputes/disputes-api#DisputesAPI-provideevidence).
+You can submit evidence through [the Hub](/the-hub/manage-disputes), or with our [API](/risk-management/disputes/disputes-api#DisputesAPI-provideevidence).
 
 <TipBox variant="info">
 
@@ -262,7 +262,7 @@ The issuer has accepted your evidence, and you have won the dispute.
 </TableCell>
 <TableCell>
 
-[`dispute_won`](/display/DOCS/dispute_won)
+[`dispute_won`](/reporting-and-insights/webhooks/webhook-examples/dispute_won)
 
 </TableCell>
 <TableCell>
@@ -284,7 +284,7 @@ The issuer is not satisfied with your evidence, and you have lost the dispute.
 </TableCell>
 <TableCell>
 
-[`dispute_lost`](/display/DOCS/dispute_lost)
+[`dispute_lost`](/reporting-and-insights/webhooks/webhook-examples/dispute_lost)
 
 </TableCell>
 <TableCell>
@@ -441,7 +441,7 @@ Our API does not currently return retrieval requests.
 </TableCell>
 <TableCell>
 
-[`payment_retrieval`](/display/DOCS/payment_retrieval)
+[`payment_retrieval`](/reporting-and-insights/webhooks/webhook-examples/payment_retrieval)
 
 </TableCell>
 <TableCell>
