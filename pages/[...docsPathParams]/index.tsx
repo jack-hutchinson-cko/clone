@@ -25,7 +25,12 @@ import {
 import { DocPostProps } from 'types/docpage';
 import withErrorPage from 'hoc/withErrorPage';
 import withFeatureFlag from 'hoc/withFeatureFlag';
-import { PageContent, Navigation, FrontMatterContainer } from '../../styles/index.styles';
+import {
+  PageContent,
+  Navigation,
+  FrontMatterContainer,
+  ChildArticlesWrapper,
+} from '../../styles/index.styles';
 
 const BreadCrumbs = withBlockBottomMargin(BreadCrumbsDefault, { spacing: spacing.s60 });
 
@@ -71,13 +76,15 @@ const DocPost: NextPage<DocPostProps> = ({
         </header>
         <MDXProvider source={source} />
         {!!childrenArticles.length && (
-          <CardWrapper cardsInRow={ChildArticlesPerRow}>
-            {childrenArticles.map((childItem) => (
-              <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
-                {childItem.description}
-              </Card>
-            ))}
-          </CardWrapper>
+          <ChildArticlesWrapper>
+            <CardWrapper cardsInRow={ChildArticlesPerRow}>
+              {childrenArticles.map((childItem) => (
+                <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
+                  {childItem.description}
+                </Card>
+              ))}
+            </CardWrapper>
+          </ChildArticlesWrapper>
         )}
       </PageContent>
       {!isIntegrationBuilder ? (

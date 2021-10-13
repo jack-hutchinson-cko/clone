@@ -107,7 +107,7 @@ export const Navigation = styled.div`
   position: sticky;
   height: 100%;
   top: 110px;
-  padding: 0 26px 0 26px;
+  padding: 0 ${spacing.s50}px 0 ${spacing.s50}px;
   box-sizing: content-box;
 
   @media ${createBreakpointTo(SIZE.XL)} {
@@ -118,13 +118,9 @@ export const Navigation = styled.div`
 export const FrontMatterContainer = styled.div`
   display: flex;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: ${spacing.s50}px;
 `;
 
-export const WrapperMDXContent = styled.div`
-  padding-bottom: ${spacing.s90}px;
-
-  @media ${createBreakpointTo(SIZE.M)} {
-    padding-bottom: ${spacing.s90 + spacing.s20}px;
-  }
+export const ChildArticlesWrapper = styled.div`
+  margin-top: ${spacing.s80}px;
 `;
