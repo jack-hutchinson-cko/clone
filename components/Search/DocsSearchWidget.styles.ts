@@ -12,6 +12,10 @@ export const SearchesTitle = styled.div`
   line-height: 11px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+
+  @media ${Breakpoints.MOBILE} {
+    padding-top: ${spacing.s40}px;
+  }
 `;
 
 export const PopularSearches = styled.div`
