@@ -253,4 +253,8 @@ export const WrapperIconActionArrowRight = styled.span`
   }
 `;
 
-export const WrapperWidgedGuidse = styled.span``;
+export const WrapperWidgetGuides = styled.span`
+  ${NavigationLink} {
+    font-size: 18px;
+  }
+`;

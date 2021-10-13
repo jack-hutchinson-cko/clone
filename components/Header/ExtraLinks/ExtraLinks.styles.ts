@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { createBreakpointTo, createBreakpointBetween, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const Container = styled.div<{ isMobile?: boolean }>`
   box-shadow: ${({ theme }) => theme.shadows.itemHolder};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
 
   width: ${({ isMobile }) => (isMobile ? '100%' : '420px')};
@@ -19,11 +20,11 @@ export const Content = styled.ul`
   background-color: ${({ theme }) => theme.colors.background};
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 24px 40px;
+    padding: ${spacing.s50}px ${spacing.s70}px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    padding: 24px;
+    padding: ${spacing.s50}px;
   }
 `;
 
