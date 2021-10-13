@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Box } from '@cko/primitives';
-import { TextHeadingTwo, TextHeadingOne } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 import { Text } from 'components/Text';
 
 import {
@@ -57,13 +57,13 @@ export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobi
     `}
 `;
 
-export const IntroTitle = styled(TextHeadingOne)`
+export const IntroTitle = styled(TextHeadingTwo)`
   color: ${({ theme }) => theme.colors.base};
   margin: 0;
 `;
 
 export const IntroDescription = styled(Text)`
-  margin: 30px 0 0;
+  margin: ${spacing.s40}px ${spacing.s00} ${spacing.s00};
   color: ${({ theme }) => theme.colors.baseLight};
   font-family: inherit;
   width: 85%;
