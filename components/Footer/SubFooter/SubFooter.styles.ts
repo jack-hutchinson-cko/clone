@@ -1,10 +1,6 @@
 import styled from 'styled-components';
-import {
-  MobileBreakPoints,
-  createBreakpointBetween,
-  createBreakpointTo,
-  SIZE,
-} from 'constants/screen';
+import { createBreakpointTo, Breakpoints, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 type SubFooterProps = {
   isMobile?: boolean;
@@ -15,13 +11,9 @@ export const SubFooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin-top: 70px;
+  margin-top: ${spacing.s100}px;
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.L)} {
-    margin-top: 80px;
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
+  @media ${Breakpoints.MOBILE} {
     margin-top: 48px;
   }
 `;
@@ -45,31 +37,16 @@ export const SubFooterTitle = styled.p`
   margin: 0;
   padding: 0;
   color: ${({ theme }) => theme.colors.white};
-  font-size: 11px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 24px;
   font-weight: 500;
-
-  @media ${MobileBreakPoints.MOBILE_L} {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 14px;
-    line-height: 20px;
-  }
 `;
 
 export const SubFooterDescription = styled.div<SubFooterProps>`
   color: ${({ theme }) => theme.colors.greyDark};
   max-width: 40%;
-  font-size: 10px;
-  line-height: 18px;
+  font-size: 11px;
+  line-height: 16px;
 
   p {
     margin: 0;
@@ -78,20 +55,5 @@ export const SubFooterDescription = styled.div<SubFooterProps>`
 
   @media ${createBreakpointTo(SIZE.L)} {
     max-width: 100%;
-  }
-
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.L)} {
-    font-size: 14px;
-    line-height: 26px;
-  }
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    font-size: 14px;
-    line-height: 20px;
   }
 `;

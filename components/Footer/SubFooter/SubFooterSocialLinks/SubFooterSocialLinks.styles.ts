@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { createBreakpointBetween, createBreakpointTo, SIZE } from 'constants/screen';
+import { createBreakpointTo, SIZE, createBreakpointBetween } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const SubFooterSocialLinksWrapper = styled.ul`
   display: flex;
@@ -27,34 +28,18 @@ export const SubFooterSocialLinksWrapper = styled.ul`
   @media ${createBreakpointTo(SIZE.L)} {
     justify-content: space-between;
     gap: 0;
-  }
-
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.L)} {
-    margin-top: 64px;
-
+    margin-top: ${spacing.s80}px;
     li {
       svg {
-        width: 43px;
+        width: 23px;
       }
     }
   }
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    margin-top: 60px;
-
+  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
     li {
       svg {
         width: 36px;
-      }
-    }
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    margin-top: 48px;
-
-    li {
-      svg {
-        width: 22px;
       }
     }
   }

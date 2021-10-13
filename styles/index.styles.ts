@@ -16,14 +16,14 @@ import { spacing } from 'constants/spacingSize';
 export const IntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  gap: ${spacing.s00}px;
 
   @media ${Breakpoints.MOBILE} {
     flex-direction: column;
-    gap: 64px;
   }
 
-  @media ${MobileBreakPoints.MOBILE_M} {
-    gap: 24px;
+  @media ${MobileBreakPoints.MOBILE_L} {
+    gap: ${spacing.s90}px;
   }
 `;
 

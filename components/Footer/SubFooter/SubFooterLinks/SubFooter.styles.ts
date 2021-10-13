@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { SIZE, createBreakpointTo, createBreakpointBetween } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const SubFooterList = styled.ul`
   display: flex;
@@ -11,8 +12,8 @@ export const SubFooterList = styled.ul`
   padding: 0;
 
   font-weight: 400;
-  font-size: 11px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 24px;
 
   a {
     font-size: inherit;
@@ -20,7 +21,7 @@ export const SubFooterList = styled.ul`
   }
 
   @media ${createBreakpointTo(SIZE.XL)} {
-    gap: 16px;
+    gap: ${spacing.s40}px;
   }
 
   @media ${createBreakpointTo(SIZE.L)} {
@@ -28,23 +29,11 @@ export const SubFooterList = styled.ul`
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.L)} {
-    margin-top: 32px;
-  }
-
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.L)} {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 18px;
-    line-height: 24px;
+    margin-top: ${spacing.s60}px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    margin-top: 24px;
-    font-size: 14px;
-    line-height: 25px;
+    margin-top: ${spacing.s50}px;
   }
 `;
 
