@@ -7,3 +7,7 @@ export const Text = styled.p`
   line-height: 24px;
   font-weight: 400;
 `;
+
+export const MDXText = styled(Text)`
+  margin: 0 0 40px 0;
+`;

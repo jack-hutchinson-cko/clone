@@ -1,7 +1,12 @@
 import React, { FC, useState, MouseEvent, useRef } from 'react';
 import { IconActionAccordion } from 'components/Icons';
 import { StyledAccordionHead } from './AccordionHead';
-import { StyledAccordion, AccordionBodyWrapper, AccordionTitleWrapper } from './Accordion.styles';
+import {
+  StyledAccordion,
+  AccordionBodyWrapper,
+  AccordionTitleWrapper,
+  InnerContentWrapper,
+} from './Accordion.styles';
 import { AccordionProps } from './types';
 import { getHeightOfInnerContent } from './utils';
 
@@ -14,6 +19,7 @@ const Accordion: FC<AccordionProps> = ({
   isBoldTitle,
   headerIcon,
   headerComponent,
+  isMdxMode = false,
   ...props
 }) => {
   const [isOpen, setOpen] = useState<boolean>(isExpanded ?? false);
@@ -51,13 +57,14 @@ const Accordion: FC<AccordionProps> = ({
 
   if (title) {
     return (
-      <StyledAccordion {...props}>
+      <StyledAccordion {...props} isMdxMode={isMdxMode}>
         <StyledAccordionHead
           onClick={onClickHandler}
           isOpen={isOpen}
           isBoldTitle={isBoldTitle}
           hasTitle
           disabled={isButtonDisabled}
+          isMdxMode={isMdxMode}
         >
           <AccordionTitleWrapper>
             {headerIcon || null}
@@ -68,7 +75,7 @@ const Accordion: FC<AccordionProps> = ({
           <IconActionAccordion width={12} height={8} />
         </StyledAccordionHead>
         <AccordionBodyWrapper height={accordionHeight} overflow={accordionOverflow}>
-          <div ref={bodyElement}>{children}</div>
+          <InnerContentWrapper ref={bodyElement}>{children}</InnerContentWrapper>
         </AccordionBodyWrapper>
       </StyledAccordion>
     );
@@ -89,5 +96,7 @@ const Accordion: FC<AccordionProps> = ({
 
   return <StyledAccordion {...props}>{childrenWithProps}</StyledAccordion>;
 };
+
+export const MDXAccordion: FC<AccordionProps> = (props) => <Accordion {...props} isMdxMode />;
 
 export default Accordion;

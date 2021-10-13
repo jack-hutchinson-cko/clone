@@ -1,16 +1,18 @@
 import styled, { css } from 'styled-components';
 import { createBreakpointTo, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const StyledAccordionHead = styled.button<{
   isOpen: boolean | undefined;
   hasTitle?: boolean;
   isBoldTitle?: boolean;
+  isMdxMode?: boolean;
 }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 0 5px;
+  padding: ${({ isMdxMode }) => (isMdxMode ? `0 0 ${spacing.s50}px 0` : 0)};
   background-color: transparent;
   border: none;
   outline: none;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
 import { ListIconItemType } from '../types';
 
 export const ListIconItem = styled.p<{ type: ListIconItemType }>`
   position: relative;
-  margin: 0 0 26px 30px;
-  padding-left: 22px;
+  margin: 0 0 ${spacing.s40}px 0;
+  padding-left: ${spacing.s50}px;
   line-height: 24px;
   list-style-type: none;
 

@@ -8,6 +8,7 @@ export type AccordionProps = {
   hasTitle?: boolean;
   headerIcon?: ReactNode;
   headerComponent?: ReactNode;
+  isMdxMode?: boolean;
 };
 
 export type AccordionBodyProps = {

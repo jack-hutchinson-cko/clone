@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IconActionArrowRight } from 'components/Icons';
-import { createBreakpointTo, createBreakpointBetween, SIZE } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const PaginatorContainer = styled.div`
@@ -8,15 +7,7 @@ export const PaginatorContainer = styled.div`
   justify-content: space-between;
   border-top: 1px solid ${({ theme }) => theme.colors.border} !important;
   padding-top: 36px;
-  margin: ${spacing.s50}px ${spacing.s40}px ${`${spacing.s50 + 4}`}px ${spacing.s40}px;
-
-  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    margin-bottom: ${`${spacing.s70 + 2}`}px;
-  }
-
-  @media ${createBreakpointTo(SIZE.M)} {
-    margin-bottom: ${`${spacing.s90 - 2}`}px;
-  }
+  margin: ${spacing.s50}px ${spacing.s40}px 0px ${spacing.s40}px;
 `;
 
 export const LinkContainer = styled.div`

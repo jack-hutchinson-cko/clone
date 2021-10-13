@@ -6,7 +6,6 @@ import { Text } from 'components/Text';
 import {
   SIZE,
   Breakpoints,
-  MobileBreakPoints,
   createBreakpointFrom,
   createBreakpointTo,
   createBreakpointBetween,
@@ -21,17 +20,13 @@ export const IntroWrapper = styled.div`
   @media ${Breakpoints.MOBILE} {
     flex-direction: column;
   }
-
-  @media ${MobileBreakPoints.MOBILE_L} {
-    gap: ${spacing.s90}px;
-  }
 `;
 
 export const ContentBlock = styled(Box)`
   flex: 1;
 
   button {
-    margin-top: 30px;
+    margin: 0 0 ${spacing.s70}px 0;
   }
 
   @media ${Breakpoints.DESKTOP} {
@@ -58,16 +53,12 @@ export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobi
 `;
 
 export const IntroTitle = styled(TextHeadingTwo)`
-  color: ${({ theme }) => theme.colors.base};
-  margin: 0;
+  margin: 0 0 ${spacing.s40}px 0;
 `;
 
 export const IntroDescription = styled(Text)`
-  margin: ${spacing.s40}px ${spacing.s00} ${spacing.s00};
-  color: ${({ theme }) => theme.colors.baseLight};
-  font-family: inherit;
+  margin: 0 0 ${spacing.s70}px 0;
   width: 85%;
-  font-weight: 400;
 `;
 
 export const MainWrapper = styled.div`
@@ -92,20 +83,16 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
-  @media ${createBreakpointFrom(SIZE.L)} {
-    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s70 - 4}px ${spacing.s60}px;
-  }
-
-  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s50 - 4}px ${spacing.s90}px;
+  @media ${createBreakpointFrom(SIZE.M)} {
+    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s110}px ${spacing.s60}px;
   }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s00};
+    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s90}px ${spacing.s70}px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s00};
+    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s90}px ${spacing.s50}px;
   }
 `;
 
@@ -135,13 +122,9 @@ export const FrontMatterContainer = styled.div`
 `;
 
 export const WrapperMDXContent = styled.div`
-  padding-bottom: 36px;
-
-  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding-bottom: 52px;
-  }
+  padding-bottom: ${spacing.s90}px;
 
   @media ${createBreakpointTo(SIZE.M)} {
-    padding-bottom: 72px;
+    padding-bottom: ${spacing.s90 + spacing.s20}px;
   }
 `;

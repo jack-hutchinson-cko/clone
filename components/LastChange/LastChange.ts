@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
 const LastChange = styled.div`
-  margin-top: -10px;
-  margin-bottom: 20px;
+  margin-bottom: ${spacing.s50}px;
   color: ${({ theme }) => theme.colors.base};
   font-size: 14px;
   font-weight: 300;

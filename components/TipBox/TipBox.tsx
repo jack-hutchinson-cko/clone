@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IconApprove, IconInfo, IconNote, IconWarning } from '../Icons';
-import { TipBoxWrapper, TipBoxIcon, TipBoxHeader, TipBoxContent } from './TipBox.styles';
+import { TipBoxWrapper, TipBoxIcon, TipBoxContent, TipBoxHeader } from './TipBox.styles';
 import { TipBoxProps, TipBoxVariant } from './types';
 
 const TipBox: FC<TipBoxProps> = ({ title = null, variant = 'tip', children, ...rest }) => {

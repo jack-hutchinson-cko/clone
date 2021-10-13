@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
 export const StyledInfoBox = styled.pre`
   position: relative;
-  bottom: -4px;
   display: flex;
   font-family: inherit;
   font-size: 12px;
@@ -10,6 +10,7 @@ export const StyledInfoBox = styled.pre`
   line-height: 18px;
   white-space: normal;
   vertical-align: baseline;
+  margin: 0 0 ${spacing.s30}px 0;
 
   svg {
     width: 10px;

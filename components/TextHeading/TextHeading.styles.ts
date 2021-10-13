@@ -42,3 +42,31 @@ export const TextHeadingFour = styled.h4`
   font-weight: 600;
   margin: 32px 0 16px 0;
 `;
+
+export const TextHeadingFive = styled.h5`
+  color: ${({ theme }) => theme.colors.base};
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin: 32px 0 16px 0;
+`;
+
+export const MdxTextHeadingOne = styled(TextHeadingOne)`
+  margin: 0 0 8px 0;
+`;
+
+export const MdxTextHeadingTwo = styled(TextHeadingTwo)`
+  margin: 0 0 8px 0;
+`;
+
+export const MdxTextHeadingThree = styled(TextHeadingThree)`
+  margin: 0 0 16px 0;
+`;
+
+export const MdxTextHeadingFour = styled(TextHeadingFour)`
+  margin: 0 0 16px 0;
+`;
+
+export const MdxTextHeadingFive = styled(TextHeadingFive)`
+  margin: 0 0 16px 0;
+`;

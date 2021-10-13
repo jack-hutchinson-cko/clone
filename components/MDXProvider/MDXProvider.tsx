@@ -7,19 +7,20 @@ import FAQItem from 'components/FAQItem';
 import ButtonLink from 'components/ButtonLink';
 import ContentPanel from 'components/ContentPanel';
 import { withAnchor } from 'components/AnchorsProvider';
-import withBlockMargin from 'hoc/withBlockMargin';
+import withBlockBottomMargin from 'hoc/withBlockBottomMargin';
 import withStaticTheme from 'hoc/withStaticTheme';
 import withYOverflow from 'hoc/withYOverflow';
 import {
-  TextHeadingOne,
-  TextHeadingTwo,
-  TextHeadingThree,
-  TextHeadingFour,
+  MdxTextHeadingOne,
+  MdxTextHeadingTwo,
+  MdxTextHeadingThree,
+  MdxTextHeadingFour,
+  MdxTextHeadingFive,
 } from 'components/TextHeading';
 import TextWrapper from 'components/TextWrapper';
 import TipBox from 'components/TipBox';
 import Tabs, { Tab } from 'components/Tabs';
-import { Text } from 'components/Text';
+import { MDXText } from 'components/Text';
 import { MDXCodeSample } from 'components/CodeSample';
 import LineCode from 'components/LineCode';
 import TextLink from 'components/TextLink';
@@ -28,7 +29,7 @@ import Pre from 'components/Pre';
 import { RequestTag, StatusTag, TypeTag, SectionTag } from 'components/Tag';
 import InfoBox from 'components/InfoBox';
 import LineCodeWrapper from 'components/LineCodeWrapper';
-import Accordion, { AccordionHead, AccordionBody } from 'components/Accordion';
+import { MDXAccordion } from 'components/Accordion';
 import Table, {
   TableBody,
   TableCell,
@@ -74,10 +75,13 @@ import { Highlight } from 'components/Highlight';
 import CountryCardLink from 'components/CountryCardLink/CountryCardLink';
 import { IndividualPayment, CorporatePayment } from 'components/Icons';
 import Select, { Option } from 'components/Select';
+import { spacing } from 'constants/spacingSize';
+import HomePageItem from 'components/HomePageItem';
+import { Wrapper } from './MDXProvider.styles';
 
 export const mdxComponents = {
-  TipBox: withBlockMargin(TipBox),
-  tabs: withBlockMargin(Tabs),
+  TipBox: withBlockBottomMargin(TipBox),
+  tabs: withBlockBottomMargin(Tabs),
   tab: Tab,
   TableBody,
   TableCell,
@@ -86,21 +90,20 @@ export const mdxComponents = {
   TableHeadSticky,
   TableRow,
   TableSubhead,
-  Table: withBlockMargin(withYOverflow(Table)),
-  table: withBlockMargin(withYOverflow(Table)),
+  Table: withBlockBottomMargin(withYOverflow(Table)),
+  table: withBlockBottomMargin(withYOverflow(Table)),
   tbody: TableBody,
   tr: TableRow,
   th: StyledTH,
   td: TableCell,
-  code: withBlockMargin(MDXCodeSample),
-  LineCodeWrapper: withBlockMargin(LineCodeWrapper),
-  h1: withAnchor(TextHeadingOne),
-  h2: withAnchor(TextHeadingTwo),
-  h3: withAnchor(TextHeadingThree, { silentMode: true }),
-  h4: withAnchor(TextHeadingFour, { silentMode: true }),
-  h5: withAnchor(TextHeadingThree, { silentMode: true }),
-  h6: withAnchor(TextHeadingFour, { silentMode: true }),
-  p: Text,
+  code: withBlockBottomMargin(MDXCodeSample),
+  LineCodeWrapper: withBlockBottomMargin(LineCodeWrapper),
+  h1: withAnchor(MdxTextHeadingOne),
+  h2: withAnchor(MdxTextHeadingTwo),
+  h3: withAnchor(MdxTextHeadingThree, { silentMode: true }),
+  h4: withAnchor(MdxTextHeadingFour, { silentMode: true }),
+  h5: withAnchor(MdxTextHeadingFive, { silentMode: true }),
+  p: MDXText,
   inlineCode: LineCode,
   a: TextLink,
   Box,
@@ -111,31 +114,29 @@ export const mdxComponents = {
   SectionTag,
   InfoBox,
   TextWrapper,
-  List: withBlockMargin(List),
+  List: withBlockBottomMargin(List, { spacing: spacing.s60 }),
   ListIconItem,
   ListNumberItem,
-  ul: withBlockMargin(UnorderedList),
-  ol: withBlockMargin(OrderedList),
+  ul: withBlockBottomMargin(UnorderedList, { spacing: spacing.s50 }),
+  ol: withBlockBottomMargin(OrderedList, { spacing: spacing.s50 }),
   li: ListItem,
-  UnorderedList: withBlockMargin(UnorderedList),
-  OrderedList: withBlockMargin(OrderedList),
+  UnorderedList: withBlockBottomMargin(UnorderedList),
+  OrderedList: withBlockBottomMargin(OrderedList),
   ListItem,
-  Accordion,
-  AccordionHead,
-  AccordionBody,
-  img: withBlockMargin(ImageBox),
-  Iframe: withBlockMargin(Iframe),
-  ButtonLink: withBlockMargin(ButtonLink),
+  Accordion: withBlockBottomMargin(MDXAccordion, { spacing: spacing.s50 }),
+  img: withBlockBottomMargin(ImageBox),
+  Iframe: withBlockBottomMargin(Iframe),
+  ButtonLink: withBlockBottomMargin(ButtonLink),
   ButtonLinkSecondary: ButtonLink,
-  ContentPanel: withBlockMargin(ContentPanel),
+  ContentPanel: withBlockBottomMargin(ContentPanel),
   Card,
   CardLink,
-  CardWrapper: withBlockMargin(CardWrapper),
-  Tic: withBlockMargin(Tic),
-  SectionLink: withBlockMargin(SectionLink),
-  CategoriesList: withBlockMargin(CategoriesList),
+  CardWrapper: withBlockBottomMargin(CardWrapper, { spacing: spacing.s50 }),
+  Tic: withBlockBottomMargin(Tic),
+  SectionLink: withBlockBottomMargin(SectionLink),
+  CategoriesList: withBlockBottomMargin(CategoriesList),
   CategoriesItem,
-  TwoColumn: withBlockMargin(TwoColumn),
+  TwoColumn: withBlockBottomMargin(TwoColumn),
   ArrowLink,
   IBuilder,
   IBuilderHeader,
@@ -153,8 +154,9 @@ export const mdxComponents = {
   IndividualPayment,
   CorporatePayment,
   IBuilderCodeControl,
-  Select: withBlockMargin(Select),
+  Select: withBlockBottomMargin(Select),
   Option,
+  HomePageItem,
 };
 
 type Props = {
@@ -169,7 +171,11 @@ const MDXProvider: FC<Props> = ({ source }) => {
     setKey(2);
   }, []);
 
-  return <MDXRemote key={key} {...source} components={mdxComponents} />;
+  return (
+    <Wrapper>
+      <MDXRemote key={key} {...source} components={mdxComponents} />
+    </Wrapper>
+  );
 };
 
 export const MDXRuntime: FC = ({ children }) => <MDX components={mdxComponents}>{children}</MDX>;
