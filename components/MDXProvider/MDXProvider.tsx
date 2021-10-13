@@ -100,7 +100,7 @@ export const mdxComponents = {
   LineCodeWrapper: withBlockBottomMargin(LineCodeWrapper),
   h1: withAnchor(MdxTextHeadingOne),
   h2: withAnchor(MdxTextHeadingTwo),
-  h3: withAnchor(MdxTextHeadingThree, { silentMode: true }),
+  h3: withAnchor(MdxTextHeadingThree),
   h4: withAnchor(MdxTextHeadingFour, { silentMode: true }),
   h5: withAnchor(MdxTextHeadingFive, { silentMode: true }),
   p: MDXText,
