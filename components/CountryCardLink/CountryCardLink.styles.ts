@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
 export const Wrapper = styled.a`
   display: flex;
@@ -6,7 +7,7 @@ export const Wrapper = styled.a`
   align-items: center;
   gap: 12px;
   min-width: 150px;
-  padding: 20px 0 16px 0;
+  padding: ${spacing.s40}px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   cursor: pointer;
@@ -21,5 +22,6 @@ export const Wrapper = styled.a`
 export const Title = styled.h4`
   font-weight: 500;
   line-height: 24px;
+  white-space: nowrap;
   margin: 0;
 `;

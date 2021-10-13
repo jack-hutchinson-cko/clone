@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
 
+import { spacing } from 'constants/spacingSize';
 import { VariantContentPanel } from './types';
 
 export const Container = styled.div<{ variant: VariantContentPanel }>`
   display: flex;
   align-items: flex-start;
-  gap: 32px;
+  gap: ${spacing.s50}px;
   padding-bottom: 24px;
   color: ${({ theme }) => theme.colors.base};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
@@ -46,7 +47,7 @@ export const Container = styled.div<{ variant: VariantContentPanel }>`
 
   p {
     display: block;
-    margin: 0px 0 24px 0;
+    margin: 0px 0 ${spacing.s40}px 0;
     font-size: 16px;
     line-height: 24px;
   }
@@ -61,7 +62,7 @@ export const Title = styled.span<{ variant: VariantContentPanel }>`
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: ${spacing.s40}px;
 
   ${({ variant }) =>
     variant === 'heading' &&
