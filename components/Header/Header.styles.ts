@@ -21,7 +21,7 @@ export const NavigationSection = styled.div<{ isMobile?: boolean }>`
 
 export const MiddleNavigationSection = styled(NavigationSection)`
   flex: 1;
-  margin: 0 25px 0 55px;
+  margin: 0 25px 0 86px;
 
   @media (max-width: ${SIZE.SM}px) {
     margin: 0;
@@ -64,14 +64,11 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         }
 
         &:not(:last-child) {
-          padding: 0 40px;
+          padding: ${spacing.s00} ${spacing.s70}px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-          @media (min-width: ${SIZE.SM}px) {
-            padding: 0 40px;
-          }
-          @media ${createBreakpointTo(SIZE.XS)} {
-            padding: 0 24px;
+          @media ${createBreakpointTo(SIZE.M)} {
+            padding: ${spacing.s00} ${spacing.s50}px;
           }
         }
       }
@@ -212,10 +209,6 @@ export const DrawerTopContentWrapper = styled.div`
   background: ${({ theme }) => theme.colors.background};
 
   @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s60}px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
     padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s60}px;
   }
 `;
@@ -227,10 +220,6 @@ export const DrawerBottomContentWrapper = styled.div`
   flex: 1;
 
   @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s50}px ${spacing.s70}px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
     padding: ${spacing.s50}px;
   }
 `;

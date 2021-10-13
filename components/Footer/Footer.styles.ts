@@ -17,10 +17,10 @@ export const FooterContainer = styled.main<{ isMobile: boolean }>`
   }
 
   @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s80}px ${spacing.s70}px ${spacing.s100}px;
+    padding: ${spacing.s80}px ${spacing.s50}px ${spacing.s100}px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    padding: ${spacing.s80}px ${spacing.s50}px ${`${spacing.s70 + 2}`}px;
+    padding: ${spacing.s80}px ${spacing.s50}px;
   }
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const SearchesTitle = styled.div`
@@ -22,10 +22,6 @@ export const PopularSearches = styled.div`
   padding: ${spacing.s40}px ${spacing.s50}px;
 
   @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s40}px ${spacing.s70}px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
     padding: ${spacing.s40}px ${spacing.s50}px;
   }
 `;

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { TextFieldBase } from '@cko/primitives';
 
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 import { CrossSearch } from 'components/Icons';
 import { spacing } from 'constants/spacingSize';
 
@@ -35,11 +35,6 @@ export const TextFieldHolder = styled.div<{ isFAQSection?: boolean }>`
         `
       : css`
           @media ${Breakpoints.MOBILE} {
-            margin: ${spacing.s50}px ${spacing.s70}px ${spacing.s10 - 2}px;
-            padding: ${spacing.s20}px ${spacing.s40}px;
-          }
-
-          @media ${MobileBreakPoints.MOBILE_S} {
             margin: ${spacing.s50}px ${spacing.s50}px ${spacing.s10 - 2}px;
             padding: ${spacing.s20}px ${spacing.s40}px;
           }

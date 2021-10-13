@@ -3,13 +3,7 @@ import { Box } from '@cko/primitives';
 import { TextHeadingTwo } from 'components/TextHeading';
 import { Text } from 'components/Text';
 
-import {
-  SIZE,
-  Breakpoints,
-  createBreakpointFrom,
-  createBreakpointTo,
-  createBreakpointBetween,
-} from 'constants/screen';
+import { SIZE, Breakpoints, createBreakpointFrom, createBreakpointTo } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const IntroWrapper = styled.div`
@@ -84,15 +78,11 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
   @media ${createBreakpointFrom(SIZE.M)} {
-    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s110}px ${spacing.s60}px;
+    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s110}px ${spacing.s90}px;
   }
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s90}px ${spacing.s70}px;
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s90}px ${spacing.s50}px;
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s90}px;
   }
 `;
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { createBreakpointTo, createBreakpointBetween, SIZE } from 'constants/screen';
+import { createBreakpointTo, SIZE } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const Container = styled.div<{ isMobile?: boolean }>`
@@ -16,14 +16,10 @@ export const Content = styled.ul`
   gap: 16px;
   width: 100%;
   margin: 0;
-  padding: 32px;
+  padding: ${spacing.s60}px;
   background-color: ${({ theme }) => theme.colors.background};
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: ${spacing.s50}px ${spacing.s70}px;
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
+  @media ${createBreakpointTo(SIZE.M)} {
     padding: ${spacing.s50}px;
   }
 `;

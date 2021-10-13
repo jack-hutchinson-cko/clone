@@ -6,6 +6,8 @@ import {
   createBreakpointFrom,
   createBreakpointTo,
 } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
+
 import CategoriesItem from '../Categories/CategoriesItem';
 
 export const ContentWrapper = styled.div`
@@ -13,19 +15,22 @@ export const ContentWrapper = styled.div`
   max-width: 1360px;
   width: 100%;
   margin: 0 auto;
-  padding: 40px 24px;
+  padding: ${spacing.s70}px ${spacing.s50}px;
+
+  @media ${createBreakpointFrom(SIZE.L)} {
+    padding: ${spacing.s90}px;
+  }
 
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: 16px 24px;
+    padding: ${spacing.s40}px ${spacing.s50}px;
   }
+
   @media ${createBreakpointFrom(SIZE.SM)} {
-    padding: 24px 40px;
+    padding: ${spacing.s50}px;
   }
+
   @media ${createBreakpointFrom(SIZE.M)} {
-    padding: 24px 64px;
-  }
-  @media ${createBreakpointFrom(SIZE.L)} {
-    padding: 64px;
+    padding: ${spacing.s50}px ${spacing.s90}px;
   }
 `;
 
