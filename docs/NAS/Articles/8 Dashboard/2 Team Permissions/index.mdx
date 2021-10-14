@@ -1,13 +1,26 @@
 ---
-title: User roles and management
+title: Team Permissions
 account: NAS
 ---
 
-The Dashboard comes with several pre-defined roles, so you can ensure your users have the appropriate permissions across the platform. If you have multiple entities, you can also decide which of these each user has access to.
+<TipBox variant="info">
+
+We’ve updated our user management and roles to Team Permissions to reflect the extra functionality of custom roles.
+
+</TipBox>
+
+Not all users on the Dashboard have the same permissions. Control what your users can access with Team Permissions, a set of roles that can be applied to a group of users. If you have multiple entities, you can also decide which of these each user has access to.
+
+This page explains: 
+* [Pre-defined roles](#Pre-defined_roles)
+* [Custom roles](#Custom_roles)
+* [How to manage your users](#Manage_your_users)
 
 ---
 
-### About user roles
+## Pre-defined roles
+
+The Dashboard comes with several pre-defined roles, so you can ensure your users have the appropriate permissions across the platform. 
 
 The Dashboard has eight pre-defined user roles:
 
@@ -19,7 +32,7 @@ The Dashboard has eight pre-defined user roles:
 - Support Manager
 - Read Only
 
-The Administrator Owner is the overall owner for the account.
+The Administrator Owner is the overall owner for the account. 
 
 Each role comes with its own set of permissions, as described in the table below:
 
@@ -219,7 +232,7 @@ View disputes
 
 <InfoBox>
 
-View the _Unanswered disputes_ and _All disputes_ lists.
+View the *Unanswered disputes* and *All disputes* lists.
 
 </InfoBox>
 
@@ -431,21 +444,62 @@ View sub-entities
 
 ---
 
-### Manage your users
+## Custom roles
+### Create a role
 
-Administrators (including the Owner) have access to the _User management_ screen (under _Settings_), which provides a record of all users on an account. Depending on your entity access, the list on view will filter to reflect the users whose details you can edit, depending on your business needs. The Administrator Owner can view and manage all users for all entities on the account. 
+To create a custom role, navigate to _Settings > Team Permissions_ and find the _Users_ section. When you select _+ New role_, you will be taken to the roles section where you'll be able to select various permissions and provide a name. 
+
+<TipBox>
+
+When you name roles, remember to make them unique and add a description that summarizes the permissions the role will cover.
+
+</TipBox>
+
+Review the available permissions by navigating through the sidebar menu. You can pick and choose the permissions you need to create a custom role. Select a minimum of one permission. 
+
+<TipBox variant="note">
+
+There are three permissions that can't be granted to a custom role: 
+
+* Roles management – only admins and owners have this permission.
+* Access keys refresh – only the owner of the account can have this permission.
+* Transfer ownership of the account – only the owner of the account can have this permission.
+
+</TipBox>
+
+![title](/NAS/Dashboard/TeamPermissions.png)
+
+Once you are happy with the permissions you have selected, save this custom role by selecting _Create role_.
+
+### View all roles
+
+Selecting _View all roles_ shows all roles set up and currently active for your organization for both custom and pre-defined roles.
+
+### Edit a role
+
+You can edit permissions assigned to a role at any point. Note that editing a role will affect permissions for all users who are assigned to that role.
+
+### Delete a role
+
+When a role is no longer needed, you can delete it from the details page for that role. Note that any user assigned to a role that is deleted will be transferred to the Read Only role by default.
+
+---
+
+## Manage your users
+
+Anyone with 'View users' permission have access to the _Team Permissions_ screen (under _Settings_), which provides a record of all users on an account. Depending on your entity access and business needs, the list on view will filter to reflect the users whose details you can edit. The Administrator Owner can view and manage all users for **all** entities on the account. 
 
 #### View users
 
-The User management screen provides a view of all users at a glance, including their roles and user status.
+The _Team Permissions_ screen provides a view of all users at a glance, including their roles and user status.
 
-The Last login column reflects the three possible user statuses:
+The _Last login_ column reflects the three possible user statuses:
 
 - `PENDING`: the user has recently been invited to your platform and is yet to accept the invitation and set up their login details. Users have seven days to accept an invitation before it expires.
 - `[Timestamp]`: the user has accepted the invitation. The date and timestamp on view show the last time the user accessed the platform. 
-- `EXPIRED`: the user has failed to accept the invitation in time and the token has expired.
+- `EXPIRED`: the user has accepted the invitation. The date and timestamp on view show the last time the user accessed the platform. 
 
-To view more information or edit a user's details, select a row. The details pane opens on the right side of the page:
+To view more information or edit a user's details, click on a row. The details pane opens on the right side of the page:
 
 ![title](/NAS/Dashboard/User_roles_and_management/user_details.png)
 
@@ -453,11 +507,11 @@ To view more information or edit a user's details, select a row. The details pan
 
 You can add as many users to your Dashboard as you require. A user’s email, name, and role are all mandatory, as well as the entities you want them to have access to.
 
-1. In _Settings > User management_, select _Add user_. A pop-up opens.
+1. In _Settings > Team Permissions_, select _Add user_. A pop-up opens.
 
 <Box horizontal="sm" align="center">
   <Iframe
-    src="/docs/four/NAS/Dashboard/User_roles_and_management/add_user.png"
+    src="/NAS/Dashboard/User_roles_and_management/add_user.png"
     height='514'
     width='306'
   />
@@ -475,7 +529,7 @@ You can only assign a user to the entities that you have access to. Once added, 
 
 5. Select _Add user_.
 
-A confirmation message pops up and the new user is added to the bottom of the list on the _User management_ screen.
+A confirmation message pops up and the new user is added to the bottom of the list on the _Team Permissions_ screen.
 
 ![title](/NAS/Dashboard/User_roles_and_management/pending_user.png)
 
@@ -489,7 +543,7 @@ The new user has a `PENDING` status. When they activate their account, this will
 
 Edit an existing user's role and entity access.
 
-1. In _Settings > User management_, select a user. The details pane opens on the right side of your screen.
+1. In _Settings > Team Permissions_, select a user. This will open the details pane on the right side of your screen.
 2. Use the _Role_ drop-down to update a user's role.
 3. Tick or untick the _Legal entities_ you want the user to have access to.
 4. Select _Save_ to confirm.
@@ -500,19 +554,19 @@ The user's details are updated.
 
 Delete a user to revoke all their access rights and completely remove them from the platform.
 
-1. In _Settings > User management_, select a user. The details pane opens on the right side of your screen.
+1. In _Settings > Team Permissions_, select a user. This will open the details on the right side of your screen.
 2. In the top right of the details pane, select _Delete_ user.
-3. To confirm, select _Delete user_ again.
+3. To confirm, select _Delete_ user again.
 
 <Box horizontal="sm" align="center">
   <Iframe
-    src="/docs/four/NAS/Dashboard/User_roles_and_management/delete_user.png"
+    src="/NAS/Dashboard/User_roles_and_management/delete_user.png"
     height='253'
     width='402'
   />
 </Box>
 
-A confirmation message pops up and the user is removed from the _User management_ screen.
+A confirmation message pops up and the user is removed from the Team Permissions screen.
 
 ### Transfer ownership to another user
 
@@ -524,9 +578,13 @@ Transferring ownership to another user grants them access to all the entities on
 
 </TipBox>
 
-1. In _Settings > User management_, select a user. The details pane opens on the right side of your screen.
-2. In the top right of the details pane, select _Transfer ownership_. Note that this button is only visible to the Administrator Owner.
+1. In _Settings > Team Permissions_, select a user. This will open the details pane on the right side of your screen.
+2. In the top right of the details pane, select _Transfer ownership_. Note that this button is only visible to the Administrator Owner. 
 3. Enter your password.
-4. To confirm, select _Transfer ownership_ again. A confirmation messages pops up. The chosen user's role is updated to Administrator Owner (`Owner`). Your role is updated to Administrator (`Admin`).
+4. To confirm, select _Transfer ownership_ again. A confirmation messages pops up. The chosen user's role is updated to Administrator Owner (`Owner`). Your role is updated to Administrator (`Admin`). 
+
+
+
+
 
 
