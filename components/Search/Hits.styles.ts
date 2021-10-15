@@ -13,7 +13,10 @@ export const HeadSection = styled.section<{ isFAQSection?: boolean }>`
 
   @media ${Breakpoints.MOBILE} {
     padding: ${spacing.s20}px ${spacing.s00}px;
-    pointer-events: none;
+
+    &:not(HeadSection):hover {
+      background-color: transparent;
+    }
   }
 
   ${({ isFAQSection }) =>
