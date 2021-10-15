@@ -6,11 +6,9 @@ import ListIconItem from '.';
 export const ListIconItemStory: Story = () => {
   return (
     <List>
-      <ListIconItem type="check">
-        While you&#39;re still working on your website or app.
-      </ListIconItem>
-      <ListIconItem type="info">As an alternative to hosting your own payment form.</ListIconItem>
-      <ListIconItem type="error">
+      <ListIconItem>While you&#39;re still working on your website or app.</ListIconItem>
+      <ListIconItem>As an alternative to hosting your own payment form.</ListIconItem>
+      <ListIconItem>
         In parallel with your existing online integration as another way to reach your customers.
       </ListIconItem>
       <ListIconItem>

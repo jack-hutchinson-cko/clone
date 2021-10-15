@@ -97,6 +97,7 @@ export const Navigation = styled.div`
   position: sticky;
   height: 100%;
   top: 110px;
+  margin-top: ${spacing.s60}px;
   padding: 0 ${spacing.s90}px 0 ${spacing.s50}px;
   box-sizing: content-box;
 

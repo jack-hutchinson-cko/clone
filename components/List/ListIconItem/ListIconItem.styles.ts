@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { spacing } from 'constants/spacingSize';
 
-import { ListIconItemType } from '../types';
-
-export const ListIconItem = styled.p<{ type: ListIconItemType }>`
+export const ListIconItem = styled.p`
   position: relative;
   margin: 0 0 ${spacing.s40}px 0;
   padding-left: ${spacing.s50}px;
@@ -18,7 +16,7 @@ export const ListIconItem = styled.p<{ type: ListIconItemType }>`
 
   svg {
     position: absolute;
-    top: calc(50% - 8px);
+    top: 2px;
     left: 0px;
   }
 `;
