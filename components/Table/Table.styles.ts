@@ -9,7 +9,6 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
   table-layout: ${({ type = 'fixed' }) => type};
   width: 100%;
   color: ${({ theme }) => theme.colors.baseLight};
-  border-radius: 8px;
   border-spacing: 1px;
   font-size: 16px;
   text-align: left;
@@ -28,17 +27,18 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
   ${({ withTopBorder = true }) =>
     withTopBorder
       ? css`
-          tr > th:first-child {
-            border-radius: 8px 0 0 0;
+          border-radius: 8px;
+
+          *:first-child > tr:first-child > *:first-child {
+            border-top-left-radius: 8px;
           }
 
-          tr > th:last-child {
-            border-radius: 0 8px 0 0;
+          *:first-child > tr:first-child > *:last-child {
+            border-top-right-radius: 8px;
           }
         `
       : css`
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
+          border-radius: 0 0 8px 8px;
         `}
 
   @media ${Breakpoints.MOBILE} {

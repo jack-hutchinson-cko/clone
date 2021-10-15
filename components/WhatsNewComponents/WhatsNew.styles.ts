@@ -21,7 +21,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const WhatsNewWidget = styled.div`
-  margin: 24px 0;
+  margin-top: ${spacing.s70}px;
 `;
 
 export const Counter = styled.div`

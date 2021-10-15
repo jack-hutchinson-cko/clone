@@ -25,4 +25,5 @@ export const StyledTabHeadLink = styled.button<{ active: boolean }>`
   line-height: 24px;
   white-space: nowrap;
   cursor: pointer;
+  font-family: inherit;
 `;

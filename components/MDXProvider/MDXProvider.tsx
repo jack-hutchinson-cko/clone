@@ -77,6 +77,7 @@ import { IndividualPayment, CorporatePayment } from 'components/Icons';
 import Select, { Option } from 'components/Select';
 import { spacing } from 'constants/spacingSize';
 import HomePageItem from 'components/HomePageItem';
+import HR from 'components/HR';
 import { Wrapper } from './MDXProvider.styles';
 
 export const mdxComponents = {
@@ -157,6 +158,7 @@ export const mdxComponents = {
   Select: withBlockBottomMargin(Select),
   Option,
   HomePageItem,
+  hr: HR,
 };
 
 type Props = {

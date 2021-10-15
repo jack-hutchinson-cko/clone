@@ -97,12 +97,13 @@ export const Navigation = styled.div`
   position: sticky;
   height: 100%;
   top: 110px;
-  padding: 0 ${spacing.s50}px 0 ${spacing.s50}px;
+  padding: 0 ${spacing.s90}px 0 ${spacing.s50}px;
   box-sizing: content-box;
 
   @media ${createBreakpointTo(SIZE.XL)} {
     display: none;
   }
+  margin-bottom: ${spacing.s30}px;
 `;
 
 export const FrontMatterContainer = styled.div`
