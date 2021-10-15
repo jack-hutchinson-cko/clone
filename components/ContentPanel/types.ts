@@ -1,4 +1,4 @@
-export type VariantContentPanel = 'default' | 'heading' | 'eCommerce';
+export type VariantContentPanel = 'default' | 'eCommerce';
 
 export type ContentPanelProps = {
   title?: string;
