@@ -20,7 +20,7 @@ export const Select = styled.select`
 
 export const IconChevronDown = styled(IconActionChevronDown)`
   position: absolute;
-  left: 230px;
+  right: 50%;
   top: 16px;
   pointer-events: none;
 `;
