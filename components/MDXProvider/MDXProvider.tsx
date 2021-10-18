@@ -132,7 +132,7 @@ export const mdxComponents = {
   ContentPanel: withBlockBottomMargin(ContentPanel),
   Card,
   CardLink,
-  CardWrapper: withBlockBottomMargin(CardWrapper, { spacing: spacing.s50 }),
+  CardWrapper: withBlockBottomMargin(CardWrapper),
   Tic: withBlockBottomMargin(Tic),
   SectionLink: withBlockBottomMargin(SectionLink),
   CategoriesList: withBlockBottomMargin(CategoriesList),
