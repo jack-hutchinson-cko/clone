@@ -13,7 +13,7 @@ export const FooterContainer = styled.main<{ isMobile: boolean }>`
   padding: ${spacing.s90}px;
 
   @media ${Breakpoints.TABLET} {
-    padding: ${spacing.s80}px ${spacing.s90}px;
+    padding: ${spacing.s80}px ${spacing.s60}px;
   }
 
   @media ${Breakpoints.MOBILE} {

@@ -17,10 +17,6 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
   padding: ${spacing.s70}px ${spacing.s50}px;
 
-  @media ${createBreakpointFrom(SIZE.L)} {
-    padding: ${spacing.s90}px;
-  }
-
   @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
     padding: ${spacing.s40}px ${spacing.s50}px;
   }
@@ -30,7 +26,11 @@ export const ContentWrapper = styled.div`
   }
 
   @media ${createBreakpointFrom(SIZE.M)} {
-    padding: ${spacing.s50}px ${spacing.s90}px;
+    padding: ${spacing.s50}px ${spacing.s60}px;
+  }
+
+  @media ${createBreakpointFrom(SIZE.L)} {
+    padding: ${spacing.s90}px;
   }
 `;
 
