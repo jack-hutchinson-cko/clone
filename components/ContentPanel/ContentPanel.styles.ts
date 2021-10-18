@@ -4,14 +4,15 @@ import { spacing } from 'constants/spacingSize';
 import TextLink from 'components/TextLink';
 import { VariantContentPanel } from './types';
 
-export const Container = styled.div<{ variant: VariantContentPanel }>`
+export const Container = styled.div<{ variant: VariantContentPanel; withBorder?: boolean }>`
   display: flex;
   align-items: flex-start;
   column-gap: ${spacing.s50}px;
-  padding: ${({ variant }) =>
-    variant === 'eCommerce' ? `${spacing.s50}px` : `0 0 ${spacing.s70}px 0`};
+  padding: ${({ variant, withBorder = true }) =>
+    variant === 'eCommerce' ? `${spacing.s50}px` : `0 0 ${withBorder ? spacing.s70 : 0}px 0`};
   color: ${({ theme }) => theme.colors.base};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  ${({ withBorder = true, theme }) =>
+    withBorder ? `border-bottom: 1px solid ${theme.colors.border};` : ''}
 
   ${({ theme, variant }) =>
     variant === 'eCommerce' &&
