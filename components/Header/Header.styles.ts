@@ -82,15 +82,16 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
 export const NavigationDrawers = styled.div`
   position: absolute;
   left: 0;
-  top: 66px;
+  top: 81px;
   display: flex;
   width: 100vw;
-  height: calc(100vh - 66px);
+  height: calc(100vh - 81px);
   pointer-events: none;
   z-index: 2;
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     top: 66px;
+    height: calc(100vh - 66px);
   }
 `;
 
