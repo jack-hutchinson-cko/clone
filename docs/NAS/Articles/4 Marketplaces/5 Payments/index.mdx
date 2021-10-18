@@ -1,19 +1,35 @@
 ---
-title: Accept a payment
+title: Accept a payment on behalf of your sub-entities
 account: NAS
 ---
 
-Once your payment capabilities have been enabled, you’re ready to start processing payments on behalf of your sub-entities. On this page, we will guide you through processing payments for your sub-entities.
+Once your sub-entity's payment capabilities have been enabled, you can process payments on behalf of them through our [Unified Payments API](/payments/request-a-payment). 
 
-Our Unified Payments API enables you to process payments on behalf of a sub-entity. Follow the instructions for our [payments endpoint](/payments/accept-payments/request-a-payment). The only thing that is different is that you need to include  `marketplace.sub_entity_id`. Here you should use the sub-entity ID returned during the [onboarding process](/marketplaces/about-onboarding).
+On this page, we will walk through how you can request a payment on behalf of: 
+* [a single sub-entity](#Request_a_payment_for_a_single_sub-entity); or
+* [multiple sub-entities](#Request_a_payment_for_multiple_sub-entities) <span style={{display: "inline-block"}}><StatusTag type="Marketplaces only" /></span>
+
 
 ---
 
-### The request
+## Payment Facilitators vs Marketplaces
 
-You can see an example request with this additional object below.
+* If you are a Payment Facilitator, you process payments on behalf of a [single sub-entity](#Request_a_payment_for_a_single_sub-entity). 
+* If you are a Marketplace, you can process payments on behalf of your sub-entities using both options.
 
-For more information about what these fields mean, see our [payments page](/payments/accept-payments/request-a-payment).
+---
+
+## Request a payment for a single sub-entity 
+
+When processing a payment on behalf of a single sub-entity, you just need to create a payment request for the total purchase amount. Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our [API reference](https://api-reference.checkout.com/preview/crusoe/) for all required and optional fields.
+
+To associate this payment with the correct sub-entity, use the `marketplace` object and provide the ID in the `sub_entity_id` field.
+
+<TipBox>
+
+The sub-entity ID is returned during the [onboarding process](/marketplaces/onboarding).
+
+</TipBox>
 
 ```json
 {
@@ -45,21 +61,117 @@ For more information about what these fields mean, see our [payments page](/paym
 
 ---
 
-### The response
+## Request a payment for multiple sub-entities
 
-Use the `approved` field to check whether the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
+<StatusTag type="Marketplaces only"/>
 
-<TipBox variant="tip">
+When a customer uses your platform to buy items from multiple sub-entities, you need to request one payment from the customer, and then split that amount appropriately across the different sub-entities. This is known as a **split payment**. You can also split or add a commission that could be both fixed and variable.
 
-The following pages can help you understand the response message:
+### How to split a payment
 
-- [CVV codes and descriptions](/resources/codes/cvv-response-codes)
-- [AVS codes](/resources/codes/avs-codes)
-- [Response codes (if the authorization was unsuccessful)](/resources/codes/response-codes)
+Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our [API reference](https://api-reference.checkout.com/preview/crusoe/) for all required and optional fields.
+
+In the `marketplace` object, include the `sub_entities` array. This is an array of objects, where each object specifies:
+* The ID of the sub-entity.
+* The amount for that sub-entity.
+* An optional commission for your platform.
+* An optional reference to identify the split later.
+
+The sum of all split amounts must be equal to the payment amount. 
+
+<TipBox>
+
+The sub-entity ID is returned during the [onboarding process](/marketplaces/onboarding).
 
 </TipBox>
 
-#### Response examples
+### Split payments example scenario
+
+A customer makes a purchase of £100. The split payment contains three splits, which look like:
+1. Sub-entity A: £30 for a shirt
+2. Sub-entity B: £50 for trainers
+3. Sub-entity C: £20 for socks
+
+On top of this, you also charge a commission to sub-entities using your platform. You can specify a fixed amount or a percentage. You can also specify a percentage in addition to a fixed amount, depending on your business model. The commission will be applied to each split, and cannot exceed the split amount. 
+
+<TipBox>
+
+Remember our APIs work in the [minor currency unit](/resources/calculating-the-amount).
+
+</TipBox>
+
+### Request example
+
+In the example request below, we take the split shown above and demonstrate three ways you can split the payment and specify commission for your platform:
+* **Fixed commission amount**: Charge the sub-entity in this split a fixed commissiong amount of £2. This sub-entity would receive £28, and you would receive £2 in your currency account.
+* **Commission percentage**: Charge the sub-entity in this split a fee of 1.5%. This sub-entity would have 1.5% of £50 deducted, so would receive £49.25. You would receive 75p in your currency account.
+* **Fixed commission amount + commission percentage**: Charge the sub-entity in this split a fee of 1.5%, plus a fixed fee of £2. This sub-entity would have 1.5% of £20 deducted, plus another £2 deducted, so would receive £17.70. You would receive £2.30 in your currency account.
+
+<TipBox variant="info">
+
+You can also use this method on a single payment (not split) to collect commission. 
+
+</TipBox>
+
+```json
+{
+  "source": {
+    "type": "token",
+    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+  },
+  "amount": 10000,
+  "currency": "GBP",
+  "reference": "ORD-5023-4E89",
+  "description": "Multi-seller basket",
+  "processing_channel_id": "pc_hpswyyx23geezflc2ocz3exn4y",
+  "marketplace": {
+    "sub_entities": [
+      //Fixed commission amount
+      {
+        "id": "ent_pj6fv2w2wchfedchjjyobb4bni",
+        "amount": 3000,
+        "reference": "SALE-7627-8389",
+        "commission": {
+          "amount": 200
+        }
+      },
+      //Commission percentage
+       {
+        "id": "ent_kjx3tob2sxtl44wb7q7alwdu2m",
+        "amount": 5000,
+        "reference": "SALE-1729-3782",
+        "commission": {
+          "percentage": 1.5
+        }
+      },
+      //Fixed commission amount + commission percentage
+      {
+        "id": "ent_kklowryxmczwyoqe4z7yvcbwvy",
+        "amount": 2000,
+        "reference": "SALE-2127-9735",
+        "commission": {
+          "amount": 200, 
+          "percentage": 1.5,
+        }
+      }
+
+    ]
+  }
+}
+```
+
+---
+
+## Response examples
+
+If you receive a successful response, the payment will be automatically associated with the correct sub-entity. A sub-entity's funds will be held in their currency account (as per their default holding currency set up during [onboarding](/marketplaces/onboarding)). Your commissions will be held in your platform's currency account (set up during your own onboarding with our Marketplaces solution).
+
+
+<TipBox variant="note">
+
+All Checkout fees for processing payments will be charged to you (the platform).
+
+</TipBox>
 
 <tabs>
 <tab title="201 - Success">
@@ -124,65 +236,206 @@ The following pages can help you understand the response message:
 ```
 
 </tab>
-<tab title="202 - Payment asynchronous / further action required">
-
-```json withBorder=false
-{
-  "id": "pay_mbabizu24mvu3mela5njyhpit4",
-  "status": "Pending",
-  "reference": "Three chocolate donuts",
-  "3ds": {
-    "downgraded": false,
-    "enrolled": "Y"
-  },
-  "instruction": {
-    "value_date": "2020-08-25"
-  },
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/payments/pay_mbabizu24mvu3mela5njyhpit4"
-    },
-    "redirect": {
-      "href": "https://api.checkout.com/3ds/pay_mbabizu24mvu3mela5njyhpit4"
-    }
-  }
-}
-```
-
-</tab>
 <tab title="422 - Invalid data was sent">
+
+When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our [API reference](https://api-reference.checkout.com/preview/crusoe/) for a full overview.
 
 ```json withBorder=false
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",
   "error_codes": [
-    "payment_source_required"
+    "sub_entity_id_invalid"
   ]
 }
 ```
+<Box horizontal='sm'>
 
+<Accordion isBoldTitle={true} title='Possible error codes'>
+
+This is a list of error codes specifically related to **split payments**. 
+
+<Table>
+<TableHead headers={['Name','Description']} sizes={['60%', 'auto']}></TableHead>
+<TableBody>
+<TableRow>
+<TableCell>
+
+`marketplace_required`
+
+</TableCell>
+<TableCell>
+
+Marketplace section is empty for business model.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`marketplace_not_supported`
+
+</TableCell>
+<TableCell>
+
+Marketplace is not supported for your account.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`marketplace_business_model_invalid`
+
+</TableCell>
+<TableCell>
+
+Sub-entity ID is set, but business model is not is not a Payment Facilitator.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`marketplace__business_model_invalid`
+
+</TableCell>
+<TableCell>
+
+Sub-entity ID is set, but business model is not is not a Marketplace.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_not_found`
+
+</TableCell>
+<TableCell>
+
+No sub-entity with such ID is found in sub-entities list.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_id_invalid`
+
+</TableCell>
+<TableCell>
+
+The format of the sub-entity ID in the sub-entity or sub-entity list is invalid.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entities_max_count_exceeded`
+
+</TableCell>
+<TableCell>
+
+Too many sub-entities in a list.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_id_required`
+
+</TableCell>
+<TableCell>
+
+Empty ID in sub-entities list.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_amount_required`
+
+</TableCell>
+<TableCell>
+
+Empty amount in sub-entity.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_amount_invalid`
+
+</TableCell>
+<TableCell>
+
+Field out of range, input is a decimal value, or amount is less than commission.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_reference_length_invalid`
+
+</TableCell>
+<TableCell>
+
+Reference exceeds allowed length.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_commission_amount_invalid`
+
+</TableCell>
+<TableCell>
+
+Not in allowed range or input is a decimal value.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_commission_percentage_invalid`
+
+</TableCell>
+<TableCell>
+
+Not in allowed range or value is too long.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sub_entity_id_duplicated`
+
+</TableCell>
+<TableCell>
+
+Multiple sub-entities with the same ID.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+</Accordion>
+
+</Box>
 </tab>
 </tabs>
 
 When you make a payment, we will let you know what stage the payment is at through [webhook notifications](/workflows).
-
-<tabs>
-<tab title="Lite">
-<Box horizontal="sm">
-
-Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. This will include a default currency (e.g. I want all of my payments, regardless of processing currency, to be routed to and held in GBP), and possibly some like-for-like preferences (e.g. I specifically want any payments in EUR to be routed to and held in EUR).
-
-</Box>
-</tab>
-<tab title="Full">
-<Box horizontal="sm">
-
-Funds will be routed and held in your platform’s currency accounts as per the default holding currency of your sub-entity (specified when onboarding via the Marketplace API). Please note that funds are aggregated based on currency, so if you onboard two sub-entities both with the default holding currency of GBP, funds for both of these sub-entities will be routed to your GBP currency account.
-
-</Box>
-</tab>
-</tabs>
 
 ---
 
