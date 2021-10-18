@@ -5,7 +5,7 @@ export const ModalRoot = styled.div<{ isOpen?: boolean }>`
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: ${({ theme }) => theme.darkSemiOpacity};
+  background-color: ${({ theme }) => theme.colors.modalBackground};
   padding: 80px 165px;
   cursor: pointer;
   position: fixed;
