@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { spacing } from 'constants/spacingSize';
-import TextLink from 'components/TextLink';
+import ArrowLink from 'components/ArrowLink';
 import { VariantContentPanel } from './types';
 
 export const Container = styled.div<{ variant: VariantContentPanel; withBorder?: boolean }>`
@@ -47,10 +47,8 @@ export const LinkWrapper = styled.div`
   margin-bottom: ${spacing.s20}px;
 `;
 
-export const LinkItem = styled(TextLink)`
+export const LinkItem = styled(ArrowLink)`
   margin: 0;
-  font-size: 16px;
-  line-height: 24px;
 `;
 
 export const Title = styled.span<{ variant: VariantContentPanel }>`
@@ -65,7 +63,7 @@ export const ImageWrapper = styled.div<{
   variant: VariantContentPanel;
   imgWidth?: number;
 }>`
-  ${({ variant, imgWidth = spacing.s90 }) =>
+  ${({ variant, imgWidth = spacing.s80 }) =>
     variant === 'eCommerce'
       ? css`
           width: 180px;

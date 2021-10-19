@@ -35,7 +35,7 @@ const ContentPanel: FC<ContentPanelProps> = ({
           if (mdxType === 'a') {
             return (
               <LinkWrapper key={href}>
-                <LinkItem href={href}>{linkName}</LinkItem>
+                <LinkItem href={href} title={linkName} />
               </LinkWrapper>
             );
           }
