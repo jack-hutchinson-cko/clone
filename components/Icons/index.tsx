@@ -622,9 +622,19 @@ export const IconActionCopy: FC<Props> = (props) => (
 );
 
 export const IconListCheck: FC<Props> = (props) => (
-  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
-    <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#0C1142" />
-    <path d="M4.66666 8.20513L7.46666 10.6667L12 6" stroke="#0C1142" />
+  <StyledIcon width={16} height={16} viewBox="0 0 48 48" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M3.6 24C3.6 35.2666 12.7334 44.4 24 44.4C35.2666 44.4 44.4 35.2666 44.4 24C44.4 12.7334 35.2666 3.6 24 3.6C12.7334 3.6 3.6 12.7334 3.6 24ZM24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0Z"
+      fill="#0C1142"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M37.2911 19.2545L22.4978 34.4829L12.8115 25.9676L15.1884 23.2638L22.3022 29.5177L34.7089 16.7461L37.2911 19.2545Z"
+      fill="#0C1142"
+    />
   </StyledIcon>
 );
 
