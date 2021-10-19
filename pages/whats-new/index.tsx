@@ -4,8 +4,9 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import MDXProvider from 'components/MDXProvider';
 import { PageContent } from 'styles/index.styles';
 import { WhatsNewHeader, WhatsNew } from 'components/WhatsNewComponents';
-import { getDocArticleData } from 'lib/fileParser';
+import { getDocArticleData, getDocsSidebarDocLinks } from 'lib/fileParser';
 import { clientSettings } from 'constants/clientSettings';
+import withMainLayout from 'hoc/withMainLayout';
 
 type Props = {
   source: MDXRemoteSerializeResult;
@@ -26,13 +27,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const { source, frontMatter } = await getDocArticleData({
     filePath: clientSettings.whatsNewPath,
   });
+  const sidebarDocLinks = getDocsSidebarDocLinks();
 
   return {
     props: {
       source,
       frontMatter,
+      sidebarDocLinks,
     },
   };
 };
 
-export default WhatsNewPage;
+export default withMainLayout(WhatsNewPage);
