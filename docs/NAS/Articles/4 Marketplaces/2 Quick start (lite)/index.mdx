@@ -3,7 +3,7 @@ title: Quick start (lite)
 account: NAS
 ---
 
-This guide demonstrates how to onboard a sub-entity and process payments on its behalf. Select _Individual_ or _Company_ below to see the specific steps for each.
+This guide demonstrates the complete process from onboarding a sub-entity to processing payments on its behalf. Select _Individual_ or _Company_ below to see the specific steps for each.
 
 ---
 
@@ -25,12 +25,12 @@ Check you've completed the following steps before starting your integration.
 <tab title="Individual">
 <Box horizontal="sm">
 
-Vendors, retailers and service providers on your Platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
+Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
-* **Onboard with the minimum required information**
-* **Keep up to date with webhook notifications**
+* Onboard with the minimum required information
+* Keep up to date with webhook notifications
 
 ---
 
@@ -42,7 +42,7 @@ We will trigger our checks only when we have all of the information required to 
 
 </TipBox>
 
-We will use the example of **Daniel’s Donuts** – a donut seller (who is a sole proprietor) on our fictional platform, Desserts Delivered. We will provide the minimum required fields for Daniel’s Donuts to start its onboarding!
+We will use the example of **Daniel’s Donuts** – a donut seller (who is a sole proprietor) on our fictional platform, Desserts Delivered.
 
 Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity representing Daniel’s Donuts.
 
@@ -81,9 +81,9 @@ You will only be able to specify the `individual.registered_address.country` and
 
 </TipBox>
 
-A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities object`, which shows you whether the sub-entity’s capabilities are enabled or not – capabilities only get enabled once specific due diligence checks have been run and passed.
+A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities object`, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
-You will also notice there is a status field set to `pending`. This is because due diligence checks haven't been completed yet. Read more [about statuses](marketplaces/about-onboarding).
+You will also notice there is a status field set to `pending`. This is because due diligence checks haven't been completed yet. Read more [about statuses](/marketplaces/onboarding#Sub-entity_status).
 
 ```json
 {
@@ -170,12 +170,12 @@ We will re-trigger due diligence checks if any of the required information is la
 <tab title="Company">
 <Box horizontal="sm">
 
-Vendors, retailers and service providers on your Platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
+Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
-* **Onboard with the minimum required information**
-* **Keep up to date with webhook notifications**
+* Onboard with the minimum required information
+* Keep up to date with webhook notifications
 
 ---
 
@@ -183,11 +183,11 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 <TipBox variant="info">
 
-To provide greater flexibility, we don’t require you to provide all of the data required for due diligence checks upfront; you can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, the **payment** capability for this sub-entity will be enabled. Read more about this on our [onboarding information page](/marketplaces/about-onboarding).
+To provide greater flexibility, we don’t require you to provide all of the data required for due diligence checks upfront; you can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, the **payment** capability for this sub-entity will be enabled. Read more about this on our [onboarding information page](/marketplaces/onboarding).
 
 </TipBox>
 
-We will use the example of **The Cake Shop** – a cake seller on our fictional platform, Desserts Delivered. We will provide the minimum required fields for The Cake Shop to start its onboarding!
+We will use the example of **The Cake Shop** – a cake seller on our fictional platform, Desserts Delivered.
 
 Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity representing The Cake Shop.
 
@@ -256,7 +256,7 @@ You will only be able to specify the `company.principal_address.country` and `pr
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
-You will also notice there is a status field set to `pending`. This is because due diligence checks haven't been completed yet. Read more [about statuses](/marketplaces/about-onboarding).
+You will also notice there is a status field set to `pending`. This is because due diligence checks haven't been completed yet. Read more [about statuses](/marketplaces/onboarding#Sub-entity_status).
 
 ```json
 {
@@ -324,7 +324,7 @@ For **The Cake Shop**, we receive the pass event types. For example `vmss_passed
 
 If due diligence is passed, we will enable the sub-entity’s **payment** capability. You should expect to receive the `payments_enabled` event type.
 
-For The Cake Shop, we receive `payments_enabled` with the following payload:
+For **The Cake Shop**, we receive `payments_enabled` with the following payload:
 
 ```json
 {
@@ -363,13 +363,13 @@ We will re-trigger due diligence checks if any of the required information is la
 <tab title="Individual">
 <Box horizontal="sm">
 
-Now that your payments capability has been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments.`
+Now that your sub-entity's payments capabilities have been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using `<RequestTag type="post" /> /payments.`
 
 We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £10 on its behalf. An `id` will start with `ent` and looks like `ent_wxglze3wwywujg4nna5fb7ldli`.
 
 <TipBox variant="info">
 
-Funds will be routed and held in your Platform’s currency accounts as per the preferences agreed for your Platform during onboarding. In this example all payments are being routed to GBP.
+Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
 
@@ -473,13 +473,13 @@ That’s it! £10 has been processed on behalf of **Daniel’s Donuts** and the 
 <tab title="Company">
 <Box horizontal="sm">
 
-Now that your payments capability has been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" />`/payments`.
+Now that your sub-entity's payments capabilities have been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using `<RequestTag type="post" />/payments`.
 
 We’ll use **The Cake Shop’s** `id` from step 1 to process a payment for £10 on its behalf. An `id` will start with `ent` and looks like `ent_wxglze3wwywujg4nna5fb7ldli`.
 
 <TipBox variant="info">
 
-Funds will be routed and held in your Platform’s currency accounts as per the preferences agreed for your Platform during onboarding. In this example all payments are being routed to GBP.
+Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
 
@@ -606,7 +606,7 @@ That's it! You've successfully completed your first payment flow in Marketplaces
 
 ### FAQs
 
-<Accordion title="Why haven't my capabilities been enabled?">
+<Accordion title="Why haven't my sub-entity's capabilities been enabled?">
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our onboarding information page to confirm you have sent all the required information.
 

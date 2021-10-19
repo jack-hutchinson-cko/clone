@@ -1,13 +1,9 @@
---- 
-title: Onboard a sub-entity (lite)
+---
+title: Onboard a sub-entity with our Marketplace API (lite)
 account: NAS
 ---
 
-<TipBox variant='info'>
-
-This process should be followed for those on the full account type for our marketplaces solution. We have another page for [full sub-entity onboarding](/marketplaces/about-onboarding/onboard-a-sub-entity-full).
-
-</TipBox>
+This process should be followed for those on the full account type for our marketplaces solution. We have another page for [full sub-entity onboarding](/marketplaces/onboarding/api/full).
 
 On this page, we will walk through the complete onboarding of a sub-entity:
 
@@ -17,23 +13,29 @@ On this page, we will walk through the complete onboarding of a sub-entity:
 - Handle due diligence notifications
 - Testing
 
----
+<TipBox>
+
+Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboard/dashboard) in the Dashboard.
+
+</TipBox>
+
+--- 
 
 ### Before you begin
 
 [Configure your webhooks](/workflows) and subscribe to:
 
 - `sub_entity_created`
-- `full_dd_passed` and `full_dd_failed`
-- `payouts_enabled` and `payouts_disabled`
+- `vmss_passed` and `vmss_failed`
+- `match_passed` and `match_failed`
 - `payments_enabled` and `payments_disabled`
 - `status_changed`
 
 To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put).
 
-### Onboard a sub-entity
+---
 
---- 
+## Onboard a sub-entity
 
 #### Endpoints
 
@@ -61,7 +63,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 <tabs>
 <tab title='Company'>
 
-```json
+```json withBorder=false
 {
   "reference":"678910",
   "contact_details":{
@@ -93,7 +95,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 <tab title='Individual'>
 
-```json
+```json withBorder=false
 {
     "reference": "0123456",
     "contact_details": {
@@ -136,7 +138,7 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 
 </Box>
 
-```json
+```json withBorder=false
 {
   "id": "ent_aotj3m5ggi2ecpfmxu4su5ctx4",
   "reference": "MnuaOoPZanDbJwT",
@@ -163,7 +165,7 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 }
 ```
 <Box horizontal='sm'>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled`}>
+<Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -180,7 +182,7 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 
 </Box>
 
-```json
+```json withBorder=false
 {
     "_links": {
         "self": {
@@ -197,7 +199,7 @@ When you receive a `422`, please check the API request to make sure you've inclu
 
 </Box>
 
-```json
+```json withBorder=false
 {
     "request_id": "0HM72UMS6H39C:00000003",
     "error_type": "invalid_request",
@@ -221,7 +223,7 @@ When you receive a `422`, please check the API request to make sure you've inclu
 </TableCell>
 <TableCell>
 
-The MCCs provided for the sub-entity are outside the proecessing scop of its Platform.
+The MCCs provided for the sub-entity are outside the proecessing scop of its platform.
 
 </TableCell>
 </TableRow>
@@ -233,7 +235,7 @@ The MCCs provided for the sub-entity are outside the proecessing scop of its Pla
 </TableCell>
 <TableCell>
 
-The default holding currency provided for the sub-entity is outside the currency scope of its Platform.
+The default holding currency provided for the sub-entity is outside the currency scope of its platform.
 
 </TableCell>
 </TableRow>
@@ -245,7 +247,7 @@ The default holding currency provided for the sub-entity is outside the currency
 </TableCell>
 <TableCell>
 
-The principal address country provided for the sub-entity is outside the processing scope of its Platform.
+The principal address country provided for the sub-entity is outside the processing scope of its platform.
 
 </TableCell>
 </TableRow>
@@ -257,7 +259,7 @@ The principal address country provided for the sub-entity is outside the process
 </TableCell>
 <TableCell>
 
-The Platform is not permitted to onboard new sub-entities.
+The platform is not permitted to onboard new sub-entities.
 
 
 </TableCell>
@@ -325,7 +327,7 @@ The specified field is mandatory but was not provided in the request. For exampl
 
 Once your sub-entity has been successfully created, we will send you a `sub_entity_created` webhook notification, which will look similar to:
 
-```json
+```json withBorder=false
 {
   "id": "evt_jqv4f6zedawetlilolhqun6m4m",
   "source": "marketplace",
@@ -383,7 +385,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 <tabs>
 <tab title='Company'>
 
-```json
+```json withBorder=false
 {
   "reference":"78910",
   "contact_details":{
@@ -432,7 +434,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 </tab>
 <tab title='Individual'>
 
-```json
+```json withBorder=false
 {
   "reference":"0123456",
   "contact_details":{
@@ -481,7 +483,7 @@ If the request was successful, you will receive `200 - Sub-entity updated succes
 
 </Box>
 
-```json
+```json withBorder=false
 {
   "id": "ent_wxglze3wwywujg4nna5fb7ldli",
   "reference": "superhero1234",
@@ -503,7 +505,7 @@ If the request was successful, you will receive `200 - Sub-entity updated succes
 ```
 
 <Box horizontal='sm'>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+<Accordion isBoldTitle={true} title={"Why haven't my sub-entity's capabilities been enabled?"}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -521,7 +523,7 @@ In the `error_codes` object, we will let you know what data was invalid.
 
 </Box>
 
-```json{
+```json withBorder=false{
     {
     "request_id": "0HM1I9VJUDPHV:00000002",
     "error_type": "invalid_request",
@@ -547,7 +549,7 @@ In the `error_codes` object, we will let you know what data was invalid.
 </TableCell>
 <TableCell>
 
-The MCCs provided for the sub-entity are outside the proecessing scop of its Platform.
+The MCCs provided for the sub-entity are outside the proecessing scop of its platform.
 
 </TableCell>
 </TableRow>
@@ -559,7 +561,7 @@ The MCCs provided for the sub-entity are outside the proecessing scop of its Pla
 </TableCell>
 <TableCell>
 
-The principal address country provided for the sub-entity is outside the processing scope of its Platform.
+The principal address country provided for the sub-entity is outside the processing scope of its platform.
 
 </TableCell>
 </TableRow>
@@ -669,7 +671,7 @@ The response allows you to retrieve all data that has been provided about the su
 <tabs>
 <tab title="Individual">
 
-```json
+```json withBorder=false
 {
     "id": "ent_vv2jjkuf2gzj5tcw2x7ptua7zy",
     "reference": "0123456",
@@ -730,7 +732,7 @@ We require `profile.default_holding_currency` for full account types, so we set 
 `profile.default_holding_currency` is not currently updatable. If you need to change this, please get in touch.
 
 </Accordion>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+<Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled?`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -742,7 +744,7 @@ If you have provided all the information, we may be completing a manual review.
 </tab>
 <tab title="Company">
 
-```json
+```json withBorder=false
 {
   "id": "ent_nofjig36ypra6236f4tfm5bvui",
   "reference": "678910",
@@ -797,7 +799,7 @@ If you have provided all the information, we may be completing a manual review.
 We require `profile.default_holding_currency` for full account types, so we set a default in case you would like to change to the full account type. This doesn't have any impact on the way that funds will be routed and held for this sub-entity.
 
 </Accordion>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+<Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled?`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -832,7 +834,7 @@ We've described the different webhook notifications on our [webhook event type p
 <tabs>
 <tab title='VMSS passed'>
 
-```json
+```json withBorder=false
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "vmss_passed",
@@ -855,7 +857,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 <tab title='VMSS failed'>
 
-  ```json
+  ```json withBorder=false
   {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "vmss_failed",
@@ -887,7 +889,7 @@ We will re-trigger due diligence checks if `legal_name`, `trading_name` and `pro
 
 **Payments enabled webhook example**
 
-```json
+```json withBorder=false
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "payments_enabled",
@@ -986,7 +988,7 @@ Remain disabled.
 
 Process payments on behalf of your sub-entities.
 
-[Learn more](/marketplaces/accept-a-payment)
+<ButtonLinkSecondary href="/marketplaces/payments">Learn more</ButtonLinkSecondary>
 
 </ContentPanel>
 
@@ -998,6 +1000,6 @@ Process payments on behalf of your sub-entities.
 
 Find out more about status types during the onboarding process.
 
-[Find out more](/marketplaces/about-onboarding#status-types)
+<ButtonLinkSecondary href="/marketplaces/onboarding#status-types">Find out more</ButtonLinkSecondary>
 
 </ContentPanel>
