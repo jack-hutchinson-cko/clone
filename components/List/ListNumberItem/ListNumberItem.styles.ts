@@ -1,15 +1,19 @@
 import styled from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
-export const ListNumberItem = styled.p`
+export const ListNumberItem = styled.div`
   position: relative;
-  margin: 0 0 26px 0;
-  padding-left: 45px;
+  margin: 0 0 ${spacing.s20}px 0;
+  padding-left: ${spacing.s80}px;
   line-height: 24px;
+  min-height: 32px;
   list-style-type: none;
+  display: flex;
+  align-items: center;
 
   > div {
     position: absolute;
-    top: -4px;
+    top: 0;
     left: 0;
     display: inline-flex;
     align-items: center;

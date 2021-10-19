@@ -1,8 +1,14 @@
-import { FC, MouseEvent, useState, useEffect } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import Image from 'next/image';
+import { withResizeDetector } from 'react-resize-detector';
 import { basePathLoader } from '../ImageBox';
 
 import { HeroWrapper, HeroParts, HeroPart01, HeroPart02, HeroPart03 } from './HeroImage.styles';
+
+type HeroImageProps = {
+  width?: number;
+  height?: number;
+};
 
 type TransformProps = {
   rotateX: number;
@@ -10,8 +16,6 @@ type TransformProps = {
 };
 
 const constrain = 45;
-
-const defaultTransform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
 
 const calcRotation = (target: HTMLDivElement, x: number, y: number): TransformProps => {
   const boundingBox = target.getBoundingClientRect();
@@ -26,37 +30,38 @@ const calcRotation = (target: HTMLDivElement, x: number, y: number): TransformPr
   };
 };
 
-const HeroImage: FC = () => {
-  const [transform, setTransform] = useState<string>(defaultTransform);
-  const [opacity, setOpacity] = useState<number>(0);
+const HeroImage: FC<HeroImageProps> = ({ width }) => {
+  const [isCursorEntered, setCursorStatus] = useState<boolean>(false);
+  const [transform, setTransform] = useState<TransformProps>({ rotateX: 0, rotateY: 0 });
 
-  useEffect(() => {
-    setOpacity(1);
-  }, []);
+  const onMouseEnterHandler = () => setCursorStatus(true);
 
-  const onMouseHandler = () => {
-    setTransform(defaultTransform);
+  const onMouseLeaveHandler = () => {
+    setCursorStatus(false);
+    setTransform({ rotateX: 0, rotateY: 0 });
   };
 
   const onMouseMoveHandler = (event: MouseEvent<HTMLDivElement>) => {
     const [x, y] = [event.nativeEvent.clientX, event.nativeEvent.clientY];
-
     const { rotateX, rotateY } = calcRotation(event.currentTarget, x, y);
-    setTransform(
-      `perspective(1000px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1.03, 1.03, 1.03)`,
-    );
+
+    setTransform({ rotateX, rotateY });
+  };
+
+  const dynamicTransform = {
+    transform: `perspective(1000px) rotateX(${transform.rotateY}deg) rotateY(${transform.rotateX}deg) scale3d(1.02, 1.02, 1.02)`,
   };
 
   return (
-    <HeroWrapper>
+    <HeroWrapper width={width}>
       <Image src="/assets/images/HeroImg/hero.home.bg.svg" layout="fill" loader={basePathLoader} />
       <HeroParts
-        transform={transform}
+        style={isCursorEntered ? dynamicTransform : {}}
+        onMouseEnter={onMouseEnterHandler}
         onMouseMove={onMouseMoveHandler}
-        onMouseLeave={onMouseHandler}
-        opacity={opacity}
+        onMouseLeave={onMouseLeaveHandler}
       >
-        <HeroPart01>
+        <HeroPart01 width={width}>
           <Image
             src="/assets/images/HeroImg/hero.home.el.01.svg"
             width="397"
@@ -64,7 +69,7 @@ const HeroImage: FC = () => {
             loader={basePathLoader}
           />
         </HeroPart01>
-        <HeroPart02>
+        <HeroPart02 width={width}>
           <Image
             src="/assets/images/HeroImg/hero.home.el.02.svg"
             width="200"
@@ -72,7 +77,7 @@ const HeroImage: FC = () => {
             loader={basePathLoader}
           />
         </HeroPart02>
-        <HeroPart03>
+        <HeroPart03 width={width}>
           <Image
             src="/assets/images/HeroImg/hero.home.el.03.svg"
             width="204"
@@ -85,4 +90,4 @@ const HeroImage: FC = () => {
   );
 };
 
-export default HeroImage;
+export default withResizeDetector(HeroImage);

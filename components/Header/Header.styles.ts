@@ -10,8 +10,12 @@ export const NavigationContent = styled.nav`
   max-width: 1360px;
   margin: 0 auto;
   justify-content: space-between;
-  padding: 0 64px;
+  padding: ${spacing.s00} ${spacing.s90}px;
   z-index: 1;
+
+  @media ${Breakpoints.TABLET} {
+    padding: ${spacing.s00} ${spacing.s60}px;
+  }
 `;
 
 export const NavigationSection = styled.div<{ isMobile?: boolean }>`
@@ -21,7 +25,7 @@ export const NavigationSection = styled.div<{ isMobile?: boolean }>`
 
 export const MiddleNavigationSection = styled(NavigationSection)`
   flex: 1;
-  margin: 0 25px 0 55px;
+  margin: 0 25px 0 82px;
 
   @media (max-width: ${SIZE.SM}px) {
     margin: 0;
@@ -64,14 +68,11 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
         }
 
         &:not(:last-child) {
-          padding: 0 40px;
+          padding: ${spacing.s00} ${spacing.s70}px;
           border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-          @media (min-width: ${SIZE.SM}px) {
-            padding: 0 40px;
-          }
-          @media ${createBreakpointTo(SIZE.XS)} {
-            padding: 0 24px;
+          @media ${createBreakpointTo(SIZE.M)} {
+            padding: ${spacing.s00} ${spacing.s50}px;
           }
         }
       }
@@ -81,15 +82,16 @@ export const Navigation = styled.header<{ isMobile?: boolean }>`
 export const NavigationDrawers = styled.div`
   position: absolute;
   left: 0;
-  top: 66px;
+  top: 81px;
   display: flex;
   width: 100vw;
-  height: calc(100vh - 66px);
+  height: calc(100vh - 81px);
   pointer-events: none;
   z-index: 2;
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     top: 66px;
+    height: calc(100vh - 66px);
   }
 `;
 
@@ -211,11 +213,11 @@ export const DrawerTopContentWrapper = styled.div`
   padding: ${spacing.s70 - 5}px ${spacing.s70}px ${spacing.s80}px;
   background: ${({ theme }) => theme.colors.background};
 
-  @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s60}px;
+  @media ${Breakpoints.TABLET} {
+    padding-right: ${spacing.s60}px;
   }
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s60}px;
   }
 `;
@@ -226,11 +228,11 @@ export const DrawerBottomContentWrapper = styled.div`
   width: 100%;
   flex: 1;
 
-  @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s50}px ${spacing.s70}px;
+  @media ${Breakpoints.TABLET} {
+    padding: ${spacing.s70}px ${spacing.s60}px;
   }
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     padding: ${spacing.s50}px;
   }
 `;
@@ -253,4 +255,8 @@ export const WrapperIconActionArrowRight = styled.span`
   }
 `;
 
-export const WrapperWidgedGuidse = styled.span``;
+export const WrapperWidgetGuides = styled.span`
+  ${NavigationLink} {
+    font-size: 18px;
+  }
+`;

@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
 import { PureHead as Head } from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
-import BreadCrumbs from 'components/BreadCrumbs';
+import BreadCrumbsDefault from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
 import AnchorNavigation from 'components/AnchorNavigation';
 import Card from 'components/Card';
@@ -10,6 +10,10 @@ import CardWrapper from 'components/CardWrapper';
 import LastChange from 'components/LastChange';
 import TimeToComplete from 'components/TimeToComplete';
 import WarningMessage from 'components/WarningMessage';
+import { MdxTextHeadingTwo } from 'components/TextHeading';
+import withBlockBottomMargin from 'hoc/withBlockBottomMargin';
+import { spacing } from 'constants/spacingSize';
+import withMainLayout from 'hoc/withMainLayout';
 
 import {
   getFileNameFromPath,
@@ -17,6 +21,7 @@ import {
   getDocsPathUrl,
   getBreadCrumbsItem,
   getChildrenArticle,
+  getDocsSidebarDocLinks,
 } from 'lib/fileParser';
 
 import { DocPostProps } from 'types/docpage';
@@ -24,11 +29,12 @@ import withErrorPage from 'hoc/withErrorPage';
 import withFeatureFlag from 'hoc/withFeatureFlag';
 import {
   PageContent,
-  Title,
   Navigation,
   FrontMatterContainer,
-  WrapperMDXContent,
+  ChildArticlesWrapper,
 } from '../../styles/index.styles';
+
+const BreadCrumbs = withBlockBottomMargin(BreadCrumbsDefault, { spacing: spacing.s60 });
 
 const MIN_ANCHOR_COUNT = 2;
 
@@ -55,7 +61,7 @@ const DocPost: NextPage<DocPostProps> = ({
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           {!isIntegrationBuilder ? (
             <>
-              <Title>{title}</Title>
+              <MdxTextHeadingTwo>{title}</MdxTextHeadingTwo>
               {timeToComplete && warningMessage && (
                 <FrontMatterContainer>
                   <TimeToComplete time={timeToComplete} />
@@ -70,17 +76,17 @@ const DocPost: NextPage<DocPostProps> = ({
             </>
           ) : null}
         </header>
-        <WrapperMDXContent>
-          <MDXProvider source={source} />
-        </WrapperMDXContent>
+        <MDXProvider source={source} />
         {!!childrenArticles.length && (
-          <CardWrapper cardsInRow={ChildArticlesPerRow}>
-            {childrenArticles.map((childItem) => (
-              <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
-                {childItem.description}
-              </Card>
-            ))}
-          </CardWrapper>
+          <ChildArticlesWrapper>
+            <CardWrapper cardsInRow={ChildArticlesPerRow}>
+              {childrenArticles.map((childItem) => (
+                <Card withAnchor href={childItem.href} title={childItem.title} key={childItem.href}>
+                  {childItem.description}
+                </Card>
+              ))}
+            </CardWrapper>
+          </ChildArticlesWrapper>
         )}
       </PageContent>
       {!isIntegrationBuilder ? (
@@ -94,7 +100,7 @@ const DocPost: NextPage<DocPostProps> = ({
   );
 };
 
-export default withFeatureFlag(withErrorPage(DocPost));
+export default withFeatureFlag(withErrorPage(withMainLayout(DocPost)));
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -112,6 +118,8 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
     filePath,
   });
 
+  const sidebarDocLinks = getDocsSidebarDocLinks();
+
   return {
     props: {
       breadCrumbsItem,
@@ -121,6 +129,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       childrenArticles,
       isIntegrationBuilder: frontMatter.type === 'IBuilder',
       showAuthorSection: !childrenArticles.length,
+      sidebarDocLinks,
     },
   };
 };

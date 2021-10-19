@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-export const CardsWrapper = styled.div<{ gap?: number }>`
+export const CardsWrapper = styled.div<{ gap?: number; rowGap: number; columnGap: number }>`
   display: flex;
-  gap: ${({ gap = 24 }) => `${gap}px`};
+  row-gap: ${({ rowGap }) => `${rowGap}px`};
+  column-gap: ${({ columnGap }) => `${columnGap}px`};
   flex-wrap: wrap;
-  padding: 32px 0;
 `;
 
-export const CardContainer = styled.div<{ cardsInRow: number; gap?: number }>`
-  width: ${({ cardsInRow, gap = 24 }) =>
-    `calc(${(1 / cardsInRow) * 100}% - ${((cardsInRow - 1) * gap) / cardsInRow}px)`};
+export const CardContainer = styled.div<{ cardsInRow: number; columnGap: number }>`
+  width: ${({ cardsInRow, columnGap }) =>
+    `calc(${(1 / cardsInRow) * 100}% - ${((cardsInRow - 1) * columnGap) / cardsInRow}px)`};
 
   & > div {
     margin: 0;
+    height: 100%;
   }
 `;

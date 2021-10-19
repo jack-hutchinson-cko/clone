@@ -14,7 +14,7 @@ With our disputes API, you can:
 
 <TipBox variant="info">
 
-If you want to simulate a dispute for testing purposes, you can do so in the sandbox environment. Simply create a payment with one of the test cards and specify the amount [as documented here](/display/DOCS/Disputes+testing).
+If you want to simulate a dispute for testing purposes, you can do so in the sandbox environment. Simply create a payment with one of the test cards and specify the amount [as documented here](/testing/disputes-testing).
 
 </TipBox>
 
@@ -32,7 +32,7 @@ Learn more about the [reasons for disputes and the type of evidence we suggest s
 
 Each dispute has an associated `status` that describes which stage of the dispute process it has reached.
 
-If you would like to be notified when the status of a dispute changes, you can use our [webhooks](/display/DOCS/Webhooks).
+If you would like to be notified when the status of a dispute changes, you can use our [webhooks](/reporting-and-insights/webhooks).
 
 <Table>
 <TableHead headers={['Status', 'Description', 'Webhook event type']} />
@@ -54,7 +54,7 @@ An action on your side is required (you need to respond to the dispute). At this
 
 <InfoBox>
 
-View a [dispute evidence required webhook example](/display/DOCS/dispute_evidence_required).
+View a [dispute evidence required webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_evidence_required).
 
 </InfoBox>
 
@@ -77,7 +77,7 @@ We automatically resolve the dispute because it had already been refunded previo
 
 <InfoBox>
 
-View a [dispute resolved webhook example](/display/DOCS/dispute_resolved).
+View a [dispute resolved webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_resolved).
 
 </InfoBox>
 
@@ -100,7 +100,7 @@ The dispute is canceled by the issuing bank and your account is credited back of
 
 <InfoBox>
 
-View a [dispute canceled webhook example](/display/DOCS/dispute_canceled).
+View a [dispute canceled webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_canceled).
 
 </InfoBox>
 
@@ -123,7 +123,7 @@ You have submitted evidence to defend against the dispute. Your evidence is now 
 
 <InfoBox>
 
-View a [dispute canceled webhook example](/display/DOCS/dispute_canceled).
+View a [dispute canceled webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_canceled).
 
 </InfoBox>
 
@@ -163,7 +163,7 @@ The issuing bank has rejected your evidence and you have lost the dispute. There
 
 <InfoBox>
 
-View a [dispute lost webhook example](/display/DOCS/dispute_lost).
+View a [dispute lost webhook example](/reporting-and-insights/webhooks/webhook-examples/lost).
 
 </InfoBox>
 
@@ -186,7 +186,7 @@ The issuing bank has accepted your evidence and you have won the dispute. Your a
 
 <InfoBox>
 
-View a [dispute won webhook example](/display/DOCS/dispute_won).
+View a [dispute won webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_won).
 
 </InfoBox>
 
@@ -209,7 +209,7 @@ The time limit to take action is met. There is no further implication and you ca
 
 <InfoBox>
 
-View a [dispute expired webhook example](/display/DOCS/dispute_expired).
+View a [dispute expired webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_expired).
 
 </InfoBox>
 
@@ -237,7 +237,7 @@ There is no equivalent webhook because your action triggered the status change.
 
 #### Disputes API flow
 
-<img src="/docs/Risk Management/Disputes-api-flow.png" alt="Disputes flow" withFullscreenPreview />
+<img src="/docs/Risk management/Disputes-api-flow.png" alt="Disputes flow" withFullscreenPreview />
 
 ---
 
@@ -475,7 +475,7 @@ The type of evidence we recommend submitting [depends on the reason for the disp
 
 <TipBox variant="note">
 
-If you wish to submit files as evidence, you will first need to upload them using the [file uploader API](/display/DOCS/File+uploader). This will give you a file `id` (prefixed by `file_`) which you can then use in your request.
+If you wish to submit files as evidence, you will first need to upload them using the [file uploader API](/risk-management/disputes/file-uploader). This will give you a file `id` (prefixed by `file_`) which you can then use in your request.
 
 </TipBox>
 

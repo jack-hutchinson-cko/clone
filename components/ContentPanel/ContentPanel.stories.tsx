@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
 
-import ButtonLink from 'components/ButtonLink';
 import ContentPanel from './ContentPanel';
 
 export const ContentPanelDefaultStory: Story = () => {
@@ -16,23 +15,6 @@ export const ContentPanelDefaultStory: Story = () => {
       <a href="https://docs.checkout.com/integrate/frames">Learn more for web</a>
       <br />
       <a href="https://docs.checkout.com/integrate/frames-for-android">Learn more for mobile </a>
-    </ContentPanel>
-  );
-};
-
-export const ContentPanelHeadingStory: Story = () => {
-  return (
-    <ContentPanel
-      variant="heading"
-      title="Marketplace API reference"
-      imgSrc="/docs/Collect payment/SDKs.svg"
-    >
-      <p>
-        Our API reference lists all the endpoints and methods provided in the Marketplace solution.
-      </p>
-      <ButtonLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace">
-        Learn more
-      </ButtonLink>
     </ContentPanel>
   );
 };
@@ -60,7 +42,6 @@ export const ContentPanelECommerceStory: Story = () => {
 };
 
 ContentPanelDefaultStory.storyName = 'Default Content Panel';
-ContentPanelDefaultStory.storyName = 'Heading Content Panel';
 ContentPanelDefaultStory.storyName = 'eCommerce Content Panel';
 
 export default {

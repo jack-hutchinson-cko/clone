@@ -228,6 +228,9 @@ export const docksArticleSettings = getDocArticlesSettings(clientSettings.fullFi
 
 export const getDocsPathUrl = (): DocsPathItem[] => docksArticleSettings.docsPathUrl;
 
+export const getDocsSidebarDocLinks = (): NavTreeElementWithFilePatch[] =>
+  docksArticleSettings.sidebarDocLinks;
+
 export const getBreadCrumbsItem = (docsPathParams: string[]): BreadCrumbsItems => {
   const { slugToArticleNameMap } = docksArticleSettings;
   return docsPathParams.map((currentUrl, index: number) => {

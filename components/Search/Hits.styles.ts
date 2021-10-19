@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { createBreakpointFrom, SIZE } from 'constants/screen';
+import { createBreakpointFrom, SIZE, Breakpoints } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const HeadSection = styled.section<{ isFAQSection?: boolean }>`
@@ -9,6 +9,14 @@ export const HeadSection = styled.section<{ isFAQSection?: boolean }>`
   border-radius: 8px;
   &:hover {
     background-color: ${({ theme }) => theme.colors.backgroundSearch};
+  }
+
+  @media ${Breakpoints.MOBILE} {
+    padding: ${spacing.s20}px ${spacing.s00}px;
+
+    &:not(HeadSection):hover {
+      background-color: transparent;
+    }
   }
 
   ${({ isFAQSection }) =>

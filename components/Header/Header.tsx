@@ -42,7 +42,7 @@ import {
   LoginWidgetTopWrapper,
   LiginWidgetBottomWrapper,
   WrapperIconActionArrowRight,
-  WrapperWidgedGuidse,
+  WrapperWidgetGuides,
   HeaderLogoWrapper,
 } from './Header.styles';
 
@@ -179,7 +179,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             offset={75}
             isMobile={isMobile}
             content={
-              <WrapperWidgedGuidse>
+              <WrapperWidgetGuides>
                 <GuidesLinks
                   isMobile={isMobile}
                   guides={guides}
@@ -189,7 +189,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                     </NavigationLink>
                   )}
                 />
-              </WrapperWidgedGuidse>
+              </WrapperWidgetGuides>
             }
           >
             {(open) => (

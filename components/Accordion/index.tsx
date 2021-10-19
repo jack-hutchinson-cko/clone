@@ -1,3 +1,6 @@
-export { default } from './Accordion';
-export { default as AccordionHead } from './AccordionHead';
-export { default as AccordionBody } from './AccordionBody';
+import Accordion, { MDXAccordion } from './Accordion';
+import AccordionHead from './AccordionHead';
+import AccordionBody from './AccordionBody';
+
+export default Accordion;
+export { MDXAccordion, AccordionHead, AccordionBody };

@@ -47,7 +47,9 @@ const ImageBox: FC<Props> = ({
   );
 
   return withFullscreenPreview ? (
-    <ImgModalWrapper src={newSrc}>{imageBox}</ImgModalWrapper>
+    <ImgModalWrapper src={newSrc} loader={loader} {...props}>
+      {imageBox}
+    </ImgModalWrapper>
   ) : (
     imageBox
   );

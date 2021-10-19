@@ -29,11 +29,13 @@ Some issuing banks do not support card verification and reject the charge reques
 
 </TipBox>
 
-### Regular header h2
+## Regular header h2
+
+### Regular header h3
 
 #### Subheader h4
 
-#### Subgroup h4
+#### Subgroup h5
 
 *   [Codes](/resources/codes)
 *   [Calculating the value](/resources/codes/chargeback-codes)
@@ -44,12 +46,7 @@ Some issuing banks do not support card verification and reject the charge reques
 1.  In the _Secret keys_ tab, enter your public key, secret key, and private shared key.
 2.  In the _Global Settings_ tab, set the environment to _Test_, so you can start testing payments. (You will need to change this to _Production_ when you're ready to go live.)
 3.  Still in the _Global Settings_ tab, select the payment action you want.
-    *  _Authorize_ will only authorize the charge; you have to manually capture the payment yourself.
-    *  _Authorize and Capture_ means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time. If you're unsure, _Authorize and Capture_ is probably the right choice.
 4.  In the same tab, there are three more fields you can fill in:
-    - Review transactions at risk: If true, payment events coming from Checkout.com that have risk flag set to true will be created with transaction status _REVIEW_. Otherwise, the payment status will be _ACCEPTED_.
-    - Authorization amount validation threshold: This is used to determine whether the authorization amount reflects the value of the order. This is the allowed difference of the amounts that may exist due to the way the amounts are calculated. Increase it if you observe false positives in your integration.
-    - Billing descriptor: If set to true, the payment requests made will contain the billing descriptor name and city you have specified. If false, no billing descriptor will be sent.
 
 <List>
 <ListIconItem>

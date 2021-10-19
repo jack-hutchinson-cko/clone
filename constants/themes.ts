@@ -77,8 +77,7 @@ export const themes = {
       cardFormInputBorder: '#C5CCD6',
       cardFormBtnDisabled: '#697887',
       dullLavender: '#8374DC',
-      codeTabsIBBackground: '#3D4168',
-      btnHoverPrimary: '#6be1e6',
+      modalBackground: '#5E5E66F5',
       nasBannerBG: '#0C1142',
       nasBannerText: '#FFFFFF',
       // buttons
@@ -94,6 +93,7 @@ export const themes = {
       btnSecondaryDisabledFont: '#9EA0B4',
       btnSecondaryDisabled: '#CECFD9',
       // CodeSample
+      codeTabsIBBackground: '#3D4168',
       codeSampleBackground: '#F5F5FC',
       codeSampleHighlightedLine: '#6D708E',
       codeSampleLineNumber: '#B6B8C6',
@@ -175,7 +175,6 @@ export const themes = {
       ],
     },
     radii: [0, '3px', '30px', '50%'],
-    darkSemiOpacity: 'rgba(0, 0, 0, 0.64)',
     shadows: {
       none: 'none',
       focusLight: [
@@ -284,7 +283,7 @@ export const themes = {
       cardFormInputBorder: '#C5CCD6',
       cardFormBtnDisabled: '#697887',
       dullLavender: '#8374DC',
-      btnHoverPrimary: '#6be1e6',
+      modalBackground: '#5E5E66F5',
       nasBannerBG: '#FFFFC8',
       nasBannerText: '#0C1142',
       // buttons
@@ -382,7 +381,6 @@ export const themes = {
       ],
     },
     radii: [0, '3px', '30px', '50%'],
-    darkSemiOpacity: ['rgba(0, 0, 0, 0.64)'],
     shadows: {
       none: 'none',
       focusLight: [

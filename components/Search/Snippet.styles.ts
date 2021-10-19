@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { TextHeadingThree } from 'components/TextHeading';
 import { Text } from 'components/Text';
-import { createBreakpointBetween, createBreakpointTo, SIZE } from 'constants/screen';
 import { HitMode } from 'types/search';
 
 export const HighlightedHeader = styled(TextHeadingThree)<{ mode: HitMode }>`
@@ -23,10 +22,6 @@ export const HighlightedHeader = styled(TextHeadingThree)<{ mode: HitMode }>`
       margin: 0 0 4px 0;
       font-size: 24px;
     `}
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    margin: 0 0 4px 0;
-  }
 `;
 
 export const HighlightedBody = styled(Text)<{ mode: HitMode }>`

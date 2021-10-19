@@ -2,13 +2,14 @@ import React from 'react';
 import algoliasearch from 'algoliasearch/lite';
 import { useRouter } from 'next/router';
 import { InstantSearch } from 'react-instantsearch-dom';
-import { NextPage, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import { FAQHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'components/Search';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
 import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
 import { clientSettings } from 'constants/clientSettings';
 import { HitMode } from 'types/search';
 import { ContentWrapper, SectionContent } from 'components/FAQStyledComponents';
+import withMainLayout from 'hoc/withMainLayout';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
 
@@ -41,12 +42,4 @@ const FAQSearchPage: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      isFAQSection: true,
-    },
-  };
-};
-
-export default FAQSearchPage;
+export default withMainLayout(FAQSearchPage, { isFAQSection: true });

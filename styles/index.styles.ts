@@ -1,27 +1,18 @@
 import styled, { css } from 'styled-components';
-import { Box, TextHeadingOne as PrimitivesTextHeadingOne, Text } from '@cko/primitives';
+import { Box } from '@cko/primitives';
 import { TextHeadingTwo } from 'components/TextHeading';
-import {
-  SIZE,
-  Breakpoints,
-  MobileBreakPoints,
-  createBreakpointFrom,
-  createBreakpointTo,
-  createBreakpointBetween,
-} from 'constants/screen';
+import { Text } from 'components/Text';
+
+import { SIZE, Breakpoints, createBreakpointTo } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const IntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  gap: ${spacing.s00}px;
 
   @media ${Breakpoints.MOBILE} {
     flex-direction: column;
-    gap: 64px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    gap: 24px;
   }
 `;
 
@@ -29,7 +20,7 @@ export const ContentBlock = styled(Box)`
   flex: 1;
 
   button {
-    margin-top: 30px;
+    margin: 0 0 ${spacing.s70}px 0;
   }
 
   @media ${Breakpoints.DESKTOP} {
@@ -55,36 +46,13 @@ export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobi
     `}
 `;
 
-export const IntroTitle = styled(PrimitivesTextHeadingOne)`
-  color: ${({ theme }) => theme.colors.base};
-  font-size: 40px;
-  line-height: 48px;
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 56px;
-    line-height: 64px;
-  }
-
-  @media ${MobileBreakPoints.MOBILE_S} {
-    font-size: 32px;
-    line-height: 40px;
-  }
+export const IntroTitle = styled(TextHeadingTwo)`
+  margin: 0 0 ${spacing.s40}px 0;
 `;
 
 export const IntroDescription = styled(Text)`
-  margin: 30px 0 0;
-  color: ${({ theme }) => theme.colors.baseLight};
-  font-family: inherit;
+  margin: 0 0 ${spacing.s70}px 0;
   width: 85%;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  @media ${MobileBreakPoints.MOBILE_M} {
-    font-size: 23px;
-    line-height: 32px;
-    width: 100%;
-  }
 `;
 
 export const MainWrapper = styled.div`
@@ -107,22 +75,16 @@ const defaultSettings = `
 
 export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
+  padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s110}px;
+
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
-  @media ${createBreakpointFrom(SIZE.L)} {
-    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s70 - 4}px ${spacing.s60}px;
+  @media ${Breakpoints.TABLET} {
+    padding: ${spacing.s60}px ${spacing.s60}px ${spacing.s110}px;
   }
 
-  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s50 - 4}px ${spacing.s90}px;
-  }
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.M)} {
-    padding: ${spacing.s50}px ${spacing.s70}px ${spacing.s00};
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s00};
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s90}px;
   }
 `;
 
@@ -137,28 +99,22 @@ export const Navigation = styled.div`
   position: sticky;
   height: 100%;
   top: 110px;
-  padding: 0 26px 0 26px;
+  margin-top: ${spacing.s60}px;
+  padding: 0 ${spacing.s90}px 0 ${spacing.s50}px;
   box-sizing: content-box;
 
   @media ${createBreakpointTo(SIZE.XL)} {
     display: none;
   }
+  margin-bottom: ${spacing.s30}px;
 `;
 
 export const FrontMatterContainer = styled.div`
   display: flex;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: ${spacing.s50}px;
 `;
 
-export const WrapperMDXContent = styled.div`
-  padding-bottom: 36px;
-
-  @media ${createBreakpointBetween(SIZE.M, SIZE.L)} {
-    padding-bottom: 52px;
-  }
-
-  @media ${createBreakpointTo(SIZE.M)} {
-    padding-bottom: 72px;
-  }
+export const ChildArticlesWrapper = styled.div`
+  margin-top: ${spacing.s80}px;
 `;

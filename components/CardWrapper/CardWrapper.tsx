@@ -12,10 +12,10 @@ type CardsInRow = {
 
 type Props = {
   cardsInRow: CardsInRow;
-  gap?: number;
+  gap?: number | number[];
 };
 
-const CardWrapper: FC<Props> = ({ children, cardsInRow, gap }) => {
+const CardWrapper: FC<Props> = ({ children, cardsInRow, gap = 24 }) => {
   const childrenArray = React.Children.toArray(children);
   const isMobile = useMatchMedia(Breakpoints.MOBILE);
   const isTablet = useMatchMedia(Breakpoints.TABLET);
@@ -27,11 +27,13 @@ const CardWrapper: FC<Props> = ({ children, cardsInRow, gap }) => {
     defaultValue: 1,
   });
 
+  const [rowGap, columnGap] = Array.isArray(gap) ? gap : [gap, gap];
+
   return (
-    <CardsWrapper gap={gap}>
+    <CardsWrapper rowGap={rowGap} columnGap={columnGap}>
       {childrenArray.map((childItem, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <CardContainer cardsInRow={resultCardsInRow} key={index} gap={gap}>
+        <CardContainer cardsInRow={resultCardsInRow} key={index} columnGap={columnGap}>
           {childItem}
         </CardContainer>
       ))}

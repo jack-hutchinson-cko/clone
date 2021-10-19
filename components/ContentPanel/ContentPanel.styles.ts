@@ -1,24 +1,24 @@
 import styled, { css } from 'styled-components';
 
+import { spacing } from 'constants/spacingSize';
+import TextLink from 'components/TextLink';
 import { VariantContentPanel } from './types';
 
-export const Container = styled.div<{ variant: VariantContentPanel }>`
+export const Container = styled.div<{ variant: VariantContentPanel; withBorder?: boolean }>`
   display: flex;
   align-items: flex-start;
-  gap: 32px;
-  padding-bottom: 24px;
+  column-gap: ${spacing.s50}px;
+  padding: ${({ variant, withBorder = true }) =>
+    variant === 'eCommerce' ? `${spacing.s50}px` : `0 0 ${withBorder ? spacing.s70 : 0}px 0`};
   color: ${({ theme }) => theme.colors.base};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  ${({ withBorder = true, theme }) =>
+    withBorder ? `border-bottom: 1px solid ${theme.colors.border};` : ''}
 
   ${({ theme, variant }) =>
     variant === 'eCommerce' &&
     css`
-      flex: 1 0 0%;
       flex-direction: column;
-      gap: 50px;
-      min-height: 600px;
       height: 100%;
-      padding: 24px;
       border: 1px solid ${theme.colors.border};
       border-radius: 8px;
       background-clip: border-box;
@@ -28,32 +28,29 @@ export const Container = styled.div<{ variant: VariantContentPanel }>`
         border: 1px solid ${theme.colors.borderHighlight};
         box-shadow: 0px 8px 16px rgb(12 17 66 / 12%);
       }
-
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        font-size: 16px;
-        line-height: 24px;
-      }
     `}
+`;
 
-  ${({ variant }) =>
-    variant === 'heading' &&
-    css`
-      gap: 16px;
-    `}
-
+export const BodyWrapper = styled.div`
   p {
-    display: block;
-    margin: 0px 0 24px 0;
+    margin: 0px 0 ${spacing.s40}px 0;
     font-size: 16px;
     line-height: 24px;
   }
 
-  a {
-    margin: 0;
+  > *:last-child {
+    margin-bottom: 0;
   }
+`;
+
+export const LinkWrapper = styled.div`
+  margin-bottom: ${spacing.s20}px;
+`;
+
+export const LinkItem = styled(TextLink)`
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export const Title = styled.span<{ variant: VariantContentPanel }>`
@@ -61,32 +58,21 @@ export const Title = styled.span<{ variant: VariantContentPanel }>`
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
-  margin-bottom: 8px;
-
-  ${({ variant }) =>
-    variant === 'heading' &&
-    css`
-      margin-bottom: 10px;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 24px;
-    `}
+  margin-bottom: ${spacing.s40}px;
 `;
 
-export const ImageWrapper = styled.div<{ variant: VariantContentPanel; width: number }>`
-  display: block;
-  min-width: ${({ width }) => width}px;
-  width: ${({ width }) => width}px;
-
-  svg {
-    height: ${({ width }) => width}px;
-    width: ${({ width }) => width}px;
-  }
-
-  ${({ variant }) =>
-    variant === 'heading' &&
-    css`
-      min-width: 32px;
-      width: 32px;
-    `}
+export const ImageWrapper = styled.div<{
+  variant: VariantContentPanel;
+  imgWidth?: number;
+}>`
+  ${({ variant, imgWidth = spacing.s90 }) =>
+    variant === 'eCommerce'
+      ? css`
+          width: 180px;
+          max-width: 100%;
+          margin-bottom: ${spacing.s60}px;
+        `
+      : css`
+          min-width: ${imgWidth}px;
+        `}
 `;

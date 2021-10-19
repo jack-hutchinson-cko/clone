@@ -8,7 +8,8 @@ import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
 import { cutOffHashValue } from 'lib/url';
 import MenuStateProvider from 'components/MenuStateProvider';
-
+import NASBanner from 'components/NASBanner';
+import { clientSettings } from 'constants/clientSettings';
 import Header from '../Header';
 import Footer from '../Footer';
 import SideBar from '../SideBar';
@@ -47,42 +48,45 @@ const MainLayout: FC<Props> = ({
   const menu = <Menu docsTreeLinks={navTreeLinks} activeLink={activeLink} />;
 
   return (
-    <MenuStateProvider>
-      <MainWrapper>
-        <HeaderWrapper>
-          <Header
-            menuWidget={menu}
-            guides={headerContent.guides}
-            popularSearches={headerContent.popularSearches}
-            popularSearchesTitle={headerContent.popularSearchesTitle}
-            emptySearchResult={headerContent.emptySearchResult}
-            loginUrl={headerContent.loginUrl}
-            testAccountUrl={headerContent.testAccountUrl}
-            isFAQSection={isFAQSection}
-          />
-        </HeaderWrapper>
-        {isFAQSection ? (
-          children
-        ) : (
-          <ContentWrapper>
-            {isDesktop && (
-              <SideBarWrapper>
-                <SideBar menuWidget={menu} />
-              </SideBarWrapper>
-            )}
-            {children}
-          </ContentWrapper>
-        )}
+    <>
+      {clientSettings.NASBannerShown && <NASBanner />}
+      <MenuStateProvider>
+        <MainWrapper>
+          <HeaderWrapper>
+            <Header
+              menuWidget={menu}
+              guides={headerContent.guides}
+              popularSearches={headerContent.popularSearches}
+              popularSearchesTitle={headerContent.popularSearchesTitle}
+              emptySearchResult={headerContent.emptySearchResult}
+              loginUrl={headerContent.loginUrl}
+              testAccountUrl={headerContent.testAccountUrl}
+              isFAQSection={isFAQSection}
+            />
+          </HeaderWrapper>
+          {isFAQSection ? (
+            children
+          ) : (
+            <ContentWrapper>
+              {isDesktop && (
+                <SideBarWrapper>
+                  <SideBar menuWidget={menu} />
+                </SideBarWrapper>
+              )}
+              {children}
+            </ContentWrapper>
+          )}
 
-        <FooterWrapper>
-          <Footer
-            navigation={footerContent.navigation}
-            social={footerContent.social}
-            policies={footerContent.policies}
-          />
-        </FooterWrapper>
-      </MainWrapper>
-    </MenuStateProvider>
+          <FooterWrapper>
+            <Footer
+              navigation={footerContent.navigation}
+              social={footerContent.social}
+              policies={footerContent.policies}
+            />
+          </FooterWrapper>
+        </MainWrapper>
+      </MenuStateProvider>
+    </>
   );
 };
 

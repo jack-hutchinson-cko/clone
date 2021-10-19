@@ -38,7 +38,7 @@ export const getPageMetadata = (
     const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
     const { title, account, modifiedDate, lastAuthor } = data;
 
-    const sections = (content.match(/^(#|##) (.*$)/gim) || []).map((headerItem) => {
+    const sections = getAnchors(content).map((headerItem) => {
       const sectionTitle = headerItem.replace(/^#+ (.*$)/gim, '$1');
       return {
         title: sectionTitle,

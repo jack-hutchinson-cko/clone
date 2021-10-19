@@ -1,11 +1,16 @@
-import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
-
-import { basePathAddition } from '../../tools/basePathAddition';
-import { Container, Title, ImageWrapper } from './ContentPanel.styles';
+import { FC, Children } from 'react';
+import { get } from 'lodash';
+import ImageBox from 'components/ImageBox';
+import {
+  Container,
+  Title,
+  ImageWrapper,
+  LinkWrapper,
+  LinkItem,
+  BodyWrapper,
+} from './ContentPanel.styles';
 import { ContentPanelProps } from './types';
 
-const DefaultImageWidth = 70;
 const DefaultVariant = 'default';
 
 const ContentPanel: FC<ContentPanelProps> = ({
@@ -13,20 +18,31 @@ const ContentPanel: FC<ContentPanelProps> = ({
   title,
   imgSrc,
   imgAlt = '',
-  imgWidth = DefaultImageWidth,
+  imgWidth,
   variant = DefaultVariant,
   ...rest
 }) => {
-  const imgSrcWithBasePath = basePathAddition(imgSrc);
   return (
     <Container variant={variant} {...rest}>
-      <ImageWrapper variant={variant} width={imgWidth}>
-        <ReactSVG src={imgSrcWithBasePath} alt={imgAlt} />
+      <ImageWrapper variant={variant} imgWidth={imgWidth}>
+        <ImageBox src={imgSrc} alt={imgAlt} />
       </ImageWrapper>
-      <div>
+      <BodyWrapper>
         {title ? <Title variant={variant}>{title}</Title> : null}
-        {children}
-      </div>
+        {Children.toArray(children).map((child) => {
+          const { children: linkName, href, mdxType } = get(child, 'props.children.props', {});
+
+          if (mdxType === 'a') {
+            return (
+              <LinkWrapper key={href}>
+                <LinkItem href={href}>{linkName}</LinkItem>
+              </LinkWrapper>
+            );
+          }
+
+          return child;
+        })}
+      </BodyWrapper>
     </Container>
   );
 };
