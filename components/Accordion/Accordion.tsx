@@ -75,7 +75,9 @@ const Accordion: FC<AccordionProps> = ({
           <IconActionAccordion width={12} height={8} />
         </StyledAccordionHead>
         <AccordionBodyWrapper height={accordionHeight} overflow={accordionOverflow}>
-          <InnerContentWrapper ref={bodyElement}>{children}</InnerContentWrapper>
+          <InnerContentWrapper ref={bodyElement} isMdxMode={isMdxMode}>
+            {children}
+          </InnerContentWrapper>
         </AccordionBodyWrapper>
       </StyledAccordion>
     );

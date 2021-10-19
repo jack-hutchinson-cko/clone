@@ -44,7 +44,7 @@ const DocsSearchWidget: FC<Props> = ({
         >
           <ButtonContainer>
             <StyledLink href={searchUrl}>
-              <Button variant="primary" size="large" onClick={onCloseSearchPanel}>
+              <Button variant="primary" size="small" onClick={onCloseSearchPanel}>
                 View all search results
               </Button>
             </StyledLink>

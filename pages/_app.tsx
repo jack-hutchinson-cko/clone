@@ -2,18 +2,11 @@ import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { datadogRum } from '@datadog/browser-rum';
 import withLDProvider from 'hoc/withLDProvider';
-import withHeadlessMode from 'hoc/withHeadlessMode';
 import { ThemeProvider } from 'theme/ThemeProvider';
-import useAppInitState from 'hooks/useAppInitState';
 import Head from 'components/Head';
-import NASBanner from 'components/NASBanner';
-import MainLayout, { Props as LayoutProps } from 'components/MainLayout';
-import { clientSettings } from 'constants/clientSettings';
 import withHandlerBackButton from 'hoc/withHandlerBackButton';
-
 import GlobalStyles from '../styles/globalStyles';
-
-const Layout = withHeadlessMode<LayoutProps>(MainLayout);
+import '../public/assets/fonts/add.css';
 
 type Props = {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -22,23 +15,11 @@ type Props = {
 };
 
 const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
-  const { headlessMode, isFAQSection, ...restPageProps } = pageProps;
-  const { sidebarDocLinks, headerContent, footerContent } = useAppInitState();
-
   return (
     <ThemeProvider>
-      <Head isHeadlessMode={headlessMode} />
+      <Head isHeadlessMode={pageProps.headlessMode} />
       <GlobalStyles />
-      {clientSettings.NASBannerShown && <NASBanner />}
-      <Layout
-        navTreeLinks={sidebarDocLinks}
-        headerContent={headerContent}
-        footerContent={footerContent}
-        isHeadlessMode={headlessMode}
-        isFAQSection={isFAQSection}
-      >
-        <Component {...restPageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 };

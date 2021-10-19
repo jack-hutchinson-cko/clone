@@ -1,12 +1,12 @@
 import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
-
-import { getDocArticleData } from 'lib/fileParser';
+import { getDocArticleData, getDocsSidebarDocLinks } from 'lib/fileParser';
 import { clientSettings } from 'constants/clientSettings';
 import HeroImage from 'components/HeroImage';
 import { HomePageContent } from 'types/homepage';
 import MDXProvider from 'components/MDXProvider';
 import Button from 'components/Button';
+import withMainLayout from 'hoc/withMainLayout';
 
 import {
   IntroWrapper,
@@ -43,7 +43,7 @@ const HomePage: NextPage<Props> = ({ source, title, description, getStartedLink 
   );
 };
 
-export default HomePage;
+export default withMainLayout(HomePage);
 
 export const getStaticProps: GetStaticProps = async () => {
   const { source, frontMatter } = await getDocArticleData({
@@ -51,12 +51,15 @@ export const getStaticProps: GetStaticProps = async () => {
   });
   const { title, description, getStartedLink } = frontMatter;
 
+  const sidebarDocLinks = getDocsSidebarDocLinks();
+
   return {
     props: {
       source,
       title,
       description,
       getStartedLink,
+      sidebarDocLinks,
     },
   };
 };

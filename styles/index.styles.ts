@@ -3,7 +3,7 @@ import { Box } from '@cko/primitives';
 import { TextHeadingTwo } from 'components/TextHeading';
 import { Text } from 'components/Text';
 
-import { SIZE, Breakpoints, createBreakpointFrom, createBreakpointTo } from 'constants/screen';
+import { SIZE, Breakpoints, createBreakpointTo } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const IntroWrapper = styled.div`
@@ -75,10 +75,12 @@ const defaultSettings = `
 
 export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   flex-grow: 1;
+  padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s110}px;
+
   ${({ isIntegrationBuilder }) => (isIntegrationBuilder ? contentBuilderPage : defaultSettings)}
 
-  @media ${createBreakpointFrom(SIZE.M)} {
-    padding: ${spacing.s60}px ${spacing.s90}px ${spacing.s110}px ${spacing.s90}px;
+  @media ${Breakpoints.TABLET} {
+    padding: ${spacing.s60}px ${spacing.s60}px ${spacing.s110}px;
   }
 
   @media ${createBreakpointTo(SIZE.M)} {
@@ -97,12 +99,14 @@ export const Navigation = styled.div`
   position: sticky;
   height: 100%;
   top: 110px;
-  padding: 0 ${spacing.s50}px 0 ${spacing.s50}px;
+  margin-top: ${spacing.s60}px;
+  padding: 0 ${spacing.s90}px 0 ${spacing.s50}px;
   box-sizing: content-box;
 
   @media ${createBreakpointTo(SIZE.XL)} {
     display: none;
   }
+  margin-bottom: ${spacing.s30}px;
 `;
 
 export const FrontMatterContainer = styled.div`

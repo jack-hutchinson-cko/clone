@@ -621,6 +621,13 @@ export const IconActionCopy: FC<Props> = (props) => (
   </StyledIcon>
 );
 
+export const IconListCheck: FC<Props> = (props) => (
+  <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#0C1142" />
+    <path d="M4.66666 8.20513L7.46666 10.6667L12 6" stroke="#0C1142" />
+  </StyledIcon>
+);
+
 export const IconCheck: FC<Props> = (props) => (
   <StyledIcon width={16} height={16} viewBox="0 0 16 16" {...props}>
     <g fill="none" fillRule="evenodd">

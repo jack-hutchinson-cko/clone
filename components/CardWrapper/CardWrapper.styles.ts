@@ -13,5 +13,6 @@ export const CardContainer = styled.div<{ cardsInRow: number; columnGap: number 
 
   & > div {
     margin: 0;
+    height: 100%;
   }
 `;

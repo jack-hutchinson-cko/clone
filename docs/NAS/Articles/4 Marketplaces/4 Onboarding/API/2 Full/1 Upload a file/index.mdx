@@ -1,4 +1,4 @@
----
+--- 
 title: Upload a file 
 account: NAS
 ---
@@ -6,8 +6,8 @@ account: NAS
 Use our Files API to upload identity documentation required for `full` due diligence as part of our Marketplace solution.
 
 When you upload a file, the API returns an `id` that represents that file. You can use this `id` to attach:
-* Identity documentation when [creating or updating your sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full)
-* Bank verification documentation when [creating a payment instrument](/marketplaces/about-payouts/make-a-payout)
+* Identity documentation when [creating or updating your sub-entity.](/marketplaces/onboarding/api/full)
+* Bank verification documentation when [creating a payment instrument](/marketplaces/payouts/make-a-payout)
 
 ---
 
@@ -258,7 +258,7 @@ If you received a file `id` in your response, the document was accepted. You can
 
 </Box>
 
-```json
+```json withBorder=false
 {
   "id": "file_6lbss42ezvoufcb2beo76rvwly",
   "_links": {
@@ -279,7 +279,7 @@ In the example response, we received `back_required` because the uploaded docume
 
 </Box>
 
-```json
+```json withBorder=false
 {
     "request_id": "0HM72UMS6HIO5:00000001",
     "error_type": "invalid_request",
@@ -451,18 +451,18 @@ A back file is not required for the type of document in your request. This curre
 
 ### Where to next?
 
-<ContentPanel variant="heading" title="Update a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
+<ContentPanel title="Update a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
 
 Use the file `id` returned by the Files API to attach identity documentation required for `full` due diligence.
 
-<ButtonLinkSecondary href="/marketplaces/about-onboarding/onboard-a-sub-entity-full">Full account type</ButtonLinkSecondary>
+<ButtonLinkSecondary href="/marketplaces/onboarding/api/full">Full account type</ButtonLinkSecondary>
 
 </ContentPanel>
 
-<ContentPanel variant="heading" title="Make a payout" imgSrc="/NAS/Marketplaces/about-making-payouts.svg">
+<ContentPanel title="Make a payout" imgSrc="/NAS/Marketplaces/about-making-payouts.svg">
 
 `Full` accounts on our Marketplace solution have payout capability. If you’re unsure, take a look at our [account structure page](/marketplaces/account-structure).
 
-<ButtonLinkSecondary href="/marketplaces/about-payouts/make-a-payout">Learn more</ButtonLinkSecondary>
+<ButtonLinkSecondary href="/marketplaces/payouts/make-a-payout">Learn more</ButtonLinkSecondary>
 
 </ContentPanel>

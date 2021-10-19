@@ -13,6 +13,7 @@ import WarningMessage from 'components/WarningMessage';
 import { MdxTextHeadingTwo } from 'components/TextHeading';
 import withBlockBottomMargin from 'hoc/withBlockBottomMargin';
 import { spacing } from 'constants/spacingSize';
+import withMainLayout from 'hoc/withMainLayout';
 
 import {
   getFileNameFromPath,
@@ -20,6 +21,7 @@ import {
   getDocsPathUrl,
   getBreadCrumbsItem,
   getChildrenArticle,
+  getDocsSidebarDocLinks,
 } from 'lib/fileParser';
 
 import { DocPostProps } from 'types/docpage';
@@ -98,7 +100,7 @@ const DocPost: NextPage<DocPostProps> = ({
   );
 };
 
-export default withFeatureFlag(withErrorPage(DocPost));
+export default withFeatureFlag(withErrorPage(withMainLayout(DocPost)));
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -116,6 +118,8 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
     filePath,
   });
 
+  const sidebarDocLinks = getDocsSidebarDocLinks();
+
   return {
     props: {
       breadCrumbsItem,
@@ -125,6 +129,7 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       childrenArticles,
       isIntegrationBuilder: frontMatter.type === 'IBuilder',
       showAuthorSection: !childrenArticles.length,
+      sidebarDocLinks,
     },
   };
 };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { spacing } from 'constants/spacingSize';
 
 export const StyledAccordion = styled.div<{ isMdxMode?: boolean }>`
@@ -20,9 +20,14 @@ export const AccordionTitleWrapper = styled.div`
   gap: 16px;
 `;
 
-export const InnerContentWrapper = styled.div`
-  padding-bottom: ${spacing.s50}px;
-  > *:last-child {
-    margin-bottom: 0;
-  }
+export const InnerContentWrapper = styled.div<{ isMdxMode?: boolean }>`
+  ${({ isMdxMode = true }) =>
+    isMdxMode
+      ? css`
+          padding-bottom: ${spacing.s50}px;
+          > *:last-child {
+            margin-bottom: 0;
+          }
+        `
+      : ''}
 `;

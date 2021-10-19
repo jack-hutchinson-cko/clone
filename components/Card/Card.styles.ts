@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Flex } from '@cko/primitives';
 import { ReactSVG } from 'react-svg';
+import { spacing } from 'constants/spacingSize';
 
 import { TextHeadingThree } from '../TextHeading';
 import { Text } from '../Text';
@@ -9,7 +10,7 @@ export const CardWrapper = styled(Flex)<{
   isWithHover?: boolean;
 }>`
   flex-direction: column;
-  padding: 32px;
+  padding: ${spacing.s50}px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   transition: box-shadow 0.1s, border-color 0.7s;
   border-radius: 8px;
@@ -26,6 +27,14 @@ export const CardWrapper = styled(Flex)<{
     `};
   svg {
     margin-left: auto;
+  }
+
+  > p {
+    margin-bottom: ${spacing.s40};
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
   }
 `;
 
@@ -44,9 +53,10 @@ export const IconWrapper = styled.div<{
   maxWidth?: number | undefined;
   maxHeight: number | undefined;
 }>`
-  ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}px` : 'max-width : 32px')};
-  ${({ maxHeight }) => (maxHeight ? `max-height: ${maxHeight}px` : 'max-height : 32px')};
-  margin-top: 20px;
+  ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}px` : `max-width : ${spacing.s80}px`)};
+  ${({ maxHeight }) =>
+    maxHeight ? `max-height: ${maxHeight}px` : `max-height : ${spacing.s80}px`};
+  margin-bottom: ${spacing.s50}px;
 `;
 
 export const StyledReactSVG = styled(ReactSVG)`

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
 export const NavigationHeader = styled.h3`
   font-size: 11px;
@@ -8,18 +9,25 @@ export const NavigationHeader = styled.h3`
   text-transform: uppercase;
   margin: 0;
   color: ${({ theme }) => theme.colors.base};
+  margin-bottom: ${spacing.s30}px;
 `;
 export const LinkWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-left: 1px solid ${({ theme }) => theme.colors.border};
   width: 100%;
-  margin: 9px 0 16px 0;
+  > *:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const LinkItemWrapper = styled.div`
+  margin-bottom: ${spacing.s30}px;
 `;
 
 export const AnchorLink = styled.a<{ isActive?: boolean }>`
   display: block;
-  padding: 8px 20px;
+  padding: 0 0 0 ${spacing.s50 - 4}px;
   border-left: 4px solid;
   border-left-color: transparent;
   color: ${({ theme }) => theme.colors.cometLight};

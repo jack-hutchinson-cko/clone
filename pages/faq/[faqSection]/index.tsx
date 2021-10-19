@@ -27,6 +27,7 @@ import {
 import { SectionListItem } from 'types/sectionList';
 import { BreadCrumbsItems } from 'types/content';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
+import withMainLayout from 'hoc/withMainLayout';
 
 type Props = {
   frontMatter: {
@@ -99,10 +100,9 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       frontMatter,
       source,
       sectionList,
-      isFAQSection: true,
       breadCrumbsItem: [{ name: 'Home', url: '/faq' }],
     },
   };
 };
 
-export default FAQSection;
+export default withMainLayout(FAQSection, { isFAQSection: true });

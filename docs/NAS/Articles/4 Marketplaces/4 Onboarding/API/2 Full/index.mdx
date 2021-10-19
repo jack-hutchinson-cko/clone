@@ -1,13 +1,9 @@
 ---
-title: Onboard a sub-entity (full)
+title: Onboard a sub-entity with our Marketplace API (full)
 account: NAS
 ---
 
-<TipBox variant='info'>
-
-This process should be followed for those on the full account type for our marketplaces solution. We have another page for [lite sub-entity onboarding.](/marketplaces/about-onboarding/onboard-a-sub-entity-lite)
-
-</TipBox>
+This process should be followed for those on the full account type for our marketplaces solution. We have another page for [lite sub-entity onboarding.](/marketplaces/onboarding/api/lite)
 
 On this page, we will walk through the complete onboarding of a sub-entity:
 
@@ -16,6 +12,12 @@ On this page, we will walk through the complete onboarding of a sub-entity:
 - Retrieve a sub-entity
 - Upload an identity document
 - Handle due diligence notifications
+
+<TipBox>
+
+Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboard/user-interface) in the Dashboard.
+
+</TipBox>
 
 ---
 
@@ -59,9 +61,9 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 #### Request examples
 
 <tabs>
-<tab title='Individual'>
+<tab title="Individual">
 
-```json
+```json withBorder=false
 {
   "reference":"678910",
   "contact_details":{
@@ -91,9 +93,9 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 ```
 
 </tab>
-<tab title='Company'>
+<tab title="Company">
 
-```json
+```json withBorder=false
 {
   "reference":"0123456",
   "contact_details":{
@@ -130,7 +132,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 #### Response examples
 
 <tabs>
-<tab title='201 - Sub-entity onboard successfully'>
+<tab title="201 - Sub-entity onboard successfully">
 <Box horizontal='sm'>
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests.
@@ -139,7 +141,7 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 
 </Box>
 
-```json
+```json withBorder=false
 {
   "id": "ent_wxglze3wwywujg4nna5fb7ldli",
   "reference": "123456789101112",
@@ -169,8 +171,9 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 }
 ```
 
-<Box horizontal='sm'>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+
+<Box horizontal="sm">
+<Accordion isBoldTitle={true} title={"Why haven't my sub-entity's capabilities been enabled?"}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -180,14 +183,14 @@ If you have provided all the information, we may be completing a manual review.
 </Box>
 
 </tab>
-<tab title='409 - Conflict'>
+<tab title="409 - Conflict">
 <Box horizontal='sm'>
 
 The `reference` you provide needs to be unique across all of your sub-entities. If you receive a 409, you are trying to onboard a sub-entity with a `reference` that has already been used. Try again with another `reference`.
 
 </Box>
 
-```json
+```json withBorder=false
 {
     "_links": {
         "self": {
@@ -198,14 +201,14 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 ```
 
 </tab>
-<tab title='422 - Invalid data was sent'>
+<tab title="422 - Invalid data was sent">
 <Box horizontal='sm'>
 
 When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post) for a full overview.
 
 </Box>
 
-```json
+```json withBorder=false
 {
     "request_id": "0HM72UMS6H3CT:00000001",
     "error_type": "invalid_request",
@@ -230,7 +233,7 @@ When you receive a `422`, please check the API request to make sure you've inclu
 </TableCell>
 <TableCell>
 
-The MCCs provided for the sub-entity are outside the proecessing scop of its Platform.
+The MCCs provided for the sub-entity are outside the proecessing scop of its platform.
 
 </TableCell>
 </TableRow>
@@ -242,7 +245,7 @@ The MCCs provided for the sub-entity are outside the proecessing scop of its Pla
 </TableCell>
 <TableCell>
 
-The default holding currency provided for the sub-entity is outside the currency scope of its Platform.
+The default holding currency provided for the sub-entity is outside the currency scope of its platform.
 
 </TableCell>
 </TableRow>
@@ -254,7 +257,7 @@ The default holding currency provided for the sub-entity is outside the currency
 </TableCell>
 <TableCell>
 
-The principal address country provided for the sub-entity is outside the processing scope of its Platform.
+The principal address country provided for the sub-entity is outside the processing scope of its platform.
 
 </TableCell>
 </TableRow>
@@ -266,7 +269,7 @@ The principal address country provided for the sub-entity is outside the process
 </TableCell>
 <TableCell>
 
-The Platform is not permitted to onboard new sub-entities.
+The platform is not permitted to onboard new sub-entities.
 
 </TableCell>
 </TableRow>
@@ -335,7 +338,7 @@ The specified field is mandatory but was not provided in the request. For exampl
 
 Once your sub-entity has been successfully created, we will send you a `sub_entity_created` webhook notification, which will look similar to:
 
-```json
+```json withBorder=false
 {
   "id": "evt_jqv4f6zedawetlilolhqun6m4m",
   "source": "marketplace",
@@ -363,18 +366,18 @@ Use this endpoint to update all fields under the `contact_details`, `profile`, a
 
 #### Add an identification document
 
-Use our [files API](/marketplaces/about-onboarding/upload-a-file) to upload identity documentation. When you upload a file, the API returns an `id` that represents that file, which you can use to attach identity documentation when creating or updating your sub-entity. 
+Use our [Files API](/marketplaces/onboarding/api/full/upload-a-file) to upload identity documentation. When you upload a file, the API returns an `id` that represents that file, which you can use to attach identity documentation when creating or updating your sub-entity. 
 
 All you need to include is the `identification.documentation` object in your request, with the following pieces of information:
 
-- **Type:** Read more about [what types are accepted.](/marketplaces/about-onboarding/upload-a-file)
+- **Type:** Read more about [what types are accepted.](/marketplaces/onboarding/api/full/upload-a-file)
 - **Front:** Required for **all** identification types. This should be the `id` returned when you uploaded the file.
 - **Back:** Only required if the type is **not** a passport. This should be the `id` returned when you uploaded the file.
 
 <tabs>
 <tab title='Individual'>
 
-```json
+```json withBorder=false
 {
   "reference":"0123456",
   "contact_details":{
@@ -419,7 +422,7 @@ All you need to include is the `identification.documentation` object in your req
 </tab>
 <tab title='Company'>
 
-```json
+```json withBorder=false
 {
   "reference":"678910",
   "contact_details":{
@@ -517,7 +520,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 <tabs>
 <tab title='Company'>
 
-```json
+```json withBorder=false
 {
   "reference":"678910",
   "contact_details":{
@@ -579,7 +582,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 </tab>
 <tab title='Individual'>
 
-```json
+```json withBorder=false
 {
   "reference":"0123456",
   "contact_details":{
@@ -634,7 +637,7 @@ If the request was successful, you will receive `200 - Sub-entity updated succes
 
 </Box>
 
-```json
+```json withBorder=false
 {
   "id": "ent_wxglze3wwywujg4nna5fb7ldli",
   "reference": "superhero1234",
@@ -656,7 +659,7 @@ If the request was successful, you will receive `200 - Sub-entity updated succes
 ```
 
 <Box horizontal='sm'>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+<Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled?`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -674,7 +677,7 @@ In the `error_codes` object, we will let you know what data was invalid.
 
 </Box>
 
-```json{
+```json withBorder=false{
     {
     "request_id": "0HM1I9VJUDPHV:00000002",
     "error_type": "invalid_request",
@@ -700,7 +703,7 @@ In the `error_codes` object, we will let you know what data was invalid.
 </TableCell>
 <TableCell>
 
-The MCCs provided for the sub-entity are outside the proecessing scop of its Platform.
+The MCCs provided for the sub-entity are outside the proecessing scop of its platform.
 
 </TableCell>
 </TableRow>
@@ -712,7 +715,7 @@ The MCCs provided for the sub-entity are outside the proecessing scop of its Pla
 </TableCell>
 <TableCell>
 
-The principal address country provided for the sub-entity is outside the processing scope of its Platform.
+The principal address country provided for the sub-entity is outside the processing scope of its platform.
 
 </TableCell>
 </TableRow>
@@ -822,7 +825,7 @@ The response allows you to retrieve all data that has been provided about the su
 <tabs>
 <tab title="Individual">
 
-```json
+```json withBorder=false
 {
     "id": "ent_vv2jjkuf2gzj5tcw2x7ptua7zy",
     "reference": "0123456",
@@ -883,7 +886,7 @@ We require `profile.default_holding_currency` for full account types, so we set 
 `profile.default_holding_currency` is not currently updatable. If you need to change this, please get in touch.
 
 </Accordion>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+<Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled?`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -903,7 +906,7 @@ Store this information, as we use it in the next step to upload identity documen
 
 </Box>
 
-```json
+```json withBorder=false
 {
   "id": "ent_nofjig36ypra6236f4tfm5bvui",
   "reference": "678910",
@@ -958,7 +961,7 @@ Store this information, as we use it in the next step to upload identity documen
 We require `profile.default_holding_currency` for full account types, so we set a default in case you would like to change to the full account type. This doesn't have any impact on the way that funds will be routed and held for this sub-entity.
 
 </Accordion>
-<Accordion isBoldTitle={true} title={`Why haven't my capabilities been enabled?`}>
+<Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled?`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
 
@@ -990,7 +993,7 @@ We've described the different webhook notifications on our [webhook event type p
 <tabs>
 <tab title='full_dd_passed'>
 
-```json
+```json withBorder=false
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "full_dd_passed",
@@ -1012,7 +1015,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 <tab title='full__dd_failed'>
 
-```json
+```json withBorder=false
 {
   id: "evt_u2bs7wtytscexfrbz47qmgp62i",
   type: "full_dd_failed",
@@ -1056,7 +1059,7 @@ We've described the different webhook notifications on our [webhook event type p
 <tabs>
 <tab title='Payments enabled'>
 
-```json
+```json withBorder=false
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "payments_enabled",
@@ -1078,7 +1081,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 <tab title='Payouts enabled'>
 
-```json
+```json withBorder=false
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
   "type": "payouts_enabled",
@@ -1126,6 +1129,16 @@ Process payments on behalf of your sub-entities.
 
 Find out more about status types during the onboarding process.
 
-<ButtonLinkSecondary href="/marketplaces/about-onboarding#status-types">Find out more</ButtonLinkSecondary>
+<ButtonLinkSecondary href="/marketplaces/onboard#status-types">Find out more</ButtonLinkSecondary>
+
+</ContentPanel>
+
+## Find out more
+
+<ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
+
+We'll explain how to upload a file using the Marketplace API.
+
+<ButtonLinkSecondary href="/marketplaces/onboard/api/full/upload-a-file">Find out more</ButtonLinkSecondary>
 
 </ContentPanel>
