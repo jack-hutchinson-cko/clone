@@ -16,11 +16,12 @@ export const Wrapper = styled.a`
     box-shadow: ${({ theme }) => theme.shadows.light};
     border-color: ${({ theme }) => theme.colors.borderHighlight};
   }
+  height: 100%;
 `;
 
 export const Title = styled.h4`
   font-weight: 500;
   line-height: 24px;
-  white-space: nowrap;
   margin: 0;
+  text-align: center;
 `;
