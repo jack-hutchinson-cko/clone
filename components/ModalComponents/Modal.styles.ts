@@ -8,7 +8,7 @@ export const ModalRoot = styled.div<{ isOpen?: boolean }>`
   height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.modalBackground};
-  padding: ${spacing.s50}px;
+  padding: ${spacing.s50}px 104px;
   cursor: pointer;
   position: fixed;
   top: 0;
@@ -16,7 +16,7 @@ export const ModalRoot = styled.div<{ isOpen?: boolean }>`
   z-index: 1;
 
   @media ${Breakpoints.MOBILE} {
-    padding: ${spacing.s60}px ${spacing.s90}px;
+    padding: ${spacing.s60}px 104px;
   }
 
   @media ${createBreakpointTo(SIZE.SM)} {
@@ -32,10 +32,10 @@ export const ContentWrapper = styled.div`
 
 export const IconClose = styled.span`
   position: absolute;
-  right: 44px;
-  top: 37px;
-  width: 25px;
-  height: 25px;
+  right: ${spacing.s70}px;
+  top: ${spacing.s70}px;
+  width: ${spacing.s60}px;
+  height: ${spacing.s60}px;
   z-index: 10;
 
   &:before,
