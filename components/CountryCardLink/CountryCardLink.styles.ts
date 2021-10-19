@@ -6,7 +6,6 @@ export const Wrapper = styled.a`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  min-width: 150px;
   padding: ${spacing.s40}px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.border};
