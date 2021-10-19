@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 
 export const Divider = styled.span`
   font-size: inherit;
