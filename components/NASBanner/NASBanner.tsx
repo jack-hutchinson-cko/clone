@@ -19,7 +19,7 @@ const NASBanner: FC = () => {
 
   return show ? (
     <Wrapper>
-      This version of our Documentation is for the eyes of employees and select merchants only.
+      This version of our Documentation is for the eyes of employees and select merchants only
       <BannerClose onClick={onCloseHandler}>
         <IconBannerClose />
       </BannerClose>
