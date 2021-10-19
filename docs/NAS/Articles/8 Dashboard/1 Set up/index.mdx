@@ -16,7 +16,7 @@ This first section describes the preliminary steps you need to take as an Okta a
 
 ---
 
-### Step 1: Create a Checkout.com application in Okta
+#### Step 1: Create a Checkout.com application in Okta
 
 1. Log in to your Okta admin portal with Super Admin rights.
 2. In the top left corner, select _Classic UI_ to make sure all features are visible.
@@ -26,7 +26,7 @@ This first section describes the preliminary steps you need to take as an Okta a
 
 ---
 
-### Step 2: Configure the SAML settings
+#### Step 2: Configure the SAML settings
 
 1. Set Single Sign On URL to `http://localhost` as a placeholder. Use this for the Recipient URL and Destination URL.
 2. Set Audience URI to `http://localhost` as a placeholder.
@@ -131,7 +131,7 @@ You can use a more restrictive group regex filter if you'd like.
 
 ---
 
-### Step 3: Extract the SSO configuration
+#### Step 3: Extract the SSO configuration
 
 1. Go back to the application’s _Sign-On_ tab and select _View Setup Instructions_.
 2. Copy the _Identity Provider Single Sign-On_ URL.
@@ -140,7 +140,7 @@ You can use a more restrictive group regex filter if you'd like.
 
 ---
 
-### Step 4: Define group access rights
+#### Step 4: Define group access rights
 
 Checkout.com supports several types of users, all with difference levels of access. See [user roles](/dashboard/team-permissions) for a breakdown of each of these roles.
 
@@ -159,7 +159,7 @@ For example:
 
 ---
 
-### Step 5: Securely share your configuration with Checkout.com
+#### Step 5: Securely share your configuration with Checkout.com
 
 You will be provided with a set of SFTP login credentials with which they will securely share the following configurations:
 
@@ -179,7 +179,7 @@ This section describes the final steps you need to take as an Okta administrator
 
 ---
 
-### Step 1: Finalize the SAML settings
+#### Step 1: Finalize the SAML settings
 
 1. Go to the Checkout.com SAML application you previously created.
 2. Select _General > SAML Settings > Edit > Next_.
@@ -188,14 +188,14 @@ This section describes the final steps you need to take as an Okta administrator
 
 ---
 
-### Step 2: Assign the Checkout.com application to users
+#### Step 2: Assign the Checkout.com application to users
 
 1. Go back to the Checkout.com application and select _Assignments > Assign to Groups_.
 2. Assign the groups defined in the previous steps to the application.
 
 ---
 
-### Step 3: Test the two types of login
+#### Step 3: Test the two types of login
 
 #### To test the Okta end-user dashboard (IDP-initiated login):
 
