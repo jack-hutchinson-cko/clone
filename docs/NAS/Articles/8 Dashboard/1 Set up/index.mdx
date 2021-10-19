@@ -20,9 +20,9 @@ This first section describes the preliminary steps you need to take as an Okta a
 
 1. Log in to your Okta admin portal with Super Admin rights.
 2. In the top left corner, select _Classic UI_ to make sure all features are visible.
-3. Click _Applications > Create New App > SAML 2.0 > Create_.
+3. Select _Applications > Create New App > SAML 2.0 > Create_.
 4. Fill the App Name field with `Checkout.com`.
-5. Upload the following App Logo and click _Next_.
+5. Upload the following App Logo and select _Next_.
 
 ---
 
@@ -127,16 +127,16 @@ You can use a more restrictive group regex filter if you'd like.
 
 </TipBox>
 
-10. Click on _Finish_ then _Next_ to complete the initial setup.
+10. Select _Finish_ then _Next_ to complete the initial setup.
 
 ---
 
 ### Step 3: Extract the SSO configuration
 
-1. Go back to the application’s Sign-On tab and click _View Setup Instructions_.
-2. Copy the Identity Provider Single Sign-On URL.
-3. Copy the Identity Provider Issuer.
-4. Download the Certificate.
+1. Go back to the application’s _Sign-On_ tab and select _View Setup Instructions_.
+2. Copy the _Identity Provider Single Sign-On_ URL.
+3. Copy the _Identity Provider Issuer_.
+4. Download the certificate.
 
 ---
 
@@ -163,11 +163,11 @@ For example:
 
 You will be provided with a set of SFTP login credentials with which they will securely share the following configurations:
 
-- **Identity Provider Single Sign-On URL**
-- **Identity Provider Issuer URL**
-- **Certificate** (`.crt` file)
-- **Mapping of IDP groups to roles** (`.json` file)
-- **Corporate email domain(s)** (e.g., `mycompany.com`, `mycompany.uk`)
+- Identity Provider Single Sign-On URL
+- Identity Provider Issuer URL
+- Certificate (`.crt` file)
+- Mapping of IDP groups to roles (`.json` file)
+- Corporate email domain(s) (e.g., `mycompany.com`, `mycompany.uk`)
 
 Our Okta admin will then register your IDP with the above configuration and reach back to you to complete the setup.
 
@@ -182,15 +182,15 @@ This section describes the final steps you need to take as an Okta administrator
 ### Step 1: Finalize the SAML settings
 
 1. Go to the Checkout.com SAML application you previously created.
-2. Click _General > SAML Settings > Edit > Next_.
+2. Select _General > SAML Settings > Edit > Next_.
 3. Replace the placeholder values for the Single Sign-On URL and the Audience URI with the parameters we previously shared with you.
-4. Click _Next_, then _Finish_.
+4. Select _Next_, then _Finish_.
 
 ---
 
 ### Step 2: Assign the Checkout.com application to users
 
-1. Go back to the Checkout.com application and click _Assignments > Assign to Groups_.
+1. Go back to the Checkout.com application and select _Assignments > Assign to Groups_.
 2. Assign the groups defined in the previous steps to the application.
 
 ---
@@ -200,12 +200,12 @@ This section describes the final steps you need to take as an Okta administrator
 #### To test the Okta end-user dashboard (IDP-initiated login):
 
 1. While logged in as a permitted user, check that a Checkout.com application is visible on the corporate Okta dashboard.
-2. Click on the application. If everything is working correctly, it should authenticate you and redirect you to Checkout.com.
+2. Select the application. If everything is working correctly, it should authenticate you and redirect you to Checkout.com.
 
 #### To test the Checkout.com login page (SP-initiated login):
 
 1. Go to either:
     - [https://dashboard.checkout.com](https://dashboard.checkout.com) (production)
     - [https://dashboard.sandbox.checkout.com](https://dashboard.sandbox.checkout.com) (sandbox)
-2. Complete the email address field, then click _Next_. A Single-Sign On button is displayed.
-3. Click on it. If everything is working correctly, it should redirect to Checkout.com.
+2. Complete the email address field, then select _Next_. A Single-Sign On button is displayed.
+3. Select it. If everything is working correctly, it should redirect to Checkout.com.
