@@ -3,9 +3,12 @@ import {
   popularSearches,
   popularSearchesTitle,
   emptySearchResult,
-  loginUrl,
   testAccountUrl,
+  loginUrlByClientType,
+  loginTitleByClientType,
 } from 'mocks/headerSection';
+
+import { CLIENT_TYPE } from './clientSettings';
 
 export const headerContent = {
   guides: guidesList,
@@ -13,5 +16,6 @@ export const headerContent = {
   popularSearchesTitle,
   emptySearchResult,
   testAccountUrl,
-  loginUrl,
+  loginUrl: loginUrlByClientType[CLIENT_TYPE as 'ABC' | 'NAS'],
+  loginTitle: loginTitleByClientType[CLIENT_TYPE as 'ABC' | 'NAS'],
 };

@@ -51,6 +51,7 @@ type Props = {
   loginUrl: string;
   testAccountUrl: string;
   isFAQSection?: boolean;
+  loginTitle: string;
 };
 
 const Header: FC<WithMenuStateProps<Props>> = ({
@@ -67,6 +68,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   searchState,
   onChangeSearchState,
   mobileMenuWidget,
+  loginTitle,
 }) => {
   useScrollDisabled(searchState || menuState);
 
@@ -185,7 +187,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                   extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
                   footerTitle={
                     <NavigationLink>
-                      <IconAccount /> The Hub
+                      <IconAccount /> {loginTitle}
                     </NavigationLink>
                   }
                   footerExtraContent={

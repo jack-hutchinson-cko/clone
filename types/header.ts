@@ -19,4 +19,5 @@ export type HeaderContent = {
   emptySearchResult: string;
   testAccountUrl: string;
   loginUrl: string;
+  loginTitle: string;
 };

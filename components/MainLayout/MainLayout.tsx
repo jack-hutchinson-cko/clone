@@ -55,6 +55,7 @@ const MainLayout: FC<Props> = ({
               emptySearchResult={headerContent.emptySearchResult}
               loginUrl={headerContent.loginUrl}
               testAccountUrl={headerContent.testAccountUrl}
+              loginTitle={headerContent.loginTitle}
               isFAQSection={isFAQSection}
             />
           </HeaderWrapper>
