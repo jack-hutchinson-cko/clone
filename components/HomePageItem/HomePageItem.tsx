@@ -16,7 +16,7 @@ type Props = {
 const HomePageItem: FC<Props> = ({ title, imgSrc, children, links }) => {
   return (
     <Wrapper>
-      <Img src={imgSrc} />
+      <Img src={imgSrc} defaultHeight={184} defaultWidth={456} />
       <Header>{title}</Header>
       <Body>{children}</Body>
       {links.map(({ title: linkTitle, href }) => (

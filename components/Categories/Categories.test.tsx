@@ -78,6 +78,7 @@ describe('CategoriesItem', () => {
       .find('img')
       .parent()
       .parent()
+      .parent()
       .should('have.css', 'max-width', `${DEFAULT_IMG_WIDTH}px`);
   });
 
@@ -100,6 +101,7 @@ describe('CategoriesItem', () => {
       .children()
       .eq(0)
       .find('img')
+      .parent()
       .parent()
       .parent()
       .should('have.css', 'max-width', `${66}px`);

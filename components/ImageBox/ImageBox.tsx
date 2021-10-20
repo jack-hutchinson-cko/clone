@@ -1,9 +1,9 @@
-import { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { ImageLoader } from 'next/image';
 import ImgModalWrapper from 'components/ImageModalWrapper';
 import { ThemeContext } from 'theme/themeContext';
 
-import { ImgWrapper, StyledImage } from './ImageBoxStyles';
+import { ImgWrapper, StyledImage, ImgPlaceholder, ContainerImage } from './ImageBoxStyles';
 
 const isDarkTheme = 'dark';
 
@@ -20,6 +20,8 @@ export type Props = {
   width?: '100%';
   maxWidth?: number;
   withFullscreenPreview?: boolean;
+  defaultWidth?: number;
+  defaultHeight?: number;
 };
 
 // keep this in sync with Next default loader
@@ -33,16 +35,36 @@ const ImageBox: FC<Props> = ({
   darkThemeSrc = '',
   maxWidth,
   withFullscreenPreview,
+  defaultWidth,
+  defaultHeight,
   loader = basePathLoader,
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
+  const [placeholderVisibility, setPlaceholderVisibility] = useState(true);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
   const newSrc = encodeURIComponent(finalSrc);
 
+  const onLoadHandler = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = event.target as HTMLImageElement;
+
+    if (target.complete && target.style.visibility !== 'hidden') {
+      setPlaceholderVisibility(false);
+    }
+  };
+
   const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
-      <StyledImage src={newSrc} loader={loader} {...props} />
+      {defaultWidth && defaultHeight && (
+        <ImgPlaceholder
+          isShown={placeholderVisibility}
+          defaultWidth={defaultWidth}
+          defaultHeight={defaultHeight}
+        />
+      )}
+      <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
+        <StyledImage src={newSrc} onLoad={onLoadHandler} loader={loader} {...props} />
+      </ContainerImage>
     </ImgWrapper>
   );
 
