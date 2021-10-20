@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { spacing } from 'constants/spacingSize';
 import ArrowLink from 'components/ArrowLink';
+import { MdxTextHeadingFour } from 'components/TextHeading';
 import { VariantContentPanel } from './types';
 
 export const Container = styled.div<{ variant: VariantContentPanel; withBorder?: boolean }>`
@@ -51,12 +52,8 @@ export const LinkItem = styled(ArrowLink)`
   margin: 0;
 `;
 
-export const Title = styled.span<{ variant: VariantContentPanel }>`
+export const Title = styled(MdxTextHeadingFour)<{ variant: VariantContentPanel }>`
   display: block;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
-  margin-bottom: ${spacing.s40}px;
 `;
 
 export const ImageWrapper = styled.div<{
