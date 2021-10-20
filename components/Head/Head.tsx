@@ -23,7 +23,7 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
   const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
   return (
     <Head>
-      {!isHeadlessMode && false && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
+      {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
       <title>Checkout.com - Docs</title>
       <link rel="shortcut icon" href={faviconSrc} />
       <meta charSet="utf-8" />
@@ -61,7 +61,6 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
         account={process.env.NEXT_PUBLIC_HEAP_IO_ACCOUNT}
       />
       <HotJar id={process.env.NEXT_PUBLIC_HOT_JAR_ID} />
-      <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />
       <NoticeableWidget />
     </Head>
   );
