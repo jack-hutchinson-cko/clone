@@ -5,8 +5,6 @@ account: NAS
 
 This guide demonstrates the complete process from onboarding a sub-entity to processing payments on its behalf. Select _Individual_ or _Company_ below to see the specific steps for each.
 
----
-
 ### Before you begin
 
 Check you've completed the following steps before starting your integration.
@@ -17,13 +15,11 @@ Check you've completed the following steps before starting your integration.
 - You have configured your webhooks and subscribed to the relevant events through our [Workflow API](/workflows).
 - You are familiar with our [account structure](/marketplaces/account-structure).
 
----
 
 ### Step 1: Onboard your sub-entities
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
 Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
@@ -111,6 +107,8 @@ Note that the `sub_entity_created` webhook notification will also be sent.
 
 That’s all it takes to create and trigger due diligence checks for a sub-entity!
 
+---
+
 #### Step 1b: Handle due diligence result and capability changes
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows/webhook-event-types). You should expect to receive the `vmss_passed / vmss_failed` and `match_passed / match_failed` event types. Both VMSS and Match checks must pass to pass CSS checks successfully. Unless one of our `legal_name` fail triggers is used for testing purposes, due diligence will always pass in Sandbox.
@@ -165,10 +163,8 @@ We will re-trigger due diligence checks if any of the required information is la
 
 </TipBox>
 
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
@@ -190,6 +186,8 @@ To provide greater flexibility, we don’t require you to provide all of the dat
 We will use the example of **The Cake Shop** – a cake seller on our fictional platform, Desserts Delivered.
 
 Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity representing The Cake Shop.
+
+---
 
 #### Request
 
@@ -252,6 +250,8 @@ You will only be able to specify the `company.principal_address.country` and `pr
 
 </TipBox>
 
+---
+
 #### Response
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
@@ -296,6 +296,8 @@ You will also notice there is a status field set to `pending`. This is because d
 Note that the `sub_entity_created` webhook notification will also be sent.
 
 That’s all it takes to create a sub-entity!
+
+---
 
 #### Step 1b: Handle due diligence result and capabilities changes
 
@@ -351,19 +353,15 @@ We will re-trigger due diligence checks if any of the required information is la
 
 </TipBox>
 
-</Box>
 </tab>
 </tabs>
-
----
 
 ### Step 2: Accept payments
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
-Now that your sub-entity's payments capabilities have been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using `<RequestTag type="post" /> /payments.`
+Now that your sub-entity's payments capabilities have been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments.`
 
 We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £10 on its behalf. An `id` will start with `ent` and looks like `ent_wxglze3wwywujg4nna5fb7ldli`.
 
@@ -372,6 +370,8 @@ We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £1
 Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
+
+---
 
 #### Request
 
@@ -395,6 +395,8 @@ Funds will be routed and held in your platform’s currency accounts as per the 
   }
 }
 ```
+
+---
 
 #### Response
 
@@ -468,12 +470,10 @@ Use the `approved` field to check whether the authorization was successful (`"ap
 
 That’s it! £10 has been processed on behalf of **Daniel’s Donuts** and the funds (minus Checkout fees) will be routed to and held in Desserts Delivered’s GBP currency account.
 
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
-Now that your sub-entity's payments capabilities have been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using `<RequestTag type="post" />/payments`.
+Now that your sub-entity's payments capabilities have been enabled, you’re ready to start using it. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" />`/payments`.
 
 We’ll use **The Cake Shop’s** `id` from step 1 to process a payment for £10 on its behalf. An `id` will start with `ent` and looks like `ent_wxglze3wwywujg4nna5fb7ldli`.
 
@@ -482,6 +482,8 @@ We’ll use **The Cake Shop’s** `id` from step 1 to process a payment for £10
 Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
+
+---
 
 #### Request
 
@@ -508,6 +510,8 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 `processing_channel_id` corresponds to a specific merchant category code (MCC) that you were set up to process payments for. Your processing channel `id` will be provided to you after we have completed your setup.
 
 </TipBox>
+
+---
 
 #### Response
 
@@ -580,11 +584,8 @@ Use the `approved` field to check whether the authorization was successful (`"ap
 
 That’s it! £10 has been processed on behalf of **The Cake Shop** and the funds (minus Checkout fees) will be routed to and held in Desserts Delivered’s GBP currency account.
 
-</Box>
 </tab>
 </tabs>
-
----
 
 ### Scheduled payouts
 
@@ -601,8 +602,6 @@ If you wish to understand more about the routing and holding of funds, you can o
 That's it! You've successfully completed your first payment flow in Marketplaces.
 
 </TipBox>
-
----
 
 ### FAQs
 

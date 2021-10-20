@@ -19,8 +19,6 @@ Don't want to use code? You can [onboard sub-entities using our friendly user in
 
 </TipBox>
 
----
-
 ### Before you begin
 
 [Configure your webhooks](/workflows) and subscribe to:
@@ -33,9 +31,9 @@ Don't want to use code? You can [onboard sub-entities using our friendly user in
 
 To get a detailed view of all required and optional fields, see our [API reference.](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put)
 
----
-
 ### Onboard a sub-entity
+
+---
 
 #### Endpoints
 
@@ -57,6 +55,8 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
+
+---
 
 #### Request examples
 
@@ -129,17 +129,16 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 </tabs>
 
+---
+
 #### Response examples
 
 <tabs>
 <tab title="201 - Sub-entity onboard successfully">
-<Box horizontal='sm'>
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests.
 
 Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/about-onboarding) have been run and passed.
-
-</Box>
 
 ```json withBorder=false
 {
@@ -171,8 +170,6 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 }
 ```
 
-
-<Box horizontal="sm">
 <Accordion isBoldTitle={true} title={"Why haven't my sub-entity's capabilities been enabled?"}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
@@ -180,15 +177,11 @@ Capabilities are enabled once due diligence checks have been completed. If you h
 If you have provided all the information, we may be completing a manual review.
 
 </Accordion>
-</Box>
 
 </tab>
 <tab title="409 - Conflict">
-<Box horizontal='sm'>
 
 The `reference` you provide needs to be unique across all of your sub-entities. If you receive a 409, you are trying to onboard a sub-entity with a `reference` that has already been used. Try again with another `reference`.
-
-</Box>
 
 ```json withBorder=false
 {
@@ -202,11 +195,8 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 
 </tab>
 <tab title="422 - Invalid data was sent">
-<Box horizontal='sm'>
 
 When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post) for a full overview.
-
-</Box>
 
 ```json withBorder=false
 {
@@ -217,8 +207,6 @@ When you receive a `422`, please check the API request to make sure you've inclu
     ]
 }
 ```
-
-<Box horizontal='sm'>
 
 <Accordion isBoldTitle={true} title='Possible error codes'>
 
@@ -330,7 +318,6 @@ The specified field is mandatory but was not provided in the request. For exampl
 
 </Accordion>
 
-</Box>
 </tab>
 </tabs>
 
@@ -358,11 +345,11 @@ Once your sub-entity has been successfully created, we will send you a `sub_enti
 }
 ```
 
----
-
 ### Update a sub-entity
 
 Use this endpoint to update all fields under the `contact_details`, `profile`, and `company` objects. To fulfil due diligence requirements, your sub-entity needs to provide identity documents; this endpoint also allows you to add identification documents.
+
+---
 
 #### Add an identification document
 
@@ -492,6 +479,8 @@ Providing an identity document is the last step before triggering due diligence 
 
 </TipBox>
 
+---
+
 #### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
@@ -512,6 +501,8 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
+
+---
 
 #### Request examples
 
@@ -627,15 +618,14 @@ To get a detailed view of all required and optional fields, see our [API referen
 </tab>
 </tabs>
 
+---
+
 #### Response examples
 
 <tabs>
 <tab title='200 - Sub-entity updated successfully'>
-<Box horizontal='sm'>
 
 If the request was successful, you will receive `200 - Sub-entity updated successfully` .
-
-</Box>
 
 ```json withBorder=false
 {
@@ -658,7 +648,6 @@ If the request was successful, you will receive `200 - Sub-entity updated succes
 }
 ```
 
-<Box horizontal='sm'>
 <Accordion isBoldTitle={true} title={`Why haven't my sub-entity's capabilities been enabled?`}>
 
 Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
@@ -666,16 +655,11 @@ Capabilities are enabled once due diligence checks have been completed. If you h
 If you have provided all the information, we may be completing a manual review.
 
 </Accordion>
-</Box>
 
 </tab>
 <tab title='422 - Invalid data was sent'>
 
-<Box horizontal='sm'>
-
 In the `error_codes` object, we will let you know what data was invalid.
-
-</Box>
 
 ```json withBorder=false{
     {
@@ -689,7 +673,6 @@ In the `error_codes` object, we will let you know what data was invalid.
 }
 ```
 
-<Box horizontal='sm'>
 <Accordion isBoldTitle={true} title='Possible error codes'>
 
 <Table>
@@ -786,16 +769,15 @@ The specified field is mandatory but was not provided in the request. For exampl
 </Table>
 
 </Accordion>
-</Box>
 
 </tab>
 </tabs>
 
----
-
 ### Retrieve a sub-entity
 
-If you need to retrieve a sub-entity's details, you can use our Get sub-entity details endpoint. Just include the id of the sub-entity returned during the initial onboarding in your request. For example, `https://api.checkout.com/marketplace/entities/ent_wxglze3wwywujg4nna5fb7ldli` .
+If you need to retrieve a sub-entity's details, you can use our Get sub-entity details endpoint. Just include the id of the sub-entity returned during the initial onboarding in your request. For example, `https://api.checkout.com/marketplace/entities/ent_wxglze3wwywujg4nna5fb7ldli`.
+
+---
 
 #### Endpoints
 
@@ -817,6 +799,8 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
+
+---
 
 #### Response examples
 
@@ -870,7 +854,7 @@ The response allows you to retrieve all data that has been provided about the su
     }
 }
 ```
-<Box horizontal='sm'>
+
 <Accordion isBoldTitle={true} title={`Why does the individual have a legal name? I didn't assign one.`}>
 
 The `legal_name` field is auto-generated based on the `first_name`, `middle_name` and `last_name` provided during onboarding. 
@@ -893,18 +877,13 @@ Capabilities are enabled once due diligence checks have been completed. If you h
 If you have provided all the information, we may be completing a manual review.
 
 </Accordion>
-</Box>
 
 </tab>
 <tab title="Company">
 
-<Box horizontal='sm'>
-
 The response allows you to retrieve all data that has been provided about the sub-entity, including its capabilities, which informs you whether this sub-entity can process payments or not.
 
 Store this information, as we use it in the next step to upload identity documents.
-
-</Box>
 
 ```json withBorder=false
 {
@@ -950,7 +929,6 @@ Store this information, as we use it in the next step to upload identity documen
 }
 ```
 
-<Box horizontal='sm'>
 <Accordion isBoldTitle={true} title={`Why can't I update my sub-entity's default holding currency?`}>
 
 `profile.default_holding_currency` is not currently updatable. If you need to change this, please get in touch.
@@ -968,7 +946,7 @@ Capabilities are enabled once due diligence checks have been completed. If you h
 If you have provided all the information, we may be completing a manual review.
 
 </Accordion>
-</Box>
+
 </tab>
 </tabs>
 
@@ -981,6 +959,8 @@ Once we have conducted our due diligence checks, we will inform you of the outco
 Due diligence will always pass in the Sandbox environment, unless one of our `legal_name` fail triggers is used for simulation.
 
 On occasion, our team will need to manually review a sub-entity. Please see [about onboarding](/marketplaces/about-onboarding) for more information.
+
+---
 
 #### Due diligence webhook example
 
@@ -1048,6 +1028,8 @@ We will re-trigger due diligence checks if any of the required information is la
 
 </TipBox>
 
+---
+
 #### Payment and payout webhook examples
 
 <TipBox>
@@ -1109,8 +1091,6 @@ We've described the different webhook notifications on our [webhook event type p
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `vmss_failed` and / or `match_failed` notification, this will be followed by `payments_disabled`.
 </TipBox>
 
----
-
 ### Where to next?
 
 <ContentPanel variant="heading" title="Accept a payment" imgSrc="/NAS/Marketplaces/accept-a-payment.svg">
@@ -1133,9 +1113,7 @@ Find out more about status types during the onboarding process.
 
 </ContentPanel>
 
-## Find out more
-
-<ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
+<ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg" withBorder={false}>
 
 We'll explain how to upload a file using the Marketplace API.
 
