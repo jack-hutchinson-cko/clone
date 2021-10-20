@@ -6,11 +6,11 @@ import ExtraLinks, { ExtraItem } from './ExtraLinks';
 type Props = {
   guides: HeaderLink[];
   mapTitle: (title: string, Icon: FC<unknown>) => ReactNode;
-  isMobile: boolean;
+  withMobileSize?: boolean;
 };
 
-const GuidesLinks: FC<Props> = ({ guides, mapTitle, isMobile }) => (
-  <ExtraLinks isMobile={isMobile}>
+const GuidesLinks: FC<Props> = ({ guides, mapTitle, withMobileSize }) => (
+  <ExtraLinks withMobileSize={withMobileSize}>
     {guides.map(({ title, description, url, Icon }) => (
       <ExtraItem key={title} href={url} title={mapTitle(title, Icon)}>
         {description}

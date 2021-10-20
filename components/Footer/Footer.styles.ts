@@ -7,7 +7,7 @@ export const FooterWrapper = styled.footer`
   background: ${({ theme }) => theme.colors.footerBackground};
 `;
 
-export const FooterContainer = styled.main<{ isMobile: boolean }>`
+export const FooterContainer = styled.main`
   max-width: 1360px;
   margin: 0 auto;
   padding: ${spacing.s90}px;

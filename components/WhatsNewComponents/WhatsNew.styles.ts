@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SIZE } from 'constants/screen';
+import { SIZE, Breakpoints } from 'constants/screen';
 import { TextHeadingTwo } from 'components/TextHeading';
 import { spacing } from 'constants/spacingSize';
 
@@ -44,4 +44,8 @@ export const CounterWrapper = styled.div`
   height: 24px;
   width: 0;
   position: relative;
+
+  @media ${Breakpoints.MOBILE} {
+    display: none;
+  }
 `;

@@ -4,11 +4,11 @@ import { Container, Content, Footer } from './ExtraLinks.styles';
 
 type Props = {
   footerChildren?: ReactNode;
-  isMobile?: boolean;
+  withMobileSize?: boolean;
 };
 
-export const ExtraLinks: FC<Props> = ({ children, footerChildren, isMobile }) => (
-  <Container isMobile={isMobile}>
+export const ExtraLinks: FC<Props> = ({ children, footerChildren, withMobileSize }) => (
+  <Container withMobileSize={withMobileSize}>
     <Content>{children}</Content>
     {footerChildren && <Footer>{footerChildren}</Footer>}
   </Container>

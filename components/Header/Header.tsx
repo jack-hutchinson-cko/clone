@@ -1,11 +1,7 @@
-import { FC, useContext, useCallback, ReactNode } from 'react';
+import { FC, useCallback, ReactNode } from 'react';
 import Link from 'next/link';
-import { useMatchMedia } from '@cko/primitives';
-
 import { HeaderLink, SearchResultLink } from 'types/header';
-import { Breakpoints } from 'constants/screen';
 import useScrollDisabled from 'hooks/useScrollDisabled';
-import { ThemeContext } from 'theme/themeContext';
 import {
   IconAccount,
   IconTestAccount,
@@ -14,7 +10,6 @@ import {
   HeaderLogoXS,
 } from 'components/Icons';
 import { withMenuState, WithMenuStateProps } from 'components/MenuStateProvider';
-import Switch from 'components/Switch';
 import Button from 'components/Button';
 import DocsSearchWidget from 'components/Search/DocsSearchWidget';
 import MenuButton from './MenuButton';
@@ -32,8 +27,6 @@ import {
   NavigationItem,
   NavigationLink,
   ToggleIcon,
-  SwitchIcon,
-  NavigationDrawers,
   SearchFieldWrapper,
   DrawerTopContentWrapper,
   DrawerBottomContentWrapper,
@@ -44,10 +37,13 @@ import {
   WrapperIconActionArrowRight,
   WrapperWidgetGuides,
   HeaderLogoWrapper,
+  InlineFlexWrapper,
+  NavigationDrawers,
 } from './Header.styles';
 
 type Props = {
   menuWidget?: ReactNode;
+  mobileMenuWidget?: ReactNode;
   guides: HeaderLink[];
   popularSearches: SearchResultLink[];
   emptySearchResult: string;
@@ -70,15 +66,9 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   onChangeMenuState,
   searchState,
   onChangeSearchState,
+  mobileMenuWidget,
 }) => {
-  const isTablet = useMatchMedia(Breakpoints.TABLET);
-  const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const isDarkTheme = theme === 'dark';
-  let HeaderLogo = HeaderLogoL;
-
-  useScrollDisabled((searchState || menuState) && isMobile);
+  useScrollDisabled(searchState || menuState);
 
   const onCloseSearchDrawer = useCallback(() => {
     if (searchState) onChangeSearchState(false);
@@ -96,25 +86,20 @@ const Header: FC<WithMenuStateProps<Props>> = ({
     onChangeMenuState(false);
   }, [onChangeMenuState]);
 
-  if (isMobile) {
-    HeaderLogo = HeaderLogoXS;
-  }
-
   const loginWidget = (
     <LoginWidget
-      isMobile={!isDesktop}
       gap={12}
       dividerText="or"
       link={
         <Link href={loginUrl} passHref>
-          <Button as="a" target="_blank" variant="secondary" size="large" fullWidth={!isDesktop}>
+          <Button as="a" target="_blank" variant="secondary" size="large" fullWidthOnTablet>
             Log in
           </Button>
         </Link>
       }
       alternativeLink={
         <Link href={testAccountUrl} passHref>
-          <NavigationLink light={!isDesktop} underlineOnHover target="_blank">
+          <NavigationLink lightOnTablet underlineOnHover target="_blank">
             <WrapperIconActionArrowRight>
               Apply for an account <IconActionArrowRight />
             </WrapperIconActionArrowRight>
@@ -126,7 +111,6 @@ const Header: FC<WithMenuStateProps<Props>> = ({
 
   const searchWidget = (
     <DocsSearchWidget
-      isMobile={isMobile}
       popularSearches={popularSearches}
       emptySearchResult={emptySearchResult}
       popularSearchesTitle={popularSearchesTitle}
@@ -134,54 +118,35 @@ const Header: FC<WithMenuStateProps<Props>> = ({
     />
   );
 
-  const switchCheckedIcon = <SwitchIcon>🌛</SwitchIcon>;
-
-  const switchUncheckedIcon = <SwitchIcon>☀️</SwitchIcon>;
-
   return (
-    <Navigation isMobile={isMobile}>
+    <Navigation withMobileSize>
       <NavigationContent>
         <NavigationSection>
-          {isMobile && (
-            <NavigationItem>
-              <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
-            </NavigationItem>
-          )}
+          <NavigationItem hideOnDesktop hideOnTablet>
+            <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
+          </NavigationItem>
           <NavigationItem>
             <Link href="/" passHref>
               <NavigationLink>
                 <HeaderLogoWrapper>
-                  <HeaderLogo onClick={onClickLogo} />
+                  <HeaderLogoL onClick={onClickLogo} />
+                  <HeaderLogoXS onClick={onClickLogo} />
                 </HeaderLogoWrapper>
               </NavigationLink>
             </Link>
           </NavigationItem>
-          {isMobile && (
-            <NavigationItem>
-              {menuState ? (
-                // Temporarily hidden. Remove div when it needed.
-                <div style={{ visibility: 'hidden' }}>
-                  <Switch
-                    icon={switchUncheckedIcon}
-                    checked={isDarkTheme}
-                    checkedIcon={switchCheckedIcon}
-                    onChange={toggleTheme}
-                  />
-                </div>
-              ) : (
-                <SearchButton isActive={searchState} onClick={onToggleSearchDrawer} />
-              )}
-            </NavigationItem>
-          )}
+          <NavigationItem hideOnDesktop hideOnTablet>
+            <SearchButton isActive={searchState} onClick={onToggleSearchDrawer} />
+          </NavigationItem>
         </NavigationSection>
-        <MiddleNavigationSection>
+        <MiddleNavigationSection noPaddingsOnMobile>
           <NavigationItemHolder
             offset={75}
-            isMobile={isMobile}
+            withMobileSize
             content={
               <WrapperWidgetGuides>
                 <GuidesLinks
-                  isMobile={isMobile}
+                  withMobileSize
                   guides={guides}
                   mapTitle={(title, Icon) => (
                     <NavigationLink target="_blank" underlineOnHover>
@@ -198,117 +163,92 @@ const Header: FC<WithMenuStateProps<Props>> = ({
               </NavigationItem>
             )}
           </NavigationItemHolder>
-          {!isFAQSection && (isDesktop || isTablet) && (
+          {!isFAQSection && (
             <MiddleNavigationItem withPointer={false}>
               <SearchFieldWrapper>{searchWidget}</SearchFieldWrapper>
             </MiddleNavigationItem>
           )}
         </MiddleNavigationSection>
-        {!isMobile && (
-          <NavigationSection>
-            {isDesktop && (
-              <>
-                <NavigationItemHolder
-                  offset={60}
-                  contentAlign={ContentAlign.RIGHT}
-                  content={
-                    <SignInLinks
-                      headerTitle={
-                        <NavigationLink>
-                          <IconTestAccount /> Test account
-                        </NavigationLink>
-                      }
-                      headerDescription="Monitor transactions, business performance and customer trends."
-                      extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
-                      footerTitle={
-                        <NavigationLink>
-                          <IconAccount /> The Hub
-                        </NavigationLink>
-                      }
-                      footerExtraContent={
-                        <LiginWidgetBottomWrapper>
-                          <LoginWidget
-                            dividerText="or"
-                            link={
-                              <Link href={loginUrl} passHref>
-                                <NavigationLink target="_blank" light underlineAlways>
-                                  Log in
-                                </NavigationLink>
-                              </Link>
-                            }
-                            alternativeLink={
-                              <Link href={testAccountUrl} passHref>
-                                <NavigationLink target="_blank" light underlineAlways>
-                                  apply for a test account
-                                </NavigationLink>
-                              </Link>
-                            }
-                          />
-                        </LiginWidgetBottomWrapper>
-                      }
-                    />
-                  }
-                >
-                  {(open) => (
-                    <NavigationItem withHover isSelected={open}>
-                      Log in <ToggleIcon isOpen={open} />
-                    </NavigationItem>
-                  )}
-                </NavigationItemHolder>
-                <NavigationItem>
-                  <Link href={testAccountUrl} passHref>
-                    <NavigationLink target="_blank" light underlineOnHover>
-                      Get test account
+        <NavigationSection hideOnMobile>
+          <InlineFlexWrapper hideOnMobile hideOnTablet>
+            <NavigationItemHolder
+              offset={60}
+              contentAlign={ContentAlign.RIGHT}
+              content={
+                <SignInLinks
+                  headerTitle={
+                    <NavigationLink>
+                      <IconTestAccount /> Test account
                     </NavigationLink>
-                  </Link>
+                  }
+                  headerDescription="Monitor transactions, business performance and customer trends."
+                  extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
+                  footerTitle={
+                    <NavigationLink>
+                      <IconAccount /> The Hub
+                    </NavigationLink>
+                  }
+                  footerExtraContent={
+                    <LiginWidgetBottomWrapper>
+                      <LoginWidget
+                        dividerText="or"
+                        link={
+                          <Link href={loginUrl} passHref>
+                            <NavigationLink target="_blank" light underlineAlways>
+                              Log in
+                            </NavigationLink>
+                          </Link>
+                        }
+                        alternativeLink={
+                          <Link href={testAccountUrl} passHref>
+                            <NavigationLink target="_blank" light underlineAlways>
+                              apply for a test account
+                            </NavigationLink>
+                          </Link>
+                        }
+                      />
+                    </LiginWidgetBottomWrapper>
+                  }
+                />
+              }
+            >
+              {(open) => (
+                <NavigationItem withHover isSelected={open}>
+                  Log in <ToggleIcon isOpen={open} />
                 </NavigationItem>
-                {/* Temporarily hidden. Remove div when it needed. */}
-                <div style={{ display: 'none' }}>
-                  <NavigationItem withPointer={false}>
-                    <Switch
-                      icon={switchUncheckedIcon}
-                      checked={isDarkTheme}
-                      checkedIcon={switchCheckedIcon}
-                      onChange={toggleTheme}
-                    />
-                  </NavigationItem>
-                </div>
-              </>
-            )}
-            {isTablet && (
-              <>
-                {/* Temporarily hidden. Remove div when it needed. */}
-                <div style={{ display: 'none' }}>
-                  <NavigationItem withPointer={false}>
-                    <Switch
-                      icon={switchUncheckedIcon}
-                      checked={isDarkTheme}
-                      checkedIcon={switchCheckedIcon}
-                      onChange={toggleTheme}
-                    />
-                  </NavigationItem>
-                </div>
-                <NavigationItem>
-                  <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
-                </NavigationItem>
-              </>
-            )}
-          </NavigationSection>
-        )}
+              )}
+            </NavigationItemHolder>
+          </InlineFlexWrapper>
+          <NavigationItem hideOnMobile hideOnTablet>
+            <Link href={testAccountUrl} passHref>
+              <NavigationLink target="_blank" light underlineOnHover>
+                Get test account
+              </NavigationLink>
+            </Link>
+          </NavigationItem>
+          <NavigationItem hideOnMobile hideOnDesktop>
+            <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
+          </NavigationItem>
+        </NavigationSection>
       </NavigationContent>
-      <NavigationDrawers>
-        {!isDesktop && menuState && (
-          <Drawer isMobile={isMobile} onClose={onToggleMenuDrawer}>
-            {isFAQSection ? null : <DrawerTopContentWrapper>{menuWidget}</DrawerTopContentWrapper>}
+      {menuState && (
+        <NavigationDrawers hideOnDesktop>
+          <Drawer onClose={onToggleMenuDrawer}>
+            {isFAQSection ? null : (
+              <DrawerTopContentWrapper>
+                {menuWidget}
+                {mobileMenuWidget}
+              </DrawerTopContentWrapper>
+            )}
             <DrawerBottomContentWrapper>{loginWidget}</DrawerBottomContentWrapper>
           </Drawer>
-        )}
-        {isMobile && searchState && !isFAQSection && (
-          <Drawer isMobile onClose={onToggleSearchDrawer}>
-            {searchWidget}
-          </Drawer>
-        )}
-      </NavigationDrawers>
+        </NavigationDrawers>
+      )}
+      {searchState && !isFAQSection && (
+        <NavigationDrawers hideOnDesktop hideOnTablet>
+          <Drawer onClose={onToggleSearchDrawer}>{searchWidget}</Drawer>
+        </NavigationDrawers>
+      )}
     </Navigation>
   );
 };

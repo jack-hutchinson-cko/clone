@@ -1,9 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react';
-import { useMatchMedia } from '@cko/primitives';
 import { NavTreeElement } from 'types/navTree';
 import { WhatsNewCounter } from 'components/WhatsNewComponents';
-import { Breakpoints } from 'constants/screen';
 import NavigationTreeMenu, { NavigationTree } from '../../NavigationTreeMenu';
 import ListSection from './ListSection';
 import ListItem from './ListItem';
@@ -21,8 +19,6 @@ export type Props = {
 };
 
 const ListMenu: FC<Props> = ({ docsTreeLinks, activeLink, ...props }) => {
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
-
   return (
     <NavigationTreeMenu {...props}>
       <ListItem
@@ -33,7 +29,7 @@ const ListMenu: FC<Props> = ({ docsTreeLinks, activeLink, ...props }) => {
             <ListItemLink href="/whats-new" isActive={activeLink === '/whats-new'}>
               What's New
             </ListItemLink>
-            {!isMobile && <WhatsNewCounter />}
+            <WhatsNewCounter />
           </WhatsNewWrapper>
         }
         bottomMargin={16}

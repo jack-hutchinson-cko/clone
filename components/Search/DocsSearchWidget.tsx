@@ -17,7 +17,6 @@ import {
 import DocsHits from './DocsHits';
 
 type Props = {
-  isMobile?: boolean;
   emptySearchResult?: string;
   popularSearches?: SearchResultLink[];
   popularSearchesTitle?: string;

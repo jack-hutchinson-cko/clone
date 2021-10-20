@@ -4,12 +4,11 @@ import { Container, Background, Content } from './Drawer.styles';
 
 type Props = {
   onClose: () => void;
-  isMobile?: boolean;
 };
 
-const Drawer: FC<Props> = ({ children, isMobile, onClose }) => {
+const Drawer: FC<Props> = ({ children, onClose }) => {
   return (
-    <Container isMobile={isMobile}>
+    <Container>
       <Background onClick={onClose} />
       <Content>{children}</Content>
     </Container>

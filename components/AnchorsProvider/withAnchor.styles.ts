@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import { IconActionLink } from '@cko/icons';
+import { createBreakpointTo, SIZE } from 'constants/screen';
 
-export const Anchor = styled.span<{ offsetTop: number }>`
+export const Anchor = styled.span`
   display: block;
-  transform: translateY(-${({ offsetTop }) => offsetTop}px);
+  transform: translateY(-100px);
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    transform: translateY(-140px);
+  }
 `;
 
 export const LinkIcon = styled(IconActionLink)`

@@ -1,14 +1,11 @@
-import React, { FC, useContext, useRef, useCallback, ReactNode } from 'react';
+import React, { FC, useRef, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toString, get } from 'lodash';
 import { getAnchorUrl as getAnchorUrlFromText, getHashValue } from 'lib/url';
 import { writeTextToClipboard } from 'lib/clipboard';
 
-import Context, { Props } from './AnchorsContext';
 import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styles';
-
-const DEFAULT_OFFSET = 0;
 
 type Options = { silentMode?: boolean; iconIndent?: number };
 
@@ -39,7 +36,6 @@ const withAnchor =
     const router = useRouter();
     const { children, ...restProps } = props;
     const anchorRef = useRef<HTMLSpanElement>(null);
-    const { offsetTop = DEFAULT_OFFSET } = useContext<Props>(Context);
     const anchorUrl = getAnchorUrl(children);
     const hashValue = getHashValue(anchorUrl);
 
@@ -51,12 +47,7 @@ const withAnchor =
 
     return (
       <>
-        <Anchor
-          ref={anchorRef}
-          id={hashValue}
-          data-type={silentMode ? '' : 'anchor'}
-          offsetTop={offsetTop}
-        />
+        <Anchor ref={anchorRef} id={hashValue} data-type={silentMode ? '' : 'anchor'} />
         <Wrapper onClick={onClickHandler}>
           <Component {...restProps}>
             <Link href={anchorUrl}>

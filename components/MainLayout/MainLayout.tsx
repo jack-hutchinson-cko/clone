@@ -1,8 +1,5 @@
 import { FC, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useMatchMedia } from '@cko/primitives';
-
-import { Breakpoints } from 'constants/screen';
 import { NavTreeElement } from 'types/navTree';
 import { HeaderContent } from 'types/header';
 import { FooterContent } from 'types/footer';
@@ -12,7 +9,6 @@ import NASBanner from 'components/NASBanner';
 import { clientSettings } from 'constants/clientSettings';
 import Header from '../Header';
 import Footer from '../Footer';
-import SideBar from '../SideBar';
 
 import AccordionMenu from './AccordionMenu';
 import ListMenu from './ListMenu';
@@ -41,11 +37,6 @@ const MainLayout: FC<Props> = ({
 }) => {
   const { asPath } = useRouter();
   const activeLink = useMemo(() => cutOffHashValue(asPath), [asPath]);
-  const isDesktop = useMatchMedia(Breakpoints.DESKTOP);
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
-
-  const Menu = isMobile ? AccordionMenu : ListMenu;
-  const menu = <Menu docsTreeLinks={navTreeLinks} activeLink={activeLink} />;
 
   return (
     <>
@@ -54,7 +45,10 @@ const MainLayout: FC<Props> = ({
         <MainWrapper>
           <HeaderWrapper>
             <Header
-              menuWidget={menu}
+              mobileMenuWidget={
+                <AccordionMenu docsTreeLinks={navTreeLinks} activeLink={activeLink} />
+              }
+              menuWidget={<ListMenu docsTreeLinks={navTreeLinks} activeLink={activeLink} />}
               guides={headerContent.guides}
               popularSearches={headerContent.popularSearches}
               popularSearchesTitle={headerContent.popularSearchesTitle}
@@ -68,11 +62,9 @@ const MainLayout: FC<Props> = ({
             children
           ) : (
             <ContentWrapper>
-              {isDesktop && (
-                <SideBarWrapper>
-                  <SideBar menuWidget={menu} />
-                </SideBarWrapper>
-              )}
+              <SideBarWrapper>
+                <ListMenu docsTreeLinks={navTreeLinks} activeLink={activeLink} />
+              </SideBarWrapper>
               {children}
             </ContentWrapper>
           )}
