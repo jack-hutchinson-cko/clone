@@ -8,7 +8,7 @@ There's no need to request your customers’ card details for every payment. Ins
 
 ---
 
-## How it works
+### How it works
 
 After your customer makes an initial order, we securely store the card information as a payment instrument, each one identified by a unique ID (prefixed with `src_`). This source ID replaces the card number in all future payments, removing the need to re-enter and exchange sensitive payment information.
 
@@ -20,9 +20,9 @@ We do not store a card's CVV (the three- or four-digit number on the back of the
 
 ---
 
-## Request a payment using an existing card
+### Request a payment using an existing card
 
-### Endpoint
+#### Endpoint
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
 
@@ -58,7 +58,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response examples
+#### Response examples
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -69,7 +69,7 @@ The possible values for the `status` field include `Authorized`, `Captured`,
 <tabs>
 <tab title="201 Success">
 
-```json withBorder=false
+```json
 {
   "id": "pay_zpg25obbkv2uld22vto2zy5b3m",
   "action_id": "act_zpg25obbkv2uld22vto2zy5b3m",
@@ -128,7 +128,7 @@ The possible values for the `status` field include `Authorized`, `Captured`,
 </tab>
 <tab title="202 Payment asynchronous / further action required">
 
-```json withBorder=false
+```json
 {
   "id": "pay_y3oqhf46pyzuxjbcn2giaqnb44",
   "status": "Pending",
@@ -156,7 +156,7 @@ The possible values for the `status` field include `Authorized`, `Captured`,
 </tab>
 <tab title="422 Invalid data was sent">
 
-```json withBorder=false
+```json
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",

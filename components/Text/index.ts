@@ -1,3 +1,3 @@
-import { Text } from './Text.styles';
+import { Text, MDXText } from './Text.styles';
 
-export { Text };
+export { Text, MDXText };

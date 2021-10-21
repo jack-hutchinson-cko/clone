@@ -13,9 +13,12 @@ Use any _future_ expiry date (`mm/yy`) with our test cards.
 
 ---
 
-## Non-3D Secure enabled cards
+### Non-3D Secure enabled cards
 
-To simulate a non-3DS card payment, use one of the following cards, with `"3ds.enabled": true` in your payment request. You should expect a 20150 - Card not 3D Secure (3DS) enabled soft decline code.
+From the Hub, if the _API Status & Keys_ of the channel is:
+* Live: With `"3ds.enabled": true`, the cards in the table below will return `20150 - Card not 3D Secure (3DS) enabled` soft declined code. With `"attempt_n3d": true` in the request body, the 3DS payment will be fallback to non-3DS.
+* Test: With `"3ds.enabled": true`, using the cards from our [3DS testing page](/testing/3d-secure-testing), the `Card not enrolled` or the `Issuer not enrolled` cards will return `20150 - Card not 3D Secure (3DS) enabled` soft declined code. 
+With `"attempt_n3d": true`, the 3DS payment will be fallback to non-3DS.
 
 <Table>
 <TableHead headers={['Card type', 'Number', 'CVV']} />
@@ -59,9 +62,9 @@ Mastercard
 
 ---
 
-## 3D Secure enabled cards
+### 3D Secure enabled cards
 
-### Credit cards
+#### Credit cards
 
 <Table>
 <TableHead headers={['Card type', 'Issuing country', 'Number', 'CVV', '3D Secure version supported']} sizes={['auto', 'auto', '30%', 'auto', 'auto']}/>
@@ -447,7 +450,7 @@ JCB
 </TableBody>
 </Table>
 
-### Debit cards
+#### Debit cards
 
 <Table>
 <TableHead headers={['Card type', 'Number', 'CVV', '3D Secure version supported']} sizes={['auto', '30%', 'auto', 'auto']} />
@@ -499,7 +502,7 @@ Mastercard
 </TableBody>
 </Table>
 
-### Commercial cards
+#### Commercial cards
 
 You can use these cards to trigger a fallback to 3DS1. A fallback occurs when the cardholder or issuer is not using 3DS2.
 

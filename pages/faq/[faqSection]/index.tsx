@@ -16,7 +16,7 @@ import {
   SectionContent,
   SectionLinksContainer,
   QuestionsContainer,
-  TextHeadingThree,
+  HeadingThree,
 } from 'components/FAQStyledComponents';
 import {
   getFAQPathUrls,
@@ -27,6 +27,7 @@ import {
 import { SectionListItem } from 'types/sectionList';
 import { BreadCrumbsItems } from 'types/content';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
+import withMainLayout from 'hoc/withMainLayout';
 
 type Props = {
   frontMatter: {
@@ -58,7 +59,7 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
               <HeadDescription>{frontMatter.description}</HeadDescription>
             </HeaderContainer>
             <QuestionsContainer>
-              <TextHeadingThree>Question</TextHeadingThree>
+              <HeadingThree>Question</HeadingThree>
               <MDXProvider source={source} />
             </QuestionsContainer>
           </MainContent>
@@ -99,10 +100,9 @@ export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
       frontMatter,
       source,
       sectionList,
-      isFAQSection: true,
       breadCrumbsItem: [{ name: 'Home', url: '/faq' }],
     },
   };
 };
 
-export default FAQSection;
+export default withMainLayout(FAQSection, { isFAQSection: true });

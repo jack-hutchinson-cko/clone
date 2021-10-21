@@ -8,7 +8,7 @@ Once _you've_ successfully set up your integration, you're able to start receivi
 
 ---
 
-## How it works
+### How it works
 
 <img src="/docs/Payments/Card+token.png" withFullscreenPreview />
 
@@ -18,9 +18,9 @@ Card tokens (`tok_`) are single use and only have a 15-minute lifespan. Once you
 
 </TipBox>
 
-## Request a card payment
+### Request a card payment
 
-### Endpoint
+#### Endpoint
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post).
 
@@ -41,7 +41,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
 {
@@ -60,7 +60,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 }
 ```
 
-### Response example
+#### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -81,7 +81,7 @@ The possible values for the `status` field include `Authorized`, `Captured`, `Ca
 <tabs>
 <tab title="201 Success">
 
-```json withBorder=false
+```json
 {
   "id": "pay_mbabizu24mvu3mela5njyhpit4",
   "action_id": "act_mbabizu24mvu3mela5njyhpit4",
@@ -140,7 +140,7 @@ The possible values for the `status` field include `Authorized`, `Captured`, `Ca
 </tab>
 <tab title="202 Payment asynchronous / further action required">
 
-```json withBorder=false
+```json
 {
   "id": "pay_y3oqhf46pyzuxjbcn2giaqnb44",
   "status": "Pending",
@@ -168,7 +168,7 @@ The possible values for the `status` field include `Authorized`, `Captured`, `Ca
 </tab>
 <tab title="422 Invalid data was sent">
 
-```json withBorder=false
+```json
 {
   "request_id": "0HL80RJLS76I7",
   "error_type": "request_invalid",
@@ -189,6 +189,6 @@ Possibly fraudulent authorization requests return the message `risk.flagged: tru
 
 ---
 
-## Next step
+### Next step
 
 Once you've successfully processed a card payment request, you're able to easily [reuse those card details](/payments/accept-payments/pay-with-stored-details) for subsequent payments.

@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+import { createBreakpointTo, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
+
 export const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  padding: 20px 0;
+  padding: ${spacing.s50}px ${spacing.s00};
   color: ${({ theme }) => theme.colors.nasBannerText};
   background-color: ${({ theme }) => theme.colors.nasBannerBG};
   font-size: 16px;
@@ -12,12 +15,16 @@ export const Wrapper = styled.div`
   transition-property: all;
   transition-duration: 0.4s;
   transition-timing-function: cubic-bezier(0.4, 0.55, 0.6, 0.99);
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    padding: ${spacing.s50}px 56px ${spacing.s50}px ${spacing.s50}px;
+  }
 `;
 
 export const BannerClose = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 19px;
+  top: 24px;
   right: 24px;
 
   svg {

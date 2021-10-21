@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { TextHeadingTwo } from 'components/TextHeading';
+import { createBreakpointFrom, createBreakpointTo, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const Header = styled(TextHeadingTwo)`
-  margin: 0 0 16px 0;
+  margin: 0 0 ${spacing.s40}px 0;
   color: ${({ theme }) => theme.colors.base};
 `;
 
@@ -23,11 +25,20 @@ export const Mark = styled.span`
 `;
 
 export const HeaderContainer = styled.div`
-  margin: 0 16px 16px 16px;
-  padding-bottom: 32px;
+  margin: 0 0 ${spacing.s40}px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border} !important;
+
+  @media ${createBreakpointFrom(SIZE.SM)} {
+    padding-bottom: ${spacing.s60}px;
+  }
+
+  @media ${createBreakpointTo(SIZE.SM)} {
+    padding-bottom: ${spacing.s40}px;
+  }
 `;
 
 export const SearchStatusContainer = styled.div`
   color: ${({ theme }) => theme.colors.cometLight};
+  font-size: 16px;
+  line-height: 24px;
 `;

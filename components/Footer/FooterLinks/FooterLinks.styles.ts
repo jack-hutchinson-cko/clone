@@ -1,34 +1,35 @@
 import styled from 'styled-components';
 
-import { createBreakpointBetween, createBreakpointTo, SIZE } from 'constants/screen';
+import { createBreakpointTo, SIZE, Breakpoints } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 import Accordion, { AccordionHead } from 'components/Accordion';
 
 export const FooterLinksWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: ${spacing.s70}px;
 
   @media ${createBreakpointTo(SIZE.L)} {
+    margin-top: ${spacing.s00};
     flex-direction: column;
-    margin-top: 16px;
   }
 `;
 
 export const FooterAccordion = styled(Accordion)`
-  margin-top: 28px;
-  padding: 0 0 28px;
+  display: none;
+  margin-top: ${spacing.s50}px;
+  padding: ${spacing.s00} ${spacing.s00} ${spacing.s50}px;
   color: ${({ theme }) => theme.colors.white};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cometLight};
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    margin-top: 40px;
-    padding: 0 0 32px;
+  @media ${createBreakpointTo(SIZE.L)} {
+    display: block;
   }
 
-  @media ${createBreakpointTo(SIZE.XS)} {
-    margin-top: 24px;
-    padding: 0 0 24px;
+  @media ${Breakpoints.MOBILE} {
+    margin-top: ${spacing.s50}px;
+    padding: ${spacing.s00} ${spacing.s00} ${spacing.s50}px;
   }
 `;
 
@@ -36,24 +37,17 @@ export const FooterAccordionHead = styled(AccordionHead)`
   padding: 0;
   text-align: left;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 16px;
   font-weight: 500;
-  letter-spacing: 1.6px;
+  letter-spacing: 0.1em;
   color: ${({ theme }) => theme.colors.white};
 
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    font-size: 18px;
-    line-height: 16px;
+  @media ${createBreakpointTo(SIZE.L)} {
     & svg {
-      width: 12px;
-      height: 6px;
+      width: 15px;
+      height: 15px;
     }
-  }
-
-  @media ${createBreakpointTo(SIZE.XS)} {
-    font-size: 14px;
-    line-height: 14px;
   }
 `;
 
@@ -77,7 +71,7 @@ export const FooterColumns = styled.div`
   @media ${createBreakpointTo(SIZE.L)} {
     flex-direction: column;
     gap: 25px;
-    margin-top: 24px;
+    margin-top: ${spacing.s40}px;
   }
 `;
 
@@ -116,4 +110,12 @@ export const FooterLinkSpecial = styled.span`
   font-weight: 500;
   text-transform: uppercase;
   line-height: 16px;
+`;
+
+export const FooterColumnsWrapper = styled.div`
+  display: block;
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    display: none;
+  }
 `;

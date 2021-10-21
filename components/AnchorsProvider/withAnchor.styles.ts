@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import { IconActionLink } from '@cko/icons';
+import { createBreakpointTo, SIZE } from 'constants/screen';
 
-export const Anchor = styled.span<{ offsetTop: number }>`
+export const Anchor = styled.span`
   display: block;
-  transform: translateY(-${({ offsetTop }) => offsetTop}px);
+  transform: translateY(-100px);
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    transform: translateY(-140px);
+  }
 `;
 
 export const LinkIcon = styled(IconActionLink)`
@@ -16,6 +21,7 @@ export const IconWrapper = styled.span`
   opacity: 0;
   white-space: nowrap;
   transition: opacity 0.3s ease;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`
@@ -26,7 +32,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<{ rightIndent?: number }>`
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: ${({ rightIndent }) => rightIndent ?? 20}px;
 `;

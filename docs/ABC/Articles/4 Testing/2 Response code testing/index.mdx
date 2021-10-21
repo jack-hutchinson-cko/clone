@@ -337,13 +337,13 @@ Issuer initiated a stop payment (revocation order) for all payments
 
 <TipBox variant="note" title="Testing the amounts 2011 and 2013">
 
-When testing the amounts `2011` and `2013`, the response codes `200R1` and `200R3` will only be returned on the first attempt. Additionally, if multiple attempts are made using a non-Visa credit card, this will lead to the card being locally blacklisted. You will need to whitelist it via the [risk engine settings](/display/DOCS/Risk+engine+settings).
+When testing the amounts `2011` and `2013`, the response codes `200R1` and `200R3` will only be returned on the first attempt. Additionally, if multiple attempts are made using a non-Visa credit card, this will lead to the card being locally blacklisted. You will need to whitelist it via the [risk engine settings](/risk-management/risk-engine-settings).
 
 </TipBox>
 
 ---
 
-## Bypassing the response codes
+### Bypassing the response codes
 
 You can turn off this feature so that the payment will be approved no matter which amount is provided. To do so, simply set the card's expiry date to `01/2099`.
 

@@ -1,3 +1,3 @@
-import { Pre } from './Pre.styles';
+import Pre from './Pre';
 
 export default Pre;

@@ -4,14 +4,6 @@ import { useSelect } from 'hooks/useSelect';
 import { SelectOptionType, ControlValueType } from '../types';
 import { getOptionValue } from '../utils';
 import {
-  Wrapper,
-  DropDownHeader,
-  DropDownBody,
-  DropDownOption,
-  HeaderValue,
-  StyledIconActionChevronDown,
-} from './FrameColorSelector.styles';
-import {
   IconUnitedKingdomFlag,
   IconDenmarkFlag,
   IconFranceFlag,
@@ -20,6 +12,14 @@ import {
   IconKoreaFlag,
   IconSpainFlag,
 } from '../../Icons';
+import {
+  Wrapper,
+  DropDownHeader,
+  DropDownBody,
+  DropDownOption,
+  HeaderValue,
+  StyledIconActionChevronDown,
+} from './FrameColorSelector.styles';
 
 type Props = {
   controlValue: ControlValueType;

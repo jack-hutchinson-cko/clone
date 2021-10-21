@@ -11,14 +11,14 @@ For example, you may choose to collect credit card information during an initial
 
 ---
 
-## Verify a card
+### Verify a card
 
-### The request
+#### The request
 
 To verify a card, simply set up a payment request using one of the following endpoints, with the `amount` field omitted or set to `0`.
 
-*   [Request a card payment](/display/DOCS/Request+a+card+payment)
-*   [Payment with full card details](/display/DOCS/Full+card+details+API)
+*   [Request a card payment](/payments/accept-payments/request-a-card-payment)
+*   [Payment with full card details](/integrate/full-card-details-api)
 
 <TipBox variant="warning">
 
@@ -38,7 +38,7 @@ Some issuing banks do not support card verification and reject the charge reques
     }
 ```
 
-### The response
+#### The response
 
 If the `approved` field is `true` and the `status` field has a value of `Card Verified`, the verification was successful. If unsuccessful, the card may be invalid/expired or the account may have an insufficient available balance.
 
@@ -172,7 +172,7 @@ Sender and recipient are in different countries.
 
 ---
 
-## One dollar authorization
+### One dollar authorization
 
 If a standard card verification request (zero dollar authorization) is not successful, our payment gateway will automatically submit a new request to verify the card details. This follow-up request will automatically set the value to $1 (or the equivalent amount in the processing currency).
 

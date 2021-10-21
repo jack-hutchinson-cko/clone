@@ -57,7 +57,8 @@ export const HorizontalScrollWrapper = styled.div<{ isBlockScroll?: boolean }>`
 export const Pre = styled.pre`
   margin: 0;
   position: relative;
-  font-size: 13px;
+  font-size: 14px;
+  border-spacing: 0px;
 `;
 
 export const InputSizer = styled.div`
@@ -101,7 +102,6 @@ export const StyledTextArea = styled.textarea<{ width: string; isHidden?: boolea
 export const Line = styled.div`
   height: 24px;
   display: table-row;
-
   & > .comment,
   & > .prolog,
   & > .doctype,
@@ -218,6 +218,8 @@ export const LineNumber = styled.div`
   opacity: 0.5;
   font-size: 12px;
   font-family: monospace;
+  line-height: 24px;
+  height: 24px;
 `;
 
 export const LineCounterWrapper = styled.div`

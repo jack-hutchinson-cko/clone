@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ThemeType } from 'types/theme';
 import { Breakpoints } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 import { SubheadBackgroundColor } from './types';
 
@@ -8,7 +9,6 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
   table-layout: ${({ type = 'fixed' }) => type};
   width: 100%;
   color: ${({ theme }) => theme.colors.baseLight};
-  border-radius: 8px;
   border-spacing: 1px;
   font-size: 16px;
   text-align: left;
@@ -27,17 +27,18 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
   ${({ withTopBorder = true }) =>
     withTopBorder
       ? css`
-          tr > th:first-child {
-            border-radius: 8px 0 0 0;
+          border-radius: 8px;
+
+          *:first-child > tr:first-child > *:first-child {
+            border-top-left-radius: 8px;
           }
 
-          tr > th:last-child {
-            border-radius: 0 8px 0 0;
+          *:first-child > tr:first-child > *:last-child {
+            border-top-right-radius: 8px;
           }
         `
       : css`
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
+          border-radius: 0 0 8px 8px;
         `}
 
   @media ${Breakpoints.MOBILE} {
@@ -57,7 +58,7 @@ export const TableBody = styled.tbody`
 
 export const TableCell = styled.td<{ isNoWrap?: boolean; withBackground?: boolean }>`
   white-space: ${({ isNoWrap }) => (isNoWrap ? `nowrap` : 'normal')};
-  padding: 0 16px;
+  padding: ${spacing.s40}px;
   vertical-align: top;
   font-size: 14px;
   background-color: ${({ withBackground, theme }) =>
@@ -66,10 +67,23 @@ export const TableCell = styled.td<{ isNoWrap?: boolean; withBackground?: boolea
   ${({ align = 'left' }) => `text-align: ${align};`}
 
   & > div,
-  & > p {
-    margin: 14px 0;
+  & > p,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  li {
+    margin-bottom: ${spacing.s20}px;
     font-size: 14px;
   }
+
+  > *:last-child {
+    margin-bottom: 0;
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   @media ${Breakpoints.TABLET}, ${Breakpoints.MOBILE} {
     white-space: normal;
   }
@@ -86,7 +100,7 @@ export const TableRow = styled.tr`
 
 export const StyledTH = styled.th<{ width?: string }>`
   width: ${({ width = 'auto' }) => width};
-  padding: 10px 16px;
+  padding: ${spacing.s30}px ${spacing.s40}px;
   border: none;
   color: ${({ theme }) => theme.colors.base};
   background: ${({ theme }) => theme.colors.border};

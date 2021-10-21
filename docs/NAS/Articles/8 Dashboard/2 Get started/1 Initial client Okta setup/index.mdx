@@ -1,0 +1,279 @@
+--- 
+title: Initial client Okta setup
+account: NAS
+---
+
+This page describes the preliminary steps you need to take as an Okta administrator in order to enable SSO for Checkout.com.
+
+---
+
+### Step 1: Create a Checkout.com application in Okta
+
+1. Log in to your Okta admin portal with Super Admin rights.
+2. In the top left corner, select _Classic UI_ to make sure all features are visible.
+3. Select _Applications > Create New App > SAML 2.0 > Create_.
+4. Fill the App Name field with `Checkout.com`.
+5. Upload the following App Logo and select _Next_.
+
+---
+
+### Step 2: Configure the SAML settings
+
+1. Set Single Sign On URL to `http://localhost` as a placeholder. Use this for the Recipient URL and Destination URL.
+2. Set Audience URI to `http://localhost` as a placeholder.
+3. Set Default Relay state to:
+    - `https://dashboard.checkout.com` for production
+    - `https://dashboard.sandbox.checkout.com` for sandbox
+4. Set _Name ID_ to `Unspecified`.
+5. Set _Application username_ to your Okta username.
+6. Set _Update application username on_ to _Create and update_.
+7. Leave the _Advanced SAML settings_ on their default values.
+8. Set the _Attribute statements_ as detailed below. These are mandatory attributes for the SAML assertion.
+
+<Table>
+<TableHead headers={['Name','Name format','Value']}/>
+<TableBody>
+<TableRow>
+<TableCell>
+
+`firstName`
+
+</TableCell>
+<TableCell>
+
+`Unspecified`
+
+</TableCell>
+<TableCell>
+
+`user.firstName`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`lastName`
+
+</TableCell>
+<TableCell>
+
+`Unspecified`
+
+</TableCell>
+<TableCell>
+
+`user.lastName`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`email`
+
+</TableCell>
+<TableCell>
+
+`Unspecified`
+
+</TableCell>
+<TableCell>
+
+`user.email`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+9. Set the Groups statements required to propagate your IDP groups as part of the SAML assertion. This is needed to configure access rights by mapping your IDP groups to Checkout.com known roles. To propagate all groups:
+
+<Table>
+<TableHead headers={['Name','Name format','Value']}/>
+<TableBody>
+<TableRow>
+<TableCell>
+
+`idpGroups`
+
+</TableCell>
+<TableCell>
+
+`Unspecified`
+
+</TableCell>
+<TableCell>
+
+`Matches Regex .*`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<TipBox>
+
+You can use a more restrictive group regex filter if you'd like.
+
+</TipBox>
+
+10. Select _Finish_ then _Next_ to complete the initial setup.
+
+---
+
+### Step 3: Extract the SSO configuration
+
+1. Go back to the application’s Sign-On tab and select _View Setup Instructions_.
+2. Copy the Identity Provider Single Sign-On URL.
+3. Copy the Identity Provider Issuer.
+4. Download the Certificate.
+
+---
+
+### Step 4: Define group access rights
+
+Checkout.com currently supports two types of user roles: **Admin** and **Read Only** (more will follow).
+
+<Table>
+<TableHead headers={['Permission','Admin','Read only']}/>
+<TableBody>
+<TableRow>
+<TableCell>
+
+View analytics
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+View payments
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Void payments
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell type='error'/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Capture payments
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell type='error'/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Refund payments
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell type='error'/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+View disputes
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Manage disputes
+
+<InfoBox>
+
+Respond to a dispute. For example, by submitting evidence.
+
+</InfoBox>
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell type='error'/>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+View and generate reports
+
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+<TableCell>
+<TableTicCell/>
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+Create a `.json` file that defines a mapping between the propagated groups to Checkout.com’s known roles.
+
+```json withBorder
+{
+  "ClientGroup1": "Owner",
+  "ClientGroup2": "Admin",
+  "ClientGroup3": "Read Only",
+  "ClientGroup4": "Read Only"
+}
+```
+
+---
+
+### Step 5: Securely share your configuration with Checkout.com
+
+You will be provided with a set of SFTP login credentials with which they will securely share the following configurations:
+
+- **Identity Provider Single Sign-On URL**
+- **Identity Provider Issuer URL**
+- **Certificate** (`.crt` file)
+- **Mapping of IDP groups to roles** (`.json` file)
+- **Corporate email domain(s)** (e.g., `mycompany.com`, `mycompany.uk`)
+
+<br/>
+
+Our Okta admin will then register your IDP with the above configuration and reach back to you to complete the setup.

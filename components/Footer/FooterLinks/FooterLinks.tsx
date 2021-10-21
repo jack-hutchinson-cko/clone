@@ -13,6 +13,7 @@ import {
   FooterColumn,
   FooterColumnItem,
   FooterLinkSpecial,
+  FooterColumnsWrapper,
 } from './FooterLinks.styles';
 
 const appendSpecialLink = (name: string) => {
@@ -25,10 +26,9 @@ const appendSpecialLink = (name: string) => {
 
 type Props = {
   navigation: NavigationList;
-  isMobile?: boolean;
 };
 
-const FooterLinks: FC<Props> = ({ navigation, isMobile = false }) => {
+const FooterLinks: FC<Props> = ({ navigation }) => {
   const getColumnsContent = (items: NavigationItemEntity[]) =>
     items.map((item, itemIndex) => (
       // eslint-disable-next-line react/no-array-index-key
@@ -44,21 +44,21 @@ const FooterLinks: FC<Props> = ({ navigation, isMobile = false }) => {
 
   return (
     <FooterLinksWrapper>
-      {navigation.map(({ navigationTitle, items }) =>
-        isMobile ? (
+      {navigation.map(({ navigationTitle, items }) => (
+        <>
           <FooterAccordion key={navigationTitle}>
             <FooterAccordionHead>{navigationTitle}</FooterAccordionHead>
             <AccordionBody>
               <FooterColumns>{getColumnsContent(items)}</FooterColumns>
             </AccordionBody>
           </FooterAccordion>
-        ) : (
-          <div key={navigationTitle}>
+
+          <FooterColumnsWrapper key={navigationTitle}>
             <FooterListTitle>{navigationTitle}</FooterListTitle>
             <FooterColumns>{getColumnsContent(items)}</FooterColumns>
-          </div>
-        ),
-      )}
+          </FooterColumnsWrapper>
+        </>
+      ))}
     </FooterLinksWrapper>
   );
 };

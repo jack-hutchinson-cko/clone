@@ -1,15 +1,13 @@
-import React, { FC, useContext, useEffect, useRef, useState, useCallback, ReactNode } from 'react';
+import React, { FC, useRef, useCallback, ReactNode } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toString, get } from 'lodash';
 import { getAnchorUrl as getAnchorUrlFromText, getHashValue } from 'lib/url';
-import { writeTextToClipboard } from 'lib/cliboard';
+import { writeTextToClipboard } from 'lib/clipboard';
 
-import Context, { Props } from './AnchorsContext';
 import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styles';
 
-const DEFAULT_OFFSET = 0;
-
-type Options = { silentMode?: boolean };
+type Options = { silentMode?: boolean; iconIndent?: number };
 
 const getIsChildLink = (children: ReactNode) => get(children, 'props.originalType') === 'a';
 
@@ -33,33 +31,30 @@ const getRenderedChildren = (children: ReactNode): ReactNode => {
 };
 
 const withAnchor =
-  (Component: FC, { silentMode }: Options = {}): FC =>
+  (Component: FC, { silentMode, iconIndent }: Options = {}): FC =>
   (props) => {
+    const router = useRouter();
     const { children, ...restProps } = props;
     const anchorRef = useRef<HTMLSpanElement>(null);
-    const { offsetTop = DEFAULT_OFFSET } = useContext<Props>(Context);
     const anchorUrl = getAnchorUrl(children);
     const hashValue = getHashValue(anchorUrl);
 
     const onClickHandler = useCallback(async () => {
+      router.push(anchorUrl);
       await writeTextToClipboard(anchorUrl);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorUrl]);
 
     return (
       <>
-        <Anchor
-          ref={anchorRef}
-          id={hashValue}
-          data-type={silentMode ? '' : 'anchor'}
-          offsetTop={offsetTop}
-        />
-        <Wrapper>
+        <Anchor ref={anchorRef} id={hashValue} data-type={silentMode ? '' : 'anchor'} />
+        <Wrapper onClick={onClickHandler}>
           <Component {...restProps}>
             <Link href={anchorUrl}>
               <>
-                <Title>{getRenderedChildren(children)}</Title>
+                <Title rightIndent={iconIndent}>{getRenderedChildren(children)}</Title>
                 <IconWrapper>
-                  <LinkIcon onClick={onClickHandler} />
+                  <LinkIcon />
                 </IconWrapper>
               </>
             </Link>

@@ -1,4 +1,4 @@
----
+--- 
 title: Go further
 account: ABC
 ---
@@ -15,7 +15,7 @@ In this guide, you'll find how to:
 
 ---
 
-## Add more payment methods
+### Add more payment methods
 
 <TipBox variant="note" title="Before you start">
 
@@ -72,14 +72,14 @@ We support the following payment methods on SFCC:
 
 </Accordion>
 
-### Enable alternative payments
+#### Enable alternative payments
 
 1.  Log in to Business Manager.
 2.  Go to _Merchant Tools > Site Preferences > Custom Preferences > Checkout.com APM Settings_.
 3.  Set the payment methods you want to support to _Yes_.
 4.  Select _Save_.
 
-### Apple Pay
+#### Apple Pay
 
 <TipBox variant="info">
 
@@ -111,7 +111,7 @@ Pages where the Apple Pay button appears must be served via HTTPS, so you might 
 15. Select _Submit_. A domain name should appear in the Registration section. If you don't have an alias registered for your site, you'll see a domain similar like `staging-merchant.demandware.net` or `production-merchant.demandware.net`. If you do have an alias registered, the domain will be something like `mystore.com`.
 16. Register your site with the Apple sandbox or production server. You only need one merchant ID to register with both servers. If your domain is registered with Apple sandbox, only devices signed in to an [iCloud Sandbox Tester Account](https://developer.apple.com/support/app-store-connect/) can make payments on that site. If your domain is registered with the Apple production server, any regular iCloud account can pay on that site.
 
-### Google Pay
+#### Google Pay
 
 <TipBox variant="info"> 
 
@@ -128,7 +128,7 @@ See our [Google Pay documentation](/payments/payment-methods/wallets/google-pay)
 
 ---
 
-## Enable 3D Secure payments
+### Enable 3D Secure payments
 
 Activate this feature if you want your transactions to be [3D Secure (3DS) authenticated](/risk-management/3d-secure). (Our SFCC plugin supports 3DS2, the new authentication standard.)
 
@@ -146,7 +146,7 @@ If you enable this feature, **every** transaction will trigger a 3DS check. If y
 
 ---
 
-## Enable Mada card payments
+### Enable Mada card payments
 
 Mada is a local card scheme in Saudi Arabia. If you are going to be processing Mada cards, you should enable this setting.
 
@@ -157,7 +157,7 @@ Mada is a local card scheme in Saudi Arabia. If you are going to be processing M
 
 ---
 
-## Set a billing descriptor
+### Set a billing descriptor
 
 The billing descriptor is an extra field you can send to the issuer, appearing on the customer's bank statement as an additional description of the payment.
 
@@ -169,7 +169,7 @@ The billing descriptor is an extra field you can send to the issuer, appearing o
 
 ---
 
-## Manually capture, void and refund payments
+### Manually capture, void and refund payments
 
 As well as doing so through the Hub, you can also manually capture, void and refund payments from Business Manager. These actions will show in both Business Manager and the Hub.
 

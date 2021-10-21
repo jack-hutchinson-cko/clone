@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
 import Accordion, { AccordionBody, AccordionHead } from 'components/Accordion';
-import { MobileBreakPoints } from 'constants/screen';
+import { Breakpoints } from 'constants/screen';
 
 export const StyledAccordionBody = styled(AccordionBody)`
   padding: 24px 0 10px 15px;
   flex-direction: column;
 
-  @media ${MobileBreakPoints.MOBILE_S} {
+  @media ${Breakpoints.MOBILE} {
     padding-top: 10px !important;
   }
 
@@ -15,7 +15,7 @@ export const StyledAccordionBody = styled(AccordionBody)`
     &:not(:first-child) {
       margin-top: 20px;
 
-      @media ${MobileBreakPoints.MOBILE_S} {
+      @media ${Breakpoints.MOBILE} {
         margin-top: 10px;
       }
     }
@@ -35,11 +35,12 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
   color: ${({ theme }) => theme.colors.cometLight};
 
   > ${StyledAccordionHead} {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 500;
+    line-height: 24px;
     color: ${({ theme }) => theme.colors.base};
 
-    @media ${MobileBreakPoints.MOBILE_S} {
+    @media ${Breakpoints.MOBILE} {
       font-size: 14px;
       line-height: 24px;
     }
@@ -53,21 +54,12 @@ export const StyledAccordion = styled(Accordion)<{ isRoot?: boolean }>`
       border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
       > ${StyledAccordionHead} {
-        font-size: 32px;
+        font-size: 16px;
+        line-height: 24px;
         font-weight: 500;
-        line-height: 40px;
-
-        @media ${MobileBreakPoints.MOBILE_S} {
-          font-size: 16px;
-          line-height: 24px;
-        }
       }
 
-      > ${StyledAccordionBody} {
-        padding-top: 32px;
-      }
-
-      @media ${MobileBreakPoints.MOBILE_S} {
+      @media ${Breakpoints.MOBILE} {
         padding: 24px 0;
       }
     `}

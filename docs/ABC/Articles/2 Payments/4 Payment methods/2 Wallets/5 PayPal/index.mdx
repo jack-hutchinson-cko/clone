@@ -12,7 +12,7 @@ To start accepting PayPal payments, please contact your Customer Success Manager
 
 ---
 
-## Overview
+### Overview
 
 PayPal payments follow a two-step process:
 
@@ -21,9 +21,9 @@ PayPal payments follow a two-step process:
 
 ---
 
-## Request a payment
+### Request a payment
 
-### Endpoints
+#### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
@@ -44,7 +44,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -63,7 +63,7 @@ You can find the full list, as well as complete request and response examples, i
     }
 ```
 
-### Response example
+#### Response example
 
 If you receive a `202 Success` response containing a `status` field set to `Pending`, your request was successful.
 
@@ -89,13 +89,13 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
 
 ---
 
-## Redirect the customer
+### Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the response. The customer will be redirected to a PayPal page where they can authorize the payment, before being transferred to your predefined success or failure URL.
 
 ---
 
-## Get details about a payment
+### Get details about a payment
 
 You can use the `payment_id` found in the payment response, or the `cko-session-id` from the success/failure URL (e.g., https://www/checkout.com/order/succeeded?cko-session-id=**sid_vii64oquze5u3h2x6hh4rurc4y**) to retrieve details about the payment.
 
@@ -107,7 +107,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
 
@@ -128,7 +128,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-### Response example
+#### Response example
 
 ```json
     {
@@ -162,7 +162,7 @@ You can find the full list, as well as complete request and response examples, i
     }
 ```
 
-### Testing PayPal
+#### Testing PayPal
 
 <TipBox variant="note">
 

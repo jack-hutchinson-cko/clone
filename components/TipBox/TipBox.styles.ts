@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { ThemeType } from 'types/theme';
+import { spacing } from 'constants/spacingSize';
+import { TextHeadingFour } from 'components/TextHeading';
 import { TipBoxVariant } from './types';
 
 const getVariantColor = ({ theme, variant }: { theme: ThemeType; variant: TipBoxVariant }) => {
@@ -22,7 +24,7 @@ const getVariantColor = ({ theme, variant }: { theme: ThemeType; variant: TipBox
 export const TipBoxWrapper = styled.div<{ variant: TipBoxVariant }>`
   position: relative;
   display: block;
-  padding: 0 24px;
+  padding: ${spacing.s50}px;
   border: 1px solid ${getVariantColor};
   border-left: 48px solid ${getVariantColor};
   border-radius: 8px;
@@ -36,12 +38,23 @@ export const TipBoxIcon = styled.span<{ variant: TipBoxVariant }>`
   display: inline-block;
 `;
 
-export const TipBoxHeader = styled.h3`
-  margin: 0;
-  padding-top: 16px;
-  color: ${({ theme }) => theme.colors.base};
+export const TipBoxHeader = styled(TextHeadingFour)`
+  margin: 0 0 ${spacing.s20}px 0;
 `;
 
 export const TipBoxContent = styled.div`
   color: ${({ theme }) => theme.colors.base};
+
+  li {
+    margin-bottom: ${spacing.s20}px;
+  }
+
+  & > div,
+  & > p {
+    margin-bottom: ${spacing.s40}px;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
 `;

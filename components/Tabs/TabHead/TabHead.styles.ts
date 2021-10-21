@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { spacing } from 'constants/spacingSize';
 
 export const StyledTabHead = styled.ul<{ withPadding?: boolean }>`
   display: flex;
@@ -6,15 +7,15 @@ export const StyledTabHead = styled.ul<{ withPadding?: boolean }>`
   padding: ${({ withPadding }) => (withPadding ? `0 16px` : '0')};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   list-style: none;
-  gap: 10px;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   background-color: ${({ theme }) => theme.colors.tabBackground};
+  overflow-y: auto;
 `;
 
 export const StyledTabHeadLink = styled.button<{ active: boolean }>`
   display: inline-block;
-  padding: 13px 8px;
+  padding: ${spacing.s30 - 4}px ${spacing.s40}px;
   color: ${({ active, theme }) => (active ? theme.colors.base : theme.colors.tabTitle)};
   background: transparent;
   border: none;
@@ -24,4 +25,5 @@ export const StyledTabHeadLink = styled.button<{ active: boolean }>`
   line-height: 24px;
   white-space: nowrap;
   cursor: pointer;
+  font-family: inherit;
 `;

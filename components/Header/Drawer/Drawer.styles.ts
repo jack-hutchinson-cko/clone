@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { Breakpoints } from 'constants/screen';
 
 export const Content = styled.aside`
   display: flex;
@@ -6,25 +7,23 @@ export const Content = styled.aside`
   width: 340px;
   max-height: 100%;
   overflow-y: auto;
+  will-change: filter;
   border-left: 1px solid ${({ theme }) => theme.colors.border};
-  filter: drop-shadow(0px 6px 5px rgba(12, 17, 66, 0.15));
+  filter: drop-shadow(0px 2px 5px rgba(12, 17, 66, 0.15));
   background-color: ${({ theme }) => theme.colors.background};
+
+  @media ${Breakpoints.MOBILE} {
+    filter: none;
+    width: 100%;
+  }
 `;
 
-export const Container = styled.div<{ isMobile?: boolean }>`
+export const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-end;
   pointer-events: auto;
   flex: 1;
-
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      ${Content} {
-        width: 100%;
-      }
-    `}
 `;
 
 export const Background = styled.span`

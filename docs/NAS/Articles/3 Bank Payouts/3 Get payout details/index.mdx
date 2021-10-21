@@ -1,0 +1,80 @@
+---
+title: Get payout details
+account: NAS
+description: Find out everything there is to know about a specific payout, from its status to the type of sender.
+---
+
+Fetch and view relevant information and parameters related to a specific payout. Before you start, make sure you have the payment identifier (prefixed by `pay_`). To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
+
+---
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payments/{id}`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments/{id}`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Response example
+
+If your request is successful, the response will return information about the payout.
+
+```json
+{
+  "id": "pay_gwlowf7eap7uzm4cyaaqoq62au",
+  "requested_on": "2020-06-12T13:49:19.085546Z",
+  "source": {
+    "id": "ca_y3oqhf46pyzuxjbcn2giaqnb44",
+    "type": "currency_account"
+  },
+  "destination": {
+    "id": "src_4pakgjwmv5re5m5ivqohsqpxnm",
+    "type": "bank_account"
+  },
+  "amount": 1000,
+  "currency": "GBP",
+  "reference": "PO-215-5721",
+  "billing_descriptor": {
+    "reference": "Withdrawal"
+  },
+  "status": "Returned",
+  "approved": true,
+  "sender": {
+    "type": "instrument",
+    "reference": "8285282045818"
+  },
+  "instruction": {
+    "value_date": "2020-06-13T01:49:19.1864428Z",
+    "purpose": "Wallet withdrawal",
+    "quote_id": "qte_xrhaw53z5m6ehbbxz2n6n5lk74"
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/payments/pay_gwlowf7eap7uzm4cyaaqoq62au"
+    },
+    "actions": {
+      "href": "https://api.sandbox.checkout.com/payments/pay_gwlowf7eap7uzm4cyaaqoq62au/actions"
+    }
+  }
+}
+```
+
+<TipBox variant="info">
+
+If unsuccessful, you may get a `404 – Payment not found` error.
+
+</TipBox>

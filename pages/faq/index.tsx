@@ -8,8 +8,8 @@ import {
   ContentWrapper,
   SectionContent,
   PopularFaqItems,
-  TextHeadingOne,
-  TextHeadingThree,
+  HeadingOne,
+  HeadingThree,
   StyledCategoriesItem,
   SearchFieldWrapper,
   SearchExamples,
@@ -35,7 +35,7 @@ const FAQHomePage: NextPage<Props> = ({ faqCategories, popularFAQItemsSource }) 
   return (
     <>
       <ContentWrapper>
-        <TextHeadingOne>Welcome to frequently asked questions</TextHeadingOne>
+        <HeadingOne>Welcome to frequently asked questions</HeadingOne>
         <SearchLabel>
           Please type in a question regarding Checkout.com’s products or services.
         </SearchLabel>
@@ -52,13 +52,13 @@ const FAQHomePage: NextPage<Props> = ({ faqCategories, popularFAQItemsSource }) 
       </ContentWrapper>
       <SectionContent>
         <ContentWrapper>
-          <TextHeadingThree>Browse by category</TextHeadingThree>
+          <HeadingThree>Browse by category</HeadingThree>
           <CardWrapper cardsInRow={CardsSettings}>
             {faqCategories.map((faqItem) => (
               <StyledCategoriesItem key={faqItem.href} {...faqItem} />
             ))}
           </CardWrapper>
-          <TextHeadingThree>Popular questions</TextHeadingThree>
+          <HeadingThree>Popular questions</HeadingThree>
           <PopularFaqItems>
             <MDXProvider source={popularFAQItemsSource} />
           </PopularFaqItems>

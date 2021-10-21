@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { IconActionArrowRight } from 'components/Icons';
+import { spacing } from 'constants/spacingSize';
 
 export const PaginatorContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border-top: 1px solid ${({ theme }) => theme.colors.border} !important;
   padding-top: 36px;
-  margin: 24px 16px 0px 16px;
+  margin: ${spacing.s50}px ${spacing.s40}px 0px ${spacing.s40}px;
 `;
 
 export const LinkContainer = styled.div`

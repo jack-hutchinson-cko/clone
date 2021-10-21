@@ -1,0 +1,63 @@
+Rename `cardTokenisednow` to `cardTokenized` and `cardTokenisationFailed` to `cardTokenizationFailed`.
+
+```json 
+{
+  type: card,
+  token: tok_ubfj2q76miwundwlk72vxt2i7q,
+  expires_on: 2019-10-07T16:54:21Z,
+  expiry_month: 6,
+  expiry_year: 2025,
+  scheme: VISA,
+  last4: 9996,
+  bin: 454347,
+  card_type: Credit,
+  card_category: Consumer,
+  issuer: GOTHAM STATE BANK,
+  issuer_country: US,
+  product_id: F,
+  product_type: CLASSIC,
+  billing_address: [...],
+  phone: [...],
+  name: Bruce Wayne
+}
+```
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="post">
+
+`https://commercetools.integration.checkout.com/api/contexts`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="post">
+
+`https://commercetools.integration.sandbox.checkout.com/api/contexts`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+<tabs>
+<tab title="CVV_HIDDEN">
+
+```js
+Frames.init({
+  publicKey: "pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  modes: [ Frames.modes.CVV_HIDDEN]
+});
+```
+
+</tab>
+<tab title="CVV_OPTIONAL">
+
+```js
+Frames.init({
+  publicKey: "pk_test_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  modes: [ Frames.modes.CVV_OPTIONAL]
+});
+```
+
+</tab>
+</tabs>

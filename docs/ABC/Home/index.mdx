@@ -6,43 +6,26 @@ account: ABC
 ---
 
 
-<CardWrapper cardsInRow={{ desktop: 2, mobile: 1 }} gap={20}>
-<Box>
+<CardWrapper cardsInRow={{ desktop: 2, mobile: 1 }} gap={48}>
 
-<img src="/ABC/Homepage/leftCol.svg" />
-
-<TextWrapper headerType="h3">Payments</TextWrapper>
+<HomePageItem 
+  title="Payments"
+  imgSrc="/ABC/Homepage/leftCol.svg"
+  links={[{title: 'Card payments', href: '/payments'}, {title: 'Card payouts', href: '/card-payouts'}, {title: 'Payment methods', href: '/payments/payment-methods'}]}
+  >
 
 Accept online payments from cards, wallets and local payment methods, and pay out to cards.
 
-<Box vertical="xsm">
-<ArrowLink href="/payments" title="Card payments" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/card-payouts" title="Card payouts" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/payments/payment-methods" title="Payment methods" />
-</Box>
+</HomePageItem>
 
-</Box>
-<Box>
-
-<img src="/ABC/Homepage/rightCol.svg" />
-
-<TextWrapper headerType="h3">The Hub</TextWrapper>
+<HomePageItem 
+  title="The Hub"
+  imgSrc="/ABC/Homepage/rightCol.svg"
+  links={[{title: 'At a glance', href: '/the-hub/the-hub-at-a-glance'}, {title: 'Manage payments', href: '/the-hub/manage-hub-payments'}, {title: 'Generate reports', href: '/the-hub/generate-reports'}]}
+  >
 
 View your key performance indicators, payment history and analytics—all in one place.
 
-<Box vertical="xsm">
-<ArrowLink href="/the-hub/the-hub-at-a-glance" title="At a glance" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/the-hub/manage-hub-payments" title="Manage payments" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/the-hub/generate-reports" title="Generate reports" />
-</Box>
+</HomePageItem>
 
-</Box>
 </CardWrapper>

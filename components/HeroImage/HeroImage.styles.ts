@@ -1,77 +1,102 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const HeroWrapper = styled.div`
+type HeroPart = {
+  width?: number;
+};
+
+export const HeroWrapper = styled.div<HeroPart>`
   position: relative;
   display: block;
+  max-width: 466px;
   height: 378px;
-  width: 466px;
   margin: 0 auto;
   background-repeat: no-repeat;
   background-position: center center;
   transform: translate3d(0px, 0px, 0px);
 
-  @media (min-width: 1023px) and (max-width: 1220px), (min-width: 768px) and (max-width: 950px) {
-    height: 285px;
-    width: 310px;
-  }
+  ${({ width }) =>
+    width &&
+    css`
+      height: ${(width - 50) * 0.95}px;
+    `}
 `;
 
-export const HeroParts = styled.div<{ transform: string; opacity: number }>`
+export const HeroParts = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   will-change: transform;
   transform-style: preserve-3d;
-  transform: ${({ transform }) => transform};
-  opacity: ${({ opacity }) => opacity};
-  transition: transform 1s cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s, opacity 1.2s;
+  transform: translate3d(0px, 0px, 55px);
+  animation: fadeInFromNone 1.5s ease-out;
+  transition: all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s;
+
+  @keyframes fadeInFromNone {
+    0% {
+      display: none;
+      opacity: 0;
+    }
+
+    1% {
+      display: block;
+      opacity: 0;
+    }
+
+    100% {
+      display: block;
+      opacity: 1;
+    }
+  }
 `;
 
-export const HeroPart01 = styled.div`
+export const HeroPart01 = styled.div<HeroPart>`
   position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
   width: auto;
   transform-origin: center;
-  transform: translate3d(0px, 0px, 0px) perspective(0px);
+  transform: translate3d(0px, 0px, 0px);
 
-  @media (min-width: 1023px) and (max-width: 1220px), (min-width: 768px) and (max-width: 950px) {
-    width: 90%;
-  }
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width * 0.85}px;
+    `}
 `;
 
-export const HeroPart02 = styled.div`
+export const HeroPart02 = styled.div<HeroPart>`
   position: absolute;
   z-index: 2;
   top: 19px;
   right: -19px;
   width: auto;
-  transform: translate3d(0px, 0px, 60px) perspective(0px);
+  transform: translate3d(0px, 0px, 60px);
   transform-style: preserve-3d;
   transform-origin: center;
 
-  @media (min-width: 1023px) and (max-width: 1220px), (min-width: 768px) and (max-width: 950px) {
-    width: 45%;
-    right: -30px;
-    transform: translate3d(0px, 0px, 30px);
-  }
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width / 2.3}px;
+    `}
 `;
 
-export const HeroPart03 = styled.div`
+export const HeroPart03 = styled.div<HeroPart>`
   position: absolute;
   z-index: 4;
   top: 219px;
   left: 45px;
   width: auto;
-  transform: translate3d(0px, 0px, 55px) perspective(0px);
+  transform: translate3d(0px, 0px, 55px);
   transform-style: preserve-3d;
   transform-origin: center;
 
-  @media (min-width: 1023px) and (max-width: 1220px), (min-width: 768px) and (max-width: 950px) {
-    width: 50%;
-    top: 158px;
-    left: 43px;
-  }
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width / 2.28}px;
+      top: ${width / 2.12}px;
+    `}
 `;

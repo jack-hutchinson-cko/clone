@@ -18,9 +18,9 @@ export const getHeightOfInnerContent = (element: HTMLElement | null): number => 
   const firstChild = childNodes[0] as HTMLElement;
   const lastChild = childNodes[childNodes.length - 1] as HTMLElement;
 
-  const height = lastChild.getBoundingClientRect().bottom - firstChild.getBoundingClientRect().top;
+  const { height } = element.getBoundingClientRect();
   const marginTop = getMarginStyle(firstChild, 'margin-top');
   const marginBottom = getMarginStyle(lastChild, 'margin-bottom');
 
-  return height + marginTop + marginBottom;
+  return Number(height) + marginTop + marginBottom;
 };

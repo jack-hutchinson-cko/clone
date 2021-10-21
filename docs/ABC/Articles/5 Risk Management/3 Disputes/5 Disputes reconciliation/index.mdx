@@ -15,7 +15,7 @@ In both reports, you'll find our [dispute indicator codes](#Disputesreconciliati
 
 <TipBox>
 
-The best way to track the progress of a dispute case is to use the payment ID (prefixed with `pay_`) of the payment to which the dispute applies. The payment ID stays the same across [the Hub](/display/DOCS/The+Hub), [Reconciliation API](/display/DOCS/Reconciliation+API), and [webhooks](/display/DOCS/Webhooks).
+The best way to track the progress of a dispute case is to use the payment ID (prefixed with `pay_`) of the payment to which the dispute applies. The payment ID stays the same across [the Hub](/the-hub), [Reconciliation API](/reporting-and-insights/reconciliation-api), and [webhooks](/reporting-and-insights/webhooks).
 
 </TipBox>
 
@@ -35,13 +35,13 @@ For example, if you lose a dispute, this will be reported in the disputes report
 
 ---
 
-## Creating a disputes report
+### Creating a disputes report
 
 To generate a disputes report, and view any you've previously created, log in to the Hub, go to _Reports_, and the find the _Disputes_ section. Click _New report_ to create a new disputes report.
 
 These reports list all of the disputes that occurred during the selected period, with various columns providing more information about each event.
 
-### Disputes report example
+#### Disputes report example
 
 Here’s a simplified example of what two separate dispute cases might look like in your Hub disputes report if you sort the data by payment ID.
 
@@ -165,13 +165,13 @@ For the second (`pay_code_b`), the dispute associated with it is currently in pr
 
 ---
 
-## Creating a payments report
+### Creating a payments report
 
 Use our [Reconciliation API’s payments endpoint](https://docs.checkout.com/reporting-and-insights/reconciliation-api/payments-endpoint) to generate a payments report. These reports record any charge or credit to your account, including those related to disputes.
 
 As with the Hub's disputes reports, look up the payment ID of the disputed payment you’re interested in to find out more about it.
 
-### Payments report example
+#### Payments report example
 
 Here's a simplified example of two separate payments in a report, one of which has a dispute raised against it.
 
@@ -371,7 +371,7 @@ The ‘Chargeback’ action type appears twice because the payments report cover
 
 ---
 
-## Dispute indicator codes
+### Dispute indicator codes
 
 The table below lists all the dispute indicator codes you’ll see in both the disputes reports from the Hub and the payments reports from the Reconciliation API.
 
@@ -404,7 +404,7 @@ You’ve received a request for more information (also known as a retrieval requ
 </TableCell>
 <TableCell>
 
-[payment\_retrieval](/display/DOCS/payment_retrieval)
+[payment\_retrieval](/reporting-and-insights/webhooks/webhook-examples/payment_retrieval)
 
 </TableCell>
 </TableRow>
@@ -426,7 +426,7 @@ You’ve received a dispute and you need to submit evidence if you want to defen
 </TableCell>
 <TableCell>
 
-[dispute\_evidence\_required](/display/DOCS/dispute_evidence_required)
+[dispute\_evidence\_required](/reporting-and-insights/webhooks/webhook-examples/dispute_evidence_required)
 
 </TableCell>
 </TableRow>
@@ -448,7 +448,7 @@ You've already refunded the customer, so we automatically submitted the relevant
 </TableCell>
 <TableCell>
 
-[dispute\_resolved](/display/DOCS/dispute_resolved)
+[dispute\_resolved](/reporting-and-insights/webhooks/webhook-examples/dispute_resolved)
 
 </TableCell>
 </TableRow>
@@ -470,7 +470,7 @@ The issuer has canceled the dispute. You have been refunded the disputed amount.
 </TableCell>
 <TableCell>
 
-[dispute\_canceled](/display/DOCS/dispute_canceled)
+[dispute\_canceled](/reporting-and-insights/webhooks/webhook-examples/dispute_canceled)
 
 </TableCell>
 </TableRow>
@@ -514,7 +514,7 @@ You have won the dispute. You have been refunded the disputed amount.
 </TableCell>
 <TableCell>
 
-[dispute\_won](/display/DOCS/dispute_won)
+[dispute\_won](/reporting-and-insights/webhooks/webhook-examples/dispute_won)
 
 </TableCell>
 </TableRow>
@@ -536,7 +536,7 @@ You have lost the dispute. You have been charged a dispute fee, if applicable.
 </TableCell>
 <TableCell>
 
-[dispute\_lost](/display/DOCS/dispute_lost)
+[dispute\_lost](/reporting-and-insights/webhooks/webhook-examples/dispute_lost)
 
 </TableCell>
 </TableRow>

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { Breakpoints, MobileBreakPoints } from 'constants/screen';
+import { Breakpoints, createBreakpointTo, SIZE } from 'constants/screen';
 
 export const Divider = styled.span`
   font-size: inherit;
@@ -8,29 +8,23 @@ export const Divider = styled.span`
   font-weight: normal;
 `;
 
-export const Container = styled.span<{ gap?: number; isMobile?: boolean }>`
+export const Container = styled.span<{ gap?: number }>`
   display: inline-flex;
   align-items: center;
   gap: ${({ gap }) => gap ?? 6}px;
 
   @media ${Breakpoints.MOBILE} {
-    gap: 32px;
-  }
-
-  @media ${Breakpoints.TABLET}, ${MobileBreakPoints.MOBILE_S} {
     gap: 16px;
   }
 
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      padding-top: 0;
+  @media ${createBreakpointTo(SIZE.L)} {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 0;
 
-      ${Divider} {
-        display: none;
-      }
-    `}
+    ${Divider} {
+      display: none;
+    }
+  }
 `;

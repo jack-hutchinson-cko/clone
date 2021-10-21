@@ -1,9 +1,9 @@
-import { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { ImageLoader } from 'next/image';
 import ImgModalWrapper from 'components/ImageModalWrapper';
 import { ThemeContext } from 'theme/themeContext';
 
-import { ImgWrapper, StyledImage } from './ImageBoxStyles';
+import { ImgWrapper, StyledImage, ImgPlaceholder, ContainerImage } from './ImageBoxStyles';
 
 const isDarkTheme = 'dark';
 
@@ -20,6 +20,14 @@ export type Props = {
   width?: '100%';
   maxWidth?: number;
   withFullscreenPreview?: boolean;
+  defaultWidth?: number;
+  defaultHeight?: number;
+};
+
+// keep this in sync with Next default loader
+export const basePathLoader: ImageLoader = ({ src, width, quality }) => {
+  const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/docs/four';
+  return `${basePath}/_next/image?url=${basePath + src}&w=${width}&q=${quality || 70}`;
 };
 
 const ImageBox: FC<Props> = ({
@@ -27,18 +35,43 @@ const ImageBox: FC<Props> = ({
   darkThemeSrc = '',
   maxWidth,
   withFullscreenPreview,
+  defaultWidth,
+  defaultHeight,
+  loader = basePathLoader,
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
+  const [placeholderVisibility, setPlaceholderVisibility] = useState(true);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
+  const newSrc = encodeURIComponent(finalSrc);
+
+  const onLoadHandler = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = event.target as HTMLImageElement;
+
+    if (target.complete && target.style.visibility !== 'hidden') {
+      setPlaceholderVisibility(false);
+    }
+  };
+
   const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
-      <StyledImage src={finalSrc} {...props} />
+      {defaultWidth && defaultHeight && (
+        <ImgPlaceholder
+          isShown={placeholderVisibility}
+          defaultWidth={defaultWidth}
+          defaultHeight={defaultHeight}
+        />
+      )}
+      <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
+        <StyledImage src={newSrc} onLoad={onLoadHandler} loader={loader} {...props} />
+      </ContainerImage>
     </ImgWrapper>
   );
 
   return withFullscreenPreview ? (
-    <ImgModalWrapper src={finalSrc}>{imageBox}</ImgModalWrapper>
+    <ImgModalWrapper src={newSrc} loader={loader} {...props}>
+      {imageBox}
+    </ImgModalWrapper>
   ) : (
     imageBox
   );

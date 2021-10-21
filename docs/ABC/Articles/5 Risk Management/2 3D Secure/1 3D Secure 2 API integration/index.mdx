@@ -13,17 +13,17 @@ We currently support version 2.1.0 of the 3DS protocol.
 
 ---
 
-## Request a 3DS2 payment with a card token
+### Request a 3DS2 payment with a card token
 
 Simply submit a payment request with `"3ds.enabled": true`, and then we'll redirect your customer to a Checkout.com page to gather all the 3DS2-relevant data and add the required fields to your request—meaning no extra work for you.
 
 #### Step 1: Collect a card token
 
-First, the customer needs to exchange their card details for a card token – tokenization. You can create a card token with one of our [integration options](/display/DOCS/Integrate).
+First, the customer needs to exchange their card details for a card token – tokenization. You can create a card token with one of our [integration options](/integrate).
 
 #### Step 2: Create a card token payment request
 
-Once you've got a card token, you can request a payment using [the request a card payment endpoint](/display/DOCS/Request+a+card+payment).
+Once you've got a card token, you can request a payment using [the request a card payment endpoint](/payments/accept-payments/request-a-card-payment).
 
 The only difference between a standard card token payment and a 3DS one is the `3ds` object. Set the `enabled` field to `true` to request a 3DS2 payment.
 
@@ -51,7 +51,7 @@ If you want to automatically attempt a transaction as non-3DS, use the [`attempt
 
 <TipBox variant="info" title="3DS test cards">
 
-If you want to test 3DS authentication flows and transaction statuses in the sandbox environment, [use our test cards](/display/DOCS/3D+Secure+testing).
+If you want to test 3DS authentication flows and transaction statuses in the sandbox environment, [use our test cards](/testing/3d-secure-testing).
 
 </TipBox>
 
@@ -103,7 +103,7 @@ When the customer is redirected back to your site, a `cko-session-id` querystrin
 
 `http://example.com/success?cko-session-id=sid_ubfj2q76miwundwlk72vxt2i7q`
 
-Once you've got the `cko-session-id`, you can use our [get payment details endpoint](/display/DOCS/Get+payment+details) to determine whether the payment was authenticated and authorized.
+Once you've got the `cko-session-id`, you can use our [get payment details endpoint](/payments/manage-payments/get-payment-details) to determine whether the payment was authenticated and authorized.
 
 <TipBox variant="note">
 
@@ -111,7 +111,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-### Endpoints
+#### Endpoints
 
 For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/).
 
@@ -249,15 +249,15 @@ The response includes an `actions` object, which only applies to 3D Secure payme
 
 ---
 
-## Non-3DS authorization request flows
+### Non-3DS authorization request flows
 
-### Successful non-3DS authorization request flow
+#### Successful non-3DS authorization request flow
 
 <img src="/docs/Risk Management/Non-3DS-authorization.png" alt="Non-3DS authorization" withFullscreenPreview />
 
 If you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer does not require 3DS authorization for the transaction, the payment will complete successfully.
 
-### Non-3DS authorization request flow with soft decline
+#### Non-3DS authorization request flow with soft decline
 
 <img src="/docs/Risk Management/Non-3DS-authorization-with-soft-decline.png" alt="Non-3DS authorization with soft decline" withFullscreenPreview />
 
@@ -265,7 +265,7 @@ If, however, you make a payment request without the `3ds` object, or with `"3ds.
 
 ---
 
-## Handling non-enrolled cards
+### Handling non-enrolled cards
 
 To handle cases where the customer's card is not enrolled for any version of 3DS, you can set the `attempt_n3d` field to `true` (see the example request below) to downgrade the transaction to non-3DS. This means that if the customer's bank does not support 3DS, we will automatically attempt to process the payment without 3DS authentication instead.
 

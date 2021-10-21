@@ -23,9 +23,9 @@ No payments from before February 7th, 2019 at 00.00.00 UTC will appear when usin
 
 </TipBox>
 
-## Request JSON
+### Request JSON
 
-### The GET request
+#### The GET request
 
 Use the details below to set up your request. To set the timeframe of your request, replace `{start-date-time}` and `{end-date-time}` with your desired start and end dates in ISO format (`yyyy-mm-ddThh:mm:ss`). Please note that the time zone for the request will be UTC.
 
@@ -101,7 +101,7 @@ https://api.checkout.com/reporting/payments?reference={reference}
 
 You can also [limit results](https://docs.checkout.com/reporting-and-insights/reconciliation-api/payments-endpoint#Paymentsendpoint-limitresults).
 
-### The GET response
+#### The GET response
 
 If the payments endpoint returns a response, then the request was successful. Below, you can find an example response from the payments endpoint, in addition to a list of the fields that will be shown.
 
@@ -330,7 +330,7 @@ By default, the payments endpoint returns up to 200 payments per page of results
 }
 ```
 
-### Understanding the response
+#### Understanding the response
 
 The payments endpoint is designed to present your payments as clearly as possible. Depending on your parameters, you may receive a large response. If you’re looking for data even more quickly, try amending the parameters in the request. Regardless of the parameters in your request, the payments endpoint’s response can be split into four sections, each of which is outlined below.
 
@@ -676,11 +676,11 @@ This link provides the URL associated with the current request.
 
 ---
 
-## Download a CSV
+### Download a CSV
 
 In addition to the JSON format described above, you can download a CSV report containing the data from the payments endpoint. To do this, follow the steps below.
 
-### How to download the CSV file
+#### How to download the CSV file
 
 In the URL for the payments endpoint, add `/download` after `/payments`. An example of this can be found below:
 
@@ -702,7 +702,7 @@ You can also get a CSV report by amending the Headers section of the request to 
 
 </TipBox>
 
-### How to read the CSV file
+#### How to read the CSV file
 
 In your CSV file, a single payment is uniquely identified by an ID in the first column of the table and will be made of multiple rows, each of them reflecting a fee or an amount applied to a different action within the payment lifecycle.
 
@@ -728,7 +728,7 @@ This section provides details of the associated amounts to an action in both the
 
 ---
 
-## Limit results
+### Limit results
 
 Responses from the payments endpoint can be large, depending on the number of payments you process and the parameters you have chosen. By default, each page includes 200 results.
 

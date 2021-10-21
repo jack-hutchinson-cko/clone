@@ -1,4 +1,4 @@
----
+--- 
 title: PrestaShop
 account: ABC
 ---
@@ -13,7 +13,7 @@ This guide assumes that you have already installed PrestaShop.
 
 ---
 
-## Supported features
+### Supported features
 
 * Manual capture
 * Using [the Hub](/the-hub) for: 
@@ -28,13 +28,13 @@ This guide assumes that you have already installed PrestaShop.
 * Notification (webhooks) for payment flow management
 * Dynamic descriptors
 
-## Before you start
+### Before you start
 
-### Create a test account
+#### Create a test account
 
 If you haven't already, [create a test Checkout.com account](https://www.checkout.com/get-test-account).
 
-### Get your API keys
+#### Get your API keys
 
 In order to set up the PrestaShop plugin, you'll need two API keys: one secret and another public, both of which are generated automatically when you create your account.
 
@@ -43,7 +43,7 @@ In order to set up the PrestaShop plugin, you'll need two API keys: one secret a
 
 <img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" withFullscreenPreview />
 
-### Configure webhooks
+#### Configure webhooks
 
 You also need to configure webhooks for PrestaShop. Correctly configuring them is important; if your webhooks are incorrectly formatted, the plugin will not work.
 
@@ -68,14 +68,14 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 
 ---
 
-## Installing the plugin
+### Installing the plugin
 
 There are two ways to install the plugin:
 
 - [Using PrestaShop Module Manager](#Using_PrestaShop_Module_Manager)
 - [Using a Composer](#Using_composer)
 
-### Using PrestaShop Module Manager
+#### Using PrestaShop Module Manager
 
 <TipBox variant="note">
 
@@ -88,7 +88,7 @@ If you use this method, please contact our Support team at [support@checkout.co
 3.  If successful, you'll get a `Module installed!` message.
 4.  Select _Configure_ to start setting up the plugin.
 
-### Using composer
+#### Using composer
 
 1.  [Download the plugin from GitHub](https://github.com/checkout/checkout-prestashop1.7-plugin).
 2.  Unzip the folder.
@@ -101,7 +101,7 @@ You're now ready to configure the PrestaShop plugin.
 
 ---
 
-## Configure the Checkout.com for PrestaShop plugin
+### Configure the Checkout.com for PrestaShop plugin
 
 1.  Log in to your PrestaShop admin dashboard, go to _Modules > Module Manager_ and find the Checkout.com plugin.
 2.  Select _Configure_.
@@ -125,7 +125,7 @@ That's it! You're ready to start testing card payments.
 
 ---
 
-## Test your integration
+### Test your integration
 
 1.  Go to your storefront and add a product to your cart.
 2.  Go to your cart and proceed to the checkout.
@@ -156,7 +156,7 @@ You'll find more test cards and a range of scenarios to trigger in our [testing
 
 ---
 
-## Go live
+### Go live
 
 If you're happy with the outcome of your testing and want to start taking payments right away, please [contact our Sales team](https://checkout.com/contact-sales) in order to move to a live account.
 
@@ -172,6 +172,6 @@ Before you go live, remember to:
 
 ---
 
-## Extend your configuration
+### Extend your configuration
 
 You can extend your configuration to [add more payment methods](/payments/payment-methods), use [3D Secure payments](/risk-management/3-d-secure), and more.

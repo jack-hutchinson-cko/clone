@@ -4,6 +4,7 @@ import { Link as PrimitiveLink } from '@cko/primitives';
 export const BlockLink = styled(PrimitiveLink)`
   cursor: pointer;
   font-size: 14px;
+  line-height: 24px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.base};
   & svg {

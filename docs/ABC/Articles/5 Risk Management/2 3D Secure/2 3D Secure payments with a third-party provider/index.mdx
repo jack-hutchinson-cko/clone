@@ -7,7 +7,7 @@ To benefit from a streamlined integration process, we recommend using Checkout.c
 
 ---
 
-## The request
+### The request
 
 Use the details below to set up your request.
 
@@ -133,7 +133,7 @@ The Electronic Commerce Indicator security level associated with the token. Requ
 
 <InfoBox>
 
-For more information, see [stored card details](/display/DOCS/Requirements+for+stored+payment+details).
+For more information, see [stored card details](/payments/store-payment-details/requirements-for-stored-payment-details).
 
 </InfoBox>
 </TableCell>
@@ -152,7 +152,7 @@ Base-64 cryptographic identifier used by card schemes to validate the token veri
 
 <InfoBox>
 
-For more information, see [stored card details](/display/DOCS/Requirements+for+stored+payment+details).
+For more information, see [stored card details](/payments/store-payment-details/requirements-for-stored-payment-details).
 
 </InfoBox>
 </TableCell>
@@ -189,7 +189,7 @@ Indicates the version of 3D Secure used for authentication. Defaults to `1.0.0` 
 </TableBody>
 </Table>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -213,7 +213,7 @@ Indicates the version of 3D Secure used for authentication. Defaults to `1.0.0` 
 
 ---
 
-## The response
+### The response
 
 If the `approved` field is `true`, your authorization was successful. If unsuccessful, the card used for the payment may be invalid/expired or the account has an insufficient available balance.
 

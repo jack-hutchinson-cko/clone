@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { createBreakpointTo, SIZE } from 'constants/screen';
 
 export const MainWrapper = styled.div`
   position: relative;
@@ -22,11 +23,15 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const SideBarWrapper = styled.div`
+export const SideBarWrapper = styled.aside`
   width: 300px;
   flex-grow: 0;
   min-width: 300px;
   padding: 32px 0 32px 64px;
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    display: none;
+  }
 `;
 
 export const Content = styled.main`

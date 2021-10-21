@@ -1,20 +1,17 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { createBreakpointTo, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
-export const Container = styled.div<{ isMobile?: boolean }>`
+export const Container = styled.div<{ withMobileSize?: boolean }>`
   box-shadow: ${({ theme }) => theme.shadows.itemHolder};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  font-size: 16px;
+  line-height: 24px;
+  width: 420px;
 
-  ${({ isMobile }) =>
-    isMobile
-      ? css`
-          width: 100%;
-          font-size: 18px;
-          line-height: 24px;
-        `
-      : css`
-          width: 420px;
-          font-size: 14px;
-          line-height: 24px;
-        `}
+  @media ${createBreakpointTo(SIZE.M)} {
+    ${({ withMobileSize }) => (withMobileSize ? 'width: 100%;' : '')}
+  }
 `;
 export const Content = styled.ul`
   display: flex;
@@ -22,8 +19,12 @@ export const Content = styled.ul`
   gap: 16px;
   width: 100%;
   margin: 0;
-  padding: 32px;
+  padding: ${spacing.s60}px;
   background-color: ${({ theme }) => theme.colors.background};
+
+  @media ${createBreakpointTo(SIZE.M)} {
+    padding: ${spacing.s50}px;
+  }
 `;
 
 export const Footer = styled(Content)`

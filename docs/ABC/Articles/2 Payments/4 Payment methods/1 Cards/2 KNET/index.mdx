@@ -13,7 +13,7 @@ Start accepting payments using KNET debit cards, the leading payment method in K
 
 ---
 
-## Overview
+### Overview
 
 KNET payments follow a two-step process:
 
@@ -22,9 +22,9 @@ KNET payments follow a two-step process:
 
 ---
 
-## Request a payment
+### Request a payment
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/).
 
@@ -51,7 +51,7 @@ When sending a payment request that includes `source.card_token`, the option to 
 
 </TipBox>
 
-### Request example
+#### Request example
 
 ```json
     {
@@ -69,7 +69,7 @@ When sending a payment request that includes `source.card_token`, the option to 
     }
 ```
 
-### Response example
+#### Response example
 
 If you receive a `202 Success` response containing a `status` field set to `Pending`, your request was successful.
 
@@ -93,19 +93,19 @@ If you receive a `202 Success` response containing a `status` field set to `Pend
 
 ---
 
-## Redirect the customer
+### Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the response. This will allow the customer to authorize the payment, before they are transferred to your predefined success or failure URL.
 
 ---
 
-## Get details about a payment
+### Get details about a payment
 
 You can retrieve details about an existing KNET payment with the following endpoint.
 
 Use the details below to set up your request.
 
-### Endpoints
+#### Endpoints
 
 For the full API specification, see the [API reference](https://api-reference.checkout.com/).
 
@@ -127,7 +127,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-### Response example
+#### Response example
 
 ```json
     {
@@ -173,7 +173,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 ---
 
-## Refund a payment
+### Refund a payment
 
 KNET supports full, partial and multiple partial refunds. Refund a payment through the [Hub](https://hub.checkout.com/v2) or by using our [refund API](/payments/manage-payments/refund-a-payment).
 
@@ -185,7 +185,7 @@ Before you can refund KNET payments, you need to contact your bank and ask them 
 
 ---
 
-## Cancel a payment
+### Cancel a payment
 
 If, after landing on the KNET payment page, the customer attempts to complete the payment after seven minutes, we will automatically void the payment and send a `payment_expired` webhook.
 
@@ -193,7 +193,7 @@ If the customer cancels their payment, we will send a `payment_canceled` webhook
 
 ---
 
-## Testing KNET
+### Testing KNET
 
 <TipBox variant="note">
 
@@ -208,6 +208,6 @@ To start testing, you'll need to:
 2.  Enter the following details:
 1.  Select your bank: Knet Test Card \[KNET1\]
 2.  Card number:  `888888 000 000 000 1`
-3.  Expiration date: `09 | 2021`
+3.  Expiration date: `09 | 2025`
 4.  PIN: `1234`
 3.  Select _Submit_ and then _Confirm_. You should then be redirected to your predefined success URL.

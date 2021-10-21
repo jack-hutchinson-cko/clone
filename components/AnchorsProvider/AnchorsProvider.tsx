@@ -1,13 +1,6 @@
 import { useRouter } from 'next/router';
 import { FC, useState, useEffect } from 'react';
-import { useMatchMedia } from '@cko/primitives';
-import { Breakpoints } from 'constants/screen';
 import AnchorsContext, { Props as ContextProps } from './AnchorsContext';
-
-enum Offset {
-  DESKTOP = 100,
-  MOBILE = 180,
-}
 
 type Props = {
   areaHeight?: number;
@@ -37,7 +30,6 @@ const findAnchorHash = () => {
 const AnchorsProvider: FC<Props> = ({ children }) => {
   const router = useRouter();
   const [selectedHref, setSelectedHref] = useState('');
-  const isMobile = useMatchMedia(Breakpoints.MOBILE);
 
   useEffect(() => {
     const onScrollHandler = () => {
@@ -49,8 +41,8 @@ const AnchorsProvider: FC<Props> = ({ children }) => {
       }
     };
 
-    document.addEventListener('scroll', onScrollHandler);
-    return () => document.removeEventListener('scroll', onScrollHandler);
+    document.addEventListener('mousewheel', onScrollHandler);
+    return () => document.removeEventListener('mousewheel', onScrollHandler);
   }, []);
 
   useEffect(() => {
@@ -61,7 +53,6 @@ const AnchorsProvider: FC<Props> = ({ children }) => {
 
   const props: ContextProps = {
     selectedHref,
-    offsetTop: isMobile ? Offset.MOBILE : Offset.DESKTOP,
   };
 
   return <AnchorsContext.Provider value={props}>{children}</AnchorsContext.Provider>;

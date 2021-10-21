@@ -1,4 +1,4 @@
----
+--- 
 title: Frames reference
 account: ABC
 ---
@@ -7,7 +7,7 @@ Our Frames reference is here to help you find those hard-to-find bits of informa
 
 ---
 
-## Supported browsers
+### Supported browsers
 
 Frames is a critical payment service, which requires up-to-date security. For this reason, we support all major browsers that are still officially maintained and receiving security updates.
 
@@ -20,11 +20,11 @@ If you discover any issues with the supported browsers, or would like to report 
 
 ---
 
-## Configuration options
+### Configuration options
 
 Here's a complete list of Frames configuration options.
 
-## Required
+### Required
 
 <TipBox variant="info">
 
@@ -56,7 +56,7 @@ You can find it in the [Hub](https://hub.checkout.com/login).
 </TableBody>
 </Table>
 
-## Optional
+### Optional
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -151,7 +151,7 @@ Allows you to customize the look and feel of Frames' controlled fields. Refer to
 
 --- 
 
-## Hide the CVV field
+### Hide the CVV field
 
 When paying out to a card, the [CVV field](/risk-management/cvv-check) is not mandatory, so you can initialize Frames with `CVV_HIDDEN` **or** `CVV_OPTIONAL`. 
 
@@ -188,7 +188,7 @@ Please note that either the `CVV_HIDDEN` or `CVV_OPTIONAL` can be used. You cann
 
 </TipBox>
 
-### Additional security
+#### Additional security
 
 To prevent copy pasting of card details within the iframe, you can use `DISABLE_COPY_PASTE`.
 
@@ -201,7 +201,7 @@ Frames.init({
 
 ---
 
-## Customer details
+### Customer details
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -277,7 +277,7 @@ none
 </TableBody>
 </Table>
 
-## Localization options
+### Localization options
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -312,7 +312,7 @@ The available options are:
 </TableBody>
 </Table>
 
-## Events
+### Events
 
 <Table>
 <TableHead headers={['Event name', 'Javascript constant', 'Description']} />
@@ -512,21 +512,21 @@ Triggered if the card tokenization fails.
 </TableBody>
 </Table>
 
-## Adding an event handler
+### Adding an event handler
 
 There are two ways to add an event handler: using the standard approach or using configuration options.
 
 <tabs>
 <tab title="Method 1: Standard approach">
 
-```javascript withBorder=false
+```javascript
 Frames.addEventHandler(Frames.Events., handler);
 ```
 
 </tab>
 <tab title="Method 2: Configuration options">
 
-```javascript withBorder=false
+```javascript
 Frames.init({
   publicKey: 'pk_test_6ff46046-30af-41d9-bf58-929022d2cd14',
   : handler
@@ -538,7 +538,7 @@ Frames.init({
 
 ---
 
-## Actions
+### Actions
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -644,7 +644,7 @@ e`vent: Events.CARD_TOKENIZED handler: function(event){}`
 <TableRow>
 <TableCell>
 
-`paymentMethodChremoveAllEventHandlers(event)`
+<inlineCode wordBreak="break-word">paymentMethodChremoveAllEventHandlers(event)</inlineCode>
 
 </TableCell>
 <TableCell>
@@ -682,7 +682,7 @@ Retains the entered card details and allows you to resubmit the payment form.
 
 ---
 
-## Functions
+### Functions
 
 <Table>
 <TableHead headers={['Getter', 'Setter', 'Description']} />
@@ -817,9 +817,9 @@ Returns the configuration of Frames.
 
 ---
 
-## Examples
+### Examples
 
-### Using the submitCard Promise
+#### Using the submitCard Promise
 
 This example uses a JavaScript Promise to tokenize a customer's payment details. The card token will be posted via the URL specified in the form's `action` attribute.
 
@@ -868,7 +868,7 @@ This example uses a JavaScript Promise to tokenize a customer's payment details.
 </body>
 ```
 
-### Using the cardTokenized handler
+#### Using the cardTokenized handler
 
 This example uses cardTokenized handler to gain a payment token for your customers' card details.
 
@@ -919,7 +919,7 @@ This example uses cardTokenized handler to gain a payment token for your custome
 </body>
 ```
 
-### Loading Frames asynchronously
+#### Loading Frames asynchronously
 
 If you load Frames asynchronously, you can change the namespace to a name other than `Frames`. The example below uses `Checkout` as the namespace.
 
@@ -981,7 +981,7 @@ Use `window.CKOConfig` to change the namespace, or to load Frames asynchronously
 
 </body>
 ```
-### Including billing details
+#### Including billing details
 
 Use cardholder and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.
 

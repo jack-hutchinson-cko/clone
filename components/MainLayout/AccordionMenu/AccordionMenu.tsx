@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ChangelogCounter } from 'components/ChangelogComponents';
+import { WhatsNewCounter } from 'components/WhatsNewComponents';
 import { NavTreeElement } from 'types/navTree';
 import NavigationTreeMenu, { NavigationTree } from 'components/NavigationTreeMenu';
 import ListItemLink from '../ListMenu/ListItemLink';
@@ -11,35 +11,37 @@ export type Props = {
   docsTreeLinks: NavTreeElement[];
 };
 
-const AccordionMenu: FC<Props> = ({ docsTreeLinks, activeLink }) => (
-  <NavigationTreeMenu isMobile>
-    <AccordionItem
-      isRoot
-      link={
-        <>
-          <ListItemLink href="/changelog" isActive={activeLink === '/changelog'}>
-            Changelog
+const AccordionMenu: FC<Props> = ({ docsTreeLinks, activeLink }) => {
+  return (
+    <NavigationTreeMenu isMobile>
+      <AccordionItem
+        isRoot
+        link={
+          <>
+            <ListItemLink href="/whats-new" isActive={activeLink === '/whats-new'}>
+              What&#39;s New
+            </ListItemLink>
+            <WhatsNewCounter />
+          </>
+        }
+      />
+      <AccordionItem
+        isRoot
+        link={
+          <ListItemLink href="/" isActive={activeLink === '/'}>
+            Home
           </ListItemLink>
-          <ChangelogCounter />
-        </>
-      }
-    />
-    <AccordionItem
-      isRoot
-      link={
-        <ListItemLink href="/" isActive={activeLink === '/'}>
-          Home
-        </ListItemLink>
-      }
-    />
-    <NavigationTree
-      docsTreeLinks={docsTreeLinks}
-      activeLink={activeLink}
-      NavSection={AccordionSection}
-      NavItem={AccordionItem}
-      NavLink={ListItemLink}
-    />
-  </NavigationTreeMenu>
-);
+        }
+      />
+      <NavigationTree
+        docsTreeLinks={docsTreeLinks}
+        activeLink={activeLink}
+        NavSection={AccordionSection}
+        NavItem={AccordionItem}
+        NavLink={ListItemLink}
+      />
+    </NavigationTreeMenu>
+  );
+};
 
 export default AccordionMenu;

@@ -23,9 +23,9 @@ No payments before February 7th, 2019 at 00.00.00 UTC will appear using the stat
 
 </TipBox>
 
-## Request a statement
+### Request a statement
 
-### The GET request
+#### The GET request
 
 Use the details below to set up your request. To set the timeframe of your request, replace `{start-date}` and `{end-date}` with your desired start and end dates in ISO format. Please note that the time zone for the request will be UTC. The response will be returned in JSON format – but you can also [download a CSV copy](https://docs.checkout.com/reporting-and-insights/reconciliation-api/statements-endpoint#Statementsendpoint-csvdownload) if you'd like.
 
@@ -83,7 +83,7 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 
 ---
 
-### The GET response
+#### The GET response
 
 If your summary is returned, the request was successful.
 
@@ -133,7 +133,7 @@ If your summary is returned, the request was successful.
 }
 ```
 
-### Understanding the response
+#### Understanding the response
 
 The response is designed to present your information as clearly as possible.
 
@@ -333,9 +333,9 @@ This is a direct link to the response associated with the submitted request.
 }
 ```
 
-## Extensions
+### Extensions
 
-### 1. Payout breakdown
+#### 1. Payout breakdown
 
 You can break down the detail even further by using the `payout_breakdown` field. This will provide all totals from each section of the statement.
 
@@ -420,7 +420,7 @@ The initial structure of your response will be the same as described above. Howe
 }
 ```
 
-### 2. Statement ID / Payments
+#### 2. Statement ID / Payments
 
 This extension allows you to link payments to statements and payouts. You can retrieve the list of payments and associated fees included in a given statement or payout that has been deposited into your bank account, or tied to a specific payout currency.
 
@@ -498,13 +498,13 @@ The payout currency must be given in the 3-letter ISO format (e.g., GBP).
 
 ---
 
-## CSV download
+### CSV download
 
 In addition to the JSON format described above, you can download a CSV report containing data from the statements endpoint.
 
 If you are using Postman or an equivalent application, rather than sending the GET request, use the **Send and Download** functionality to download the CSV report.
 
-### Statements endpoint
+#### Statements endpoint
 
 #### Statement only
 

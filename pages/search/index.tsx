@@ -1,18 +1,23 @@
 import { useState, useEffect, FC } from 'react';
 import algoliasearch from 'algoliasearch/lite';
 import { useRouter } from 'next/router';
-import { InstantSearch } from 'react-instantsearch-dom';
+import { GetStaticProps } from 'next';
+import { InstantSearch, Configure } from 'react-instantsearch-dom';
 import { DocsHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'components/Search';
 import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
 import { clientSettings } from 'constants/clientSettings';
 import { HitMode, QueryType } from 'types/search';
 import { PageContent } from 'styles/index.styles';
+import useFilterSettings from 'hooks/useFilterSettings';
+import { getDocsSidebarDocLinks } from 'lib/fileParser';
+import withMainLayout from 'hoc/withMainLayout';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
 
 const SearchPage: FC = () => {
   const router = useRouter();
   const [searchState, setSearchState] = useState<QueryType>(router.query as QueryType);
+  const { filterSettings } = useFilterSettings();
 
   useEffect(() => {
     setSearchState(router.query as QueryType);
@@ -25,6 +30,7 @@ const SearchPage: FC = () => {
         searchClient={searchClient}
         indexName={clientSettings.searchIndexName}
       >
+        <Configure filters={filterSettings} />
         <SearchResultHeader
           searchResult={searchState.query || ''}
           currentPage={Number(searchState.page) || 1}
@@ -37,4 +43,14 @@ const SearchPage: FC = () => {
   );
 };
 
-export default SearchPage;
+export const getStaticProps: GetStaticProps = async () => {
+  const sidebarDocLinks = getDocsSidebarDocLinks();
+
+  return {
+    props: {
+      sidebarDocLinks,
+    },
+  };
+};
+
+export default withMainLayout(SearchPage);

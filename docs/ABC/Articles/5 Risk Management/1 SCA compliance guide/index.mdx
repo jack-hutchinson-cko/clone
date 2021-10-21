@@ -35,7 +35,7 @@ The `3ds.challenge_indicator` field is not yet live.
 
 ---
 
-## What is Strong Customer Authentication?
+### What is Strong Customer Authentication?
 
 SCA is a sort of multi-factor authentication, verifying the identity of the cardholder and increasing the security of online payments. The customer has to provide at least two of the following three elements to satisfy it:
 
@@ -71,7 +71,7 @@ Some issuing banks have started soft declining payments that are not SCA-ready (
 
 ---
 
-## Out-of-scope transactions
+### Out-of-scope transactions
 
 Some transactions fall outside the scope of SCA, meaning they do not require strong authentication.
 
@@ -81,7 +81,7 @@ Scheduled and unscheduled merchant-initiated transactions (MITs) of a fixed or v
 
 However, you will need to perform SCA when the card is saved or when the first payment in a series is made by the cardholder. You also need to get an agreement from the customer to charge their card at a later date.
 
-In addition, you must include additional parameters in your payment request to clearly identify such transactions as merchant-initiated. Learn more in our [stored card details guide](/display/DOCS/Requirements+for+stored+payment+details).
+In addition, you must include additional parameters in your payment request to clearly identify such transactions as merchant-initiated. Learn more in our [stored card details guide](/payments/store-payment-details/requirements-for-stored-payment-details).
 
 #### MOTO payments
 
@@ -97,7 +97,7 @@ If a customer uses an anonymous prepaid card, like a gift card, they do not need
 
 ---
 
-## Possible SCA exemptions
+### Possible SCA exemptions
 
 For transactions that are in scope of SCA, you can request exemptions from strong authentication if the transactions meet certain criteria.
 
@@ -203,7 +203,7 @@ Corporate payments made with virtual and lodge cards (typically used for busines
 
 ---
 
-## How to comply with SCA
+### How to comply with SCA
 
 #### 3D Secure authentication
 
@@ -229,12 +229,12 @@ Use our [3D Secure API integration](#SCAcomplianceguide-3dssolution) to implemen
 
 Digital wallets and some local European payment methods should also support SCA:
 
-*   Card-based digital wallets like [Apple Pay](/display/DOCS/Apple+Pay) and [Google Pay](/display/DOCS/Google+Pay) have multi-factor authentication built in to their payment flows, offering a frictionless checkout experience that supports SCA.
-*   Many common European payment methods, like [Bancontact](/display/DOCS/Bancontact), [iDEAL](/display/DOCS/iDEAL), and [Multibanco](/display/DOCS/Multibanco), should also follow the SCA requirements.
+*   Card-based digital wallets like [Apple Pay](/payments/payment-methods/wallets/Apple+Pay) and [Google Pay](/payments/payment-methods/wallets/Google+Pay) have multi-factor authentication built in to their payment flows, offering a frictionless checkout experience that supports SCA.
+*   Many common European payment methods, like [Bancontact](/payments/payment-methods/cards/Bancontact), [iDEAL](/payments/payment-methods/bank-transfers/iDEAL), and [Multibanco](/payments/payment-methods/cash-and-atm-payment/multibanco), should also follow the SCA requirements.
 
 ---
 
-## Business scenarios
+### Business scenarios
 
 To show the impact of strong authentication, we’ve outlined below how it affects different business models and transactions.
 
@@ -278,7 +278,7 @@ Yes, unless [exemptions](#SCAcomplianceguide-exemptions) apply.
 
 `"3ds.enabled": true` or `"3ds.exemption"`
 
-And, if using our [full card API](/display/DOCS/Full+card+details+API):
+And, if using our [full card API](/integrate/full-card-details-api):
 
 `"source.stored": true`
 
@@ -292,7 +292,7 @@ Subscriptions
 </TableCell>
 <TableCell>
 
-The first transaction that starts the subscription. This could be a [zero-dollar authorization/card verification](/display/DOCS/Card+verification).
+The first transaction that starts the subscription. This could be a [zero-dollar authorization/card verification](/risk-management/card-verification).
 
 </TableCell>
 <TableCell>
@@ -341,7 +341,7 @@ Unscheduled MITs, like automatic account top-ups
 </TableCell>
 <TableCell>
 
-The first transaction where the customer agrees to the terms and conditions of subsequent payments. This could be a [zero-dollar authorization/card verification](/display/DOCS/Card+verification).
+The first transaction where the customer agrees to the terms and conditions of subsequent payments. This could be a [zero-dollar authorization/card verification](/risk-management/card-verification).
 
 </TableCell>
 <TableCell>
@@ -374,7 +374,7 @@ No. These qualify as [MITs](#SCAcomplianceguide-mits), which are out of scope.
 
 `"previous_payment_id"`
 
-And, if using our [full card API](/display/DOCS/Full+card+details+API):
+And, if using our [full card API](/integrate/full-card-details-api):
 
 `"source.stored": true`
 
@@ -470,16 +470,16 @@ Yes. However, you can flag such transactions as [MOTO payments](#SCAcompliancegu
 
 <TipBox variant="info">
 
-For more details about the additional parameters required for payments using saved cards, see our [stored card details guide](/display/DOCS/Requirements+for+stored+payment+details).
+For more details about the additional parameters required for payments using saved cards, see our [stored card details guide](/payments/store-payment-details/requirements-for-stored-payment-details).
 
 </TipBox>
 
 
 ---
 
-## Implement 3DS with our Payments API
+### Implement 3DS with our Payments API
 
-To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/display/DOCS/3D+Secure+2+API+integration) for more details.
+To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3d-secure/3d-secure-2-api-integration) for more details.
 
 <TipBox variant="note">
 
@@ -573,7 +573,7 @@ If the customer's bank denies your exemption request, you'll receive a soft decl
 <tabs>
 <tab title="3DS challenge request" active>
 
-```json withBorder=false
+```json
     {
       "source": {
         "type": "token",
@@ -591,7 +591,7 @@ If the customer's bank denies your exemption request, you'll receive a soft decl
 </tab>
 <tab title="Exemption request">
 
-```json withBorder=false
+```json
   {
     "source": {
       "type": "token",

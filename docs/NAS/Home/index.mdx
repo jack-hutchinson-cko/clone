@@ -6,64 +6,37 @@ account: NAS
 ---
 
 
-<CardWrapper cardsInRow={{ desktop: 2, mobile: 1 }} gap={20}>
+<CardWrapper cardsInRow={{ desktop: 2, mobile: 1 }} gap={48}>
 
-<Box>
-
-<img src="/NAS/Homepage/Payments.svg" />
-
-<TextWrapper headerType="h3">Payments</TextWrapper>
+<HomePageItem 
+  title="Payments"
+  imgSrc="/NAS/Homepage/Payments.svg"
+  links={[{title: 'Card payments', href: '/payments'}, {title: 'Marketplace', href: '/marketplaces'}]}
+  >
 
 Accept online payments, create a marketplace, and process payments on behalf of your sub-entities.
 
-<Box vertical="xsm">
-<ArrowLink href="/payments" title="Card payments" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/marketplaces" title="Marketplace" />
-</Box>
+</HomePageItem>
 
-</Box>
-
-<Box>
-
-<img src="/NAS/Homepage/Dashboard.svg" />
-
-<TextWrapper headerType="h3">Dashboard</TextWrapper>
+<HomePageItem 
+  title="Dashboard"
+  imgSrc="/NAS/Homepage/Dashboard.svg"
+  links={[{title: 'Manage payments', href: '/dashboard/track-and-manage-payments'}, {title: 'Generate reports', href: '/dashboard/generate-reports'}, {title: 'View analytics', href: '/dashboard/analytics'}]}
+  >
 
 Authenticate a transaction with 3D Secure before completing the payment through our payment gateway.
 
-<Box vertical="xsm">
-<ArrowLink href="/dashboard/track-and-manage-payments" title="Manage payments" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/dashboard/generate-reports" title="Generate reports" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/dashboard/analytics" title="View analytics" />
-</Box>
+</HomePageItem>
 
-</Box>
-
-<Box>
-
-<img src="/NAS/Homepage/disputes.svg" />
-
-<TextWrapper headerType="h3">Disputes</TextWrapper>
+<HomePageItem 
+  title="Disputes"
+  imgSrc="/NAS/Homepage/disputes.svg"
+  links={[{title: 'Manage disputes via API', href: '/risk-management/disputes/disputes-api'}, {title: 'Manage disputes via Dashboard', href: '/dashboard/manage-disputes'}, {title: 'Upload evidence', href: '/risk-management/disputes/file-uploader'}]}
+  >
 
 Track and respond to chargebacks via our APIs or the Dashboard.
 
-<Box vertical="xsm">
-<ArrowLink href="/risk-management/disputes/disputes-api" title="Manage disputes via API" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/dashboard/manage-disputes" title="Manage disputes via Dashboard" />
-</Box>
-<Box vertical="xsm">
-<ArrowLink href="/risk-management/disputes/file-uploader" title="Upload evidence" />
-</Box>
-
-</Box>
+</HomePageItem>
 
 </CardWrapper>
 

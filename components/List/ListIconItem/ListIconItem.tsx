@@ -1,17 +1,12 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
-import Tic from 'components/Tic';
-import { ListIconItemType } from '../types';
+import { IconListCheck } from 'components/Icons';
 import { ListIconItem as Wrapper } from './ListIconItem.styles';
 
-type Props = {
-  type?: ListIconItemType;
-};
-
-const ListIconItem: FC<Props> = ({ type = 'check', children, ...props }) => {
+const ListIconItem: FC = ({ children, ...props }) => {
   return (
-    <Wrapper type={type} {...props}>
-      <Tic type={type} />
+    <Wrapper {...props}>
+      <IconListCheck />
       {children}
     </Wrapper>
   );

@@ -1,4 +1,4 @@
----
+--- 
 title: Go further with PrestaShop
 account: ABC
 ---
@@ -14,7 +14,7 @@ In this guide, you'll find how to:
 
 ---
 
-## Add more payment methods
+### Add more payment methods
 
 <TipBox variant="note">
 
@@ -41,7 +41,7 @@ We currently support the following payment methods on PrestaShop:
 - [SEPA Direct Debit](/payments/payment-methods/direct-debit/sepa-direct-debit)
 - [Sofort](/payments/payment-methods/bank-transfers/sofort)
 
-### Enable alternative payments
+#### Enable alternative payments
 
 1.  Log in to your PrestaShop admin dashboard, and go to _Modules > Modules Manager_.
 2.  Find the Checkout.com plugin, select _Configure_ and go to _Alternative payments_.
@@ -56,7 +56,7 @@ We currently support the following payment methods on PrestaShop:
 
 4.  Select _Save_.
 
-### Google Pay
+#### Google Pay
 
 1.  Log in to your PrestaShop admin dashboard, and go to _Modules > Modules Manager_.
 2.  Find the Checkout.com plugin, select _Configure_ and go to _Google Pay_.
@@ -67,7 +67,7 @@ We currently support the following payment methods on PrestaShop:
 
 ---
 
-## Enable 3D Secure payments
+### Enable 3D Secure payments
 
 1.  Sign in to your PrestaShop admin dashboard, and go to _Modules > Modules Manager_.
 2.  Find the Checkout.com plugin, select _Configure_ and go to _Card payments_.
@@ -77,16 +77,16 @@ We currently support the following payment methods on PrestaShop:
 
 ---
 
-## Card payment options
+### Card payment options
 
-### Manually capture payments
+#### Manually capture payments
 
 1.  Log in to your PrestaShop admin dashboard, and go to _Modules > Modules Manager_.
 2.  Find the Checkout.com plugin, and select _Configure_.
 3.  Set _Payment Action_ to _Authorize_. This will only authorize the charge; you will now have to manually capture the payment yourself.
 4.  Select _Save_.
 
-### Delay payment capture
+#### Delay payment capture
 
 1.  Sign in to your PrestaShop admin dashboard, and go to _Modules > Modules Manager_.
 2.  Find the Checkout.com plugin, and select _Configure_.
@@ -94,7 +94,7 @@ We currently support the following payment methods on PrestaShop:
 4.  Specify the _Capture Time_. By default, this is blank, meaning the charge will be authorized and captured at the same time. If you want to delay the payment's capture, you can set the period of delay (in hours) here (e.g., `1` = payment captured after one hour; `1.5` = payment captured after one hour and 30 minutes).
 5.  Select _Save_.
 
-### Enable dynamic descriptor
+#### Enable dynamic descriptor
 
 This is an extra field that you can send to the issuer, appearing on the customer's bank statement as an additional description of the payment.
 
@@ -105,7 +105,7 @@ This is an extra field that you can send to the issuer, appearing on the custome
 5.  Specify your _Descriptor City_. This is the second line of the descriptor, usually the city of your merchant address.
 6.  Select _Save_.
 
-### Enable saved cards
+#### Enable saved cards
 
 This setting allows your customers to save their cards for future payments. They can then use the same card on your website without re-entering the details.
 
@@ -114,7 +114,7 @@ This setting allows your customers to save their cards for future payments. They
 3.  Set _Save Card Option_ to _Yes_.
 4.  Select _Save_.
 
-### Enable Mada BIN check
+#### Enable Mada BIN check
 
 Mada is a local card scheme in Saudi Arabia. When enabled, we check the card's BIN to see if the customer is using a Mada card, and then apply the necessary configuration before sending the payment request.
 
@@ -127,7 +127,7 @@ Take a look at our [Mada guide](/payments/payment-methods/cards/mada) to find 
 
 ---
 
-## Order statuses
+### Order statuses
 
 These settings allow you edit the order statuses in line with the status of the payment. But they are automatically set to PrestaShop's default values, so it's unlikely you will need to edit them.
 

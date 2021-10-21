@@ -1,0 +1,97 @@
+---
+title: Get payout actions
+account: NAS
+description: View the actions associated with a specific payout.
+---
+
+Find out all you need to know about history of a payout. This API provides details about each step of the payout lifecycle. To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
+
+---
+
+Use the details below to set up your request.
+
+#### Endpoints
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/payments/{id}/actions`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/payments/{id}/actions`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Response example
+
+If successful, you should get a `200 Success` response returning a list of data relating to the payout.
+
+```json
+[
+  {
+    "id": "act_cvrbczl5llgehjzjqdupeezwt4",
+    "type": "Return",
+    "processed_on": "2020-06-12T13:49:19.145592Z",
+    "amount": 1000,
+    "approved": true,
+    "response_code": "30046",
+    "response_summary": "Bank Account Closed"
+  },
+  {
+    "id": "act_rhpascoezcwuxbez3qhsbtgpd4",
+    "type": "Payout",
+    "processed_on": "2020-06-12T13:49:19.1050138Z",
+    "amount": 1000,
+    "approved": true,
+    "response_code": "10000",
+    "response_summary": "Approved"
+  }
+]
+```
+
+<TipBox variant="info">
+
+If unsuccessful, you may get a `404 – Payment not found` error.
+
+</TipBox>
+
+
+#### Payout actions
+
+The table below outlines the different payout actions and their meanings.
+
+<Table>
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Payout`
+
+</TableCell>
+<TableCell>
+
+The payout request was processed successfully. To check whether the payout itself was successful, check the `approved` field in the response.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Return`
+
+</TableCell>
+<TableCell>
+
+The payout was returned. For example, because the destination account has been closed.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>

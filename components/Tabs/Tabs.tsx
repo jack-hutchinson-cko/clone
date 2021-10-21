@@ -8,20 +8,23 @@ import { StyledTabs } from './Tabs.styles';
 type Props = {
   children: ReactElement[];
   withBorder?: boolean;
+  CEOMode?: boolean;
 };
 
-const Tabs: FC<Props> = ({ children, withBorder = true }) => {
+const Tabs: FC<Props> = ({ children, withBorder = false, CEOMode = false }) => {
   const { titles, activeTab, setActiveTab } = useTabs({ children });
 
   return (
-    <StyledTabs withBorder={withBorder}>
+    <StyledTabs>
       <TabHead
         titles={titles}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         withPadding={withBorder}
       />
-      <TabBody activeTab={activeTab}>{children}</TabBody>
+      <TabBody activeTab={activeTab} CEOMode={CEOMode}>
+        {children}
+      </TabBody>
     </StyledTabs>
   );
 };

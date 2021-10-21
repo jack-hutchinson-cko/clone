@@ -1,16 +1,16 @@
-import { FC, ReactNode } from 'react';
-import { Button, StyledLink } from './ButtonLink.styles';
+import { FC } from 'react';
+
+import Button from 'components/Button';
+import { StyledLink } from './ButtonLink.styles';
 
 export type Props = {
   href: string;
-  children?: ReactNode;
-  onClick?: () => void;
 };
 
-const ButtonLink: FC<Props> = ({ children, href, onClick, ...rest }) => {
+const ButtonLink: FC<Props> = ({ children, href, ...rest }) => {
   return (
     <StyledLink href={href} passHref>
-      <Button onClick={onClick} {...rest}>
+      <Button as="a" variant="primary" size="large" {...rest}>
         {children}
       </Button>
     </StyledLink>

@@ -5,7 +5,7 @@ account: NAS
 
 ---
 
-## Reconciling between your bank account and settlements
+### Reconciling between your bank account and settlements
 
 Understanding the exact payout amounts settled to you is a crucial part of your business's bookkeeping process. Checkout.com’s payout reports provide you with the confidence that you have been settled the correct amounts.
 
@@ -17,7 +17,7 @@ If Checkout.com has paid out the correct amounts to you, then the two values wil
 
 ---
 
-## Reconciling financial actions making up settlements
+### Reconciling financial actions making up settlements
 
 Using the payouts report and the financial actions by payout ID report together will allow you to reconcile between a specific payout and the financial actions that make up the payout amount.
 
@@ -25,7 +25,7 @@ First, match the unique **Payout ID** for a given payout on the payouts report w
 
 For example, for a payout ID of `000G7HDD96SH` on 14/01/2021, the corresponding financial actions report will have the filename `financial-actions_{your entity ID}_14012021_000G7HDD96SH_1.csv`.
 
-### Reconciling payout amounts with financial actions
+#### Reconciling payout amounts with financial actions
 
 The **Payout Amount** for the given payout on the payouts report will match the sum of all values in the **Holding Currency Amount** column with the corresponding financial actions by payout ID report.
 
@@ -47,7 +47,7 @@ Because payout amounts are rounded down, any remainder is carried forward onto t
 
 </TipBox>
 
-### Reconciling a specific fee category
+#### Reconciling a specific fee category
 
 The payouts report features several breakdown columns for fees and adjustments applied whilst processing payments with Checkout.com.
 
@@ -67,13 +67,13 @@ For example, to reconcile between **Card Payment Scheme Fees** for a given payou
 
 ---
 
-## Reconciling financial actions against changes to your currency account available balances
+### Reconciling financial actions against changes to your currency account available balances
 
 Using the balance report and the financial actions by date range report together will allow you to reconcile all monetary inflows and outflows for a given currency account.
 
 For the reports to reconcile, ensure that your balance report and financial actions report cover the same reporting period. This is denoted by the date range suffix on the filenames.
 
-### Reconciling balance changes to your currency account
+#### Reconciling balance changes to your currency account
 
 Using the financial actions by date range report filter by **Currency Account ID** for the currency account you are trying to reconcile for. The aggregate sum of the **Holding Currency Amount** will then reconcile with the difference between the **Opening Available Balance** and **Closing Available Balance** of the currency account shown on the balance report.
 
@@ -85,7 +85,7 @@ This value will reconcile with the **Holding Currency Amount** shown on the fina
 
 <img src="/NAS/Reporting/Balance+Report+Recon.png" withFullscreenPreview/>
 
-### Reconciling a specific fee category
+#### Reconciling a specific fee category
 
 The balance report features several breakdown columns for the total feels applied to a currency account over a given period. Each payment-related fee category is broken down further by the **Payment Method**.
 

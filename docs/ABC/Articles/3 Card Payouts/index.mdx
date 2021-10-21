@@ -13,14 +13,14 @@ This feature is available for merchants incorporated in the United Kingdom, Gibr
 
 ---
 
-## Before you start
+### Before you start
 
 - [Verify the recipient's card](/risk-management/card-verification) to make sure it is eligible to accept payouts and check whether it is enabled for Fast Funds.
 - [Get a foreign exchange rate quote](/card-payouts/fx-rates-endpoint) if you're paying out in a currency that's different from the currency of your account.
 
 ---
 
-## Step 1: Make a payout request
+### Step 1: Make a payout request
 
 You can send a payout using either:
 
@@ -28,7 +28,7 @@ You can send a payout using either:
 - a [payment instrument](/card-payouts#Payout_request_using_a_payment_instrument), or
 - the [full card details](/card-payouts#Payout_request_using_full_card_details).
 
-### Transaction types
+#### Transaction types
 
 There are three main types of Card Payout transaction:
 
@@ -96,7 +96,7 @@ else (third-party funds disbursements and money transfers). For details of the s
 
 </TipBox>
 
-### Payout request using a token
+#### Payout request using a token
 
 Create a payout request with a token (the tokenized details of a payment card) as the destination.
 
@@ -377,7 +377,7 @@ The information you need to provide depends on the card scheme and type of trans
 <tabs>
 <tab title="Direct funds disbursement">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "id",
@@ -395,7 +395,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 <tab title="Money transfer">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "id",
@@ -425,7 +425,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 <tab title="Third-party funds disbursement">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "id",
@@ -455,7 +455,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 </tabs>
 
-### Payout request using a payment instrument
+#### Payout request using a payment instrument
 
 Create a payout request with a payment instrument as the destination.
 
@@ -731,7 +731,7 @@ The information you need to provide depends on the card scheme and type of trans
 <tabs>
 <tab title="Direct funds disbursement">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "id",
@@ -749,7 +749,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 <tab title="Money transfer">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "id",
@@ -779,7 +779,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 <tab title="Third-party funds disbursement">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "id",
@@ -809,7 +809,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 </tabs>
 
-### Payout request using full card details
+#### Payout request using full card details
 
 Create a payout request using the full details of the payment card as the destination.
 
@@ -1094,7 +1094,7 @@ The information you need to provide depends on the card scheme and type of trans
 <tabs>
 <tab title="Direct funds disbursement">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "card",
@@ -1114,7 +1114,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 <tab title="Money transfer">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "card",
@@ -1146,7 +1146,7 @@ The information you need to provide depends on the card scheme and type of trans
 </tab>
 <tab title="Third-party funds disbursement">
 
-``` json withBorder=false
+``` json
 {
   "destination": {
     "type": "card",
@@ -1180,7 +1180,7 @@ The information you need to provide depends on the card scheme and type of trans
 
 ---
 
-## Step 2: Handle the response
+### Step 2: Handle the response
 
 If your payout request was successful, you'll receive a `202 Payment asynchronous or further action required` response, and the status will be `Pending` while the transaction goes through compliance checks. A [webhook and response code](/card-payouts#CardPayouts-outcome) will tell you the final outcome of the payout.
 
@@ -1195,7 +1195,7 @@ Card payouts cannot be canceled.
 <tabs>
 <tab title="202 Payment asynchronous or further action required">
 
-``` json withBorder=false
+``` json
 {
   "id": "pay_wugo7nun52aetgpgnyzyzvghnu",
   "status": "Pending",
@@ -1214,7 +1214,7 @@ Card payouts cannot be canceled.
 </tab>
 <tab title="422 Invalid data was sent">
 
-``` json withBorder=false
+``` json
 {
   "request_id": "071f5a37-ed7b-423b-98b7-8bff7cb5fce0",
   "error_type": "processing_error",
@@ -1229,7 +1229,7 @@ Card payouts cannot be canceled.
 
 ---
 
-## Step 3: Check the outcome
+### Step 3: Check the outcome
 
 If the payout was successful, you'll receive a `payment_paid` webhook. If it's unsuccessful, you'll get a `payment_declined` webhook. The included response code will provide more details.
 
@@ -1244,12 +1244,12 @@ The issuing bank has full discretion over how they respond to a card payout requ
 
 </TipBox>
 
-### Webhook examples
+#### Webhook examples
 
 <tabs>
 <tab title="payment_paid">
 
-``` json withBorder=false
+``` json
 {
   "id": "evt_hbnxegj3dqyu5fsd4p2b4bxvpa",
   "type": "payment_paid",
@@ -1302,7 +1302,7 @@ The issuing bank has full discretion over how they respond to a card payout requ
 </tab>
 <tab title="payment_declined">
 
-``` json withBorder=false
+``` json
 {
   "id": "evt_pktvel6mu4pe7ccp2fj2eptd5e",
   "type": "payment_declined",
@@ -1354,7 +1354,7 @@ The issuing bank has full discretion over how they respond to a card payout requ
 </tab>
 </tabs>
 
-### Response codes
+#### Response codes
 
 Below is a list of common response codes used for Card Payouts. See our [response code page](/resources/codes/response-codes) for the full list of response we support.
 

@@ -1,4 +1,4 @@
----
+--- 
 title: Frames
 account: ABC
 ---
@@ -13,7 +13,7 @@ The new version of Frames was released on July 12, 2019. If you'd like to upgrad
 
 ---
 
-## How it works
+### How it works
 
 1. You embed the Frames payment form in your website. The customer then enters their payment details directly on your checkout page.
 2. From Frames, your customer's sensitive information is processed by us and exchanged for a token. This process is called tokenization. Once you have the card token, you're ready to make the payment request.
@@ -22,7 +22,7 @@ The new version of Frames was released on July 12, 2019. If you'd like to upgrad
 
 ---
 
-## Try it out
+### Try it out
 
 Use one of our test cards and corresponding CVV to try Frames out for yourself. For example `4242 4242 4242 4242` with CVV `100`.
 
@@ -38,13 +38,13 @@ You can use any expiry date (`mm/yy`), as long as it's in the future.
 
 ---
 
-## Integrate Frames
+### Integrate Frames
 
-### Before you start
+#### Before you start
 
 Make sure you have your `public_key`. You can find it in the [Hub](https://hub.checkout.com/), under _Settings > Channels_. If you don't have an account with us yet, you can [create a free test account now](https://www.checkout.com/get-test-account).
 
-### Add the code snippet to your site
+#### Add the code snippet to your site
 
 he following code snippet is the start of the payment process and allows you to tokenize a customer's sensitive card information using Frames. Simply copy it and add it to your checkout page, replacing the supplied `publicKey` with your own. The card token will be posted via the URL specified in the form's `action` attribute.
 
@@ -195,18 +195,18 @@ he following code snippet is the start of the payment process and allows you to 
 
 ---
 
-## Make Frames your own
+### Make Frames your own
 
-### Customization
+#### Customization
 
 Although we kept our demo simple, you have a lot of control over the appearance of your form—from the colors and styling, to whether you want to display one input field or several. Check out our [Frames customization guide](https://docs.checkout.com/integrate/frames/frames-customization-guide) for more details and examples.
 
-### Configuration options
+#### Configuration options
 
 You'll find a list of all the possible configuration options in our [Frames reference guide](https://docs.checkout.com/integrate/frames/frames-reference).
 
 ---
 
-## Next step
+### Next step
 
 Now that you've got your card token, you're ready to [request your first card payment](https://docs.checkout.com/payments/accept-payments/request-a-card-payment).

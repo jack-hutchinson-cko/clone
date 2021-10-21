@@ -1,29 +1,26 @@
 import styled from 'styled-components';
 
-import { createBreakpointBetween, createBreakpointTo, SIZE } from 'constants/screen';
+import { createBreakpointTo, Breakpoints, SIZE } from 'constants/screen';
+import { spacing } from 'constants/spacingSize';
 
 export const FooterWrapper = styled.footer`
   background: ${({ theme }) => theme.colors.footerBackground};
 `;
 
-export const FooterContainer = styled.main<{ isMobile: boolean }>`
+export const FooterContainer = styled.main`
   max-width: 1360px;
   margin: 0 auto;
-  padding: 64px;
+  padding: ${spacing.s90}px;
 
-  @media ${createBreakpointBetween(SIZE.L, SIZE.M)} {
-    padding: 60px 64px 80px;
+  @media ${Breakpoints.TABLET} {
+    padding: ${spacing.s80}px ${spacing.s60}px;
   }
 
-  @media ${createBreakpointBetween(SIZE.SM, SIZE.M)} {
-    padding: 80px 40px;
-  }
-
-  @media ${createBreakpointBetween(SIZE.XS, SIZE.SM)} {
-    padding: 80px 40px;
+  @media ${Breakpoints.MOBILE} {
+    padding: ${spacing.s80}px ${spacing.s50}px ${spacing.s100}px;
   }
 
   @media ${createBreakpointTo(SIZE.XS)} {
-    padding: 48px 24px;
+    padding: ${spacing.s80}px ${spacing.s50}px;
   }
 `;
