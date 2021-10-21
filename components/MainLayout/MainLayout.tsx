@@ -53,9 +53,10 @@ const MainLayout: FC<Props> = ({
               popularSearches={headerContent.popularSearches}
               popularSearchesTitle={headerContent.popularSearchesTitle}
               emptySearchResult={headerContent.emptySearchResult}
-              loginUrl={headerContent.loginUrl}
+              loginTopUrl={headerContent.loginTopUrl}
               testAccountUrl={headerContent.testAccountUrl}
               loginTitle={headerContent.loginTitle}
+              loginBottomUrl={headerContent.loginBottomUrl}
               isFAQSection={isFAQSection}
             />
           </HeaderWrapper>

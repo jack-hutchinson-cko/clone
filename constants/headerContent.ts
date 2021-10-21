@@ -4,7 +4,8 @@ import {
   popularSearchesTitle,
   emptySearchResult,
   testAccountUrl,
-  loginUrlByClientType,
+  loginTopUrlByClientType,
+  loginBottomUrlByClientType,
   loginTitleByClientType,
 } from 'mocks/headerSection';
 
@@ -16,6 +17,7 @@ export const headerContent = {
   popularSearchesTitle,
   emptySearchResult,
   testAccountUrl,
-  loginUrl: loginUrlByClientType[CLIENT_TYPE as 'ABC' | 'NAS'],
+  loginTopUrl: loginTopUrlByClientType[CLIENT_TYPE as 'ABC' | 'NAS'],
+  loginBottomUrl: loginBottomUrlByClientType[CLIENT_TYPE as 'ABC' | 'NAS'],
   loginTitle: loginTitleByClientType[CLIENT_TYPE as 'ABC' | 'NAS'],
 };

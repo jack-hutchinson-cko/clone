@@ -48,10 +48,11 @@ type Props = {
   popularSearches: SearchResultLink[];
   emptySearchResult: string;
   popularSearchesTitle: string;
-  loginUrl: string;
+  loginTopUrl: string;
   testAccountUrl: string;
   isFAQSection?: boolean;
   loginTitle: string;
+  loginBottomUrl: string;
 };
 
 const Header: FC<WithMenuStateProps<Props>> = ({
@@ -60,7 +61,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   popularSearches,
   emptySearchResult,
   popularSearchesTitle,
-  loginUrl,
+  loginTopUrl,
   testAccountUrl,
   isFAQSection,
   menuState,
@@ -69,6 +70,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   onChangeSearchState,
   mobileMenuWidget,
   loginTitle,
+  loginBottomUrl,
 }) => {
   useScrollDisabled(searchState || menuState);
 
@@ -93,7 +95,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       gap={12}
       dividerText="or"
       link={
-        <Link href={loginUrl} passHref>
+        <Link href={loginTopUrl} passHref>
           <Button as="a" target="_blank" variant="secondary" size="large" fullWidthOnTablet>
             Log in
           </Button>
@@ -195,7 +197,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                       <LoginWidget
                         dividerText="or"
                         link={
-                          <Link href={loginUrl} passHref>
+                          <Link href={loginBottomUrl} passHref>
                             <NavigationLink target="_blank" light underlineAlways>
                               Log in
                             </NavigationLink>
