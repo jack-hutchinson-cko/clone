@@ -29,7 +29,6 @@ The request
 
 <tabs>
 <tab title="v3">
-<Box horizontal="sm">
 <TipBox variant="note">
 
 In addition to card payments the v3 endpoint also allows payments via saved cards for uses who are logged in.
@@ -43,23 +42,19 @@ Replace  [`example.com`](http://example.com/)  in the following endpoint URL w
 
 **Logged in customers**
 
-</Box>
 <LineCodeWrapper type="post">
 
 `https://www.example.com/rest/default/v1/checkout_com/mine/api/v3`
 
 </LineCodeWrapper>
-<Box horizontal="sm">
 
 **Guest checkout**
 
-</Box>
 <LineCodeWrapper type="post">
 
 `https://www.example.com/rest/default/v1/checkout_com/guest/api/v3`
 
 </LineCodeWrapper>
-<Box horizontal="sm">
 
 #### **Header parameters**
 
@@ -338,13 +333,10 @@ If the payment was made with [3D Secure (3DS) authentication](/risk-management/
 
 If unsuccessful, you will get one of the following error messages:
 
-<Box horizontal="md">
-
 *   Status code `422` – `"The request is invalid."`
 *   Status code `500` – `"The order could not be created."`
 *   Status code `422` – `"The payment request was declined by the gateway."`
 
-</Box>
 
 #### **Success response example**
 
@@ -360,20 +352,17 @@ If unsuccessful, you will get one of the following error messages:
 
 </tab>
 <tab title="3DS enabled">
-<Box horizontal="sm">
 <TipBox variant="info" title="session_id">
 
 Once 3DS authentication is completed, you will receive a `session_id` from our payment gateway. You can pass this `session_id` to our [get payment details endpoint](/risk-management/3-d-secure/3-d-secure-2-api-integration) to determine whether the payment was approved, or to get more information about it.
 
 </TipBox>
-</Box>
 </tab>
 </tabs>
 
 </Box>
 </tab>
 <tab title="v2">
-<Box horizontal="sm">
 <TipBox variant="note">
 
 The v2 endpoint is only available for plugin version 2.2.6 and above.
@@ -384,7 +373,6 @@ The v2 endpoint is only available for plugin version 2.2.6 and above.
 Replace  [`example.com`](http://example.com/)  in the following endpoint URL with your store's domain name. The URL can be `http` or `https`.
 
 </TipBox>
-</Box>
 
 <LineCodeWrapper type="post">
 
@@ -392,7 +380,6 @@ Replace  [`example.com`](http://example.com/)  in the following endpoint URL w
 
 </LineCodeWrapper>
 
-<Box horizontal="sm">
 
 **Header parameters**
 
@@ -519,7 +506,6 @@ If not provided, your existing `failure_url` will be used.
 </Table>
 
 #### **Request example**
-</Box>
 
 ```json
 {
@@ -531,8 +517,6 @@ If not provided, your existing `failure_url` will be used.
 }
 ```
 
-<Box horizontal="sm">
-
 #### The response
 
 If you get a response with `"success": true`, your order was successful.
@@ -541,15 +525,14 @@ If the payment was made with [3D Secure (3DS) authentication](/risk-management/
 
 If unsuccessful, you will get one of the following error messages:
 
-<Box horizontal="md">
-
 *   Status code `422` – `"The request is invalid."`
 *   Status code `500` – `"The order could not be created."`
 *   Status code `422` – `"The payment request was declined by the gateway."`
 
-</Box>
+<Box horizontal="sm">
 
 #### **Success response example - 3DS disabled**
+
 </Box>
 
 ```json
@@ -583,13 +566,11 @@ Once 3DS authentication is completed, you will receive a `session_id` from our p
 </Box>
 </tab>
 <tab title="v1">
-<Box horizontal="sm">
 <TipBox variant="info">
 
 Replace [`example.com`](http://example.com/) in the following endpoint URL with your store's domain name. The URL can be `http` or `https`.
 
 </TipBox>
-</Box>
 <LineCodeWrapper type="post">
 
 `https://example.com/checkout_com/api/v1`
@@ -703,13 +684,9 @@ If you get a response with `"success": true`, your order was successful.
 
 If unsuccessful, you will get one of the following error messages:
 
-<Box horizontal="md">
-
 *   Status code `422` – `"The request is invalid."`
 *   Status code `500` – `"The order could not be created."`
 *   Status code `422` – `"The payment request was declined by the gateway."`
-
-</Box>
 
 #### **Success response example**
 </Box>

@@ -116,7 +116,6 @@ Where are you sending the money to?
 
 <tabs>
 <tab title="Faster payments (GBP)">
-<Box horizontal="sm">
 <Table>
 <TableHead headers={['Field name', 'Description']} />
 <TableBody>
@@ -146,10 +145,8 @@ The account holder's sort code.
 </TableRow>
 </TableBody>
 </Table>
-</Box>
 </tab>
 <tab title="SEPA (EUR)">
-<Box horizontal="sm">
 <Table>
 <TableHead headers={['Field name', 'Description']} />
 <TableBody>
@@ -180,7 +177,6 @@ Internationally agreed standard for identifying bank account.
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 </tabs>
 
@@ -242,16 +238,10 @@ To create a payment instrument, make a call to the following endpoints. To get a
 <tabs>
 <tab title="202 – Instrument creation request accepted">
 
-<Box horizontal="sm">
-
 If your request is accepted, we will attempt to create a payment instrument asynchronously (behind the scenes) and inform you of the outcome via webhook notification. The webhook will include the unique reference to the bank details, and looks like `src_h5qk7lfsp3ludfjxba256lduju`.
-
-</Box>
 
 </tab>
 <tab title="422 – Invalid data was sent">
-
-<Box horizontal="sm">
 
 ```json
 {
@@ -263,14 +253,11 @@ If your request is accepted, we will attempt to create a payment instrument asyn
 }
 ```
 
-</Box>
-
 </tab>
 </tabs>
 
 If successful, we will automatically make the association between this payment instrument and its sub-entity. You can see this association and alternatively retrieve the payment instrument ID by using `<RequestTag type="get" /> /marketplace/entities/{id}`.
 
-<Box horizontal="sm">
 
 ```json
 {
@@ -285,13 +272,11 @@ If successful, we will automatically make the association between this payment i
   ...
 }
  ```
-</Box>
 
 ### Notifications
 
 <tabs>
 <tab title="Created">
-<Box horizontal="sm">
 
 ```json
 {
@@ -316,12 +301,9 @@ If successful, we will automatically make the association between this payment i
 }
 ```
 
-</Box>
-
 </tab>
 <tab title="Error">
 
-<Box horizontal="sm">
 
 ```json
 {
@@ -347,8 +329,6 @@ If successful, we will automatically make the association between this payment i
   }
 }
 ```
-
-</Box>
 
 </tab>
 </tabs>

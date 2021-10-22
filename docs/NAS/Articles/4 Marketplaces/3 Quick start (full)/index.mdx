@@ -29,7 +29,6 @@ Unless otherwise agreed during your onboarding, your sub-entities will undergo *
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
 Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
@@ -216,10 +215,8 @@ For **Daniel’s Donuts**, we receive the `payments_enabled` and payouts_enabled
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `full_dd_failed` notification, which will be followed by `payments_disabled` and `payouts_disabled`.
 
 </TipBox>
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
@@ -596,7 +593,6 @@ For **The Cake Shop**, we receive the payments_enabled and payouts_enabled with 
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `full_dd_failed` notification, this will be followed by `payments_disabled` and `payouts_disabled`.
 
 </TipBox>
-</Box>
 </tab>
 </tabs>
 
@@ -606,7 +602,6 @@ We will re-trigger due diligence checks if any of the required information is la
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
 Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using `<RequestTag type="post" />/payments`.
 
@@ -719,10 +714,8 @@ Use the `approved` field to check whether or not the authorization was successfu
 
 That’s it! £10 has been processed on behalf of Daniel's Donuts and the funds (minus Checkout fees) will be routed to and held in Desserts Delivered’s GBP currency account
 
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
 
@@ -825,7 +818,6 @@ Use the `approved` field to check whether or not the authorization was successfu
 
 That’s it! £10 has been processed on behalf of **The Cake Shop** and the funds (minus Checkout fees) will be routed to and held in Desserts Delivered’s GBP currency account.
 
-</Box>
 </tab>
 </tabs>
 
@@ -835,7 +827,6 @@ That’s it! £10 has been processed on behalf of **The Cake Shop** and the fund
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
 Now that we’ve successfully processed a payment on behalf of our sub-entity, we now have funds available to be paid out to **Daniel’s Donuts**, as well as fees to collect for our platform, Desserts Delivered.
 
@@ -1167,10 +1158,8 @@ For the payout to collect fees for Desserts Delivered, we receive the `payment_p
 ```
 
 <br />
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Now that we’ve successfully processed a payment on behalf of our sub-entity, we now have funds available to be paid out to **The Cake Shop**, as well as fees to collect for our platform, Desserts Delivered.
 
@@ -1437,7 +1426,6 @@ For the payout to collect fees for Desserts Delivered, we receive the `payment_p
 ```
 
 <br />
-</Box>
 </tab>
 </tabs>
 

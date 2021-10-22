@@ -30,7 +30,6 @@ You can also subscribe to the status [webhook notification](/workflows) to keep 
 
 <tabs>
 <tab title='Requirements due' active>
-<Box horizontal='sm'>
 
 If we're expecting you to provide us with more information, your sub-entity will have a status of `requirements_due`. With this status, the `requirements_due` array will also be populated to inform you of the information that is missing.
 
@@ -44,8 +43,6 @@ Use the [information required table](#Aboutonboarding-information) to find out w
 
 In this example, we have created a company sub-entity without any representatives or a registered address.
 
-
-</Box>
 
 ```json withBorder=false
 {
@@ -80,13 +77,11 @@ In this example, we have created a company sub-entity without any representative
 
 </tab>
 <tab title='Pending'>
-<Box horizontal='sm'>
 
 We will only trigger due diligence checks when we have all the [information required](#Aboutonboarding-information). Once the checks are triggered, the sub-entity's status will be `pending`.
 
 We may make changes to this sub-entity's capabilities based on the outcome of these checks.
 
-</Box>
 
 ```json withBorder=false
 {
@@ -112,7 +107,6 @@ We may make changes to this sub-entity's capabilities based on the outcome of th
 
 </tab>
 <tab title='Active'>
-<Box horizontal='sm'>
 
 If the due diligence checks have passed, we will enable the sub-entity's payments or payouts capabilities, which will give that sub-entity a status of `active`. This means there are no outstanding requirements at this time.
 
@@ -124,8 +118,6 @@ If the due diligence checks have passed, we will enable the sub-entity's payment
 </TipBox>
 
 #### Example webhook notification
-
-</Box>
 
 ```json withBorder=false
 {
@@ -148,7 +140,6 @@ If the due diligence checks have passed, we will enable the sub-entity's payment
 ```
 </tab>
 <tab title='Rejected'>
-<Box horizontal='sm'>
 
 If due diligence checks do not pass, we will disable the sub-entity's payment and payouts capabilities. This status will change from `pending` to `rejected`. A sub-entity is rejected if we have identified reasons during our due diligence checks – this decision is final and you will not be able to resume onboarding.
 
@@ -162,8 +153,6 @@ To challenge the direction, please contact us directly.
 </TipBox>
 
 #### Example webhook notification
-
-</Box>
 
 ```json withBorder=false
 {

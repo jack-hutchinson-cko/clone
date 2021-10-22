@@ -252,11 +252,8 @@ curl https://files.checkout.com \
 
 <tabs>
 <tab title='201 - Document accepted'>
-<Box horizontal='sm'>
 
-If you received a file `id` in your response, the document was accepted. You can see this association by [retrieving the sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full#Onboardasub-entity(full)-Retrieveasub-entity)
-
-</Box>
+If you received a file `id` in your response, the document was accepted. You can see this association by [retrieving the sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full#Onboardasub-entity(full)-Retrieveasub-entity).
 
 ```json withBorder=false
 {
@@ -271,13 +268,11 @@ If you received a file `id` in your response, the document was accepted. You can
 
 </tab>
 <tab title='422 - Invalid data was sent'>
-<Box horizontal='sm'>
 
 In the `error_codes` object, we will let you know what data was invalid.
 
 In the example response, we received `back_required` because the uploaded document was a passport, which requires a front **and** back.
 
-</Box>
 
 ```json withBorder=false
 {
@@ -389,7 +384,6 @@ A back file is not required for the type of document in your request. This curre
 
 <tabs>
 <tab title="Verification passed">
-<Box horizontal='sm'>
 
 ```json
 {
@@ -413,10 +407,8 @@ A back file is not required for the type of document in your request. This curre
   }
 }
 ```
-</Box>
 </tab>
 <tab title="Verification failed">
-<Box horizontal='sm'>
 
 ```json
 {
@@ -443,7 +435,6 @@ A back file is not required for the type of document in your request. This curre
   }
 }
 ```
-</Box>
 </tab>
 </tabs>
 

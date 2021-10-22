@@ -133,13 +133,11 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 
 <tabs>
 <tab title="201 - Sub-entity onboard successfully">
-<Box horizontal='sm'>
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests.
 
 Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/about-onboarding) have been run and passed.
 
-</Box>
 
 ```json withBorder=false
 {
@@ -184,11 +182,9 @@ If you have provided all the information, we may be completing a manual review.
 
 </tab>
 <tab title="409 - Conflict">
-<Box horizontal='sm'>
 
 The `reference` you provide needs to be unique across all of your sub-entities. If you receive a 409, you are trying to onboard a sub-entity with a `reference` that has already been used. Try again with another `reference`.
 
-</Box>
 
 ```json withBorder=false
 {
@@ -202,11 +198,9 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 
 </tab>
 <tab title="422 - Invalid data was sent">
-<Box horizontal='sm'>
 
 When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post) for a full overview.
 
-</Box>
 
 ```json withBorder=false
 {
@@ -631,11 +625,9 @@ To get a detailed view of all required and optional fields, see our [API referen
 
 <tabs>
 <tab title='200 - Sub-entity updated successfully'>
-<Box horizontal='sm'>
 
 If the request was successful, you will receive `200 - Sub-entity updated successfully` .
 
-</Box>
 
 ```json withBorder=false
 {
@@ -671,11 +663,9 @@ If you have provided all the information, we may be completing a manual review.
 </tab>
 <tab title='422 - Invalid data was sent'>
 
-<Box horizontal='sm'>
 
 In the `error_codes` object, we will let you know what data was invalid.
 
-</Box>
 
 ```json withBorder=false{
     {
@@ -898,13 +888,10 @@ If you have provided all the information, we may be completing a manual review.
 </tab>
 <tab title="Company">
 
-<Box horizontal='sm'>
-
 The response allows you to retrieve all data that has been provided about the sub-entity, including its capabilities, which informs you whether this sub-entity can process payments or not.
 
 Store this information, as we use it in the next step to upload identity documents.
 
-</Box>
 
 ```json withBorder=false
 {
