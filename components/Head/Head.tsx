@@ -53,6 +53,7 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
         as="font"
         crossOrigin=""
       />
+      <link rel="stylesheet" href={basePathAddition('/assets/fonts/add.css')} />
       <script src="https://cdn.checkout.com/js/framesv2.min.js" />
       <GoogleTags id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       <Boomerang id={process.env.NEXT_PUBLIC_BOOMERANG_ID} />
