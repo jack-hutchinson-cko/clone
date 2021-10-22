@@ -15,6 +15,12 @@ To start accepting payments via dLocal, please contact your Customer Success Man
 
 ### Overview
 
+<TipBox variant="warning">
+
+Local card schemes are not supported by our [Frames](/integrate/frames) solution. Merchants must be PCI-SAQ D compliant to use them, and must provide the card information directly in the payment request.
+
+</TipBox>
+
 A dLocal payment request uses the same endpoint as a standard [card payment](/payments/accept-payments/request-a-card-payment), and is structured similarly, but there are a few important differences.
 
 For Latin American countries, merchants are required to provide their customers' identification numbers along with all authorization requests. Depending on the customer's country of residence, a differing type of identification number might be required, so a customer-specific country field needs to be sent in the authorization request.
