@@ -10,16 +10,12 @@ On this page, we will walk through how you can request a payment on behalf of:
 * [multiple sub-entities](#Request_a_payment_for_multiple_sub-entities) <span style={{display: "inline-block"}}><StatusTag type="Marketplaces only" /></span>
 
 
----
-
-## Payment Facilitators vs Marketplaces
+### Payment Facilitators vs Marketplaces
 
 * If you are a Payment Facilitator, you process payments on behalf of a [single sub-entity](#Request_a_payment_for_a_single_sub-entity). 
 * If you are a Marketplace, you can process payments on behalf of your sub-entities using both options.
 
----
-
-## Request a payment for a single sub-entity 
+### Request a payment for a single sub-entity 
 
 When processing a payment on behalf of a single sub-entity, you just need to create a payment request for the total purchase amount. Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our [API reference](https://api-reference.checkout.com/preview/crusoe/) for all required and optional fields.
 
@@ -59,15 +55,15 @@ The sub-entity ID is returned during the [onboarding process](/marketplaces/onbo
 
 </TipBox>
 
----
-
-## Request a payment for multiple sub-entities
+### Request a payment for multiple sub-entities
 
 <StatusTag type="Marketplaces only"/>
 
 When a customer uses your platform to buy items from multiple sub-entities, you need to request one payment from the customer, and then split that amount appropriately across the different sub-entities. This is known as a **split payment**. You can also split or add a commission that could be both fixed and variable.
 
-### How to split a payment
+---
+
+#### How to split a payment
 
 Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our [API reference](https://api-reference.checkout.com/preview/crusoe/) for all required and optional fields.
 
@@ -85,7 +81,9 @@ The sub-entity ID is returned during the [onboarding process](/marketplaces/onbo
 
 </TipBox>
 
-### Split payments example scenario
+---
+
+#### Split payments example scenario
 
 A customer makes a purchase of £100. The split payment contains three splits, which look like:
 1. Sub-entity A: £30 for a shirt
@@ -100,7 +98,9 @@ Remember our APIs work in the [minor currency unit](/resources/calculating-the-a
 
 </TipBox>
 
-### Request example
+---
+
+#### Request example
 
 In the example request below, we take the split shown above and demonstrate three ways you can split the payment and specify commission for your platform:
 * **Fixed commission amount**: Charge the sub-entity in this split a fixed commissiong amount of £2. This sub-entity would receive £28, and you would receive £2 in your currency account.
@@ -160,9 +160,7 @@ You can also use this method on a single payment (not split) to collect commissi
 }
 ```
 
----
-
-## Response examples
+### Response examples
 
 If you receive a successful response, the payment will be automatically associated with the correct sub-entity. A sub-entity's funds will be held in their currency account (as per their default holding currency set up during [onboarding](/marketplaces/onboarding)). Your commissions will be held in your platform's currency account (set up during your own onboarding with our Marketplaces solution).
 
@@ -249,7 +247,6 @@ When you receive a `422`, please check the API request to make sure you've inclu
   ]
 }
 ```
-<Box horizontal='sm'>
 
 <Accordion isBoldTitle={true} title='Possible error codes'>
 
@@ -430,14 +427,10 @@ Multiple sub-entities with the same ID.
 </Table>
 
 </Accordion>
-
-</Box>
 </tab>
 </tabs>
 
 When you make a payment, we will let you know what stage the payment is at through [webhook notifications](/workflows).
-
----
 
 ### Where to next?
 
@@ -445,14 +438,15 @@ When you make a payment, we will let you know what stage the payment is at throu
 
 **`Full`** sub-entities have payout capability. Use this page to find out what you can do.
 
-<ButtonLink href="/marketplaces/payouts">Learn more</ButtonLink>
+[Learn more](/marketplaces/payouts)
+
 </ContentPanel>
 
 ### Find out more
 
-<ContentPanel variant="heading" title="Marketplace API" imgSrc="/NAS/Marketplaces/marketplaces-api.svg">
+<ContentPanel variant="heading" title="Marketplace API" imgSrc="/NAS/Marketplaces/marketplaces-api.svg" withBorder={false}>
 
 To get a detailed view of all required and optional fields, see our API reference.
 
-<ButtonLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace">Learn more</ButtonLink>
+[Learn more](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace)
 </ContentPanel>

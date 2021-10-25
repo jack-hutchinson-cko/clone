@@ -13,19 +13,15 @@ On this page, we will walk through the how to pay out to a sub-entity:
 - Make a payout
 - Collect platform fees
 
----
-
-## Before you begin 
+### Before you begin 
 
 Make sure you have [connected bank account details to your sub-entity](/marketplaces/onboarding/api/full/manage-bank-accounts).
 
-## Retrieve currency account balance
+### Retrieve currency account balance
 
 We are currently working on exposing real-time currency account balances through an API, and hope to offer this functionality soon.
 
 In the meantime, you can [process balance](/reporting/reconciliation-reports/balance-reports) reports to retrieve the closing available balance of your currency account(s) on a daily basis. If you’d like to reconcile transactions for each sub-entity, you can process daily [financial actions](/reporting/reconciliation-reports/financial-actions-reports) reports to retrieve this breakdown. 
-
----
 
 ### Make sub-entity payouts
 
@@ -151,6 +147,8 @@ The processing channel identifier.
 
 ```
 
+---
+
 #### Response examples
 
 The payout will be attempted asynchronously (behind the scenes). You will be informed of updates to its status through webhook notifications.
@@ -178,11 +176,8 @@ The payout will be attempted asynchronously (behind the scenes). You will be inf
 
 </tab>
 <tab title="422 - Invalid data was sent">
-<Box horizontal="sm">
 
 If your payout request is unsuccessful, you will receive an error object in the response containing one or several error codes. Use the drop-down to see a list of possible error codes.
-
-</Box>
 
 ```json withBorder=false
 {
@@ -193,8 +188,6 @@ If your payout request is unsuccessful, you will receive an error object in the 
   ]
 }
 ```
-
-<Box horizontal="sm">
 
 <Accordion title="Possible error codes">
 <Table>
@@ -244,15 +237,16 @@ There were not enough funds to make the payout.
 This means the processing channel you are using is not configured for pay to bank. Please use another one or get in touch to have it enabled on the one you’re using.
 
 </Accordion>
-</Box>
+
 </tab>
 </tabs>
 
----
 
 ### Collect platform fees
 
 You collect your platform fees through the same method as making payouts to your sub-entities. The only difference is the `destination.id` field should be your platform's payment instrument ID. This will have been provided to you during your onboarding with [Checkout.com](https://www.checkout.com/).
+
+---
 
 #### Request example
 
@@ -302,7 +296,7 @@ Our API reference lists all the endpoints and methods provided in the Marketplac
 [Learn more](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace)
 
 </ContentPanel>
-<ContentPanel title="Marketplaces" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg">
+<ContentPanel title="Marketplaces" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg" withBorder={false}>
 
 Create rich and flexible payment programs suited to the needs of you and your customers.
 

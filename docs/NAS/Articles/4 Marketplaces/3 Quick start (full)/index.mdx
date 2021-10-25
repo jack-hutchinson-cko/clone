@@ -5,8 +5,6 @@ account: NAS
 
 This guide demonstrates the full process, from onboarding a sub-entity to processsing payments on its behalf and later payout directly to their bank account.
 
----
-
 ### Before you begin
 
 Check you've completed the following steps before starting your integration. 
@@ -23,13 +21,10 @@ Unless otherwise agreed during your onboarding, your sub-entities will undergo *
 
 </TipBox>
 
----
-
 ### Step 1: Onboard your sub-entities 
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
 Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
@@ -48,6 +43,8 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 To provide greater flexibility, we don’t need you to provide all of the data required for due diligence checks upfront. You can onboard a sub-entity with the minimum required information and then enrich it later through updates. We will trigger our checks only when we have all of the information required to conduct them. If our due diligence checks pass, payment and payout capabilities for this sub-entity will be enabled. Read more about this on our [onboarding information page](/marketplaces/onboarding).
 
 </TipBox>
+
+---
 
 #### Request
 
@@ -92,6 +89,8 @@ Use <RequestTag type="post" />`/marketplace/entities`.
 - Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of Daniel’s Donuts would be routed and held in the platform's GBP currency account.
 
 </TipBox>
+
+---
 
 #### Response
 
@@ -216,10 +215,8 @@ For **Daniel’s Donuts**, we receive the `payments_enabled` and payouts_enabled
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `full_dd_failed` notification, which will be followed by `payments_disabled` and `payouts_disabled`.
 
 </TipBox>
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Vendors, retailers and service providers on your platform are represented by sub-entities in our solution. A sub-entity is used to collect the information we require to perform due diligence checks, as well as capture certain preferences.
 
@@ -242,6 +239,8 @@ To provide greater flexibility, we don’t need you to provide all of the data r
 We will use the example of **The Cake Shop**, a cake seller on our fictional platform, Desserts Delivered. We will provide the minimum required fields for The Cake Shop to start its onboarding!
 
 Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity representing The Cake Shop.
+
+---
 
 #### Request
 
@@ -282,6 +281,8 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 - Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of The Cake Shop would be routed and held in the platform's GBP currency account.
 
 </TipBox>
+
+---
 
 #### Response
 
@@ -335,6 +336,8 @@ We will update **The Cake Shop** with its:
 The Cake Shop has a single representative, Chrisi Webster, for who we will provide a **first name**, **last name**, full **address** and **date of birth**, which is all the required information to trigger checks except for an identification document (which we’ll do this in the next steps).
 
 With the `id` returned in the response to step 1a, use <RequestTag type="put" /> `/marketplace/entities/{id}` to update the sub-entity representing The Cake Shop with additional information - `company.registered_address`, `company.business_registration_number` and `company.representatives`.
+
+---
 
 #### Request
 
@@ -391,6 +394,8 @@ With the `id` returned in the response to step 1a, use <RequestTag type="put" />
 }
 ```
 
+---
+
 #### Response
 
 ```json
@@ -427,6 +432,8 @@ With the `id` returned in the response to step 1a, use <RequestTag type="put" />
 There is now only one outstanding requirement to trigger due diligence checks for our sub-entity, an **identification document** for our representative Chrisi Webster. Each representative is assigned a unique `id`, and we’ll need to get Chrisi’s `id` to be able to upload an identity document for her in the next step.
 
 Use <RequestTag type="get" /> `/marketplace/entities/{id}` to retrieve the sub-entity representing The Cake Shop. We can see that The Cake Shop has all the details we provided earlier and that our representative, Chrisi Webster, has been assigned an `id` - store this for the next step.
+
+---
 
 #### Response
 
@@ -596,19 +603,17 @@ For **The Cake Shop**, we receive the payments_enabled and payouts_enabled with 
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `full_dd_failed` notification, this will be followed by `payments_disabled` and `payouts_disabled`.
 
 </TipBox>
-</Box>
+
 </tab>
 </tabs>
 
----
 
 ### Step 2: Accept payments
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
-Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using `<RequestTag type="post" />/payments`.
+Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" />`/payments`.
 
 We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £10 on its behalf.
 
@@ -617,6 +622,8 @@ We’ll use **Daniel’s Donut's** `id` from step 1 to process a payment for £1
 Funds will be routed and held in your platform’s currency accounts as per the preferences agreed for your platform during onboarding. In this example all payments are being routed to GBP.
 
 </TipBox>
+
+---
 
 #### Request
 
@@ -646,6 +653,8 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 `processing_channel_id` corresponds to a specific merchant category code (MCC) that you are setup to process payments for. Your processing channel IDs will be provided to you after we have completed your setup.
 
 </TipBox>
+
+---
 
 #### Response
 
@@ -719,10 +728,8 @@ Use the `approved` field to check whether or not the authorization was successfu
 
 That’s it! £10 has been processed on behalf of Daniel's Donuts and the funds (minus Checkout fees) will be routed to and held in Desserts Delivered’s GBP currency account
 
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Now that your capabilities have been enabled, you’re ready to start using them. Our Unified Payments API enables you to process payments on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
 
@@ -733,6 +740,8 @@ We’ll use **The Cake Shop’s** `id` from step 1 to process a payment for £10
 As per The Cake Shop’s `profile.default_holding_currency`, the funds from any payments processed on their behalf will routed and held in the platform’s GBP currency account.
 
 </TipBox>
+
+---
 
 #### Request
 
@@ -753,6 +762,8 @@ As per The Cake Shop’s `profile.default_holding_currency`, the funds from any 
   }
 }
 ```
+
+---
 
 #### Response
 
@@ -825,17 +836,13 @@ Use the `approved` field to check whether or not the authorization was successfu
 
 That’s it! £10 has been processed on behalf of **The Cake Shop** and the funds (minus Checkout fees) will be routed to and held in Desserts Delivered’s GBP currency account.
 
-</Box>
 </tab>
 </tabs>
-
----
 
 ### Step 3: Make payouts
 
 <tabs>
 <tab title="Individual">
-<Box horizontal="sm">
 
 Now that we’ve successfully processed a payment on behalf of our sub-entity, we now have funds available to be paid out to **Daniel’s Donuts**, as well as fees to collect for our platform, Desserts Delivered.
 
@@ -866,39 +873,9 @@ Your platform's bank account is also represented as a payment instrument, and wi
 
 We will create a payment instrument representing Daniel’s Donuts Barclays bank account details in this step. Use <RequestTag type="post" /> `/marketplace/entities/{id}/instruments` to create a sub-entity payment instrument.
 
+---
+
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -960,45 +937,17 @@ If successful, we will automatically make the association between this payment i
 }
 ```
 
+---
+
 #### Step 3c: Make sub-entity payout
 
 Similar to processing payments, our Unified Payments API enables you to make payouts on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
 
 We’ll make a payout to **Daniel’s Donuts** for £8. The funds will come from Desserts Delivered’s GBP currency account (`source.id`) and be sent to Daniel’s Donuts bank account (`destination.id`).
 
+---
+
 #### Request
-
-<Table withTopBorder={false}>
-<TableHead headers={['Header', 'Description']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-Authorization
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`OAuth Bearer access token`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Content-Type
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
 
 ```json
 {
@@ -1021,6 +970,8 @@ Content-Type
   "processing_channel_id":"pc_v6oaskquunqufj2t7e7wf3e6am"
 }
 ```
+
+---
 
 #### Response
 
@@ -1080,6 +1031,8 @@ For **Daniel’s Donuts**, we receive the `payment_paid` with the following payl
 }
 ```
 
+---
+
 #### Step 3d: Collect platform fees
 
 Collection of your platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the `destination.id` will be your platform’s payment instrument `id`.
@@ -1090,7 +1043,9 @@ In this example we (Desserts Delivered) will simply collect a £1 fee from **Dan
 
 </TipBox>
 
-Use `<RequestTag type="post" /> /payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your platform to collect your fees. Instead use the payment instrument representing your bank account as the `destination.id`.
+Use <RequestTag type="post" /> `/payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your platform to collect your fees. Instead use the payment instrument representing your bank account as the `destination.id`.
+
+---
 
 #### Request
 
@@ -1112,6 +1067,8 @@ Use `<RequestTag type="post" /> /payments` again, but this time you can omit the
   "processing_channel_id": "pc_q4dbxom5jbgudnjzjpz7j2z6uq",
 }
 ```
+
+---
 
 #### Response
 
@@ -1167,10 +1124,8 @@ For the payout to collect fees for Desserts Delivered, we receive the `payment_p
 ```
 
 <br />
-</Box>
 </tab>
 <tab title="Company">
-<Box horizontal="sm">
 
 Now that we’ve successfully processed a payment on behalf of our sub-entity, we now have funds available to be paid out to **The Cake Shop**, as well as fees to collect for our platform, Desserts Delivered.
 
@@ -1199,7 +1154,9 @@ Your platform's bank account is also represented as a payment instrument, and wi
 
 </TipBox>
 
-We will create a payment instrument representing The Cake Shop’s Barclays bank account details in this step. Use `<RequestTag type="post" /> /marketplace/entities/{id}/instruments` to create a sub-entity payment instrument.
+We will create a payment instrument representing The Cake Shop’s Barclays bank account details in this step. Use <RequestTag type="post" />`/marketplace/entities/{id}/instruments` to create a sub-entity payment instrument.
+
+---
 
 #### Request
 
@@ -1263,11 +1220,15 @@ If successful, we will automatically make the association between this payment i
 }
 ```
 
+---
+
 #### Step 3c: Make sub-entity payout
 
 Similar to processing payments, our Unified Payments API enables you to make payouts on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
 
 We’ll make a payout to **The Cake Shop** for £8. The funds will come from Desserts Delivered’s GBP currency account (`source.id`) and be sent to The Cake Shop’s bank account (`destination.id`).
+
+---
 
 #### Request
 
@@ -1292,6 +1253,8 @@ We’ll make a payout to **The Cake Shop** for £8. The funds will come from Des
   },
 }
 ```
+
+---
 
 #### Response
 
@@ -1354,13 +1317,17 @@ We have cut out most of the response so you can focus on the instrument array. Y
 
 </TipBox>
 
+---
+
 #### Step 3d: Collect platform fees
 
 Collection of your platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the `destination.id` will be your platform’s payment instrument `id`.
 
 In this example we (Desserts Delivered) will simply collect a £1 fee from **The Cake Shop**; however, please note that because funds for multiple sub-entities are aggregated based on currency, you can actually collect fees from multiple sub-entities in a single request, which reduces the effort required. 
 
-Use `<RequestTag type="post" /> /payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your platform to collect your fees, and use the payment instrument representing your bank account as the `destination.id`.
+Use <RequestTag type="post" />`/payments` again, but this time you can omit the `marketplace` object, as this payout is being made on behalf of your platform to collect your fees, and use the payment instrument representing your bank account as the `destination.id`.
+
+---
 
 #### Request
 
@@ -1382,6 +1349,8 @@ Use `<RequestTag type="post" /> /payments` again, but this time you can omit the
   "processing_channel_id": "pc_q4dbxom5jbgudnjzjpz7j2z6uq",
 }
 ```
+
+---
 
 #### Response
 
@@ -1437,19 +1406,14 @@ For the payout to collect fees for Desserts Delivered, we receive the `payment_p
 ```
 
 <br />
-</Box>
 </tab>
 </tabs>
-
----
 
 <TipBox variant="tip">
 
 That's it! You've successfully completed your first payment flow in Marketplaces.
 
 </TipBox>
-
----
 
 ### FAQs
  
