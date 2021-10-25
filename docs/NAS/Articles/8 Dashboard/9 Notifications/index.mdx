@@ -3,15 +3,8 @@ title: Notifications
 account: NAS
 ---
 
-Build notification flows tailored to your business needs directly in the Dashboard with our new notifications feature. You can set up as many notifications as required, selecting the payment events for updates, the entities you’d like notifications about, and the type of notification to receive. Webhooks are our first notification type, but let us know what other applications you’d like us to support in the future using the survey below. 
+Build notification flows tailored to your business needs directly in the Dashboard with our new notifications feature. You can set up as many notifications as required, selecting the payment events for updates, the entities you’d like notifications about, and the type of notification to receive. Webhooks are our first notification type, but let us know what other applications you’d like us to support in the future using the survey below.
 
-<TipBox>
-
-You can also create webhooks using our [Workflows API](/workflows). 
-
-</TipBox>
-
----
 
 ### Create a notification
 
@@ -29,8 +22,8 @@ Each notification is split into three core parts: events, applications, business
 ![name](/NAS/Dashboard/Notifications/name.png)
 
 4. Select the events you would like to receive notifications for. There isn’t a limit on the number of events you can select per notification.
-5. Choose the application you wish to receive notifications on. For now, only _Webhooks_ is available.
-6. Enter a webhook URL that starts with either `https://` or `http://`.
+5. Choose the application you wish to receive notifications on. For now, only Webhooks is available.
+6. Enter a webhook URL that starts with either https:// or http://.
 7. Enter an authorization key. This will be in the header of every webhook notification we send you to validate that the webhook is genuine.
 8. Enter a signature key. We generate a HMAC by taking the contents of the webhook notification and hashing it using the key provided in the webhook action of your workflow. The HMAC will be in every notification you receive.
 
@@ -43,8 +36,6 @@ Each notification is split into three core parts: events, applications, business
 10. Select _Create notification_ to publish your notification. It will be live from this point onwards.
 
 ![new notification](/NAS/Dashboard/Notifications/new-notification.png)
-
----
 
 ### Delete a notification
 
