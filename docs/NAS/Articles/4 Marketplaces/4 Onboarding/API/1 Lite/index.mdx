@@ -15,7 +15,7 @@ On this page, we will walk through the complete onboarding of a sub-entity:
 
 <TipBox>
 
-Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboard/dashboard) in the Dashboard.
+Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboarding/dashboard) in the Dashboard.
 
 </TipBox>
 
@@ -134,7 +134,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests.
 
-Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/about-onboarding) have been run and passed.
+Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/onboarding) have been run and passed.
 
 ```json withBorder=false
 {
@@ -808,7 +808,7 @@ On occasion, our team will need to manually review a sub-entity. Please see [abo
 
 <TipBox>
 
-We've described the different webhook notifications on our [webhook event type page](/workflows/webhook-event-types#Webhookeventtypes-Marketplace).
+We've described the different webhook notifications on our [webhook event type page](/workflows/webhook-event-types).
 
 </TipBox>
 
@@ -860,7 +860,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 </tabs>
 
-If due diligence is passed (VMSS and Match), we will enable the sub-entity’s **payments** capability. You should expect to receive the payments_enabled event type. 
+If due diligence is passed (VMSS and Match), we will enable the sub-entity’s **payments** capability. You should expect to receive the `payments_enabled` event type. 
 
 <TipBox variant='info'>
 
@@ -868,7 +868,7 @@ We will re-trigger due diligence checks if `legal_name`, `trading_name` and `pro
 
 </TipBox>
 
-**Payments enabled webhook example**
+#### Payments enabled webhook example
 
 ```json withBorder=false
 {
@@ -978,6 +978,6 @@ Process payments on behalf of your sub-entities.
 
 Find out more about status types during the onboarding process.
 
-[Find out more](/marketplaces/payments)
+[Find out more](/marketplaces/onboarding/api)
 
 </ContentPanel>
