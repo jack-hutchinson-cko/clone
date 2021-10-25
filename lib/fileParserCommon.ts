@@ -317,19 +317,15 @@ export const getMdxFileData = (
   content: string;
   data: FileDataType;
 } => {
-  try {
-    const source = fs.readFileSync(filePath);
-    const { content: rawContent, data } = matter(source);
+  const source = fs.readFileSync(filePath);
+  const { content: rawContent, data } = matter(source);
 
-    const content = insertRelatedFiles({
-      content: rawContent,
-      filePath,
-      frontMatter: data,
-    });
-    return { content, data };
-  } catch (error) {
-    return { content: '', data: {} };
-  }
+  const content = insertRelatedFiles({
+    content: rawContent,
+    filePath,
+    frontMatter: data,
+  });
+  return { content, data };
 };
 
 const sectionReg = RegExp(/<FAQItem (.|\n)*?>(.|\n)*?<\/FAQItem>/g);
