@@ -47,8 +47,8 @@ const globalStyles = createGlobalStyle`
   }
 
   #onetrust-consent-sdk #onetrust-policy-text {
-    > a {
-      text-decoration: none;
+    a:focus {
+      outline: none;
     }
   }
 `;
