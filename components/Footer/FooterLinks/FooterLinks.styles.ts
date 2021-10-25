@@ -17,10 +17,15 @@ export const FooterLinksWrapper = styled.div`
 `;
 
 export const FooterAccordion = styled(Accordion)`
+  display: none;
   margin-top: ${spacing.s50}px;
   padding: ${spacing.s00} ${spacing.s00} ${spacing.s50}px;
   color: ${({ theme }) => theme.colors.white};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cometLight};
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    display: block;
+  }
 
   @media ${Breakpoints.MOBILE} {
     margin-top: ${spacing.s50}px;
@@ -105,4 +110,12 @@ export const FooterLinkSpecial = styled.span`
   font-weight: 500;
   text-transform: uppercase;
   line-height: 16px;
+`;
+
+export const FooterColumnsWrapper = styled.div`
+  display: block;
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    display: none;
+  }
 `;

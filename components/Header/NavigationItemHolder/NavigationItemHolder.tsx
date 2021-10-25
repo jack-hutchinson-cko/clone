@@ -13,7 +13,7 @@ type Props = {
   content: ReactNode;
   offset?: number;
   contentAlign?: ContentAlign;
-  isMobile?: boolean;
+  withMobileSize?: boolean;
 };
 
 const NavigationItemHolder: FC<Props> = ({
@@ -21,7 +21,7 @@ const NavigationItemHolder: FC<Props> = ({
   content,
   contentAlign = ContentAlign.LEFT,
   offset = 20,
-  isMobile,
+  withMobileSize,
 }) => {
   const [open, setOpen] = useState(false);
   const onClickHandler = useCallback(() => setOpen(!open), [open]);
@@ -30,9 +30,14 @@ const NavigationItemHolder: FC<Props> = ({
   return (
     <Outside onOutsideClick={onClickOutside}>
       {(refToElement) => (
-        <Container ref={refToElement} isMobile={isMobile}>
+        <Container ref={refToElement} withMobileSize={withMobileSize}>
           <Trigger onClick={onClickHandler}>{children(open)}</Trigger>
-          <Content align={contentAlign} isMobile={isMobile} offset={offset} isShown={open}>
+          <Content
+            align={contentAlign}
+            withMobileSize={withMobileSize}
+            offset={offset}
+            isShown={open}
+          >
             {content}
           </Content>
         </Container>

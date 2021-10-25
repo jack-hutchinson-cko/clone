@@ -55,6 +55,19 @@ export const popularSearchesTitle: string = 'Popular searches';
 
 export const emptySearchResult: string = "We couldn't find a match. Please try another term.";
 
-export const loginUrl: string = 'https://hub.checkout.com/login';
+export const loginTitleByClientType = {
+  ABC: 'The Hub',
+  NAS: 'Dashboard'
+}
+
+export const loginTopUrlByClientType = {
+  ABC: 'https://hub.checkout.com/login',
+  NAS: 'https://dashboard.checkout.com/login'
+}
+
+export const loginBottomUrlByClientType = {
+  ABC: 'https://sandbox.checkout.com/login',
+  NAS: 'https://dashboard.sandbox.checkout.com/login'
+}
 
 export const testAccountUrl: string = 'https://www.checkout.com/get-test-account';

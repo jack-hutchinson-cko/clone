@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { Flex } from '@cko/primitives';
 import { spacing } from 'constants/spacingSize';
+import { Breakpoints } from 'constants/screen';
 
-export const CardWrapper = styled(Flex)<{ isMobile: boolean }>`
+export const CardWrapper = styled(Flex)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: ${spacing.s40}px;
   align-items: flex-start;
-  ${({ isMobile }) => (isMobile ? 'width: 236px; margin: auto;' : '')}
   padding: ${spacing.s50}px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -25,5 +25,10 @@ export const CardWrapper = styled(Flex)<{ isMobile: boolean }>`
 
   & h4 {
     margin: ${spacing.s00};
+  }
+
+  @media ${Breakpoints.MOBILE} {
+    width: 236px;
+    margin: auto;
   }
 `;

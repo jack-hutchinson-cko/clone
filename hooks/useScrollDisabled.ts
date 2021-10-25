@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { SIZE } from 'constants/screen';
 
 const useScrollDisabling = (disabled?: boolean): void => {
   const yScrollValue = useRef<number>(0);
@@ -16,7 +17,7 @@ const useScrollDisabling = (disabled?: boolean): void => {
 
   useEffect(() => {
     const { body } = document;
-    if (disabled) {
+    if (disabled && window.innerWidth < SIZE.M) {
       body.style.height = '100vh';
       body.style.overflowY = 'hidden';
     } else {

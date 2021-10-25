@@ -24,6 +24,10 @@ describe('ImageBox', () => {
     );
 
     cy.get('*[data-cy=image-box]').should('have.length', 1);
-    cy.get('*[data-cy=image-box]').parent().parent().should('have.css', 'max-width', `${170}px`);
+    cy.get('*[data-cy=image-box]')
+      .parent()
+      .parent()
+      .parent()
+      .should('have.css', 'max-width', `${170}px`);
   });
 });

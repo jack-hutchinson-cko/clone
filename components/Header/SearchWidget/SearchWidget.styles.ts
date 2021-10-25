@@ -23,6 +23,7 @@ export const Results = styled.div<{ isShown: boolean }>`
     box-shadow: none;
     border-radius: 0;
     border-width: 0;
+    display: block;
   }
 `;
 
@@ -39,7 +40,7 @@ export const ResultItemsContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
-export const TextFieldWrapper = styled.div<{ isMobile?: boolean }>`
+export const TextFieldWrapper = styled.div`
   position: relative;
   cursor: initial;
 `;

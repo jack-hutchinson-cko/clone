@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { IconActionChevronDown } from 'components/Icons';
-import { Breakpoints, MobileBreakPoints, SIZE, createBreakpointTo } from 'constants/screen';
+import { Breakpoints, SIZE, createBreakpointTo, createBreakpointFrom } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
 export const NavigationContent = styled.nav`
@@ -18,9 +18,43 @@ export const NavigationContent = styled.nav`
   }
 `;
 
-export const NavigationSection = styled.div<{ isMobile?: boolean }>`
+const hideOnSize = ({
+  hideOnMobile,
+  hideOnTablet,
+  hideOnDesktop,
+}: {
+  hideOnMobile?: boolean;
+  hideOnTablet?: boolean;
+  hideOnDesktop?: boolean;
+}) => css`
+  @media ${Breakpoints.DESKTOP} {
+    ${hideOnDesktop ? 'display: none;' : ''}
+  }
+
+  @media ${Breakpoints.TABLET} {
+    ${hideOnTablet ? 'display: none;' : ''}
+  }
+
+  @media ${Breakpoints.MOBILE} {
+    ${hideOnMobile ? 'display: none;' : ''}
+  }
+`;
+
+export const NavigationSection = styled.div<{
+  hideOnMobile?: boolean;
+  hideOnTablet?: boolean;
+  hideOnDesktop?: boolean;
+  noPaddingsOnMobile?: boolean;
+}>`
   display: inline-flex;
   gap: 30px;
+
+  @media ${Breakpoints.MOBILE} {
+    ${({ noPaddingsOnMobile }) => (noPaddingsOnMobile ? 'padding: 0 !important;' : '')}
+  }
+
+  ${({ hideOnMobile, hideOnTablet, hideOnDesktop }) =>
+    hideOnSize({ hideOnMobile, hideOnTablet, hideOnDesktop })}
 `;
 
 export const MiddleNavigationSection = styled(NavigationSection)`
@@ -36,50 +70,58 @@ export const MiddleNavigationSection = styled(NavigationSection)`
   }
 `;
 
-export const Navigation = styled.header<{ isMobile?: boolean }>`
+export const Navigation = styled.header<{ withMobileSize?: boolean }>`
   display: block;
   background: ${({ theme }) => theme.colors.background};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   box-sizing: content-box;
 
-  ${({ isMobile }) =>
-    isMobile &&
+  ${({ withMobileSize }) =>
+    withMobileSize &&
     css`
       ${NavigationContent} {
-        justify-content: flex-start;
-        flex-direction: column;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        font-size: 24px;
-        line-height: 32px;
-        font-weight: 300;
+        @media ${createBreakpointTo(SIZE.M)} {
+          justify-content: flex-start;
+          flex-direction: column;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 300;
+        }
       }
 
       ${NavigationSection} {
-        display: flex;
-        justify-content: center;
-        flex: 1;
-        gap: 0;
-        margin: 0;
+        @media ${createBreakpointTo(SIZE.M)} {
+          display: flex;
+          justify-content: center;
+          flex: 1;
+          gap: 0;
+          margin: 0;
 
-        &:first-child {
-          justify-content: space-between;
-        }
+          &:first-child {
+            justify-content: space-between;
+          }
 
-        &:not(:last-child) {
-          padding: ${spacing.s00} ${spacing.s70}px;
-          border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+          &:not(:last-child) {
+            padding: ${spacing.s00} ${spacing.s70}px;
+            border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-          @media ${createBreakpointTo(SIZE.M)} {
-            padding: ${spacing.s00} ${spacing.s50}px;
+            @media ${createBreakpointTo(SIZE.M)} {
+              padding: ${spacing.s00} ${spacing.s50}px;
+            }
           }
         }
       }
     `}
 `;
 
-export const NavigationDrawers = styled.div`
+export const NavigationDrawers = styled.div<{
+  hideOnMobile?: boolean;
+  hideOnTablet?: boolean;
+  hideOnDesktop?: boolean;
+}>`
   position: absolute;
   left: 0;
   top: 81px;
@@ -93,12 +135,27 @@ export const NavigationDrawers = styled.div`
     top: 66px;
     height: calc(100vh - 66px);
   }
+
+  ${({ hideOnMobile, hideOnTablet, hideOnDesktop }) =>
+    hideOnSize({ hideOnMobile, hideOnTablet, hideOnDesktop })}
+`;
+
+export const InlineFlexWrapper = styled.div<{
+  hideOnMobile?: boolean;
+  hideOnTablet?: boolean;
+  hideOnDesktop?: boolean;
+}>`
+  ${({ hideOnMobile, hideOnTablet, hideOnDesktop }) =>
+    hideOnSize({ hideOnMobile, hideOnTablet, hideOnDesktop })}
 `;
 
 type NavigationItemProps = {
   isSelected?: boolean;
   withHover?: boolean;
   withPointer?: boolean;
+  hideOnMobile?: boolean;
+  hideOnTablet?: boolean;
+  hideOnDesktop?: boolean;
 };
 
 export const NavigationItem = styled.div<NavigationItemProps>`
@@ -131,14 +188,21 @@ export const NavigationItem = styled.div<NavigationItemProps>`
     height: 65px;
     font-size: 16px;
   }
+
+  ${({ hideOnMobile, hideOnTablet, hideOnDesktop }) =>
+    hideOnSize({ hideOnMobile, hideOnTablet, hideOnDesktop })}
 `;
 
 export const MiddleNavigationItem = styled(NavigationItem)`
   flex: 1;
+  @media ${createBreakpointTo(SIZE.M)} {
+    display: none;
+  }
 `;
 
 export const NavigationLink = styled.a<{
   light?: boolean;
+  lightOnTablet?: boolean;
   fullWidth?: boolean;
   underlineOnHover?: boolean;
   underlineAlways?: boolean;
@@ -174,6 +238,10 @@ export const NavigationLink = styled.a<{
   svg {
     color: ${({ theme }) => theme.colors.sectionIcon};
   }
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    ${({ lightOnTablet }) => (lightOnTablet ? 'font-weight: 400;' : '')}
+  }
 `;
 
 export const HeaderLogoWrapper = styled.div`
@@ -185,8 +253,17 @@ export const HeaderLogoWrapper = styled.div`
     color: ${({ theme }) => theme.colors.base};
   }
 
-  @media ${MobileBreakPoints.MOBILE_M} {
+  @media ${createBreakpointFrom(SIZE.M)} {
+    > *:last-child {
+      display: none;
+    }
+  }
+
+  @media ${createBreakpointTo(SIZE.M)} {
     padding: 0 20px;
+    > *:first-child {
+      display: none;
+    }
   }
 `;
 
@@ -215,10 +292,16 @@ export const DrawerTopContentWrapper = styled.div`
 
   @media ${Breakpoints.TABLET} {
     padding-right: ${spacing.s60}px;
+    > *:last-child {
+      display: none;
+    }
   }
 
   @media ${Breakpoints.MOBILE} {
     padding: ${spacing.s50}px ${spacing.s50}px ${spacing.s60}px;
+    > *:first-child {
+      display: none;
+    }
   }
 `;
 

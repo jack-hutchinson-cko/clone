@@ -2,16 +2,18 @@ import styled, { css } from 'styled-components';
 
 import { Breakpoints } from 'constants/screen';
 
-export const Container = styled.div<{ isMobile?: boolean }>`
+export const Container = styled.div<{ withMobileSize?: boolean }>`
   position: relative;
   z-index: 1;
 
-  ${({ isMobile }) =>
-    isMobile &&
+  ${({ withMobileSize }) =>
+    withMobileSize &&
     css`
-      display: flex;
-      justify-content: center;
-      flex: 1;
+      @media ${Breakpoints.MOBILE} {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+      }
     `}
 `;
 
@@ -19,18 +21,20 @@ export const Content = styled.div<{
   align: 'left' | 'right';
   isShown?: boolean;
   offset?: number;
-  isMobile?: boolean;
+  withMobileSize?: boolean;
 }>`
   position: absolute;
   display: ${({ isShown }) => (isShown ? 'block' : 'none')};
   top: 100%;
-  ${({ isMobile, align, offset }) =>
-    isMobile
+  ${({ withMobileSize, align, offset }) =>
+    withMobileSize
       ? css`
-          width: 100%;
-          left: 0;
+          @media ${Breakpoints.MOBILE} {
+            width: 100%;
+            left: 0;
+          }
         `
-      : css`
+      : `
           ${align}: -${offset}px
         `}
 `;

@@ -8,6 +8,7 @@ type Props = {
   fullWidth?: boolean;
   variant: 'primary' | 'secondary';
   size: 'large' | 'small';
+  fullWidthOnTablet?: boolean;
 };
 
 const getButtonColorStyles = ({ theme, variant }: { theme: ThemeType } & Props) => {
@@ -88,6 +89,10 @@ const Button = styled.button<Props>`
 
   @media ${createBreakpointTo(SIZE.SM)} {
     width: 100%;
+  }
+
+  @media ${createBreakpointTo(SIZE.L)} {
+    ${({ fullWidthOnTablet }) => (fullWidthOnTablet ? 'width: 100%;' : '')}
   }
 
   @media ${Breakpoints.MOBILE} {

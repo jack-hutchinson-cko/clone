@@ -2,13 +2,16 @@ import styled from 'styled-components';
 import { createBreakpointTo, SIZE } from 'constants/screen';
 import { spacing } from 'constants/spacingSize';
 
-export const Container = styled.div<{ isMobile?: boolean }>`
+export const Container = styled.div<{ withMobileSize?: boolean }>`
   box-shadow: ${({ theme }) => theme.shadows.itemHolder};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   font-size: 16px;
   line-height: 24px;
+  width: 420px;
 
-  width: ${({ isMobile }) => (isMobile ? '100%' : '420px')};
+  @media ${createBreakpointTo(SIZE.M)} {
+    ${({ withMobileSize }) => (withMobileSize ? 'width: 100%;' : '')}
+  }
 `;
 export const Content = styled.ul`
   display: flex;

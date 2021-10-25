@@ -18,5 +18,7 @@ export type HeaderContent = {
   popularSearchesTitle: string;
   emptySearchResult: string;
   testAccountUrl: string;
-  loginUrl: string;
+  loginTopUrl: string;
+  loginBottomUrl: string;
+  loginTitle: string;
 };

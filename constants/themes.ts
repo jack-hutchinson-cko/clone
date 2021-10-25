@@ -105,6 +105,9 @@ export const themes = {
       codeSampleTokenAtrule: '#6964b3',
       codeSampleTokenFunction: '#3ab9f4',
       codeSampleTokenRegex: '#00bd97',
+      // Image placeholder
+      placeholderLine: '#fbfbfc',
+      placeholderBackground: '#f1f2f4',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -311,6 +314,9 @@ export const themes = {
       codeSampleTokenAtrule: '#e25252',
       codeSampleTokenFunction: '#3ab9f4',
       codeSampleTokenRegex: '#00bd97',
+      // Image placeholder
+      placeholderLine: '#fbfbfc',
+      placeholderBackground: '#f1f2f4',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],

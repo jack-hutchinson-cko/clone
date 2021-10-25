@@ -6,7 +6,6 @@ import { ThemeProvider } from 'theme/ThemeProvider';
 import Head from 'components/Head';
 import withHandlerBackButton from 'hoc/withHandlerBackButton';
 import GlobalStyles from '../styles/globalStyles';
-import '../public/assets/fonts/add.css';
 
 type Props = {
   /* eslint-disable  @typescript-eslint/no-explicit-any */

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Breakpoints } from 'constants/screen';
 
 export const Content = styled.aside`
@@ -14,23 +14,16 @@ export const Content = styled.aside`
 
   @media ${Breakpoints.MOBILE} {
     filter: none;
+    width: 100%;
   }
 `;
 
-export const Container = styled.div<{ isMobile?: boolean }>`
+export const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-end;
   pointer-events: auto;
   flex: 1;
-
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      ${Content} {
-        width: 100%;
-      }
-    `}
 `;
 
 export const Background = styled.span`
