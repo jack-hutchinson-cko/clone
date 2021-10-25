@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "create-index-for-algolia": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createIndexForAlgolia.tsx",
+    "create-site-map": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createSiteMap.tsx",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
