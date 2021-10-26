@@ -12,9 +12,9 @@ export const ContentPanelDefaultStory: Story = () => {
         having to process or store any sensitive information yourself.
       </p>
 
-      <a href="https://docs.checkout.com/integrate/frames">Learn more for web</a>
+      <a href="/integrate/frames">Learn more for web</a>
       <br />
-      <a href="https://docs.checkout.com/integrate/frames-for-android">Learn more for mobile </a>
+      <a href="/integrate/frames-for-android">Learn more for mobile </a>
     </ContentPanel>
   );
 };
