@@ -146,8 +146,6 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
----
-
 #### Request example
 
 ```json
@@ -170,7 +168,7 @@ You can find the full list, as well as complete request and response examples, i
   }
 }
 ```
----
+
 #### Response example
 
 If you receive a `202 Success` response containing a `status` field set to `Pending`, your request was successful.
@@ -226,8 +224,6 @@ You can retrieve details about an existing Fawry payment with the following endp
 
 </tab>
 </tabs>
-
----
 
 #### Response example
 
@@ -408,13 +404,9 @@ You can use the two following endpoints to test capturing and canceling a paymen
 
 First, you will need to get the details of payment (as above) and make a note of the `reference_number` in the response.
 
----
-
 #### Capture a payment
 
 Use the `reference_number` from the above response to test capturing a payment.
-
----
 
 ##### Endpoint
 
@@ -428,8 +420,6 @@ Use the `reference_number` from the above response to test capturing a payment.
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 ##### Header and path parameters
 
@@ -489,15 +479,12 @@ The reference number you received in the response to the 'get payment details' r
 
 If successful, you will receive a `payment_captured` webhook notification.
 
----
-
 #### Cancel a payment
 
 Use the `reference_number` from the response to your get payment details request to test canceling a payment.
 
----
-
 ##### Endpoint 
+
 <tabs>
 <tab title="Sandbox">
 
@@ -508,8 +495,6 @@ Use the `reference_number` from the response to your get payment details request
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 ##### Header and path parameters
 
