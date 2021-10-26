@@ -53,7 +53,7 @@ If, however, the bank decides it needs further proof, they will prompt the custo
 
 <TipBox variant="success" title="Customize the challenge UI">
 
-To provide a consistent experience across different devices and schemes, there are standard templates and rules that the 3DS challenge screens adhere to. However, there is some leeway around styling. Our SDKs give you [control over the display of the native challenges in your app](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization), while ensuring that the rules are followed.
+To provide a consistent experience across different devices and schemes, there are standard templates and rules that the 3DS challenge screens adhere to. However, there is some leeway around styling. Our SDKs give you [control over the display of the native challenges in your app](/risk-management/sessions/non-hosted-sessions/3-d-secure-mobile-sd-ks), while ensuring that the rules are followed.
 
 </TipBox>
 
@@ -63,7 +63,7 @@ To provide a consistent experience across different devices and schemes, there a
 
 To use one of our 3DS mobile SDKs, first integrate the library into your project. Then, configure your iOS or Android app to:
 
-1. [Initialize](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-initialize) the SDK with your preferred user interface options.
+1. [Initialize](/risk-management/sessions/non-hosted-sessions/3-d-secure-mobile-sd-ks#id-3DSecuremobileSDKs-initialize) the SDK with your preferred user interface options.
 2. Configure the parameters for an authentication.
 3. Request authentication and handle the result to continue your payment flow.
 
@@ -305,7 +305,7 @@ pod 'Checkout3DS', :git => 'git@github.com:checkout/checkout-3ds-sdk-ios.git', :
 
 #### Step 1: Initialize the SDK 
 
-Initialize the SDK, setting the environment (production or sandbox), the locale, and your preferred [challenge user interface options](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization).
+Initialize the SDK, setting the environment (production or sandbox), the locale, and your preferred [challenge user interface options](/risk-management/sessions/non-hosted-sessions/3-d-secure-mobile-sd-ks#id-3DSecuremobileSDKs-customization).
 
 <tabs>
 <tab title="Swift">
@@ -452,7 +452,7 @@ Default: the device locale
 </TableCell>
 <TableCell>
 
-The [customizations for the challenge user interface](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization).
+The [customizations for the challenge user interface](/risk-management/sessions/non-hosted-sessions/3-d-secure-mobile-sd-ks#id-3DSecuremobileSDKs-customization).
 
 </TableCell>
 </TableRow>
@@ -562,7 +562,7 @@ Default: the device locale
 </TableCell>
 <TableCell>
 
-The [customizations for the challenge user interface](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization).
+The [customizations for the challenge user interface](/risk-management/sessions/non-hosted-sessions/3-d-secure-mobile-sd-ks#id-3DSecuremobileSDKs-customization).
 
 </TableCell>
 </TableRow>
@@ -1258,7 +1258,7 @@ We’ve built a simple, clean default style for the native challenge user interf
 
 Our SDKs also handle different screen sizes and orientations, and allow you to address different user needs with dynamic text sizing, TalkBack and VoiceOver assistance, and support for 37 languages (though the body of the challenge screens is always presented in the language provided by the customer's bank).
 
-To apply your own style, simply include a UI Customization object when you [initialise the SDK](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-initialize). We've included some code examples below to show you how you might build the object.
+To apply your own style, simply include a UI Customization object when you [initialise the SDK](/risk-management/sessions/non-hosted-sessions/3-d-secure-mobile-sd-ks#id-3DSecuremobileSDKs-initialize). We've included some code examples below to show you how you might build the object.
 
 <tabs>
 <tab title="iOS">
