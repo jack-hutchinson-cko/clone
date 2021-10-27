@@ -537,7 +537,7 @@ If not provided, your existing `failure_url` will be used.
 
 If you get a response with `"success": true`, your order was successful.
 
-If the payment was made with [3D Secure (3DS) authentication](/risk-management/3d-secure), you will get a `200` response containing a redirect link that the customer will need to complete in order to finalize the transaction.
+If the payment was made with [3D Secure (3DS) authentication](/risk-management/3-d-secure), you will get a `200` response containing a redirect link that the customer will need to complete in order to finalize the transaction.
 
 If unsuccessful, you will get one of the following error messages:
 
@@ -577,7 +577,7 @@ If unsuccessful, you will get one of the following error messages:
 <Box horizontal="sm">
 <TipBox variant="info" title="session_id">
 
-Once 3DS authentication is completed, you will receive a `session_id` from our payment gateway. You can pass this `session_id` to our [get payment details endpoint](/risk-management/3d-secure/3d-secure-2-0-api-integration#id-3DSecure2.0APIintegration-Step4:VerifythepaymentwiththesessionIDverifypayment) to determine whether the payment was approved, or to get more information about it.
+Once 3DS authentication is completed, you will receive a `session_id` from our payment gateway. You can pass this `session_id` to our [get payment details endpoint](/risk-management/3-d-secure/3d-secure-2-0-api-integration#id-3DSecure2.0APIintegration-Step4:VerifythepaymentwiththesessionIDverifypayment) to determine whether the payment was approved, or to get more information about it.
 
 </TipBox>
 </Box>

@@ -13,13 +13,13 @@ The statements endpoint is not available in the sandbox environment.
 
 <TipBox variant="success">
 
-If you're not familiar with creating API requests, you might want to take a look at our [Postman guide](https://docs.checkout.com/reporting-and-insights/reconciliation-api/postman-guide).
+If you're not familiar with creating API requests, you might want to take a look at our [Postman guide](/reporting-and-insights/reconciliation-api/postman-guide).
 
 </TipBox>
 
 <TipBox variant="info">
 
-No payments before February 7th, 2019 at 00.00.00 UTC will appear using the statements endpoint. To view payments before this time, please use the [Classic API's transactions endpoint](https://archive.docs.checkout.com/docs/reconciliation-api).
+No payments before February 7th, 2019 at 00.00.00 UTC will appear using the statements endpoint. To view payments before this time, please use the <ExternalLink href="https://archive.docs.checkout.com/docs/reconciliation-api" target="_blank">Classic API's transactions endpoint</ExternalLink>.
 
 </TipBox>
 
@@ -27,7 +27,7 @@ No payments before February 7th, 2019 at 00.00.00 UTC will appear using the stat
 
 #### The GET request
 
-Use the details below to set up your request. To set the timeframe of your request, replace `{start-date}` and `{end-date}` with your desired start and end dates in ISO format. Please note that the time zone for the request will be UTC. The response will be returned in JSON format – but you can also [download a CSV copy](https://docs.checkout.com/reporting-and-insights/reconciliation-api/statements-endpoint#Statementsendpoint-csvdownload) if you'd like.
+Use the details below to set up your request. To set the timeframe of your request, replace `{start-date}` and `{end-date}` with your desired start and end dates in ISO format. Please note that the time zone for the request will be UTC. The response will be returned in JSON format – but you can also [download a CSV copy](/reporting-and-insights/reconciliation-api/statements-endpoint#Statementsendpoint-csvdownload) if you'd like.
 
 #### Endpoint
 
@@ -536,4 +536,4 @@ For example:
 https://api.checkout.com/reporting/statements/{StatementId}/payments/download
 ```
 
-See more information about the parameters available for this endpoint [above](https://docs.checkout.com/reporting-and-insights/reconciliation-api/statements-endpoint#Statementsendpoint-statementIDpayments).
+See more information about the parameters available for this endpoint [above](/reporting-and-insights/reconciliation-api/statements-endpoint#Statementsendpoint-statementIDpayments).

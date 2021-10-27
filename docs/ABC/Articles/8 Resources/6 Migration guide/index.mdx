@@ -125,7 +125,7 @@ If you instead receive an HTTP status of `201 - Created`, it means that it was p
 
 #### What doesn't change
 
-*   Your existing front-end solution (e.g., Frames, [Checkout.js](https://docs.checkout.com/archive/checkout-js), SDKs) can still be used to collect your customer's card information.
+*   Your existing front-end solution (e.g., Frames, <ExternalLink href="https://docs.checkout.com/archive/checkout-js" target="_blank">Checkout.js</ExternalLink>, SDKs) can still be used to collect your customer's card information.
 *   Checkout.com still returns a card token once your customer has confirmed the purchase.
 
 #### What changes
@@ -136,7 +136,7 @@ If you instead receive an HTTP status of `201 - Created`, it means that it was p
 <TableRow>
 <TableCell>
 
-*   The token charges endpoint is used to [request a payment](https://archive.docs.checkout.com/docs/authorize-a-payment) using the card token from step 2.
+*   The token charges endpoint is used to <ExternalLink href="https://archive.docs.checkout.com/docs/authorize-a-payment" target="_blank">request a payment</ExternalLink> using the card token from step 2.
 *   A card ID is provided in the charge response, which can be used for subsequent payments with the same card information.
 
 </TableCell>
@@ -251,7 +251,7 @@ https://api.sandbox.checkout.com/payments
 <TableRow>
 <TableCell>
 
-The card charges endpoint is used to [request a payment](https://archive.docs.checkout.com/docs/authorize-a-payment).
+The card charges endpoint is used to <ExternalLink href="https://archive.docs.checkout.com/docs/authorize-a-payment" target="_blank">request a payment</ExternalLink>.
 
 </TableCell>
 <TableCell>
@@ -366,7 +366,7 @@ When a payment is made, the Unified Payments API continues to provide an identif
 <TableRow>
 <TableCell>
 
-The card charges endpoint is used to [request a payment](https://archive.docs.checkout.com/docs/authorize-a-payment) using a customer ID.
+The card charges endpoint is used to <ExternalLink href="https://archive.docs.checkout.com/docs/authorize-a-payment" target="_blank">request a payment</ExternalLink> using a customer ID.
 
 </TableCell>
 <TableCell>
@@ -474,13 +474,13 @@ https://api.sandbox.checkout.com/payments
 <TableRow>
 <TableCell>
 
-*   The card charges endpoint is used to [request a payment](https://archive.docs.checkout.com/docs/payment-with-full-card-details#api-payment-with-full-card-details). Full card details should be specified in the card object of the payment request.
+*   The card charges endpoint is used to <ExternalLink href="https://archive.docs.checkout.com/docs/payment-with-full-card-details#api-payment-with-full-card-details" target="_blank">request a payment</ExternalLink>. Full card details should be specified in the card object of the payment request.
 *   A card ID is provided in the charge response, which can be used for subsequent payments with the same card information.
 
 </TableCell>
 <TableCell>
 
-*   The unified payments endpoint is used to [request a payment](/integrate/full-card-details-api). A source type of `card` should be used.
+*   The unified payments endpoint is used to <ExternalLink href="/integrate/full-card-details-api" target="_blank">request a payment</ExternalLink>. A source type of `card` should be used.
 *   A source ID is provided in the payment response, which can be used for subsequent payments with the same card information.
 
 </TableCell>
@@ -593,8 +593,8 @@ https://api.sandbox.checkout.com/payments
 <TableRow>
 <TableCell>
 
-*   The [payment token endpoint](https://archive.docs.checkout.com/docs/process-alternative-payment-methods#section--span-class-step_hl-step-1-span-create-a-payment-token-) is used to create a payment token.
-*   The local payment endpoint is used to [request a payment](https://archive.docs.checkout.com/docs/payment-with-full-card-details#api-payment-with-full-card-details) using the payment token.
+*   The <ExternalLink href="https://archive.docs.checkout.com/docs/process-alternative-payment-methods#section--span-class-step_hl-step-1-span-create-a-payment-token-" target="_blank">payment token endpoint</ExternalLink> is used to create a payment token.
+*   The local payment endpoint is used to <ExternalLink href="https://archive.docs.checkout.com/docs/payment-with-full-card-details#api-payment-with-full-card-details" target="_blank">request a payment</ExternalLink> using the payment token.
 
 </TableCell>
 <TableCell>
@@ -712,7 +712,7 @@ https://api.sandbox.checkout.com/payments
 
 #### What changes
 
-The [Checkout.js](https://docs.checkout.com/archive/checkout-js) solution no longer supports alternative payment methods. Instead, a direct integration with the Unified Payments API should be used to request payments using alternative payment methods.
+The <ExternalLink href="https://docs.checkout.com/archive/checkout-js" target="_blank">Checkout.js</ExternalLink> solution no longer supports alternative payment methods. Instead, a direct integration with the Unified Payments API should be used to request payments using alternative payment methods.
 
 #### What changes
 
@@ -722,7 +722,7 @@ The [Checkout.js](https://docs.checkout.com/archive/checkout-js) solution no lon
 <TableRow>
 <TableCell>
 
-*   The [payment token endpoint](https://archive.docs.checkout.com/docs/process-alternative-payment-methods#section--span-class-step_hl-step-1-span-create-a-payment-token-) is used to create a payment token.
+*   The <ExternalLink href="https://archive.docs.checkout.com/docs/process-alternative-payment-methods#section--span-class-step_hl-step-1-span-create-a-payment-token-" target="_blank">payment token endpoint</ExternalLink> is used to create a payment token.
 *   The payment token is used in the initialization of Checkout.js.
 *   Your customer selects the desired payment method in the lightbox, which then redirects the customer to the payment provider to complete the payment.
 
