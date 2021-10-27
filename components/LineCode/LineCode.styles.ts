@@ -9,5 +9,5 @@ export const LineCode = styled.code<{ wordBreak?: string }>`
   font-size: 14px;
   line-height: 24px;
   font-weight: normal;
-  word-break: ${({ wordBreak = 'normal' }) => wordBreak};
+  word-break: ${({ wordBreak = 'break-word' }) => wordBreak};
 `;
