@@ -9,7 +9,7 @@ type Props = {
 };
 
 const ArrowLink: FC<Props> = ({ href, title }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <BlockLink>
       {title}
       <IconActionArrowRight />
