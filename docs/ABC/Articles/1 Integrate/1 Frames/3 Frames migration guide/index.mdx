@@ -5,7 +5,9 @@ account: ABC
 
 Follow this guide to upgrade from the legacy version of Frames (v1) to the newest version (v2).
 
-#### Step 1: Replace the script
+---
+
+### Step 1: Replace the script
 
 Find the following script tag:
 
@@ -15,7 +17,9 @@ Replace it with this tag:
 
 `<script src="https://cdn.checkout.com/js/framesv2.min.js">`
 
-#### Step 2: Rename the event handlers
+---
+
+### Step 2: Rename the event handlers
 
 Rename `cardTokenisednow` to `cardTokenized` and `cardTokenisationFailed` to `cardTokenizationFailed`.
 
@@ -23,7 +27,9 @@ If you have custom styling, **skip to step 4**.
 
 If you don't have any custom styling, continue to step 3.
 
-#### Step 3 (optional): Add a style tag
+---
+
+### Step 3 (optional): Add a style tag
 
 To get started quickly, you can use our default styling:
 
@@ -140,7 +146,9 @@ iframe {
 
 Replace the div tags inside the form element with the new ones from the example below. Make sure to update the card-frame class with your custom frameSelector if you have changed it.
 
-#### Step 4 (optional): Rename or replace the HTML tags
+---
+
+### Step 4 (optional): Rename or replace the HTML tags
 
 ```javascript
 <div class="one-liner">
@@ -161,7 +169,9 @@ The div with the `one-liner` class is used by our default style. You can safely 
 
 </TipBox>
 
-#### Step 5 (optional): Rename containerSelector
+---
+
+### Step 5 (optional): Rename containerSelector
 
 If you were using the `containerSelector` option in Frames v1, make sure to rename it to `frameSelector`.
 
@@ -177,10 +187,14 @@ If you were using the `containerSelector` option in Frames v1, make sure to rena
 
 </TipBox>
 
-#### Step 6: Rename the form element selectors
+---
+
+### Step 6: Rename the form element selectors
 
 Rename the `paymentForm` selector to `payment-form `and the `payNowButton` selector to `pay-button`.
 
-#### Step 7: Update the JavaScript
+---
+
+### Step 7: Update the JavaScript
 
 Wherever needed, update the JavaScript with the new version. Both types of initialization are supported.

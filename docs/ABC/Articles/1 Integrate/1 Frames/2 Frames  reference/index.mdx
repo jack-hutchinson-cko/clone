@@ -24,7 +24,7 @@ If you discover any issues with the supported browsers, or would like to report 
 
 Here's a complete list of Frames configuration options.
 
-### Required
+#### Required
 
 <TipBox variant="info">
 
@@ -56,7 +56,7 @@ You can find it in the <ExternalLink href="https://hub.checkout.com/login" targe
 </TableBody>
 </Table>
 
-### Optional
+#### Optional
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -157,7 +157,6 @@ When paying out to a card, the [CVV field](/risk-management/cvv-check) is not ma
 
 <tabs>
 <tab title="CVV_HIDDEN">
-<Box horizontal="sm">
 
 ```javascript
 Frames.init({
@@ -166,10 +165,8 @@ Frames.init({
 });
 ```
 
-</Box>
 </tab>
 <tab title="CVV_OPTIONAL">
-<Box horizontal="sm">
 
 ```javascript
 Frames.init({
@@ -178,7 +175,6 @@ Frames.init({
 });
 ```
 
-</Box>
 </tab>
 </tabs>
 
@@ -541,7 +537,7 @@ Frames.init({
 ### Actions
 
 <Table>
-<TableHead headers={['Javascript key', 'Description', 'Default']} />
+<TableHead headers={['Signature', 'Description', 'Returns']} />
 <TableBody>
 <TableRow>
 <TableCell>
@@ -644,7 +640,7 @@ e`vent: Events.CARD_TOKENIZED handler: function(event){}`
 <TableRow>
 <TableCell>
 
-<inlineCode wordBreak="break-word">paymentMethodChremoveAllEventHandlers(event)</inlineCode>
+<inlineCode wordBreak="break-word">removeAllEventHandlers(event)</inlineCode>
 
 </TableCell>
 <TableCell>
