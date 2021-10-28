@@ -34,7 +34,7 @@ const ImageBox: FC<Props> = ({
   src,
   darkThemeSrc = '',
   maxWidth,
-  withFullscreenPreview,
+  withFullscreenPreview = true,
   defaultWidth,
   defaultHeight,
   loader = basePathLoader,

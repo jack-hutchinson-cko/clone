@@ -202,13 +202,13 @@ Find out more about onboarding and verification for your sub-entities.
 
 Use the HTML `img` tag with a standard `src` attribute to point to the image's location.
 
-* Add `withFullscreenPreview` so the user can open the image into a bigger display. 
+* `withFullscreenPreview` is default true. Set to false if you shouldnt be able to open image into a bigger display. 
 * Add `maxWidth` to change the width of the image. This will be in pixels, so you just need to type a full number (not as a string).
 * Src path relates to the location of the image in the public directory. 
 
 ### Example
 
-`<img maxWidth={170} src="/docs/Integrate/SDKS/Android SDK/Android.png" withFullscreenPreview/>`
+`<img maxWidth={170} src="/docs/Integrate/SDKS/Android SDK/Android.png" />`
 
 ### Portrait
 

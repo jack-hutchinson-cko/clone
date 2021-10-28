@@ -20,7 +20,7 @@ const SectionList: FC<Props> = ({ activeItem = '', list = [], ...props }) => {
           isActive={url === activeItem}
         >
           <ImgWrapper>
-            <ImageBox src={imageSrc} maxWidth={24} />
+            <ImageBox src={imageSrc} maxWidth={24} withFullscreenPreview={false} />
           </ImgWrapper>
           <mark>{title}</mark>
         </SectionItem>
