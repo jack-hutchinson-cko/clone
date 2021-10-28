@@ -17,7 +17,7 @@ Find out how to:
 - [Delete a webhook](#Delete_a_webhook)
 - [Test a webhook](#Test_a_webhook)
 
-<br />
+---
 
 ### Return all webhooks
 
@@ -88,7 +88,7 @@ Other possible responses:
 - 204 - No webhooks have been configured
 - 500 - Unexpected server error
 
-<br />
+---
 
 ### Add a new webhook
 
@@ -189,7 +189,7 @@ Other possible responses:
 - 409 - Conflict. A webhook with the same URL is already configured
 - 500 - Unexpected server error
 
-<br />
+---
 
 ### Return a single webhook
 
@@ -253,7 +253,7 @@ Other possible responses:
 - 404 - A webhook with the requested webhook_id was not found
 - 500 - Unexpected server error
 
-<br />
+---
 
 ### Update a webhook
 
@@ -354,8 +354,6 @@ Other possible responses:
 - 404 - A webhook with the requested webhook_id was not found
 - 409 - Conflict. A webhook with the same URL is already configured
 - 500 - Unexpected server error
-
-<br />
 
 ### Partially update a webhook
 
@@ -493,8 +491,6 @@ Other possible responses:
 - 404 - A webhook with the requested webhook_id was not found
 - 409 - Conflict. A webhook with the same URL is already configured
 
-<br />
-
 ### Delete a webhook
 
 Use this API request to delete a single webhook using its webhook ID.
@@ -525,8 +521,6 @@ You can find the full list, as well as complete request and response examples, i
 A 200 response signals that the webhook was successfully deleted.
 
 Other possible response: 404 - No webhook was found that matched the webhook ID.
-
-<br />
 
 ### Test a webhook
 
