@@ -8,12 +8,19 @@ Request and view events that have taken place within a specific timeframe.
 
 With the Events API, you can:
 
-- [Get an event based on an ID](/reporting-and-insights/events-api#EventsAPI-getevent)
-- [Get a summary of notifications for an event](/reporting-and-insights/events-api#EventsAPI-getnotificationsummary)
-- [Retry notifications for all subscribed active webhooks](/reporting-and-insights/events-api#EventsAPI-retrynotifications)
-- [Retry a single event for a specified webhook](/reporting-and-insights/events-api#EventsAPI-retrysingleevent)
+* [Get an event based on an ID](#Get_an_event)
+* [Get events based on query parameters](#Get_events)
+* [Get a summary of notifications for an event](#Get_an_event's_notification_summary)
+* [Retry notifications for all subscribed active webhooks](#Retry_notifications_for_all_active_webhooks)
+* [Retry a single event for a specified webhook](#Retry_a_single_event)
 
 To view a list of events you can subscribe to, please see our [event types page](/reporting-and-insights/events-api/event-types).
+
+<TipBox variant="info" title="Event retention period">
+
+You can view events created within the last 30 days via the API.
+
+</TipBox>
 
 ---
 
@@ -25,7 +32,7 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -50,7 +57,7 @@ Below is an example of a successful response.
 
 <TipBox variant="info" >
 
-For a full description of what each section means, see [our API reference](https://api-reference.checkout.com/#operation/retrieveEvent).
+For a full description of what each section means, see <ExternalLink href="https://api-reference.checkout.com/#operation/retrieveEvent" target="_blank">our API reference</ExternalLink>.
 
 </TipBox>
 
@@ -139,15 +146,175 @@ Other possible responses:
 
 ---
 
-### Get an event's notification summary
+### Get events
 
-View a summary of the notifications for an event.
+Retrieve events based on your query parameters. You can pass multiple query parameters, using `&` to separate each one.
 
 Use the details below to set up your request.
 
 #### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+
+<tabs>
+<tab title="Live">
+<LineCodeWrapper type="get">
+
+`https://api.checkout.com/events`
+
+</LineCodeWrapper>
+</tab>
+<tab title="Sandbox">
+<LineCodeWrapper type="get">
+
+`https://api.sandbox.checkout.com/events`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Request examples
+
+Below are some example requests using different query parameters.
+
+<tabs>
+<tab title="payment_id">
+
+```bash
+curl --location --request GET 'https://api.checkout.com/events?payment_id=pay_ok2ynq6ubn3ufmo6jsdfmdvy5q' \
+--header 'Authorization: sk_cde31df9-6d52-4dda-957d-065b43819fe0'
+```
+
+</tab>
+<tab title="charge_id">
+
+```bash
+curl --location --request GET 'https://api.checkout.com/events?charge_id=charge_FC1919EE547L23CC6BE1' \
+--header 'Authorization: sk_cde31df9-6d52-4dda-957d-065b43819fe0'
+```
+</tab>
+<tab title="track_id">
+
+```bash
+curl --location --request GET 'https://api.checkout.com/events?track_id=TRK12345' \
+--header 'Authorization: sk_cde31df9-6d52-4dda-957d-065b43819fe0'
+```
+
+</tab>
+<tab title="from">
+
+```bash
+curl --location --request GET 'https://api.checkout.com/events?from=2020-11-07T04:00:00Z' \
+--header 'Authorization: sk_cde31df9-6d52-4dda-957d-065b43819fe0'
+```
+
+</tab>
+</tabs>
+
+#### Response examples
+
+Below are some response examples.
+
+<TipBox variant="info">
+
+For a full description of each response, see our [API reference](https://api-reference.checkout.com/#operation/retrieveEvent).
+
+</TipBox>
+
+<tabs>
+<tab title="200 - payment_id">
+
+```json
+{
+  "total_count": 1,
+  "limit": 5,
+  "skip": 0,
+  "from": "2021-06-11T09:41:21Z",
+  "to": "2021-06-25T09:40:12Z",
+  "data": [
+    {
+      "id": "evt_3nup2pts3emebenhtw6ky4frim",
+      "type": "payment_approved",
+      "created_on": "2021-06-25T09:40:12Z",
+      "_links": {
+        "self": {
+          "href": "https://qaapi.ckotech.co/broadcast/events/evt_3nup2pts3emebenhtw6ky4frim"
+        },
+        "webhooks-retry": {
+          "href": "https://qaapi.ckotech.co/broadcast/events/evt_3nup2pts3emebenhtw6ky4frim/webhooks/retry"
+        }
+      }
+    }
+  ]
+}
+```
+
+</tab>
+<tab title="200 - charge_id">
+
+```json
+{
+  "total_count": 1,
+  "limit": 10,
+  "skip": 0,
+  "from": "2021-06-11T10:36:32Z",
+  "to": "2021-06-25T10:36:17Z",
+  "data": [
+    {
+      "id": "evt_a4aqkopnq65udagtnlpqsqr7uy",
+      "type": "charge.succeeded",
+      "created_on": "2021-06-25T10:36:17Z",
+      "_links": {
+        "self": {
+          "href": "https://qaapi.ckotech.co/broadcast/events/evt_a4aqkopnq65udagtnlpqsqr7uy"
+        },
+        "webhooks-retry": {
+          "href": "https://qaapi.ckotech.co/broadcast/events/evt_a4aqkopnq65udagtnlpqsqr7uy/webhooks/retry"
+        }
+      }
+    }
+  ]
+}
+```
+
+</tab>
+<tab title="422 - wrong payament_id">
+
+```json
+"error_codes": [
+  "payment_id_invalid"
+]
+```
+
+</tab>
+<tab title="422 - wrong charge_id">
+
+```json
+"error_codes": [
+  "charge_id_invalid"
+]
+```
+
+</tab>
+</tabs>
+
+
+Other possible responses:
+
+* 204 - No Content
+* 401 - Unauthorized
+
+### Get an event's notification summary
+
+View a summary of the notifications for an event.
+
+Use the details below to set up your request.
+
+---
+
+#### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -207,7 +374,7 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -244,7 +411,7 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">

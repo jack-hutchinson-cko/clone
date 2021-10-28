@@ -15,7 +15,7 @@ On this page, we will walk through the complete onboarding of a sub-entity:
 
 <TipBox>
 
-Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboard/dashboard) in the Dashboard.
+Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboarding/dashboard) in the Dashboard.
 
 </TipBox>
 
@@ -29,7 +29,7 @@ Don't want to use code? You can [onboard sub-entities using our friendly user in
 - `payments_enabled` and `payments_disabled`
 - `status_changed`
 
-To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put).
+To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put" target="_blank">API reference</ExternalLink>.
 
 ### Onboard a sub-entity
 
@@ -37,7 +37,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 
 #### Endpoints
 
-Sandbox is a testing area, so you can practise API calls. [Request a test account](https://www.checkout.com/get-test-account).
+Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">Request a test account</ExternalLink>.
 
 <tabs>
 <tab title='Live'>
@@ -55,8 +55,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 #### Request examples
 
@@ -125,8 +123,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 </tabs>
 
----
-
 #### Response examples
 
 <tabs>
@@ -134,7 +130,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests.
 
-Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/about-onboarding) have been run and passed.
+Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific [due diligence checks](/marketplaces/onboarding) have been run and passed.
 
 ```json withBorder=false
 {
@@ -187,7 +183,7 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 </tab>
 <tab title='422 - Invalid data was sent'>
 
-When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post) for a full overview.
+When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post" target="_blank">API reference</ExternalLink> for a full overview.
 
 ```json withBorder=false
 {
@@ -345,11 +341,9 @@ When you update a sub-entity, we may conduct further due diligence checks when n
 
 </TipBox>
 
----
-
 #### Endpoints
 
-Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
+Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">Request a test account.</ExternalLink>
 
 <tabs>
 <tab title='Live'>
@@ -368,11 +362,9 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 </tabs>
 
----
-
 #### Request examples
 
-To get a detailed view of all required and optional fields, see our [API reference.](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put)
+To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put" target="_blank">API reference.</ExternalLink>
 
 <tabs>
 <tab title='Company'>
@@ -464,8 +456,6 @@ To get a detailed view of all required and optional fields, see our [API referen
 
 </tab>
 </tabs>
-
----
 
 #### Response example
 
@@ -629,7 +619,7 @@ If you need to retrieve a sub-entity's details, you can use our Get sub-entity d
 
 #### Endpoints
 
-Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
+Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">Request a test account.</ExternalLink>
 
 <tabs>
 <tab title="Live">
@@ -647,8 +637,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 #### Response examples
 
@@ -808,7 +796,7 @@ On occasion, our team will need to manually review a sub-entity. Please see [abo
 
 <TipBox>
 
-We've described the different webhook notifications on our [webhook event type page](/workflows/webhook-event-types#Webhookeventtypes-Marketplace).
+We've described the different webhook notifications on our [webhook event type page](/workflows/webhook-event-types).
 
 </TipBox>
 
@@ -860,7 +848,7 @@ We've described the different webhook notifications on our [webhook event type p
 </tab>
 </tabs>
 
-If due diligence is passed (VMSS and Match), we will enable the sub-entity’s **payments** capability. You should expect to receive the payments_enabled event type. 
+If due diligence is passed (VMSS and Match), we will enable the sub-entity’s **payments** capability. You should expect to receive the `payments_enabled` event type. 
 
 <TipBox variant='info'>
 
@@ -868,7 +856,7 @@ We will re-trigger due diligence checks if `legal_name`, `trading_name` and `pro
 
 </TipBox>
 
-**Payments enabled webhook example**
+#### Payments enabled webhook example
 
 ```json withBorder=false
 {
@@ -962,7 +950,9 @@ Remain disabled.
 
 ### Where to next?
 
-<ContentPanel title="Accept a payment" imgSrc="/NAS/Marketplaces/accept-a-payment.svg">
+---
+
+<ContentPanel title="Accept a payment" imgSrc="/NAS/Marketplaces/accept-a-payment.svg" withBorder={false}>
 
 Process payments on behalf of your sub-entities.
 
@@ -974,10 +964,12 @@ Process payments on behalf of your sub-entities.
 
 ### Find out more
 
+---
+
 <ContentPanel title="Status types" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg" withBorder={false}>
 
 Find out more about status types during the onboarding process.
 
-[Find out more](/marketplaces/payments)
+[Find out more](/marketplaces/onboarding/api)
 
 </ContentPanel>

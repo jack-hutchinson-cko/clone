@@ -15,9 +15,9 @@ On this page we’ll take a look at SCA and how we can help you meet it. We’ll
 
 Follow these three steps to make sure you're ready for strong authentication:
 
-*   [Check if SCA applies to you](#SCAcomplianceguide-scascope).
-*   See if your [business model and transactions require strong authentication](#SCAcomplianceguide-businessmodels).
-*   Make sure your integration supports [3D Secure (3DS) authentication](#SCAcomplianceguide-3ds).
+*   [Check if SCA applies to you](#Does_SCA_apply_to_me?).
+*   See if your [business model and transactions require strong authentication](#Business_scenarios).
+*   Make sure your integration supports [3D Secure (3DS) authentication](#Implement_3DS_with_our_Payments_API).
 
 </TipBox>
 
@@ -52,7 +52,7 @@ Strong authentication is required for customer-initiated online payments within 
 
 <TipBox variant="info">
 
-Even if SCA applies to your business, some transactions fall [outside the scope of SCA](#SCAcomplianceguide-outofscope), or can benefit from possible [exemptions](#SCAcomplianceguide-exemptions) if the customer's bank approves.
+Even if SCA applies to your business, some transactions fall [outside the scope of SCA](#Out-of-scope_transactions), or can benefit from possible [exemptions](#Possible_SCA_exemptions) if the customer's bank approves.
 
 </TipBox>
 
@@ -65,7 +65,7 @@ The SCA requirements were originally meant to come into effect on 14 September 2
 
 <TipBox variant="info">
 
-Some issuing banks have started soft declining payments that are not SCA-ready (in other words, not authorizing some payments without 3DS authentication) in preparation for the above deadlines, so we recommend you support [3DS authentication](#SCAcomplianceguide-3ds) as soon as possible to avoid any potential issues.
+Some issuing banks have started soft declining payments that are not SCA-ready (in other words, not authorizing some payments without 3DS authentication) in preparation for the above deadlines, so we recommend you support [3DS authentication](#Implement_3DS_with_our_Payments_API) as soon as possible to avoid any potential issues.
 
 </TipBox>
 
@@ -221,7 +221,7 @@ Until all issuing banks support the latest version of the 3DS protocol, we recom
 
 <TipBox title="Implement 3DS authentication">
 
-Use our [3D Secure API integration](#SCAcomplianceguide-3dssolution) to implement 3DS authentication on your card payments and request SCA exemptions. It supports both 3DS1 and 3DS2.
+Use our [3D Secure API integration](#Implement_3DS_with_our_Payments_API) to implement 3DS authentication on your card payments and request SCA exemptions. It supports both 3DS1 and 3DS2.
 
 </TipBox>
 
@@ -229,8 +229,8 @@ Use our [3D Secure API integration](#SCAcomplianceguide-3dssolution) to implemen
 
 Digital wallets and some local European payment methods should also support SCA:
 
-*   Card-based digital wallets like [Apple Pay](/payments/payment-methods/wallets/Apple+Pay) and [Google Pay](/payments/payment-methods/wallets/Google+Pay) have multi-factor authentication built in to their payment flows, offering a frictionless checkout experience that supports SCA.
-*   Many common European payment methods, like [Bancontact](/payments/payment-methods/cards/Bancontact), [iDEAL](/payments/payment-methods/bank-transfers/iDEAL), and [Multibanco](/payments/payment-methods/cash-and-atm-payment/multibanco), should also follow the SCA requirements.
+*   Card-based digital wallets like [Apple Pay](/payments/payment-methods/wallets/apple-pay) and [Google Pay](/payments/payment-methods/wallets/google-pay) have multi-factor authentication built in to their payment flows, offering a frictionless checkout experience that supports SCA.
+*   Many common European payment methods, like [Bancontact](/payments/payment-methods/cards/bancontact), [iDEAL](/payments/payment-methods/bank-transfers/i-deal), and [Multibanco](/payments/payment-methods/cash-and-atm-payment/multibanco), should also follow the SCA requirements.
 
 ---
 
@@ -479,13 +479,7 @@ For more details about the additional parameters required for payments using sav
 
 ### Implement 3DS with our Payments API
 
-To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3-d-secure/3d-secure-2-api-integration) for more details.
-
-<TipBox variant="note">
-
-The `3ds.challenge_indicator` field is not yet live.
-
-</TipBox>
+To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3d-secure/3d-secure-2-api-integration) for more details.
 
 <Table>
 <TableHead headers={['Field name', 'Description', 'Possible values']} />

@@ -5,6 +5,11 @@ account: NAS
 
 Build notification flows tailored to your business needs directly in the Dashboard with our new notifications feature. You can set up as many notifications as required, selecting the payment events for updates, the entities you’d like notifications about, and the type of notification to receive. Webhooks are our first notification type, but let us know what other applications you’d like us to support in the future using the survey below.
 
+<TipBox>
+
+You can also create webhooks using our [Workflows API](/workflows). 
+
+</TipBox>
 
 ### Create a notification
 
@@ -15,11 +20,11 @@ Each notification is split into three core parts: events, applications, business
 1. From the loading screen, go to _Notifications_.
 2. Select _New notification_. 
 
-![notificiations](/NAS/Dashboard/Notifications/notifications.png)
+<img alt="notificiations" src="/NAS/Dashboard/Notifications/notifications.png" />
 
 3. Name the new notification to identify it in future.
 
-![name](/NAS/Dashboard/Notifications/name.png)
+<img alt="name" src="/NAS/Dashboard/Notifications/name.png" />
 
 4. Select the events you would like to receive notifications for. There isn’t a limit on the number of events you can select per notification.
 5. Choose the application you wish to receive notifications on. For now, only Webhooks is available.
@@ -27,15 +32,15 @@ Each notification is split into three core parts: events, applications, business
 7. Enter an authorization key. This will be in the header of every webhook notification we send you to validate that the webhook is genuine.
 8. Enter a signature key. We generate a HMAC by taking the contents of the webhook notification and hashing it using the key provided in the webhook action of your workflow. The HMAC will be in every notification you receive.
 
-![notification method](/NAS/Dashboard/Notifications/notification-methods.png)
+<img alt="notification method" src="/NAS/Dashboard/Notifications/notification-methods.png" />
 
 9. Select which entities you would like to receive notifications for. By default, notifications are set up at client level, which means you will receive notifications for all entities, but you can select specific entities to filter the updates down.
 
-![entities](/NAS/Dashboard/Notifications/entities.png)
+<img alt="entities" src="/NAS/Dashboard/Notifications/entities.png" />
 
 10. Select _Create notification_ to publish your notification. It will be live from this point onwards.
 
-![new notification](/NAS/Dashboard/Notifications/new-notification.png)
+<img alt="new notification" src="/NAS/Dashboard/Notifications/new-notification.png" />
 
 ### Delete a notification
 
@@ -47,4 +52,4 @@ Users can only delete notifications attached solely to entities they have access
 
 </TipBox>
 
-![delete notification](/NAS/Dashboard/Notifications/delete-notification.png)
+<img alt="delete notification" src="/NAS/Dashboard/Notifications/delete-notification.png" />

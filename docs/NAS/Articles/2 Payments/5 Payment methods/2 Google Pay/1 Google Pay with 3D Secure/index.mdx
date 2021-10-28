@@ -10,6 +10,8 @@ Google Pay offers two authentication modes:
 
 Find out below how you can comply with SCA requirements for PAN_ONLY scenarios.
 
+---
+
 ### Tokenize the Google Pay payment data
 
 Once you have received the payment data from Google, you first need to get the Checkout.com token to encrypt the payment data. You then receive a new ``token_format`` in the response to help you identify whether or not subsequent payments using this token already meet SCA requirements. 
@@ -74,6 +76,8 @@ For in-scope transactions, the payment should use a 3D Secure exemption or be pr
     "token_format": "pan_only"
     }
 ```    
+
+---
 
 ### Request a 3D Secure payment using Google Pay
 

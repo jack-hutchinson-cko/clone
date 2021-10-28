@@ -7,7 +7,7 @@ Start accepting payments using Fawry, the dominant payment method in Egypt.
 
 <TipBox>
 
-Shoppers can now make Fawry payments via the myFawry app ([App Store](https://apps.apple.com/de/app/myfawry/id1462911630?l=en) and [Google Play](https://play.google.com/store/apps/details?id=com.fawry.myfawry&hl=en&gl=US)), rather than having to take their payment reference to a shop or ATM, meaning a better payment experience for both you and your customers.
+Shoppers can now make Fawry payments via the myFawry app <ExternalLink href="https://apps.apple.com/de/app/myfawry/id1462911630?l=en" target="_blank">App Store</ExternalLink> and <ExternalLink href="https://play.google.com/store/apps/details?id=com.fawry.myfawry&hl=en&gl=US" target="_blank">Google Play</ExternalLink>, rather than having to take their payment reference to a shop or ATM, meaning a better payment experience for both you and your customers.
 
 </TipBox>
 
@@ -17,6 +17,103 @@ To start accepting Fawry payments, please contact your Customer Success Manager.
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Redirect
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Voucher
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
 ---
 
 ### Request a payment
@@ -25,7 +122,7 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -102,7 +199,7 @@ You can retrieve details about an existing Fawry payment with the following endp
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -154,7 +251,7 @@ You can find the full list, as well as complete request and response examples, i
 
 ### Refund a payment
 
-Fawry supports both partial (see note below for details) and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or by using the [refund API](/payments/manage-payments/refund-a-payment).
+Fawry supports both partial (see note below for details) and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">hub</ExternalLink> or by using the <ExternalLink href="/payments/manage-payments/refund-a-payment" target="_blank">refund API</ExternalLink>.
 
 <TipBox variant="note">
 
@@ -170,7 +267,7 @@ Only **one refund action** may be taken on a Fawry payment, meaning that if you 
 
 To start testing, you'll need to:
 
-*   [create a test account](https://www.checkout.com/get-test-account), and
+*   <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test account</ExternalLink>, and
 *   contact your Customer Success Manager or Integrations engineer to activate Fawry payments in the sandbox environment.
 
 </TipBox>
@@ -221,7 +318,84 @@ Use the `reference_number` from the above response to test capturing a payment.
 
 <InfoBox>
 
-Use the valid secret key of your Checkout.com account. You can find this in the [Hub](https://hub.checkout.com/v2).
+Use the valid secret key of your Checkout.com account. You can find this in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`reference_number`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The reference number you received in the response to the 'get payment details' request.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+If successful, you will receive a `payment_captured` webhook notification.
+
+#### Cancel a payment
+
+Use the `reference_number` from the response to your get payment details request to test canceling a payment.
+
+#### Endpoint
+
+<tabs>
+<tab title="Sandbox" active>
+<LineCodeWrapper type="put">
+
+`https://api.sandbox.checkout.com/fawry/payments/{reference_number}/cancellation`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>.
 
 </InfoBox>
 </TableCell>
@@ -263,3 +437,6 @@ The reference number you received in the response to the 'get payment details' r
 </Table>
 
 If successful, you will receive a `payment_canceled` webhook notification.
+
+
+

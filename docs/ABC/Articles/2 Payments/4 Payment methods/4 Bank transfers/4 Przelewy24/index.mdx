@@ -11,6 +11,103 @@ To start accepting Przelewy24 payments, please contact your Customer Success Man
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Redirect
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Online banking
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
 ---
 
 ### Overview
@@ -24,9 +121,11 @@ Przelewy24 payments follow a two-step process:
 
 ### Request a payment
 
+Use the details below to set up your request.
+
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -103,7 +202,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -161,7 +260,7 @@ You can find the full list, as well as complete request and response examples, i
 
 ### Refund a payment
 
-Przelewy24 supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
+Przelewy24 supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">hub</ExternalLink> or using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
@@ -171,7 +270,7 @@ Przelewy24 supports both partial and full refunds. You can refund a payment thro
 
 To start testing, you'll need to:
 
-*   [create a test account](https://www.checkout.com/get-test-account), and
+*   <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test account</ExternalLink>, and
 *   contact your Customer Success Manager or Integrations engineer to activate Przelewy24 payments in the sandbox environment.
 
 </TipBox>
