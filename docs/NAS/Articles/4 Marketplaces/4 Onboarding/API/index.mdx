@@ -21,7 +21,7 @@ Your account type will be determined during onboarding and depends on whether yo
 </Card>
 </CardWrapper>
 
-## Sub-entity status
+### Sub-entity status
 
 To provide you with visibility to what's going on with your sub-entities, our API responses include a `status` field.
 
@@ -34,11 +34,11 @@ If we're expecting you to provide us with more information, your sub-entity will
 
 <TipBox variant="tip">
 
-Use the [information required table](#Aboutonboarding-information) to find out what information is required to trigger due diligence checks.
+Use the [information required table](/marketplaces/onboarding) to find out what information is required to trigger due diligence checks.
 
 </TipBox>
 
-**Example response**
+#### Example response
 
 In this example, we have created a company sub-entity without any representatives or a registered address.
 
@@ -115,6 +115,8 @@ If the due diligence checks have passed, we will enable the sub-entity's payment
 
 </TipBox>
 
+---
+
 #### Example webhook notification
 
 ```json withBorder=false
@@ -149,6 +151,8 @@ To challenge the direction, please contact us directly.
 - An attempt to update a rejected sub-entity will return a 442 response with the error code `status_invalid`.
 
 </TipBox>
+
+---
 
 #### Example webhook notification
 
