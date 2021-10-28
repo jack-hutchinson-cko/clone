@@ -1,4 +1,4 @@
---- 
+---
 title: iOS SDK
 account: ABC
 ---
@@ -7,7 +7,7 @@ Start accepting online payments in just a few minutes with our iOS SDK. It's qui
 
 <TipBox variant="note" title="Minimum requirements">
 
-To use the iOS SDK, make sure you are working with: 
+To use the iOS SDK, make sure you are working with:
 
 * iOS 10.0+
 * Xcode 12.4+
@@ -17,7 +17,7 @@ To use the iOS SDK, make sure you are working with:
 
 <TipBox>
 
-Our iOS SDK is released under the MIT license. 
+Our iOS SDK is released under the MIT license.
 
 </TipBox>
 
@@ -124,7 +124,7 @@ We regularly release new versions of the iOS SDK with additional features and bu
 
 #### Step 2: Import the iOS SDK and choose your approach
 
-Import the SDK into your class. 
+Import the SDK into your class.
 
 ```swift
 import Frames
@@ -335,7 +335,7 @@ let standardizedCardNumber = cardUtils.standardize(cardNumber: cardNumber)
 print(standardizedCardNumber) // "4242424242424242"
 ```
 
-#### Create a prompt for CVV confirmation 
+### Create a prompt for CVV confirmation
 
 #### Create and configure a `CvvConfirmationViewController`
 
@@ -360,7 +360,7 @@ extension ViewController: CvvConfirmationViewControllerDelegate {
 }
 ```
 
-#### Create a card token
+### Create a card token
 
 Here we use the method `createCardToken`.
 
