@@ -1,7 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import { execSync } from 'child_process';
-import { last, lowerCase } from 'lodash';
+import simpleGit, { SimpleGit, SimpleGitOptions } from 'simple-git';
+
+import { last, lowerCase, get } from 'lodash';
 import matter from 'gray-matter';
 import dateFormat from 'dateformat';
 import { isNotJunk } from './junk';
@@ -22,15 +23,11 @@ export type ForEachTreeCallBackParamsType = {
   breadcrumbs: { url: string; title: string }[];
 };
 
-type GetMdxFileDataOptions = {
-  addGitInfo?: boolean;
-};
-
 export const getAnchors = (content: string): string[] =>
   content.match(/^(#|##|###) (.*$)/gim) || [];
 
 export const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
-export const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
+export const getSlugFromTitle = (title: string): string => title.toLowerCase().replace(/ /g, '-');
 
 export const isMdxSourceFolder = (filePath: string): boolean => {
   const fileName = last(filePath.split('/')) || '';
@@ -293,49 +290,42 @@ const insertRelatedFiles = ({ content, filePath, frontMatter }: ContentParsingTy
 type FileDataType = {
   title?: string;
   account?: string;
-  modifiedDate?: string;
-  lastAuthor?: string;
   previewIcon?: string;
   previewIconDark?: string;
   description?: string;
 };
 
+export const getFileGitData = async (
+  filePath: string,
+): Promise<{ lastAuthor: string; modifiedDate: string }> => {
+  const git: SimpleGit = simpleGit();
+
+  const gitResult = await git.log({ file: filePath });
+
+  const lastAuthor = get(gitResult, 'latest.author_name', '');
+  const date = get(gitResult, 'latest.date', '');
+
+  return {
+    lastAuthor,
+    modifiedDate: dateFormat(date, 'dS mmmm yyyy'),
+  };
+};
+
 export const getMdxFileData = (
   filePath: string,
-  options: GetMdxFileDataOptions = { addGitInfo: true },
 ): {
   content: string;
   data: FileDataType;
 } => {
-  try {
-    const source = fs.readFileSync(filePath);
-    const { content: rawContent, data } = matter(source);
+  const source = fs.readFileSync(filePath);
+  const { content: rawContent, data } = matter(source);
 
-    const content = insertRelatedFiles({
-      content: rawContent,
-      filePath,
-      frontMatter: data,
-    });
-
-    if (options.addGitInfo) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [match, mtime, lastAuthor] =
-        execSync(`git log -1 --pretty=format:'%aI %an' "${filePath}"`)
-          .toString()
-          .trim()
-          .match(/(\S+) (\S.+)/) || [];
-      const newData: FileDataType = {
-        ...data,
-        ...(lastAuthor ? { lastAuthor } : {}),
-        modifiedDate: dateFormat(mtime, 'dS mmmm yyyy'),
-      };
-
-      return { content, data: newData };
-    }
-    return { content, data };
-  } catch (error) {
-    return { content: '', data: {} };
-  }
+  const content = insertRelatedFiles({
+    content: rawContent,
+    filePath,
+    frontMatter: data,
+  });
+  return { content, data };
 };
 
 const sectionReg = RegExp(/<FAQItem (.|\n)*?>(.|\n)*?<\/FAQItem>/g);

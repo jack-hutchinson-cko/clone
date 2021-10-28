@@ -12,7 +12,7 @@ export type Props = {
 const CardLink: FC<Props> = ({ srcImg, title, children, ...rest }) => {
   return (
     <CardWrapper {...rest}>
-      <ImageBox src={srcImg} layout="fill" />
+      <ImageBox src={srcImg} layout="fill" withFullscreenPreview={false} />
       <TextHeadingFour>{title}</TextHeadingFour>
       {children}
     </CardWrapper>

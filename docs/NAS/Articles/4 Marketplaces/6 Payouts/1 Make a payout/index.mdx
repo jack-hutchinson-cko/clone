@@ -13,25 +13,21 @@ On this page, we will walk through the how to pay out to a sub-entity:
 - Make a payout
 - Collect platform fees
 
----
-
-## Before you begin 
+### Before you begin 
 
 Make sure you have [connected bank account details to your sub-entity](/marketplaces/onboarding/api/full/manage-bank-accounts).
 
-## Retrieve currency account balance
+### Retrieve currency account balance
 
 We are currently working on exposing real-time currency account balances through an API, and hope to offer this functionality soon.
 
 In the meantime, you can [process balance](/reporting/reconciliation-reports/balance-reports) reports to retrieve the closing available balance of your currency account(s) on a daily basis. If you’d like to reconcile transactions for each sub-entity, you can process daily [financial actions](/reporting/reconciliation-reports/financial-actions-reports) reports to retrieve this breakdown. 
 
----
-
 ### Make sub-entity payouts
 
 Our Unified Payments API already enables you to make payouts to a sub-entity using the payments endpoint.
 
-Making a payout is very similar to a payment, but there are a few more <StatusTag type="required" display="inline" /> fields. For a list of all possible fields you can include in a payout, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout). Make sure you select _PayoutRequest_ to see the correct fields.
+Making a payout is very similar to a payment, but there are a few more <StatusTag type="required" display="inline" /> fields. For a list of all possible fields you can include in a payout, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout" target="_blank">API reference</ExternalLink>. Make sure you select _PayoutRequest_ to see the correct fields.
 
 For a full walkthough, follow the instructions for our [payments endpoint](/payments/accept-payments/request-a-payment), and make sure you include the following fields.
 
@@ -151,6 +147,8 @@ The processing channel identifier.
 
 ```
 
+---
+
 #### Response examples
 
 The payout will be attempted asynchronously (behind the scenes). You will be informed of updates to its status through webhook notifications.
@@ -181,7 +179,6 @@ The payout will be attempted asynchronously (behind the scenes). You will be inf
 
 If your payout request is unsuccessful, you will receive an error object in the response containing one or several error codes. Use the drop-down to see a list of possible error codes.
 
-
 ```json withBorder=false
 {
   "request_id": "71ccac67-5018-4917-9446-f2f6f2b8270e",
@@ -191,8 +188,6 @@ If your payout request is unsuccessful, you will receive an error object in the 
   ]
 }
 ```
-
-<Box horizontal="sm">
 
 <Accordion title="Possible error codes">
 <Table>
@@ -242,15 +237,16 @@ There were not enough funds to make the payout.
 This means the processing channel you are using is not configured for pay to bank. Please use another one or get in touch to have it enabled on the one you’re using.
 
 </Accordion>
-</Box>
+
 </tab>
 </tabs>
 
----
 
 ### Collect platform fees
 
-You collect your platform fees through the same method as making payouts to your sub-entities. The only difference is the `destination.id` field should be your platform's payment instrument ID. This will have been provided to you during your onboarding with [Checkout.com](https://www.checkout.com/).
+You collect your platform fees through the same method as making payouts to your sub-entities. The only difference is the `destination.id` field should be your platform's payment instrument ID. This will have been provided to you during your onboarding with <ExternalLink href="https://www.checkout.com/" target="_blank">Checkout.com</ExternalLink>.
+
+---
 
 #### Request example
 
@@ -276,6 +272,8 @@ You collect your platform fees through the same method as making payouts to your
 
 ### Find out more
 
+---
+
 <ContentPanel title="Understand your account structure" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg">
 
 For a more guided look into our integrated solutions platform.
@@ -287,9 +285,9 @@ For a more guided look into our integrated solutions platform.
 
 For those ready to jump in and begin their integration.
 
-<ButtonLinkSecondary href="/marketplaces/quick-start-lite">Lite account type</ButtonLinkSecondary>
-&nbsp;
-<ButtonLinkSecondary href="/marketplaces/quick-start-full">Full account type</ButtonLinkSecondary>
+[Lite account type](/marketplaces/quick-start-lite)
+
+[Full account type](/marketplaces/quick-start-full)
 
 </ContentPanel>
 
@@ -297,10 +295,10 @@ For those ready to jump in and begin their integration.
 
 Our API reference lists all the endpoints and methods provided in the Marketplace solution.
 
-[Learn more](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace)
+<ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace" target="_blank">Learn more</ExternalLink>
 
 </ContentPanel>
-<ContentPanel title="Marketplaces" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg">
+<ContentPanel title="Marketplaces" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg" withBorder={false}>
 
 Create rich and flexible payment programs suited to the needs of you and your customers.
 

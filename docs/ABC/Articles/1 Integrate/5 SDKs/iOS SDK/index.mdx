@@ -1,4 +1,4 @@
---- 
+---
 title: iOS SDK
 account: ABC
 ---
@@ -7,7 +7,7 @@ Start accepting online payments in just a few minutes with our iOS SDK. It's qui
 
 <TipBox variant="note" title="Minimum requirements">
 
-To use the iOS SDK, make sure you are working with: 
+To use the iOS SDK, make sure you are working with:
 
 * iOS 10.0+
 * Xcode 12.4+
@@ -17,7 +17,7 @@ To use the iOS SDK, make sure you are working with:
 
 <TipBox>
 
-Our iOS SDK is released under the MIT license. 
+Our iOS SDK is released under the MIT license.
 
 </TipBox>
 
@@ -26,13 +26,13 @@ Our iOS SDK is released under the MIT license.
 1. Choose whether to use the pre-built UI, or build your own payment form and use our iOS SDK in a headless mode.
 2. Our iOS SDK is then used to take your customer's sensitive information and exchange them for a secure token. This process is called tokenization. Once you have the card token, you're ready to make the payment request.
 
-<img src="/docs/Integrate/SDKs/iOS SDK/iOS.png" withFullscreenPreview />
+<img src="/docs/Integrate/SDKs/iOS SDK/iOS.png"  />
 
 ---
 
 ### Demo (our pre-built UI)
 
-<img maxWidth={170} src="/docs/Integrate/SDKS/iOS SDK/demo-ios.gif" />
+<img maxWidth={170} src="/docs/Integrate/SDKs/iOS SDK/demo-ios.gif" />
 
 ---
 
@@ -40,7 +40,7 @@ Our iOS SDK is released under the MIT license.
 
 #### Before you start
 
-Make sure you have your `public_key`. You can find it in the [Hub](https://hub.checkout.com/), under _Settings > Channels_. If you don't have an account with us yet, you can [request a free test one](https://checkout.com/get-test-account).
+Make sure you have your `public_key`. You can find it in the <ExternalLink href="https://hub.checkout.com" target="_blank">Hub</ExternalLink>, under _Settings > Channels_. If you don't have an account with us yet, you can <ExternalLink href="https://checkout.com/get-test-account" target="_blank">request a free test one</ExternalLink>.
 
 #### Step 1: Install project dependencies
 
@@ -99,7 +99,7 @@ If you are planning to run release builds for the simulator, make sure to exclud
 </tab>
 <tab title="Swift Package Manager">
 
-[Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the Swift compiler.
+<ExternalLink href="https://swift.org/package-manager/" target="_blank">Swift Package Manager</ExternalLink> is a tool for automating the distribution of Swift code and is integrated into the Swift compiler.
 
 Once you have your Swift package set up, adding the iOS SDK is as easy as adding it to the `dependencies` value of your `Package.swift` file.
 
@@ -118,7 +118,7 @@ We regularly release new versions of the iOS SDK with additional features and bu
 
 #### Step 2: Import the iOS SDK and choose your approach
 
-Import the SDK into your class. 
+Import the SDK into your class.
 
 ```swift
 import Frames
@@ -325,7 +325,7 @@ let standardizedCardNumber = cardUtils.standardize(cardNumber: cardNumber)
 print(standardizedCardNumber) // "4242424242424242"
 ```
 
-#### Create a prompt for CVV confirmation 
+### Create a prompt for CVV confirmation
 
 #### Create and configure a `CvvConfirmationViewController`
 
@@ -350,7 +350,7 @@ extension ViewController: CvvConfirmationViewControllerDelegate {
 }
 ```
 
-#### Create a card token
+### Create a card token
 
 Here we use the method `createCardToken`.
 
@@ -458,7 +458,7 @@ func handle(payment: PKPayment) {
 }
 ```
 
-[Read more about offering Apple Pay in your app](https://developer.apple.com/documentation/passkit/apple_pay/offering_apple_pay_in_your_app).
+<ExternalLink href="https://developer.apple.com/documentation/passkit/apple_pay/offering_apple_pay_in_your_app" target="_blank">Read more about offering Apple Pay in your app</ExternalLink>.
 
 ---
 

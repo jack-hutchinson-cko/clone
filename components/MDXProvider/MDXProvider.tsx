@@ -23,7 +23,8 @@ import Tabs, { Tab } from 'components/Tabs';
 import { MDXText } from 'components/Text';
 import { MDXCodeSample } from 'components/CodeSample';
 import LineCode from 'components/LineCode';
-import TextLink from 'components/TextLink';
+import TextLink, { ExternalLink } from 'components/TextLink';
+import Video from 'components/Video';
 import Box from 'components/Box';
 import Pre from 'components/Pre';
 import { RequestTag, StatusTag, TypeTag, SectionTag } from 'components/Tag';
@@ -107,6 +108,9 @@ export const mdxComponents = {
   p: MDXText,
   inlineCode: LineCode,
   a: TextLink,
+  ExternalLink,
+  Video,
+  TextLink,
   Box,
   pre: Pre,
   RequestTag,

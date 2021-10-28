@@ -68,7 +68,7 @@ Tokens must contain the scope `sessions:browser` for browser channel flows or `s
 
 #### Session secret
 
-All endpoints following the request to create a new session will also accept the session secret; creating a session will return a `session_secret` property, which can be used in the Authorization header of subsequent requests for that session. 
+All endpoints following the request to create a new session will also accept the session secret; creating a session will return a `session_secret` property, which can be used in the Authorization header of subsequent requests for that session.
 
 The `session_secret` is short-lived randomly generated string that can only be used for actions taken on a specific session, reducing the chance of it being leaked. This way the frontend does not have to have access to the client secrets required to create JWT tokens (which, if exposed to the frontend, can risk being leaked to malicious third parties).
 
@@ -80,13 +80,13 @@ Note that any endpoint accessible with `session_secret` can also be accessed wit
 
 ---
 
-### Step 1: Request a session 
+### Step 1: Request a session
 
 This is the first step to starting a 3DS authentication flow with Sessions. Authenticate the call with an access token and perform it from your backend.
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -148,11 +148,11 @@ If you create a session with channel data, there is no need to update the channe
   }
 }
 ```
-#### Response example 
+#### Response example
 
 You should receive a `202 - Accepted` response, with a `status` of `pending`. It will also contain:
 
-- The session `id` (prefixed by `sid_`), which you'll use to get the session details in the next step. 
+- The session `id` (prefixed by `sid_`), which you'll use to get the session details in the next step.
 
 - A `_links.fingerprint` URL, where the cardholder should be redirected to load the 3DS method.
 
@@ -189,7 +189,7 @@ You should receive a `202 - Accepted` response, with a `status` of `pending`. It
 ```
 ---
 
-### Step 2: Get session details 
+### Step 2: Get session details
 
 Next, you need to gather the device data (meaning the details of the browser or mobile app that initiated the session) in order to make an authentication request. To do so, get the current session details with the following request.
 
@@ -201,7 +201,7 @@ You can skip this step if your backend forwards the response of requesting a new
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -220,7 +220,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-#### Response 
+#### Response
 
 You will get a response with the property `next_actions`, which will tell you what you need to do next.
 
@@ -286,7 +286,7 @@ The status of the session. Should be `pending`.
 
 ---
 
-### Step 3: Issuer fingerprint (browser only) 
+### Step 3: Issuer fingerprint (browser only)
 
 If one of the next actions after creating the session was `issuer_fingerprint`, this step must be completed before proceeding with the session.
 
@@ -362,7 +362,7 @@ And `event.data` will contain the following object:
 
 Once you've received the message, the fingerprint has completed successfully and you can set the `three_ds_method_completion` property to `Y`.
 
-If you don't receive the message within 10 seconds of initiating the flow, you can set this property to N. If there is no 3DS method URL available, set it to `U`. You submit that property as detailed [here](https://api-reference.checkout.com/preview/crusoe/#tag/Sessions/paths/~1sessions~1%7Bid%7D~1issuer-fingerprint/put).
+If you don't receive the message within 10 seconds of initiating the flow, you can set this property to N. If there is no 3DS method URL available, set it to `U`. You submit that property as detailed <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Sessions/paths/~1sessions~1%7Bid%7D~1issuer-fingerprint/put" target="_blank">here</ExternalLink>.
 
 <TipBox variant="info">
 
@@ -372,7 +372,7 @@ The issuer fingerprint part of the flow can be combined with collecting the chan
 
 ---
 
-### Step 4: Collect channel data 
+### Step 4: Collect channel data
 
 Once you've completed the relevant actions indicated by the `next_actions` property, you need to update the session with the collected device data to make the authentication request.
 
@@ -384,7 +384,7 @@ If you created the session with channel data, there is no need to complete this 
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
 
 <tabs>
@@ -404,7 +404,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 </tab>
 </tabs>
 
-#### Body parameters 
+#### Body parameters
 
 <tabs>
 <tab title="Browser authentication">
@@ -817,7 +817,7 @@ The status of the session. Should be `processing`. If `expired`, the authenticat
 
 ---
 
-### Step 5 a: 3DS2 (browser only) 
+### Step 5 a: 3DS2 (browser only)
 
 <TipBox variant="info">
 
@@ -887,30 +887,7 @@ The `next_actions` field will contain the `challenge_cardholder` action (see exa
 <Table>
 <TableHead headers={['Challenge window size value', 'Size']} />
 <TableBody>
-<TableRow>
-<TableCell>
 
-01
-
-</TableCell>
-<TableCell>
-
-250-400px
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-01
-
-</TableCell>
-<TableCell>
-
-250-400px
-
-</TableCell>
-</TableRow>
 <TableRow>
 <TableCell>
 
@@ -1026,7 +1003,7 @@ Once the CReq message is constructed, it needs to be base64 encoded and posted t
 
 <TipBox variant="info">
 
-The challenge is dependent on the card issuer, so the actual HTML may look different, but there should be a form for the cardholder to complete the challenge.  
+The challenge is dependent on the card issuer, so the actual HTML may look different, but there should be a form for the cardholder to complete the challenge.
 
 </TipBox>
 
@@ -1148,7 +1125,7 @@ This is only relevant for browser-based authentications.
 
 </TipBox>
 
-If you have 3DS protocol 1.0.2 enabled for processing, there is a chance your session will be downgraded from 3DS2 to 3DS1. This can happen because the card or the issuer was not enrolled for 3DS2, your processor is only set up for 3DS1, or there was an issue while communicating with the 3DS2 Directory Server. 
+If you have 3DS protocol 1.0.2 enabled for processing, there is a chance your session will be downgraded from 3DS2 to 3DS1. This can happen because the card or the issuer was not enrolled for 3DS2, your processor is only set up for 3DS1, or there was an issue while communicating with the 3DS2 Directory Server.
 
 Depending on the specific scenario, this can happen:
 
@@ -1281,7 +1258,7 @@ If an unexpected error occurred during the validation of the PaRes, the event da
 }
 ```
 
-Similar to an error Sessions API would respond with.  
+Similar to an error Sessions API would respond with.
 
 #### Challenge completed
 
@@ -1315,7 +1292,7 @@ This triggers a POST to the `completion.callback_url` field of the session and w
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -1634,7 +1611,7 @@ Indicates whether this session involved a challenge.
 
 #### Session properties
 
-#### Session statuses 
+#### Session statuses
 
 Below are the possible values of the `status` field, which tell you the current status of the session.
 
@@ -1764,7 +1741,7 @@ Authentication has been started but the channel data could not be collected, mea
 </TableBody>
 </Table>
 
-#### Next actions 
+#### Next actions
 
 Below are the possible values for the `next_actions` field. When present, they identify what action to take in order to complete the session.
 
@@ -1854,7 +1831,7 @@ Browser and app
 
 ---
 
-### Additional authentication data 
+### Additional authentication data
 
 When requesting a session, you can add additional data fields to increase the chances of a frictionless authentication. Below is a summary of the optional data you can add to your request.
 

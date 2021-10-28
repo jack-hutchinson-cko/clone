@@ -11,16 +11,17 @@ Use our Dashboard's friendly UI to onboard your sub-entities. On this page, we w
 
 There are currently two different account types available on Marketplaces. Depending on your account type, you will see different required and optional fields. Your account type will be determined during onboarding and depends on whether you require payment capabilities (lite), or payment **and** payout capabilities (full). For more information, see our [account structure](/marketplaces/account-structure) page.
 
----
 
-## Onboard a sub-entity
+### Onboard a sub-entity
 
 1. When you log in to the Dashboard, navigate to _Sub-entities_ and then select _+ Onboard a sub-entity_ at the top of the page. This will bring you to a new screen.
 2. Select which type of sub-entity you are onboarding. Read more about sub-entity types on our [onboarding page](/marketplaces/onboarding#Sub-entity_types).
 3. Select _Proceed with onboarding_. This will take you to a new screen where you provide details about the sub-entity. 
 4. Once you have completed the form, select _Create_. If the form had no errors, you'll be taken to the detail page of this sub-entity. 
 
-### Next steps 
+---
+
+#### Next steps 
 
 The sub-entity does not have its payments and/or payouts capabilities yet. Creating a sub-entity starts the due diligence process. During due diligence, sub-entities will have a status of `PENDING`. We indicate what stage of the onboarding process your sub-entity is on through these statuses, which we will walk through in the [next section](#Sub-entity_statuses). 
 
@@ -35,9 +36,7 @@ Read more about the information required for each type of sub-entity on our [onb
 
 </TipBox>
 
----
-
-## Sub-entity statuses
+### Sub-entity statuses
 
 To provide you with visibility to what's going on with your sub-entities, we show the status of your sub-entity in the Dashboard. 
 
@@ -50,14 +49,12 @@ If we're expecting you to provide us with more information, your sub-entity will
 
 With this status, check you have provided all information that is stated as required for due diligence on our [onboarding page](/marketplaces/onboarding). If there is information missing, you need to [edit the sub-entity's information](#Edit_a_sub-entity)
 
-
 </tab>
 <tab title='Pending'>
 
 We will only trigger due diligence checks when we have all the [information required](/marketplaces/onboarding). Once the checks are triggered, the sub-entity's status will be `PENDING`.
 
 We may make changes to this sub-entity's capabilities based on the outcome of these checks.
-
 
 </tab>
 <tab title='Active'>
@@ -70,6 +67,8 @@ If the due diligence checks have passed, we will enable the sub-entity's payment
 - If you update information after this point, new checks will be triggered and the status of this sub-entity will go back to `PENDING`.
 
 </TipBox>
+
+---
 
 #### Example webhook notification
 
@@ -106,6 +105,8 @@ To challenge the direction, please contact us directly.
 
 </TipBox>
 
+---
+
 #### Example webhook notification
 
 ```json withBorder=false
@@ -131,10 +132,7 @@ To challenge the direction, please contact us directly.
 </tab>
 </tabs>
 
-
----
-
-## Edit a sub-entity
+### Edit a sub-entity
 
 You may need to update a sub-entity because some of their details have changed, or to fulfill specific [due diligence requirements](/marketplaces/onboarding#Information_required). 
 
@@ -146,22 +144,23 @@ To edit a sub-entity:
 
 When you update a sub-entity, we may conduct further due-diligence checks when necessary. During these checks, your sub-entity's payment capabilities will remain unchanged.
 
----
 
-## Find out more
+### Find out more
+
+---
 
 <ContentPanel variant="heading" title="Understand your account structure" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg">
 
 For a more guided look into our integrated solutions platform.
 
-<ButtonLink href="/marketplaces/account-structure">Learn more</ButtonLink>
+[Learn more](/marketplaces/account-structure)
 
 </ContentPanel>
 
-<ContentPanel variant="heading" title="Marketplaces" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg">
+<ContentPanel variant="heading" title="Marketplaces" imgSrc="/NAS/Marketplaces/understand-your-account-structure.svg" withBorder={false}>
 
 Create rich and flexible payment programs suited to the needs of you and your customers.
 
-<ButtonLink href="/marketplaces">Learn more</ButtonLink>
+[Learn more](/marketplaces)
 
 </ContentPanel>

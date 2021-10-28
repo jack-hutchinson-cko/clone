@@ -11,6 +11,103 @@ To start accepting QPay payments, please contact your Customer Success Manager.
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+GW only
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Redirect
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Wallet
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
 ---
 
 ### Overview
@@ -26,7 +123,7 @@ QPay payments follow a two-step process:
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 
 <tabs>
@@ -106,7 +203,7 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -168,7 +265,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 ### Refund a payment
 
-QPay supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or by using the [refund API](/payments/manage-payments/refund-a-payment).
+QPay supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink> or by using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
@@ -186,7 +283,7 @@ If the customer cancels their payment, we will send a `payment_canceled` webhook
 
 To start testing, you'll need to:
 
-*   [create a test account](https://www.checkout.com/get-test-account), and
+*   <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test account</ExternalLink>, and
 *   contact your Customer Success Manager or Integrations engineer to activate QPay payments in the sandbox environment.
 
 </TipBox>

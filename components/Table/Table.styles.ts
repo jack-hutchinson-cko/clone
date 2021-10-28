@@ -109,7 +109,7 @@ export const StyledTH = styled.th<{ width?: string }>`
 
 export const StyledTableTicCell = styled(TableCell)`
   padding: 14px 16px;
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 `;
 
@@ -121,8 +121,8 @@ const getBackgroundColorForSubhead = ({
   theme: ThemeType;
 }) => {
   switch (color) {
-    case 'blue':
-      return theme.colors.turquoise;
+    case 'grey':
+      return theme.colors.tableCellSecondaryBackground;
 
     default:
       return 'transparent';

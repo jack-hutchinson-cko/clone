@@ -5,16 +5,17 @@ account: NAS
 
 Find out more about how to manage payouts when using our Marketplaces solution for `full` account types.
 
-## Connect a bank account to a sub-entity
+### Connect a bank account to a sub-entity
 
 Before making on-demand payouts to a sub-entity, you need to connect bank details to their account, so we know where to send the funds. These details are saved securely in our vault, and you are given a unique reference to use in payout requests instead of typing out the bank details every time. We call this a payment instrument.
 
+---
 
-### Requirements
+#### Requirements
 
 There are different requirements for the request depending on the currency of the bank account. At the moment, you can just send money from the UK, but you can make a payout to UK bank accounts and European bank accounts.
 
-The table below outlines the **minimum required** fields when creating a payment instrument. You can see the full explanation of the optional fields in our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Instruments).
+The table below outlines the **minimum required** fields when creating a payment instrument. You can see the full explanation of the optional fields in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Instruments" target="_blank">API reference</ExternalLink>.
 
 <Table>
 <TableHead headers={['Field name', 'Description']} />
@@ -145,8 +146,10 @@ The account holder's sort code.
 </TableRow>
 </TableBody>
 </Table>
+
 </tab>
 <tab title="SEPA (EUR)">
+
 <Table>
 <TableHead headers={['Field name', 'Description']} />
 <TableBody>
@@ -180,13 +183,13 @@ Internationally agreed standard for identifying bank account.
 </tab>
 </tabs>
 
-### Verify bank account details
+#### Verify bank account details
 
 We need to verify any bank details you provide us. To verify bank details, include a document object with a file_id in your request. You receive a file_id when you upload a bank statement using our [Files API](/marketplaces/manage-accounts/upload-a-file).
 
-### Create a payment instrument
+#### Create a payment instrument
 
-To create a payment instrument, make a call to the following endpoints. To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/).
+To create a payment instrument, make a call to the following endpoints. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" target="_blank">API reference</ExternalLink>.
 
 
 <tabs>
@@ -258,7 +261,6 @@ If your request is accepted, we will attempt to create a payment instrument asyn
 
 If successful, we will automatically make the association between this payment instrument and its sub-entity. You can see this association and alternatively retrieve the payment instrument ID by using `<RequestTag type="get" /> /marketplace/entities/{id}`.
 
-
 ```json
 {
   "id": "ent_wxglze3wwywujg4nna5fb7ldli",
@@ -304,7 +306,6 @@ If successful, we will automatically make the association between this payment i
 </tab>
 <tab title="Error">
 
-
 ```json
 {
   "id": "evt_htielsmgcwgejgqaunl4yb2pou",
@@ -333,22 +334,23 @@ If successful, we will automatically make the association between this payment i
 </tab>
 </tabs>
 
----
 
-## Where to next?
+### Where to next?
+
+---
 
 <ContentPanel variant="heading" title="Make a payout" imgSrc="/NAS/Marketplaces/about-making-payouts.svg">
 
 Full accounts on our Marketplace solution have payout capability. If you’re unsure, take a look at our [account structure page](/marketplaces/account-structure).
 
-<ButtonLink href="/marketplaces/payouts">Learn more</ButtonLink>
+[Learn more](/marketplaces/payouts)
 
 </ContentPanel>
 
-<ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/about-making-payouts.svg">
+<ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/about-making-payouts.svg" withBorder={false}>
 
 We'll explain how to upload a file to the Marketplace API.
 
-<ButtonLink href="/marketplaces/onboarding/api/full/upload-a-file">Learn more</ButtonLink>
+[Learn more](/marketplaces/onboarding/api/full/upload-a-file)
 
 </ContentPanel>

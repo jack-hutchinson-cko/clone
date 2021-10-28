@@ -16,7 +16,7 @@ We support:
 - Internet Explorer (IE11+) and Edge
 - Chrome, Safari and Firefox on all devices
 
-If you discover any issues with the supported browsers, or would like to report a bug, please [get in touch](/contact-us).
+If you discover any issues with the supported browsers, or would like to report a bug, please <ExternalLink href="https://www.checkout.com/contact-us" target="_blank">get in touch</ExternalLink>.
 
 ---
 
@@ -533,7 +533,7 @@ Frames.init({
 ### Actions
 
 <Table>
-<TableHead headers={['Javascript key', 'Description', 'Default']} />
+<TableHead headers={['Signature', 'Description', 'Returns']} />
 <TableBody>
 <TableRow>
 <TableCell>
@@ -624,7 +624,7 @@ Example:
 
 Removes a previously added handler from an event by providing the event name and handler as arguments in the method.
 Example:
-e`vent: Events.CARD_TOKENIZED handler: function(event){}`
+`event: Events.CARD_TOKENIZED handler: function(event){}`
 
 </TableCell>
 <TableCell>
@@ -636,7 +636,7 @@ boolean
 <TableRow>
 <TableCell>
 
-<inlineCode wordBreak="break-word">paymentMethodChremoveAllEventHandlers(event)</inlineCode>
+<inlineCode wordBreak="break-word">removeAllEventHandlers(event)</inlineCode>
 
 </TableCell>
 <TableCell>
@@ -805,9 +805,7 @@ Returns the configuration of Frames.
 
 ### Examples
 
----
-
-### Using the submitCard Promise
+#### Using the submitCard Promise
 
 This example uses a JavaScript Promise to tokenize a customer's payment details. The card token will be posted via the URL specified in the form's `action` attribute.
 

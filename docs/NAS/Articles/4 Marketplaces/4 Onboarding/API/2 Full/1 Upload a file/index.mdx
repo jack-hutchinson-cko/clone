@@ -9,16 +9,12 @@ When you upload a file, the API returns an `id` that represents that file. You c
 * Identity documentation when [creating or updating your sub-entity.](/marketplaces/onboarding/api/full)
 * Bank verification documentation when [creating a payment instrument](/marketplaces/payouts/make-a-payout)
 
----
-
 ### Before you begin
 
 If you are uploading a bank statement to verify a set of bank details, subscribe to the following webhook events: 
 
 * `payment_instrument_verification_passed`
 * `payment_instrument_verification_failed`
-
----
 
 ### Types of identification and requirements
 
@@ -41,23 +37,6 @@ Y
 <TableCell>
 
 N
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-Driving licence
-
-</TableCell>
-<TableCell>
-
-Y
-
-</TableCell>
-<TableCell>
-
-Y
 
 </TableCell>
 </TableRow>
@@ -166,8 +145,6 @@ N
 </TableBody>
 </Table>
 
----
-
 ### Upload a file
 
 Your request must be multipart/form-data and the file no larger than 4Mb.
@@ -177,9 +154,11 @@ Your request must be multipart/form-data and the file no larger than 4Mb.
 
 Follow the steps to upload the document and receive an `id`. If the identification you are providing requires both the back and front, you will need to make **two requests** to the API.
 
+---
+
 #### Endpoints
 
-Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
+Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">Request a test account.</ExternalLink>
 
 <TipBox variant='note'>
 
@@ -206,7 +185,7 @@ Notice that the sub-domain – files.checkout.com – is slightly different to C
 
 #### Request example
 
-Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our [API reference.](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/)
+Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" target="_blank">API reference.</ExternalLink>
 
 
 <Table>
@@ -273,7 +252,6 @@ In the `error_codes` object, we will let you know what data was invalid.
 
 In the example response, we received `back_required` because the uploaded document was a passport, which requires a front **and** back.
 
-
 ```json withBorder=false
 {
     "request_id": "0HM72UMS6HIO5:00000001",
@@ -284,7 +262,6 @@ In the example response, we received `back_required` because the uploaded docume
 }
 ```
 
-<Box horizontal='sm'>
 <Accordion isBoldTitle={true} title='Possible error codes'>
 
 <Table>
@@ -374,11 +351,9 @@ A back file is not required for the type of document in your request. This curre
 </Table>
 
 </Accordion>
-</Box>
+
 </tab>
 </tabs>
-
----
 
 ### Example notifications for bank account verification
 
@@ -438,22 +413,22 @@ A back file is not required for the type of document in your request. This curre
 </tab>
 </tabs>
 
----
-
 ### Where to next?
+
+---
 
 <ContentPanel title="Update a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
 
 Use the file `id` returned by the Files API to attach identity documentation required for `full` due diligence.
 
-<ButtonLinkSecondary href="/marketplaces/onboarding/api/full">Full account type</ButtonLinkSecondary>
+[Learn more](/marketplaces/onboarding/api/full)
 
 </ContentPanel>
 
-<ContentPanel title="Make a payout" imgSrc="/NAS/Marketplaces/about-making-payouts.svg">
+<ContentPanel title="Make a payout" imgSrc="/NAS/Marketplaces/about-making-payouts.svg" withBorder={false}>
 
 `Full` accounts on our Marketplace solution have payout capability. If you’re unsure, take a look at our [account structure page](/marketplaces/account-structure).
 
-<ButtonLinkSecondary href="/marketplaces/payouts/make-a-payout">Learn more</ButtonLinkSecondary>
+[Learn more](/marketplaces/payouts/make-a-payout)
 
 </ContentPanel>
