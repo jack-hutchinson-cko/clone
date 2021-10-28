@@ -41,4 +41,6 @@ export const SubFooterListItem = styled.li`
   display: block;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.greyDark};
+  font-size: 11px;
+  line-height: 16px;
 `;
