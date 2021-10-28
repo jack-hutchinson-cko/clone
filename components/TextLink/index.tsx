@@ -16,4 +16,6 @@ const TextLink: FC<Props> = ({ href, ...otherProps }) => {
   );
 };
 
+export const ExternalLink: FC<Props> = (props) => <StyledLink {...props} />;
+
 export default TextLink;

@@ -3,15 +3,112 @@ title: iDEAL
 account: ABC
 ---
 
-Start accepting payments using iDEAL, a favorite payment method in The Netherlands.
+Start accepting payments using <ExternalLink href="https://www.checkout.com/payment-methods/accept/ideal" target="_blank">iDEAL</ExternalLink>, a favorite online payment method in The Netherlands.
 
-iDEAL provides a method to make purchases online through quick and easy bank transfers that are not only secure but guaranteed.
+iDEAL payments are made through direct online transfer from the customer's bank account to your merchant bank account. Customers can use their mobile banking app or online banking environment. As soon as a payment is made, iDEAL sends you an online payment guarantee so you can deliver goods and services right away. 
 
 <TipBox variant="info">
 
 To start accepting iDEAL payments, please contact your Customer Success Manager.
 
 </TipBox>
+
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Bank transfer
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Online banking
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
 
 ---
 
@@ -30,20 +127,20 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
-<LineCodeWrapper type="get">
+<LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments/{payment_id}`
+`https://api.checkout.com/payments/`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
-<LineCodeWrapper type="get">
+<LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments/{payment_id}`
+`https://api.sandbox.checkout.com/payments`
 
 </LineCodeWrapper>
 </tab>
@@ -101,7 +198,7 @@ Redirect your customer to the `redirect` link’s href in the above response. Th
 
 <TipBox variant="note">
 
-For security reasons, iDEAL forbids using custom-made in-app browsers for redirection. We recommend that you open the device’s default browser to display the redirect. If you do want to use an in-app web view, you must use [SFSafariViewController](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller) for iOS or [Chrome Custom Tabs](https://developer.chrome.com/multidevice/android/customtabs) for Android.
+For security reasons, iDEAL forbids using custom-made in-app browsers for redirection. We recommend that you open the device’s default browser to display the redirect. If you do want to use an in-app web view, you must use <ExternalLink href="https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller" target="_blank">SFSafariViewController</ExternalLink> for iOS or <ExternalLink href="https://developer.chrome.com/multidevice/android/customtabs" target="_blank">Chrome Custom Tabs</ExternalLink> for Android.
 
 </TipBox>
 
@@ -121,7 +218,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -182,7 +279,7 @@ You can find the full list, as well as complete request and response examples, i
 
 ### Refund a payment
 
-iDEAL supports both partial and full refunds. You can refund a payment through the [Hub](https://hub.checkout.com/v2) or using the [refund API](/payments/manage-payments/refund-a-payment).
+iDEAL supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">hub</ExternalLink> or using the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
@@ -200,7 +297,7 @@ Use the following request to get an up-to-date list of all issuers supporting iD
 
 ### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -254,7 +351,7 @@ You can find the full list, as well as complete request and response examples, i
 
 To start testing, you'll need to:
 
-*   [create a test account](https://www.checkout.com/get-test-account), and
+*   <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test account</ExternalLink>, and
 *   contact your Customer Success Manager or Integrations engineer to activate iDEAL payments in the sandbox environment.
 
 </TipBox>

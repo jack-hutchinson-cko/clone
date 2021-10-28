@@ -31,7 +31,7 @@ Vendors, retailers and service providers on your platform are represented by sub
 In this step we’re going to walk through the complete onboarding of a sub-entity:
 
 * Onboard with the minimum required information
-* Upload identity documents
+* Upload identity documentation
 * Keep up to date with webhook notifications
 
 ---
@@ -96,7 +96,7 @@ Use <RequestTag type="post" />`/marketplace/entities`.
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
-You will also notice there is a `status` field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/onboarding#Sub-entity_status).
+You will also notice there is a `status` field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document.
 
 ```json
 {
@@ -246,103 +246,6 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 
 ```json
 {
-  "reference":"0123456",
-  "contact_details":{
-    "phone":{
-      "number":"2345678910"
-    }
-  },
-  "profile":{
-    "urls":[
-      "https://www.daniels-donuts.com"
-    ],
-    "mccs":[
-      5814
-    ]
-  },
-  "individual":{
-    "first_name":"Daniel",
-    "last_name":"Yubi",
-    "trading_name":"Daniel's Donuts",
-    "national_tax_id":"1234567",
-    "registered_address":{
-      "address_line1":"90 Tottenham Court Road",
-      "city":"London",
-      "zip":"W1T4TJ",
-      "country":"GB"
-    }
-  }
-}
-```
-
-<TipBox variant="info">
-
-- You will only be able to specify the `company.principal_address.country`, `profile.mccs` and `profile.default_holding_currency` to those that were configured for your scope during onboarding.
-- Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of The Cake Shop would be routed and held in the platform's GBP currency account.
-
-</TipBox>
-
----
-
-#### Response
-
-A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
-
-You will also notice there is a status field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document. Read more [about statuses](/marketplaces/onboarding#Sub-entity_status).
-
-```json
-{
-  "id":"ent_vv2jjkuf2gzj5tcw2x7ptua7zy",
-  "reference":"0123456",
-  "status": "requirements_due",
-  "capabilities":{
-    "payments":{
-      "enabled":false
-    },
-    "payouts":{
-      "enabled":false
-    }
-  },
- "requirements_due": [
-	{
-       "field": "individual.identification.document",
-       "reason": "required"
-    },
-  ],
-  "_links":{
-    "self":{
-      "href":"https://api.sandbox.checkout.com/marketplace/entities/ent_vv2jjkuf2gzj5tcw2x7ptua7zy"
-    }
-  }
-}
-```
-
-Note that the `sub_entity_created` webhook notification will also be sent.
-
-That’s all it takes to create a sub-entity!  
-
----
-
-#### Step 1b: Update sub-entity with additionl details
-
-Due diligence checks have not yet been conducted. To trigger checks we must provide the outstanding requirements detailed in the previous step, so let’s do that next.
-
-We will update **The Cake Shop** with its:
-
-- registered address
-- business registration number
-- representatives.
-
-The Cake Shop has a single representative, Chrisi Webster, for who we will provide a **first name**, **last name**, full **address** and **date of birth**, which is all the required information to trigger checks except for an identification document (which we’ll do this in the next steps).
-
-With the `id` returned in the response to step 1a, use <RequestTag type="put" /> `/marketplace/entities/{id}` to update the sub-entity representing The Cake Shop with additional information - `company.registered_address`, `company.business_registration_number` and `company.representatives`.
-
----
-
-#### Request
-
-```json
-{
   "reference":"678910",
   "contact_details":{
     "phone":{
@@ -394,9 +297,20 @@ With the `id` returned in the response to step 1a, use <RequestTag type="put" />
 }
 ```
 
+<TipBox variant="info">
+
+- You will only be able to specify the `company.principal_address.country`, `profile.mccs` and `profile.default_holding_currency` to those that were configured for your scope during onboarding.
+- Note that `profile.default_holding_currency` of `GBP` means that payments processing on behalf of The Cake Shop would be routed and held in the platform's GBP currency account.
+
+</TipBox>
+
 ---
 
 #### Response
+
+A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
+
+You will also notice there is a status field set to `requirements_due`. This is because we still require more information before we can conduct due diligence checks – in this case, it is the identification document.
 
 ```json
 {
@@ -425,96 +339,9 @@ With the `id` returned in the response to step 1a, use <RequestTag type="put" />
 }
 ```
 
----
+Note that the `sub_entity_created` webhook notification will also be sent.
 
-#### Step 1c: Retrieve sub-entity
-
-There is now only one outstanding requirement to trigger due diligence checks for our sub-entity, an **identification document** for our representative Chrisi Webster. Each representative is assigned a unique `id`, and we’ll need to get Chrisi’s `id` to be able to upload an identity document for her in the next step.
-
-Use <RequestTag type="get" /> `/marketplace/entities/{id}` to retrieve the sub-entity representing The Cake Shop. We can see that The Cake Shop has all the details we provided earlier and that our representative, Chrisi Webster, has been assigned an `id` - store this for the next step.
-
----
-
-#### Response
-
-```json
-{
-    "id": "ent_v7r7h2sw6tavthyzkkoliuiq4a",
-    "reference": "company123",
-	"status": "requirements_due",
-    "capabilities": {
-        "payments": {
-            "enabled": false
-        },
-        "payouts": {
-            "enabled": false
-        }
-    },
-    "profile": {
-        "default_holding_currency": "GBP",
-        "urls": [
-            "https://www.thecakeshop.com"
-        ],
-        "mccs": [
-            "5814"
-        ]
-    },
-    "company": {
-        "business_registration_number": "452349600005",
-        "legal_name": "The Cake Shop Inc.",
-        "trading_name": "The Cake Shop",
-        "principal_address": {
-            "address_line1": "90 Tottenham Court Road",
-            "city": "London",
-            "zip": "W1T4TJ",
-            "country": "GB"
-        },
-        "registered_address": {
-            "address_line1": "90 Tottenham Court Road",
-            "city": "London",
-            "zip": "W1T4TJ",
-            "country": "GB"
-        },
-        "representatives": [
-            {
-                "id": "rep_j6xp53izlmae5atwi2tlv5szry",
-                "address": {
-                    "address_line1": "123 ABC Close",
-                    "city": "London",
-                    "zip": "E1 5DP",
-                    "country": "GB"
-                },
-                "phone": {},
-                "first_name": "Chrisi",
-                "last_name": "Webster",
-                "date_of_birth": {
-                    "day": 5,
-                    "month": 6,
-                    "year": 1995
-                },
-            }
-        ]
-    },
-    "contact_details": {
-        "phone": {
-            "number": "111222333"
-        }
-    },
-    "instruments": [
-    ],
-	"requirements_due": [
-	{
-       "field": "company.representatives[0].identification.document",
-       "reason": "required"
-    }
-  ],
-    "_links": {
-        "self": {
-            "href": "https://api.sandbox.checkout.com/marketplace/entities/ent_v7r7h2sw6tavthyzkkoliuiq4a"
-        }
-    }
-}
-```
+That’s all it takes to create a sub-entity!  
 
 ---
 
@@ -555,7 +382,7 @@ For **The Cake Shop**, we receive the `full_dd_passed` with the following payloa
 
 If due diligence is passed, we will enable the sub-entity’s **payment** and **payout** capabilities. You should expect to receive the `payments_enabled` and `payouts_enabled` event types.
 
-For **The Cake Shop**, we receive the payments_enabled and payouts_enabled with the following payloads:
+For **The Cake Shop**, we receive the `payments_enabled` and `payouts_enabled` with the following payloads:
 
 ```json
 {
@@ -877,6 +704,12 @@ We will create a payment instrument representing Daniel’s Donuts Barclays bank
 
 #### Request
 
+<TipBox>
+
+Grab the `file_id` in the same way you did for the identification document.
+
+</TipBox>
+
 ```json
 {
   "label":"Daniel's Donuts Barclays",
@@ -1159,6 +992,12 @@ We will create a payment instrument representing The Cake Shop’s Barclays bank
 ---
 
 #### Request
+
+<TipBox>
+
+Grab the `file_id` in the same way you did for the identification document.
+
+</TipBox>
 
 ```json
 {

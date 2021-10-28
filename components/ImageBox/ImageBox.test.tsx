@@ -19,6 +19,7 @@ describe('ImageBox', () => {
           src={testImgUrl}
           maxWidth={170}
           layout="fill"
+          withFullscreenPreview={false}
         />,
       ),
     );

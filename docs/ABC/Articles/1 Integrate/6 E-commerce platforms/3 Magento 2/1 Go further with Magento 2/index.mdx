@@ -22,7 +22,7 @@ In this guide, you'll find how to:
 
 <TipBox variant="note" title="Before you start">
 
-In order to start accepting an alternative payment method, we first need to enable it on your account. Please contact your Customer Success manager or our [Sales team](https://checkout.com/contact-sales) to get started.
+In order to start accepting an alternative payment method, we first need to enable it on your account. Please contact your Customer Success manager or our <ExternalLink href="https://checkout.com/contact-sales" target="_blank">Sales team</ExternalLink> to get started.
 
 </TipBox>
 <TipBox variant="info">
@@ -57,7 +57,7 @@ We currently support the following payment methods on Magento 2:
   maxWidth={800}
   src="/docs/Integrate/Magento 2/alternative_payments_magento_2.png"
   title="Alternative Payments Magento 2"
-  withFullscreenPreview
+  
 />
 
 2. Specify the Title customers will see when they select an alternative payment method.
@@ -80,7 +80,7 @@ See our [Apple Pay documentation](/payments/payment-methods/wallets/apple-pay) f
 5. Enter your Processing Certificate Password, if you have one.
 6. Enter the absolute path of your Merchant Identity Certificate (e.g., `mywebsite/app/checkout/certificate_key.key`). To get this, find your key (a `.key` file) in your Apple Developer account and then upload it to your server.
 7. Enter your Merchant ID. You can find this in your Apple Developer account.
-8. Choose the appearance of the Apple Pay button with the Button Style option. See the [Apple Developer docs](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/) for more detail.
+8. Choose the appearance of the Apple Pay button with the Button Style option. See the <ExternalLink href="https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/" target="_blank">Apple Developer docs</ExternalLink> for more detail.
 9. Select which card networks you want to allow through Apple Pay with the _Supported Networks_ option.
 10. Select what sort of cards you want to allow with the _Merchant Capabilities_ option.
 11. If you want to add an Apple Pay button to your shopping basket page, so your customers can choose to check out via Apple Pay from their cart, set _Enable Apple Pay On Cart Page_ to _Yes_.
@@ -106,7 +106,7 @@ See our [Google Pay documentation](/payments/payment-methods/wallets/google-pay)
 3.  Set _Enable Google Pay_ to _Yes_.
 4.  Select your Google Pay Environment – either _Test_ or _Production_. Note: This is not the same as the Checkout.com environment setting.
 5.  Enter your Merchant ID. You can find this in your Google payments profile. If testing, use `01234567890123456789`. Note: Make sure you use the right merchant ID for your chosen Google Pay environment.
-6.  Select the appearance of the Google Pay button with the _Button Style_ option. See the [Google Pay docs](https://developers.google.com/pay/api/web/guides/brand-guidelines) for more detail.
+6.  Select the appearance of the Google Pay button with the _Button Style_ option. See the <ExternalLink href="https://developers.google.com/pay/api/web/guides/brand-guidelines" target="_blank">Google Pay docs</ExternalLink> for more detail.
 7.  Choose which card networks you want to allow through Google Pay with the _Supported Networks_ option.
 8.  Select _Save Config_.
 
@@ -134,7 +134,7 @@ If you enable this feature, every transaction will trigger a 3D Secure (3DS) che
 2.  Set _Save Card Option_ to _Yes_ if you want to allow your customers to save their cards for future payments. They can then use the same card on your website without re-entering the details.
 3.  Next, expand _Saved Card Payments_.
 
-<img src="/docs/Integrate/Magento 2/saved_card_payments.png" title="Saved Card Payments" withFullscreenPreview />
+<img src="/docs/Integrate/Magento 2/saved_card_payments.png" title="Saved Card Payments"  />
 
 4.  Set _Vault Enabled_ to _Yes_.
 5.  Specify the _Title_ customers see when they choose to pay with a saved card.

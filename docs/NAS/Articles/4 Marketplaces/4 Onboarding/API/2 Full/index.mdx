@@ -15,7 +15,7 @@ On this page, we will walk through the complete onboarding of a sub-entity:
 
 <TipBox>
 
-Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboard/user-interface) in the Dashboard.
+Don't want to use code? You can [onboard sub-entities using our friendly user interface](/marketplaces/onboarding/dashboard) in the Dashboard.
 
 </TipBox>
 
@@ -29,7 +29,7 @@ Don't want to use code? You can [onboard sub-entities using our friendly user in
 - `payments_enabled` and `payments_disabled`
 - `status_changed`
 
-To get a detailed view of all required and optional fields, see our [API reference.](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put)
+To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put" target="_blank">API Reference</ExternalLink>
 
 ### Onboard a sub-entity
 
@@ -37,7 +37,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 
 #### Endpoints
 
-Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
+Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account">Request a test account</ExternalLink>.
 
 <tabs>
 <tab title='Live'>
@@ -55,8 +55,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 #### Request examples
 
@@ -129,8 +127,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 </tabs>
 
----
-
 #### Response examples
 
 <tabs>
@@ -172,7 +168,7 @@ Additionally, the response has the `capabilities` object, which shows you whethe
 
 <Accordion isBoldTitle={true} title={"Why haven't my sub-entity's capabilities been enabled?"}>
 
-Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/about-onboarding) to confirm you have sent all the required information.
+Capabilities are enabled once due diligence checks have been completed. If you haven't received a webhoook notification – either `{check}_passed` or `{check}_failed` – it is likely there are outstanding requirements due. Please check our [onboarding information page](/marketplaces/onboarding) to confirm you have sent all the required information.
 
 If you have provided all the information, we may be completing a manual review.
 
@@ -196,7 +192,7 @@ The `reference` you provide needs to be unique across all of your sub-entities. 
 </tab>
 <tab title="422 - Invalid data was sent">
 
-When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post) for a full overview.
+When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities/post" target="_blank">API reference</ExternalLink> for a full overview.
 
 ```json withBorder=false
 {
@@ -479,8 +475,6 @@ Providing an identity document is the last step before triggering due diligence 
 
 </TipBox>
 
----
-
 #### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
@@ -501,8 +495,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 #### Request examples
 
@@ -617,8 +609,6 @@ To get a detailed view of all required and optional fields, see our [API referen
 
 </tab>
 </tabs>
-
----
 
 #### Response examples
 
@@ -775,7 +765,7 @@ The specified field is mandatory but was not provided in the request. For exampl
 
 ### Retrieve a sub-entity
 
-If you need to retrieve a sub-entity's details, you can use our Get sub-entity details endpoint. Just include the id of the sub-entity returned during the initial onboarding in your request. For example, `https://api.checkout.com/marketplace/entities/ent_wxglze3wwywujg4nna5fb7ldli`.
+If you need to retrieve a sub-entity's details, you can use our Get sub-entity details endpoint. Just include the `id` of the sub-entity returned during the initial onboarding in your request. For example, `https://api.checkout.com/marketplace/entities/ent_wxglze3wwywujg4nna5fb7ldli`.
 
 ---
 
@@ -799,8 +789,6 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </LineCodeWrapper>
 </tab>
 </tabs>
-
----
 
 #### Response examples
 
@@ -966,7 +954,7 @@ On occasion, our team will need to manually review a sub-entity. Please see [abo
 
 <TipBox>
 
-We've described the different webhook notifications on our [webhook event type page](/workflows/webhook-event-types#Webhookeventtypes-Marketplace).
+We've described the different webhook notifications on our [webhook event type page](/workflows/).
 
 </TipBox>
 
@@ -1027,8 +1015,6 @@ If due diligence is passed, we will enable the sub-entity’s **payments** and *
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `full_dd_failed` notification, this will be followed by `payments_disabled` and `payouts_disabled` webhook notifications.
 
 </TipBox>
-
----
 
 #### Payment and payout webhook examples
 
@@ -1093,22 +1079,24 @@ We will re-trigger due diligence checks if any of the required information is la
 
 ### Where to next?
 
-<ContentPanel variant="heading" title="Accept a payment" imgSrc="/NAS/Marketplaces/accept-a-payment.svg">
+---
+
+<ContentPanel variant="heading" title="Accept a payment" imgSrc="/NAS/Marketplaces/accept-a-payment.svg" withBorder={false}>
 
 Process payments on behalf of your sub-entities.
 
-[Learn more](/marketplaces/accept-a-payment)
+[Learn more](/marketplaces/payments)
 
 </ContentPanel>
 
-<br/>
-
 ### Find out more
+
+---
 
 <ContentPanel variant="heading" title="Upload a file" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg" withBorder={false}>
 
 We'll explain how to upload a file using the Marketplace API.
 
-[Find out more](/marketplaces/onboard/api/full/upload-a-file)
+[Find out more](/marketplaces/onboarding/api/full/upload-a-file)
 
 </ContentPanel>

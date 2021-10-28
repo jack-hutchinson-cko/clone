@@ -24,16 +24,16 @@ Our integration has two parts:
 
 #### Create a test account
 
-If you haven't already, [create a test Checkout.com account](https://www.checkout.com/get-test-account).
+If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink>.
 
 #### Get your API keys
 
 To set up our commercetools API Client, you'll need your public and secret API keys, which are generated automatically upon account creation.
 
-1. Log in to your test account on the [Hub sandbox](https://sandbox.checkout.com/).
+1. Log in to your test account on the <ExternalLink href="https://sandbox.checkout.com/" target="_blank">Hub sandbox</ExternalLink>.
 2. In the left menu, go to _Settings > Channels_, and make a note of your secret and public API keys.
 
-<img maxWidth={700} src="/docs/Integrate/Commercetools/apple_pay_flow.png" withFullscreenPreview />
+<img maxWidth={700} src="/docs/Integrate/Commercetools/apple_pay_flow.png"  />
 
 #### Configure webhooks
 
@@ -55,7 +55,7 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 <TableRow>
 <TableCell>
 
-[`https://commercetools.integration.checkout.com/api/webhooks/payments`](https://commercetools.integration.checkout.com/api/webhooks/payments)
+<ExternalLink href="https://commercetools.integration.checkout.com/api/webhooks/payments" target="_blank">`https://commercetools.integration.checkout.com/api/webhooks/payments`</ExternalLink>
 
 </TableCell>
 <TableCell>
@@ -70,7 +70,7 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 <TableRow>
 <TableCell>
 
-[`https://commercetools.integration.checkout.com/api/webhooks/transactions`](https://commercetools.integration.checkout.com/api/webhooks/transactions)
+<ExternalLink href="https://commercetools.integration.checkout.com/api/webhooks/transactions" target="_blank">`https://commercetools.integration.checkout.com/api/webhooks/transactions`</ExternalLink>
 
 </TableCell>
 <TableCell>
@@ -99,7 +99,7 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 <TableRow>
 <TableCell>
 
-[`https://commercetools.integration.sandbox.checkout.com/api/webhooks/payments`](https://commercetools.integration.sandbox.checkout.com/api/webhooks/payments)
+<ExternalLink href="https://commercetools.integration.sandbox.checkout.com/api/webhooks/payments" target="_blank">`https://commercetools.integration.sandbox.checkout.com/api/webhooks/payments`</ExternalLink>
 
 </TableCell>
 <TableCell>
@@ -114,7 +114,7 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 <TableRow>
 <TableCell>
 
-[`https://commercetools.integration.sandbox.checkout.com/api/webhooks/transactions`](https://commercetools.integration.sandbox.checkout.com/api/webhooks/transactions)
+<ExternalLink href="https://commercetools.integration.sandbox.checkout.com/api/webhooks/transactions" target="_blank">`https://commercetools.integration.sandbox.checkout.com/api/webhooks/transactions`</ExternalLink>
 
 </TableCell>
 <TableCell>
@@ -474,7 +474,7 @@ Follow the steps below to create and configure the [Checkout.com](http://checkou
 - API URL
 - Auth URL
 
-6. Using [commercetools' IMPEX](https://impex.europe-west1.gcp.commercetools.com/playground), set `Types` as `endpoint`, and `create` as `command`, and then copy and paste in the following JSON files to install them (make sure you're in the right project when doing this):
+6. Using <ExternalLink href="https://impex.europe-west1.gcp.commercetools.com/playground), set `Types` as `endpoint`, and `create` as `command`, and then copy and paste in the following JSON files to install them (make sure you're in the right project when doing this" target="_blank">commercetools' IMPEX</ExternalLink>:
 
 <Accordion title="payment-interface-interaction.json">
 
@@ -550,7 +550,7 @@ Follow the steps below to create and configure the [Checkout.com](http://checkou
 
 Next, set up the frontend part of our commercetools integration.
 
-- Integrate [Frames](https://docs.checkout.com/preview/drafts/getting-started-private/integration-methods/frames) to accept card payments.
+- Integrate [Frames](/preview/drafts/getting-started-private/integration-methods/frames) to accept card payments.
 - Add our [Klarna SDK](/payments/payment-methods/invoice-and-pay-later/klarna) (follow steps 2 and 3 on that page; we'll take care of the rest) to support Klarna payments.
 
 If you are planning to accept SEPA payments, before any payment can occur, your customer must authorize the payment by accepting the terms of the mandate. By accepting, they are authorizing you to collect the specified amount from their bank account using SEPA Direct Debit. See [Issue the mandate](/payments/payment-methods/direct-debit/sepa-direct-debit#Issue_the_mandate) for more information
@@ -1249,7 +1249,7 @@ We recommend that you create a context when your payment options page loads, and
 
 <InfoBox>
 
-Use the valid public key of your [Checkout.com](http://checkout.com/) account. You can find this in the [Hub](https://hub.checkout.com/v2).
+Use the valid public key of your <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Checkout.com](http://checkout.com/) account. You can find this in the [Hub</ExternalLink>.
 
 </InfoBox>
 </TableCell>
@@ -1364,7 +1364,7 @@ The commercetools integration currently supports the following payment methods:
 
 <InfoBox>
 
-Use the valid public key of your [Checkout.com](http://checkout.com/) account. You can find this in the [Hub](https://hub.checkout.com/v2).
+Use the valid public key of your <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Checkout.com](http://checkout.com/) account. You can find this in the [Hub</ExternalLink>.
 
 </InfoBox>
 </TableCell>
@@ -1503,7 +1503,7 @@ Required the `3ds` object is included in the request.
 <TableCell>
 
 A reference you can use to later identify the payment. This populates
-the reference field in the [Hub](https://hub.checkout.com/v2)
+the reference field in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>
 
 <InfoBox>
 
@@ -1658,7 +1658,7 @@ Required the `3ds` object is included in the request.
 <TableCell>
 
 A reference you can use to later identify the payment. This populates
-the reference field in the [Hub](https://hub.checkout.com/v2)
+the reference field in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>
 
 <InfoBox>
 
@@ -1770,7 +1770,7 @@ The Bank Identifier Code (BIC).
 </TableCell>
 <TableCell>
 
-A reference you can use to later identify the payment. This populates the reference field in the [Hub](https://hub.checkout.com/v2).
+A reference you can use to later identify the payment. This populates the reference field in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>.
 
 <InfoBox>
 
@@ -1911,7 +1911,7 @@ Required the `3ds` object is included in the request.
 <TableCell>
 
 A reference you can use to later identify the payment. This populates
-the reference field in the [Hub](https://hub.checkout.com/v2)
+the reference field in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>
 
 <InfoBox>
 
@@ -2038,7 +2038,7 @@ Required the `3ds` object is included in the request.
 <TableCell>
 
 A reference you can use to later identify the payment. This populates
-the reference field in the [Hub](https://hub.checkout.com/v2)
+the reference field in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>
 
 <InfoBox>
 
@@ -2123,7 +2123,7 @@ The ID of the payment context created above.
 <TableCell>
 
 A reference you can use to later identify the payment. This populates
-the reference field in the [Hub](https://hub.checkout.com/v2)
+the reference field in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>
 
 <InfoBox>
 
@@ -2214,7 +2214,7 @@ Use this endpoint to return a list of a customer's saved payment instruments.
 
 <InfoBox>
 
-Use the valid secret key of your [Checkout.com](http://checkout.com/) account. You can find this in the [Hub](https://hub.checkout.com/v2).
+Use the valid secret key of your <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Checkout.com](http://checkout.com/) account. You can find this in the [Hub</ExternalLink>.
 
 </InfoBox>
 </TableCell>
@@ -2248,7 +2248,7 @@ Use the valid secret key of your [Checkout.com](http://checkout.com/) account. Y
 </TableCell>
 <TableCell>
 
-Your [Checkout.com](http://checkout.com/) public key. You can find this in the [Hub](https://hub.checkout.com/v2).
+Your <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Checkout.com](http://checkout.com/) public key. You can find this in the [Hub</ExternalLink>.
 
 </TableCell>
 </TableRow>
@@ -2310,7 +2310,7 @@ Use the endpoint below to delete a customer's saved payment instrument.
 
 <InfoBox>
 
-Use the valid secret key of your [Checkout.com](http://checkout.com/) account. You can find this in the [Hub](https://hub.checkout.com/v2).
+Use the valid secret key of your <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Checkout.com](http://checkout.com/) account. You can find this in the [Hub</ExternalLink>.
 
 </InfoBox>
 </TableCell>
@@ -2344,7 +2344,7 @@ Use the valid secret key of your [Checkout.com](http://checkout.com/) account. Y
 </TableCell>
 <TableCell>
 
-Your [Checkout.com](http://checkout.com/) public key. You can find this in the [Hub](https://hub.checkout.com/v2).
+Your <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Checkout.com](http://checkout.com/) public key. You can find this in the [Hub</ExternalLink>.
 
 </TableCell>
 </TableRow>
@@ -2381,4 +2381,4 @@ The unique identifier of the saved payment instrument.
 
 ### Postman collection
 
-For more testing, commercetools have created a [Postman collection](https://consumerpayments.postman.co/workspaces/7c5d60af-d230-476e-a98a-5126a55ccbd2/collections).
+For more testing, commercetools have created a <ExternalLink href="https://consumerpayments.postman.co/workspaces/7c5d60af-d230-476e-a98a-5126a55ccbd2/collections" target="_blank">Postman collection</ExternalLink>.

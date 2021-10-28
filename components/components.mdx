@@ -1,0 +1,248 @@
+# MDX components reference
+
+**NOTE**: Capitalisation of components is important.
+
+## Tables
+
+Tables should consistent of: 
+* `<Table>` opening **and** closing component that contains all of the table content.
+* `<TableHead/>` self-closing component that includes the `headers` prop, which should be an object containing an array of headers as strings.
+* `<TableBody>` opening **and** closing component that wraps around the rows and cells.
+* `<TableRow>` opening **and** closing component
+* `<TableCell>` opening **and** closing content. Content in a cell should have a line break both above and below.
+
+### Example
+
+```
+<Table>
+<TableHead headers={["Heading 1", "Heading 2"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+content
+
+</TableCell>
+<TableCell>
+
+content
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+```
+
+### Changing the width of columns
+
+In the `<TableHead />` component add a `sizes` prop that is an object with an array of sizes. They accept the same attributes as CSS, but try to use percentage (for responsiveness) and to only size the column that is too small. For example, imagine our first column is too small, we can say that should take up 60% of the width of the table and the other column can fit automatically: `sizes={['60%', 'auto']}`.
+
+You can add as many sizes to the array as there are columns.
+
+### Adding a header column
+
+If you have a table that has both a header row **and** header column, add the proper `withBackground` to the `<TableCell>` that contains the header. For example 
+
+```
+<TableCell withBackground>
+
+**I am a header column cell**
+
+</TableCell>
+```
+
+### Adding ticks or crosses in a cell
+
+If you have a table that is just ticks and crosses against a certain header, use the `<TableTicCell>` component and add a prop `type` with the value of either: 
+* `error` for a cross
+* `check` for a tick
+
+**These will be self-closing `<TableTicCell />` components.**
+
+```
+<TableTicCell type="error" />
+<TableTicCell type="check" />
+```
+
+### Adding a subscript info icon in a cell
+
+Sometimes cells have additional pieces of information in subscript with an 'i' icon. Use the `<InfoBox>` component to wrap around the content you would like to be subscript. 
+
+```
+<TableCell>
+
+Normal cell text
+
+<InfoBox>
+
+I will be additional information.
+
+</InfoBox>
+
+</TableCell>
+```
+
+### Remove top border of a table
+
+For design reasons, we may need to remove the top border of a table. Simply add `withTopBorder={false}` to the `<Table>` opening component. 
+
+```
+<Table withTopBorder={false}>
+
+...
+
+</Table>
+```
+
+---
+
+## Tabs
+
+Indivudal tab components will always have a `title` prop. Tabs are wrapped by a `<tabs>` component, with `<tab>` components in between.
+
+**NOTE:** Be cautious of tabs, because if the spacing is not right they will not render. 
+
+### Example
+
+```
+<tabs>
+<tab title="Tab 1">
+
+Hello
+
+</tab>
+<tab title="Tab 2">
+
+world
+
+</tab>
+</tabs>
+```
+
+---
+
+## Inline components
+
+### Request tag
+
+When you need to reference an API method inline use the **self-closing** `<RequestTag />`. Use the prop `type` to inficate which method it should show. 
+
+For example, `<RequestTag type="post" />`
+
+### Status tag
+
+We try not to use API reference-like tables in our guides. However, if you are are referencing someone else's endpoint or feel as though you have and are marking whether it is an optional or required field, use a **self-closing** `<StatusTag />` component with the prop `type` to indicate what the label should say.
+
+For example, `<StatusTag type="required" />`
+
+### Endpoints
+
+This component is usually only used when we are showing the endpoint the page is referring to. This component has both opening **and** closing tags, with the endpoint in between these tags. Use `<LineCodeWrapper>` with a prop of `type` to indicate the API method. 
+
+#### Example
+
+```
+
+<LineCodeWrapper type="post">
+
+`https://example.com/checkout_com/api/v1`
+
+</LineCodeWrapper>
+
+```
+---
+
+## TipBox
+
+This component has an opening **and** closing tag with the content in between. Use the `<TipBox>` component; if you would like the box to have a title, add an optional prop of `title`. Use the prop `variant` to indicate which box you would like to render. 
+
+Tip boxes are the components with an icon, a coloured border and content inside. There are four types: 
+
+* Tip – green with a tick. `variant` prop not needed.
+* Info – blue with an i icon. Use `variant="info"`.
+* Note – yellow with an exclamation mark in a triangle. Use `variant="note"`.
+* Warning - red with an exclamation mark in a diamond. Use `variant="warning"`.
+
+
+### Example
+
+```
+<TipBox variant="info" title="I am a title">
+
+Hello world.
+
+</TipBox>
+```
+
+---
+
+## Content panels 
+
+When we direct users to another guide at the bottom of the page, we often use the `<ContentPanel>` component with both opening **and** closing tags. You can add the following **optional** props: 
+
+* `title`
+* `imgSrc` – for icons (see [marketplaces](/marketplaces))
+* `withBorder={false}` – default is true, so we only need to add this if we do not want the bottom border appearing for design reasons.
+
+### Example
+
+```
+<ContentPanel title="About onboarding sub-entities" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg" withBorder={false}>
+
+Find out more about onboarding and verification for your sub-entities.
+
+</ContentPanel>
+```
+
+---
+
+## Images
+
+### Standard images 
+
+Use the HTML `img` tag with a standard `src` attribute to point to the image's location.
+
+* `withFullscreenPreview` is default true. Set to false if you shouldnt be able to open image into a bigger display. 
+* Add `maxWidth` to change the width of the image. This will be in pixels, so you just need to type a full number (not as a string).
+* Src path relates to the location of the image in the public directory. 
+
+### Example
+
+`<img maxWidth={170} src="/docs/Integrate/SDKS/Android SDK/Android.png" />`
+
+### Portrait
+
+Images that are long but not wide, can be wrapped in a `Box` and an `Iframe` component.
+
+`<Box>` takes the props `horizontal="sm"` and `align="center"`. 
+
+`<IFrame>` takes the props `src`, `height`, and `width`.
+
+### Example
+
+```
+<Box horizontal="sm" align="center">
+  <Iframe
+    src="/docs/four/NAS/Dashboard/View_your_sub-entities/mk_user_permissions.png"
+    height='406'
+    width='242'
+  />
+</Box>
+```
+
+---
+
+### Links
+
+When referencing an internal link, ie (/integrate) use the markdown format for links
+
+For external links, use an `<a>` tag. 
+With external links, you must pass a href attribute and an optional `target="_blank"` if you want the page to open in a new tab.
+
+### Example
+
+Internal Links: [International](/payments/payment-methods/cards)
+External Links: <a href="https://archive.docs.checkout.com/docs/reconciliation-api" target="_blank">Classic API's transactions endpoint</a>
+
+
+---

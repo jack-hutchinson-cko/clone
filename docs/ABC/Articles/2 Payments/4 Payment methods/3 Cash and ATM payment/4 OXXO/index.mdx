@@ -11,6 +11,104 @@ If you want to use a gateway model for accepting OXXO payments, you will need to
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Cash
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Voucher
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
+
 ---
 
 ### Overview
@@ -30,7 +128,7 @@ Use the details below to set up your request.
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -192,7 +290,7 @@ To get the components necessary to render the ticket, use the ['get payment deta
 *   Include the **currency** and **amount** on the ticket.
 *   Make sure the **expiry date** is clear and visible, and use the **dd/mm/yyyy** format.
 *   Include **payment instructions** to help customers unfamiliar with the payment process.
-*   A **store locator** is a helpful feature. Just link it to [google.com/maps/search/oxxo/](https://www.google.com/maps/search/oxxo).
+*   A **store locator** is a helpful feature. Just link it to <ExternalLink href="https://www.google.com/maps/search/oxxo" target="_blank">google.com/maps/search/oxxo/</ExternalLink>.
 *   Include a **download button** so customers can easily save the ticket on their phone.
 *   Include a **print button** for customers who want to print their ticket.
 
@@ -200,7 +298,7 @@ To get the components necessary to render the ticket, use the ['get payment deta
 
 Here's an example:
 
-<img maxWidth={230} src="/docs/Payments/oxxo-ticket-render-example.png" withFullscreenPreview />
+<img maxWidth={230} src="/docs/Payments/oxxo-ticket-render-example.png"  />
 
 ---
 
@@ -210,7 +308,7 @@ Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45
 
 #### Endpoints
 
-You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/).
+You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -500,7 +598,7 @@ Learn more about [webhooks and how to subscribe to them](/reporting-and-insights
 
 To start testing, you'll need to:
 
-*   [create a test account](https://www.checkout.com/get-test-account), and
+*   <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test account</ExternalLink>, and
 *   contact your Customer Success Manager or Integrations engineer to activate OXXO payments in the sandbox environment.
 
 </TipBox>
