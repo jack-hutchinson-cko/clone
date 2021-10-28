@@ -35,6 +35,7 @@ const CategoriesItem: FC<Props> = ({
                   alt={title}
                   maxWidth={imageMaxWidth}
                   layout="fill"
+                  withFullscreenPreview={false}
                 />
               </HeaderImage>
             )}
