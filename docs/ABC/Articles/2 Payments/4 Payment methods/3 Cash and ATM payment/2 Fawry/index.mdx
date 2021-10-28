@@ -17,6 +17,103 @@ To start accepting Fawry payments, please contact your Customer Success Manager.
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Redirect
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Voucher
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
 ---
 
 ### Request a payment
@@ -262,4 +359,84 @@ The reference number you received in the response to the 'get payment details' r
 </TableBody>
 </Table>
 
+If successful, you will receive a `payment_captured` webhook notification.
+
+#### Cancel a payment
+
+Use the `reference_number` from the response to your get payment details request to test canceling a payment.
+
+#### Endpoint
+
+<tabs>
+<tab title="Sandbox" active>
+<LineCodeWrapper type="put">
+
+`https://api.sandbox.checkout.com/fawry/payments/{reference_number}/cancellation`
+
+</LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header and path parameters
+
+<Table>
+<TableHead headers={['Header', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`secret key`
+
+<InfoBox>
+
+Use the valid secret key of your Checkout.com account. You can find this in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+
+</TableBody>
+</Table>
+
+<Table>
+<TableHead headers={['Path', 'Value']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`reference_number`
+
+<StatusTag type="required" />
+</TableCell>
+<TableCell>
+
+The reference number you received in the response to the 'get payment details' request.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
 If successful, you will receive a `payment_canceled` webhook notification.
+
+
+
