@@ -27,7 +27,7 @@ export const getAnchors = (content: string): string[] =>
   content.match(/^(#|##|###) (.*$)/gim) || [];
 
 export const getTitleFromFileName = (fileName: string): string => fileName.replace(/^[0-9]+ /, '');
-export const getSlugFromTitle = (title: string): string => lowerCase(title).replace(/ /g, '-');
+export const getSlugFromTitle = (title: string): string => title.toLowerCase().replace(/ /g, '-');
 
 export const isMdxSourceFolder = (filePath: string): boolean => {
   const fileName = last(filePath.split('/')) || '';

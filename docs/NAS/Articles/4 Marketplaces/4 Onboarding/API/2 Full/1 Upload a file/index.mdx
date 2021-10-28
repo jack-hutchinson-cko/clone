@@ -60,23 +60,6 @@ Y
 <TableRow>
 <TableCell>
 
-Driving licence
-
-</TableCell>
-<TableCell>
-
-Y
-
-</TableCell>
-<TableCell>
-
-Y
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
 National identity card
 
 </TableCell>
@@ -200,8 +183,6 @@ Notice that the sub-domain – files.checkout.com – is slightly different to C
 </tab>
 </tabs>
 
----
-
 #### Request example
 
 Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" target="_blank">API reference.</ExternalLink>
@@ -246,14 +227,12 @@ curl https://files.checkout.com \
   -F "purpose=identification"
 ```
 
----
-
 #### Response examples
 
 <tabs>
 <tab title='201 - Document accepted'>
 
-If you received a file `id` in your response, the document was accepted. You can see this association by [retrieving the sub-entity.](/marketplaces/about-onboarding/onboard-a-sub-entity-full#Onboardasub-entity(full)-Retrieveasub-entity)
+If you received a file `id` in your response, the document was accepted. You can see this association by [retrieving the sub-entity.](/marketplaces/onboarding/api)
 
 ```json withBorder=false
 {
@@ -438,11 +417,13 @@ A back file is not required for the type of document in your request. This curre
 
 ### Where to next?
 
+---
+
 <ContentPanel title="Update a sub-entity" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg">
 
 Use the file `id` returned by the Files API to attach identity documentation required for `full` due diligence.
 
-<ButtonLinkSecondary href="/marketplaces/onboarding/api/full">Full account type</ButtonLinkSecondary>
+[Learn more](/marketplaces/onboarding/api/full)
 
 </ContentPanel>
 
