@@ -85,6 +85,8 @@ Our Hosted Payments Page integration option is a fast and easy way to collect yo
 
 #### Try it out
 
+Preview a Hosted Payments Page with the demo below. Try it with the following test card or Sofort details.
+
 <tabs>
 <tab title="Card">
 
@@ -215,21 +217,20 @@ For example, let’s say you want to accept payments with [Sofort](/payments/pay
 
 [Learn more about the local payment methods](/payment-methods) you can accept.
 
+---
+
 ### Next steps
 
-```html
-<div class="card-deck row-cols-md-2">
- <a href="/integrate/hosted-payments-page" style="text-decoration:none"><div class="card">
-	<div class="card-body">
-	  <h3 class="card-title">Hosted Payments Page</h3>
-	  <p>Learn more about Hosted Payment Pages and how to set up your integration.</p>
-	</div>
-  </div></a>
-  <a href="/integrate/frames" style="text-decoration:none"><div class="card">
-	<div class="card-body">
-	  <h3 class="card-title">Frames</h3>
-	  <p>Learn more about Frames, and how to set up and customize your integration.</p>
-	</div>
-  </div></a>
-</div>
-```
+<CardWrapper cardsInRow={{desktop:2,tablet:2,mobile:1}}>
+
+<Card href="/integrate/hosted-payments-page" title="Hosted Payments Page">
+
+Learn more about Hosted Payment Pages and how to set up your integration.
+
+</Card>
+<Card href="/integrate/frames" title="Frames">
+
+Learn more about Frames, and how to set up and customize your integration.
+
+</Card>
+</CardWrapper>
