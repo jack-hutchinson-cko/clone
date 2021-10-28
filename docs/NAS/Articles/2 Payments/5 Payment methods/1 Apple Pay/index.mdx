@@ -10,7 +10,7 @@ Start seamlessly accepting credit card payments from your customers via Touch ID
 
 ### Before you start
 
-Before you can accept Apple Pay payments, you need to [set up and configure Apple Pay](https://docs.checkout.com/preview/drafts/nas/apple-pay/set-up-apple-pay).
+Before you can accept Apple Pay payments, you need to [set up and configure Apple Pay](/preview/drafts/nas/apple-pay/set-up-apple-pay).
 
 <TipBox variant="note">
 
@@ -24,19 +24,19 @@ Once you've set up and configured Apple Pay, you're ready to accept Apple Pay pa
 
 #### Step 1: Generate a Checkout.com token from the Apple Pay token
 
-After your customer validates their transaction with biometrics, Apple will generate a [payment token](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken).
+After your customer validates their transaction with biometrics, Apple will generate a <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken" target="_blank">payment token</ExternalLink>.
 
 The first step in processing an Apple Pay transaction is to convert this Apple Pay token into a [Checkout.com](http://checkout.com/) card token.
 
 <TipBox variant="info">
 
-  Alternatively, if you want to decrypt the Apple Pay token yourself and process a payment, follow our [pay with a pre-decrypted token guide](https://docs.checkout.com/preview/drafts/nas/apple-pay/pay-with-a-pre-decrypted-apple-pay-token).
+  Alternatively, if you want to decrypt the Apple Pay token yourself and process a payment, follow our [pay with a pre-decrypted token guide](/preview/drafts/nas/apple-pay/pay-with-a-pre-decrypted-apple-pay-token).
 
 </TipBox>
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#tag/Tokens).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Tokens" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -102,7 +102,7 @@ Using the token `(tok_...)` you got in the response above, make a standard payme
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout).
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -146,12 +146,12 @@ If you get a `201 Success` response and the `approved` field is `true`, your pay
 
 To test Apple Pay payments, you'll need the following:
 
-*   An [Apple Pay compatible device](https://support.apple.com/en-us/HT208531).
-*   A [sandbox Apple Pay wallet](https://developer.apple.com/apple-pay/sandbox-testing/). (You cannot use a real Apple Pay wallet with real cards to test in sandbox.)
+*   An <ExternalLink href="https://support.apple.com/en-us/HT208531" target="_blank">Apple Pay compatible device</ExternalLink>.
+*   A <ExternalLink href="https://developer.apple.com/apple-pay/sandbox-testing/). (You cannot use a real Apple Pay wallet with real cards to test in sandbox." target="_blank">sandbox Apple Pay wallet</ExternalLink>
 
 #### Apple Pay test cards
 
-Once you've got a compatible device and a sandbox Apple Pay wallet, you can add one of the following test cards to it. See our [testing guide](https://docs.checkout.com/four/testing) for more information.
+Once you've got a compatible device and a sandbox Apple Pay wallet, you can add one of the following test cards to it. See our [testing guide](/four/testing) for more information.
 
 <Table>
 <TableHead headers={['Card', 'Number', 'Expiry', 'CVV']} sizes={['auto', '40%', 'auto', 'auto']} />
