@@ -24,6 +24,7 @@ import { MDXText } from 'components/Text';
 import { MDXCodeSample } from 'components/CodeSample';
 import LineCode from 'components/LineCode';
 import TextLink, { ExternalLink } from 'components/TextLink';
+import Video from 'components/Video';
 import Box from 'components/Box';
 import Pre from 'components/Pre';
 import { RequestTag, StatusTag, TypeTag, SectionTag } from 'components/Tag';
@@ -108,6 +109,7 @@ export const mdxComponents = {
   inlineCode: LineCode,
   a: TextLink,
   ExternalLink,
+  Video,
   TextLink,
   Box,
   pre: Pre,

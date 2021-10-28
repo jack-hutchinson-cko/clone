@@ -14,7 +14,7 @@ export const ContentPanelDefaultStory: Story = () => {
 
       <a href="/integrate/frames">Learn more for web</a>
       <br />
-      <a href="/integrate/frames-for-android">Learn more for mobile </a>
+      <a href="/integrate/sdks/android-sdk">Learn more for mobile </a>
     </ContentPanel>
   );
 };

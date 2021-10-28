@@ -114,7 +114,7 @@ Use the following details to test a Sofort payment flow:
 
 The Hosted Payment Page payment flow offers a similar experience to Checkout.js.
 
-<img src="/docs/resources/ckojs_migration_hosted_payments_page.png" withFullscreenPreview />
+<img src="/docs/Resources/ckojs_migration_hosted_payments_page.png" withFullscreenPreview />
 
 #### 1. Create a Hosted Payments Page
 
@@ -147,7 +147,7 @@ In the response you'll get a redirect link for the Hosted Payments Page. Here's 
 
 Once you’ve got the link to the Hosted Payment Page, redirect your customer to it. They will enter their payment details on the page and then get sent to either your success or failure page.
 
-You don’t have to worry about managing the session. When we redirect the customer back to your page, we provide a session ID (`cko-session-id`) or payment ID (`cko-payment-id`) as a query parameter in the URL, which you can pass into our [get payment details endpoint](https://api-reference.checkout.com/#operation/getPaymentDetails) to get a full overview of the payment.
+You don’t have to worry about managing the session. When we redirect the customer back to your page, we provide a session ID (`cko-session-id`) or payment ID (`cko-payment-id`) as a query parameter in the URL, which you can pass into our <ExternalLink href="https://api-reference.checkout.com/#operation/getPaymentDetails" target="_blank">get payment details endpoint</ExternalLink> to get a full overview of the payment.
 
 <TipBox variant="note">
 
@@ -175,7 +175,7 @@ Preview Frames with the demo below. Enter `4242424242424242` as the card number,
 
 #### Payment flow
 
-<img src="/docs/resources/ckojs_migration_frames.png" withFullscreenPreview />
+<img src="/docs/Resources/ckojs_migration_frames.png" withFullscreenPreview />
 
 #### 1. Collect card details
 
@@ -219,17 +219,17 @@ For example, let’s say you want to accept payments with [Sofort](/payments/pay
 
 ```html
 <div class="card-deck row-cols-md-2">
- <ExternalLink href="/integrate/hosted-payments-page" style="text-decoration:none"><div class="card">
+ <a href="/integrate/hosted-payments-page" style="text-decoration:none"><div class="card">
 	<div class="card-body">
 	  <h3 class="card-title">Hosted Payments Page</h3>
 	  <p>Learn more about Hosted Payment Pages and how to set up your integration.</p>
 	</div>
-  </div></ExternalLink>
-  <ExternalLink href="/integrate/frames" style="text-decoration:none"><div class="card">
+  </div></a>
+  <a href="/integrate/frames" style="text-decoration:none"><div class="card">
 	<div class="card-body">
 	  <h3 class="card-title">Frames</h3>
 	  <p>Learn more about Frames, and how to set up and customize your integration.</p>
 	</div>
-  </div></ExternalLink>
+  </div></a>
 </div>
 ```
