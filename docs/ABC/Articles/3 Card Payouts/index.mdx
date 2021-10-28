@@ -369,6 +369,27 @@ The information you need to provide depends on the card scheme and type of trans
 </InfoBox>
 </TableCell>
 </TableRow>
+<TableRow>
+<TableCell>
+
+`processing.purpose`
+
+<StatusTag type="conditional" />
+
+<TypeTag type="enum" />
+
+</TableCell>
+<TableCell>
+
+Contains the purpose of the transaction. Required when the destination country is Argentina, Bangladesh, Egypt or India. Mandatory from 15th October 2021.
+
+<InfoBox>
+
+See the [full list of possible values](#Payout_purpose_values).
+
+</InfoBox>
+</TableCell>
+</TableRow>
 </TableBody>
 </Table>
 
@@ -554,14 +575,14 @@ Details about the payout destination.
 </TableCell>
 <TableCell>
 
-The type of payout destination. Set this to `id`.
+The type of payout destination. Set this to `token`.
 
 </TableCell>
 </TableRow>
 <TableRow>
 <TableCell>
 
-`destination.id`
+`destination.token`
 
 <StatusTag type="required" />
 
@@ -570,13 +591,8 @@ The type of payout destination. Set this to `id`.
 </TableCell>
 <TableCell>
 
-The payment instrument ID.
+The payment token (prefixed by `tok_`).
 
-<InfoBox>
-
-This must be a card payment instrument identifier.
-
-</InfoBox>
 </TableCell>
 </TableRow>
 <TableRow>
@@ -723,6 +739,27 @@ The information you need to provide depends on the card scheme and type of trans
 </InfoBox>
 </TableCell>
 </TableRow>
+<TableRow>
+<TableCell>
+
+`processing.purpose`
+
+<StatusTag type="conditional" />
+
+<TypeTag type="enum" />
+
+</TableCell>
+<TableCell>
+
+Contains the purpose of the transaction. Required when the destination country is Argentina, Bangladesh, Egypt or India. Mandatory from 15th October 2021.
+
+<InfoBox>
+
+See the [full list of possible values](#Payout_purpose_values).
+
+</InfoBox>
+</TableCell>
+</TableRow>
 </TableBody>
 </Table>
 
@@ -734,12 +771,12 @@ The information you need to provide depends on the card scheme and type of trans
 ``` json
 {
   "destination": {
-    "type": "id",
-    "id": "src_nxc36gtdwjtuxfeg2vsy722m4e",
-    "first_name": "John",
-    "last_name": "Smith"
+    "type": "token",
+    "token": "tok_ihvkileifkzebkgnhkskbglyte",
+    "first_name" : "John",
+    "last_name" : "Smith"
   },
-  "amount": 100,
+  "amount": 1000,
   "currency": "GBP",
   "fund_transfer_type": "FD",
   "reference": "ORD-5023-4E89"
@@ -752,12 +789,12 @@ The information you need to provide depends on the card scheme and type of trans
 ``` json
 {
   "destination": {
-    "type": "id",
-    "id": "src_nxc36gtdwjtuxfeg2vsy722m4e",
-    "first_name": "John",
-    "last_name": "Smith"
+    "type": "token",
+    "token": "tok_ihvkileifkzebkgnhkskbglyte",
+    "first_name" : "John",
+    "last_name" : "Smith"
   },
-  "amount": 100,
+  "amount": 1000,
   "currency": "GBP",
   "fund_transfer_type": "AA",
   "reference": "ORD-5023-4E89",
@@ -772,7 +809,7 @@ The information you need to provide depends on the card scheme and type of trans
       "country": "GB",
       "sourceOfFunds": "Debit"
     }
-  }
+  }  
 }
 ```
 
@@ -782,12 +819,12 @@ The information you need to provide depends on the card scheme and type of trans
 ``` json
 {
   "destination": {
-    "type": "id",
-    "id": "src_nxc36gtdwjtuxfeg2vsy722m4e",
-    "first_name": "John",
-    "last_name": "Smith"
+    "type": "token",
+    "token": "tok_ihvkileifkzebkgnhkskbglyte",
+    "first_name" : "John",
+    "last_name" : "Smith"
   },
-  "amount": 100,
+  "amount": 1000,
   "currency": "GBP",
   "fund_transfer_type": "FD",
   "reference": "ORD-5023-4E89",
@@ -802,7 +839,7 @@ The information you need to provide depends on the card scheme and type of trans
       "country": "GB",
       "sourceOfFunds": "DepositAccount"
     }
-  }
+  }  
 }
 ```
 
@@ -1082,6 +1119,27 @@ Contains the details of the sender of the transaction. Required if you are sendi
 <InfoBox>
 
 The information you need to provide depends on the card scheme and type of transaction. See our [sender data guide](card-payouts/sender-data-for-card-payouts) for details.
+
+</InfoBox>
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processing.purpose`
+
+<StatusTag type="conditional" />
+
+<TypeTag type="enum" />
+
+</TableCell>
+<TableCell>
+
+Contains the purpose of the transaction. Required when the destination country is Argentina, Bangladesh, Egypt or India. Mandatory from 15th October 2021.
+
+<InfoBox>
+
+See the [full list of possible values](#Payout_purpose_values).
 
 </InfoBox>
 </TableCell>
@@ -2393,3 +2451,7 @@ Declined. Contact your Customer Success Manager for more details.
 </Table>
 
 </Accordion>
+
+#### Payout purpose values
+
+`donations`, `education`, `emergency_need`, `expatriation`, `family_support`, `financial_services`, `gifts`, `income`, `insurance`, `investment`, `it_services`, `leisure`, `loan_payment`, `medical_treatment`, `other`, `pension`, `royalties`, `savings`, `travel_and_tourism`
