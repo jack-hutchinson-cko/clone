@@ -14,9 +14,9 @@ On this page we’ll take a look at SCA and how we can help you meet it. We’ll
 
 Follow these three steps to make sure you're ready for strong authentication:
 
-- [Check if SCA applies to you](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-scascope).
-- See if your [business model and transactions require strong authentication](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-businessmodels).
-- Make sure your integration supports [3D Secure (3DS) authentication](/payments/regulation-support/sca-compliance-guide#SCAcomplianceguide-3ds).
+- [Check if SCA applies to you](#Does_SCA_apply_to_me?).
+- See if your [business model and transactions require strong authentication](#Business_scenarios).
+- Make sure your integration supports [3D Secure (3DS) authentication](#Implement_3DS_with_our_Payments_API).
 
 </TipBox>
 
@@ -357,7 +357,8 @@ Yes, unless [exemptions](/payments/regulation-support/sca-compliance-guide#Possi
 </TableCell>
 <TableCell>
 
-`"3ds.enabled": true or "3ds.exemption"``"source.stored": true`
+`"3ds.enabled": true` or `"3ds.exemption"` 
+`"source.stored": true`
 
 </TableCell>
 </TableRow>
@@ -535,7 +536,7 @@ For more details about the additional parameters required for payments using sav
 
 ### Implement 3DS with our Payments API
 
-To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3-d-secure/3d-secure-2-api-integration) for more details.
+To implement 3D Secure authentication and comply with SCA, you need to add the following fields to your payment requests. See our [3D Secure API integration guide](/risk-management/3d-secure/3d-secure-2-api-integration) for more details.
 
 <TipBox variant="note">
 

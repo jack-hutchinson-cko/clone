@@ -11,7 +11,7 @@ Follow the steps on this page to set up and configure Apple Pay.
 
 Before you get started with Apple Pay, you need the following:
 
-*   An Apple Developer account. [Sign up for one here](https://developer.apple.com/programs/enroll/).
+*   An Apple Developer account. <ExternalLink href="https://developer.apple.com/programs/enroll/" target="_blank">Sign up for one here</ExternalLink>.
 *   A domain with a valid SSL certificate (meaning your domain should start with `https`).
 *   Access to a Secure Shell (SSH) terminal.
 *   Access to your server's files, so you can upload files to your server.
@@ -22,13 +22,15 @@ Before you get started with Apple Pay, you need the following:
 
 #### Step 1: Create your merchant IDs in your Apple Pay Developer account
 
+<Video src="https://assets.checkout.com/docs/videos/create_merchant_id.mp4" />
+
 <TipBox variant="info">
 
 We recommend that you create separate merchant IDs for your test environment and for your live/production environment.
 
 </TipBox>
 
-1.  In your Apple Developer account, go to the [Add Merchant IDs section](https://developer.apple.com/account/resources/identifiers/add/merchant), select _Merchant IDs_ and select _Continue_.
+1.  In your Apple Developer account, go to the <ExternalLink href="https://developer.apple.com/account/resources/identifiers/add/merchant" target="_blank">Add Merchant IDs section</ExternalLink>, select _Merchant IDs_ and select _Continue_.
 2.  Add a useful description, like `merchant id for test environment`.
 3.  Type your desired merchant ID name in the Identifier section. We recommend that you use a descriptive name to indicate both the domain and the environment you will use it in, like `merchant.com.mywebsite.sandbox`.
 
@@ -36,7 +38,7 @@ We recommend that you create separate merchant IDs for your test environment and
 
 Next, you need to generate a certificate signing request using the following endpoint. You'll receive a `.csr` file in the response that you'll need to upload to your Apple Developer account in the next step.
 
-To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
+To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
 #### Endpoints
 
@@ -84,7 +86,7 @@ curl --location --request POST 'https://api.sandbox.checkout.com/applepay/signin
 
 Once you've generated the payment processing certificate, you need to upload it using the following endpoint. We use this certificate to decrypt Apple Pay tokens and turn them into Checkout.com card tokens you can use to request a payment.
 
-To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
+To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
 <TipBox variant="info">
 
@@ -148,14 +150,16 @@ You must have a valid SSL certificate on your domain (meaning it begins with `ht
 
 </TipBox>
 
-1.  Log in to your Apple Developer account, go to the [Merchant IDs list section](https://developer.apple.com/account/resources/identifiers/list/merchant) and select the merchant ID you created in step 1.
+1.  Log in to your Apple Developer account, go to the <ExternalLink href="https://developer.apple.com/account/resources/identifiers/list/merchant" target="_blank">Merchant IDs list section</ExternalLink> and select the merchant ID you created in step 1.
 2.  Under the Merchant Domains section, select _Add Domain_.
 3.  Enter your domain and select _Save_.
 4.  Select _Download_ and you'll get a `.txt` file.
-5.  Upload this file to your server so it's accessible at the following location (replacing [yourdomain.com](http://yourdomain.com/) with the URL of your domain): [https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt](https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt). To do this, create a folder called `.well-known` in the root directory of your website and put the `.txt` file in that folder.
+5.  Upload this file to your server so it's accessible at the following location (replacing <ExternalLink href="https://yourdomain.com/" target="_blank">yourdomain.com</ExternalLink> with the URL of your domain): <ExternalLink href="https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt" target="_blank">https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt</ExternalLink>. To do this, create a folder called `.well-known` in the root directory of your website and put the `.txt` file in that folder.
 6.  Once you've uploaded the file, select _Verify_.
 
 #### Step 6: Create your Apple Pay certificates
+
+<Video src="https://assets.checkout.com/docs/videos/certificates.mp4" />
 
 1.  Open a terminal and create a `.csr` and `.key` file using this command:
 
@@ -164,7 +168,7 @@ openssl req -out uploadMe.csr -new -newkey rsa:2048 -nodes -keyout certificate_s
 ```
 
 2.  In the prompt, enter your details, and when asked for a password, leave it blank and select _Enter_. You will get a `.csr` and `.key` file. Keep the `.key` file at hand.
-3.  Log in to your Apple Developer account, go to the [Merchant IDs list section](https://developer.apple.com/account/resources/identifiers/list/merchant) and select the merchant ID you created in step 1.
+3.  Log in to your Apple Developer account, go to the <ExternalLink href="https://developer.apple.com/account/resources/identifiers/list/merchant" target="_blank">Merchant IDs list section</ExternalLink> and select the merchant ID you created in step 1.
 4.  Under the _Apple Pay Merchant Identity Certificate_ section (make sure you're not in the _Apple Pay Payment Processing Certificate_ section), select _Create Certificate_.
 5.  Upload the `.csr `file you just created from your terminal. It should be called `uploadMe.csr` if you copy-pasted the command.
 6.  Select _Continue_ and then select _Download_ to get your `.cer` file. It will probably be named `merchant_id.cer`.
@@ -200,12 +204,14 @@ We recommend that you repeat the above steps so you have a merchant ID, domain (
 
 Follow Apple Pay's integration documentation to integrate Apple Pay:
 
-*  [Apple Pay Web](https://developer.apple.com/documentation/apple_pay_on_the_web). See a [demo](https://applepaydemo.apple.com/).
-*  [Apple Pay Mobile](https://developer.apple.com/documentation/apple_pay_on_the_web).
+*  <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web" target="_blank">Apple Pay Web</ExternalLink>. See a <ExternalLink href="https://applepaydemo.apple.com/" target="_blank">demo</ExternalLink>
+*  <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web" target="_blank">Apple Pay Mobile</ExternalLink>.
 
 Once you've completed the integration steps, you will be able to display the Apple Pay button and validate an Apple Pay Session (required for the web version).
 
 If you're struggling, watch this payment flow walkthrough:
+
+<Video src="https://assets.checkout.com/docs/videos/apple_pay_full_payment_flow.mp4" />
 
 Here's a diagram of the full payment flow:
 
