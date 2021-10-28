@@ -17,6 +17,8 @@ We currently support version 2.1.0 of the 3DS protocol.
 
 Simply submit a payment request with `"3ds.enabled": true`, and then we'll redirect your customer to a Checkout.com page to gather all the 3DS2-relevant data and add the required fields to your request—meaning no extra work for you.
 
+---
+
 #### Step 1: Collect a card token
 
 First, the customer needs to exchange their card details for a card token – tokenization. You can create a card token with one of our [integration options](/integrate).
@@ -132,65 +134,6 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Header and path parameters
-
-<Table>
-<TableHead headers={['Header', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`Authorization`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`secret key`
-
-<InfoBox>
-
-Use the valid secret key of your Checkout.com account. You can find this in the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink>.
-
-</InfoBox>
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`Content-Type`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-`application/json`
-
-</TableCell>
-</TableRow>
-
-</TableBody>
-</Table>
-
-<Table>
-<TableHead headers={['Path', 'Value']} />
-<TableBody>
-<TableRow>
-<TableCell>
-
-`id`
-
-<StatusTag type="required" />
-</TableCell>
-<TableCell>
-
-The `cko-session-id`.
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
 #### Response example
 
 Check the `3ds.authentication_response` field to see the result of the 3DS authentication. It will be one of the following values:
@@ -262,8 +205,6 @@ If you make a payment request without the `3ds` object, or with `"3ds.enabled": 
 <img src="/docs/Risk Management/Non-3DS-authorization-with-soft-decline.png" alt="Non-3DS authorization with soft decline" withFullscreenPreview />
 
 If, however, you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer **does** require 3DS2 authorization for the transaction, you will receive a soft decline response (response code 20154). You will then need to resubmit the payment as a 3DS2 payment.
-
----
 
 ### Handling non-enrolled cards
 
