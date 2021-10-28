@@ -382,20 +382,20 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
 ```json
 {
   "type": "bank_account",
-  "iban": "IS140159260076545510730339",
-  "swift_bic": "ARIOISREXXX",
+  "iban": "IE49AIBK93136519808026",
+  "swift_bic": "AIBKIE2D",
   "currency": "EUR",
-  "country": "IS",
+  "country": "IE",
   "account_holder": {
     "first_name": "John",
     "last_name": "Smith",
-    "address_line1": "99 Windsor Road",
-    "address_city": "Reykjavík",
-    "country_code": "IS",
+    "address_line1": "52 Clover Hill",
+    "address_city": "Dooradoyle",
+    "country_code": "IE",
     "billing_address": {
-      "address_line1": "99 Windsor Road",
-      "country_code": "IS",
-      "address_city": "Reykjavík"
+      "address_line1": "52 Clover Hill",
+      "city": "Dooradoyle",
+      "country": "IE"
     }
   }
 }
@@ -408,14 +408,14 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
 {
   "currency": "EUR",
   "source": {
-    "amount": 100,
+    "amount": 2,
     "type": "currency_account",
-    "id": "ca_vrsqwv6tgtyufgi5xahfqmqq7a"
+    "id": "ca_ex5c7v3rbhxerplq3eil3pjjam"
   },
   "reference": "CKO Test",
   "destination": {
     "type": "id",
-    "id": "src_6gtxe3cxns7uld5ytsemv6pdma"
+    "id": "src_kothcbkdhhqe7bidwgu2oijmhu"
   },
   "billing_descriptor": {
     "reference": "CKO Test"
@@ -424,14 +424,11 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
     "type": "instrument",
     "reference": "CKO Test",
     "first_name": "John",
-    "last_name": "Smith",
-    "address_line1": "99 Windsor Road",
-    "address_city": "Reykjavík",
-    "country_code": "IS"
-   },
+    "last_name": "Smith"
+  },
   "instruction": {
-    "purpose": "CKO Test EUR"
-   },
+    "purpose": "CKO Test"
+  },
   "processing_channel_id": "pc_hpswyyx23geezflc2ocz3exn4y"
 }
 ```
