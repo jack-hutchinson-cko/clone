@@ -109,7 +109,7 @@ export const StyledTH = styled.th<{ width?: string }>`
 
 export const StyledTableTicCell = styled(TableCell)`
   padding: 14px 16px;
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 `;
 

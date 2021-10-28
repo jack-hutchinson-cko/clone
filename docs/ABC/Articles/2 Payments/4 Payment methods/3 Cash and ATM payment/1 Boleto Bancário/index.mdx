@@ -11,6 +11,103 @@ Start accepting payments using Boleto Bancário, a favorite payment method in Br
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Cash & ATM
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Voucher
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
 ---
 
 ### Overview
@@ -196,7 +293,7 @@ To get the components necessary to render the ticket, use the ['get payment deta
 
 Here's an example:
 
-<img src="/docs/Payments/boleto_ticket_render_example.png" alt="Boleto ticket render example" maxWidth={356} withFullscreenPreview />
+<img src="/docs/Payments/boleto_ticket_render_example.png" alt="Boleto ticket render example" maxWidth={356}  />
 
 ---
 
@@ -207,6 +304,8 @@ Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45
 Use the details below to set up your request.
 
 #### Endpoints
+
+You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com).
 
 <tabs>
 <tab title="Live" active>

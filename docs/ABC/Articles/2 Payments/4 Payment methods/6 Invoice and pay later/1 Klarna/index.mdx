@@ -13,6 +13,104 @@ To start accepting Klarna payments, please contact your Customer Success Manager
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+GW only 
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Redirect
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+BNPL, Online banking
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
+
 ---
 
 ### Overview
@@ -1238,7 +1336,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
 #### Response examples
 
 <tabs>
-<tab title="Capture accepted" active>
+<tab title="202 Capture accepted" active>
 
 ```json
     {
@@ -1247,7 +1345,7 @@ If you want to submit a value greater than 0, this needs to be enabled in your a
 ```
 
 </tab>
-<tab title="Invalid data was sent">
+<tab title="422 Invalid data was sent">
 
 ```json
     {
@@ -1401,7 +1499,7 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 #### Response examples
 
 <tabs>
-<tab title="Void accepted" active>
+<tab title="202 Void accepted" active>
 
 ```json
     {
@@ -1410,7 +1508,7 @@ A set of key-value pairs that you can attach to a payment. You can use this to s
 ```
 
 </tab>
-<tab title="Invalid data was sent">
+<tab title="422 Invalid data was sent">
 
 ```json
     {
