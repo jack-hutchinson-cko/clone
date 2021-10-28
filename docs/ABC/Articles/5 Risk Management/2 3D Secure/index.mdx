@@ -24,7 +24,7 @@ We currently support version 2.1.0 of the 3D Secure protocol.
 
 The new version of 3D Secure – 3D Secure 2 (3DS2) – improves the checkout experience compared to 3D Secure 1. It uses a wider range of data and biometric authentication to allow for “frictionless authentication”, meaning a smoother, more secure payment flow for both you and your customers. If you do business in Europe, it's the best way to comply with the new [Strong Customer Authentication](#id-3DSecure-whatissca) (SCA) requirements introduced by the revised Payment Services Directive (PSD2).
 
-And if you're already using our existing 3DS integration, you don't have to do anything – our [3DS2 solution](/risk-management/3-d-secure/3d-secure-2-api-integration) does all the work for you.
+And if you're already using our existing 3DS integration, you don't have to do anything – our [3DS2 solution](/risk-management/3d-secure/3d-secure-2-api-integration) does all the work for you.
 
 <TipBox variant="note">
 
@@ -186,18 +186,18 @@ As a general rule, the shift occurs when a payment is successfully authenticated
 
 Specifically:
 
-*   If the **card is enrolled for 3DS and authentication is successful**, the liability shifts from you to the issuer, and you can authorize the payment. [See Electronic Commerce Indicator (ECI) values 05 / 02](/risk-management/3-d-secure#Our_3DS2_solution).
+*   If the **card is enrolled for 3DS and authentication is successful**, the liability shifts from you to the issuer, and you can authorize the payment. [See Electronic Commerce Indicator (ECI) values 05 / 02](/risk-management/3d-secure#Our_3DS2_solution).
 
 
-*   If you **attempt authentication but the issuer doesn't support 3DS or its access control server doesn't respond**, the liability shifts to the issuer, as long as the attempt includes a cryptogram (CAVV/AVV) from the card scheme's directory server. [See ECI 06 (non-Mastercard) / 01](/risk-management/3-d-secure#Our_3DS2_solution).
+*   If you **attempt authentication but the issuer doesn't support 3DS or its access control server doesn't respond**, the liability shifts to the issuer, as long as the attempt includes a cryptogram (CAVV/AVV) from the card scheme's directory server. [See ECI 06 (non-Mastercard) / 01](/risk-management/3d-secure#Our_3DS2_solution).
 
 
-*   If the **card supports 3DS but authentication could not be attempted for technical reasons** (for example, there's a network error, or the customer closes the window during verification), liability remains with you, but you can decide whether or not to authorize the transaction. [See ECI 07 (non-Mastercard) / 00](/risk-management/3-d-secure#Our_3DS2_solution).
+*   If the **card supports 3DS but authentication could not be attempted for technical reasons** (for example, there's a network error, or the customer closes the window during verification), liability remains with you, but you can decide whether or not to authorize the transaction. [See ECI 07 (non-Mastercard) / 00](/risk-management/3d-secure#Our_3DS2_solution).
 
 
-*   If **authentication fails because the cardholder does not pass the challenge**, liability remains with you and you should not proceed with the payment. [See ECI 07 (non-Mastercard) / 00](/risk-management/3-d-secure#Our_3DS2_solution).
+*   If **authentication fails because the cardholder does not pass the challenge**, liability remains with you and you should not proceed with the payment. [See ECI 07 (non-Mastercard) / 00](/risk-management/3d-secure#Our_3DS2_solution).
 
-*   Mastercard also has some **rules specific to 3DS2**. [See Mastercard ECIs 04, 06, 07](/risk-management/3-d-secure#Our_3DS2_solution).
+*   Mastercard also has some **rules specific to 3DS2**. [See Mastercard ECIs 04, 06, 07](/risk-management/3d-secure#Our_3DS2_solution).
 
 
 <Accordion title="Liability shift rules">
@@ -444,7 +444,7 @@ Yes
 
 ### Our 3DS2 solution
 
-[Our 3DS2 solution](/risk-management/3-d-secure/3d-secure-2-api-integration) is integrated into your payment flow, gathering all the required information for you to comply with SCA. And it's built on our existing 3DS integration, so if you're already using that, you don't have to change anything.
+[Our 3DS2 solution](/risk-management/3d-secure/3d-secure-2-api-integration) is integrated into your payment flow, gathering all the required information for you to comply with SCA. And it's built on our existing 3DS integration, so if you're already using that, you don't have to change anything.
 
 <TipBox variant="info">
 
