@@ -55,8 +55,8 @@ describe('TableSubhead', () => {
   });
 
   it('Check color', () => {
-    mount(withThemeWrapper(<TableSubhead color="blue">Subhead content</TableSubhead>));
-    cy.get('tr').find('td').should('have.css', 'background-color', 'rgb(192, 242, 244)');
+    mount(withThemeWrapper(<TableSubhead color="grey">Subhead content</TableSubhead>));
+    cy.get('tr').find('td').should('have.css', 'background-color', 'rgb(206, 207, 217)');
   });
 });
 
