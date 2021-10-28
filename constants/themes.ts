@@ -108,6 +108,7 @@ export const themes = {
       // Image placeholder
       placeholderLine: '#fbfbfc',
       placeholderBackground: '#f1f2f4',
+      tableCellSecondaryBackground: '#CECFD9',
     },
     borders: {
       success: ['0px solid #0c1142', '1px solid #0c1142', '3px solid #0c1142', '4px solid #0c1142'],
@@ -243,6 +244,7 @@ export const themes = {
       catskillWhite: '#f0f3f7',
       stormGray: '#6D708E',
       tableCellBackground: '#3D4168',
+      tableCellSecondaryBackground: '#CECFD9',
       errorPageLinkBorder: '#3d4168',
       errorPageLinkHover: '#ffffc8',
       manatee: '#8688A0',

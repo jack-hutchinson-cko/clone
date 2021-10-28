@@ -121,8 +121,8 @@ const getBackgroundColorForSubhead = ({
   theme: ThemeType;
 }) => {
   switch (color) {
-    case 'blue':
-      return theme.colors.turquoise;
+    case 'grey':
+      return theme.colors.tableCellSecondaryBackground;
 
     default:
       return 'transparent';
