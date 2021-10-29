@@ -5,7 +5,6 @@ import { basePathAddition } from '../../tools/basePathAddition';
 import GoogleTags from './Trackers/GoogleTags';
 import Boomerang from './Trackers/Boomerang';
 import HeapIO from './Trackers/HeapIO';
-import HotJar from './Trackers/HotJar';
 import NoticeableWidget from './WhatsNew/NoticeableWidget';
 
 import OneTrustCookie from './Cookies/OneTrustCookie';
@@ -61,7 +60,6 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
         id={process.env.NEXT_PUBLIC_HEAP_IO_ID}
         account={process.env.NEXT_PUBLIC_HEAP_IO_ACCOUNT}
       />
-      <HotJar id={process.env.NEXT_PUBLIC_HOT_JAR_ID} />
       <NoticeableWidget />
     </Head>
   );
