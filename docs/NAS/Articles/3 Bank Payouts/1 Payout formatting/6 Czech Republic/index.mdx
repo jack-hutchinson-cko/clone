@@ -1,5 +1,5 @@
 ---
-title: Belgium
+title: Czech Republic
 account: NAS
 ---
 
@@ -18,7 +18,7 @@ account: NAS
 </TableCell>
 <TableCell colSpan={3}>
 
-BE
+CZ
 
 </TableCell>
 </TableRow>
@@ -381,23 +381,24 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
 ```json
 {
   "type": "bank_account",
-  "iban": "BE68539007547034",
-  "swift_bic": "BBRUBEBBXXX",
+  "iban": "CY17002001280000001200527600",
+  "swift_bic": "BAPPCZPPXXX",
   "currency": "EUR",
-  "country": "BE",
+  "country": "CZ",
   "account_holder": {
     "first_name": "John",
     "last_name": "Smith",
     "address_line1": "99 Windsor Road",
-    "address_city": "Brussels",
-    "country_code": "BE",
+    "address_city": "Prague",
+    "country_code": "CZ",
     "billing_address": {
       "address_line1": "99 Windsor Road",
-      "country": "BE",
-      "address_city": "Brussels"
+      "country_code": "CZ",
+      "address_city": "Prague"
     }
   }
 }
+
 ```
 
 </tab>
@@ -407,15 +408,15 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
 {
   "currency": "EUR",
   "source": {
-   "amount": 100,
-   "type": "currency_account",
-   "id": "ca_vrsqwv6tgtyufgi5xahfqmqq7a"
+    "amount": 100,
+    "type": "currency_account",
+    "id": "ca_vrsqwv6tgtyufgi5xahfqmqq7a"
   },
   "reference": "CKO Test",
   "destination": {
    "type": "id",
    "id": "src_6gtxe3cxns7uld5ytsemv6pdma"
-  },
+   },
   "billing_descriptor": {
     "reference": "CKO Test"
   },
@@ -425,8 +426,8 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
     "first_name": "John",
     "last_name": "Smith",
     "address_line1": "99 Windsor Road",
-    "address_city": "Brussels",
-    "country": "BE"
+    "address_city": "Prague",
+    "country_code": "CZ"
   },
   "instruction": {
     "purpose": "CKO Test EUR"
@@ -437,7 +438,6 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
 
 </tab>
 </tabs>
-
 
 </tab>
 <tab title="International">

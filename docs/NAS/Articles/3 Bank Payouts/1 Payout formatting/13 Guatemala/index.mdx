@@ -1,5 +1,5 @@
 ---
-title: Austria
+title: Guatemala
 account: NAS
 ---
 
@@ -18,7 +18,7 @@ account: NAS
 </TableCell>
 <TableCell colSpan={3}>
 
-AT
+GT
 
 </TableCell>
 </TableRow>
@@ -30,7 +30,7 @@ AT
 </TableCell>
 <TableCell colSpan={3}>
 
-EUR
+GTQ
 
 </TableCell>
 </TableRow>
@@ -42,11 +42,12 @@ EUR
 </TableCell>
 <TableCell colSpan={3}>
 
-SEPA:
-- **Minimum amount (local currency):** 0.01
-- **Maximum amount (local currency):** no maximum
-- **Cut-off time:** 11:30 GMT
-- **Settlement:** T+1 next day
+Local:
+
+- **Minimum amount (GTQ):** 8
+- **Maximum amount (GTQ):** 40,000
+- **Cut-off time:** 23:59 CST
+- **Settlement:** T+0 same day
 
 </TableCell>
 </TableRow>
@@ -54,7 +55,6 @@ SEPA:
 </Table>
 
 #### Payment information
-
 
 <Accordion title="Individual" headerIcon={<IndividualPayment/>}>
 
@@ -76,7 +76,7 @@ The type of account holder. Set this to `individual`.
 <TableCell>
 
 `account_holder.type`
-<StatusTag type="required" />
+<StatusTag type="optional" />
 enum
 
 </TableCell>
@@ -123,7 +123,7 @@ The account holder's address.
 <TableCell>
 
 `account_holder.billing_address.address_line1`
-<StatusTag type="optional" />
+<StatusTag type="required" />
 string
 
 </TableCell>
@@ -133,161 +133,6 @@ string
 
 `account_holder.billing_address.address_line2`
 <StatusTag type="optional" />
-string
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`account_holder.billing_address.address.city`
-<StatusTag type="optional" />
-string
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`account_holder.billing_address.address.zip`
-<StatusTag type="optional" />
-string
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`account_holder.billing_address.address.country`
-<StatusTag type="required" />
-enum, 2 characters
-
-<InfoBox>
-
-This must be a **two-letter ISO code**.
-
-</InfoBox>
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-#### Bank details
-
-<Table>
-<TableBody>
-<TableRow>
-<TableCell withBackground>
-
-IBAN
-
-</TableCell>
-<TableCell colSpan={2}>
-
-The account holder's IBAN.
-
-</TableCell>
-<TableCell colSpan={2}>
-
-`iban`
-<StatusTag type="required" />
-string, 20 characters
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell withBackground>
-
-SWIFT BIC
-
-</TableCell>
-<TableCell colSpan={2}>
-
-The account holder's SWIFT BIC.
-
-</TableCell>
-<TableCell colSpan={2}>
-
-`swift_bic`
-<StatusTag type="required" />
-STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
-
-</TableCell>
-</TableRow>
-</TableBody>
-</Table>
-
-</Accordion>
-
-<Accordion title="Corporate" headerIcon={<CorporatePayment/>}>
-
-#### Beneficiary information
-
-<Table>
-<TableBody>
-<TableRow>
-<TableCell withBackground>
-
-**Beneficiary type**
-
-</TableCell>
-<TableCell>
-
-The type of account holder. Set this to `corporate`
-
-</TableCell>
-<TableCell>
-
-`account_holder.type`
-<StatusTag type='required'/>
-enum
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell withBackground>
-
-**Beneficiary name**
-
-</TableCell>
-<TableCell>
-
-The account holder's company name.
-
-</TableCell>
-<TableCell>
-
-`account_holder.company_name`
-<StatusTag type='required'/>
-string
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell withBackground rowSpan={5}>
-
-**Beneficiary address**
-
-</TableCell>
-<TableCell rowSpan={5}>
-
-The account holder's adress.
-
-</TableCell>
-<TableCell>
-
-`account_holder.billing_address.address_line1`
-<StatusTag type='required'/>
-string
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`account_holder.billing_address.address_line2`
-<StatusTag type='optional'/>
 string
 
 </TableCell>
@@ -296,7 +141,7 @@ string
 <TableCell>
 
 `account_holder.billing_address.city`
-<StatusTag type='required'/>
+<StatusTag type="required" />
 string
 
 </TableCell>
@@ -305,7 +150,7 @@ string
 <TableCell>
 
 `account_holder.billing_address.zip`
-<StatusTag type='optional'/>
+<StatusTag type="optional" />
 string
 
 </TableCell>
@@ -314,13 +159,48 @@ string
 <TableCell>
 
 `account_holder.billing_address.country`
-<StatusTag type='required'/>
+<StatusTag type="required" />
 enum, 2 characters
+
 <InfoBox>
 
 This must be a **two-letter ISO code**.
 
 </InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground rowSpan={2}>
+
+**Identification**
+
+</TableCell>
+<TableCell rowSpan={2}>
+
+The account holder's ID.
+
+</TableCell>
+<TableCell>
+
+`account_holder.identification.type`
+<StatusTag type="required" />
+enum
+
+<TipBox variant="info">
+
+Can be one of `passport`, `driving_licence`, or `national_id`.
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`account_holder.identification.number`
+<StatusTag type="required" />
+string
 
 </TableCell>
 </TableRow>
@@ -334,26 +214,26 @@ This must be a **two-letter ISO code**.
 <TableRow>
 <TableCell withBackground>
 
-IBAN
+**Account number**
 
 </TableCell>
 <TableCell colSpan={2}>
 
-The account holder's IBAN.
+The account holder's account number.
 
 </TableCell>
 <TableCell colSpan={2}>
 
-`iban`
+`account_number`
 <StatusTag type="required" />
-string, 20 characters
+string, ^[0-9]{1,16}$
 
 </TableCell>
 </TableRow>
 <TableRow>
 <TableCell withBackground>
 
-SWIFT BIC
+**SWIFT BIC**
 
 </TableCell>
 <TableCell colSpan={2}>
@@ -365,7 +245,7 @@ The account holder's SWIFT BIC.
 
 `swift_bic`
 <StatusTag type="required" />
-STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
+string, ^[a-z]{6}[a-z0-9]{2}([a-z0-9]{3})?$
 
 </TableCell>
 </TableRow>
@@ -377,62 +257,69 @@ STRING, ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$
 #### Example
 
 <tabs withBorder={false}>
-<tab title='Payment instrument request (EUR)'>
+<tab title='Payment instrument request (GTQ)'>
 
 ```json
 {
   "type": "bank_account",
-  "iban": "AT611904300234573201",
-  "swift_bic": "BKAUATWWXXX",
-  "currency": "EUR",
-  "country": "AT",
+  "account_number": "123456789",
+  "swift_bic": "INDLGTGCXXX",
+  "currency": "GTQ",
+  "country": "GT",
   "account_holder": {
     "first_name": "John",
     "last_name": "Smith",
-    "address_line1": "99 Windsor Road",
-    "address_city": "Vienna",
-    "country_code": "AT",
+	"identification": {
+      "type": "national_id",
+      "number": "1234567891234"
+    }
     "billing_address": {
-      "address_line1": "99 Windsor Road",
-      "country": "AT",
-      "city": "Vienna",
+      "address_line1": "2 Calle",
+      "city": "Cabulco",
+      "country": "GT"
     }
   }
 }
 ```
 
 </tab>
-<tab title='Payout request (EUR)'>
+<tab title='Payout request (GTQ)'>
 
 ```json
 {
-  "currency": "EUR",
+  "currency": "GTQ",
   "source": {
     "amount": 100,
     "type": "currency_account",
-    "id": "ca_vrsqwv6tgtyufgi5xahfqmqq7a"
+    "id": "ca_vrsqwv6tgtyufgi5xahfqxxx1y"
   },
   "reference": "CKO Test",
   "destination": {
     "type": "id",
-    "id": "src_6gtxe3cxns7uld5ytsemv6pdma"
+    "id": "src_6gtxe3cxns7uld5ytsemv1xxxy"
   },
   "billing_descriptor": {
     "reference": "CKO Test"
   },
   "sender": {
-    "type": "instrument",
-    "reference": "CKO Test",
+    "type": "individual",
     "first_name": "John",
     "last_name": "Smith",
-    "address_line1": "99 Windsor Road",
-    "address_city": "Vienna",
-    "country": "AT",
+    "address": {
+      "address_line1": "2 Calle",
+      "city": "Cabulco",
+      "country": "GT"
+    },
+    "reference": "CKO Test",
+    "identification": {
+      "type": "national_id",
+      "number": "987654321987"
+    }
   },
   "instruction": {
-    "purpose": "CKO Test EUR"
+    "purpose": "CKO Test GTQ"
   },
-  "processing_channel_id": "pc_hpswyyx23geezflc2ocz3exn4y"
+  "processing_channel_id": "pc_hpswyyx23geezflc2ocz3xxx1y"
 }
 ```
 
