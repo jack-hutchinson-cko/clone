@@ -29,6 +29,64 @@ Use the details below to set up your request.
 </tab>
 </tabs>
 
+#### Header parameters
+
+<Table>
+<TableHead headers={["Header", "Value"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+`Bearer {OAuth access token}`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Path parameters
+
+<Table>
+<TableHead headers={["Path", "Value"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`id`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+The payment identifier (prefixed with `pay_`) or the session identifier (prefixed with `sid_`).
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
 #### Response example
 
 If successful, you should get a `200 Success` response returning a list of data relating to the payout.
@@ -62,6 +120,155 @@ If unsuccessful, you may get a `404 – Payment not found` error.
 
 </TipBox>
 
+#### Response parameters
+
+Find out what the different fields in your successful response mean.
+
+<Table>
+<TableHead headers={["Field name", "Description"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`id`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The unique identifier of the payment action.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`type`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The type of payment action (e.g., `Authorization`).
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processed_on`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The date and time the action took place.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<TypeTag type="integer" />
+
+</TableCell>
+<TableCell>
+
+The action amount.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`auth_code`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The acquirer's authorization code for cards.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`response_code`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The gateway response code.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`response_summary`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The gateway response summary.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`reference`
+
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+Your defined reference for the action.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processing`
+
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Returns information related to the processing of the payment.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`metadata`
+
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+A set of key/value pairs that you can attach to an action.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
 
 #### Payout actions
 

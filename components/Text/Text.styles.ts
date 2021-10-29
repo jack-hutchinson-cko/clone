@@ -9,5 +9,5 @@ export const Text = styled.p`
 `;
 
 export const MDXText = styled(Text)`
-  margin: 0 0 40px 0;
+  margin: 0 0 32px 0;
 `;
