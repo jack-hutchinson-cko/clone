@@ -13,6 +13,103 @@ To start accepting Giropay payments, please contact your Customer Success Manage
 
 </TipBox>
 
+<Table>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Model**
+
+</TableCell>
+<TableCell>
+
+Collecting
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment flow**
+
+</TableCell>
+<TableCell>
+
+Redirect
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Payment method type**
+
+</TableCell>
+<TableCell>
+
+Online banking
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**One-step payment**
+
+</TableCell>
+<TableTicCell type="check"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Authorization**
+
+</TableCell>
+<TableTicCell type="error"/>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Capture**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Partial refund**
+
+</TableCell>
+<TableTicCell type="check" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Chargeback**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Recurring payment**
+
+</TableCell>
+<TableTicCell type="error" />
+</TableRow>
+</TableBody>
+</Table>
+
 ---
 
 ### Overview
@@ -47,30 +144,47 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response example
+#### Request example
 
 ```json
-    {
-      "id": "pay_iilqeu2rsdqedkvkjhl2rxgbvy",
-      "created_on": "2018-03-28T14:50:26Z",
-      "source": {
-        "type": "giropay",
-        "purpose": "Set of three masks",
-        "bic": "TESTDETT421",
-        "iban": "DE46940594210000012345",
-        "account_holder_name": "Test GmbH & Co. KG"
-      },
-      "amount": 1914,
-      "currency": "EUR",
-      "payment_type": "Regular",
-      "status": "Captured",
-      "flagged": false,
-      "_links": {
-        "self": {
-          "href": "https://api.checkout.com/gateway/payments/pay_iilqeu2rsdqedkvkjhl2rxgbvy"
-        }
-      }
+{
+  "source": {
+    "type": "giropay",
+    "purpose":"Mens black t-shirt L"
+  },  
+ "amount": 1914,
+ "currency": "EUR",
+ "success_url": "http://example.com/payments/success",
+ "failure_url": "http://example.com/payments/fail"
+}
+```
+
+<TipBox variant="info">
+
+If a customer ID or email is not provided in the request, then we automatically create a customer profile and return the customer `id` in the response.
+
+</TipBox>
+
+#### Response example
+
+If you receive a `202 Success` response containing a status field set to `Pending`, then your request was successful.
+
+```json
+{
+  "id": "pay_d3ohhwwu3qderfjlzitknc26sq",
+  "status": "Pending",
+  "customer": {
+    "id": "cus_hfgq4ctsnr6e3cfhq5ctwb5gtu"
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.sandbox.checkout.com/payments/pay_d3ohhwwu3qderfjlzitknc26sq"
+    },
+    "redirect": {
+      "href": "https://ftg-customer-integration.giropay.de/ftgbank/b/bankselection/219499703994809788;jsessionid=8ECFE1809F9BAB6635EC9D37D98A1CAE.sf-testapp01tom21?op=001"
     }
+  }
+}
 ```
 
 ---

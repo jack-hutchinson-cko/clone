@@ -1,4 +1,4 @@
-export type SubheadBackgroundColor = 'transparent' | 'blue';
+export type SubheadBackgroundColor = 'transparent' | 'grey';
 
 export type TableSubheadProps = {
   colspan?: number;
