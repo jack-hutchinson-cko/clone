@@ -19,6 +19,7 @@ import SectionTag from 'components/Tag/SectionTag';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
 import withErrorPage from 'hoc/withErrorPage';
 import { clientSettings } from 'constants/clientSettings';
+import withMainLayout from 'hoc/withMainLayout';
 
 type Props = {
   faqCategories: FAQSectionType[];
@@ -83,4 +84,5 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default withErrorPage(FAQHomePage);
+const FAQPage = withMainLayout(FAQHomePage, { isFAQSection: true });
+export default withErrorPage(FAQPage);
