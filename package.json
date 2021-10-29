@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "create-index-for-algolia": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createIndexForAlgolia.tsx",
+    "create-site-map": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createSiteMap.tsx",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -53,6 +54,7 @@
     "react-resize-detector": "^6.7.6",
     "react-svg": "^14.0.6",
     "remark-grid-tables": "^2.1.2",
+    "simple-git": "^2.47.0",
     "striptags": "^3.2.0",
     "styled-components": "^5.3.0",
     "styled-system": "^5.1.5",

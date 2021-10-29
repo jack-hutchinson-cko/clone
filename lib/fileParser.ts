@@ -16,6 +16,7 @@ import {
   getSlugFromTitle,
   getAnchors,
   getMdxFileData,
+  getFileGitData,
   isMdxSourceFolder,
   forEachFileTree,
   getFAQItems,
@@ -112,13 +113,14 @@ export const getDocArticleData = async ({
   frontMatter: { [key: string]: string };
   anchorsNavItems: { title: string; href: string }[];
 }> => {
-  const { data, content } = getMdxFileData(filePath, options);
+  const { data, content } = getMdxFileData(filePath);
+  const gitInfo = options.addGitInfo ? await getFileGitData(filePath) : {};
   const mdxSource = await serializeMdxData({ data, content });
   const anchorsNavItems = getAnchorsNavItems({ content, childrenArticles });
 
   return {
     source: mdxSource,
-    frontMatter: data,
+    frontMatter: { ...data, ...gitInfo },
     anchorsNavItems,
   };
 };
@@ -318,7 +320,7 @@ export const getFAQSectionSettings = (
             description: children = '',
           },
           content,
-        } = getMdxFileData(fileSourcePath, { addGitInfo: false });
+        } = getMdxFileData(fileSourcePath);
 
         const faqItems = getFAQItems(content).map((faqItem) => {
           const { popularity } = getFAQHeaderProperty(faqItem);

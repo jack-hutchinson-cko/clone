@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Link as PrimitiveLink } from '@cko/primitives';
 
-export const BlockLink = styled(PrimitiveLink)`
+export const BlockLink = styled.a`
   cursor: pointer;
   font-size: 14px;
   line-height: 24px;

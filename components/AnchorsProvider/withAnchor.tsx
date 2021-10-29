@@ -2,7 +2,7 @@ import React, { FC, useRef, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { toString, get } from 'lodash';
-import { getAnchorUrl as getAnchorUrlFromText, getHashValue } from 'lib/url';
+import { getAnchorUrl as getAnchorUrlFromText, getHashValue, getPageUrl } from 'lib/url';
 import { writeTextToClipboard } from 'lib/clipboard';
 
 import { Anchor, Wrapper, Title, LinkIcon, IconWrapper } from './withAnchor.styles';
@@ -40,8 +40,9 @@ const withAnchor =
     const hashValue = getHashValue(anchorUrl);
 
     const onClickHandler = useCallback(async () => {
+      const fullPageUrl = getPageUrl() + anchorUrl;
       router.push(anchorUrl);
-      await writeTextToClipboard(anchorUrl);
+      await writeTextToClipboard(fullPageUrl);
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorUrl]);
 

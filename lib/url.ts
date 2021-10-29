@@ -10,3 +10,5 @@ export const cutOffHashValue = (url: string): string => {
 
 export const getAnchorUrl = (name: string, hash = true): string =>
   `${hash ? '#' : ''}${name.replace(/ /g, '_')}`;
+
+export const getPageUrl = (): string => `${window.location.origin}${window.location.pathname}`;

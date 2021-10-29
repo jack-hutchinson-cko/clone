@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import { AccordionBody } from 'components/Accordion';
 import { NavigationList, NavigationItemEntity } from 'types/footer';
@@ -45,8 +45,8 @@ const FooterLinks: FC<Props> = ({ navigation }) => {
   return (
     <FooterLinksWrapper>
       {navigation.map(({ navigationTitle, items }) => (
-        <>
-          <FooterAccordion key={navigationTitle}>
+        <React.Fragment key={navigationTitle}>
+          <FooterAccordion>
             <FooterAccordionHead>{navigationTitle}</FooterAccordionHead>
             <AccordionBody>
               <FooterColumns>{getColumnsContent(items)}</FooterColumns>
@@ -57,7 +57,7 @@ const FooterLinks: FC<Props> = ({ navigation }) => {
             <FooterListTitle>{navigationTitle}</FooterListTitle>
             <FooterColumns>{getColumnsContent(items)}</FooterColumns>
           </FooterColumnsWrapper>
-        </>
+        </React.Fragment>
       ))}
     </FooterLinksWrapper>
   );

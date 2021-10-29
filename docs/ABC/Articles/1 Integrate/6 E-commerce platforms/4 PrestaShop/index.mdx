@@ -22,7 +22,7 @@ This guide assumes that you have already installed PrestaShop.
 * [Frames](/integrate/frames)
 * [Saved cards (stored credit cards)](/payments/store-payment-details)
 * Invoice generation
-* [3D Secure 2.0](/risk-management/3-d-secure)
+* [3D Secure 2.0](/risk-management/3d-secure)
 * Risk management
 * Multi-store / currency support
 * Notification (webhooks) for payment flow management
@@ -32,16 +32,16 @@ This guide assumes that you have already installed PrestaShop.
 
 #### Create a test account
 
-If you haven't already, [create a test Checkout.com account](https://www.checkout.com/get-test-account).
+If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink>.
 
 #### Get your API keys
 
 In order to set up the PrestaShop plugin, you'll need two API keys: one secret and another public, both of which are generated automatically when you create your account.
 
-1.  Log in to your test account on the [Hub sandbox](https://sandbox.checkout.com/).
+1.  Log in to your test account on the <ExternalLink href="https://sandbox.checkout.com/" target="_blank">Hub sandbox</ExternalLink>.
 2.  In the left menu, go to _Settings > Channels_, and make a note of your secret and public API keys.
 
-<img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" withFullscreenPreview />
+<img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings"  />
 
 #### Configure webhooks
 
@@ -63,7 +63,7 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
   maxWidth={300}
   src="/docs/Integrate/PrestaShop/configure_webhook.png"
   title="Configure webhook"
-  withFullscreenPreview
+  
 />
 
 ---
@@ -90,7 +90,7 @@ If you use this method, please contact our Support team at [support@checkout.co
 
 #### Using composer
 
-1.  [Download the plugin from GitHub](https://github.com/checkout/checkout-prestashop1.7-plugin).
+1.  <ExternalLink href="https://github.com/checkout/checkout-prestashop1.7-plugin" target="_blank">Download the plugin from GitHub</ExternalLink>.
 2.  Unzip the folder.
 3.  Upload the contents to your PrestaShop root directory, specifically `[root directory]/modules/checkoutcom`.
 4.  Run the command `composer install --no-dev` inside the `[root directory]/modules/checkoutcom folder`.
@@ -111,7 +111,7 @@ You're now ready to configure the PrestaShop plugin.
   maxWidth={500}
   src="/docs/Integrate/PrestaShop/configure_checkout_plugin.png"
   title="Configure checkout plugin"
-  withFullscreenPreview
+  
 />
 
 4. Select the _Payment Action_. 
@@ -158,7 +158,7 @@ You'll find more test cards and a range of scenarios to trigger in our [testing
 
 ### Go live
 
-If you're happy with the outcome of your testing and want to start taking payments right away, please [contact our Sales team](https://checkout.com/contact-sales) in order to move to a live account.
+If you're happy with the outcome of your testing and want to start taking payments right away, please <ExternalLink href="https://checkout.com/contact-sales" target="_blank">contact our Sales team</ExternalLink> in order to move to a live account.
 
 <TipBox variant="note">
 
@@ -174,4 +174,4 @@ Before you go live, remember to:
 
 ### Extend your configuration
 
-You can extend your configuration to [add more payment methods](/payments/payment-methods), use [3D Secure payments](/risk-management/3-d-secure), and more.
+You can extend your configuration to [add more payment methods](/payments/payment-methods), use [3D Secure payments](/risk-management/3d-secure), and more.

@@ -18,8 +18,6 @@ import { getAnchorUrl } from './url';
 type GetPageMetadataReturnType = {
   title?: string;
   account?: string;
-  modifiedDate?: string;
-  lastAuthor?: string;
   breadcrumbs?: { url: string; title: string }[];
   sections?: { slug: string; title: string }[];
   children?: { url: string; title: string }[];
@@ -36,7 +34,7 @@ export const getPageMetadata = (
 ): GetPageMetadataReturnType => {
   if (path === sourceUrl) {
     const { content, data } = getMdxFileData(`${filePath}/index.mdx`);
-    const { title, account, modifiedDate, lastAuthor } = data;
+    const { title, account } = data;
 
     const sections = getAnchors(content).map((headerItem) => {
       const sectionTitle = headerItem.replace(/^#+ (.*$)/gim, '$1');
@@ -61,8 +59,6 @@ export const getPageMetadata = (
     return {
       title,
       account,
-      modifiedDate,
-      lastAuthor,
       breadcrumbs,
       sections,
       children,
@@ -80,7 +76,7 @@ export const getPageData = (
   { filePath, path }: { filePath: string; path: string },
 ): { isSelectedPage: boolean; content?: string; data?: ContentPageData } => {
   if (path === sourceUrl) {
-    const { data, content } = getMdxFileData(`${filePath}/index.mdx`, { addGitInfo: false });
+    const { data, content } = getMdxFileData(`${filePath}/index.mdx`);
 
     return {
       content,
