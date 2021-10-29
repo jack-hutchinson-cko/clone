@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import { IconActionArrowRight } from 'components/Icons';
 import { basePathAddition } from 'tools/basePathAddition';
 import { StyledLink } from './TextLink.styles';
 
@@ -16,6 +17,17 @@ const TextLink: FC<Props> = ({ href, ...otherProps }) => {
   );
 };
 
-export const ExternalLink: FC<Props> = (props) => <StyledLink {...props} />;
+type ExternalProps = {
+  withArrow?: boolean;
+};
+
+export const ExternalLink: FC<ExternalProps> = ({ children, withArrow, ...props }) => {
+  return (
+    <StyledLink {...props} withArrow={withArrow}>
+      {children}
+      {withArrow && <IconActionArrowRight />}
+    </StyledLink>
+  );
+};
 
 export default TextLink;
