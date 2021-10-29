@@ -9,7 +9,7 @@ export const Header = styled(TextHeadingThree)`
 
 export const Body = styled.div`
   > p {
-    margin-bottom: ${spacing.s20}px;
+    margin-bottom: ${spacing.s40}px;
   }
 `;
 
