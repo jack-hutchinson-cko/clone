@@ -671,36 +671,36 @@ https://api.sandbox.checkout.com/payments
 ```json
     // Payment token request
 
-    {
-      "value": "2000",
-      "currency": "EUR",
-      "chargemode": "3",
-    }
+{
+  "value": "2000",
+  "currency": "EUR",
+  "chargemode": "3",
+}
+  
+// Payment request
+  
+{
+  "email": "s.mitchell@checkout.com",
+  "paymentToken": "pay_tok_6E5D1D...339A4B4B83E5",
+  "trackId": "TRK12345",
+  "localPayment": {
+    "lppId": "lpp_14",
+  }
+}
 ```
 
 </tab>
 <tab title="Unified Payments API">
 
 ```json
-    // Payment request
-
-    {
-      "email": "s.mitchell@checkout.com",
-      "paymentToken": "pay_tok_6E5D1D...339A4B4B83E5",
-      "trackId": "TRK12345",
-      "localPayment": {
-        "lppId": "lpp_14",
-      }
-    }
-
-    {
-      "source" : {
-        "type": "sofort",
-      },
-      "amount": "2000",
-      "currency": "EUR",
-      "reference": "TRK12345",
-    }
+{
+  "source" : {
+    "type": "sofort",
+  },
+  "amount": "2000",
+  "currency": "EUR",
+  "reference": "TRK12345",
+}
 ```
 
 </tab>

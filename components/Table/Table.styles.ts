@@ -43,6 +43,11 @@ export const Table = styled.table<{ withTopBorder?: boolean; type?: 'auto' | 'fi
 
   @media ${Breakpoints.MOBILE} {
     table-layout: auto;
+
+    td {
+      max-width: 120px;
+      min-width: 60px;
+    }
   }
 `;
 

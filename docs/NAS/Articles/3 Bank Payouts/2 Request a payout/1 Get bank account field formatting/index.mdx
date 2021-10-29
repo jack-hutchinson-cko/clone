@@ -30,6 +30,143 @@ Use the details below to set up your request. To get a detailed view of all requ
 </tab>
 </tabs>
 
+#### Header parameters
+
+<Table>
+<TableHead headers={["Header", "Value"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+`OAuth Bearer access token`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Path parameters
+
+<Table>
+<TableHead headers={["Path", "Description"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`country`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The two-letter ISO country code.
+
+<InfoBox>
+
+See [Country codes](/resources/codes/country-codes)
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The three-letter ISO currency code.
+
+<InfoBox>
+
+See [Currency codes](/resources/codes/currency-codes)
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Query parameters
+
+<Table>
+<TableHead headers={["Field name", "Description"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`account-holder-type`
+
+<StatusTag type="optional"/>
+<TypeTag type="string (enum)" />
+
+</TableCell>
+<TableCell>
+
+The type of account holder that will be used to filter the fields returned.
+
+Can be one of:
+* `individual`
+* `corporate`
+* `government`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`payment-network`
+
+<StatusTag type="optional"/>
+<TypeTag type="string (enum)" />
+
+</TableCell>
+<TableCell>
+
+The banking network that will be used to filter the fields returned.
+
+Can be one of:
+* `local`
+* `sepa`
+* `fps`
+* `ach`
+* `fedwire`
+* `swift`
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
 #### Response example
 
 ```json

@@ -48,7 +48,6 @@ We've provided examples for the dependency managers `CocoaPods`, `Carthage` and 
 
 <tabs>
 <tab title="CocoaPods">
-<Box horizontal="sm">
 
 If you are using `CocoaPods`, make sure you have version 1.1+.
 
@@ -70,10 +69,8 @@ Then run the following command in your terminal:
 $ pod install
 ```
 
-</Box>
 </tab>
 <tab title="Carthage">
-<Box horizontal="sm">
 
 `Carthage` is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
@@ -98,11 +95,9 @@ If you are planning to run release builds for the simulator, make sure to exclud
 
 </TipBox>
 
-</Box>
 
 </tab>
 <tab title="Swift Package Manager">
-<Box horizontal="sm">
 
 <ExternalLink href="https://swift.org/package-manager/" target="_blank">Swift Package Manager</ExternalLink> is a tool for automating the distribution of Swift code and is integrated into the Swift compiler.
 
@@ -116,7 +111,6 @@ dependencies: [
 
 If you are planning to run release builds for the simulator, make sure to exclude the i386 architecture from your builds.
 
-</Box>
 </tab>
 </tabs>
 
@@ -134,7 +128,6 @@ Decide whether you would like to use the `CardViewController` provided as part o
 
 <tabs>
 <tab title="CardViewController">
-<Box horizontal="sm">
 
 You can [modify the card view](/integrate/sdks/android-sdk/customization-guide) after initialization.
 
@@ -184,10 +177,8 @@ class ViewController: UIViewController, CardViewControllerDelegate {
     }
 }
 ```
-</Box>
 </tab>
 <tab title="Headless">
-<Box horizontal="sm">
 
 ```swift
 // Create a CheckoutAPIClient instance with your public key.
@@ -227,7 +218,6 @@ checkoutAPIClient.createCardToken(card: cardTokenRequest) { result in
     }
 }
 ```
-</Box>
 
 </tab>
 </tabs>
