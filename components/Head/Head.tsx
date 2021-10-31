@@ -19,7 +19,7 @@ type PureHeadProps = {
 
 const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
   const faviconSrc = basePathAddition('/favicon.ico');
-  const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
+  // const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
   return (
     <Head>
       {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
@@ -27,7 +27,7 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
       <link rel="shortcut icon" href={faviconSrc} />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
-      {isNAS && <meta name="robots" content="noindex" />}
+      <meta name="robots" content="noindex nofollow" />
       <link
         rel="preload"
         href={basePathAddition('/assets/fonts/Graphik-Light-Cy-Gr-Web.woff2')}
