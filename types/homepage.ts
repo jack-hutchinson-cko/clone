@@ -1,11 +1,5 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-type HomePageIntro = {
-  title: string;
-  description: string;
-  getStartedUrl: string;
-};
-
 type HomePageBlockNames = 'payments' | 'the-hub';
 
 type HomePageBlockLinks = {

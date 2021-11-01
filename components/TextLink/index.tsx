@@ -18,16 +18,15 @@ const TextLink: FC<Props> = ({ href, ...otherProps }) => {
 };
 
 type ExternalProps = {
+  children: any;
   withArrow?: boolean;
 };
 
-export const ExternalLink: FC<ExternalProps> = ({ children, withArrow, ...props }) => {
-  return (
-    <StyledLink {...props} withArrow={withArrow}>
-      {children}
-      {withArrow && <IconActionArrowRight />}
-    </StyledLink>
-  );
-};
+export const ExternalLink: FC<ExternalProps> = ({ children, withArrow, ...props }) => (
+  <StyledLink {...props} withArrow={withArrow}>
+    {children?.props?.children || children}
+    {withArrow && <IconActionArrowRight />}
+  </StyledLink>
+);
 
 export default TextLink;
