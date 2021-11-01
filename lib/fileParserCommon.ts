@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import simpleGit, { SimpleGit, SimpleGitOptions } from 'simple-git';
+import simpleGit, { SimpleGit } from 'simple-git';
 
-import { last, lowerCase, get } from 'lodash';
+import { last, get } from 'lodash';
 import matter from 'gray-matter';
 import dateFormat from 'dateformat';
 import { isNotJunk } from './junk';
