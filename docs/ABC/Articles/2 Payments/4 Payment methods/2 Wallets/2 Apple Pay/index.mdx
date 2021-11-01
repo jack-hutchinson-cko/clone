@@ -37,7 +37,7 @@ Within Saudi Arabia, [Mada cards](/payments/payment-methods/cards/mada) can be p
 
 #### Step 1: Generate a Checkout.com token from the Apple Pay token
 
-After your customer validates their transaction with biometrics, Apple will generate a [payment token](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken).
+After your customer validates their transaction with biometrics, Apple will generate a <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken" target="_blank">payment token</ExternalLink>.
 
 The first step in processing an Apple Pay transaction is to convert this Apple Pay token into a Checkout.com card token.
 
@@ -49,20 +49,20 @@ Alternatively, if you want to decrypt the Apple Pay token yourself and process a
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post)
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post)" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
 <LineCodeWrapper type="post">
 
-`https://api.checkout.com/payments`
+`https://api.checkout.com/tokens`
 
 </LineCodeWrapper>
 </tab>
 <tab title="Sandbox">
 <LineCodeWrapper type="post">
 
-`https://api.sandbox.checkout.com/payments`
+`https://api.sandbox.checkout.com/tokens`
 
 </LineCodeWrapper>
 </tab>
@@ -109,7 +109,7 @@ For the full API specification, see the [API reference](https://api-reference.ch
 
 <TipBox title="Supporting Mada cards" variant="info">
 
-If accepting [Mada cards](/payments/payment-methods/cards/mada) via Apple Pay, do not include the supportsEMV value in the `[merchantCapabilities](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916123-merchantcapabilities)` array, otherwise it may cause a failure with a `20030` format error.
+If accepting [Mada cards](/payments/payment-methods/cards/mada) via Apple Pay, do not include the supportsEMV value in the <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916123-merchantcapabilities" target="_blank">`merchantCapabilities`</ExternalLink>` array, otherwise it may cause a failure with a `20030` format error.
 
 </TipBox>
 
@@ -121,7 +121,7 @@ Using the token (`tok_...`) you got in the response above, make a standard payme
 
 #### Endpoints
 
-For the full API specification, see the [API reference](https://api-reference.checkout.com)
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live" active>
@@ -165,8 +165,8 @@ If you get a `201 Success` response and the `approved` field is `true`, your pay
 
 To test Apple Pay payments, you'll need the following:
 
-*   An [Apple Pay compatible device](https://support.apple.com/en-us/HT208531).
-*   A [sandbox Apple Pay wallet](https://developer.apple.com/apple-pay/sandbox-testing/). (You cannot use a real Apple Pay wallet with real cards to test in sandbox.)
+*   An <ExternalLink href="https://support.apple.com/en-us/HT208531" target="_blank">Apple Pay compatible device</ExternalLink>.
+*   A <ExternalLink href="https://developer.apple.com/apple-pay/sandbox-testing/). (You cannot use a real Apple Pay wallet with real cards to test in sandbox." target="_blank">sandbox Apple Pay wallet</ExternalLink>
 
 #### Apple Pay test cards
 

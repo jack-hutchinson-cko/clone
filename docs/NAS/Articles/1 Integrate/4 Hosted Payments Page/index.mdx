@@ -5,7 +5,7 @@ account: NAS
 
 Accept card payments with a Hosted Payments Page—a fast and easy way to collect your customer’s payment information, process the payment request and handle authentication. 
 
-#### How it works
+### How it works
 
 When your customer is ready to check out:
 
@@ -14,17 +14,16 @@ When your customer is ready to check out:
 3. Once your customer fills in the required payment details, we will process the payment and handle the authentication flow.
 4. And after the payment has been successfully processed, you will be notified by a [webhook](/workflows).
 
-<img src="/docs/Integrate/Hosted Payments/Hosted+Payments+page.png" withFullscreenPreview />
+<img src="/docs/Integrate/Hosted Payments/Hosted+Payments+page.png"  />
 
 ---
 
-#### Try it out
+### Try it out
 
 Preview a Hosted Payments Page using one of our [test cards](/testing/test-cards) with any future expiry date, or use the details below for a basic payment flow:
 
 <tabs>
 <tab title="Card">
-<Box horizontal="sm">
 
 Use one of our [test cards](/testing/test-cards) with any future expiry date, or use the details below:
 
@@ -32,11 +31,9 @@ Use one of our [test cards](/testing/test-cards) with any future expiry date, or
 - **Expiry date**: Any future date
 - **CVV**: 100
 
-</Box>
 </tab>
 
 <tab title="Sofort">
-<Box horizontal="sm">
 
 Use the following details to test a Sofort payment flow:
 
@@ -45,7 +42,6 @@ Use the following details to test a Sofort payment flow:
 3. Select any account, and then select _Next_.
 4. Enter `12345` in the _TAN_ field and select _Next_.
 
-</Box>
 </tab>
 </tabs>
 
@@ -57,17 +53,15 @@ Use the following details to test a Sofort payment flow:
 
 #### Step 1: Register to use Hosted Payments Pages
 
-To get started with our Hosted Payments Page, contact your Solutions Engineer or [integration@checkout.com](mailto:integration@checkout.com).
+To get started with our Hosted Payments Page, contact your Solutions Engineer or <ExternalLink href="mailto:integration@checkout.com">integration@checkout.com</ExternalLink>.
 
 <TipBox variant="success">
 
-If you haven't already, [create a free test account now](https://www.checkout.com/get-test-account). This will give you access to the [Dashboard](https://dashboard.checkout.com/login), where you'll find your `secret_key` and `public_key`, which you'll need to make requests to our API.
+If you haven't already, create a free <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">test account now</ExternalLink>. This will give you access to the <ExternalLink href="https://dashboard.checkout.com/login" target="_blank">Dashboard</ExternalLink>, where you'll find your `secret_key` and `public_key`, which you'll need to make requests to our API.
 
 </TipBox>
 
 #### Step 2: Create a Hosted Payments Page session
-
-To get started with our Hosted Payments Page, contact your Solutions Engineer or [integration@checkout.com](mailto:integration@checkout.com).
 
 <TipBox variant="info" title="Sessions expire">
 
@@ -79,7 +73,7 @@ To create a Hosted Payments Page on which your customers can make their payment,
 
 #### The request
 
-For the full specification, see our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession).
+For the full specification, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession" target="_blank">API reference</ExternalLink>
 
 #### Endpoints
 
@@ -106,35 +100,13 @@ http://localhost/ can only be used for the URL fields during testing and will no
 
 </TipBox>
 
-#### Request example
-
-```json
-{
-  "amount": 1000,
-  "currency": "GBP",
-  "reference": "ORD-123A",
-  "billing": {
-    "address": {
-      "country": "GB"
-    }
-  },
-  "customer": {
-    "name": "Bruce Wayne",
-    "email": "brucewayne@gmail.com"
-  },
-  "success_url": "https://example.com/payments/success",
-  "failure_url": "https://example.com/payments/failure",
-  "cancel_url": "https://example.com/payments/checkout"
-}
-```
-
 #### Alternative payment methods
 
 We've listed the available alternative payment methods for the Hosted Payments Page below.
 
 Different payment methods have different required and optional fields when making a request. We've listed these below.
 
-You can view a request example with all of these fields on our [API reference](https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession).
+You can view a request example with all of these fields on our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/createAHostedPaymentsSession" target="_blank">API reference</ExternalLink>
 
 <Table>
 <TableHead headers={["Payment method", "Field requirements"]}/>
@@ -304,6 +276,28 @@ Fawry
 </TableRow> */}
 </TableBody>
 </Table>
+
+#### Request example
+
+```json
+{
+  "amount": 1000,
+  "currency": "GBP",
+  "reference": "ORD-123A",
+  "billing": {
+    "address": {
+      "country": "GB"
+    }
+  },
+  "customer": {
+    "name": "Bruce Wayne",
+    "email": "brucewayne@gmail.com"
+  },
+  "success_url": "https://example.com/payments/success",
+  "failure_url": "https://example.com/payments/failure",
+  "cancel_url": "https://example.com/payments/checkout"
+}
+```
 
 #### Response example
 

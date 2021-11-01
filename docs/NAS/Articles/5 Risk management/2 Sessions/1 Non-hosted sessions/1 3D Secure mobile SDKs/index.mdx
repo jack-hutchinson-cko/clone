@@ -33,7 +33,7 @@ Our 3D Secure SDK supports 3DS2 (version 2.1.0 and, if your configuration suppor
 
 If the customer's bank is satisfied with the data and trusts that it is the cardholder making the payment, the transaction will be authenticated without interrupting the customer. All the customer will see of the 3DS process is a short "processing" overlay, with branding from their card scheme.
 
-<img maxWidth={250} src="/NAS/Sessions/iOS_frictionless.gif" />
+<img maxWidth={250} src="/NAS/Sessions/iOS_frictionless.gif"  />
 
 ---
 
@@ -49,11 +49,11 @@ If, however, the bank decides it needs further proof, they will prompt the custo
 
 - **HTML**. The customer's bank defines the exact view to be presented to the customer, using HTML formatting. The challenge may take one of the above forms, or the bank may devise their own approach.
 
-<img maxWidth={250} src="/NAS/Sessions/iOS_OOB.gif" />
+<img maxWidth={250} src="/NAS/Sessions/iOS_OOB.gif"  />
 
 <TipBox variant="success" title="Customize the challenge UI">
 
-To provide a consistent experience across different devices and schemes, there are standard templates and rules that the 3DS challenge screens adhere to. However, there is some leeway around styling. Our SDKs give you [control over the display of the native challenges in your app](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization), while ensuring that the rules are followed.
+To provide a consistent experience across different devices and schemes, there are standard templates and rules that the 3DS challenge screens adhere to. However, there is some leeway around styling. Our SDKs give you [control over the display of the native challenges in your app](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks), while ensuring that the rules are followed.
 
 </TipBox>
 
@@ -76,7 +76,6 @@ Below are some code examples for each platform.
 <tabs>
 <tab title="iOS">
 
-<Box horizontal="sm">
 <Accordion title="See example Swift code"> 
 
 ```swift
@@ -106,9 +105,7 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 ```
 
 </Accordion>
-</Box>
 
-<Box horizontal="sm">
 <Accordion title="See example Objective-C code"> 
 
 ```objc
@@ -136,12 +133,10 @@ CKOAuthenticationParameters *authenticationParameters = [[CKOAuthenticationParam
 ```
 
 </Accordion>
-</Box>
 
 </tab>
 <tab title="Android">
 
-<Box horizontal="sm">
 <Accordion title="See example Kotlin code"> 
 
 ```kotlin
@@ -184,9 +179,7 @@ checkout3DS.authenticate(authenticationParameters, context) { result: Authentica
 ```
 
 </Accordion>
-</Box>
 
-<Box horizontal="sm">
 <Accordion title="See example Java code"> 
 
 ```java
@@ -230,7 +223,6 @@ checkout3DS.authenticate(authenticationParameters, result -> {
 ```
 
 </Accordion>
-</Box>
 
 </tab>
 </tabs>
@@ -382,7 +374,6 @@ This is the main class of the SDK that performs payment authentication with the 
 
 <tabs>
 <tab title="iOS">
-<Box horizontal="sm">
 
 <Table>
 <TableHead headers={['Field name', 'Field type', 'Description']} />
@@ -488,11 +479,9 @@ The `appUrl` field value can have up to 211 characters. If it exceeds 211 charac
 </TableBody>
 </Table>
 
-</Box>
 
 </tab>
 <tab title="Android">
-<Box horizontal="sm">
 
 <Table>
 <TableHead headers={['Field name', 'Field type', 'Description']} />
@@ -617,7 +606,6 @@ The `appUrl` field value can have up to 211 characters. If it exceeds 211 charac
 </TableBody>
 </Table>
 
-</Box>
 
 </tab>
 </tabs>
@@ -739,7 +727,6 @@ AuthenticationParameters authenticationParameters = AuthenticationParameters(
 
 <tabs>
 <tab title="iOS">
-<Box horizontal="sm">
 
 #### authenticate method parameters
 
@@ -843,12 +830,10 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 </TableBody>
 </Table>
 
-</Box>
 
 </tab>
 <tab title="Android">
 
-<Box horizontal="sm">
 
 #### authenticate method parameters
 
@@ -952,7 +937,6 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 </TableBody>
 </Table>
 
-</Box>
 
 </tab>
 </tabs>
@@ -1049,7 +1033,6 @@ checkout3DSService.authenticate(authenticationParams, result -> {
 
 <tabs>
 <tab title="iOS">
-<Box horizontal="sm">
 
 #### AuthenticationError
 
@@ -1061,12 +1044,10 @@ Swift uses `AuthenticationError`, but Objective-C uses `NSError`.
 
 </TipBox>
 
-</Box>
 
 </tab>
 <tab title="Android">
 
-<Box horizontal="sm">
 
 #### AuthenticationResult
 
@@ -1239,7 +1220,6 @@ The SDK encountered an error related to the implementation of the SDK.
 </TableBody>
 </Table>
 
-</Box>
 
 </tab>
 </tabs>
@@ -1321,7 +1301,6 @@ final class Customization1: UICustomization {
 </tab>
 <tab title="Android">
 
-<Box horizontal="sm">
 <Accordion title="Simplified customization"> 
 
 ```json
@@ -1335,9 +1314,7 @@ uiCustomization {
 ```
 
 </Accordion>
-</Box>
 
-<Box horizontal="sm">
 <Accordion title="Full customization"> 
 
 ```json
@@ -1449,7 +1426,6 @@ uiCustomization {
 ```
 
 </Accordion> 
-</Box>
 </tab>
 
 </tabs>

@@ -7,11 +7,11 @@ Payment Links provides you with a way to easily integrate with our Unified Payme
 
 You can accept payments through any channel or device – email, social media, live chat, or text message! Be flexible to your customers' payment preferences. All you need to do is send the payment link to the customer, and it will take them to a Checkout.com-hosted payment page for them to complete the payment.
 
-To begin using Payment Links, contact your Solution Engineer or [integration@checkout.com](mailto:integration@checkout.com). During integration, you'll be able to specify your payment capture and 3D Secure settings.
+To begin using Payment Links, contact your Solution Engineer or <ExternalLink href="mailto:integration@checkout.com">integration@checkout.com</ExternalLink>. During integration, you'll be able to specify your payment capture and 3D Secure settings.
 
 <TipBox variant="info">
 
-Hosted Payments Page and Payment Links now support six more payment methods.
+Payment Links now supports six more payment methods.
 
 </TipBox>
 
@@ -39,7 +39,7 @@ In parallel with your existing online integration as another way to reach your c
 </ListIconItem>
 </List>
 
-We've also created a table that lists [supported payment methods](https://docs.checkout.com/integrate/product-support), languages and other features.
+We've also created a table that lists [supported payment methods](/integrate/product-support), languages and other features.
 
 <TipBox variant="info">
 
@@ -63,9 +63,9 @@ Links can only be used to accept one-time payments, and expire after 24 hours by
 2. Checkout.com generate a unique link you can share with your customer.
 3. The customer selects the link. We'll check that it hasn't already been used or expired, and then load the payment page.
 4. The customer fills in the required details, then we'll handle the authentication flow and process the payment.
-5. After the payment's been processed, you'll be notified by a [webhook](https://docs.checkout.com/reporting-and-insights/webhooks).
+5. After the payment's been processed, you'll be notified by a [webhook](/reporting-and-insights/webhooks).
 
-<img src="/docs/Integrate/Payment links/Payment+links.png" withFullscreenPreview />
+<img src="/docs/Integrate/Payment links/Payment+links.png"  />
 
 ---
 
@@ -75,7 +75,6 @@ Preview the Payment Links flow with the demo below. You can try it with one of o
 
 <tabs>
 <tab title="Card">
-<Box horizontal="sm">
 
 Use one of our [test cards](/testing/test-card-numbers) with any future expiry date, or use the details below:
 
@@ -83,11 +82,9 @@ Use one of our [test cards](/testing/test-card-numbers) with any future expiry d
 - **Expiry date**: Any future date
 - **CVV**: 100
 
-</Box>
 </tab>
 
 <tab title="Sofort">
-<Box horizontal="sm">
 
 Use the following details to test a Sofort payment flow:
 
@@ -96,7 +93,6 @@ Use the following details to test a Sofort payment flow:
 3. Select any account, and then select _Next_.
 4. Enter `12345` in the _TAN_ field and select _Next_.
 
-</Box>
 </tab>
 </tabs>
 
@@ -106,18 +102,19 @@ Use the following details to test a Sofort payment flow:
 
 ### Next steps
 
-#### Product support
+<ContentPanel variant="heading" title="Product support" imgSrc="/docs/Collect payment/FullСard.svg">
 
 Find out which payment methods Payment Links supports out of the box.
 
-<ButtonLink href="/integrate/product-support">Learn more</ButtonLink>
+[Learn more](/integrate/product-support)
 
----
+</ContentPanel>
 
-#### Manage Payment Links
+<ContentPanel variant="heading" title="Manage Payment Links" imgSrc="/docs/Collect payment/Payment.svg" withBorder={false}>
 
 We'll walk through how to set Payment Links up or check on the status of a Payment Link session.
 
-<ButtonLink href="/integrate/payment-links/manage-payment-links">Learn more</ButtonLink>
+[Learn more](/integrate/payment-links/manage-payment-links)
 
----
+</ContentPanel>
+

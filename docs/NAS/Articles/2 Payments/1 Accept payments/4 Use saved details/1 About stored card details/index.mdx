@@ -105,7 +105,6 @@ If you're [adding a Visa card for later scheduled billing without taking a payme
 <tabs>
 <tab title="Visa">
 
-<Box horizontal="sm" align="center">
 <Table>
 <TableHead headers={['Pament sourse', 'First cardholder-initiated payment attributes', 'Second payment attributes']} />
 <TableBody>
@@ -153,11 +152,9 @@ Source ID
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 <tab title="Other card schemes">
 
-<Box horizontal="sm" align="center">
 <Table>
 <TableHead headers={['Pament sourse', 'First cardholder-initiated payment attributes', 'Second payment attributes']} />
 <TableBody>
@@ -203,7 +200,6 @@ Source ID
 </TableBody>
 </Table>
 
-</Box>
 </tab>
 </tabs>
 
@@ -399,5 +395,9 @@ If the _cardholder_ is making further transactions with their saved card—a car
 For the first customer-initiated transaction in the installment plan, you should add `"merchant_initiated": false` to your request. For all following installments you initiate, you must include `"merchant_initiated": true`. See the [attributes required for scheduled merchant-initiated transactions above](#Scheduled).
 
 </Accordion>
+
+
+
+
 
 

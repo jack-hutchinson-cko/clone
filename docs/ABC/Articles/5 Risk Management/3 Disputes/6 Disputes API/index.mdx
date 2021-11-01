@@ -7,10 +7,10 @@ Our disputes API helps you find out about and act on all of your open disputes w
 
 With our disputes API, you can:
 
-*   [View a list of disputes](#DisputesAPI-getlistofdisputes)
-*   [View information about a specific dispute](#DisputesAPI-getdetailsaboutdispute)
-*   [Provide evidence](#DisputesAPI-provideevidence)
-*   [Accept a dispute](#DisputesAPI-acceptdispute)
+*   [View a list of disputes](#Get_a_list_of_disputes)
+*   [View information about a specific dispute](#Get_details_about_a_dispute)
+*   [Provide evidence](#Provide_evidence)
+*   [Accept a dispute](#Accept_a_dispute)
 
 <TipBox variant="info">
 
@@ -18,15 +18,11 @@ If you want to simulate a dispute for testing purposes, you can do so in the san
 
 </TipBox>
 
----
-
 ### Dispute reasons
 
 Most of the time, customers dispute a payment because of fraudulent charges. However, there are many other possible reasons. You can tell why a dispute was raised by looking at the `category` field of the response.
 
-Learn more about the [reasons for disputes and the type of evidence we suggest submitting](https://docs.checkout.com/risk-management/disputes#Disputes-Disputereasonsandrecommendedevidence) when responding.
-
----
+Learn more about the [reasons for disputes and the type of evidence we suggest submitting](/risk-management/disputes#Disputes-Disputereasonsandrecommendedevidence) when responding.
 
 ### Dispute statuses
 
@@ -92,29 +88,6 @@ View a [dispute resolved webhook example](/reporting-and-insights/webhooks/webho
 <TableCell>
 
 The dispute is canceled by the issuing bank and your account is credited back of the amount of the dispute. You don’t need to take any further action.
-
-</TableCell>
-<TableCell>
-
-`dispute_canceled`
-
-<InfoBox>
-
-View a [dispute canceled webhook example](/reporting-and-insights/webhooks/webhook-examples/dispute_canceled).
-
-</InfoBox>
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`evidence_under_review`
-
-</TableCell>
-<TableCell>
-
-You have submitted evidence to defend against the dispute. Your evidence is now under review by our Disputes team. Once reviewed, the team will send it to the card scheme for review. No further action is required on your side.
 
 </TableCell>
 <TableCell>
@@ -235,13 +208,17 @@ There is no equivalent webhook because your action triggered the status change.
 </TableBody>
 </Table>
 
+---
+
 #### Disputes API flow
 
-<img src="/docs/Risk management/Disputes-api-flow.png" alt="Disputes flow" withFullscreenPreview />
+<img src="/docs/Risk management/Disputes-api-flow.png" alt="Disputes flow"  />
+
+### Using the Disputes API
 
 ---
 
-### View disputes and dispute details
+#### View disputes and dispute details
 
 You can use our API to view a list of disputes or to retrieve information about a specific dispute.
 
@@ -250,6 +227,8 @@ You can use our API to view a list of disputes or to retrieve information about 
 Use the endpoint below to retrieve a list of disputes against your business. These will be returned in reverse chronological order, showing the last modified dispute (for example, where you've recently added a piece of evidence) first. You can use the additional parameters to skip or limit results.
 
 #### Endpoints
+
+For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
 <tabs>
 <tab title="Live">
@@ -396,6 +375,8 @@ Use the following endpoint to retrieve all the information relating to a specifi
 
 #### Endpoints
 
+For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
+
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="get">
@@ -469,7 +450,7 @@ Use the endpoint below to add supporting evidence to a dispute. Note that this o
 
 <TipBox variant="info">
 
-The type of evidence we recommend submitting [depends on the reason for the dispute](https://docs.checkout.com/risk-management/disputes#Disputes-Disputereasonsandrecommendedevidence).
+The type of evidence we recommend submitting [depends on the reason for the dispute](/risk-management/disputes#Disputes-Disputereasonsandrecommendedevidence).
 
 </TipBox>
 
@@ -481,7 +462,7 @@ If you wish to submit files as evidence, you will first need to upload them usin
 
 #### Endpoints
 
-For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
+For the full specification, as well as complete request and response examples, see our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -657,7 +638,7 @@ Use the following endpoint to view a list of the evidence you provided for a spe
 
 #### Endpoints
 
-For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
+For the full specification, as well as complete request and response examples, see our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -707,6 +688,8 @@ You will not be able to amend your evidence once you have submitted it. Make sur
 
 #### Endpoints
 
+For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
+
 <tabs>
 <tab title="Live">
 <LineCodeWrapper type="post">
@@ -755,6 +738,8 @@ Possible error codes
 If a dispute is legitimate, you can use the following endpoint to accept it. This will close it for you and remove it from your list of open disputes. There are no further financial implications.
 
 #### Endpoints
+
+For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
 <tabs>
 <tab title="Live">

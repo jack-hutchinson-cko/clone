@@ -15,13 +15,13 @@ Here are some of our webhooks' best features:
 - Explanations and reasons why a notification failed
 - View webhooks for chargebacks and retrievals
 
-<br />
+--- 
 
 ### Webhooks example
 
 In the diagram below, a merchant using [Frames](/integrate/frames) has configured a `payment_captured` webhook to trigger a notification to the merchant's server confirming the payment.
 
-<img maxWidth={900} src="/docs/Reporting_and_insights/Webhooks.png" withFullscreenPreview />
+<img maxWidth={900} src="/docs/Reporting_and_insights/Webhooks.png"  />
 
 <TipBox variant="info">
 
@@ -29,11 +29,11 @@ We highly recommend that you use `payment_captured` as the webhook trigger since
 
 </TipBox>
 
-<br />
+---
 
 ### Setting up webhooks
 
-Set up your webhooks in the business channel settings section of the [Hub](https://hub.checkout.com/login) or by using our [webhook management API](/reporting-and-insights/webhooks/webhook-management).
+Set up your webhooks in the business channel settings section of the <ExternalLink href="https://hub.checkout.com/login" target="_blank">hub</ExternalLink> or by using our [webhook management API](/reporting-and-insights/webhooks/webhook-management).
 
 Easily configure multiple webhook endpoints to perform various processes for each of your channels:
 
@@ -42,7 +42,7 @@ Easily configure multiple webhook endpoints to perform various processes for eac
 - subscribe or unsubscribe your endpoint event types
 - add authorization headers to your endpoints
 
-<br />
+--- 
 
 ### Webhook retries
 
@@ -62,7 +62,7 @@ Amazon’s Simple Queue Service (SQS) features "at-least-once delivery"; this in
 
 </TipBox>
 
-<br />
+---
 
 ### Implement a fallback logic
 
@@ -75,7 +75,7 @@ The fallback logic should be applied when no authorization or capture webhooks h
 
 Alternatively, you can [use the GET payment actions endpoint](/payments/manage-payments/get-payment-actions) to list all the different statuses the payment has been through so far.
 
-<br />
+--- 
 
 ### Webhook signatures
 
@@ -89,7 +89,7 @@ A hash-based message authentication code (HMAC) is a type of message authenticat
 
 Using signatures is simple. All you need to do is take the webhook's body and apply the SHA-256 hash function to it, using the `secret key` as the hash key. You then compare the resulting HMAC to the one contained in the `CKO-Signature` header. If the HMACs are identical, then the data corresponds to what Checkout.com sent. If they are different, this indicates that the data has been intercepted and altered in some way. You can simply delete the webhook notification and then regenerate it using our [webhook management API](/reporting-and-insights/webhooks/webhook-management).
 
-<br />
+--- 
 
 ### IP addresses
 

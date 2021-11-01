@@ -85,6 +85,8 @@ Our Hosted Payments Page integration option is a fast and easy way to collect yo
 
 #### Try it out
 
+Preview a Hosted Payments Page with the demo below. Try it with the following test card or Sofort details.
+
 <tabs>
 <tab title="Card">
 
@@ -94,7 +96,6 @@ Our Hosted Payments Page integration option is a fast and easy way to collect yo
 
 </tab>
 <tab title="Sofort">
-<Box horizontal="md">
 
 Use the following details to test a Sofort payment flow:
 
@@ -104,7 +105,6 @@ Use the following details to test a Sofort payment flow:
 4. Select any account. Click Next.
 5. Enter `12345` in the TAN field. Click Next.
 
-</Box>
 </tab>
 </tabs>
 
@@ -114,7 +114,7 @@ Use the following details to test a Sofort payment flow:
 
 The Hosted Payment Page payment flow offers a similar experience to Checkout.js.
 
-<img src="/docs/resources/ckojs_migration_hosted_payments_page.png" withFullscreenPreview />
+<img src="/docs/Resources/ckojs_migration_hosted_payments_page.png"  />
 
 #### 1. Create a Hosted Payments Page
 
@@ -147,7 +147,7 @@ In the response you'll get a redirect link for the Hosted Payments Page. Here's 
 
 Once you’ve got the link to the Hosted Payment Page, redirect your customer to it. They will enter their payment details on the page and then get sent to either your success or failure page.
 
-You don’t have to worry about managing the session. When we redirect the customer back to your page, we provide a session ID (`cko-session-id`) or payment ID (`cko-payment-id`) as a query parameter in the URL, which you can pass into our [get payment details endpoint](https://api-reference.checkout.com/#operation/getPaymentDetails) to get a full overview of the payment.
+You don’t have to worry about managing the session. When we redirect the customer back to your page, we provide a session ID (`cko-session-id`) or payment ID (`cko-payment-id`) as a query parameter in the URL, which you can pass into our <ExternalLink href="https://api-reference.checkout.com/#operation/getPaymentDetails" target="_blank">get payment details endpoint</ExternalLink> to get a full overview of the payment.
 
 <TipBox variant="note">
 
@@ -175,7 +175,7 @@ Preview Frames with the demo below. Enter `4242424242424242` as the card number,
 
 #### Payment flow
 
-<img src="/docs/resources/ckojs_migration_frames.png" withFullscreenPreview />
+<img src="/docs/Resources/ckojs_migration_frames.png"  />
 
 #### 1. Collect card details
 
@@ -215,21 +215,20 @@ For example, let’s say you want to accept payments with [Sofort](/payments/pay
 
 [Learn more about the local payment methods](/payment-methods) you can accept.
 
+---
+
 ### Next steps
 
-```html
-<div class="card-deck row-cols-md-2">
- <a href="https://docs.checkout.com/integrate/hosted-payments-page" style="text-decoration:none"><div class="card">
-	<div class="card-body">
-	  <h3 class="card-title">Hosted Payments Page</h3>
-	  <p>Learn more about Hosted Payment Pages and how to set up your integration.</p>
-	</div>
-  </div></a>
-  <a href="https://docs.checkout.com/integrate/frames" style="text-decoration:none"><div class="card">
-	<div class="card-body">
-	  <h3 class="card-title">Frames</h3>
-	  <p>Learn more about Frames, and how to set up and customize your integration.</p>
-	</div>
-  </div></a>
-</div>
-```
+<CardWrapper cardsInRow={{desktop:2,tablet:2,mobile:1}}>
+
+<Card href="/integrate/hosted-payments-page" title="Hosted Payments Page">
+
+Learn more about Hosted Payment Pages and how to set up your integration.
+
+</Card>
+<Card href="/integrate/frames" title="Frames">
+
+Learn more about Frames, and how to set up and customize your integration.
+
+</Card>
+</CardWrapper>

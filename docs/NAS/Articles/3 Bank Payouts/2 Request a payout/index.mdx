@@ -20,7 +20,7 @@ Once you've done that, you can either use those bank account details directly in
 
 ### Step 2: Request a payout
 
-Request a Bank Payout by using the relevant bank account fields or a bank account payment instrument (prefixed by `src_`). To get a detailed view of all required and optional fields, see our [API reference](https://api-reference.checkout.com/preview/crusoe).
+Request a Bank Payout by using the relevant bank account fields or a bank account payment instrument (prefixed by `src_`). To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
 #### Endpoints
 
@@ -39,6 +39,862 @@ Request a Bank Payout by using the relevant bank account fields or a bank accoun
 `https://api.sandbox.checkout.com/payments`
 
 </LineCodeWrapper>
+</tab>
+</tabs>
+
+#### Header parameters
+
+<Table>
+<TableHead headers={["Header", "Value"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`Authorization`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+`OAuth Bearer access token`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Content-Type`
+
+<StatusTag type="required"/>
+
+</TableCell>
+<TableCell>
+
+`application/json`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`Cko-Idempotency-Key`
+
+<StatusTag type="optional"/>
+
+</TableCell>
+<TableCell>
+
+An optional idempotency key for safely retrying payout requests.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+#### Body parameters
+
+<TipBox variant="info">
+
+See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout" target="_blank">API reference</ExternalLink> for the full specification.
+
+</TipBox>
+
+<tabs>
+<tab title="Payment instrument">
+
+<Table>
+<TableHead headers={["Field name", "Description"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the payout source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.amount`
+
+<StatusTag type="conditional"/>
+<TypeTag type="integer" />
+
+</TableCell>
+<TableCell>
+
+The amount you want to pay out from your currency account. The exact format [depends on the currency](/resources/calculating-the-amount).
+
+<TipBox variant="note">
+
+You must specify either the `source.amount` or the destination `amount`.
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The type of source. Set this to `currency_account`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.id`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The source identifier. This is prefixed by `ca_`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`destination`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the payout destination.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`destination.type`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+The type of payout destination. Set this to `id`.
+
+<TipBox variant="info">
+
+To create a bank account payment instrument, use our [Instruments API](/payments/store-payment-details/payment-instruments).
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`destination.id`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The bank account payment instrument identifier. This is prefixed by `src_`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="conditional"/>
+<TypeTag type="integer(>=0)" />
+
+</TableCell>
+<TableCell>
+
+The amount you want to pay out to the destination account. The exact format [depends on the currency](/resources/calculating-the-amount).
+
+<TipBox variant="note">
+
+You must specify **either** the destination `amount` **or** the `source.amount`.
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required"/>
+<TypeTag type="string (3 chars)" />
+
+</TableCell>
+<TableCell>
+
+The three-letter [ISO code](/resources/codes/currency-codes) of the destination currency.
+
+<InfoBox>
+
+The currency should match that of the destination account.
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`reference`
+
+<StatusTag type="optional"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+An optional reference you can later use to identify this payout.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_descriptor`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the billing descriptor.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_descriptor.reference`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The reference that is (where possible) displayed on the account holder's statement.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the sender of the payout's funds.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender.type`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The type of sender. This can be `instrument`, `individual`, or `corporate`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender.address`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The sender's address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender.reference`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The sender's unique ID.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction`
+
+<StatusTag type="optional"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the instruction for payouts to bank accounts.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.purpose`
+
+<StatusTag type="optional"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+An optional description of the payout purpose, for example `Insurance claim` or `Remittance`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.charge_bearer`
+
+<StatusTag type="optional"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+Who should be charged the payout fee.
+
+This can be one of:
+* `OUR`
+* `SHA`
+
+<InfoBox>
+
+Only applies to only to international payments.
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.repair`
+
+<StatusTag type="optional"/>
+<TypeTag type="boolean" />
+
+</TableCell>
+<TableCell>
+
+Determines whether the payout details can be modified to attempt to prevent the payout from being returned.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.scheme`
+
+<StatusTag type="optional"/>
+<TypeTag type="string (enum)" />
+
+</TableCell>
+<TableCell>
+
+The preferred payment scheme or network the bank transfer will be sent through.
+
+This can be one of:
+* `swift`
+* `local`
+* `instant`
+
+<InfoBox>
+
+Bank details must be in line with the chosen scheme.
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.quote_id`
+
+<StatusTag type="optional"/>
+<TypeTag type="string (30 chars)" />
+
+</TableCell>
+<TableCell>
+
+The FX quote identifier. If omitted, and the source and destination currencies differ, the current market exchange rate will be used.
+
+<TipBox variant="info">
+
+To create a quote, use our [Foreign Exchange API](/bank-payouts/create-an-fx-quote).
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processing_channel_id`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The processing channel identifier.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+</tab>
+<tab title="Bank account fields">
+
+<Table>
+<TableHead headers={["Field name", "Description"]} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+`source`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the payout source.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.amount`
+
+<StatusTag type="conditional"/>
+<TypeTag type="integer" />
+
+</TableCell>
+<TableCell>
+
+The amount you want to pay out from your currency account. The exact format [depends on the currency](/resources/calculating-the-amount).
+
+<TipBox variant="note">
+
+You must specify either the `source.amount` or the destination `amount`.
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.type`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The type of source. Set this to `currency_account`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`source.id`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The source identifier. This is prefixed by `ca_`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`destination`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the payout destination.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`destination.type`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+The type of payout destination. Set this to `bank_account`.
+
+<TipBox variant="info">
+
+To find out which bank account fields are required, use the [get bank account field formatting](/bank-payouts/request-a-payout/get-bank-account-field-formatting) endpoint.
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`amount`
+
+<StatusTag type="conditional"/>
+<TypeTag type="integer(>=0)" />
+
+</TableCell>
+<TableCell>
+
+The amount you want to pay out to the destination account. The exact format [depends on the currency](/resources/calculating-the-amount).
+
+<TipBox variant="note">
+
+You must specify **either** the destination `amount` **or** the `source.amount`.
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`currency`
+
+<StatusTag type="required"/>
+<TypeTag type="string (3 chars)" />
+
+</TableCell>
+<TableCell>
+
+The three-letter [ISO code](/resources/codes/currency-codes) of the destination currency.
+
+<InfoBox>
+
+The currency should match that of the destination account.
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`reference`
+
+<StatusTag type="optional"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+An optional reference you can later use to identify this payout.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_descriptor`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the billing descriptor.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`billing_descriptor.reference`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The reference that is (where possible) displayed on the account holder's statement.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender`
+
+<StatusTag type="required"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the sender of the payout's funds.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender.type`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The type of sender. This can be `instrument`, `individual`, or `corporate`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender.address`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The sender's address.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`sender.reference`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The sender's unique ID.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction`
+
+<StatusTag type="optional"/>
+<TypeTag type="object" />
+
+</TableCell>
+<TableCell>
+
+Details about the instruction for payouts to bank accounts.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.purpose`
+
+<StatusTag type="optional"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+An optional description of the payout purpose, for example `Insurance claim` or `Remittance`.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.charge_bearer`
+
+<StatusTag type="optional"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+Who should be charged the payout fee.
+
+This can be one of:
+* `OUR`
+* `SHA`
+
+<InfoBox>
+
+Only applies to only to international payments.
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.repair`
+
+<StatusTag type="optional"/>
+<TypeTag type="boolean" />
+
+</TableCell>
+<TableCell>
+
+Determines whether the payout details can be modified to attempt to prevent the payout from being returned.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.scheme`
+
+<StatusTag type="optional"/>
+<TypeTag type="string (enum)" />
+
+</TableCell>
+<TableCell>
+
+The preferred payment scheme or network the bank transfer will be sent through.
+
+This can be one of:
+* `swift`
+* `local`
+* `instant`
+
+<InfoBox>
+
+Bank details must be in line with the chosen scheme.
+
+</InfoBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`instruction.quote_id`
+
+<StatusTag type="optional"/>
+<TypeTag type="string (30 chars)" />
+
+</TableCell>
+<TableCell>
+
+The FX quote identifier. If omitted, and the source and destination currencies differ, the current market exchange rate will be used.
+
+<TipBox variant="info">
+
+To create a quote, use our [Foreign Exchange API](/bank-payouts/create-an-fx-quote).
+
+</TipBox>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`processing_channel_id`
+
+<StatusTag type="required"/>
+<TypeTag type="string" />
+
+</TableCell>
+<TableCell>
+
+The processing channel identifier.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
 </tab>
 </tabs>
 

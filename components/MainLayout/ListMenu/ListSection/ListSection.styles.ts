@@ -26,8 +26,6 @@ export const StyledIcon = styled(IconActionChevronDown)<{ isRotated: boolean }>`
 export const StyledIconWrapper = styled.div`
   position: absolute;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: -2px;
   height: 100%;
 `;

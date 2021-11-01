@@ -25,7 +25,7 @@ const ContentPanel: FC<ContentPanelProps> = ({
   return (
     <Container variant={variant} {...rest}>
       <ImageWrapper variant={variant} imgWidth={imgWidth}>
-        <ImageBox src={imgSrc} alt={imgAlt} />
+        <ImageBox src={imgSrc} alt={imgAlt} withFullscreenPreview={false} />
       </ImageWrapper>
       <BodyWrapper>
         {title ? <Title variant={variant}>{title}</Title> : null}

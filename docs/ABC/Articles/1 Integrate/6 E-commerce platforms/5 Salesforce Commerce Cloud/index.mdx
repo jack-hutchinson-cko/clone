@@ -17,7 +17,7 @@ You can use our LINK cartridges with Storefront Reference Architecture (SFRA) or
 
 #### Create a test account
 
-If you haven't already, [create a test Checkout.com account](https://www.checkout.com/get-test-account).
+If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink>.
 
 #### Get your API keys
 
@@ -29,10 +29,10 @@ Webhooks are notifications that we send when an event occurs on your account. Fo
 
 </TipBox>
 
-1.  Log in to your test account on the [Hub sandbox](https://sandbox.checkout.com/).
+1.  Log in to your test account on the <ExternalLink href="https://sandbox.checkout.com/" target="_blank">Hub sandbox</ExternalLink>.
 2.  In the left menu, go to _Settings > Channels_, and make a note of your secret and public API keys.
 
-<img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings" withFullscreenPreview />
+<img maxWidth={800} src="/docs/Integrate/channel_settings.png" title="Channel settings"  />
 
 3.  Scroll down to the Webhooks section of the page and select _New webhook_.
 4.  Enter the following URL, replacing `example.com` with the URL of your shop: `example.com/CKOMain-HandleWebhook`.
@@ -50,12 +50,12 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
   maxWidth={300}
   src="/docs/Integrate/Salesforce/sfcc-create_webhook.png"
   alt="SFCC Create Webhook"
-  withFullscreenPreview
+  
 />
 
 7. Click on the webhook you just created, and make a note of the private shared API key.
 
-<img maxWidth={400} src="/docs/Integrate/Salesforce/sfcc-webhook.png" alt="SFCC Webhook" withFullscreenPreview />
+<img maxWidth={400} src="/docs/Integrate/Salesforce/sfcc-webhook.png" alt="SFCC Webhook"  />
 
 ---
 
@@ -63,8 +63,8 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 #### Upload the cartridges
 
-1.  Download our [installation package from GitHub](https://github.com/checkout/link_checkoutcom). This package includes the frontend cartridges for SFRA (`int_checkoutcom_sfra`) and SiteGenesis (`int_checkoutcom`), as well as the backend cartridge (`bm_checkoutcom`), which is compatible with both SFRA and SiteGenesis.
-2.  Upload the relevant [cartridges](https://github.com/checkout/link_checkoutcom/tree/master/Cartridges) to your server, using a tool like UX Studio:
+1.  Download our <ExternalLink href="https://github.com/checkout/link_checkoutcom). This package includes the frontend cartridges for SFRA (`int_checkoutcom_sfra`) and SiteGenesis (`int_checkoutcom`), as well as the backend cartridge (`bm_checkoutcom`" target="_blank">installation package from GitHub</ExternalLink>, which is compatible with both SFRA and SiteGenesis.
+2.  Upload the relevant <ExternalLink href="https://github.com/checkout/link_checkoutcom/tree/master/Cartridges" target="_blank">cartridges</ExternalLink> to your server, using a tool like UX Studio:
     - If you're using SFRA, install `int_checkoutcom_sfra` and `bm_checkoutcom`.
     - If you're using SiteGenesis, install `int_checkoutcom` and `bm_checkoutcom`.
 3.  Log in to your Business Manager account, and go to _Administration > Sites > Manage Sites > \[your site\] > Settings_.
@@ -74,7 +74,7 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 SFRA example:
 
-<img maxWidth={700} src="/docs/Integrate/Salesforce/Frame+2366.png" withFullscreenPreview />
+<img maxWidth={700} src="/docs/Integrate/Salesforce/Frame+2366.png"  />
 
 #### Import the metadata
 
@@ -91,7 +91,7 @@ SFRA example:
   maxWidth={700}
   src="/docs/Integrate/Salesforce/sfcc-site_import_export.png"
   alt="SFCC Site Import Export"
-  withFullscreenPreview
+  
 />
 
 #### Edit the template file (SiteGenesis only)
@@ -143,7 +143,7 @@ The Checkout.com credit card form is not compatible with the default SiteGenesis
   maxWidth={700}
   src="/docs/Integrate/Salesforce/sfcc-account_settings.png"
   alt="SFCC Account settings"
-  withFullscreenPreview
+  
 />
 
 4.  Make sure _Enable_ is set to _Yes_, to enable the Checkout.com card payment form.
@@ -175,7 +175,7 @@ You can now either [go live](#Go_live) as-is or [extend your configuration](/int
 </TipBox>
 <TipBox variant="note" title="Troubleshooting">
 
-If this test does not work, first check you have configured your webhooks correctly. For the plugin to work, they must be formatted correctly. If you have configured them properly, check your server; if it's password-protected or it restricts unfamiliar IP addresses, it may be blocking webhook notifications. Contact our Integration team at [integration@checkout.com](mailto:intergration@checkout.com) if you need help.
+If this test does not work, first check you have configured your webhooks correctly. For the plugin to work, they must be formatted correctly. If you have configured them properly, check your server; if it's password-protected or it restricts unfamiliar IP addresses, it may be blocking webhook notifications. Contact our Integration team at <ExternalLink href="mailto:integration@checkout.com">Integration team</ExternalLink> if you need help.
 
 </TipBox>
 <TipBox variant="info" title="Further testing">
@@ -188,7 +188,7 @@ You'll find more test cards and a range of scenarios to trigger in our [testing
 
 ### Go live
 
-If you're happy with the outcome of your testing and want to start taking payments right away, please [contact our Sales team](https://www.checkout.com/contact-sales) in order to move to a live account.
+If you're happy with the outcome of your testing and want to start taking payments right away, please <ExternalLink href="https://www.checkout.com/contact-sales" target="_blank">contact our Sales team</ExternalLink> in order to move to a live account.
 
 <TipBox variant="note">
 

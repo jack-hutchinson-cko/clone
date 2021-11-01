@@ -106,7 +106,7 @@ export const Navigation = styled.header<{ withMobileSize?: boolean }>`
 
           &:not(:last-child) {
             padding: ${spacing.s00} ${spacing.s70}px;
-            border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+            border-top: 1px solid ${({ theme }) => theme.colors.border};
 
             @media ${createBreakpointTo(SIZE.M)} {
               padding: ${spacing.s00} ${spacing.s50}px;

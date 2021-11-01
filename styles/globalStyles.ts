@@ -45,6 +45,12 @@ const globalStyles = createGlobalStyle`
       color: inherit;
     }
   }
+
+  #onetrust-consent-sdk #onetrust-policy-text {
+    a:focus {
+      outline: none;
+    }
+  }
 `;
 
 export default globalStyles;
