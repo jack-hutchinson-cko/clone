@@ -14,7 +14,7 @@ const ErrorPage: FC<Props> = ({ statusCode }) => {
 
   switch (statusCode) {
     case 404:
-      errorMessage = 'Sorry, but the page you are looking to could not be found.';
+      errorMessage = 'Sorry, but the page you are looking for could not be found.';
       break;
     case 503:
       errorMessage = 'Service temporarily unavailable.';
