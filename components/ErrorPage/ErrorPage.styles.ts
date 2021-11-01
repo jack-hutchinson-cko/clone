@@ -18,19 +18,16 @@ export const Wrapper = styled.div`
   }
 
   .error-message {
-    margin-top: 0;
-    margin-bottom: 48px;
+    margin: 0 auto 64px;
     font-size: 18px;
     line-height: 32px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
-    h1 {
-      font-size: 100px;
-    }
     .error-message {
       font-size: 16px;
       line-height: 24px;
+      margin: 0 auto 48px;
     }
   }
 `;
@@ -44,4 +41,16 @@ export const LinksContainer = styled.div`
   & > * {
     flex-basis: 100%;
   }
+`;
+
+export const StyledHeader = styled.h2`
+  font-size: 56px;
+  line-height: 56px;
+  margin: 0;
+`;
+
+export const StyledSubHeader = styled.h3`
+  font-size: 24px;
+  line-height: 32px;
+  margin: 8px 0 24px;
 `;
