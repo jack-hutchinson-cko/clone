@@ -7,11 +7,15 @@ The Checkout.com payment gateway is fully integrated with Shopify. If you're alr
 
 On this page, we will walk through: 
 * [Setting up the integration](#Set_up_your_integration)
-* [Creating redirects and notifications](#Create_redirects_and_notifications)
+* [Creating redirects and webhooks](#Create_redirects_and_webhooks)
+
+---
 
 ### Before you begin
 
-If you haven't already, [create a test Checkout.com account](https://www.checkout.com/get-test-account) to test this integration.
+If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink> to test this integration.
+
+---
 
 ### Choose either the on-site or off-site integration option
 
@@ -89,7 +93,7 @@ Handled directly in Shopify Admin Portal.
 </TableCell>
 <TableCell>
 
-Handled in [the Hub](https://hub.checkout.com/login).
+Handled in <ExternalLink href="https://hub.checkout.com/login" target="_blank">the Hub</ExternalLink>.
 
 </TableCell>
 </TableRow>
@@ -102,11 +106,11 @@ If you do not need 3DS authentication, we recommend using the on-site integratio
 
 </TipBox>
 
+---
+
 ### Set up your integration
 
 Follow the steps for your chosen method to integrate. 
-
---- 
 
 #### On-site integration 
 
@@ -117,7 +121,7 @@ You will need to access both the Shopify Admin Portal and our Hub during these s
 3. Select _See all other providers_.
 
 <img
-  maxWidth={300}
+  maxWidth={500}
   src="/docs/Integrate/Shopify/third-party-shopify.png"
   title="Select all providers in Shopify"
   withFullscreenPreview
@@ -137,20 +141,18 @@ You will need to access both the Shopify Admin Portal and our Hub during these s
 7. If your 3D Secure is enabled with Cardinal Commerce, tick _Enable 3D Secure with Cardinal_, then input your Cardinal Commerce credentials.
 8. Under the _Test mode_ section, tick _Enable test mode_ for using the sandbox environment. Remember to tick this for production. 
 
----
-
 #### Off-site integration
 
 You will need to access both the Shopify Admin Portal and our Hub during these steps. 
 
 1. From the Hub, navigate to _Settings > Channels_. Here you will find your secret key, which we will need when we run through the Shopify Admin Portal. 
-2. Follow [this authorization link](https://www.shopify.com/login?redirect=authorize_gateway%2F1031113) and log in with your Shopify credentials.
+2. Follow <ExternalLink href="https://www.shopify.com/login?redirect=authorize_gateway%2F1031113" target="_blank">this authorization link</ExternalLink> and log in with your Shopify credentials.
 3. You will see the message `You are about to install Checkout.com (Offsite)`. Select _Install payment provider_.
 4. From the Shopify Admin Portal, navigate to _Settings > Payments_.
 5. Select _See all other providers_.
 
 <img
-  maxWidth={300}
+  maxWidth={500}
   src="/docs/Integrate/Shopify/third-party-shopify.png"
   title="Select all providers in Shopify"
   withFullscreenPreview
@@ -170,20 +172,19 @@ You will need to access both the Shopify Admin Portal and our Hub during these s
   withFullscreenPreview
 />
 
+---
+
 ### Create redirects and webhooks
 
 When a customer submits a payment, they will be taken to a payment success or a payment error screen. You need to set up redirects so we know where to send the customer when these events happen. In this section, we will walk through how to do this, as well as creating webhook notifications so you are kept informed about a payments timeline.
 
----
-
 #### Create redirects
 
 1. From the Hub, navigate to _Settings > Channels_.
-2. Navigate to the _URLs_ section and paste in the following URLs (depnding on your environment).
+2. Navigate to the _URLs_ section and paste in the following URLs (depending on your environment).
 
 <tabs>
 <tab title="Sandbox">
-<Box horizontal="sm">
 <Table type="auto">
 <TableBody>
 <TableRow>
@@ -212,10 +213,8 @@ When a customer submits a payment, they will be taken to a payment success or a 
 </TableRow>
 </TableBody>
 </Table>
-</Box>
 </tab>
 <tab title="Live">
-<Box horizontal="sm">
 <Table type="auto">
 <TableBody>
 <TableRow>
@@ -244,12 +243,11 @@ When a customer submits a payment, they will be taken to a payment success or a 
 </TableRow>
 </TableBody>
 </Table>
-</Box>
 </tab>
 </tabs>
 
 <img
-  maxWidth={300}
+  maxWidth={500}
   src="/docs/Integrate/Shopify/redirect-webhook.png"
   title="Set up a redirect"
   withFullscreenPreview
@@ -267,7 +265,6 @@ When a customer submits a payment, they will be taken to a payment success or a 
 
 <tabs>
 <tab title="Sandbox">
-<Box horizontal="sm">
 <Table type="auto">
 <TableBody>
 <TableRow>
@@ -284,10 +281,8 @@ When a customer submits a payment, they will be taken to a payment success or a 
 </TableRow>
 </TableBody>
 </Table>
-</Box>
 </tab>
 <tab title="Live">
-<Box horizontal="sm">
 <Table type="auto">
 <TableBody>
 <TableRow>
@@ -304,7 +299,6 @@ When a customer submits a payment, they will be taken to a payment success or a 
 </TableRow>
 </TableBody>
 </Table>
-</Box>
 </tab>
 </tabs>
 
@@ -315,7 +309,7 @@ When a customer submits a payment, they will be taken to a payment success or a 
   withFullscreenPreview
 />
 
-3.  Select _API - v1.0_.
-4.  Tick _Select all_, then select _Create webhook_.
+4.  Select _API - v1.0_.
+5.  Tick _Select all_, then select _Create webhook_.
 
-You've successfully set up the integration your Shopify account! If you're having any problems or just have a question, please contact our [Support team](mailto:support@checkout.com) for help.
+You've successfully set up the integration your Shopify account! If you're having any problems or just have a question, please contact our <ExternalLink href="mailto:support@checkout.com" target="_blank">Support team</ExternalLink> for help.
