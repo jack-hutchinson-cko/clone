@@ -98,58 +98,55 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 
 Below is an example successful response where the details of the configured workflow are visible.
 
+
 ```json withBorder
 {
-  "name": "Webhooks workflow",
-  "conditions": [
-    {
-      "type": "event",
-      "events": {
-        "gateway": [
-          "card_verified",
-          "card_verification_declined",
-          "payment_approved",
-          "payment_pending",
-          "payment_declined",
-          "payment_voided",
-          "payment_captured",
-          "payment_refunded"
-        ],
-        "dispute": [
-          "dispute_canceled",
-          "dispute_evidence_required",
-          "dispute_expired",
-          "dispute_lost",
-          "dispute_resolved",
-          "dispute_won"
-        ]
-      }
-    },
-    {
-      "type": "entity",
-      "entities": [
-        "ent_xyfdshfudosfdshfdiosfds",
-        "ent_fidjosfjdisofdjsifdosfu"
-      ]
+    "id": "<WORKFLOW_ID>>",
+    "name": "Single workflow example",
+    "conditions": [
+        {
+            "id": "<WORKFLOW_CONDITION_ID>",
+            "type": "event",
+            "events": {
+                "gwc_notifier1": [
+                    "payment_approved"
+                ]
+            }
+        },
+        {
+            "id": "<WORKFLOW_CONDITION_ID>",
+            "type": "entity",
+            "entities": [
+                "<ENTITY_ID>>"
+            ]
+        },
+        {
+            "id": "<WORKFLOW_CONDITION_ID>",
+            "type": "processing_channel",
+            "processing_channels": [
+                "<PROCESSING_CHANNEL_ID>"
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "id": "<WORKFLOW_ACTION_ID>>",
+            "type": "webhook",
+            "url": "https://devapi.ckotech.co/webhooktester/webhooks/testPC_good_test2",
+            "headers": {
+                "Authorization": "secr******"
+            },
+            "signature": {
+                "method": "HMACSHA256",
+                "key": "signa********"
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "https://flow.cko-qa.ckotech.co/workflows/<WORKFLOW_ID>"
+        }
     }
-  ],
-  "actions": [
-    {
-      "type": "webhook",
-      "url": "https://example.com/webhook-receiver",
-      "headers": {
-        "Authorization": "secret-key"
-      },
-      "signature": {
-        "key": "signature-key"
-      }
-    }
-  ],
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/workflows/wf_wlu3wxc26jounofs5iez75qaqa"
-    }
-  }
 }
 ```
 
@@ -373,7 +370,7 @@ Other possible responses:
 
 ### Update the conditions of a workflow
 
-To update the conditions of a workflow, use the following endpoint, passing the workflow's ID and condition ID in the path, and the details you want to update in the request body. 
+To update the conditions of a workflow, use the following endpoint, passing the workflow's ID and condition ID in the path, and the details you want to update in the request body.
 
 You can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
