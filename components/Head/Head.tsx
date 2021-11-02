@@ -28,6 +28,7 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => {
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta name="robots" content="noindex nofollow" />
+      <meta name="description" content="Checkout.com documentation" />
       <link
         rel="preload"
         href={basePathAddition('/assets/fonts/Graphik-Light-Cy-Gr-Web.woff2')}
