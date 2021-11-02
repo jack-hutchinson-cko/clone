@@ -19,14 +19,12 @@ export const Wrapper = styled.div`
 
   .error-message {
     margin: 0 auto ${spacing.s90}px;
-    font-size: 18px;
+    font-size: 16px;
     line-height: ${spacing.s60}px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
     .error-message {
-      font-size: 16px;
-      line-height: ${spacing.s50}px;
       margin: 0 auto ${spacing.s80}px;
     }
   }
@@ -36,7 +34,7 @@ export const LinksContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 4.5vh;
+  gap: ${spacing.s50}px;
 
   & > * {
     flex-basis: 100%;

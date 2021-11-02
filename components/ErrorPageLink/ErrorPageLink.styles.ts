@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ReactSVG } from 'react-svg';
 
 export const StyledLink = styled.a`
-  max-width: 400px;
+  max-width: 332px;
   display: flex;
   flex-direction: column;
   gap: 24px;
