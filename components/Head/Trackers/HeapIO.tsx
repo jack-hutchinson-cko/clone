@@ -8,6 +8,7 @@ type Props = {
 const HeapIO: FC<Props> = ({ id, account }) => (
   <>
     <script
+      className="optanon-category-C0002"
       type="text/javascript"
       dangerouslySetInnerHTML={{
         __html: `
@@ -20,6 +21,7 @@ const HeapIO: FC<Props> = ({ id, account }) => (
       }}
     />
     <script
+      className="optanon-category-C0002"
       dangerouslySetInnerHTML={{
         __html: `
               (function() {
