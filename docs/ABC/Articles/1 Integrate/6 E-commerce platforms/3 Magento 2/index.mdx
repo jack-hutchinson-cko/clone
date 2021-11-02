@@ -20,13 +20,13 @@ If you're building a storefront on top of a headless Magento 2 backend, install 
 
 <br />
 
-### Before you start
+## Before you start
 
-#### Create a test account
+### Create a test account
 
 If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink>.
 
-#### Get your API keys
+### Get your API keys
 
 To set up our Magento 2 plugin, you'll need three API keys: a secret one, a public one, and a private shared one. The first two are generated automatically upon account creation. The last one is generated when you create a webhook for your business.
 
@@ -80,14 +80,14 @@ See step 7 in [Configure the plugin](#Configure_the_plugin) for automatic webhoo
 
 ---
 
-### Install plugin
+## Install plugin
 
 There are two ways to install the plugin:
 
 - [Using Composer](#Using_composer)
 - [Using Magento Marketplace](#Using_magento_marketplace)
 
-#### Using Composer
+### Using Composer
 
 <TipBox variant="info">
 
@@ -106,7 +106,7 @@ We recommend this method, as it should install the latest version of the plugin.
   - `php bin/magento setup:di:compile`
   - `php bin magento cache:clean`
 
-#### Using Magento Marketplace
+### Using Magento Marketplace
 
 1. <ExternalLink href="https://marketplace.magento.com/checkoutcom-magento2.html) (it's free" target="_blank">Purchase the extension from Magento Marketplace</ExternalLink>.
 2. Follow the installation instructions on the checkout page.
@@ -116,7 +116,7 @@ You're now ready to configure the Magento 2 plugin.
 
 ---
 
-### Configure the plugin
+## Configure the plugin
 
 1. Log in to you Magento Admin Panel and go to _Stores > Configuration > Sales > Payment Methods_.
 2. Find the Checkout.com plugin and select _Configure_.
@@ -148,7 +148,7 @@ That's it! You're ready to start testing card payments.
 
 ---
 
-### Test your integration
+## Test your integration
 
 1. Go to your storefront and add a product to your cart.
 2. Go to your cart and proceed to the checkout.
@@ -182,7 +182,7 @@ You'll find more test cards and a range of scenarios to trigger in our [testing 
 
 ---
 
-### Go live
+## Go live
 
 If you're happy with the outcome of your testing and want to start taking payments right away, please <ExternalLink href="https://checkout.com/contact-sales" target="_blank">contact our Sales team</ExternalLink> in order to move to a live account.
 
@@ -198,6 +198,6 @@ Before you go live, remember to:
 
 ---
 
-### Extend your configuration
+## Extend your configuration
 
 You can extend your configuration to [add more payment methods](/integrate/e-commerce-platforms/magento-2/go-further-with-magento-2#Add_more_payment_methods), use [3D Secure payments](/integrate/e-commerce-platforms/magento-2/go-further-with-magento-2#Enable_3d_secure_payments), and more.

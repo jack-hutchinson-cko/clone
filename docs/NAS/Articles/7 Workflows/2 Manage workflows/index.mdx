@@ -17,11 +17,11 @@ Find out how to:
 
 ---
 
-### Return all workflows
+## Return all workflows
 
 Use this API request to view all your previously configured workflows.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -42,7 +42,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### [Response example](#response_example_1)
+### [Response example](#response_example_1)
 
 ```json withBorder
 {
@@ -67,13 +67,13 @@ Other possible responses:
 
 ---
 
-### Return a single workflow
+## Return a single workflow
 
 Use this API request to view the details of a single workflow using its workflow ID.
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -94,62 +94,59 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### [Response example](#response_example_2)
+### [Response example](#response_example_2)
 
 Below is an example successful response where the details of the configured workflow are visible.
 
+
 ```json withBorder
 {
-  "name": "Webhooks workflow",
-  "conditions": [
-    {
-      "type": "event",
-      "events": {
-        "gateway": [
-          "card_verified",
-          "card_verification_declined",
-          "payment_approved",
-          "payment_pending",
-          "payment_declined",
-          "payment_voided",
-          "payment_captured",
-          "payment_refunded"
-        ],
-        "dispute": [
-          "dispute_canceled",
-          "dispute_evidence_required",
-          "dispute_expired",
-          "dispute_lost",
-          "dispute_resolved",
-          "dispute_won"
-        ]
-      }
-    },
-    {
-      "type": "entity",
-      "entities": [
-        "ent_xyfdshfudosfdshfdiosfds",
-        "ent_fidjosfjdisofdjsifdosfu"
-      ]
+    "id": "<WORKFLOW_ID>>",
+    "name": "Single workflow example",
+    "conditions": [
+        {
+            "id": "<WORKFLOW_CONDITION_ID>",
+            "type": "event",
+            "events": {
+                "gwc_notifier1": [
+                    "payment_approved"
+                ]
+            }
+        },
+        {
+            "id": "<WORKFLOW_CONDITION_ID>",
+            "type": "entity",
+            "entities": [
+                "<ENTITY_ID>>"
+            ]
+        },
+        {
+            "id": "<WORKFLOW_CONDITION_ID>",
+            "type": "processing_channel",
+            "processing_channels": [
+                "<PROCESSING_CHANNEL_ID>"
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "id": "<WORKFLOW_ACTION_ID>>",
+            "type": "webhook",
+            "url": "https://devapi.ckotech.co/webhooktester/webhooks/testPC_good_test2",
+            "headers": {
+                "Authorization": "secr******"
+            },
+            "signature": {
+                "method": "HMACSHA256",
+                "key": "signa********"
+            }
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "https://flow.cko-qa.ckotech.co/workflows/<WORKFLOW_ID>"
+        }
     }
-  ],
-  "actions": [
-    {
-      "type": "webhook",
-      "url": "https://example.com/webhook-receiver",
-      "headers": {
-        "Authorization": "secret-key"
-      },
-      "signature": {
-        "key": "signature-key"
-      }
-    }
-  ],
-  "_links": {
-    "self": {
-      "href": "https://api.checkout.com/workflows/wf_wlu3wxc26jounofs5iez75qaqa"
-    }
-  }
 }
 ```
 
@@ -161,11 +158,11 @@ Other possible responses:
 
 ---
 
-### Add a new workflow
+## Add a new workflow
 
 Use this API request to add a new workflow.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -186,7 +183,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### [Request example](#request_example_1)
+### [Request example](#request_example_1)
 
 ```json withBorder
 {
@@ -241,7 +238,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
   ]
 ```
 
-#### [Response example](#response_example_3)
+### [Response example](#response_example_3)
 
 Below is an example successful response with the details of the additional workflow.
 
@@ -264,13 +261,13 @@ Other possible responses:
 
 ---
 
-### Update the name of a workflow
+## Update the name of a workflow
 
 Use the following endpoint to update the name of a previously created workflow, passing the existing workflow's ID in the path and the new name for the workflow in the request body.
 
 You can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -291,7 +288,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### [Request example](#request_example_2)
+### [Request example](#request_example_2)
 
 ```json withBorder
 {
@@ -299,7 +296,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### [Response example](#response_example_4)
+### [Response example](#response_example_4)
 
 Below is an example successful response with the details of the additional workflow.
 
@@ -315,13 +312,13 @@ Below is an example successful response with the details of the additional workf
 
 ---
 
-### Update the actions of a workflow
+## Update the actions of a workflow
 
 To update the actions of a workflow, use the following endpoint, passing the workflow's ID and action ID in the path, and the details you want to update in the request body.
 
 You can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -342,7 +339,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### [Request example](#request_example_3)
+### [Request example](#request_example_3)
 
 ```json withBorder
 {
@@ -358,7 +355,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response
+### Response
 
 If you receive a 200 success response, the workflow action was successfully updated.
 
@@ -371,13 +368,13 @@ Other possible responses:
 
 ---
 
-### Update the conditions of a workflow
+## Update the conditions of a workflow
 
-To update the conditions of a workflow, use the following endpoint, passing the workflow's ID and condition ID in the path, and the details you want to update in the request body. 
+To update the conditions of a workflow, use the following endpoint, passing the workflow's ID and condition ID in the path, and the details you want to update in the request body.
 
 You can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -398,7 +395,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### [Request example](#request_example_4)
+### [Request example](#request_example_4)
 
 ```json withBorder
 {
@@ -426,7 +423,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response
+### Response
 
 If you receive a 200 success response, the workflow condition was successfully updated.
 
@@ -439,11 +436,11 @@ Other possible responses:
 
 ---
 
-### Delete a workflow
+## Delete a workflow
 
 Use this API request to delete an existing workflow. The actions of already executed workflows will be still processed.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -464,7 +461,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Response
+### Response
 
 A 204 response signals that the workflow was successfully deleted.
 

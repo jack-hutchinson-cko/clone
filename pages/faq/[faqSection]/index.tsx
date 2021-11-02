@@ -4,7 +4,7 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import { PureHead as Head } from 'components/Head';
 import BreadCrumbs from 'components/BreadCrumbs';
-import { TextHeadingTwo } from 'components/TextHeading';
+import { TextHeadingOne } from 'components/TextHeading';
 import MDXProvider from 'components/MDXProvider';
 import SectionList from 'components/SectionList';
 import {
@@ -55,7 +55,7 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
         <Layout>
           <MainContent>
             <HeaderContainer>
-              <TextHeadingTwo>{frontMatter.title}</TextHeadingTwo>
+              <TextHeadingOne>{frontMatter.title}</TextHeadingOne>
               <HeadDescription>{frontMatter.description}</HeadDescription>
             </HeaderContainer>
             <QuestionsContainer>

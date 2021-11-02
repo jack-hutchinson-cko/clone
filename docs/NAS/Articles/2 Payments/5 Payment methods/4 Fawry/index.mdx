@@ -115,13 +115,13 @@ Voucher
 </TableBody>
 </Table>
 
-### Request a payment
+## Request a payment
 
 Use the details below to set up your request.
 
 ---
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our [API reference](https://api-reference.checkout.com/preview/crusoe).
 
@@ -146,7 +146,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -169,7 +169,7 @@ You can find the full list, as well as complete request and response examples, i
 }
 ```
 
-#### Response example
+### Response example
 
 If you receive a `202 Success` response containing a `status` field set to `Pending`, your request was successful.
 
@@ -196,13 +196,13 @@ The payment will remain pending for the duration that you agreed when you onboar
 
 </TipBox>
 
-### Get details about a payment
+## Get details about a payment
 
 You can retrieve details about an existing Fawry payment with the following endpoint.
 
 ---
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -225,7 +225,7 @@ You can retrieve details about an existing Fawry payment with the following endp
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
 {
@@ -254,7 +254,7 @@ You can retrieve details about an existing Fawry payment with the following endp
 }
 ```
 
-### Refund a payment
+## Refund a payment
 
 Fawry supports both partial (see note below for details) and full refunds. You can refund a payment through the [Dashboard](https://dashboard.checkout.com/login) or by using the [refund API](/payments/manage-payments/refund-a-payment).
 
@@ -264,7 +264,7 @@ Multiple partial refund actions may be taken on a Fawry payment if there is some
 
 </TipBox>
 
-### Webhooks
+## Webhooks
 
 When using Fawry, you may receive the following webhooks.
 
@@ -382,7 +382,7 @@ Sent when a refund has been declined.
 </TableBody>
 </Table>
 
-### Testing Fawry
+## Testing Fawry
 
 <TipBox variant="info">
 
@@ -400,15 +400,15 @@ You can use the two following endpoints to test capturing and canceling a paymen
 
 ---
 
-#### Get payment details
+### Get payment details
 
 First, you will need to get the details of payment (as above) and make a note of the `reference_number` in the response.
 
-#### Capture a payment
+### Capture a payment
 
 Use the `reference_number` from the above response to test capturing a payment.
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Sandbox">
@@ -421,7 +421,7 @@ Use the `reference_number` from the above response to test capturing a payment.
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Header and path parameters
 
 <Table>
 <TableHead headers={["Header", "Value"]} />
@@ -479,11 +479,11 @@ The reference number you received in the response to the 'get payment details' r
 
 If successful, you will receive a `payment_captured` webhook notification.
 
-#### Cancel a payment
+### Cancel a payment
 
 Use the `reference_number` from the response to your get payment details request to test canceling a payment.
 
-#### Endpoint 
+### Endpoint 
 
 <tabs>
 <tab title="Sandbox">
@@ -496,7 +496,7 @@ Use the `reference_number` from the response to your get payment details request
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Header and path parameters
 
 <Table>
 <TableHead headers={["Header", "Value"]} />
@@ -554,7 +554,7 @@ The reference number you received in the response to the 'get payment details' r
 
 If successful, you will receive a `payment_canceled` webhook notification.
 
-### Fawry on mobile
+## Fawry on mobile
 
 You can offer the myFawry app for making payments. The app applies the same rules for both cash and credit card orders as kiosk and myFawry do not differ.
 

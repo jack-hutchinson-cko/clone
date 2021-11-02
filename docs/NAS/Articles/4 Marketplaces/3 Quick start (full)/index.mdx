@@ -5,7 +5,7 @@ account: NAS
 
 This guide demonstrates the full process, from onboarding a sub-entity to processsing payments on its behalf and later payout directly to their bank account.
 
-### Before you begin
+## Before you begin
 
 Check you've completed the following steps before starting your integration. 
 
@@ -21,7 +21,7 @@ Unless otherwise agreed during your onboarding, your sub-entities will undergo *
 
 </TipBox>
 
-### Step 1: Onboard your sub-entities 
+## Step 1: Onboard your sub-entities 
 
 <tabs>
 <tab title="Individual">
@@ -36,7 +36,7 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 ---
 
-#### Step 1a: Onboard a sub-entity
+### Step 1a: Onboard a sub-entity
 
 <TipBox variant="info">
 
@@ -46,7 +46,7 @@ To provide greater flexibility, we don’t need you to provide all of the data r
 
 ---
 
-#### Request
+### Request
 
 We will use the example of **Daniel’s Donuts**, a donut seller (who is a sole proprietor) on our fictional platform, Desserts Delivered. We will provide the minimum required fields for Daniel’s Donuts to start its onboarding!
 
@@ -92,7 +92,7 @@ Use <RequestTag type="post" />`/marketplace/entities`.
 
 ---
 
-#### Response
+### Response
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
@@ -131,7 +131,7 @@ That’s all it takes to create a sub-entity!
 
 ---
 
-#### Step 1b: Upload identity documentation
+### Step 1b: Upload identity documentation
 
 Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/marketplaces/onboarding/api/full/upload-a-file).
 
@@ -141,7 +141,7 @@ Read more about how to do this on our [onboarding page](/marketplaces/onboarding
 
 ---
 
-#### Step 1c: Handle due diligence result and capability changes
+### Step 1c: Handle due diligence result and capability changes
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows/webhook-event-types). You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our `legal_name` fail triggers is used for simulation, due diligence will always pass in Sandbox.
 
@@ -228,7 +228,7 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 ---
 
-#### Step 1a: Onboard a sub-entity
+### Step 1a: Onboard a sub-entity
 
 <TipBox variant="info">
 
@@ -242,7 +242,7 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -306,7 +306,7 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 
 ---
 
-#### Response
+### Response
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
@@ -345,7 +345,7 @@ That’s all it takes to create a sub-entity!
 
 ---
 
-#### Step 1b: Upload an identity document for representative of sub-entity
+### Step 1b: Upload an identity document for representative of sub-entity
 
 Use the `id` returned to upload an identification document. Find out how to do this using our [Files API](/marketplaces/onboarding/api/full/upload-a-file).
 
@@ -355,7 +355,7 @@ Read more about how to do this on our [onboarding page](/marketplaces/onboarding
 
 ---
 
-#### Step 1c: Handle due diligence result and capabilities changes
+### Step 1c: Handle due diligence result and capabilities changes
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via webhook notification. You should expect to receive the `full_dd_passed` and `full_dd_failed` event types. Unless one of our `legal_name` fail triggers is used for simulation, due diligence will always pass in Sandbox. 
 
@@ -434,7 +434,7 @@ We will re-trigger due diligence checks if any of the required information is la
 </tabs>
 
 
-### Step 2: Accept payments
+## Step 2: Accept payments
 
 <tabs>
 <tab title="Individual">
@@ -451,7 +451,7 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -482,7 +482,7 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 
 ---
 
-#### Response
+### Response
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
@@ -569,7 +569,7 @@ As per The Cake Shop’s `profile.default_holding_currency`, the funds from any 
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -591,7 +591,7 @@ As per The Cake Shop’s `profile.default_holding_currency`, the funds from any 
 
 ---
 
-#### Response
+### Response
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
@@ -665,7 +665,7 @@ That’s it! £10 has been processed on behalf of **The Cake Shop** and the fund
 </tab>
 </tabs>
 
-### Step 3: Make payouts
+## Step 3: Make payouts
 
 <tabs>
 <tab title="Individual">
@@ -681,13 +681,13 @@ In this step we’re going to walk through the steps that will enable us to do t
 
 ---
 
-#### Step 3a: Retrieve currency account balance
+### Step 3a: Retrieve currency account balance
 
 We are currently working on exposing real-time currency account balances via API, and hope to offer this functionality soon. In the meantime, you can process [balance reports](/reporting/reconciliation-reports/balance-reports) to retrieve the closing available balance of your currency account(s) on a daily basis. If you’d like to reconcile transactions for each sub-entity, you can process daily [financial actions](/reporting/reconciliation-reports/financial-actions-reports) reports to retrieve this breakdown.
 
 ---
 
-#### Step 3b: Create sub-entity payment instrument
+### Step 3b: Create sub-entity payment instrument
 
 A payment instrument is a set of bank account details securely stored in our vault. You will need to create a payment instrument for your sub-entity so that it can later be used as a destination when making on-demand payouts directly to them.
 
@@ -701,7 +701,7 @@ We will create a payment instrument representing Daniel’s Donuts Barclays bank
 
 ---
 
-#### Request
+### Request
 
 <TipBox>
 
@@ -771,7 +771,7 @@ If successful, we will automatically make the association between this payment i
 
 ---
 
-#### Step 3c: Make sub-entity payout
+### Step 3c: Make sub-entity payout
 
 Similar to processing payments, our Unified Payments API enables you to make payouts on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
 
@@ -779,7 +779,7 @@ We’ll make a payout to **Daniel’s Donuts** for £8. The funds will come from
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -805,7 +805,7 @@ We’ll make a payout to **Daniel’s Donuts** for £8. The funds will come from
 
 ---
 
-#### Response
+### Response
 
 ```json
 {
@@ -865,7 +865,7 @@ For **Daniel’s Donuts**, we receive the `payment_paid` with the following payl
 
 ---
 
-#### Step 3d: Collect platform fees
+### Step 3d: Collect platform fees
 
 Collection of your platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the `destination.id` will be your platform’s payment instrument `id`.
 
@@ -879,7 +879,7 @@ Use <RequestTag type="post" /> `/payments` again, but this time you can omit the
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -902,7 +902,7 @@ Use <RequestTag type="post" /> `/payments` again, but this time you can omit the
 
 ---
 
-#### Response
+### Response
 
 ```json
 {
@@ -970,13 +970,13 @@ In this step we’re going to walk through the steps that will enable us to do t
 
 ---
 
-#### Step 3a: Retrieve currency account balance
+### Step 3a: Retrieve currency account balance
 
 We are currently working on exposing real-time currency account balances via API, and hope to offer this functionality soon. In the meantime, you can process [balance reports](/reporting/reconciliation-reports/balance-reports) to retrieve the closing available balance of your currency account(s) on a daily basis. If you’d like to reconcile transactions for each sub-entity, you can process daily [financial actions](/reporting/reconciliation-reports/financial-actions-reports) reports to retrieve this breakdown.
 
 ---
 
-#### Step 3b: Create sub-entity payment instrument
+### Step 3b: Create sub-entity payment instrument
 
 A payment instrument is a set of bank account details securely stored in our vault. You will need to create a payment instrument for your sub-entity so that it can later be used as a destination when making on-demand payouts directly to them.
 
@@ -990,7 +990,7 @@ We will create a payment instrument representing The Cake Shop’s Barclays bank
 
 ---
 
-#### Request
+### Request
 
 <TipBox>
 
@@ -1060,7 +1060,7 @@ If successful, we will automatically make the association between this payment i
 
 ---
 
-#### Step 3c: Make sub-entity payout
+### Step 3c: Make sub-entity payout
 
 Similar to processing payments, our Unified Payments API enables you to make payouts on behalf of a sub-entity by specifying its `id` in the `marketplace.sub_entity_id` field when using <RequestTag type="post" /> `/payments`.
 
@@ -1068,7 +1068,7 @@ We’ll make a payout to **The Cake Shop** for £8. The funds will come from Des
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -1094,7 +1094,7 @@ We’ll make a payout to **The Cake Shop** for £8. The funds will come from Des
 
 ---
 
-#### Response
+### Response
 
 ```json
 {
@@ -1157,7 +1157,7 @@ We have cut out most of the response so you can focus on the instrument array. Y
 
 ---
 
-#### Step 3d: Collect platform fees
+### Step 3d: Collect platform fees
 
 Collection of your platform fees is achieved through the same method as making payouts to sub-entities. The only difference being that the `destination.id` will be your platform’s payment instrument `id`.
 
@@ -1167,7 +1167,7 @@ Use <RequestTag type="post" />`/payments` again, but this time you can omit the 
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -1190,7 +1190,7 @@ Use <RequestTag type="post" />`/payments` again, but this time you can omit the 
 
 ---
 
-#### Response
+### Response
 
 ```json
 {
@@ -1253,7 +1253,7 @@ That's it! You've successfully completed your first payment flow in Marketplaces
 
 </TipBox>
 
-### FAQs
+## FAQs
  
 <Accordion title="Why haven't my sub-entity's capabilities been enabled?">
 

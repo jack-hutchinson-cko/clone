@@ -10,7 +10,7 @@ You can send a payout in two ways: (1) use a [bank account payment instrument](/
 
 ---
 
-### Step 1: Get bank account field formatting
+## Step 1: Get bank account field formatting
 
 Before you can request a payout, you need to use the [get bank account field formatting endpoint](/bank-payouts/request-a-payout/get-bank-account-field-formatting) to retrieve the relevant bank account fields and formatting for the country and currency to which you'll be paying out.
 
@@ -18,11 +18,11 @@ Once you've done that, you can either use those bank account details directly in
 
 ---
 
-### Step 2: Request a payout
+## Step 2: Request a payout
 
 Request a Bank Payout by using the relevant bank account fields or a bank account payment instrument (prefixed by `src_`). To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 
 <tabs>
@@ -42,7 +42,7 @@ Request a Bank Payout by using the relevant bank account fields or a bank accoun
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={["Header", "Value"]} />
@@ -92,7 +92,7 @@ An optional idempotency key for safely retrying payout requests.
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <TipBox variant="info">
 
@@ -898,7 +898,7 @@ The processing channel identifier.
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Payment instrument">
@@ -987,7 +987,7 @@ The processing channel identifier.
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 If your payout request was successfully sent, you will receive a 202 response, with the status `Pending`. If your request was unsuccessful, you will receive a 422 or 429 response containing the [error code](/bank-payouts/request-a-payout/payout-error-codes).
 
@@ -1044,7 +1044,7 @@ You will then receive a [webhook notification](/bank-payouts/request-a-payout#We
 </tab>
 </tabs>
 
-### Webhooks
+## Webhooks
 
 After receiving the response to your payout request, you will get a webhook notification indicating the status of your payout:
 
@@ -1058,7 +1058,7 @@ Use our [testing guide](testing/bank-payouts-testing) to test different payout s
 
 </TipBox>
 
-#### Webhook examples
+### Webhook examples
 
 <tabs>
 <tab title="payment_paid">

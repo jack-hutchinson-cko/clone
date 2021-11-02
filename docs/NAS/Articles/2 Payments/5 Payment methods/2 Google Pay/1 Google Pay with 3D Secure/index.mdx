@@ -12,11 +12,11 @@ Find out below how you can comply with SCA requirements for PAN_ONLY scenarios.
 
 ---
 
-### Tokenize the Google Pay payment data
+## Tokenize the Google Pay payment data
 
 Once you have received the payment data from Google, you first need to get the Checkout.com token to encrypt the payment data. You then receive a new ``token_format`` in the response to help you identify whether or not subsequent payments using this token already meet SCA requirements. 
 
-#### Android native app and mobile web
+### Android native app and mobile web
 
 <Table>
 <TableHead headers={['``token_format``', 'SCA compliance']} />
@@ -42,7 +42,7 @@ In cases where the Google Pay payment does not require a 3D Secure setup (for ex
 
 </TipBox>
 
-#### Desktop (or when device binding is unavailable)
+### Desktop (or when device binding is unavailable)
 
 <Table>
 <TableHead headers={['``token_format``', 'SCA compliance']} />
@@ -62,7 +62,7 @@ For in-scope transactions, the payment should use a 3D Secure exemption or be pr
 </TableBody>
 </Table>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -79,7 +79,7 @@ For in-scope transactions, the payment should use a 3D Secure exemption or be pr
 
 ---
 
-### Request a 3D Secure payment using Google Pay
+## Request a 3D Secure payment using Google Pay
 
 <TipBox variant="info">
 
@@ -92,7 +92,7 @@ After receiving your token, you can authenticate the transaction as follows:
 1. Include the Google Pay token in the payment request body.
 2. To process this transaction as a 3D Secure payment, set the ``3ds.enabled`` field to ``true`` as in the request example below.
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -108,7 +108,7 @@ After receiving your token, you can authenticate the transaction as follows:
     }
 ```
 
-#### Response example
+### Response example
 
 If the card is enrolled in 3D Secure, you will receive a `202 Success` response. This response contains a redirect link for your customer.
 

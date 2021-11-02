@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { TextHeadingThree } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 import { Text } from 'components/Text';
 import { HitMode } from 'types/search';
 
-export const HighlightedHeader = styled(TextHeadingThree)<{ mode: HitMode }>`
+export const HighlightedHeader = styled(TextHeadingTwo)<{ mode: HitMode }>`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.base};
 

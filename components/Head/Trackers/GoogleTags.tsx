@@ -8,6 +8,7 @@ const GoogleTags: FC<Props> = ({ id }) => (
   <>
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
     <script
+      className="optanon-category-C0002"
       dangerouslySetInnerHTML={{
         __html: `
           window.dataLayer = window.dataLayer || [];

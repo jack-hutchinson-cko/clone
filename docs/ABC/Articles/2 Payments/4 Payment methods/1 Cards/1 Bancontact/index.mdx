@@ -111,7 +111,7 @@ Card Payment
 
 ---
 
-### Overview
+## Overview
 
 Bancontact payments follow a two-step process:
 
@@ -120,9 +120,9 @@ Bancontact payments follow a two-step process:
 
 ---
 
-### Request a payment
+## Request a payment
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -144,7 +144,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -159,7 +159,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
     }
 ```
 
-#### Response example
+### Response example
 
 If you receive a `202 Success` response, with a `status` field set to `Pending`, your request was successful. You now need to redirect your customer as described below.
 
@@ -186,7 +186,7 @@ If you receive a `202 Success` response, with a `status` field set to `Pending`,
 ```
 ---
 
-### Redirect the customer
+## Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the response. This will allow the customer to authorize the payment, before they are transferred to your predefined success or failure URL.
 
@@ -194,13 +194,13 @@ Alternatively, use the bancontact:mobile redirection link in the response to tak
 
 ---
 
-### Get details about a payment
+## Get details about a payment
 
 You can retrieve details about an existing Bancontact payment with the following endpoint.
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -221,7 +221,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -256,13 +256,13 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 ```
 ---
 
-### Refund a payment
+## Refund a payment
 
 Bancontact supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">hub</ExternalLink> or by using the <ExternalLink href="/payments/manage-payments/refund-a-payment" target="_blank">refund API</ExternalLink>.
 
 ---
 
-### Cancel a payment
+## Cancel a payment
 
 If the customer fails to complete their payment, we will automatically void the payment and send a `payment_expired` webhook.
 
@@ -270,7 +270,7 @@ If the customer cancels their payment, we will send a `payment_canceled` webhook
 
 ---
 
-### Testing Bancontact
+## Testing Bancontact
 
 <TipBox variant="note">
 

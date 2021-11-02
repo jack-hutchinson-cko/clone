@@ -7,7 +7,7 @@ Follow the steps on this page to set up and configure Apple Pay.
 
 ---
 
-### Before you start
+## Before you start
 
 Before you get started with Apple Pay, you need the following:
 
@@ -18,9 +18,9 @@ Before you get started with Apple Pay, you need the following:
 
 ---
 
-### Configure Apple Pay
+## Configure Apple Pay
 
-#### Step 1: Create your merchant IDs in your Apple Pay Developer account
+### Step 1: Create your merchant IDs in your Apple Pay Developer account
 
 <Video src="https://assets.checkout.com/docs/videos/create_merchant_id.mp4" />
 
@@ -34,7 +34,7 @@ We recommend that you create separate merchant IDs for your test environment and
 2.  Add a useful description, like `merchant id for test environment`.
 3.  Type your desired merchant ID name in the Identifier section. We recommend that you use a descriptive name to indicate both the domain and the environment you will use it in, like `merchant.com.mywebsite.sandbox`.
 
-#### Step 2: Add Checkout.com as a payment processor
+### Step 2: Add Checkout.com as a payment processor
 
 <Video src="https://assets.checkout.com/docs/videos/payment_processing_certificate.mp4" />
 
@@ -49,7 +49,7 @@ We recommend that you create separate merchant IDs for your test environment and
 9.  Go back to your Hub account and upload this `.cer` file.
 
 
-#### Step 3: Validate your domain
+### Step 3: Validate your domain
 
 <Video src="https://assets.checkout.com/docs/videos/payment_processing_certificate.mp4" />
 
@@ -66,7 +66,7 @@ You must have a valid SSL certificate on your domain (meaning it begins with `ht
 5.  Upload this file to your server so it's accessible at the following location (replacing `yourdomain.com` with the URL of your domain): `https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt`. To do this, create a folder called `.well-known` in the root directory of your website and put the `.txt` file in that folder.
 6.  Once you've uploaded the file, select _Verify_.
 
-#### Step 4: Create your Apple Pay certificates
+### Step 4: Create your Apple Pay certificates
 
 <Video src="https://assets.checkout.com/docs/videos/certificates.mp4" />
 
@@ -88,7 +88,7 @@ You must have a valid SSL certificate on your domain (meaning it begins with `ht
     ```
 
 
-#### Step 5: Configuration outcome
+### Step 5: Configuration outcome
 
 If you followed the above steps correctly, you should now have the following:
 
@@ -103,7 +103,7 @@ We recommend that you repeat the above steps so you have a merchant ID, domain (
 
 </TipBox>
 
-#### Integrate with Apple Pay
+### Integrate with Apple Pay
 
 <TipBox variant="info">
 
@@ -128,6 +128,6 @@ Here's a diagram of the full payment flow:
 
 ---
 
-### Next steps
+## Next steps
 
 Now you've configured and integrated with Apple Pay, you're ready to [accept Apple Pay payments through our payment gateway](/payments/payment-methods/wallets/apple-pay).
