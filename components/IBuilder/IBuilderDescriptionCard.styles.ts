@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextHeadingFour } from 'components/TextHeading';
+import { TextHeadingThree } from 'components/TextHeading';
 
 export const MainWrapper = styled.div<{ isSelected?: boolean }>`
   position: relative;
@@ -13,7 +13,7 @@ export const MainWrapper = styled.div<{ isSelected?: boolean }>`
   margin: 0 -24px;
 `;
 
-export const TextHeadFour = styled(TextHeadingFour)`
+export const TextHeadFour = styled(TextHeadingThree)`
   font-size: 16px;
   margin: 24px 0;
 `;

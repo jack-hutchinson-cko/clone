@@ -8,11 +8,11 @@ Store a customer's details in a customer object to reuse in future payments. You
 
 ---
 
-### Create a customer
+## Create a customer
 
 You can store your customer's details and create a customer object in two ways: as part of the payment request, or separately using the `/customers` endpoint.
 
-#### Using the /payments endpoint
+### Using the /payments endpoint
 
 When you request a payment for a new customer, include the customer's email in the request (in the `customer.email` parameter) to create a new `customer` object in the Vault. The response will include a `customer` object containing the `id` (prefixed with `cus_`) of the newly stored customer.
 
@@ -20,7 +20,7 @@ You can use the `customer.name` parameter in the request to set a name for the n
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -39,7 +39,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -55,7 +55,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
   }
 }
 ```
-#### Response example
+### Response example
 
 If the request was successful, you'll receive a 201 Success response. You'll find the ID (prefixed with `cus_`) of the newly created customer in the `customer` object, and the ID (prefixed with `src_`) of the newly created payment instrument (ie, the stored details of the card used in the payment) in the `source` object.
 
@@ -138,13 +138,13 @@ This payment instrument will be set as the default for the new customer, so when
 </tab>
 </tabs>
 
-#### Using the /customers endpoint
+### Using the /customers endpoint
 
 Alternatively, you can create a customer object by passing the customer's details into the `/customers` endpoint.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -163,7 +163,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -180,7 +180,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response example
+### Response example
 
 If successful, you'll receive a 201 success response containing the ID (prefixed with `cus_`) of the newly created customer.
 
@@ -218,13 +218,13 @@ Each customer must have a unique email address – you cannot have multiple cust
 
 ---
 
-### Get customer details
+## Get customer details
 
 To retrieve the details of a particular customer, and the payment instruments associated with them, pass the customer's `id` or `email` into the following endpoint.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -243,7 +243,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Path parameters
+### Path parameters
 
 <TipBox variant="note">
 
@@ -291,7 +291,7 @@ The customer's email address.
 </TableBody>
 </Table>
 
-#### Response example
+### Response example
 
 If successful, you'll receive a 200 success response containing the customer's details and their associated payment instruments.
 
@@ -347,13 +347,13 @@ If successful, you'll receive a 200 success response containing the customer's d
 ```
 ---
 
-### Update customer details
+## Update customer details
 
 If you want to update the details of an existing customer, pass the customer's `id` and any new information into this endpoint.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -378,19 +378,19 @@ If you include metadata in your request, it will replace any existing metadata s
 
 </TipBox>
 
-#### Response
+### Response
 
 If successful, you'll receive a 204 success response – the customer's details have been updated.
 
 ---
 
-### Delete a customer
+## Delete a customer
 
 If you want to delete a customer and all of the payment instruments associated with them, pass the customer `id` into the following endpoint.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -409,7 +409,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Response
+### Response
 
 If successful, you'll receive a 204 success response – the customer, and all of their linked payment instruments, have been deleted.
 

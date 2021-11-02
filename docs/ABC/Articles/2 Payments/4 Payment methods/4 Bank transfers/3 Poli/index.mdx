@@ -110,7 +110,7 @@ Online banking
 
 ---
 
-### Overview
+## Overview
 
 Poli payments follow a two-step process:
 
@@ -119,9 +119,9 @@ Poli payments follow a two-step process:
 
 ---
 
-### Request a payment
+## Request a payment
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -142,7 +142,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -160,7 +160,7 @@ If a customer ID or email is not provided in the request, then we automatically 
 
 </TipBox>
 
-#### Response example
+### Response example
 
 If a payment `id` is returned, then your request was successful.
 
@@ -184,7 +184,7 @@ If a payment `id` is returned, then your request was successful.
 
 ---
 
-### Redirect the customer
+## Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the above response. The redirect transfers the customer to their bank's website where they are required to enter their authorization details; if successful, the payment can be approved.
 
@@ -192,11 +192,11 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ---
 
-### Get details about a payment
+## Get details about a payment
 
 You can retrieve details about an existing Poli payment with the following endpoint.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -217,7 +217,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -246,13 +246,13 @@ You can find the full list, as well as complete request and response examples, i
 
 ---
 
-### Cancel a payment
+## Cancel a payment
 
 If the customer cancels or fails to complete the transaction at any point after the payment is created, it will automatically be voided, and we'll send you a `payment_voided` webhook.
 
 ---
 
-### Testing Poli
+## Testing Poli
 
 <TipBox variant="note">
 

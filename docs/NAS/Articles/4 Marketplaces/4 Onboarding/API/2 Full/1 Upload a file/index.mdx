@@ -9,14 +9,14 @@ When you upload a file, the API returns an `id` that represents that file. You c
 * Identity documentation when [creating or updating your sub-entity.](/marketplaces/onboarding/api/full)
 * Bank verification documentation when [creating a payment instrument](/marketplaces/payouts/make-a-payout)
 
-### Before you begin
+## Before you begin
 
 If you are uploading a bank statement to verify a set of bank details, subscribe to the following webhook events: 
 
 * `payment_instrument_verification_passed`
 * `payment_instrument_verification_failed`
 
-### Types of identification and requirements
+## Types of identification and requirements
 
 The API accepts the following types of documentation. Depending on the identification type, you may need to provide both the back and the front. Use the table below to find out more.
 
@@ -145,7 +145,7 @@ N
 </TableBody>
 </Table>
 
-### Upload a file
+## Upload a file
 
 Your request must be multipart/form-data and the file no larger than 4Mb.
 
@@ -156,7 +156,7 @@ Follow the steps to upload the document and receive an `id`. If the identificati
 
 ---
 
-#### Endpoints
+### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">Request a test account.</ExternalLink>
 
@@ -183,7 +183,7 @@ Notice that the sub-domain – files.checkout.com – is slightly different to C
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" target="_blank">API reference.</ExternalLink>
 
@@ -227,7 +227,7 @@ curl https://files.checkout.com \
   -F "purpose=identification"
 ```
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title='201 - Document accepted'>
@@ -355,7 +355,7 @@ A back file is not required for the type of document in your request. This curre
 </tab>
 </tabs>
 
-### Example notifications for bank account verification
+## Example notifications for bank account verification
 
 <tabs>
 <tab title="Verification passed">
@@ -413,7 +413,7 @@ A back file is not required for the type of document in your request. This curre
 </tab>
 </tabs>
 
-### Where to next?
+## Where to next?
 
 ---
 

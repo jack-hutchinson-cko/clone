@@ -19,7 +19,7 @@ To start using this feature, please contact your Customer Success manager.
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post" target="_blank">API reference</ExternalLink>.
 
@@ -40,7 +40,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -80,7 +80,7 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 The table below describes the minimum recommended fields.
 
@@ -274,7 +274,7 @@ The country ([two-letter ISO country code](/resources/codes/country-codes)) of t
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -296,7 +296,7 @@ The country ([two-letter ISO country code](/resources/codes/country-codes)) of t
 }
 ```
 
-#### The response
+### The response
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -312,7 +312,7 @@ The following pages can help you understand the response message:
 
 </TipBox>
 
-#### Response example
+### Response example
 
 The possible values for the status field include `Authorized`, `Captured`, `Card Verified`, `Declined`, and `Pending`. Note that `Pending` only applies to 3D Secure payments.
 

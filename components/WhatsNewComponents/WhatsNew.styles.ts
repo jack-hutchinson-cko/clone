@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { SIZE, Breakpoints } from 'constants/screen';
-import { TextHeadingTwo } from 'components/TextHeading';
+import { TextHeadingOne } from 'components/TextHeading';
 import { spacing } from 'constants/spacingSize';
 
-export const Header = styled(TextHeadingTwo)`
+export const Header = styled(TextHeadingOne)`
   margin: 0;
   color: ${({ theme }) => theme.colors.base};
 `;

@@ -10,11 +10,11 @@ The quotes endpoint returns an exchange rate in your preferred operating currenc
 
 ---
 
-### Create a quote
+## Create a quote
 
 Generate an FX quote with the following endpoint. You can then use the unique quote `id` you get in the response to make a payout at the quoted rate. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -33,7 +33,7 @@ Generate an FX quote with the following endpoint. You can then use the unique qu
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={["Header", "Value"]} />
@@ -69,7 +69,7 @@ Generate an FX quote with the following endpoint. You can then use the unique qu
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <Table>
 <TableHead headers={["Field name", "Description"]} />
@@ -149,7 +149,7 @@ The exact format [depends on the currency](/resources/calculating-the-amount).
 </TableBody>
 </Table>
 
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Destination amount specified">
@@ -176,7 +176,7 @@ The exact format [depends on the currency](/resources/calculating-the-amount).
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 You will receive a response containing the quote `id`, the exchange rate, and the date and time the quoted rate is valid until.
 

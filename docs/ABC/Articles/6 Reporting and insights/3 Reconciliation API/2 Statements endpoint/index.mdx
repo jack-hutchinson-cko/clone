@@ -25,13 +25,13 @@ No payments before February 7th, 2019 at 00.00.00 UTC will appear using the stat
 
 ---
 
-### Request a statement
+## Request a statement
 
-#### The GET request
+### The GET request
 
 Use the details below to set up your request. To set the timeframe of your request, replace `{start-date}` and `{end-date}` with your desired start and end dates in ISO format. Please note that the time zone for the request will be UTC. The response will be returned in JSON format – but you can also [download a CSV copy](/reporting-and-insights/reconciliation-api/statements-endpoint#Statementsendpoint-csvdownload) if you'd like.
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Live">
@@ -43,7 +43,7 @@ Use the details below to set up your request. To set the timeframe of your reque
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Parameter']} />
@@ -83,7 +83,7 @@ Use the valid secret key of your Checkout.com account. You can find this in the 
 </TableBody>
 </Table>
 
-#### The GET response
+### The GET response
 
 If your summary is returned, the request was successful.
 
@@ -133,11 +133,11 @@ If your summary is returned, the request was successful.
 }
 ```
 
-#### Understanding the response
+### Understanding the response
 
 The response is designed to present your information as clearly as possible.
 
-#### 1. Statements
+### 1. Statements
 
 Listed in chronological order (descending), this is a record of all your statements within the selected timeframe. The table below outlines the information included and its meaning.
 
@@ -207,7 +207,7 @@ The summary is a breakdown of your statement, ordered by the payout currency and
 </TableBody>
 </Table>
 
-#### 2. Payouts
+### 2. Payouts
 
 Grouped by payout currency, this section details all payouts to your bank account within the chosen date range. The table below describes this data and its purpose.
 
@@ -319,9 +319,9 @@ You can work out your net amount by calculating the sum of the carried forward a
 
 </TipBox>
 
-#### 3. Links
+### 3. Links
 
-#### Next
+### Next
 
 This link allows you to move to the next page of results in the response. Responses are paginated at the payout level.
 
@@ -333,7 +333,7 @@ This link allows you to move to the next page of results in the response. Respon
 }
 ```
 
-#### Self
+### Self
 
 This is a direct link to the response associated with the submitted request.
 
@@ -345,13 +345,13 @@ This is a direct link to the response associated with the submitted request.
 }
 ```
 
-### Extensions
+## Extensions
 
-#### 1. Payout breakdown
+### 1. Payout breakdown
 
 You can break down the detail even further by using the `payout_breakdown` field. This will provide all totals from each section of the statement.
 
-#### The GET request
+### The GET request
 
 Set up your request as described above, then simply add `&include=payout_breakdown` at the end of the URL. For example:
 
@@ -365,7 +365,7 @@ Set up your request as described above, then simply add `&include=payout_breakdo
 </tab>
 </tabs>
 
-#### The GET response
+### The GET response
 
 The initial structure of your response will be the same as described above. However, you will also get the following additional fields on your payouts in the `current_period_breakdown` and `processing_fees_breakdown` sections of your response:
 
@@ -432,7 +432,7 @@ The initial structure of your response will be the same as described above. Howe
 }
 ```
 
-#### 2. Statement ID / Payments
+### 2. Statement ID / Payments
 
 This extension allows you to link payments to statements and payouts. You can retrieve the list of payments and associated fees included in a given statement or payout that has been deposited into your bank account, or tied to a specific payout currency.
 
@@ -510,15 +510,15 @@ The payout currency must be given in the 3-letter ISO format (e.g., GBP).
 
 ---
 
-### CSV download
+## CSV download
 
 In addition to the JSON format described above, you can download a CSV report containing data from the statements endpoint.
 
 If you are using Postman or an equivalent application, rather than sending the GET request, use the **Send and Download** functionality to download the CSV report.
 
-#### Statements endpoint
+### Statements endpoint
 
-#### Statement only
+### Statement only
 
 In the URL for the statements endpoint, add `/download` after `/statements`.
 
@@ -528,7 +528,7 @@ For example:
 https://api.checkout.com/reporting/statements/download?from={start-date-time}&to={end-date-time}
 ```
 
-#### Statement with payout breakdown
+### Statement with payout breakdown
 
 To include the payout breakdown, add `&include=payout_breakdown` at the end of the previous URL.
 
@@ -538,7 +538,7 @@ For example:
 https://api.checkout.com/reporting/statements/download?from={start-date-time}&to={end-date-time}&include=payout_breakdown
 ```
 
-#### Statement ID/payments
+### Statement ID/payments
 
 In the URL for statement ID/payments, add `/download` after `payments`.
 

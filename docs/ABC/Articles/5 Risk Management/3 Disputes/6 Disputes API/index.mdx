@@ -18,13 +18,13 @@ If you want to simulate a dispute for testing purposes, you can do so in the san
 
 </TipBox>
 
-### Dispute reasons
+## Dispute reasons
 
 Most of the time, customers dispute a payment because of fraudulent charges. However, there are many other possible reasons. You can tell why a dispute was raised by looking at the `category` field of the response.
 
 Learn more about the [reasons for disputes and the type of evidence we suggest submitting](/risk-management/disputes#Disputes-Disputereasonsandrecommendedevidence) when responding.
 
-### Dispute statuses
+## Dispute statuses
 
 Each dispute has an associated `status` that describes which stage of the dispute process it has reached.
 
@@ -210,23 +210,23 @@ There is no equivalent webhook because your action triggered the status change.
 
 ---
 
-#### Disputes API flow
+### Disputes API flow
 
 <img src="/docs/Risk management/Disputes-api-flow.png" alt="Disputes flow"  />
 
-### Using the Disputes API
+## Using the Disputes API
 
 ---
 
-#### View disputes and dispute details
+### View disputes and dispute details
 
 You can use our API to view a list of disputes or to retrieve information about a specific dispute.
 
-#### Get a list of disputes
+### Get a list of disputes
 
 Use the endpoint below to retrieve a list of disputes against your business. These will be returned in reverse chronological order, showing the last modified dispute (for example, where you've recently added a piece of evidence) first. You can use the additional parameters to skip or limit results.
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
@@ -247,7 +247,7 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Additional parameters
+### Additional parameters
 
 You can use the following additional parameters to specify results. Simply add them to the end of the endpoint URL.
 
@@ -327,7 +327,7 @@ One or more statuses, separated by commas, e.g. `evidence_required` and `evidenc
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 ``` 
     curl https://api.sandbox.checkout.com/disputes/?limit=10&skip=10&from=2017-08-12T00:00:00Z&to=2017-08-13T00:00:00Z
@@ -336,7 +336,7 @@ One or more statuses, separated by commas, e.g. `evidence_required` and `evidenc
       -X GET
 ```
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -369,11 +369,11 @@ One or more statuses, separated by commas, e.g. `evidence_required` and `evidenc
     }
 ```
 
-#### Get details about a dispute
+### Get details about a dispute
 
 Use the following endpoint to retrieve all the information relating to a specific dispute.
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
@@ -394,7 +394,7 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```
     curl https://api.sandbox.checkout.com/disputes/dsp_BD69ED775Z1E5DF940D3
@@ -403,7 +403,7 @@ For the full specification, as well as complete request and response examples, s
         -X GET
 ```
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -440,11 +440,11 @@ For the full specification, as well as complete request and response examples, s
 
 ---
 
-### Respond to a dispute
+## Respond to a dispute
 
 In order to win a dispute, you will need to provide relevant evidence to your case. This could be the invoice, the proof of delivery, or even customer communication regarding the payment that was charged back. You can use our API to upload evidence, review this evidence, and submit it when you're ready.
 
-#### Provide evidence
+### Provide evidence
 
 Use the endpoint below to add supporting evidence to a dispute. Note that this only attaches the evidence to the dispute, it does not send it to us. Once ready, you will need to [submit it](#DisputesAPI-submitevidence) to us.
 
@@ -460,7 +460,7 @@ If you wish to submit files as evidence, you will first need to upload them usin
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -487,7 +487,7 @@ If you run this request more than once, you will overwrite the previous request.
 
 </TipBox>
 
-#### Additional parameters
+### Additional parameters
 
 You must provide at least one of the evidence types listed below in the body of your request. Each of the following can be provided as either a text string and/or a file ID previously uploaded. Simply specify it in your request as `{evidence_type}_file` or `{evidence_type}_text` (e.g., `proof_of_delivery_or_service_file`).
 
@@ -601,7 +601,7 @@ Additional evidence supporting your case that does not fall under the above cate
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 ```
     curl https://api.sandbox.checkout.com/disputes/dsp_BD69ED775Z1E5DF940D3
@@ -615,7 +615,7 @@ Additional evidence supporting your case that does not fall under the above cate
     }
 ```
 
-#### The response
+### The response
 
 If you receive a `2XX` response, then your dispute evidence was successfully provided. You can submit it when ready.
 
@@ -632,11 +632,11 @@ Possible error codes
 *   `dispute_already_canceled`
 *   `dispute_already_accepted`
 
-#### Retrieve evidence
+### Retrieve evidence
 
 Use the following endpoint to view a list of the evidence you provided for a specific dispute.
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -657,7 +657,7 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```
     curl https://api.sandbox.checkout.com/disputes/dsp_BD69ED775Z1E5DF940D3/evidence
@@ -666,7 +666,7 @@ For the full specification, as well as complete request and response examples, s
         -X GET
 ```
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -676,7 +676,7 @@ For the full specification, as well as complete request and response examples, s
     }
 ```
 
-#### Submit evidence
+### Submit evidence
 
 Use the following endpoint to submit the evidence that you've provided.
 
@@ -686,7 +686,7 @@ You will not be able to amend your evidence once you have submitted it. Make sur
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
@@ -707,7 +707,7 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```
     curl https://api.sandbox.checkout.com/disputes/dsp_BD69ED775Z1E5DF940D3/evidence
@@ -716,7 +716,7 @@ For the full specification, as well as complete request and response examples, s
         -X POST
 ```
 
-#### The response
+### The response
 
 If you receive a `2XX` response, then your dispute evidence was successfully submitted. We will pass it on to the card scheme.
 
@@ -733,11 +733,11 @@ Possible error codes
 *   `dispute_already_canceled`
 *   `dispute_already_accepted`
 
-#### Accept a dispute
+### Accept a dispute
 
 If a dispute is legitimate, you can use the following endpoint to accept it. This will close it for you and remove it from your list of open disputes. There are no further financial implications.
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our [API reference](https://api-reference.checkout.com/)
 
@@ -758,7 +758,7 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```
     curl https://api.sandbox.checkout.com/disputes/dsp_BD69ED775Z1E5DF940D3/accept
@@ -767,7 +767,7 @@ For the full specification, as well as complete request and response examples, s
         -X POST
 ```
 
-#### The response
+### The response
 
 If you receive a `2XX` response, then you successfully accepted the dispute.
 

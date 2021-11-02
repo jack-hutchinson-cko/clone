@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ThemeType } from 'types/theme';
 import { spacing } from 'constants/spacingSize';
-import { TextHeadingFour } from 'components/TextHeading';
+import { TextHeadingThree } from 'components/TextHeading';
 import { TipBoxVariant } from './types';
 
 const getVariantColor = ({ theme, variant }: { theme: ThemeType; variant: TipBoxVariant }) => {
@@ -38,7 +38,7 @@ export const TipBoxIcon = styled.span<{ variant: TipBoxVariant }>`
   display: inline-block;
 `;
 
-export const TipBoxHeader = styled(TextHeadingFour)`
+export const TipBoxHeader = styled(TextHeadingThree)`
   margin: 0 0 ${spacing.s20}px 0;
 `;
 

@@ -112,7 +112,7 @@ Online banking
 
 ---
 
-### Overview
+## Overview
 
 You process a Sofort payment in two steps:
 
@@ -121,11 +121,11 @@ You process a Sofort payment in two steps:
 
 ---
 
-### Request a payment
+## Request a payment
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -146,7 +146,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -164,7 +164,7 @@ If a customer ID or email is not provided in the request, we automatically creat
 
 </TipBox>
 
-#### Response example
+### Response example
 
 If a payment `id` is returned, your request was successful.
 
@@ -188,7 +188,7 @@ If a payment `id` is returned, your request was successful.
 
 ---
 
-### Redirect the customer
+## Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the above response. The redirect transfers the customer to their bank's website where they will be asked to enter their authorization details; if successful, the payment can be approved.
 
@@ -196,13 +196,13 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ---
 
-### Get details about a payment
+## Get details about a payment
 
 You can retrieve details about an existing Sofort payment with the following request.
 
 If the payment has been approved by a customer on the banking page, you’ll receive a `payment_capture_pending` webhook and the payment response will include the `bic`, `iban`, and `account_holder_name` fields.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -223,7 +223,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title="Pending" active>
@@ -327,20 +327,20 @@ You can find the full list, as well as complete request and response examples, i
 
 ---
 
-### Refund a payment
+## Refund a payment
 
 Sofort supports both partial and full refunds. You can refund a payment through the [refund API](/payments/manage-payments/refund-a-payment).
 
 ---
 
-### Cancel a payment
+## Cancel a payment
 ----------------
 
 If the customer cancels or fails to complete the transaction at any point after the payment is created, it will automatically be canceled, and we’ll send you a `payment_canceled` webhook.
 
 ---
 
-### Webhooks
+## Webhooks
 
 When using Sofort, you may receive the following webhooks.
 
@@ -448,7 +448,7 @@ Sent when a refund has been declined.
 
 ---
 
-### Testing Sofort
+## Testing Sofort
 
 <TipBox variant="note">
 

@@ -11,7 +11,7 @@ Tables should consistent of:
 * `<TableRow>` opening **and** closing component
 * `<TableCell>` opening **and** closing content. Content in a cell should have a line break both above and below.
 
-### Example
+## Example
 
 ```
 <Table>
@@ -33,13 +33,13 @@ content
 </Table>
 ```
 
-### Changing the width of columns
+## Changing the width of columns
 
 In the `<TableHead />` component add a `sizes` prop that is an object with an array of sizes. They accept the same attributes as CSS, but try to use percentage (for responsiveness) and to only size the column that is too small. For example, imagine our first column is too small, we can say that should take up 60% of the width of the table and the other column can fit automatically: `sizes={['60%', 'auto']}`.
 
 You can add as many sizes to the array as there are columns.
 
-### Adding a header column
+## Adding a header column
 
 If you have a table that has both a header row **and** header column, add the proper `withBackground` to the `<TableCell>` that contains the header. For example 
 
@@ -51,7 +51,7 @@ If you have a table that has both a header row **and** header column, add the pr
 </TableCell>
 ```
 
-### Adding ticks or crosses in a cell
+## Adding ticks or crosses in a cell
 
 If you have a table that is just ticks and crosses against a certain header, use the `<TableTicCell>` component and add a prop `type` with the value of either: 
 * `error` for a cross
@@ -64,7 +64,7 @@ If you have a table that is just ticks and crosses against a certain header, use
 <TableTicCell type="check" />
 ```
 
-### Adding a subscript info icon in a cell
+## Adding a subscript info icon in a cell
 
 Sometimes cells have additional pieces of information in subscript with an 'i' icon. Use the `<InfoBox>` component to wrap around the content you would like to be subscript. 
 
@@ -82,7 +82,7 @@ I will be additional information.
 </TableCell>
 ```
 
-### Remove top border of a table
+## Remove top border of a table
 
 For design reasons, we may need to remove the top border of a table. Simply add `withTopBorder={false}` to the `<Table>` opening component. 
 
@@ -102,7 +102,7 @@ Indivudal tab components will always have a `title` prop. Tabs are wrapped by a 
 
 **NOTE:** Be cautious of tabs, because if the spacing is not right they will not render. 
 
-### Example
+## Example
 
 ```
 <tabs>
@@ -123,23 +123,23 @@ world
 
 ## Inline components
 
-### Request tag
+## Request tag
 
 When you need to reference an API method inline use the **self-closing** `<RequestTag />`. Use the prop `type` to inficate which method it should show. 
 
 For example, `<RequestTag type="post" />`
 
-### Status tag
+## Status tag
 
 We try not to use API reference-like tables in our guides. However, if you are are referencing someone else's endpoint or feel as though you have and are marking whether it is an optional or required field, use a **self-closing** `<StatusTag />` component with the prop `type` to indicate what the label should say.
 
 For example, `<StatusTag type="required" />`
 
-### Endpoints
+## Endpoints
 
 This component is usually only used when we are showing the endpoint the page is referring to. This component has both opening **and** closing tags, with the endpoint in between these tags. Use `<LineCodeWrapper>` with a prop of `type` to indicate the API method. 
 
-#### Example
+### Example
 
 ```
 
@@ -164,7 +164,7 @@ Tip boxes are the components with an icon, a coloured border and content inside.
 * Warning - red with an exclamation mark in a diamond. Use `variant="warning"`.
 
 
-### Example
+## Example
 
 ```
 <TipBox variant="info" title="I am a title">
@@ -184,7 +184,7 @@ When we direct users to another guide at the bottom of the page, we often use th
 * `imgSrc` – for icons (see [marketplaces](/marketplaces))
 * `withBorder={false}` – default is true, so we only need to add this if we do not want the bottom border appearing for design reasons.
 
-### Example
+## Example
 
 ```
 <ContentPanel title="About onboarding sub-entities" imgSrc="/NAS/Marketplaces/onboard-sub-entities.svg" withBorder={false}>
@@ -198,7 +198,7 @@ Find out more about onboarding and verification for your sub-entities.
 
 ## Images
 
-### Standard images 
+## Standard images 
 
 Use the HTML `img` tag with a standard `src` attribute to point to the image's location.
 
@@ -206,11 +206,11 @@ Use the HTML `img` tag with a standard `src` attribute to point to the image's l
 * Add `maxWidth` to change the width of the image. This will be in pixels, so you just need to type a full number (not as a string).
 * Src path relates to the location of the image in the public directory. 
 
-### Example
+## Example
 
 `<img maxWidth={170} src="/docs/Integrate/SDKS/Android SDK/Android.png" />`
 
-### Portrait
+## Portrait
 
 Images that are long but not wide, can be wrapped in a `Box` and an `Iframe` component.
 
@@ -218,7 +218,7 @@ Images that are long but not wide, can be wrapped in a `Box` and an `Iframe` com
 
 `<IFrame>` takes the props `src`, `height`, and `width`.
 
-### Example
+## Example
 
 ```
 <Box horizontal="sm" align="center">
@@ -232,14 +232,14 @@ Images that are long but not wide, can be wrapped in a `Box` and an `Iframe` com
 
 ---
 
-### Links
+## Links
 
 When referencing an internal link, ie (/integrate) use the markdown format for links
 
 For external links, use an `<a>` tag. 
 With external links, you must pass a href attribute and an optional `target="_blank"` if you want the page to open in a new tab.
 
-### Example
+## Example
 
 Internal Links: [International](/payments/payment-methods/cards)
 External Links: <a href="https://archive.docs.checkout.com/docs/reconciliation-api" target="_blank">Classic API's transactions endpoint</a>
