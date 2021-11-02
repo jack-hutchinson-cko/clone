@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
   padding: ${spacing.s60}px ${spacing.s80}px min(120px, 10vh);
   color: ${({ theme }) => theme.colors.base};
@@ -19,14 +18,12 @@ export const Wrapper = styled.div`
 
   .error-message {
     margin: 0 auto ${spacing.s90}px;
-    font-size: 18px;
-    line-height: ${spacing.s60}px;
+    font-size: 16px;
+    line-height: ${spacing.s50}px;
   }
 
   @media ${MobileBreakPoints.MOBILE_S} {
     .error-message {
-      font-size: 16px;
-      line-height: ${spacing.s50}px;
       margin: 0 auto ${spacing.s80}px;
     }
   }
@@ -36,7 +33,7 @@ export const LinksContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 4.5vh;
+  gap: ${spacing.s60}px;
 
   & > * {
     flex-basis: 100%;
