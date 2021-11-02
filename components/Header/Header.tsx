@@ -73,6 +73,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
   loginBottomUrl,
 }) => {
   useScrollDisabled(searchState || menuState);
+  const isABC = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC';
 
   const onCloseSearchDrawer = useCallback(() => {
     if (searchState) onChangeSearchState(false);
@@ -223,13 +224,15 @@ const Header: FC<WithMenuStateProps<Props>> = ({
               )}
             </NavigationItemHolder>
           </InlineFlexWrapper>
-          <NavigationItem hideOnMobile hideOnTablet>
-            <Link href={testAccountUrl} passHref>
-              <NavigationLink target="_blank" light underlineOnHover>
-                Get test account
-              </NavigationLink>
-            </Link>
-          </NavigationItem>
+          {isABC && (
+            <NavigationItem hideOnMobile hideOnTablet>
+              <Link href={testAccountUrl} passHref>
+                <NavigationLink target="_blank" light underlineOnHover>
+                  Get test account
+                </NavigationLink>
+              </Link>
+            </NavigationItem>
+          )}
           <NavigationItem hideOnMobile hideOnDesktop>
             <MenuButton isActive={menuState} onClick={onToggleMenuDrawer} />
           </NavigationItem>
