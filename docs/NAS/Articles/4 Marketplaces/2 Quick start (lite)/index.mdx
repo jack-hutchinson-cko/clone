@@ -5,7 +5,7 @@ account: NAS
 
 This guide demonstrates the complete process from onboarding a sub-entity to processing payments on its behalf. Select _Individual_ or _Company_ below to see the specific steps for each.
 
-### Before you begin
+## Before you begin
 
 Check you've completed the following steps before starting your integration.
 
@@ -16,7 +16,7 @@ Check you've completed the following steps before starting your integration.
 - You are familiar with our [account structure](/marketplaces/account-structure).
 
 
-### Step 1: Onboard your sub-entities
+## Step 1: Onboard your sub-entities
 
 <tabs>
 <tab title="Individual">
@@ -30,7 +30,7 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 ---
 
-#### Step 1a: Onboard a sub-entity
+### Step 1a: Onboard a sub-entity
 
 <TipBox variant="info">
 
@@ -42,7 +42,7 @@ We will use the example of **Daniel’s Donuts** – a donut seller (who is a so
 
 Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity representing Daniel’s Donuts.
 
-#### Request
+### Request
 
 ```json
 {
@@ -109,7 +109,7 @@ That’s all it takes to create and trigger due diligence checks for a sub-entit
 
 ---
 
-#### Step 1b: Handle due diligence result and capability changes
+### Step 1b: Handle due diligence result and capability changes
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows). You should expect to receive the `vmss_passed / vmss_failed` and `match_passed / match_failed` event types. Both VMSS and Match checks must pass to pass CSS checks successfully. Unless one of our `legal_name` fail triggers is used for testing purposes, due diligence will always pass in Sandbox.
 
@@ -175,7 +175,7 @@ In this step we’re going to walk through the complete onboarding of a sub-enti
 
 ---
 
-#### Step 1a: Onboard a sub-entity
+### Step 1a: Onboard a sub-entity
 
 <TipBox variant="info">
 
@@ -189,7 +189,7 @@ Use <RequestTag type="post" />`/marketplace/entities` to create a sub-entity rep
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -252,7 +252,7 @@ You will only be able to specify the `company.principal_address.country` and `pr
 
 ---
 
-#### Response
+### Response
 
 A successful response will include a unique sub-entity `id`, which you should store for future requests. Additionally, the response has the `capabilities` object, which shows you whether the sub-entity’s capabilities are enabled or not. Capabilities only get enabled once specific due diligence checks have been run and passed.
 
@@ -299,7 +299,7 @@ That’s all it takes to create a sub-entity!
 
 ---
 
-#### Step 1b: Handle due diligence result and capabilities changes
+### Step 1b: Handle due diligence result and capabilities changes
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows/webhook-event-types). You should expect to receive the `vmss_passed` / `vmss_failed` and `match_passed` / `match_failed` event types. Both VMSS and Match checks must pass for the CSS checks to be successful. Unless one of our `legal_name` fail triggers is used for testing purposes, due diligence will always pass in Sandbox.
 
@@ -356,7 +356,7 @@ We will re-trigger due diligence checks if any of the required information is la
 </tab>
 </tabs>
 
-### Step 2: Accept payments
+## Step 2: Accept payments
 
 <tabs>
 <tab title="Individual">
@@ -373,7 +373,7 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -398,7 +398,7 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 
 ---
 
-#### Response
+### Response
 
 Use the `approved` field to check whether the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
@@ -485,7 +485,7 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 
 ---
 
-#### Request
+### Request
 
 ```json
 {
@@ -513,7 +513,7 @@ Funds will be routed and held in your platform’s currency accounts as per the 
 
 ---
 
-#### Response
+### Response
 
 Use the `approved` field to check whether the authorization was successful (`"approved": true`). The `balances` object provides an overview of the payment’s balances, which helps you determine the amount that can be used for each subsequent action on the payment.
 
@@ -587,7 +587,7 @@ That’s it! £10 has been processed on behalf of **The Cake Shop** and the fund
 </tab>
 </tabs>
 
-### Scheduled payouts
+## Scheduled payouts
 
 All funds will be settled to your platform’s designated bank account(s) as per the frequency agreed during onboarding.
 
@@ -601,7 +601,7 @@ That's it! You've successfully completed your first payment flow in Marketplaces
 
 </TipBox>
 
-### FAQs
+## FAQs
 
 <Accordion title="Why haven't my sub-entity's capabilities been enabled?">
 

@@ -8,7 +8,7 @@ Start seamlessly accepting credit card payments from your customers via Touch ID
 
 ---
 
-### Before you start
+## Before you start
 
 Before you can accept Apple Pay payments, you need to [set up and configure Apple Pay](/preview/drafts/nas/apple-pay/set-up-apple-pay).
 
@@ -18,11 +18,11 @@ If you plan to process Apple Pay payment through an entity outside the European 
 
 </TipBox>
 
-### Make a payment
+## Make a payment
 
 Once you've set up and configured Apple Pay, you're ready to accept Apple Pay payments through our payment gateway.
 
-#### Step 1: Generate a Checkout.com token from the Apple Pay token
+### Step 1: Generate a Checkout.com token from the Apple Pay token
 
 After your customer validates their transaction with biometrics, Apple will generate a <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken" target="_blank">payment token</ExternalLink>.
 
@@ -34,7 +34,7 @@ The first step in processing an Apple Pay transaction is to convert this Apple P
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Tokens" target="_blank">API reference</ExternalLink>.
 
@@ -55,7 +55,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -73,7 +73,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response example
+### Response example
 
 ```json
 {
@@ -96,11 +96,11 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 
 ---
 
-#### Step 2: Request a payment
+### Step 2: Request a payment
 
 Using the token `(tok_...)` you got in the response above, make a standard payment request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout" target="_blank">API reference</ExternalLink>.
 
@@ -121,7 +121,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -134,22 +134,22 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response example
+### Response example
 
 If you get a `201 Success` response and the `approved` field is `true`, your payment was successful. If the transaction failed, it's likely that the payment request was made with an invalid/expired card, or a valid card with an insufficient available balance.
 
 ---
 
-### Testing Apple Pay
+## Testing Apple Pay
 
-#### Before you start
+### Before you start
 
 To test Apple Pay payments, you'll need the following:
 
 *   An <ExternalLink href="https://support.apple.com/en-us/HT208531" target="_blank">Apple Pay compatible device</ExternalLink>.
 *   A <ExternalLink href="https://developer.apple.com/apple-pay/sandbox-testing/" target="_blank">sandbox Apple Pay wallet</ExternalLink>. (You cannot use a real Apple Pay wallet with real cards to test in sandbox.)
 
-#### Apple Pay test cards
+### Apple Pay test cards
 
 Once you've got a compatible device and a sandbox Apple Pay wallet, you can add one of the following test cards to it. See our [testing guide](/four/testing) for more information.
 
@@ -276,15 +276,15 @@ American Express
 </TableBody>
 </Table>
 
-#### Troubleshooting
+### Troubleshooting
 
 If something goes wrong, make sure you're using the correct keys, merchant ID and certificates. This is the most common issue we encounter. We recommend using descriptive names for your merchant IDs to clearly separate between your test and production environments.
 
-#### Displaying the Apple Pay button
+### Displaying the Apple Pay button
 
 If you don't have a card in your Apple Pay wallet, or you have a card that is not accepted based on the settings configured for Apple Pay (supported networks), your Apple Pay button might not be displayed if you display it conditionally `(session.canMakePaymentsWithActiveCard(...))`.
 
-#### Validating the Apple Pay Session
+### Validating the Apple Pay Session
 
 When validating the Apple Pay Session, keep note of the following:
 

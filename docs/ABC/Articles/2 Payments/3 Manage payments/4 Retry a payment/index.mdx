@@ -8,7 +8,7 @@ Occasionally, you may need to retry a payment or payment action (e.g., void) due
 
 ---
 
-### How it works
+## How it works
 
 To perform an idempotent payment or payment action request, provide the `Cko-Idempotency-Key` HTTP header. Keys should be unique and will expire after 24 hours for production environments and 120 seconds for sandbox environments, after which the request will be processed as normal. We strongly recommend using V4 UUIDs.
 
@@ -16,7 +16,7 @@ Subsequent requests with the same key will return the same HTTP status code and 
 
 If we detect concurrent requests with the same idempotency key, only one request will be processed and the other requests will return a `429 Too many requests` response. One scenario where this could occur is if you automatically retry a payment following a network issue, but the original request is still being processed. We recommend waiting for at least 30 seconds before attempting again.
 
-### Request example
+## Request example
 
 ```json
 curl -X POST https://api.sandbox.checkout.com/payments 

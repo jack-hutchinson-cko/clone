@@ -12,7 +12,7 @@ This page describes the response codes you might receive.
 
 ---
 
-### Overview
+## Overview
 
 A `response_code` is a five-digit numeric code that indicates the status of the request. Additional information on the request status may be found in the `response_summary` and `status` fields.
 
@@ -120,7 +120,7 @@ risk settings
 
 ---
 
-### Approved (10\*)
+## Approved (10\*)
 
 <Table>
 <TableHead headers={['Code', 'Description']} />
@@ -224,7 +224,7 @@ Deferred capture
 </TableBody>
 </Table>
 
-#### Example response: 10000 – Approved
+### Example response: 10000 – Approved
 
 ```json
 {
@@ -289,7 +289,7 @@ Deferred capture
 
 ---
 
-### Soft decline (20\*)
+## Soft decline (20\*)
 
 <Table>
 <TableHead headers={['Code', 'Text', 'Description']} />
@@ -2100,7 +2100,7 @@ Security
 
 ---
 
-### Hard decline (30\*)
+## Hard decline (30\*)
 
 <Table>
 <TableHead headers={['Code', 'Text', 'Description']} />
@@ -2532,7 +2532,7 @@ contact their issuing bank.
 
 ---
 
-### Risk responses (40\*)
+## Risk responses (40\*)
 
 Risk responses are triggered by our risk engine and will appear in the `response_code` of a payment response.
 
@@ -3686,7 +3686,7 @@ UDF1 Velocity - Monthly - All transactions
 </TableBody>
 </Table>
 
-#### Example response: 40111 – No AVS Match
+### Example response: 40111 – No AVS Match
 
 ```json
 {

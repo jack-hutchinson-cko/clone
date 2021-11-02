@@ -8,7 +8,7 @@ There's no need to request your customers’ card details for every payment. Ins
 
 ---
 
-### How it works
+## How it works
 
 After your customer makes an initial order, we securely store the card information as a payment instrument, each one identified by a unique ID (prefixed with `src_`). This source ID replaces the card number in all future payments, removing the need to re-enter and exchange sensitive payment information.
 
@@ -20,9 +20,9 @@ We do not store a card's CVV (the three- or four-digit number on the back of the
 
 ---
 
-### Request a payment using an existing card
+## Request a payment using an existing card
 
-#### Endpoint
+### Endpoint
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/#tag/Payments/paths/~1payments/post" target="_blank">API reference</ExternalLink>.
 
@@ -43,7 +43,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -58,7 +58,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response examples
+### Response examples
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 

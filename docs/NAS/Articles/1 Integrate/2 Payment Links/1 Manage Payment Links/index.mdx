@@ -10,7 +10,7 @@ On this page, find out how to:
 
 ---
 
-### Before you begin
+## Before you begin
 
 - Have you registered to begin using Payment Links? Contact your Solution Engineer or <ExternalLink href="mailto:integration@checkout.com">integration@checkout.com</ExternalLink>. During integration, you'll be able to specify your payment capture and 3D Secure settings.
 - You can set up [webhooks](/workflows) to be notified when the payment has been approved, so you can continue the sales fulfilment flow.
@@ -18,9 +18,9 @@ On this page, find out how to:
 
 ---
 
-### Create a Payment Link
+## Create a Payment Link
 
-#### Step 1: Create a new Payment Link session
+### Step 1: Create a new Payment Link session
 
 When requesting a payment from a customer using Payment Links solution, you can to create a Payment Links session. This can be sent to the customer through a method that best suits you.
 
@@ -277,7 +277,7 @@ Fawry
 }
 ```
 
-#### Step 2: Send the link to your customer
+### Step 2: Send the link to your customer
 
 Send the Payment Link you received in the `_links.redirect` object of the above response to your customer.
 
@@ -287,7 +287,7 @@ When they visit the link, they will be presented with a Checkout.com-hosted paym
 
 ---
 
-### Check the status of a Payment Link
+## Check the status of a Payment Link
 
 To keep track of the payments you request through Payment Links, you can check the status using the `id` returned when you created the session. It will look like `pl_ELqQJXdXzabU`.
 
@@ -297,7 +297,7 @@ There are three statuses:
 - `Payment Received`: A payment has been received successfully using this Payment Link.
 - `Expired`: The Payment Link has expired and can no longer be accessed.
 
-#### Endpoints
+### Endpoints
 
 For a full explanation of the fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payment-Links" target="_blank">API reference</ExternalLink>.
 
@@ -318,7 +318,7 @@ For a full explanation of the fields, see our <ExternalLink href="https://api-re
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title="Active">

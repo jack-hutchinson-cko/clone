@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Box } from '@cko/primitives';
-import { TextHeadingTwo } from 'components/TextHeading';
+import { TextHeadingOne } from 'components/TextHeading';
 import { Text } from 'components/Text';
 
 import { SIZE, Breakpoints, createBreakpointTo } from 'constants/screen';
@@ -46,7 +46,7 @@ export const ImageBoxWrapper = styled.div<{ maxDesktopWidth: number; hideForMobi
     `}
 `;
 
-export const IntroTitle = styled(TextHeadingTwo)`
+export const IntroTitle = styled(TextHeadingOne)`
   margin: 0 0 ${spacing.s40}px 0;
 `;
 
@@ -88,7 +88,7 @@ export const PageContent = styled.main<{ isIntegrationBuilder?: boolean }>`
   }
 `;
 
-export const Title = styled(TextHeadingTwo)`
+export const Title = styled(TextHeadingOne)`
   margin-top: 32px;
 `;
 

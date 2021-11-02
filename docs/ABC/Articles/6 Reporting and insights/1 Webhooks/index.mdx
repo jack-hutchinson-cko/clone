@@ -17,7 +17,7 @@ Here are some of our webhooks' best features:
 
 --- 
 
-### Webhooks example
+## Webhooks example
 
 In the diagram below, a merchant using [Frames](/integrate/frames) has configured a `payment_captured` webhook to trigger a notification to the merchant's server confirming the payment.
 
@@ -31,7 +31,7 @@ We highly recommend that you use `payment_captured` as the webhook trigger since
 
 ---
 
-### Setting up webhooks
+## Setting up webhooks
 
 Set up your webhooks in the business channel settings section of the <ExternalLink href="https://hub.checkout.com/login" target="_blank">hub</ExternalLink> or by using our [webhook management API](/reporting-and-insights/webhooks/webhook-management).
 
@@ -44,7 +44,7 @@ Easily configure multiple webhook endpoints to perform various processes for eac
 
 --- 
 
-### Webhook retries
+## Webhook retries
 
 <TipBox variant="note">
 
@@ -64,7 +64,7 @@ Amazon’s Simple Queue Service (SQS) features "at-least-once delivery"; this in
 
 ---
 
-### Implement a fallback logic
+## Implement a fallback logic
 
 Because webhook notifications are asynchronous, we recommend implementing a fallback logic in case you experience any delivery delays that could affect your cardholders' journey.
 
@@ -77,7 +77,7 @@ Alternatively, you can [use the GET payment actions endpoint](/payments/manage-p
 
 --- 
 
-### Webhook signatures
+## Webhook signatures
 
 A webhook signature is a security measure which allows you to verify the integrity and authenticity of the data you’re receiving. Each webhook contains a hash-based message authentication code (HMAC) in its `CKO-Signature` header. Checkout.com generates the HMAC by taking the contents of the webhook notification and hashing it using the `secret key` as the key.
 
@@ -91,7 +91,7 @@ Using signatures is simple. All you need to do is take the webhook's body and ap
 
 --- 
 
-### IP addresses
+## IP addresses
 
 If a merchant account is configured to receive webhook notifications, callbacks will be sent from one of the following IP addresses:
 

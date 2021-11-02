@@ -7,13 +7,13 @@ Learn how to rerun past events so you can retrigger the actions of your workflow
 
 ---
 
-### Reflow by multiple IDs
+## Reflow by multiple IDs
 
 Use the following endpoint to retrigger past events associated with multiple event IDs and workflow IDs, or multiple subject IDs (for example, payment IDs and dispute IDs) and workflow IDs.
 
 Your can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Workflows/paths/~1workflows~1events~1reflow/posthttps://api-reference.checkout.com/preview/crusoe/#tag/Workflows/paths/~1workflows~1events~1reflow/post" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -34,7 +34,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Body parameters
+### Body parameters
 
 <tabs>
 <tab title='Events and workdlow IDs'>
@@ -134,7 +134,7 @@ A list of IDs for the workflows whose actions you want to trigger.
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title='Event and workflow IDs'>
@@ -171,19 +171,19 @@ A list of IDs for the workflows whose actions you want to trigger.
 </tab>
 </tabs>
 
-#### Response
+### Response
 
 If successful, you'll receive a 202 success response.
 
 ---
 
-### Reflow by event ID
+## Reflow by event ID
 
 Pass an event's ID in the path of the following endpoint to rerun a single past event. This will trigger the actions of any existing workflows that are conditional on that event.
 
 Your can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Workflows/paths/~1workflows~1events~1{eventId}~1reflow/post" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -204,19 +204,19 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If successful, you'll receive a 202 success response.
 
 ---
 
-### Reflow by event and workflow ID
+## Reflow by event and workflow ID
 
 Pass an event ID and a workflow ID in the path of the following endpoint to retrigger all the actions associated with that specific event and workflow combination.
 
 Your can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Workflows/paths/~1workflows~1events~1{eventId}~1workflow~1{workflowId}~1reflow/post" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -237,19 +237,19 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If successful, you'll receive a 202 success response.
 
 ---
 
-### Reflow by subject ID
+## Reflow by subject ID
 
 Pass a subject ID (for example, a payment ID or a dispute ID) in the path of the following endpoint to rerun any events associated with it and retrigger the actions of any associated workflows.
 
 Your can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Workflows/paths/~1workflows~1events~1subject~1{subjectId}~1reflow/post" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -270,19 +270,19 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If successful, you'll receive a 202 success response.
 
 ---
 
-### Reflow by subject and workflow ID
+## Reflow by subject and workflow ID
 
 Pass a subject ID (for example, a payment ID or a dispute ID) and a workflow ID in the path of the following endpoint to retrigger all the actions associated with that specific subject and workflow combination.
 
 Your can find the full specification in our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Workflows/paths/~1workflows~1events~1subject~1{subjectId}~1workflow~1{workflowId}~1reflow/post)" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -303,6 +303,6 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If successful, you'll receive a 202 success response.

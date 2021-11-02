@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { spacing } from 'constants/spacingSize';
 
-import { TextHeadingThree } from 'components/TextHeading';
+import { TextHeadingTwo } from 'components/TextHeading';
 
-export const Header = styled(TextHeadingThree)`
+export const Header = styled(TextHeadingTwo)`
   margin: 0 0 ${spacing.s40}px 0;
 `;
 

@@ -12,11 +12,11 @@ There are three possible ways for you to request a payment:
 
 ---
 
-### Using a token
+## Using a token
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
@@ -43,7 +43,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 
 </TipBox>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -63,7 +63,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 }
 ```
 
-#### Response example
+### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -199,12 +199,12 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
 
 ---
 
-### Using a network token
+## Using a network token
 
 Use the details below to set up your request.
 
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
@@ -231,7 +231,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 
 </TipBox>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -251,7 +251,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 }
 ```
 
-#### Response example
+### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -387,13 +387,13 @@ The possible values for the `status` field include `Authorized`, `Pending`, `Car
 
 ---
 
-### Using full card details
+## Using full card details
 
 If you are [SAQ D PCI compliant](/payments/regulation-support/pci-compliance), you can use our Full Card API to request a payment using the full card details.
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
@@ -421,7 +421,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 
 </TipBox>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -443,7 +443,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 }
 ```
 
-#### Response example
+### Response example
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 

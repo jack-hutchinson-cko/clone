@@ -7,13 +7,13 @@ Create a token that represents a card's details that you can later use to reques
 
 ---
 
-### Step 1: Request a token
+## Step 1: Request a token
 
 Exchange card details for a reference token that can be used later to request a card payment. Tokens are single use and expire after 15 minutes. To create a token, you'll need to authenticate using your public API key.
 
-#### The request
+### The request
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Sandbox">
@@ -25,7 +25,7 @@ Exchange card details for a reference token that can be used later to request a 
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -64,7 +64,7 @@ This will be prefixed by **pk_test_**.
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <TipBox variant="success">
 
@@ -190,7 +190,7 @@ The payment source owner's phone number.
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Payload" active>
@@ -247,11 +247,11 @@ try {
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If your request was successful, you'll receive a 201 response containing a card token prefixed by `tok_`. You then have 15 minutes to request a payment using this token.
 
-#### Response example
+### Response example
 
 ```javascript
 {
@@ -287,7 +287,7 @@ If your request was successful, you'll receive a 201 response containing a card 
 
 ---
 
-### Step 2: Request a payment using the token
+## Step 2: Request a payment using the token
 
 [Create a payment request](/payments/accept-payments/request-a-payment#Using_a_token) using the token you just received.
 

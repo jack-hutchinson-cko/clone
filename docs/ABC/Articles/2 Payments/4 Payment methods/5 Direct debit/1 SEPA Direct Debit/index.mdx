@@ -112,7 +112,7 @@ Online banking
 
 ---
 
-### Overview
+## Overview
 
 First, you need to collect your customers' euro-denominated bank account details, including their IBAN. The bank account holder is then required to accept a mandate to authorize you to debit their account. Once the mandate is approved, submit the mandate details to Checkout.com and we'll provide you with a source object with which you can request a payment.
 
@@ -123,7 +123,7 @@ First, you need to collect your customers' euro-denominated bank account details
 
 ---
 
-### Issue the mandate
+## Issue the mandate
 
 Before any payment can occur, your customer must authorize the payment by accepting the terms of the mandate. By accepting, they are authorizing you to collect the specified amount from their bank account using SEPA Direct Debit.
 
@@ -144,7 +144,7 @@ For details about the mandate and more, please read the <ExternalLink href="http
 
 ---
 
-### Pre-notify the customer
+## Pre-notify the customer
 
 Before debiting a customer's account with SEPA Direct Debits, it is mandatory that the customer is informed of the debit by the merchant in an agreed timeframe before the payment. We recommend you include details of this timeframe in your terms and conditions.
 
@@ -160,7 +160,7 @@ For additional information about pre-notifications, please read the <ExternalLin
 
 ---
 
-### Create a new SDD payment source
+## Create a new SDD payment source
 
 Create a new SEPA payment source that can be used to make one or more payments. Creating a source will automatically create a new mandate as well. You'll receive the mandate `reference` in the response, and you can use this if you ever need to [cancel a mandate](#SEPADirectDebit-cancelmandate).
 
@@ -170,7 +170,7 @@ Payment sources are linked to a specific customer and cannot be shared between c
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -191,7 +191,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Recurring mandate request" active>
@@ -262,7 +262,7 @@ The soft descriptor value will be prepended to the mandate reference when it app
 
 </TipBox>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -291,9 +291,9 @@ The soft descriptor value will be prepended to the mandate reference when it app
 
 ---
 
-### Request a payment
+## Request a payment
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -314,7 +314,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -334,7 +334,7 @@ Use the provided source ID in the payments endpoint to create a payment for a pa
 
 </TipBox>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -355,7 +355,7 @@ Use the provided source ID in the payments endpoint to create a payment for a pa
 
 ---
 
-### Cancel a mandate
+## Cancel a mandate
 
 If your customer requests to cancel a SDD mandate, you can do so by using our cancel mandate endpoint. Once canceled, you will no longer be able to create payments using the mandate or its source object.
 
@@ -365,7 +365,7 @@ This action is only available for recurring SDD payments; you cannot cancel one-
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -394,11 +394,11 @@ Mandates automatically expire after 36 months of inactivity.
 
 ---
 
-### Refund a payment
+## Refund a payment
 
 A captured SEPA charge can be refunded by passing the original payment ID (of the SEPA payment) through our [refund endpoint](/payments/manage-payments/refund-a-payment). Refunds must be claimed within eight weeks, starting from the date on which the account was debited.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -419,7 +419,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -428,7 +428,7 @@ You can find the full list, as well as complete request and response examples, i
     }
 ```
 
-#### Response example
+### Response example
 
 If your refund request is successful, you will receive a `payment_refund_pending` webhook notification. Once the refund has been processed, you will receive a `payment_refunded` webhook and the payment status will change to `refunded`.
 
@@ -452,11 +452,11 @@ Refunds can take up to four days to be processed.
 
 ---
 
-### Retrieve a payment source
+## Retrieve a payment source
 
 Use this request to get more information on an SDD payment source, based on its `id`.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -477,7 +477,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -502,7 +502,7 @@ If the source cannot be found, you will get a `404 - Payment source not found` e
 
 ---
 
-### Chargebacks
+## Chargebacks
 
 A customer can dispute an SDD payment with their bank when they believe that they did not authorize the payment. However, owing to the asynchronous nature of SDDs, the reasons for a chargeback go beyond the traditional customer-initiated chargebacks. SDD chargebacks may be caused by the IBAN being incorrect, the customer having insufficient funds, or the customer's bank account being closed. If a chargeback occurs, we will let you know through a `payment_chargeback` webhook notification.
 
@@ -516,7 +516,7 @@ Chargebacks can be initiated by the customer up to 13 months after a payment was
 
 ---
 
-### Testing SDD
+## Testing SDD
 
 <TipBox variant="note">
 

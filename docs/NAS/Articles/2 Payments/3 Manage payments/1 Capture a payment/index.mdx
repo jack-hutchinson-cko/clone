@@ -14,13 +14,13 @@ The Unified Payments API supports multiple partial captures—enabling you to pr
 
 ---
 
-### Manually capture a payment
+## Manually capture a payment
 
 If a payment is requested with `capture` as `false`, you can use this endpoint to capture the payment. These captures can either be the full or partial authorization amount, but cannot be submitted for a combined amount that exceeds the total authorized balance.
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -41,7 +41,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -51,6 +51,6 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response
+### Response
 
 If you receive a `202` HTTP status code, your capture request has been submitted successfully for clearing.

@@ -25,13 +25,13 @@ No payments from before February 7th, 2019 at 00.00.00 UTC will appear when usin
 
 ---
 
-### Request JSON
+## Request JSON
 
-#### The GET request
+### The GET request
 
 Use the details below to set up your request. To set the timeframe of your request, replace `{start-date-time}` and `{end-date-time}` with your desired start and end dates in ISO format (`yyyy-mm-ddThh:mm:ss`). Please note that the time zone for the request will be UTC.
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Live">
@@ -43,7 +43,7 @@ Use the details below to set up your request. To set the timeframe of your reque
 </tab>
 </tabs>
 
-#### Request parameters and endpoints
+### Request parameters and endpoints
 
 You can filter the data in the payments endpoint by using the parameters below:
 
@@ -103,7 +103,7 @@ https://api.checkout.com/reporting/payments?reference={reference}
 
 You can also [limit results](/reporting-and-insights/reconciliation-api/payments-endpoint#Paymentsendpoint-limitresults).
 
-#### The GET response
+### The GET response
 
 If the payments endpoint returns a response, then the request was successful. Below, you can find an example response from the payments endpoint, in addition to a list of the fields that will be shown.
 
@@ -113,7 +113,7 @@ By default, the payments endpoint returns up to 200 payments per page of results
 
 </TipBox>
 
-#### Response example
+### Response example
 
 ```json
 {
@@ -332,11 +332,11 @@ By default, the payments endpoint returns up to 200 payments per page of results
 }
 ```
 
-#### Understanding the response
+### Understanding the response
 
 The payments endpoint is designed to present your payments as clearly as possible. Depending on your parameters, you may receive a large response. If you’re looking for data even more quickly, try amending the parameters in the request. Regardless of the parameters in your request, the payments endpoint’s response can be split into four sections, each of which is outlined below.
 
-#### 1. Payments
+### 1. Payments
 
 This section displays all payment information in accordance with your chosen parameters. The table below shows the full list of parameters displayed, and how to decipher them.
 
@@ -502,7 +502,7 @@ An optional, user-defined ID that identifies the business.
 </TableBody>
 </Table>
 
-#### 2. Actions
+### 2. Actions
 
 This section outlines all the actions — authorization, void, capture, refund, retrieval, and chargeback — which have been administered to a payment. The table below outlines and explains the parameters of the report.
 
@@ -572,7 +572,7 @@ Further information about the response code.
 </TableBody>
 </Table>
 
-#### 3. Breakdown
+### 3. Breakdown
 
 The amounts summary shows the amounts corresponding with a particular action. The table below shows the full list of these parameters and their explanations.
 
@@ -636,11 +636,11 @@ If you're looking for the outcome of a particular chargeback, please allow up to
 
 </TipBox>
 
-#### 4. Links
+### 4. Links
 
 You might have noticed several links at the bottom of the response from the payments endpoint. Let’s take a look at each one.
 
-#### Payment ID – Self
+### Payment ID – Self
 
 This link allows you to focus on a particular payment that has been included in the response. As you can see, the final component of the link is `pay_sv6ikhu36mgepkm3l22pztvywa`, which corresponds to the payment ID for that particular payment in the response.
 
@@ -652,7 +652,7 @@ This link allows you to focus on a particular payment that has been included in 
 }
 ```
 
-#### Next
+### Next
 
 This link lets you move to the next page of results. Results are paginated at a payment level. By default, a page contains 200 results — though you can [change this limit](/reporting-and-insights/reconciliation-api/payments-endpoint#Paymentsendpoint-limitresults) if you'd like.
 
@@ -664,7 +664,7 @@ This link lets you move to the next page of results. Results are paginated at a 
 }
 ```
 
-#### Self
+### Self
 
 This link provides the URL associated with the current request.
 
@@ -678,11 +678,11 @@ This link provides the URL associated with the current request.
 
 ---
 
-### Download a CSV
+## Download a CSV
 
 In addition to the JSON format described above, you can download a CSV report containing the data from the payments endpoint. To do this, follow the steps below.
 
-#### How to download the CSV file
+### How to download the CSV file
 
 In the URL for the payments endpoint, add `/download` after `/payments`. An example of this can be found below:
 
@@ -704,25 +704,25 @@ You can also get a CSV report by amending the Headers section of the request to 
 
 </TipBox>
 
-#### How to read the CSV file
+### How to read the CSV file
 
 In your CSV file, a single payment is uniquely identified by an ID in the first column of the table and will be made of multiple rows, each of them reflecting a fee or an amount applied to a different action within the payment lifecycle.
 
 Regardless of the parameters in your request, the payments endpoint’s CSV file will have the same overall structure and columns titles which can be split into three sections.
 
-#### 1. Payment and card attributes
+### 1. Payment and card attributes
 
 This section displays all payment and card attributes in accordance with your chosen parameters.
 
 <img src="/docs/Reporting_and_insights/Payments endpoint/payment_card_attributes.png"  />
 
-#### 2. Actions
+### 2. Actions
 
 This section outlines all the actions — authorization, void, capture, refund and chargeback — which have been administered to a payment.
 
 <img maxWidth={380} src="/docs/Reporting_and_insights/Payments endpoint/actions.png"  />
 
-#### 3. Breakdown
+### 3. Breakdown
 
 This section provides details of the associated amounts to an action in both the processing and the payout currencies.
 
@@ -730,7 +730,7 @@ This section provides details of the associated amounts to an action in both the
 
 ---
 
-### Limit results
+## Limit results
 
 Responses from the payments endpoint can be large, depending on the number of payments you process and the parameters you have chosen. By default, each page includes 200 results.
 

@@ -18,7 +18,7 @@ In this guide, you'll find how to:
 
 ---
 
-### Add more payment methods
+## Add more payment methods
 
 <TipBox variant="note" title="Before you start">
 
@@ -49,7 +49,7 @@ We currently support the following payment methods on Magento 2:
 - [Google Pay](/payments/payment-methods/wallets/google-pay)
 - [PayPal](/payments/payment-methods/wallets/pay-pal)
 
-#### Enable alternative payments
+### Enable alternative payments
 
 1. Log in to your Magento Admin Panel and go to _Stores > Configuration > Sales > Payment Methods_, find the Checkout.com plugin, select _Configure_ and expand _Alternative Payments_.
 
@@ -65,7 +65,7 @@ We currently support the following payment methods on Magento 2:
 4. Select the payment methods you want to support.
 5. Select _Save Config_.
 
-#### Apple Pay
+### Apple Pay
 
 <TipBox variant="info">
 
@@ -93,7 +93,7 @@ You can only add an Apple Pay button to the shopping basket page if you are runn
 
 12. Click _Save Config_.
 
-#### Google Pay
+### Google Pay
 
 <TipBox variant="info">
 
@@ -112,7 +112,7 @@ See our [Google Pay documentation](/payments/payment-methods/wallets/google-pay)
 
 ---
 
-### Enable 3D Secure payments
+## Enable 3D Secure payments
 
 <TipBox variant="note">
 
@@ -128,7 +128,7 @@ If you enable this feature, every transaction will trigger a 3D Secure (3DS) che
 
 ---
 
-### Enable payments with saved cards
+## Enable payments with saved cards
 
 1.  Log in to your Magento Admin Panel, go the Checkout.com plugin's configuration panel and expand _Card Payments_.
 2.  Set _Save Card Option_ to _Yes_ if you want to allow your customers to save their cards for future payments. They can then use the same card on your website without re-entering the details.
@@ -145,7 +145,7 @@ If you enable this feature, every transaction will trigger a 3D Secure (3DS) che
 
 ---
 
-### Enable MOTO payments
+## Enable MOTO payments
 
 These settings allow the administrator of your account to carry out mail order / telephone order (MOTO) payments on your customers' behalf.
 
@@ -157,19 +157,19 @@ These settings allow the administrator of your account to carry out mail order /
 
 ---
 
-### Card payment options
+## Card payment options
 
 To find these settings, log in to your Magento Admin Panel, go the Checkout.com plugin's configuration panel and expand _Card Payments_.
 
-#### Payment option title
+### Payment option title
 
 Allows you to specify what title the customer will see when they choose to pay by card.
 
-#### Display card icons
+### Display card icons
 
 Set to _Yes_ if you want to display card scheme logos to customers, and then select the particular scheme logos you want to display.
 
-#### Enable Mada BIN check
+### Enable Mada BIN check
 
 <TipBox variant="note">
 
@@ -185,29 +185,29 @@ Enabling this feature will also mean all Mada card payment are auto-capture and 
 
 Take a look at our [Mada guide](/payments/payment-methods/cards/mada) to find out more.
 
-#### Payment form layout
+### Payment form layout
 
 Select your preferred layout for the payment form. _Single iframe_ displays a one-line payment form. _Multiple iframes_ displays a payment form of three fields. See our [Frames customization guide](/integrate/frames/frames-customization-guide) for more information.
 
-#### Payment form styles
+### Payment form styles
 
 Allows you to customize the payment form's look and feel. You can add CSS styles in JSON format to alter the form's appearance. For example: `{"base":{"color":"blue","fontSize":"18px"}}`. See our [Frames customization guide](/integrate/frames/frames-customization-guide) for more information.
 
 ---
 
-### General payment options
+## General payment options
 
 To find these settings, log in to your Magento Admin Panel, go the Checkout.com plugin's configuration panel and expand _Global Settings_.
 
-#### Payment action
+### Payment action
 
 If you want to manually capture payments, rather than have payments automatically captured (the _Authorize_ and _Capture_ option), set _Payment Action_ to _Authorize_. Payments will now be authorized, but you will need to manually capture the payment afterwards.
 
-#### Capture time
+### Capture time
 
 If you set the _Authorize_ and _Capture_ as the _Payment Action_, you can use this setting to specify the delay (in hours) before the payment is captured. For example, `1.500` for capture after one hour and 30 minutes; `0.010` for capture after 36 seconds. We don't recommend setting a value lower than `0.003` (10 seconds).
 
-#### Dynamic descriptor
+### Dynamic descriptor
 
 This is an extra field that you can send to the issuer, appearing on the customer's bank statement as an additional description of the payment.
 
@@ -217,11 +217,11 @@ This is an extra field that you can send to the issuer, appearing on the custome
 
 ---
 
-### Manually capture, void and refund payments
+## Manually capture, void and refund payments
 
 As well as doing so through the Hub, you can also manually capture, void, and refund payments from the Magento Admin Panel. These actions will show in both Magento and the Hub.
 
-#### Manually capture payment
+### Manually capture payment
 
 1.  Log in to your Magento Admin Panel, go the Checkout.com plugin's configuration panel and expand _Global Settings_.
 2.  Make sure _Payment Action_ is set to _Authorize_.
@@ -229,7 +229,7 @@ As well as doing so through the Hub, you can also manually capture, void, and re
 4.  Select _Invoice_.
 5.  Select _Submit Invoice_ at the bottom of the page to complete and capture the payment.
 
-#### Void payment
+### Void payment
 
 <TipBox variant="note">
 
@@ -242,7 +242,7 @@ You can only void payments that have been authorized but not yet captured.
 3.  Once you've created an order, find it in _Sales > Orders_ in your Magento Admin Panel. It should have a `Pending Payment` status. Select _View_ on the order.
 4.  Select _Void_ to void the payment.
 
-#### Refund a payment
+### Refund a payment
 
 <TipBox variant="note">
 
@@ -258,18 +258,18 @@ If refunding through Magento, we recommend you do so through the invoice for the
 
 ---
 
-### Order settings
+## Order settings
 
 To find these settings, log in to your Magento Admin Panel, go to the Checkout.com plugin's configuration panel, select _Configuration_ and then expand _Order Settings_.
 
-#### Action on failed payment
+### Action on failed payment
 
 Select the action you want to be taken on orders with failed payments. We recommend you choose _Cancel the order_. This will cancel the order where the payment fails, but still record it so you have a trace of all failed orders. If you choose _Delete the order_, it will delete any trace of the failed order, leaving no record of it.
 
-#### Order confirmation email
+### Order confirmation email
 
 Select at what point you want to send the customer an order confirmation email. _Authorize_ will send an order confirmation email to the customer as soon as the payment is authorized. _Authorize and Capture_ will send it only after the payment has been both authorized and captured.
 
-#### Order statuses
+### Order statuses
 
 These settings allow you edit the order statuses in line with the status of the payment. But they are automatically set to Magento's default values, so be aware that editing them may cause problems with the order flow.

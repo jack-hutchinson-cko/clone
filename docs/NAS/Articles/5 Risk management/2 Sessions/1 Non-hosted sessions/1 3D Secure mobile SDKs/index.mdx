@@ -23,13 +23,13 @@ Our 3D Secure SDK supports 3DS2 (version 2.1.0 and, if your configuration suppor
 
 ---
 
-### The 3DS2 customer experience
+## The 3DS2 customer experience
 
 3DS2 allows you and your payment provider to share more data (like the customer's device ID and payment history) with the customer's bank so they can better assess the risk of the transaction and select the appropriate response: either the "frictionless flow" or "challenge flow". 
 
 ---
 
-### Frictionless flow
+## Frictionless flow
 
 If the customer's bank is satisfied with the data and trusts that it is the cardholder making the payment, the transaction will be authenticated without interrupting the customer. All the customer will see of the 3DS process is a short "processing" overlay, with branding from their card scheme.
 
@@ -37,7 +37,7 @@ If the customer's bank is satisfied with the data and trusts that it is the card
 
 ---
 
-### Challenge flow
+## Challenge flow
 
 If, however, the bank decides it needs further proof, they will prompt the customer to verify their identity. This can take one of the following forms:
 
@@ -59,7 +59,7 @@ To provide a consistent experience across different devices and schemes, there a
 
 ---
 
-### How it works
+## How it works
 
 To use one of our 3DS mobile SDKs, first integrate the library into your project. Then, configure your iOS or Android app to:
 
@@ -69,7 +69,7 @@ To use one of our 3DS mobile SDKs, first integrate the library into your project
 
 ---
 
-### Implementation examples
+## Implementation examples
 
 Below are some code examples for each platform.
 
@@ -229,7 +229,7 @@ checkout3DS.authenticate(authenticationParameters, result -> {
 
 ---
 
-### Integrate the 3D Secure SDK into your app
+## Integrate the 3D Secure SDK into your app
 
 To gain access to the 3D Secure mobile SDKs, contact your Customer Success Manager or Integrations engineer, or email us at support@checkout.com.
 
@@ -293,9 +293,9 @@ pod 'Checkout3DS', :git => 'git@github.com:checkout/checkout-3ds-sdk-ios.git', :
 
 ---
 
-### Add the 3D Secure SDK to your app's payment flow
+## Add the 3D Secure SDK to your app's payment flow
 
-#### Step 1: Initialize the SDK 
+### Step 1: Initialize the SDK 
 
 Initialize the SDK, setting the environment (production or sandbox), the locale, and your preferred [challenge user interface options](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization).
 
@@ -368,7 +368,7 @@ Checkout3DSService checkout3DS = new Checkout3DSService(
 
 <Accordion title="See more details"> 
 
-#### Checkout3DS2Service
+### Checkout3DS2Service
 
 This is the main class of the SDK that performs payment authentication with the `authenticate` method. It only needs to be initialized once for the lifetime of the application, and is initialized with the following parameters.
 
@@ -610,7 +610,7 @@ The `appUrl` field value can have up to 211 characters. If it exceeds 211 charac
 </tab>
 </tabs>
 
-#### Check for security warnings
+### Check for security warnings
 
 Optionally, you can use the `getWarnings` method to check for any security warnings when initializing the SDK, or any time afterwards. It will return the following information:
 
@@ -670,7 +670,7 @@ The severity of the warning. It can be either `low`, `medium`, or `high`.
 
 </Accordion>
 
-#### Step 2: Configure the authentication parameters
+### Step 2: Configure the authentication parameters
 
 After your backend has requested an authentication session with our [Sessions API](/risk-management/sessions/non-hosted-sessions), you will receive a response.
 
@@ -728,7 +728,7 @@ AuthenticationParameters authenticationParameters = AuthenticationParameters(
 <tabs>
 <tab title="iOS">
 
-#### authenticate method parameters
+### authenticate method parameters
 
 <Table>
 <TableHead headers={['Parameter name', 'Parameter type', 'Description']} />
@@ -774,7 +774,7 @@ Closure that is called with the error that occurred during authentication, or `n
 </TableBody>
 </Table>
 
-#### authenticationParameters properties
+### authenticationParameters properties
 
 <Table>
 <TableHead headers={['Parameter name', 'Description']} />
@@ -835,7 +835,7 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 <tab title="Android">
 
 
-#### authenticate method parameters
+### authenticate method parameters
 
 <Table>
 <TableHead headers={['Parameter name', 'Parameter type', 'Description']} />
@@ -881,7 +881,7 @@ The AuthenticationCallback listener to be invoked with the result of the authent
 </TableBody>
 </Table>
 
-#### authenticationParameters properties
+### authenticationParameters properties
 
 <Table>
 <TableHead headers={['Parameter name', 'Description']} />
@@ -943,7 +943,7 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 
 </Accordion>
 
-#### Step 3: Request authentication and handle the result
+### Step 3: Request authentication and handle the result
 
 Once the authentication is completed, the SDK returns a result. 
 
@@ -1034,7 +1034,7 @@ checkout3DSService.authenticate(authenticationParams, result -> {
 <tabs>
 <tab title="iOS">
 
-#### AuthenticationError
+### AuthenticationError
 
 This enumeration contains all the possible errors that might occur during authentication. Each error has a readable name and an associated error code.
 
@@ -1049,7 +1049,7 @@ Swift uses `AuthenticationError`, but Objective-C uses `NSError`.
 <tab title="Android">
 
 
-#### AuthenticationResult
+### AuthenticationResult
 
 Represents the outcome of the authentication.
 
@@ -1083,7 +1083,7 @@ The `resultType` will be one of the following:
 - `Failed` – Authentication was unsuccessful. You cannot proceed with the payment.
 - `Error` – An error occurred during authentication. You will need to handle the error.
 
-#### AuthenticationError
+### AuthenticationError
 
 Represents the details of the error that occurred during authentication. The error object contains two bits of information: the `errorType` and the `errorCode`.
 
@@ -1228,7 +1228,7 @@ The SDK encountered an error related to the implementation of the SDK.
 
 ---
 
-### Customize the challenge user interface 
+## Customize the challenge user interface 
 
 We’ve built a simple, clean default style for the native challenge user interfaces, so you can quickly get going without defining your own style. But if you want to tailor the challenge screens in your app, our SDKs let you control:
 

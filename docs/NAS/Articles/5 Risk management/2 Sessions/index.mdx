@@ -20,9 +20,9 @@ Sessions currently supports Visa (Verified by Visa / Visa Secure) and Mastercard
 
 ---
 
-### Non-hosted and hosted sessions
+## Non-hosted and hosted sessions
 
-#### Non-hosted
+### Non-hosted
 
 Non-hosted sessions are designed for those who want full control over their authentication flow.
 
@@ -32,7 +32,7 @@ You will then need to collect channel (either browser or mobile app) and additio
 
 [Get started with non-hosted sessions](/risk-management/sessions/non-hosted-sessions).
 
-#### Hosted
+### Hosted
 
 This is the simplest solution, where we manage the authentication flow for you.
 
@@ -42,13 +42,13 @@ Initiate an authentication through the Sessions API, set `completion.type` to `h
 
 ---
 
-### Authorization
+## Authorization
 
 When creating a session, you will need to authorize your request with access key authorization.
 
 Use the following endpoint to generate an `access_token`, and use it to authorize your create session request.
 
-#### The request
+### The request
 
 <tabs>
 <tab title="Live">
@@ -67,7 +67,7 @@ Use the following endpoint to generate an `access_token`, and use it to authoriz
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Header and path parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -103,7 +103,7 @@ Use the following endpoint to generate an `access_token`, and use it to authoriz
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <Table>
 <TableHead headers={['Field name', 'Description']} />
@@ -159,7 +159,7 @@ Your Checkout.com access key secret.
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Payload">
@@ -183,9 +183,9 @@ curl --location --request POST 'https://access.sandbox.checkout.com/connect/toke
 </tab>
 </tabs>
 
-#### The response
+### The response
 
-#### Response example
+### Response example
 
 The token server will return a Bearer `access_token` in JSON Web Token (JWT) format.
 

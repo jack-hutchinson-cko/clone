@@ -13,13 +13,13 @@ You can use our LINK cartridges with Storefront Reference Architecture (SFRA) or
 
 ---
 
-### Before you start
+## Before you start
 
-#### Create a test account
+### Create a test account
 
 If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink>.
 
-#### Get your API keys
+### Get your API keys
 
 To set up our SFCC integration, you'll need three API keys: a secret one, a public one, and a private shared one. The first two are generated automatically upon account creation. The last one is generated when you create a webhook for your business.
 
@@ -59,9 +59,9 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 ---
 
-### Install the LINK cartridges
+## Install the LINK cartridges
 
-#### Upload the cartridges
+### Upload the cartridges
 
 1.  Download our <ExternalLink href="https://github.com/checkout/link_checkoutcom). This package includes the frontend cartridges for SFRA (`int_checkoutcom_sfra`) and SiteGenesis (`int_checkoutcom`), as well as the backend cartridge (`bm_checkoutcom`" target="_blank">installation package from GitHub</ExternalLink>, which is compatible with both SFRA and SiteGenesis.
 2.  Upload the relevant <ExternalLink href="https://github.com/checkout/link_checkoutcom/tree/master/Cartridges" target="_blank">cartridges</ExternalLink> to your server, using a tool like UX Studio:
@@ -76,7 +76,7 @@ SFRA example:
 
 <img maxWidth={700} src="/docs/Integrate/Salesforce/Frame+2366.png"  />
 
-#### Import the metadata
+### Import the metadata
 
 1.  In a file browser, open the `metadata` folder in the installation package you downloaded earlier, then go into the `sites` subfolder.
 2.  Rename the default named folder to the name of the site for which you want to import the cartridge:
@@ -94,7 +94,7 @@ SFRA example:
   
 />
 
-#### Edit the template file (SiteGenesis only)
+### Edit the template file (SiteGenesis only)
 
 If you use SiteGenesis, you also need to edit the payment methods template in order to show the Checkout.com payment option on the billing page.
 
@@ -133,7 +133,7 @@ The Checkout.com credit card form is not compatible with the default SiteGenesis
 
 ---
 
-### Configure the cartridges
+## Configure the cartridges
 
 1.  Log in to Business Manager, and go to _Merchant Tools > Site Preferences > Custom Preferences > Checkout.com Sandbox API_.
 2.  Enter the public key, secret key, and private shared key from your sandbox Hub account, and select _Save_.
@@ -157,7 +157,7 @@ That's it! You're ready to start testing card payments.
 
 ---
 
-### Test your integration 
+## Test your integration 
 
 1.  Go to your storefront and add a product to your cart.
 2.  Go to your cart and proceed to the checkout.
@@ -186,7 +186,7 @@ You'll find more test cards and a range of scenarios to trigger in our [testing
 
 ---
 
-### Go live
+## Go live
 
 If you're happy with the outcome of your testing and want to start taking payments right away, please <ExternalLink href="https://www.checkout.com/contact-sales" target="_blank">contact our Sales team</ExternalLink> in order to move to a live account.
 
@@ -202,6 +202,6 @@ Before you go live, remember to:
 
 ---
 
-### Extend your configuration
+## Extend your configuration
 
 You can extend your integration to [add more payment methods](/integrate/e-commerce-platforms/salesforce-commerce-cloud/go-further), use [3D Secure payments](/integrate/e-commerce-platforms/salesforce-commerce-cloud/go-further), and more.

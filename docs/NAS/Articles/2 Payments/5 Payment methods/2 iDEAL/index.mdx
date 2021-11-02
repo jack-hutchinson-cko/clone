@@ -16,7 +16,7 @@ To start accepting iDEAL payments, please contact your Customer Success Manager.
 
 ---
 
-### Overview
+## Overview
 
 iDEAL payments follow a two-step process:
 
@@ -25,11 +25,11 @@ iDEAL payments follow a two-step process:
 
 ---
 
-### Request a payment
+## Request a payment
 
 Use the details below to set up your request. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -48,7 +48,7 @@ Use the details below to set up your request. To get a detailed view of all requ
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
     {
@@ -69,7 +69,7 @@ If a customer ID or email is not provided in the request, then we automatically 
 
 </TipBox>
 
-#### Response example
+### Response example
 
 If you receive a `202 Success` response with a payment `id` and a `status` field set to `Pending`, your request was successful.
 
@@ -93,7 +93,7 @@ If you receive a `202 Success` response with a payment `id` and a `status` field
 
 ---
 
-### Redirect the customer
+## Redirect the customer
 
 Redirect your customer to the `redirect` link’s href in the above response. The redirect transfers the customer to their bank's website where they are required to enter their authorization details; if successful, the payment can be approved.
 
@@ -107,7 +107,7 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ---
 
-### Get details about a payment
+## Get details about a payment
 
 You can use the `payment_id` found in the payment response, or the `cko-session-id` from the success/failure URL (e.g., `https://www.checkout.com/order/succeeded?cko-session-id=`) to retrieve details about the payment. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
@@ -117,7 +117,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -137,7 +137,7 @@ The `cko-session-id` expires 15 minutes after being created.
 </tabs>
 
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -177,13 +177,13 @@ The `cko-session-id` expires 15 minutes after being created.
 
 ---
 
-### Refund a payment
+## Refund a payment
 
 iDEAL supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink> or using the <ExternalLink href="https://api-reference.checkout.com/#operation/refundAPayment" target="_blank">refund endpoint</ExternalLink> of the Unified Payments API.
 
 ---
 
-### Cancel a payment
+## Cancel a payment
 
 If the customer fails to complete their payment, we will automatically void the payment in 10 minutes and send a `payment_expired` webhook.
 
@@ -191,7 +191,7 @@ If the customer cancels their payment, we will send a `payment_canceled` webhook
 
 ---
 
-### Webhooks
+## Webhooks
 
 When using iDEAL, you may receive the following webhooks.
 
@@ -311,11 +311,11 @@ Occurs when a refund is declined.
 
 ---
 
-### Get a list of supported issuers
+## Get a list of supported issuers
 
 Use the following request to get an up-to-date list of all issuers supporting iDEAL payments. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -334,7 +334,7 @@ Use the following request to get an up-to-date list of all issuers supporting iD
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
     {
@@ -363,7 +363,7 @@ Use the following request to get an up-to-date list of all issuers supporting iD
 
 ---
 
-### Testing iDEAL
+## Testing iDEAL
 
 <TipBox variant="note">
 
@@ -374,7 +374,7 @@ To start testing, you'll need to:
 
 </TipBox>
 
-#### Test a payment request
+### Test a payment request
 
 1.  Create an iDEAL transaction as above, following the redirect link in the response to the bank's website.
 2.  Select _Confirm transaction_. You should then be redirected to your predefined success URL.
@@ -387,7 +387,7 @@ When you test a payment refund, the transaction is likely to remain in a deferre
 
 ---
 
-### Simulate payment states
+## Simulate payment states
 
 In the sandbox environment, you can test different payment states by entering one of the following values in the `amount` field of your payment request.
 

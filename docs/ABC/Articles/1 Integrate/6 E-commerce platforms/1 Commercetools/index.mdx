@@ -20,13 +20,13 @@ Our integration has two parts:
 
 ---
 
-### Before you start
+## Before you start
 
-#### Create a test account
+### Create a test account
 
 If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink>.
 
-#### Get your API keys
+### Get your API keys
 
 To set up our commercetools API Client, you'll need your public and secret API keys, which are generated automatically upon account creation.
 
@@ -35,7 +35,7 @@ To set up our commercetools API Client, you'll need your public and secret API k
 
 <img maxWidth={700} src="/docs/Integrate/Commercetools/apple_pay_flow.png"  />
 
-#### Configure webhooks
+### Configure webhooks
 
 <TipBox variant="info">
 
@@ -142,7 +142,7 @@ Correctly configuring your webhooks is important; if they're incorrectly formatt
 
 </TipBox>
 
-#### How webhooks interact with commercetools
+### How webhooks interact with commercetools
 
 When a webhook is triggered on our side, our integration is creating or updating a transaction in commercetools to reflect the change.
 
@@ -450,7 +450,7 @@ We do not automatically update the order or payment status. This allows you to b
 
 ---
 
-### Configure API Client
+## Configure API Client
 
 Follow the steps below to create and configure the [Checkout.com](http://checkout.com/) API Client on your commercetools site.
 
@@ -542,7 +542,7 @@ Follow the steps below to create and configure the [Checkout.com](http://checkou
 
 </Accordion>
 
-### Set up the frontend
+## Set up the frontend
 
 Next, set up the frontend part of our commercetools integration.
 
@@ -705,14 +705,14 @@ const paymentSuccess = await createContext({
 
 </Accordion>
 
-### Make a payment
+## Make a payment
 
 Now that you've set up the integration, you're ready to make a payment. You can make a payment in two steps:
 
 1. Create context
 2. Request payment
 
-#### Create context
+### Create context
 
 First, create a payment context. This returns the available payment options to the customer, and gives you a `context_id`, with which you can then request a payment.
 
@@ -1207,7 +1207,7 @@ We recommend that you create a context when your payment options page loads, and
 
 </TipBox>
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Live">
@@ -1226,7 +1226,7 @@ We recommend that you create a context when your payment options page loads, and
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -1267,7 +1267,7 @@ Use the valid public key of your <ExternalLink href="https://hub.checkout.com/v2
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <Table>
 <TableHead headers={['Field name', 'Description']} />
@@ -1310,7 +1310,7 @@ If not present, the billing email or the email from the order will be used.
 </TableBody>
 </Table>
 
-#### Request payment
+### Request payment
 
 Creating the context above will give you a `context_id`. Use this to request a payment with the following endpoint.
 
@@ -1322,7 +1322,7 @@ The commercetools integration currently supports the following payment methods:
 - Klarna
 - PayPal
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Live">
@@ -1341,7 +1341,7 @@ The commercetools integration currently supports the following payment methods:
 </tab>
 </tabs>
 
-#### Header parameters
+### Header parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -1382,7 +1382,7 @@ Use the valid public key of your <ExternalLink href="https://hub.checkout.com/v2
 </TableBody>
 </Table>
 
-#### Body parameters
+### Body parameters
 
 <tabs>
 <tab title="Card token">
@@ -2152,15 +2152,15 @@ The URL to which the customer will be redirected if the payment fails.
 
 ---
 
-### Manage saved payment instruments
+## Manage saved payment instruments
 
 The following endpoints allow you to retrieve a customer's saved payment instruments or delete them.
 
-#### Retrieve saved payment instruments
+### Retrieve saved payment instruments
 
 Use this endpoint to return a list of a customer's saved payment instruments.
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Live">
@@ -2179,7 +2179,7 @@ Use this endpoint to return a list of a customer's saved payment instruments.
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Header and path parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -2252,11 +2252,11 @@ The customer's commercetools ID.
 </TableBody>
 </Table>
 
-#### Delete a saved payment instrument
+### Delete a saved payment instrument
 
 Use the endpoint below to delete a customer's saved payment instrument.
 
-#### Endpoint
+### Endpoint
 
 <tabs>
 <tab title="Live">
@@ -2275,7 +2275,7 @@ Use the endpoint below to delete a customer's saved payment instrument.
 </tab>
 </tabs>
 
-#### Header and path parameters
+### Header and path parameters
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -2363,6 +2363,6 @@ The unique identifier of the saved payment instrument.
 
 ---
 
-### Postman collection
+## Postman collection
 
 For more testing, commercetools have created a <ExternalLink href="https://consumerpayments.postman.co/workspaces/7c5d60af-d230-476e-a98a-5126a55ccbd2/collections" target="_blank">Postman collection</ExternalLink>.
