@@ -16,7 +16,7 @@ type ContentApiResponse = {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const makeUrl = (pageUrl: string, sectionUrl?: string) => {
-  const url = `/api/content?pageUrl=${pageUrl}`;
+  const url = `/docs/api/content?pageUrl=${pageUrl}`;
   return sectionUrl ? `${url}&sectionUrl=${sectionUrl}` : url;
 };
 
