@@ -9,19 +9,21 @@ const WhatsNewCounter: FC = () => {
 
   useEffect(() => {
     const windowWithNoticeable = window as WindowWithNoticeableType;
-    if (windowWithNoticeable.noticeable) {
-      setIsLoading(true);
-      windowWithNoticeable.noticeable.on(
-        'widget:publication:unread_count:changed',
-        NOTICEABLE_COUNTER_ID,
-        (e) => {
-          setIsLoading(false);
-          setCounter(e.detail.value);
-        },
-      );
-      setIsLoading(false);
-      windowWithNoticeable.noticeable.render('widget', NOTICEABLE_COUNTER_ID);
-    }
+    setTimeout(() => {
+      if (windowWithNoticeable.noticeable) {
+        setIsLoading(true);
+        windowWithNoticeable.noticeable.on(
+          'widget:publication:unread_count:changed',
+          NOTICEABLE_COUNTER_ID,
+          (e) => {
+            setIsLoading(false);
+            setCounter(e.detail.value);
+          },
+        );
+        setIsLoading(false);
+        windowWithNoticeable.noticeable.render('widget', NOTICEABLE_COUNTER_ID);
+      }
+    }, 200);
     return () => {
       if (windowWithNoticeable.noticeable) {
         windowWithNoticeable.noticeable.destroy('widget', NOTICEABLE_COUNTER_ID);
