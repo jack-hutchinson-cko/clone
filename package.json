@@ -8,6 +8,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "abcdev": "NEXT_PUBLIC_HEAP_IO_ACCOUNT=ABC NEXT_PUBLIC_CLIENT_TYPE=ABC next build && next dev",
+    "nasdev": "NEXT_PUBLIC_HEAP_IO_ACCOUNT=NAS NEXT_PUBLIC_CLIENT_TYPE=NAS next build && next dev",
     "cy:run-units": "cypress run-ct --config-file=cypress.units.json",
     "cy:open-units": "cypress open-ct --config-file=cypress.units.json",
     "cy:run-components": "cypress run-ct --config-file=cypress.components.json",
