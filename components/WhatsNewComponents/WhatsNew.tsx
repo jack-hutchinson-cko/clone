@@ -10,7 +10,7 @@ const WhatsNew: FC = () => {
       if (windowWithNoticeable.noticeable) {
         windowWithNoticeable.noticeable.render('widget', NOTICEABLE_WIDGET_ID);
       }
-    }, 1000);
+    }, 500);
     return () => {
       if (windowWithNoticeable.noticeable) {
         windowWithNoticeable.noticeable.destroy('widget', NOTICEABLE_WIDGET_ID);
