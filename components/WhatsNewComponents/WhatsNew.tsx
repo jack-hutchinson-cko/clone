@@ -6,11 +6,9 @@ import { WindowWithNoticeableType } from './types';
 const WhatsNew: FC = () => {
   useEffect(() => {
     const windowWithNoticeable = window as WindowWithNoticeableType;
-    setTimeout(() => {
-      if (windowWithNoticeable.noticeable) {
-        windowWithNoticeable.noticeable.render('widget', NOTICEABLE_WIDGET_ID);
-      }
-    }, 500);
+    if (windowWithNoticeable.noticeable) {
+      windowWithNoticeable.noticeable.render('widget', NOTICEABLE_WIDGET_ID);
+    }
     return () => {
       if (windowWithNoticeable.noticeable) {
         windowWithNoticeable.noticeable.destroy('widget', NOTICEABLE_WIDGET_ID);
