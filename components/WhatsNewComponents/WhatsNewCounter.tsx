@@ -19,6 +19,7 @@ const WhatsNewCounter: FC = () => {
           setCounter(e.detail.value);
         },
       );
+      setIsLoading(false);
       windowWithNoticeable.noticeable.render('widget', NOTICEABLE_COUNTER_ID);
     }
     return () => {
@@ -30,8 +31,7 @@ const WhatsNewCounter: FC = () => {
 
   return (
     <CounterWrapper>
-      {isLoading && <Counter id="noticeable-widget-label">...</Counter>}
-      {!isLoading && counter > 0 && <Counter id="noticeable-widget-label">{counter}</Counter>}
+      <Counter id="noticeable-widget-label">{!isLoading ? counter : '...'}</Counter>
     </CounterWrapper>
   );
 };

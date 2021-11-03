@@ -90,7 +90,7 @@ const PageHead: FC = () => (
       }}
     />
 
-    <script src="https://cdn.checkout.com/js/framesv2.min.js" />
+    <script async src="https://cdn.checkout.com/js/framesv2.min.js" />
     {/* Boomerang */}
     <script
       defer
