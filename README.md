@@ -38,7 +38,7 @@ The default environment variable is set to 'ABC'. To view the 'NAS' version of t
 NEXT_PUBLIC_CLIENT_TYPE="NAS"
 ```
 
-Alternatively, you can use `npm run abcdev` or `npm run nasdev` if you prefer not to edit the `.env` file and build each time.
+Alternatively, you can use `npm run abc:dev` or `npm run nas:dev` if you prefer not to edit the `.env` file and build each time.
 
 ## Deploy on Vercel
 
