@@ -38,6 +38,8 @@ The default environment variable is set to 'ABC'. To view the 'NAS' version of t
 NEXT_PUBLIC_CLIENT_TYPE="NAS"
 ```
 
+Alternatively, you can use `npm run abcdev` or `npm run nasdev` if you prefer not to edit the `.env` file and build each time.
+
 ## Deploy on Vercel
 
 The project is deployed via Vercel. To create preview links you must be a member of the `CKO Docs` team on Vercel.
