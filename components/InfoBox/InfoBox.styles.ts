@@ -28,6 +28,10 @@ export const StyledInfoBox = styled.pre`
     line-height: inherit;
   }
 
+  div > p > a {
+    font-size: 12px;
+  }
+
   code {
     display: contents;
     font-size: 12px;
