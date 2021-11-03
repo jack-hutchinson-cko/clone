@@ -5,7 +5,7 @@ import { Counter, CounterWrapper } from './WhatsNew.styles';
 
 const WhatsNewCounter: FC = () => {
   const [counter, setCounter] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const windowWithNoticeable = window as WindowWithNoticeableType;
@@ -30,7 +30,8 @@ const WhatsNewCounter: FC = () => {
 
   return (
     <CounterWrapper>
-      <Counter id="noticeable-widget-label">{isLoading ? '...' : counter}</Counter>
+      {isLoading && <Counter id="noticeable-widget-label">...</Counter>}
+      {!isLoading && counter > 0 && <Counter id="noticeable-widget-label">{counter}</Counter>}
     </CounterWrapper>
   );
 };

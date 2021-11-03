@@ -16,7 +16,7 @@ type Props = {
 const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
   return (
     <ThemeProvider>
-      <Head isHeadlessMode={pageProps.headlessMode} />
+      <Head />
       <GlobalStyles />
       <Component {...pageProps} />
     </ThemeProvider>
