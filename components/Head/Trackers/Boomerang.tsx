@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { FC } from 'react';
 
 type Props = {
@@ -119,15 +120,14 @@ const Boomerang: FC<Props> = ({ id }) => {
   `;
 
   return (
-    <>
-      <script
-        type="text/plain"
-        className="optanon-category-C0003"
-        dangerouslySetInnerHTML={{
-          __html: script,
-        }}
-      />
-    </>
+    <script
+      defer
+      type="text/plain"
+      className="optanon-category-C0003"
+      dangerouslySetInnerHTML={{
+        __html: script,
+      }}
+    />
   );
 };
 

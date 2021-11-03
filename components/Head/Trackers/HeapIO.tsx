@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { FC } from 'react';
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
 const HeapIO: FC<Props> = ({ id, account }) => (
   <>
     <script
+      defer
       className="optanon-category-C0002"
       type="text/plain"
       dangerouslySetInnerHTML={{
@@ -21,6 +23,7 @@ const HeapIO: FC<Props> = ({ id, account }) => (
       }}
     />
     <script
+      defer
       type="text/plain"
       className="optanon-category-C0002"
       dangerouslySetInnerHTML={{

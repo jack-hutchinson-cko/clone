@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { FC } from 'react';
 
 type Props = {
@@ -8,6 +9,7 @@ const GoogleTags: FC<Props> = ({ id }) => (
   <>
     <script type="text/plain" async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
     <script
+      defer
       type="text/plain"
       className="optanon-category-C0002"
       dangerouslySetInnerHTML={{
