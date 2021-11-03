@@ -7,13 +7,6 @@ const WhatsNewCounter: FC = () => {
   const [counter, setCounter] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const checkCount = () => {
-    if (counter === 0) {
-      const element = document.getElementById('noticeable-widget-label') as HTMLElement;
-      if (element) element.style.display = 'none';
-    }
-  };
-
   useEffect(() => {
     const windowWithNoticeable = window as WindowWithNoticeableType;
     let intervalId: any;
@@ -26,7 +19,6 @@ const WhatsNewCounter: FC = () => {
         (e) => {
           setIsLoading(false);
           setCounter(e.detail.value);
-          checkCount();
         },
       );
       setIsLoading(false);
@@ -40,11 +32,15 @@ const WhatsNewCounter: FC = () => {
         }
       }, 100);
     }
+
+    const element = document.getElementById('noticeable-widget-label') as HTMLElement;
+    if (element.textContent === '0') element.style.display = 'none';
+
     return () => {
       clearInterval(intervalId);
       windowWithNoticeable.noticeable?.destroy('widget', NOTICEABLE_COUNTER_ID);
     };
-  }, []);
+  }, [counter]);
 
   return (
     <CounterWrapper>
