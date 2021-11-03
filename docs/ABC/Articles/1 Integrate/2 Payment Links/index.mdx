@@ -51,7 +51,7 @@ Currently, you can only create payment links using our API. We're working on a u
 
 ## How it works
 
-Payment Links is completely hosted by Checkout.com. All you need to do is give us context of the payment, and we’ll generate a payment link for you to send to your customers
+Payment Links is completely hosted by Checkout.com. All you need to do is give us context of the payment, and we’ll generate a payment link for you to send to your customers.
 
 <TipBox variant="info">
 
@@ -59,8 +59,8 @@ Links can only be used to accept one-time payments, and expire after 24 hours by
 
 </TipBox>
 
-1. Request a payment link and send us all the payment information, e.g. the amount, currency and customer's billing address.
-2. Checkout.com generate a unique link you can share with your customer.
+1. Request a payment link and send us all the payment information — for example, the amount, currency and customer's billing address.
+2. Checkout.com generates a unique link you can share with your customer.
 3. The customer selects the link. We'll check that it hasn't already been used or expired, and then load the payment page.
 4. The customer fills in the required details, then we'll handle the authentication flow and process the payment.
 5. After the payment's been processed, you'll be notified by a [webhook](/reporting-and-insights/webhooks).
