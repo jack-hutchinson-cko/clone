@@ -7,27 +7,42 @@ const WhatsNewCounter: FC = () => {
   const [counter, setCounter] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const checkCount = () => {
+    if (counter === 0) {
+      const element = document.getElementById('noticeable-widget-label') as HTMLElement;
+      if (element) element.style.display = 'none';
+    }
+  };
+
   useEffect(() => {
     const windowWithNoticeable = window as WindowWithNoticeableType;
-    setTimeout(() => {
-      if (windowWithNoticeable.noticeable) {
-        setIsLoading(true);
-        windowWithNoticeable.noticeable.on(
-          'widget:publication:unread_count:changed',
-          NOTICEABLE_COUNTER_ID,
-          (e) => {
-            setIsLoading(false);
-            setCounter(e.detail.value);
-          },
-        );
-        setIsLoading(false);
-        windowWithNoticeable.noticeable.render('widget', NOTICEABLE_COUNTER_ID);
-      }
-    }, 200);
+    let intervalId: any;
+
+    if (windowWithNoticeable.noticeable) {
+      setIsLoading(true);
+      windowWithNoticeable.noticeable.on(
+        'widget:publication:unread_count:changed',
+        NOTICEABLE_COUNTER_ID,
+        (e) => {
+          setIsLoading(false);
+          setCounter(e.detail.value);
+          checkCount();
+        },
+      );
+      setIsLoading(false);
+      windowWithNoticeable.noticeable?.render('widget', NOTICEABLE_COUNTER_ID);
+    } else {
+      console.warn('Noticeable is missing, will retry in 100ms');
+      intervalId = setInterval(() => {
+        if (windowWithNoticeable.noticeable) {
+          windowWithNoticeable.noticeable.render('widget', NOTICEABLE_COUNTER_ID);
+          clearInterval(intervalId);
+        }
+      }, 100);
+    }
     return () => {
-      if (windowWithNoticeable.noticeable) {
-        windowWithNoticeable.noticeable.destroy('widget', NOTICEABLE_COUNTER_ID);
-      }
+      clearInterval(intervalId);
+      windowWithNoticeable.noticeable?.destroy('widget', NOTICEABLE_COUNTER_ID);
     };
   }, []);
 

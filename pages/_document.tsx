@@ -194,8 +194,14 @@ export default class MyDocument extends Document {
             type="text/plain"
             className="optanon-category-C0002"
             dangerouslySetInnerHTML={{
-              __html: `!function(){'use strict';var e=['debug','destroy','do','help','identify','is','off','on','ready','render','reset','safe','set'];if(window.noticeable)console.warn('Noticeable SDK code snippet loaded more than once');else{var n=window.noticeable=window.noticeable||[];function t(e){return function(){var t=Array.prototype.slice.call(arguments);return t.unshift(e),n.push(t),n}}function o(){for(var o=0;o<e.length;o++){var r=e[o];n[r]=t(r)}}function r(){var e=document.createElement('script');e.async=!0,e.src='https://sdk.noticeable.io/l.js';var n=document.head;n.insertBefore(e,n.firstChild)}o(),r()}}();`,
+              __html: `!function(){'use strict';var e=['debug','destroy','do','help','identify','is','off','on','ready','render','reset','safe','set'];if(window.noticeable)console.warn('Noticeable SDK code snippet loaded more than once');else{var n=window.noticeable=window.noticeable||[];function t(e){return function(){var t=Array.prototype.slice.call(arguments);return t.unshift(e),n.push(t),n}}function o(){for(var o=0;o<e.length;o++){var r=e[o];n[r]=t(r)}}; o()}}();`,
             }}
+          />
+
+          <script
+            type="text/plain"
+            className="optanon-category-C0002"
+            src="https://sdk.noticeable.io/l.js"
           />
         </Head>
         <body>
