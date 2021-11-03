@@ -5,45 +5,184 @@ account: ABC
 
 The Checkout.com payment gateway is fully integrated with Shopify. If you're already using Shopify, you can start accepting payments through our gateway by configuring a few simple settings.
 
----
-
-### Onsite or offsite options
-
-You can accept payments through our gateway either **onsite**, where your customer enters their payment details on your website, or **offsite**, where they will be redirected to a Checkout.com page to do so.
-
-The onsite option is available by default – you simply have to select it from your Shopify configuration menu.
-
-If you want to use the offsite option, follow the instructions below.
-
-<TipBox variant="info" title="Onsite: alternative payment methods">
-
-The onsite option does not currently support alternative payment methods.
-
-</TipBox>
-<TipBox variant="note" title="Onsite: card payments">
-
-If you want to process card payments with the onsite option, please contact our Support team at <ExternalLink href="mailto:support@checkout.com">support@checkout.com</ExternalLink> so we can enable them on your account.
-
-</TipBox>
+On this page, we will walk through: 
+* [Setting up the integration](#Set_up_your_integration)
+* [Creating redirects and webhooks](#Create_redirects_and_webhooks)
 
 ---
 
-### Installation instructions (offsite option)
+## Before you begin
 
-#### Shopify admin
+If you haven't already, <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test Checkout.com account</ExternalLink> to test this integration.
 
-1.  Log in to your <ExternalLink href="https://www.shopify.com/login?redirect=authorize_gateway%2F1031113" target="_blank">Shopify admin</ExternalLink>.
-2.  After logging in, you should see an `Add payment gateway` message. Select _Add payment gateway_.
-3.  Enter your public and secret API keys – you'll find these in the <ExternalLink href="https://hub.checkout.com" target="_blank">Hub</ExternalLink> – and select the payment methods permitted for your account (Visa, MasterCard, Amex, etc.).
-4.  After completing the form, select _Activate_.
+---
 
-<img maxWidth={350} src="/docs/Integrate/Shopify/shopify_offsite.png" alt="Shopify Offsite" defaultWidth={350} defaultHeight={388} />
+## Choose either the on-site or off-site integration option
 
-#### The Hub
+We provide two Shopify integration methods:
 
-1.  Log in to your <ExternalLink href="https://hub.checkout.com" target="_blank">Hub</ExternalLink> account.
-2.  Go to _Settings > Channels_.
-3.  Enter the relevant redirection URLs for your environment:
+* [On site](#On-site_integration), where your customer enters their payment details on your website. 
+* [Off site](#Off-site_integration), where they will be redirected to a Checkout.com page to do so.
+
+Review the following table for a breakdown of features. 
+
+<Table>
+<TableHead headers={["Features", "On site", "Off site"]} sizes={['20%', 'auto']}/>
+<TableBody>
+<TableRow>
+<TableCell withBackground>
+
+**Payments**
+
+</TableCell>
+<TableCell>
+
+Completed on your checkout page.
+
+</TableCell>
+<TableCell>
+
+Completed on a Checkout.com redirect page. 
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**3DS**
+
+</TableCell>
+<TableCell>
+
+Additional set up and cost with Cardinal Commerce.
+
+</TableCell>
+<TableCell>
+
+We handle 3DS with no extra cost.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Local payments**
+
+</TableCell>
+<TableCell>
+
+Not supported.
+
+</TableCell>
+<TableCell>
+
+Partially supported.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell withBackground>
+
+**Refunds**
+
+</TableCell>
+<TableCell>
+
+Handled directly in Shopify Admin Portal.
+
+</TableCell>
+<TableCell>
+
+Handled in <ExternalLink href="https://hub.checkout.com/login" target="_blank">the Hub</ExternalLink>.
+
+</TableCell>
+</TableRow>
+</TableBody>
+</Table>
+
+<TipBox>
+
+If you do not need 3DS authentication, we recommend using the on-site integration. Please contact your Solutions Engineer for any questions.
+
+</TipBox>
+
+---
+
+## Set up your integration
+
+Follow the steps for your chosen method to integrate. 
+
+### On-site integration 
+
+You will need to access both the Shopify Admin Portal and our Hub during these steps. 
+
+1. From the Hub, navigate to _Settings > Channels_. Here you will find your secret key, which we will need when we run through the Shopify Admin Portal. 
+2. From the Shopify Admin Portal, navigate to _Settings > Payments_.
+3. Select _See all other providers_.
+
+<img
+  maxWidth={500}
+  src="/docs/Integrate/Shopify/third-party-shopify.png"
+  title="Select all providers in Shopify"
+  withFullscreenPreview
+/>
+
+4. Use the search bar to search for Checkout.com. Select our name when it appears. 
+5. Navigate to the _Account information_ section and paste the secret key from the Hub into the _Secret Key_ field. 
+
+<img
+  maxWidth={300}
+  src="/docs/Integrate/Shopify/shopify-secret-key.png"
+  title="Configure webhook"
+  withFullscreenPreview
+/>
+
+6. Select which payment methods you'd like to accept.
+7. If your 3D Secure is enabled with Cardinal Commerce, select _Enable 3D Secure with Cardinal_, then input your Cardinal Commerce credentials.
+8. Under the _Test mode_ section, select _Enable test mode_ for using the sandbox environment. Remember to clear this for production. 
+
+
+### Off-site integration
+
+You will need to access both the Shopify Admin Portal and our Hub during these steps. 
+
+1. From the Hub, navigate to _Settings > Channels_. Here you will find your secret key, which we will need when we run through the Shopify Admin Portal. 
+2. Follow <ExternalLink href="https://www.shopify.com/login?redirect=authorize_gateway%2F1031113" target="_blank">this authorization link</ExternalLink> and log in with your Shopify credentials.
+3. You will see the message `You are about to install Checkout.com (Offsite)`. Select _Install payment provider_.
+4. From the Shopify Admin Portal, navigate to _Settings > Payments_.
+5. Select _See all other providers_.
+
+<img
+  maxWidth={500}
+  src="/docs/Integrate/Shopify/third-party-shopify.png"
+  title="Select all providers in Shopify"
+  withFullscreenPreview
+/>
+
+6. Use the search bar to search for Checkout.com. Select _Checkout.com (Offsite)_.
+7. Navigate to the _Account information_ section and paste your public key into the _Publishable Key_ field and your secret key into the _Secret Key_ field. 
+8. Select which payment methods you'd like to accept.
+9. Under the _Test mode_ section, select _Enable test mode_ for using the sandbox environment. Remember to clear this for production. 
+10. Under _Deactivate Shopify Payments_, select _Other > Other_. 
+11. Select _Active Checkout.com (Offsite)_.
+
+<img
+  maxWidth={300}
+  src="/docs/Integrate/Shopify/activate.png"
+  title="Configure webhook"
+  withFullscreenPreview
+/>
+
+---
+
+## Create redirects and webhooks
+
+When a customer submits a payment, they are taken to a payment success or a payment error screen. You need to set up redirects so we know where to send the customer when these events happen. In this section, we will walk through how to do this, as well as creating webhook notifications so you are kept informed about a payments timeline.
+
+### Create redirects
+
+1. From the Hub, navigate to _Settings > Channels_.
+2. Navigate to the _URLs_ section and paste in the following URLs (depending on your environment).
 
 <tabs>
 <tab title="Sandbox">
@@ -52,7 +191,7 @@ If you want to process card payments with the onsite option, please contact our 
 <TableRow>
 <TableCell isNoWrap withBackground>
 
-**Redirection success**
+**Payment success URL**
 
 </TableCell>
 <TableCell>
@@ -64,7 +203,7 @@ If you want to process card payments with the onsite option, please contact our 
 <TableRow>
 <TableCell isNoWrap withBackground>
 
-**Redirection fail**
+**Payment fail URL**
 
 </TableCell>
 <TableCell>
@@ -82,7 +221,7 @@ If you want to process card payments with the onsite option, please contact our 
 <TableRow>
 <TableCell isNoWrap withBackground>
 
-**Redirection success**
+**Payment success URL**
 
 </TableCell>
 <TableCell>
@@ -94,7 +233,7 @@ If you want to process card payments with the onsite option, please contact our 
 <TableRow>
 <TableCell isNoWrap withBackground>
 
-**Redirection fail**
+**Payment fail URL**
 
 </TableCell>
 <TableCell>
@@ -108,8 +247,20 @@ If you want to process card payments with the onsite option, please contact our 
 </tab>
 </tabs>
 
-4.  Scroll down to _Webhooks_ and select _New webhook_.
-5.  Enter the relevant URL for your environment:
+<img
+  maxWidth={500}
+  src="/docs/Integrate/Shopify/redirect-webhook.png"
+  title="Set up a redirect"
+  withFullscreenPreview
+/>
+
+3. Select _Save changes_. 
+
+### Create a webhook
+
+1. From the Hub, navigate to _Settings > Channels_.
+2. Navigate to the _Webhooks sections_ and select _New webhook._
+3. Paste in the following URLs (depending on your environment).
 
 <tabs>
 <tab title="Sandbox">
@@ -150,27 +301,14 @@ If you want to process card payments with the onsite option, please contact our 
 </tab>
 </tabs>
 
-6.  Select _API - v1.0_.
-7.  Tick _Select all_, then select _Create webhook_.
+<img
+  maxWidth={300}
+  src="/docs/Integrate/Shopify/webhook.png"
+  title="Configure webhook"
+  withFullscreenPreview
+/>
 
-You've successfully set up the offsite option on your Shopify account! If you're having any problems or just have a question, please contact our <ExternalLink href="mailto:support@checkout.com">Support team</ExternalLink> for help.
+4.  Select _API - v1.0_.
+5.  Select _Select all_, then select _Create webhook_.
 
-#### The customer experience
-
-#### Onsite option
-
-Your customers can enter their payment details on your checkout page, like so:
-
-<img maxWidth={500} src="/docs/Integrate/Shopify/shopify_onsite.png" defaultWidth={500} defaultHeight={304} />
-
-#### Offsite option
-
-Once you've [activated it](<#Installation_instructions_(offsite_option)>), your customers should see Checkout.com as a payment method on the checkout page. It looks like this:
-
-<img maxWidth={500} src="/docs/Integrate/Shopify/shopify_offsite_checkout.png" defaultWidth={500} defaultHeight={304} />
-
-After the customer selects _Complete Order_, they will be redirected to our hosted JS page:
-
-<img maxWidth={200} src="/docs/Integrate/Shopify/shopify_offsite_complete_order.png"  defaultWidth={200} defaultHeight={411} />
-
-From here, the customer can enter their payment details securely and complete their order.
+You've successfully set up the integration your Shopify account! If you're having any problems or just have a question, please contact our <ExternalLink href="mailto:support@checkout.com" target="_blank">Support team</ExternalLink> for help.

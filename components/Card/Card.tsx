@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { MdxTextHeadingFour } from 'components/TextHeading';
+import { MdxTextHeadingThree } from 'components/TextHeading';
 import { withAnchor as withAnchorWrapper } from 'components/AnchorsProvider';
 import { IconArrowRight } from '../Icons';
 import { basePathAddition } from '../../tools/basePathAddition';
@@ -33,7 +33,7 @@ const Card: FC<Props> = ({
             <IconWrapper maxWidth={maxWidth} maxHeight={maxHeight}>
               <StyledReactSVG src={imgSrcWithBasePath} alt={imgAlt} />
             </IconWrapper>
-            <MdxTextHeadingFour>{title}</MdxTextHeadingFour>
+            <MdxTextHeadingThree>{title}</MdxTextHeadingThree>
             {children}
           </>
         );

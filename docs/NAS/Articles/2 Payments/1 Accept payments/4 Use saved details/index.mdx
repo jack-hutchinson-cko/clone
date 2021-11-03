@@ -14,17 +14,17 @@ The `source ID` must be one received in response to a card payment request. An I
 
 ---
 
-### Request a payment using an ID
+## Request a payment using an ID
 
-#### Before you start
+### Before you start
 
 Make sure you have your source ID at hand. You can find this in the `source` object of your card payment request's response. It is prefixed by `src_`.
 
-#### The request
+### The request
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
@@ -51,7 +51,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
 
 </TipBox>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -69,7 +69,7 @@ The optional `payment_ip` field, which is used by our risk engine to check the c
   }
 }
 ```
-#### The response
+### The response
 
 Use the `approved` field to check whether or not the authorization was successful (`"approved": true`). If your authorization was not successful, it's possible the payment used an invalid/expired card, or a valid card with an insufficient available balance.
 
@@ -85,7 +85,7 @@ The following pages can help you understand the response message:
 
 </TipBox>
 
-#### Response example
+### Response example
 
 The possible values for the `status` field include `Authorized`, `Pending`, `Card Verified`, `Captured`, `Declined`, or `Paid`. Note that `Pending` only applies to 3D Secure payments.
 

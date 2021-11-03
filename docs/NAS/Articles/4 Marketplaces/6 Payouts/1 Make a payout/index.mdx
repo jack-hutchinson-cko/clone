@@ -13,17 +13,17 @@ On this page, we will walk through the how to pay out to a sub-entity:
 - Make a payout
 - Collect platform fees
 
-### Before you begin 
+## Before you begin 
 
 Make sure you have [connected bank account details to your sub-entity](/marketplaces/onboarding/api/full/manage-bank-accounts).
 
-### Retrieve currency account balance
+## Retrieve currency account balance
 
 We are currently working on exposing real-time currency account balances through an API, and hope to offer this functionality soon.
 
 In the meantime, you can [process balance](/reporting/reconciliation-reports/balance-reports) reports to retrieve the closing available balance of your currency account(s) on a daily basis. If you’d like to reconcile transactions for each sub-entity, you can process daily [financial actions](/reporting/reconciliation-reports/financial-actions-reports) reports to retrieve this breakdown. 
 
-### Make sub-entity payouts
+## Make sub-entity payouts
 
 Our Unified Payments API already enables you to make payouts to a sub-entity using the payments endpoint.
 
@@ -122,7 +122,7 @@ The processing channel identifier.
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -149,7 +149,7 @@ The processing channel identifier.
 
 ---
 
-#### Response examples
+### Response examples
 
 The payout will be attempted asynchronously (behind the scenes). You will be informed of updates to its status through webhook notifications.
 
@@ -242,13 +242,13 @@ This means the processing channel you are using is not configured for pay to ban
 </tabs>
 
 
-### Collect platform fees
+## Collect platform fees
 
 You collect your platform fees through the same method as making payouts to your sub-entities. The only difference is the `destination.id` field should be your platform's payment instrument ID. This will have been provided to you during your onboarding with <ExternalLink href="https://www.checkout.com/" target="_blank">Checkout.com</ExternalLink>.
 
 ---
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -270,7 +270,7 @@ You collect your platform fees through the same method as making payouts to your
 
 ```
 
-### Find out more
+## Find out more
 
 ---
 

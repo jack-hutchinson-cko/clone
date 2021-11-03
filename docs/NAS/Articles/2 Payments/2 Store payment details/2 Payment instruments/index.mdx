@@ -11,7 +11,7 @@ Store a customer's card or bank account as a payment instrument to reuse it in f
 
 ---
 
-### Create a card payment instrument
+## Create a card payment instrument
 
 You can store a card as a payment instrument in two ways: using the `/payments` endpoint, or using the `/instruments` endpoint.
 
@@ -20,7 +20,7 @@ In both cases, you can create a payment instrument for a new customer, or an exi
 - If you provide a **new email** in the `customer` object, a new customer will be created and linked with the new payment instrument.
 - If you supply an **existing customer ID or email**, the new payment instrument will be linked to that existing customer.
 
-#### Using the /payments endpoint
+### Using the /payments endpoint
 
 Make a payment (with a card token or full card details) or verify a card with the `/payments` endpoint, and the ID of the newly created payment instrument will be included in the response.
 
@@ -32,7 +32,7 @@ We recommend this flow if you perform payments with us, because we will check th
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -51,7 +51,7 @@ We recommend this flow if you perform payments with us, because we will check th
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <TipBox variant="info">
 
@@ -72,7 +72,7 @@ In this example, the ID of an existing customer has been supplied, so the paymen
   }
 }
 ```
-#### Response example
+### Response example
 
 If the request was successful, you will receive 201 success response. This will include a `source.id` (prefixed with `src_`) – this is the payment instrument ID. You can use this in future payment requests.
 
@@ -152,7 +152,7 @@ It will also include the `customer.id` (prefixed with `cus_`) – the ID of the 
 </tab>
 </tabs>
 
-#### Using the /instruments endpoint
+### Using the /instruments endpoint
 
 Alternatively, you can convert a card token into a payment instrument using the `/instruments` endpoint.
 
@@ -164,7 +164,7 @@ Using this flow will not check the card is valid before storing it.
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -183,7 +183,7 @@ Using this flow will not check the card is valid before storing it.
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <TipBox variant="info">
 
@@ -215,7 +215,7 @@ In this example, a new customer `email` and `name` is provided. This will create
   }
 }
 ```
-#### Response example
+### Response example
 
 If the request was successful, you will receive a 201 success response. This will include the newly created payment instrument `id` (prefixed with `src_`), which you can now use in future payment requests.
 
@@ -265,21 +265,21 @@ It will also include the details of the customer to which the new instrument has
 
 ---
 
-### Create a bank account payment instrument
+## Create a bank account payment instrument
 
-#### Get bank account field formatting
+### Get bank account field formatting
 
 Before creating a bank account payment instrument, use the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Instruments/paths/~1validation~1bank-accounts~1{country}~1{currency}/get" target="_blank">get bank account field formatting endpoint</ExternalLink> to check which fields are required for the country and currency of the account.
 
 You can explore the required fields for each country we support in our [formatting guide](/bank-payouts/payout-formatting).
 
-#### Create the instrument
+### Create the instrument
 
 Convert bank account details into a bank account payment instrument using the `/instruments` endpoint.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -298,7 +298,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -359,7 +359,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
   }
 }
 ```
-#### Response example
+### Response example
 
 If successful, the response will include the `id` (prefixed with `src_`) of the newly created bank account payment instrument, which you can now use in [payout requests](/bank-payouts/request-a-payout), and a `fingerprint`, which is a unique token that can identify this instrument across all customers.
 
@@ -402,13 +402,13 @@ Test different payment instrument scenarios using our [testing guide](/testing/b
 
 ---
 
-### Get instrument details
+## Get instrument details
 
 To retrieve the details of a particular payment instrument, pass the instrument's `id` into the following endpoint.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -427,7 +427,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 If successful, you will receive a 200 success response containing all the details of the payment instrument.
 
@@ -544,13 +544,13 @@ If successful, you will receive a 200 success response containing all the detail
 
 ---
 
-### Update instrument details
+## Update instrument details
 
 To update the details of a payment instrument, use the following request. For example, you can update the expiry month and year of the stored card, or make it the default payment instrument of the customer associated with the card.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -569,7 +569,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Card payment instrument">
@@ -664,7 +664,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 If successful, you will receive a 200 success response containing the `fingerprint` of the updated card instrument – a token you can use to identify the card across all customers.
 
@@ -692,13 +692,13 @@ If successful, you will receive a 200 success response containing the `fingerpri
 
 ---
 
-### Delete an instrument
+## Delete an instrument
 
 If you want to delete a payment instrument, pass the instrument's `id` in the following request.
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Payments" target="_blank">API reference</ExternalLink>.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -717,7 +717,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Response
+### Response
 
 If the instrument was successfully deleted, you will receive a 204 success response.
 

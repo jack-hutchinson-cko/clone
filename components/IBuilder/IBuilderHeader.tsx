@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TextHeadingTwo } from 'components/TextHeading';
+import { TextHeadingOne } from 'components/TextHeading';
 import { FrontMatterContainer } from 'styles/index.styles';
 import WarningMessage from 'components/WarningMessage';
 import TimeToComplete from '../TimeToComplete';
@@ -15,7 +15,7 @@ const IBuilderHeader: FC<Props> = (props) => {
   const { children, title, time, message } = props;
   return (
     <MainWrapper>
-      {title ? <TextHeadingTwo>{title}</TextHeadingTwo> : null}
+      {title ? <TextHeadingOne>{title}</TextHeadingOne> : null}
       {time && message && (
         <FrontMatterContainer>
           <TimeToComplete time={time} />

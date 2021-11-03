@@ -19,7 +19,7 @@ Don't want to use code? You can [onboard sub-entities using our friendly user in
 
 </TipBox>
 
-### Before you begin
+## Before you begin
 
 [Configure your webhooks](/workflows) and subscribe to:
 
@@ -31,11 +31,11 @@ Don't want to use code? You can [onboard sub-entities using our friendly user in
 
 To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/paths/~1marketplace~1entities~1{id}/put" target="_blank">API Reference</ExternalLink>
 
-### Onboard a sub-entity
+## Onboard a sub-entity
 
 ---
 
-#### Endpoints
+### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. <ExternalLink href="https://www.checkout.com/get-test-account">Request a test account</ExternalLink>.
 
@@ -56,7 +56,7 @@ Sandbox is a testing area, so you can practise API calls. <ExternalLink href="ht
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Individual">
@@ -127,7 +127,7 @@ Sandbox is a testing area, so you can practise API calls. <ExternalLink href="ht
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title="201 - Sub-entity onboard successfully">
@@ -318,7 +318,7 @@ The specified field is mandatory but was not provided in the request. For exampl
 </tab>
 </tabs>
 
-#### Webhook notification example
+### Webhook notification example
 
 Once your sub-entity has been successfully created, we will send you a `sub_entity_created` webhook notification, which will look similar to:
 
@@ -342,13 +342,13 @@ Once your sub-entity has been successfully created, we will send you a `sub_enti
 }
 ```
 
-### Update a sub-entity
+## Update a sub-entity
 
 Use this endpoint to update all fields under the `contact_details`, `profile`, and `company` objects. To fulfil due diligence requirements, your sub-entity needs to provide identity documents; this endpoint also allows you to add identification documents.
 
 ---
 
-#### Add an identification document
+### Add an identification document
 
 Use our [Files API](/marketplaces/onboarding/api/full/upload-a-file) to upload identity documentation. When you upload a file, the API returns an `id` that represents that file, which you can use to attach identity documentation when creating or updating your sub-entity. 
 
@@ -476,7 +476,7 @@ Providing an identity document is the last step before triggering due diligence 
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
 
@@ -497,7 +497,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 To get a detailed view of all required and optional fields, see our [API reference.](https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/)
 
@@ -611,7 +611,7 @@ To get a detailed view of all required and optional fields, see our [API referen
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title='200 - Sub-entity updated successfully'>
@@ -764,13 +764,13 @@ The specified field is mandatory but was not provided in the request. For exampl
 </tab>
 </tabs>
 
-### Retrieve a sub-entity
+## Retrieve a sub-entity
 
 If you need to retrieve a sub-entity's details, you can use our Get sub-entity details endpoint. Just include the `id` of the sub-entity returned during the initial onboarding in your request. For example, `https://api.checkout.com/marketplace/entities/ent_wxglze3wwywujg4nna5fb7ldli`.
 
 ---
 
-#### Endpoints
+### Endpoints
 
 Sandbox is a testing area, so you can practise API calls. [Request a test account.](https://www.checkout.com/get-test-account)
 
@@ -791,7 +791,7 @@ Sandbox is a testing area, so you can practise API calls. [Request a test accoun
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 The response allows you to retrieve all data that has been provided about the sub-entity, including its capabilities, which informs you whether this sub-entity can process payments or not.
 
@@ -939,7 +939,7 @@ If you have provided all the information, we may be completing a manual review.
 </tab>
 </tabs>
 
-### Handle due diligence notifications
+## Handle due diligence notifications
 
 Once we have conducted our due diligence checks, we will inform you of the outcome via [webhook notification](/workflows). You should expect to receive the following event types: 
 
@@ -951,7 +951,7 @@ On occasion, our team will need to manually review a sub-entity. Please see [abo
 
 ---
 
-#### Due diligence webhook example
+### Due diligence webhook example
 
 <TipBox>
 
@@ -1017,7 +1017,7 @@ We will re-trigger due diligence checks if any of the required information is la
 
 </TipBox>
 
-#### Payment and payout webhook examples
+### Payment and payout webhook examples
 
 <TipBox>
 
@@ -1078,7 +1078,7 @@ We've described the different webhook notifications on our [webhook event type p
 We will re-trigger due diligence checks if any of the required information is later updated. If any subsequent checks fail and you receive the `vmss_failed` and / or `match_failed` notification, this will be followed by `payments_disabled`.
 </TipBox>
 
-### Where to next?
+## Where to next?
 
 ---
 
@@ -1090,7 +1090,7 @@ Process payments on behalf of your sub-entities.
 
 </ContentPanel>
 
-### Find out more
+## Find out more
 
 ---
 

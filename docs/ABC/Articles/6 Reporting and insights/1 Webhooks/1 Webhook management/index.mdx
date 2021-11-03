@@ -19,11 +19,11 @@ Find out how to:
 
 ---
 
-### Return all webhooks
+## Return all webhooks
 
 Use this API request to view all your previously configured webhooks.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -44,7 +44,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
 [
@@ -90,11 +90,11 @@ Other possible responses:
 
 ---
 
-### Add a new webhook
+## Add a new webhook
 
 Use this API request to add a new webhook.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -115,7 +115,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -145,7 +145,7 @@ You can find the full list, as well as complete request and response examples, i
 }
 ```
 
-#### Response example
+### Response example
 
 Below is an example successful response with the details of the additional webhook.
 
@@ -191,11 +191,11 @@ Other possible responses:
 
 ---
 
-### Return a single webhook
+## Return a single webhook
 
 Use this API request to view a single webhook using its webhook ID.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -216,7 +216,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 Below is an example successful response where the details of the configured webhook are visible.
 
@@ -255,11 +255,11 @@ Other possible responses:
 
 ---
 
-### Update a webhook
+## Update a webhook
 
 Use this API request to update a single webhook using its webhook ID.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -280,7 +280,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -310,7 +310,7 @@ You can find the full list, as well as complete request and response examples, i
 }
 ```
 
-#### Response example
+### Response example
 
 Below is an example of a successful response where the details of the configured webhook are visible.
 
@@ -355,7 +355,7 @@ Other possible responses:
 - 409 - Conflict. A webhook with the same URL is already configured
 - 500 - Unexpected server error
 
-### Partially update a webhook
+## Partially update a webhook
 
 Use this API request to partially update a single webhook using its webhook ID.
 
@@ -367,11 +367,11 @@ You can update the following attributes:
 - event type
 - headers
 
-#### The PATCH request
+### The PATCH request
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -392,7 +392,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Update all details">
@@ -448,7 +448,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 Below is an example of a successful response where the details of the configured webhook are visible.
 
@@ -491,11 +491,11 @@ Other possible responses:
 - 404 - A webhook with the requested webhook_id was not found
 - 409 - Conflict. A webhook with the same URL is already configured
 
-### Delete a webhook
+## Delete a webhook
 
 Use this API request to delete a single webhook using its webhook ID.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -516,13 +516,13 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response
+### Response
 
 A 200 response signals that the webhook was successfully deleted.
 
 Other possible response: 404 - No webhook was found that matched the webhook ID.
 
-### Test a webhook
+## Test a webhook
 
 Use this API request to test your webhook's integration without having to create any charges.
 
@@ -534,7 +534,7 @@ In order to use this API, you will need to [add a webhook](#Add_a_new_webhook), 
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -555,7 +555,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -566,7 +566,7 @@ You can find the full list, as well as complete request and response examples, i
 }
 ```
 
-#### Response
+### Response
 
 If you receive a 204 response, then your request was successful.
 

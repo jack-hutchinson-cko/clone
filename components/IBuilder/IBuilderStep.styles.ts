@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextHeadingFour } from 'components/TextHeading';
+import { TextHeadingThree } from 'components/TextHeading';
 
 export const StepWrapper = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export const Counter = styled.div`
   color: ${({ theme }) => theme.colors.base};
 `;
 
-export const TextHeadFour = styled(TextHeadingFour)`
+export const TextHeadFour = styled(TextHeadingThree)`
   font-weight: 500;
   margin: 0;
 `;

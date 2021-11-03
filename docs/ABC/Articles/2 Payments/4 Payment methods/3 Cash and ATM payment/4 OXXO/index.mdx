@@ -111,7 +111,7 @@ Voucher
 
 ---
 
-### Overview
+## Overview
 
 OXXO can be used by either redirecting the customer to a statically hosted ticket (`redirect` integration method) or by rendering the complete ticket within your own checkout flow (`direct` integration method).
 
@@ -122,11 +122,11 @@ Payments follow a two-step process:
 
 ---
 
-### Step 1: Request payment
+## Step 1: Request payment
 
 Use the details below to set up your request.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -147,7 +147,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 <tabs>
 <tab title="Redirect" active>
@@ -191,7 +191,7 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 Whether you used the direct or redirect method, you should get a `202` response with the `status` field set to `Pending`. This means your request has been accepted.
 
@@ -244,14 +244,14 @@ Whether you used the direct or redirect method, you should get a `202` response 
 
 ---
 
-### Step 2: Redirect the customer or render the ticket
+## Step 2: Redirect the customer or render the ticket
 
 To complete the payment, you need to provide the customer with a OXXO ticket by following one of two flows:
 
 *   If you used the `redirect` method, [redirect the customer](#OXXO-redirect).
 *   If you used the `direct` method, [render the ticket](#OXXO-render).
 
-#### Redirect the customer
+### Redirect the customer
 
 <TipBox variant="info">
 
@@ -272,7 +272,7 @@ Your payment confirmation page should make it clear to the customer that their p
 
 </TipBox>
 
-#### Render the OXXO ticket
+### Render the OXXO ticket
 
 Redirect your customer to your payment confirmation page, where you should summarize their order and render the OXXO ticket so they can complete the payment.
 
@@ -302,11 +302,11 @@ Here's an example:
 
 ---
 
-### Get details about a payment
+## Get details about a payment
 
 Using the following endpoint, pass the payment `id` (for example, `pay_hcklpcd45ymepcr7thciirbdaa`) from the payment response to get details about the payment.
 
-#### Endpoints
+### Endpoints
 
 You can find the full list, as well as complete request and response examples, in our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -327,11 +327,11 @@ You can find the full list, as well as complete request and response examples, i
 </tab>
 </tabs>
 
-#### Response examples
+### Response examples
 
 The response will differ depending on which `integration_type` (`redirect` or `direct`) you used in the initial payment request.
 
-#### Redirect
+### Redirect
 
 <tabs>
 <tab title="Payment pending" active>
@@ -416,7 +416,7 @@ The response will differ depending on which `integration_type` (`redirect` or `d
 </tab>
 </tabs>
 
-#### Direct
+### Direct
 
 <tabs>
 <tab title="Payment pending">
@@ -459,9 +459,9 @@ The response will differ depending on which `integration_type` (`redirect` or `d
 
 ---
 
-### Refunds and chargebacks
+## Refunds and chargebacks
 
-#### Refund a payment
+### Refund a payment
 
 You can refund an OXXO payment using our [refund API](/payments/manage-payments/refund-a-payment). Partial and multiple – as well as full – refunds are allowed.
 
@@ -471,13 +471,13 @@ The payment status will update to `refunded` and you will receive a `payment_ref
 
 A refund processing fee may apply.
 
-#### Chargebacks
+### Chargebacks
 
 There is no chargeback mechanism for OXXO.
 
 ---
 
-### Webhooks
+## Webhooks
 
 When using OXXO, you may receive the following webhooks.
 
@@ -592,7 +592,7 @@ Learn more about [webhooks and how to subscribe to them](/reporting-and-insights
 
 ---
 
-### Testing OXXO
+## Testing OXXO
 
 <TipBox variant="info">
 

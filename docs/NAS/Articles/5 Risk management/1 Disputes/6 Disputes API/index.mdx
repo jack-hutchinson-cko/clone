@@ -32,7 +32,7 @@ With our disputes API, you can:
 
 ---
 
-### Dispute reasons
+## Dispute reasons
 
 Most of the time, customers dispute a payment because of fraudulent charges. However, there are many other possible reasons. You can tell why a dispute was raised by looking at the `category` field of the response.
 
@@ -40,7 +40,7 @@ Learn more about the [reasons for disputes and the type of evidence we suggest s
 
 ---
 
-### Dispute statuses
+## Dispute statuses
 
 Each dispute has an associated `status` that describes which stage of the dispute process it has reached.
 
@@ -391,15 +391,15 @@ action is required from you.
 
 ---
 
-### View disputes and dispute details
+## View disputes and dispute details
 
 You can use our API to view a list of disputes or to retrieve information about a specific dispute.
 
-#### Get a list of disputes
+### Get a list of disputes
 
 Use the endpoint below to retrieve a list of disputes against your business. These will be returned in reverse chronological order, showing the last modified dispute (for example, where you've recently added a piece of evidence) first. You can use the additional body parameters to skip or limit results.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -420,7 +420,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Node.js (Beta)">
@@ -439,7 +439,7 @@ const disputes = await cko.disputes.get({
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
 {
@@ -484,11 +484,11 @@ const disputes = await cko.disputes.get({
 }
 ```
 
-#### Get details about a dispute
+### Get details about a dispute
 
 Use the following endpoint to retrieve all the information relating to a specific dispute.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -509,7 +509,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Node.js (Beta)">
@@ -525,7 +525,7 @@ const disputeDetails = await cko.disputes.getDetails('dsp_bc94ebda8d275i461229')
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
 {
@@ -572,11 +572,11 @@ const disputeDetails = await cko.disputes.getDetails('dsp_bc94ebda8d275i461229')
 
 ---
 
-### Respond to a dispute
+## Respond to a dispute
 
 In order to win a dispute, you will need to provide relevant evidence to your case. This could be the invoice, the proof of delivery, or even customer communication regarding the payment that was charged back. You can use our API to upload evidence, review this evidence, and submit it when you're ready.
 
-#### Provide evidence
+### Provide evidence
 
 Use the endpoint below to add supporting evidence to a dispute. Note that this only attaches the evidence to the dispute, it does not send it to us. Once ready, you will need to [submit it](#Submit_evidence) to us.
 
@@ -591,7 +591,7 @@ If you wish to submit files as evidence, you will first need to upload them usin
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -618,7 +618,7 @@ If you run this request more than once, you will overwrite the previous request.
 
 </TipBox>
 
-#### Additional parameters
+### Additional parameters
 
 You must provide at least one of the evidence types listed below in the body of your request. Each of the following can be provided as either a text string and/or a file ID previously uploaded. Simply specify it in your request as `{evidence_type}_file` or `{evidence_type}_text` (e.g., `proof_of_delivery_or_service_file`).
 
@@ -750,7 +750,7 @@ above categories.
 </TableBody>
 </Table>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Payload">
@@ -792,7 +792,7 @@ const evidence = await cko.disputes.provideEvidence('dsp_bc94ebda8d275i461229', 
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If you receive a `2XX` response, then your dispute evidence was successfully provided. You can submit it when ready.
 
@@ -818,11 +818,11 @@ If you receive a `4XX` response, then something went wrong. Check the error code
 
 </Accordion>
 
-#### Retrieve evidence
+### Retrieve evidence
 
 Use the following endpoint to view a list of the evidence you provided for a specific dispute.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -843,7 +843,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Node.js (Beta)">
@@ -859,7 +859,7 @@ const getEvidence = await cko.disputes.getEvidence('dsp_bc94ebda8d275i461229');
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 ```json
 {
@@ -869,7 +869,7 @@ const getEvidence = await cko.disputes.getEvidence('dsp_bc94ebda8d275i461229');
 }
 ```
 
-#### Submit evidence
+### Submit evidence
 
 Use the following endpoint to submit the evidence that you've provided.
 
@@ -879,7 +879,7 @@ You will not be able to amend your evidence once you have submitted it. Make sur
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -898,7 +898,7 @@ You will not be able to amend your evidence once you have submitted it. Make sur
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Node.js (Beta)">
@@ -914,7 +914,7 @@ const submitEvidence = await cko.disputes.submit('dsp_bc94ebda8d275i461229');
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If you receive a `2XX` response, then your dispute evidence was successfully submitted. We will pass it on to the card scheme.
 
@@ -940,11 +940,11 @@ If you receive a `4XX` response, then something went wrong. Check the error code
 
 </Accordion>
 
-#### Accept a dispute
+### Accept a dispute
 
 If a dispute is legitimate, you can use the following endpoint to accept it. This will close it for you and remove it from your list of open disputes. There are no further financial implications.
 
-#### Endpoints
+### Endpoints
 
 <tabs>
 <tab title="Live">
@@ -963,7 +963,7 @@ If a dispute is legitimate, you can use the following endpoint to accept it. Thi
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 <tabs>
 <tab title="Node.js (Beta)">
@@ -979,7 +979,7 @@ const accept = await cko.disputes.accept('dsp_bc94ebda8d275i461229');
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If you receive a `2XX` response, then you successfully accepted the dispute.
 

@@ -5,13 +5,13 @@ account: NAS
 
 Find out more about how to manage payouts when using our Marketplaces solution for `full` account types.
 
-### Connect a bank account to a sub-entity
+## Connect a bank account to a sub-entity
 
 Before making on-demand payouts to a sub-entity, you need to connect bank details to their account, so we know where to send the funds. These details are saved securely in our vault, and you are given a unique reference to use in payout requests instead of typing out the bank details every time. We call this a payment instrument.
 
 ---
 
-#### Requirements
+### Requirements
 
 There are different requirements for the request depending on the currency of the bank account. At the moment, you can just send money from the UK, but you can make a payout to UK bank accounts and European bank accounts.
 
@@ -183,11 +183,11 @@ Internationally agreed standard for identifying bank account.
 </tab>
 </tabs>
 
-#### Verify bank account details
+### Verify bank account details
 
 We need to verify any bank details you provide us. To verify bank details, include a document object with a file_id in your request. You receive a file_id when you upload a bank statement using our [Files API](/marketplaces/manage-accounts/upload-a-file).
 
-#### Create a payment instrument
+### Create a payment instrument
 
 To create a payment instrument, make a call to the following endpoints. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" target="_blank">API reference</ExternalLink>.
 
@@ -209,7 +209,7 @@ To create a payment instrument, make a call to the following endpoints. To get a
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -236,7 +236,7 @@ To create a payment instrument, make a call to the following endpoints. To get a
 }
 ```
 
-#### Response examples
+### Response examples
 
 <tabs>
 <tab title="202 – Instrument creation request accepted">
@@ -275,7 +275,7 @@ If successful, we will automatically make the association between this payment i
 }
  ```
 
-### Notifications
+## Notifications
 
 <tabs>
 <tab title="Created">
@@ -335,7 +335,7 @@ If successful, we will automatically make the association between this payment i
 </tabs>
 
 
-### Where to next?
+## Where to next?
 
 ---
 

@@ -24,7 +24,7 @@ You cannot cancel a refund after it has been processed.
 
 ---
 
-### Overview
+## Overview
 
 To process a refund successfully, you must provide the payment ID of the captured payment. You can find the ID:
 
@@ -41,7 +41,7 @@ If required by the card scheme, we will trigger a [refund authorization](#Refund
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink>.
 
@@ -62,7 +62,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request examples
+### Request examples
 
 ```json
 {
@@ -74,7 +74,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response examples
+### Response examples
 
 A successful refund request returns a `202 Refund accepted` response. However, if there was a problem with your request, you'll receive an error response.
 
@@ -115,7 +115,7 @@ If unsuccessful, you may also receive a `403 Refund not allowed` or `404 Payment
 
 ---
 
-### Refund authorization
+## Refund authorization
 
 If the card scheme requires it, we will automatically trigger a refund authorization on your behalf before processing your refund.
 
@@ -152,7 +152,7 @@ To test a declined refund authorization, request a refund with the `amount` set 
 
 ---
 
-### Troubleshooting
+## Troubleshooting
 
 If your refund request was unsuccessful, the checklist below may help you identify the problem:
 

@@ -10,7 +10,7 @@ import CardWrapper from 'components/CardWrapper';
 import LastChange from 'components/LastChange';
 import TimeToComplete from 'components/TimeToComplete';
 import WarningMessage from 'components/WarningMessage';
-import { MdxTextHeadingTwo } from 'components/TextHeading';
+import { MdxTextHeadingOne } from 'components/TextHeading';
 import withBlockBottomMargin from 'hoc/withBlockBottomMargin';
 import { spacing } from 'constants/spacingSize';
 import withMainLayout from 'hoc/withMainLayout';
@@ -61,7 +61,7 @@ const DocPost: NextPage<DocPostProps> = ({
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           {!isIntegrationBuilder ? (
             <>
-              <MdxTextHeadingTwo>{title}</MdxTextHeadingTwo>
+              <MdxTextHeadingOne>{title}</MdxTextHeadingOne>
               {timeToComplete && warningMessage && (
                 <FrontMatterContainer>
                   <TimeToComplete time={timeToComplete} />

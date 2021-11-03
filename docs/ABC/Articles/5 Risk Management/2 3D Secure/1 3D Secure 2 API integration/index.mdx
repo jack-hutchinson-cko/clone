@@ -13,17 +13,17 @@ We currently support version 2.1.0 of the 3DS protocol.
 
 ---
 
-### Request a 3DS2 payment with a card token
+## Request a 3DS2 payment with a card token
 
 Simply submit a payment request with `"3ds.enabled": true`, and then we'll redirect your customer to a Checkout.com page to gather all the 3DS2-relevant data and add the required fields to your request—meaning no extra work for you.
 
 ---
 
-#### Step 1: Collect a card token
+### Step 1: Collect a card token
 
 First, the customer needs to exchange their card details for a card token – tokenization. You can create a card token with one of our [integration options](/integrate).
 
-#### Step 2: Create a card token payment request
+### Step 2: Create a card token payment request
 
 Once you've got a card token, you can request a payment using [the request a card payment endpoint](/payments/accept-payments/request-a-card-payment).
 
@@ -57,7 +57,7 @@ If you want to test 3DS authentication flows and transaction statuses in the san
 
 </TipBox>
 
-#### Step 3: Redirect your customer
+### Step 3: Redirect your customer
 
 If the card is enrolled for 3DS2 you'll receive a `202 - Accepted` response containing a `redirect` link to which you should redirect your customer.
 
@@ -99,7 +99,7 @@ You can configure redirection success and redirection failure URLs in your Hub d
 
 </TipBox>
 
-#### Step 4: Verify the payment with the session ID
+### Step 4: Verify the payment with the session ID
 
 When the customer is redirected back to your site, a `cko-session-id` querystring parameter is provided at the end of the success URL. It will look something like this:
 
@@ -113,7 +113,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 </TipBox>
 
-#### Endpoints
+### Endpoints
 
 For the full specification, as well as complete request and response examples, see our <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -134,7 +134,7 @@ For the full specification, as well as complete request and response examples, s
 </tab>
 </tabs>
 
-#### Response example
+### Response example
 
 Check the `3ds.authentication_response` field to see the result of the 3DS authentication. It will be one of the following values:
 
@@ -192,21 +192,21 @@ The response includes an `actions` object, which only applies to 3D Secure payme
 
 ---
 
-### Non-3DS authorization request flows
+## Non-3DS authorization request flows
 
-#### Successful non-3DS authorization request flow
+### Successful non-3DS authorization request flow
 
 <img src="/docs/Risk Management/Non-3DS-authorization.png" alt="Non-3DS authorization"  />
 
 If you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer does not require 3DS authorization for the transaction, the payment will complete successfully.
 
-#### Non-3DS authorization request flow with soft decline
+### Non-3DS authorization request flow with soft decline
 
 <img src="/docs/Risk Management/Non-3DS-authorization-with-soft-decline.png" alt="Non-3DS authorization with soft decline"  />
 
 If, however, you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer **does** require 3DS2 authorization for the transaction, you will receive a soft decline response (response code 20154). You will then need to resubmit the payment as a 3DS2 payment.
 
-### Handling non-enrolled cards
+## Handling non-enrolled cards
 
 To handle cases where the customer's card is not enrolled for any version of 3DS, you can set the `attempt_n3d` field to `true` (see the example request below) to downgrade the transaction to non-3DS. This means that if the customer's bank does not support 3DS, we will automatically attempt to process the payment without 3DS authentication instead.
 

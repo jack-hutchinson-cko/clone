@@ -17,7 +17,7 @@ You can also watch a tutorial to learn how to update your configuration from Che
 
 ---
 
-### Checkout.js
+## Checkout.js
 
 Checkout.js is our legacy solution, built on our Classic API.
 
@@ -27,11 +27,11 @@ As of May 2021, the Classic API is only receiving security updates.
 
 </TipBox>
 
-#### Payment flow
+### Payment flow
 
 The following is a reminder of the payment flow with Checkout.js.
 
-#### 1. Create a payment token
+### 1. Create a payment token
 
 From the server side, send a POST request to our `/api2/v2/tokens/payment` endpoint, providing information about the payment you want to process. For example:
 
@@ -51,7 +51,7 @@ And the response from our Classic API would look like:
 }
 ```
 
-#### 2. Initialize Checkout.js with the payment token
+### 2. Initialize Checkout.js with the payment token
 
 Once you’ve generated a payment token, pass it in the configuration of Checkout.js and render a lightbox for your customer so they can choose how to pay (with a card or a local payment method, like Sofort).
 
@@ -79,11 +79,11 @@ Here's an example of a configuration:
 
 ---
 
-### Hosted Payments Page
+## Hosted Payments Page
 
 Our Hosted Payments Page integration option is a fast and easy way to collect your customer’s payment information and process the payment request.
 
-#### Try it out
+### Try it out
 
 Preview a Hosted Payments Page with the demo below. Try it with the following test card or Sofort details.
 
@@ -110,13 +110,13 @@ Use the following details to test a Sofort payment flow:
 
 <center><iframe src="https://pay.sandbox.checkout.com/examples/docs-example/" width="100%" height="700px"></iframe></center>
 
-#### Payment flow
+### Payment flow
 
 The Hosted Payment Page payment flow offers a similar experience to Checkout.js.
 
 <img src="/docs/Resources/ckojs_migration_hosted_payments_page.png"  />
 
-#### 1. Create a Hosted Payments Page
+### 1. Create a Hosted Payments Page
 
 Call our `/hosted-payments` endpoint, providing information about the transaction and billing location.
 
@@ -143,7 +143,7 @@ In the response you'll get a redirect link for the Hosted Payments Page. Here's 
 }
 ```
 
-#### 2. Present the Hosted Payments Page and handle the outcome
+### 2. Present the Hosted Payments Page and handle the outcome
 
 Once you’ve got the link to the Hosted Payment Page, redirect your customer to it. They will enter their payment details on the page and then get sent to either your success or failure page.
 
@@ -161,11 +161,11 @@ You can sign up to webhook notifications to let you know how the payment is prog
 
 </TipBox>
 
-### Frames
+## Frames
 
 Frames is a customizable payment form that collects and tokenizes your customers' payment details. It offers more customization options than a Hosted Payment Page, giving you more control over the checkout experience.
 
-#### Try it out
+### Try it out
 
 Preview Frames with the demo below. Enter `4242424242424242` as the card number, any future expiry date, and 100 for the CVV.
 
@@ -173,15 +173,15 @@ Preview Frames with the demo below. Enter `4242424242424242` as the card number,
 <iframe margin="0" width="350px" height="250px" allow="fullscreen" position="absolute" src="https://assets.checkout.com/docs/examples/1liner-new/index.html" />
 </center>
 
-#### Payment flow
+### Payment flow
 
 <img src="/docs/Resources/ckojs_migration_frames.png"  />
 
-#### 1. Collect card details
+### 1. Collect card details
 
 Frames allows you to securely collect the card details of your customers, exchanging the sensitive card information for a secure token (single use, expiring after 15 minutes) you can use to make a payment request.
 
-#### 2. Send a payment request
+### 2. Send a payment request
 
 Once you've received the token from Frames, call our `/payments` endpoint from your server to process a payment. Here’s an example of a payment request:
 
@@ -197,7 +197,7 @@ Once you've received the token from Frames, call our `/payments` endpoint from y
 }</code></pre>
 ```
 
-#### 3. Handle the outcome
+### 3. Handle the outcome
 
 After you send a payment request you’ll receive the authorization response – whether the payment was accepted or not. You can use this response to show your customer a success or failure outcome page or message.
 
@@ -207,7 +207,7 @@ You can sign up to [webhook notifications](/reporting-and-insights/webhooks) to 
 
 </TipBox>
 
-### Accepting local payment methods
+## Accepting local payment methods
 
 Frames is designed to collect card details and exchange them for a secure payment token, but you can also use it to accept local payment methods, integrating them using our Unified Payments API.
 
@@ -217,7 +217,7 @@ For example, let’s say you want to accept payments with [Sofort](/payments/pay
 
 ---
 
-### Next steps
+## Next steps
 
 <CardWrapper cardsInRow={{desktop:2,tablet:2,mobile:1}}>
 

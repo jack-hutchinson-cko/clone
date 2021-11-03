@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { FC } from 'react';
 
 type Props = {
@@ -7,13 +8,11 @@ type Props = {
 const OneTrustCookie: FC<Props> = ({ id }) => {
   return (
     <>
-      {/* TODO This script leads to the errors in <image> component when a page with images is initialised
-        <script
-          defer
-          type="text/javascript"
-          src={`https://cdn-ukwest.onetrust.com/consent/${id}/OtAutoBlock.js`}
-        />
-      */}
+      <script
+        defer
+        type="text/javascript"
+        src={`https://cdn-ukwest.onetrust.com/consent/${id}/OtAutoBlock.js`}
+      />
       <script
         defer
         src="https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js"

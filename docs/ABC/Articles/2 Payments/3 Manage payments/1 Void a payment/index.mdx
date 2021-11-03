@@ -8,11 +8,11 @@ After a card payment has been authorized, the payment is not complete until it h
 
 ---
 
-### Void a payment
+## Void a payment
 
 Use the endpoint below to void an authorized – but not yet captured – payment.
 
-#### Endpoints
+### Endpoints
 
 For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com" target="_blank">API reference</ExternalLink>.
 
@@ -33,7 +33,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 </tab>
 </tabs>
 
-#### Request example
+### Request example
 
 ```json
 {
@@ -45,7 +45,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 }
 ```
 
-#### Response examples
+### Response examples
 
 If you receive a `202 Void accepted` response, your void request has been accepted for processing. To get the full void response, you will need to subscribe to the `payment_voided` webhook.
 

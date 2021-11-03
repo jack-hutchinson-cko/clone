@@ -15,7 +15,7 @@ To get started, follow Magento's <ExternalLink href="https://devdocs.magento.co
 
 ---
 
-### Request payment
+## Request payment
 
 <TipBox variant="note">
 
@@ -56,7 +56,7 @@ Replace  [`example.com`](http://example.com/)  in the following endpoint URL w
 
 </LineCodeWrapper>
 
-#### **Header parameters**
+### **Header parameters**
 
 <Table>
 <TableHead headers={['Header', 'Value']} />
@@ -106,7 +106,7 @@ Use the valid public key of your <ExternalLink href="https://hub.checkout.com" t
 </TableBody>
 </Table>
 
-#### **Body parameters**
+### **Body parameters**
 
 <Table withTopBorder={false}>
 <TableHead headers={['Field name', 'Description']} />
@@ -292,7 +292,7 @@ If not provided, your existing `failure_url` will be used.
 </TableBody>
 </Table>
 
-#### **Request example**
+### **Request example**
 
 <tabs>
 <tab title="Card payment">
@@ -325,7 +325,7 @@ If not provided, your existing `failure_url` will be used.
 </tab>
 </tabs>
 
-#### The response
+### The response
 
 If you get a response with `"success": true`, your order was successful.
 
@@ -338,7 +338,7 @@ If unsuccessful, you will get one of the following error messages:
 *   Status code `422` – `"The payment request was declined by the gateway."`
 
 
-#### **Success response example**
+### **Success response example**
 
 <tabs>
 <tab title="3DS disabled">
@@ -503,7 +503,7 @@ If not provided, your existing `failure_url` will be used.
 </TableBody>
 </Table>
 
-#### **Request example**
+### **Request example**
 
 ```json
 {
@@ -515,7 +515,7 @@ If not provided, your existing `failure_url` will be used.
 }
 ```
 
-#### The response
+### The response
 
 If you get a response with `"success": true`, your order was successful.
 
@@ -529,7 +529,7 @@ If unsuccessful, you will get one of the following error messages:
 
 <Box horizontal="sm">
 
-#### **Success response example - 3DS disabled**
+### **Success response example - 3DS disabled**
 
 </Box>
 
@@ -542,7 +542,7 @@ If unsuccessful, you will get one of the following error messages:
 
 <Box horizontal="sm">
 
-#### **Success response example - 3DS enabled**
+### **Success response example - 3DS enabled**
 
 </Box>
 
@@ -577,7 +577,7 @@ Replace [`example.com`](http://example.com/) in the following endpoint URL wit
 
 <Box horizontal="sm">
 
-#### **Header parameters**
+### **Header parameters**
 
 <Table withTopBorder={false}>
 <TableHead headers={['Header', 'Value']} />
@@ -603,7 +603,7 @@ Use the valid public key of your <ExternalLink href="https://hub.checkout.com/v2
 </TableBody>
 </Table>
 
-#### **Body parameters**
+### **Body parameters**
 
 <Table withTopBorder={false}>
 <TableHead headers={['Field name', 'Description']} />
@@ -663,7 +663,7 @@ Required if the payment is made with a Mada card.
 </TableBody>
 </Table>
 
-#### **Request example**
+### **Request example**
 </Box>
 
 ```json
@@ -676,7 +676,7 @@ Required if the payment is made with a Mada card.
 
 <Box horizontal="sm">
 
-#### The response
+### The response
 
 If you get a response with `"success": true`, your order was successful.
 
@@ -686,7 +686,7 @@ If unsuccessful, you will get one of the following error messages:
 *   Status code `500` – `"The order could not be created."`
 *   Status code `422` – `"The payment request was declined by the gateway."`
 
-#### **Success response example**
+### **Success response example**
 </Box>
 
 ```json
