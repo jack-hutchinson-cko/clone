@@ -121,6 +121,7 @@ const Boomerang: FC<Props> = ({ id }) => {
   return (
     <>
       <script
+        type="text/plain"
         className="optanon-category-C0003"
         dangerouslySetInnerHTML={{
           __html: script,

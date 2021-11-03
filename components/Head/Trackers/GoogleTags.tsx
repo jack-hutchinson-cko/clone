@@ -6,8 +6,9 @@ type Props = {
 
 const GoogleTags: FC<Props> = ({ id }) => (
   <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
+    <script type="text/plain" async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
     <script
+      type="text/plain"
       className="optanon-category-C0002"
       dangerouslySetInnerHTML={{
         __html: `
