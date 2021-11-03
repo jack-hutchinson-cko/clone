@@ -19,6 +19,7 @@ type PureHeadProps = {
 
 const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => (
   <Head>
+    {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
     <title>Checkout.com - Docs</title>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -86,7 +87,6 @@ const PageHead: FC<PageHeadProps> = ({ isHeadlessMode }) => (
       account={process.env.NEXT_PUBLIC_HEAP_IO_ACCOUNT}
     />
     <NoticeableWidget />
-    {!isHeadlessMode && <OneTrustCookie id={process.env.NEXT_PUBLIC_ONE_TRUST_ID} />}
   </Head>
 );
 
