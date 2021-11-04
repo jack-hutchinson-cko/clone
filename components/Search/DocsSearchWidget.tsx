@@ -33,7 +33,7 @@ const DocsSearchWidget: FC<Props> = ({
 }) => {
   return (
     <SearchWidget
-      baseUrlRederection="/search"
+      baseUrlRedirection="/search"
       baseIndexName={clientSettings.searchIndexName}
       renderHits={({ searchUrl, onCloseSearchPanel }) => (
         <DocsHits

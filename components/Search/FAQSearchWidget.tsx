@@ -12,7 +12,7 @@ const FAQSearchWidget: FC = ({ ...props }) => {
   return (
     <SearchWidget
       isFAQSection
-      baseUrlRederection="/faq/search"
+      baseUrlRedirection="/faq/search"
       baseIndexName={clientSettings.searchFAQIndexName}
       renderHits={({ searchUrl, onCloseSearchPanel }) => (
         <FAQHits

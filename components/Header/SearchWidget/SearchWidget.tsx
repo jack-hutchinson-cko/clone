@@ -15,7 +15,7 @@ const INITIAL_SEARCH_STATE = { query: '', page: 1 };
 
 type SearchWidgetProps = {
   isFAQSection?: boolean;
-  baseUrlRederection?: string;
+  baseUrlRedirection?: string;
   baseIndexName: string;
   searchesTitleComponent: ReactNode;
   popularSearchesComponent?: ReactNode;
@@ -25,7 +25,7 @@ type SearchWidgetProps = {
 const SearchWidget: FC<WithMenuStateProps<SearchWidgetProps>> = ({
   isFAQSection = false,
   baseIndexName = '',
-  baseUrlRederection = '/search',
+  baseUrlRedirection = '/search',
   searchesTitleComponent,
   popularSearchesComponent,
   renderHits,
@@ -35,7 +35,7 @@ const SearchWidget: FC<WithMenuStateProps<SearchWidgetProps>> = ({
   const { filterSettings } = useFilterSettings();
   const [searchState, setSearchState] = useState(INITIAL_SEARCH_STATE);
 
-  const searchUrl = `${baseUrlRederection}?query=${searchState.query}&page=1`;
+  const searchUrl = `${baseUrlRedirection}?query=${searchState.query}&page=1`;
 
   const onCloseSearchPanel = useCallback(() => {
     onChangeSearchState(false);

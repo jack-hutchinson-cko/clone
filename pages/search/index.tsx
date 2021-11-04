@@ -37,7 +37,7 @@ const SearchPage: FC = () => {
         />
         <HiddenSearchInput />
         <DocsHits mode={HitMode.PAGE} />
-        <Pagination searchState={searchState} baseUrlRederection="/search" />
+        <Pagination searchState={searchState} baseUrlRedirection="/search" />
       </InstantSearch>
     </PageContent>
   );

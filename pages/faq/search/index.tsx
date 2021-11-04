@@ -35,7 +35,7 @@ const FAQSearchPage: NextPage = () => {
           />
           <HiddenSearchInput />
           <FAQHits mode={HitMode.PAGE} itemId={router.query.item?.toString() || null} />
-          <Pagination searchState={router.query} baseUrlRederection="/faq/search" />
+          <Pagination searchState={router.query} baseUrlRedirection="/faq/search" />
         </InstantSearch>
       </ContentWrapper>
     </>

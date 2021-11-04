@@ -8,22 +8,22 @@ type Props = {
   currentRefinement: number;
   nbPages: number;
   searchState: QueryType;
-  baseUrlRederection: string;
+  baseUrlRedirection: string;
 };
 
-const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState, baseUrlRederection }) => {
+const Pagination: FC<Props> = ({ currentRefinement, nbPages, searchState, baseUrlRedirection }) => {
   if (!nbPages) {
     return null;
   }
 
   const nextLink =
     currentRefinement < nbPages
-      ? `${baseUrlRederection}?query=${searchState.query}&page=${currentRefinement + 1}`
+      ? `${baseUrlRedirection}?query=${searchState.query}&page=${currentRefinement + 1}`
       : '';
 
   const prevLink =
     currentRefinement > 1
-      ? `${baseUrlRederection}?query=${searchState.query}&page=${currentRefinement - 1}`
+      ? `${baseUrlRedirection}?query=${searchState.query}&page=${currentRefinement - 1}`
       : '';
 
   return (
