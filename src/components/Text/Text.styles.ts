@@ -6,6 +6,10 @@ export const Text = styled.p`
   margin: 16px 0;
   line-height: 24px;
   font-weight: 400;
+
+  a {
+    font-size: inherit;
+  }
 `;
 
 export const MDXText = styled(Text)`
