@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { datadogRum } from '@datadog/browser-rum';
-import withLDProvider from 'hoc/withLDProvider';
-import { ThemeProvider } from 'theme/ThemeProvider';
-import Head from 'components/Head';
-import withHandlerBackButton from 'hoc/withHandlerBackButton';
+import withLDProvider from 'src/hoc/withLDProvider';
+import { ThemeProvider } from 'src/theme/ThemeProvider';
+import Head from 'src/components/Head';
+import withHandlerBackButton from 'src/hoc/withHandlerBackButton';
 import GlobalStyles from '../styles/globalStyles';
 
 type Props = {

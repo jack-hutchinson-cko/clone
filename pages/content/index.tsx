@@ -4,8 +4,8 @@ import useSWR, { SWRResponse } from 'swr';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Error from 'next/error';
 
-import { ContentPageData, ContentPageType } from 'types/content';
-import MDXProvider from 'components/MDXProvider';
+import { ContentPageData, ContentPageType } from 'src/types/content';
+import MDXProvider from 'src/components/MDXProvider';
 import { PageContent, Title } from 'styles/index.styles';
 
 type ContentApiResponse = {

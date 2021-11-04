@@ -3,8 +3,8 @@
 import path from 'path';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { findPageData, parseDocContent } from 'lib/apiFileParser';
-import { clientSettings } from 'constants/clientSettings';
+import { findPageData, parseDocContent } from 'src/lib/apiFileParser';
+import { clientSettings } from 'src/constants/clientSettings';
 
 const handler = async ({ query }: NextApiRequest, res: NextApiResponse) => {
   const { pageUrl, sectionUrl } = query;
