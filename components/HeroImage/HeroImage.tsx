@@ -54,7 +54,12 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
 
   return (
     <HeroWrapper width={width}>
-      <Image src="/assets/images/HeroImg/hero.home.bg.svg" layout="fill" loader={basePathLoader} />
+      <Image
+        src="/assets/images/HeroImg/hero.home.bg.svg"
+        layout="fill"
+        loader={basePathLoader}
+        alt="Checkout.com hero image"
+      />
       <HeroParts
         style={isCursorEntered ? dynamicTransform : {}}
         onMouseEnter={onMouseEnterHandler}
@@ -67,6 +72,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
             width="397"
             height="300"
             loader={basePathLoader}
+            alt="Checkout.com hero body"
           />
         </HeroPart01>
         <HeroPart02 width={width}>
@@ -75,6 +81,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
             width="200"
             height="356"
             loader={basePathLoader}
+            alt="Checkout.com hero panel"
           />
         </HeroPart02>
         <HeroPart03 width={width}>
@@ -83,6 +90,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
             width="204"
             height="145"
             loader={basePathLoader}
+            alt="Checkout.com hero 3d secure label"
           />
         </HeroPart03>
       </HeroParts>

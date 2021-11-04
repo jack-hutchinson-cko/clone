@@ -24,7 +24,7 @@ Once you've set up and configured Apple Pay, you're ready to accept Apple Pay pa
 
 ### Step 1: Generate a Checkout.com token from the Apple Pay token
 
-After your customer validates their transaction with biometrics, Apple will generate a <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken" target="_blank">payment token</ExternalLink>.
+After your customer validates their transaction with biometrics, Apple will generate a <ExternalLink href="https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymenttoken" >payment token</ExternalLink>.
 
 The first step in processing an Apple Pay transaction is to convert this Apple Pay token into a [Checkout.com](http://checkout.com/) card token.
 
@@ -36,7 +36,7 @@ The first step in processing an Apple Pay transaction is to convert this Apple P
 
 ### Endpoints
 
-For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Tokens" target="_blank">API reference</ExternalLink>.
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Tokens" >API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -102,7 +102,7 @@ Using the token `(tok_...)` you got in the response above, make a standard payme
 
 ### Endpoints
 
-For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout" target="_blank">API reference</ExternalLink>.
+For the full API specification, see the <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#operation/requestAPaymentOrPayout" >API reference</ExternalLink>.
 
 <tabs>
 <tab title="Live">
@@ -146,8 +146,8 @@ If you get a `201 Success` response and the `approved` field is `true`, your pay
 
 To test Apple Pay payments, you'll need the following:
 
-*   An <ExternalLink href="https://support.apple.com/en-us/HT208531" target="_blank">Apple Pay compatible device</ExternalLink>.
-*   A <ExternalLink href="https://developer.apple.com/apple-pay/sandbox-testing/" target="_blank">sandbox Apple Pay wallet</ExternalLink>. (You cannot use a real Apple Pay wallet with real cards to test in sandbox.)
+*   An <ExternalLink href="https://support.apple.com/en-us/HT208531" >Apple Pay compatible device</ExternalLink>.
+*   A <ExternalLink href="https://developer.apple.com/apple-pay/sandbox-testing/" >sandbox Apple Pay wallet</ExternalLink>. (You cannot use a real Apple Pay wallet with real cards to test in sandbox.)
 
 ### Apple Pay test cards
 

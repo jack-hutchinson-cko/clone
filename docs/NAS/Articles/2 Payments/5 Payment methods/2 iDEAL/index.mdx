@@ -4,7 +4,7 @@ account: NAS
 description: Start accepting payments using iDEAL, a favorite online payment method in The Netherlands.
 ---
 
-Start accepting payments using <ExternalLink href="https://www.checkout.com/payment-methods/accept/ideal" target="_blank">iDEAL</ExternalLink>, a favorite online payment method in The Netherlands.
+Start accepting payments using <ExternalLink href="https://www.checkout.com/payment-methods/accept/ideal" >iDEAL</ExternalLink>, a favorite online payment method in The Netherlands.
 
 iDEAL payments are made through direct online transfer from the customer's bank account to your merchant bank account. Customers can use their mobile banking app or online banking environment. As soon as a payment is made, iDEAL sends you an online payment guarantee so you can deliver goods and services right away.
 
@@ -27,7 +27,7 @@ iDEAL payments follow a two-step process:
 
 ## Request a payment
 
-Use the details below to set up your request. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
+Use the details below to set up your request. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" >API reference</ExternalLink>.
 
 ### Endpoints
 
@@ -99,7 +99,7 @@ Redirect your customer to the `redirect` link’s href in the above response. Th
 
 <TipBox variant="note">
 
-For security reasons, iDEAL forbids using custom-made in-app browsers for redirection. We recommend that you open the device’s default browser to display the redirect. If you do want to use an in-app web view, you must use <ExternalLink href="https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller" target="_blank">SFSafariViewController</ExternalLink> for iOS or <ExternalLink href="https://developer.chrome.com/multidevice/android/customtabs" target="_blank">Chrome Custom Tabs</ExternalLink> for Android.
+For security reasons, iDEAL forbids using custom-made in-app browsers for redirection. We recommend that you open the device’s default browser to display the redirect. If you do want to use an in-app web view, you must use <ExternalLink href="https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller" >SFSafariViewController</ExternalLink> for iOS or <ExternalLink href="https://developer.chrome.com/multidevice/android/customtabs" >Chrome Custom Tabs</ExternalLink> for Android.
 
 </TipBox>
 
@@ -109,7 +109,7 @@ Once completed, the customer is transferred to your predefined success or failur
 
 ## Get details about a payment
 
-You can use the `payment_id` found in the payment response, or the `cko-session-id` from the success/failure URL (e.g., `https://www.checkout.com/order/succeeded?cko-session-id=`) to retrieve details about the payment. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
+You can use the `payment_id` found in the payment response, or the `cko-session-id` from the success/failure URL (e.g., `https://www.checkout.com/order/succeeded?cko-session-id=`) to retrieve details about the payment. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" >API reference</ExternalLink>.
 
 <TipBox variant="note">
 
@@ -179,7 +179,7 @@ The `cko-session-id` expires 15 minutes after being created.
 
 ## Refund a payment
 
-iDEAL supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" target="_blank">Hub</ExternalLink> or using the <ExternalLink href="https://api-reference.checkout.com/#operation/refundAPayment" target="_blank">refund endpoint</ExternalLink> of the Unified Payments API.
+iDEAL supports both partial and full refunds. You can refund a payment through the <ExternalLink href="https://hub.checkout.com/v2" >Hub</ExternalLink> or using the <ExternalLink href="https://api-reference.checkout.com/#operation/refundAPayment" >refund endpoint</ExternalLink> of the Unified Payments API.
 
 ---
 
@@ -313,7 +313,7 @@ Occurs when a refund is declined.
 
 ## Get a list of supported issuers
 
-Use the following request to get an up-to-date list of all issuers supporting iDEAL payments. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" target="_blank">API reference</ExternalLink>.
+Use the following request to get an up-to-date list of all issuers supporting iDEAL payments. To get a detailed view of all required and optional fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe" >API reference</ExternalLink>.
 
 ### Endpoints
 
@@ -369,7 +369,7 @@ Use the following request to get an up-to-date list of all issuers supporting iD
 
 To start testing, you'll need to:
 
-*   <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a test account</ExternalLink>, and
+*   <ExternalLink href="https://www.checkout.com/get-test-account" >create a test account</ExternalLink>, and
 *   contact your Customer Success Manager or integrations engineer to activate iDEAL payments in the sandbox environment.
 
 </TipBox>
