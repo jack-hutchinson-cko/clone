@@ -56,7 +56,7 @@ const DocPost: NextPage<DocPostProps> = ({
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
-      <PageContent isIntegrationBuilder={isIntegrationBuilder}>
+      <PageContent isIntegrationBuilder={isIntegrationBuilder} id="main">
         <header>
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           {!isIntegrationBuilder ? (

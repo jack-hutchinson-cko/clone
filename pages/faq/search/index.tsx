@@ -18,7 +18,7 @@ const FAQSearchPage: NextPage = () => {
 
   return (
     <>
-      <SectionContent>
+      <SectionContent id="main">
         <ContentWrapper>
           <FAQSearchWidget />
         </ContentWrapper>

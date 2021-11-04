@@ -358,3 +358,16 @@ export const WrapperWidgetGuides = styled.span`
     font-size: 18px;
   }
 `;
+
+export const SkipLink = styled.a`
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+  height: 30px;
+  left: 5%;
+  padding: ${spacing.s20}px;
+  position: absolute;
+
+  :focus {
+    transform: translateY(0%);
+  }
+`;

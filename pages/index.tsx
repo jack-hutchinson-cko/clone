@@ -21,7 +21,7 @@ type Props = HomePageContent;
 
 const HomePage: NextPage<Props> = ({ source, title, description, getStartedLink }) => {
   return (
-    <PageContent>
+    <PageContent id="main">
       <IntroWrapper>
         <ContentBlock>
           <IntroTitle>{title}</IntroTitle>

@@ -24,7 +24,7 @@ const SearchPage: FC = () => {
   }, [router.query]);
 
   return (
-    <PageContent>
+    <PageContent id="main">
       <InstantSearch
         searchState={searchState}
         searchClient={searchClient}
