@@ -2,11 +2,11 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
-type PureHeadProps = {
+type HeadProps = {
   title?: string;
 };
 
-const PageHead: FC<PureHeadProps> = ({ title = 'Checkout.com' }) => (
+const PageHead: FC<HeadProps> = ({ title = 'Checkout.com' }) => (
   <Head>
     <title>{title} - Docs</title>
     <meta charSet="utf-8" />
