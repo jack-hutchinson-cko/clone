@@ -97,14 +97,21 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       dividerText="or"
       link={
         <Link href={loginTopUrl} passHref>
-          <Button as="a" target="_blank" variant="secondary" size="large" fullWidthOnTablet>
+          <Button
+            as="a"
+            target="_blank"
+            variant="secondary"
+            size="large"
+            rel="noopener noreferrer"
+            fullWidthOnTablet
+          >
             Log in
           </Button>
         </Link>
       }
       alternativeLink={
         <Link href={testAccountUrl} passHref>
-          <NavigationLink lightOnTablet underlineOnHover target="_blank">
+          <NavigationLink lightOnTablet underlineOnHover target="_blank" rel="noopener noreferrer">
             <WrapperIconActionArrowRight>
               Apply for an account <IconActionArrowRight />
             </WrapperIconActionArrowRight>
