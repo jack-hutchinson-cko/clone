@@ -44,7 +44,7 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
 
   return (
     <>
-      <PageHead title={frontMatter.title} />
+      <PageHead title={frontMatter.title} id="main" />
       <SectionContent>
         <ContentWrapper>
           <FAQSearchWidget />

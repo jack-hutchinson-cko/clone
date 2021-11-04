@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
-import PageHead from 'components/Head';
+import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
 import BreadCrumbsDefault from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
@@ -56,7 +56,7 @@ const DocPost: NextPage<DocPostProps> = ({
   return (
     <AnchorsProvider>
       <Head title={frontMatter.title} />
-      <PageContent isIntegrationBuilder={isIntegrationBuilder}>
+      <PageContent isIntegrationBuilder={isIntegrationBuilder} id="main">
         <header>
           <BreadCrumbs breadCrumbsItem={breadCrumbsItem} />
           {!isIntegrationBuilder ? (
