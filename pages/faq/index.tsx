@@ -1,9 +1,9 @@
 import { GetStaticProps, NextPage } from 'next';
 import React from 'react';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import MDXProvider from 'components/MDXProvider';
-import { getFAQSections, getPopularFAQItems, FAQSectionType } from 'lib/fileParser';
-import CardWrapper from 'components/CardWrapper';
+import MDXProvider from 'src/components/MDXProvider';
+import { getFAQSections, getPopularFAQItems, FAQSectionType } from 'src/lib/fileParser';
+import CardWrapper from 'src/components/CardWrapper';
 import {
   ContentWrapper,
   SectionContent,
@@ -14,13 +14,13 @@ import {
   SearchFieldWrapper,
   SearchExamples,
   SearchLabel,
-} from 'components/FAQStyledComponents';
-import Head from 'components/Head';
-import SectionTag from 'components/Tag/SectionTag';
-import FAQSearchWidget from 'components/Search/FAQSearchWidget';
-import withErrorPage from 'hoc/withErrorPage';
-import { clientSettings } from 'constants/clientSettings';
-import withMainLayout from 'hoc/withMainLayout';
+} from 'src/components/FAQStyledComponents';
+import Head from 'src/components/Head';
+import SectionTag from 'src/components/Tag/SectionTag';
+import FAQSearchWidget from 'src/components/Search/FAQSearchWidget';
+import withErrorPage from 'src/hoc/withErrorPage';
+import { clientSettings } from 'src/constants/clientSettings';
+import withMainLayout from 'src/hoc/withMainLayout';
 
 type Props = {
   faqCategories: FAQSectionType[];

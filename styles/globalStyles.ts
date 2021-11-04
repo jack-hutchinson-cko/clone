@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { spacing } from 'constants/spacingSize';
+import { spacing } from 'src/constants/spacingSize';
 
 const globalStyles = createGlobalStyle`
   html,

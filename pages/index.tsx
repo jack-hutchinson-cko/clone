@@ -1,12 +1,12 @@
 import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
-import { getDocArticleData, getDocsSidebarDocLinks } from 'lib/fileParser';
-import { clientSettings } from 'constants/clientSettings';
-import HeroImage from 'components/HeroImage';
-import { HomePageContent } from 'types/homepage';
-import MDXProvider from 'components/MDXProvider';
-import Button from 'components/Button';
-import withMainLayout from 'hoc/withMainLayout';
+import { getDocArticleData, getDocsSidebarDocLinks } from 'src/lib/fileParser';
+import { clientSettings } from 'src/constants/clientSettings';
+import HeroImage from 'src/components/HeroImage';
+import { HomePageContent } from 'src/types/homepage';
+import MDXProvider from 'src/components/MDXProvider';
+import Button from 'src/components/Button';
+import withMainLayout from 'src/hoc/withMainLayout';
 
 import {
   IntroWrapper,

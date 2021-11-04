@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import ErrorPageComponent from 'components/ErrorPage';
+import ErrorPageComponent from 'src/components/ErrorPage';
 
 type Props = {
   statusCode?: number;

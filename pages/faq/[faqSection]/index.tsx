@@ -2,11 +2,11 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import Head from 'components/Head';
-import BreadCrumbs from 'components/BreadCrumbs';
-import { TextHeadingOne } from 'components/TextHeading';
-import MDXProvider from 'components/MDXProvider';
-import SectionList from 'components/SectionList';
+import Head from 'src/components/Head';
+import BreadCrumbs from 'src/components/BreadCrumbs';
+import { TextHeadingOne } from 'src/components/TextHeading';
+import MDXProvider from 'src/components/MDXProvider';
+import SectionList from 'src/components/SectionList';
 import {
   ContentWrapper,
   HeadDescription,
@@ -17,17 +17,17 @@ import {
   SectionLinksContainer,
   QuestionsContainer,
   HeadingThree,
-} from 'components/FAQStyledComponents';
+} from 'src/components/FAQStyledComponents';
 import {
   getFAQPathUrls,
   getFileNameFromFAQPath,
   getDocArticleData,
   getFAQSections,
-} from 'lib/fileParser';
-import { SectionListItem } from 'types/sectionList';
-import { BreadCrumbsItems } from 'types/content';
-import FAQSearchWidget from 'components/Search/FAQSearchWidget';
-import withMainLayout from 'hoc/withMainLayout';
+} from 'src/lib/fileParser';
+import { SectionListItem } from 'src/types/sectionList';
+import { BreadCrumbsItems } from 'src/types/content';
+import FAQSearchWidget from 'src/components/Search/FAQSearchWidget';
+import withMainLayout from 'src/hoc/withMainLayout';
 
 type Props = {
   frontMatter: {
