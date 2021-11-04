@@ -39,6 +39,7 @@ import {
   HeaderLogoWrapper,
   InlineFlexWrapper,
   NavigationDrawers,
+  HeaderItem,
 } from './Header.styles';
 
 type Props = {
@@ -189,16 +190,16 @@ const Header: FC<WithMenuStateProps<Props>> = ({
               content={
                 <SignInLinks
                   headerTitle={
-                    <NavigationLink rel="noopener noreferrer">
+                    <HeaderItem>
                       <IconTestAccount /> Test account
-                    </NavigationLink>
+                    </HeaderItem>
                   }
                   headerDescription="Monitor transactions, business performance and customer trends."
                   extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
                   footerTitle={
-                    <NavigationLink>
+                    <HeaderItem>
                       <IconAccount /> {loginTitle}
-                    </NavigationLink>
+                    </HeaderItem>
                   }
                   footerExtraContent={
                     <LiginWidgetBottomWrapper>

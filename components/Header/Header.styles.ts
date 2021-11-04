@@ -244,6 +244,21 @@ export const NavigationLink = styled.a<{
   }
 `;
 
+export const HeaderItem = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: ${({ theme }) => theme.colors.base};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  outline: none;
+
+  svg {
+    color: ${({ theme }) => theme.colors.sectionIcon};
+  }
+`;
+
 export const HeaderLogoWrapper = styled.div`
   display: flex;
 
