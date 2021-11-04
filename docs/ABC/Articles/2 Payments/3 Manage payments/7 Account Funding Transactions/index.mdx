@@ -151,7 +151,11 @@ The Checkout.com token.
 
 The payment amount in your chosen currency. Omit the amount or provide a value of `0` to perform a [card verification](/risk-management/card-verification).
 
+<InfoBox>
+
 The format depends on the currency. For more information, see [calculating the value](/resources/calculating-the-value).
+
+</InfoBox>
 
 </TableCell>
 </TableRow>
@@ -269,7 +273,7 @@ The primary account number (PAN) of the recipient's account when funding a card 
 
 `recipient.country`
 
-<StatusTag type="required" /> for Mastercard cross-border funding transactions, or when a domestic funding transaction is funding a subsequent cross-border funds transfer.
+<StatusTag type="required" /> for Mastercard cross-border funding transactions.
 <StatusTag type="optional" /> for Visa
 <TypeTag type="string" />
 
