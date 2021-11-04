@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import { PureHead as Head } from 'components/Head';
+import Head from 'components/Head';
 import BreadCrumbs from 'components/BreadCrumbs';
 import { TextHeadingOne } from 'components/TextHeading';
 import MDXProvider from 'components/MDXProvider';

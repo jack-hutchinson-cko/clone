@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
-import { PureHead as Head } from 'components/Head';
+import Head from 'components/Head';
 import MDXProvider from 'components/MDXProvider';
 import BreadCrumbsDefault from 'components/BreadCrumbs';
 import AnchorsProvider from 'components/AnchorsProvider';
