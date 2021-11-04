@@ -6,9 +6,9 @@ type PureHeadProps = {
   title?: string;
 };
 
-const PageHead: FC = () => (
+const PageHead: FC<PureHeadProps> = ({ title = 'Checkout.com' }) => (
   <Head>
-    <title>Checkout.com - Docs</title>
+    <title>{title} - Docs</title>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex nofollow" />
@@ -18,12 +18,6 @@ const PageHead: FC = () => (
       name="msapplication-config"
       content="https://www.checkout.com/favicons/browserconfig.xml"
     />
-  </Head>
-);
-
-export const PureHead: FC<PureHeadProps> = ({ title = 'Checkout.com' }) => (
-  <Head>
-    <title>{title} - Docs</title>
   </Head>
 );
 
