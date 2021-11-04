@@ -15,7 +15,7 @@ import {
   SearchExamples,
   SearchLabel,
 } from 'components/FAQStyledComponents';
-import { PureHead as Head } from 'components/Head';
+import Head from 'components/Head';
 import SectionTag from 'components/Tag/SectionTag';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
 import withErrorPage from 'hoc/withErrorPage';

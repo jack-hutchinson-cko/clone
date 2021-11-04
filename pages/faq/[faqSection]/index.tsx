@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import { PureHead as Head } from 'components/Head';
+import PageHead from 'components/Head';
 import BreadCrumbs from 'components/BreadCrumbs';
 import { TextHeadingOne } from 'components/TextHeading';
 import MDXProvider from 'components/MDXProvider';
@@ -44,7 +44,7 @@ const FAQSection: NextPage<Props> = ({ frontMatter, source, sectionList, breadCr
 
   return (
     <>
-      <Head title={frontMatter.title} />
+      <PageHead title={frontMatter.title} />
       <SectionContent>
         <ContentWrapper>
           <FAQSearchWidget />
