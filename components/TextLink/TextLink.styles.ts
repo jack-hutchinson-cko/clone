@@ -10,6 +10,8 @@ export const StyledLink = styled.a<LinkProps>`
   font-weight: 500;
   font-size: ${(props) => (props.withArrow ? '14' : '16')}px;
   display: ${(props) => props.withArrow && 'block'};
+  cursor: pointer;
+  
   &:hover {
     text-decoration: underline;
   }

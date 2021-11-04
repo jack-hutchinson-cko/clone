@@ -17,7 +17,7 @@ Alternatively, use the [get payment details endpoint](/payments/manage-payments/
 
 <FAQItem title="What do the payment statuses in the Hub mean?" popularity={22}>
 
-Payment statuses (also called payment actions) refer to the various statuses that a given payment goes through. For example, a card payment might go from being authorized (AUTH) to captured (CAPTURE) before finally being refunded (REFUND). Each of these statuses will be displayed in the **Action** column of the <ExternalLink href="https://hub.checkout.com/login" target="_blank">Hub</ExternalLink>'s Payments screen, as well as in the payment details.
+Payment statuses (also called payment actions) refer to the various statuses that a given payment goes through. For example, a card payment might go from being authorized (AUTH) to captured (CAPTURE) before finally being refunded (REFUND). Each of these statuses will be displayed in the **Action** column of the <ExternalLink href="https://hub.checkout.com/login" >Hub</ExternalLink>'s Payments screen, as well as in the payment details.
 
 To view a list of all possible statuses and what they mean, take a look at our [payment actions guide](/the-hub/manage-hub-payments/about-payment-actions).
 
@@ -25,7 +25,7 @@ To view a list of all possible statuses and what they mean, take a look at our [
 
 <FAQItem title="How do I issue a refund?" popularity={23}>
 
-You can issue a refund (either full or partial) through the <ExternalLink href="https://hub.checkout.com/login" target="_blank">Hub</ExternalLink>, or by calling the [refund endpoint](/payments/manage-payments/refund-a-payment) by <ExternalLink href="https://docs.ckotech.co/the-hub/manage-payments#Managepayments-Capture,void,orrefundapayment">following these steps</ExternalLink>.
+You can issue a refund (either full or partial) through the <ExternalLink href="https://hub.checkout.com/login" >Hub</ExternalLink>, or by calling the [refund endpoint](/payments/manage-payments/refund-a-payment) by <ExternalLink href="https://docs.ckotech.co/the-hub/manage-payments#Managepayments-Capture,void,orrefundapayment">following these steps</ExternalLink>.
 
 </FAQItem>
 
@@ -41,7 +41,7 @@ You cannot cancel or void a refund. However, you can charge the customer a new p
 
 You can do this by:
 
-- using the <ExternalLink href="https://hub.checkout.com/login" target="_blank">Hub</ExternalLink>. To do so, simply open the customer details page and click the **Create payment** button.
+- using the <ExternalLink href="https://hub.checkout.com/login" >Hub</ExternalLink>. To do so, simply open the customer details page and click the **Create payment** button.
 - using the [Unified Payments API](/payments/accept-payments/request-a-card-payment)
 
 Be sure to tell the customer beforehand.
@@ -57,7 +57,7 @@ You should provide your customer with the Acquirer Reference Number (ARN) of the
 
 <FAQItem title="Where can I find the Acquirer Reference Number (ARN)?" popularity={37}>
 
-You can find the Acquirer Reference Number (ARN) for a payment in the _Payments_ section of the <ExternalLink href="https://hub.checkout.com/login" target="_blank">Hub</ExternalLink>. Just click on the relevant payment action to open up the summary, and you'll find the ARN under the **Action details** heading.
+You can find the Acquirer Reference Number (ARN) for a payment in the _Payments_ section of the <ExternalLink href="https://hub.checkout.com/login" >Hub</ExternalLink>. Just click on the relevant payment action to open up the summary, and you'll find the ARN under the **Action details** heading.
 
 Alternatively, you can find the ARN in the response of the [get payment actions endpoint](/payments/manage-payments/get-payment-actions), as well as in the payment_captured and payment_refunded webhook notifications.
 
@@ -67,7 +67,7 @@ Alternatively, you can find the ARN in the response of the [get payment actions 
 
 You cannot cancel a refund. However, you can charge the customer a new transaction.
 
-To do so, go to the _Customers_ section of your <ExternalLink href="https://hub.checkout.com/login" target="_blank">Hub</ExternalLink> account, select the customer you want to charge and click **Create payment**.
+To do so, go to the _Customers_ section of your <ExternalLink href="https://hub.checkout.com/login" >Hub</ExternalLink> account, select the customer you want to charge and click **Create payment**.
 
 You should tell the customer before doing this, to avoid confusion.
 
@@ -75,7 +75,7 @@ You should tell the customer before doing this, to avoid confusion.
 
 <FAQItem title="Can I process a refund for a card not processed on Checkout.com?" popularity={30}>
 
-No. To process a refund, the original transaction must have been be processed with us and be visible in your <ExternalLink href="https://hub.checkout.com/login" target="_blank">Hub</ExternalLink> account.
+No. To process a refund, the original transaction must have been be processed with us and be visible in your <ExternalLink href="https://hub.checkout.com/login" >Hub</ExternalLink> account.
 
 </FAQItem>
 
