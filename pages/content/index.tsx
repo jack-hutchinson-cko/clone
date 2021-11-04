@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR, { SWRResponse } from 'swr';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -46,14 +46,6 @@ const DocContent: NextPage = () => {
   };
 
   return <PageContent>{renderContent(result)}</PageContent>;
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      headlessMode: true,
-    },
-  };
 };
 
 export default DocContent;

@@ -21,7 +21,7 @@ export const policies: PoliciesList = [
     name: 'Cookie Settings',
     props: {
       id: 'ot-sdk-btn',
-      className: 'ot-sdk-show-settings settings-button',
+      className: 'ot-sdk-show-settings settings-button onetrust-button',
     },
   },
   {

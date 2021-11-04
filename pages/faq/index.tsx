@@ -15,7 +15,7 @@ import {
   SearchExamples,
   SearchLabel,
 } from 'components/FAQStyledComponents';
-import { PureHead as Head } from 'components/Head';
+import Head from 'components/Head';
 import SectionTag from 'components/Tag/SectionTag';
 import FAQSearchWidget from 'components/Search/FAQSearchWidget';
 import withErrorPage from 'hoc/withErrorPage';
@@ -37,7 +37,7 @@ const FAQHomePage: NextPage<Props> = ({ faqCategories, popularFAQItemsSource }) 
   return (
     <>
       <Head title="FAQ" />
-      <ContentWrapper>
+      <ContentWrapper id="main">
         <HeadingOne>Welcome to frequently asked questions</HeadingOne>
         <SearchLabel>
           Please type in a question regarding Checkout.com’s products or services.

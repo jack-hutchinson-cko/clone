@@ -9,7 +9,7 @@ const FooterLogo: FC = () => {
   return (
     <Container>
       <FooterLink href="/">
-        <Logo />
+        <Logo aria-label="Checkout.com" />
       </FooterLink>
     </Container>
   );

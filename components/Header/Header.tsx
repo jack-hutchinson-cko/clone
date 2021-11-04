@@ -39,6 +39,8 @@ import {
   HeaderLogoWrapper,
   InlineFlexWrapper,
   NavigationDrawers,
+  SkipLink,
+  HeaderItem,
 } from './Header.styles';
 
 type Props = {
@@ -97,14 +99,21 @@ const Header: FC<WithMenuStateProps<Props>> = ({
       dividerText="or"
       link={
         <Link href={loginTopUrl} passHref>
-          <Button as="a" target="_blank" variant="secondary" size="large" fullWidthOnTablet>
+          <Button
+            as="a"
+            target="_blank"
+            variant="secondary"
+            size="large"
+            rel="noopener noreferrer"
+            fullWidthOnTablet
+          >
             Log in
           </Button>
         </Link>
       }
       alternativeLink={
         <Link href={testAccountUrl} passHref>
-          <NavigationLink lightOnTablet underlineOnHover target="_blank">
+          <NavigationLink lightOnTablet underlineOnHover target="_blank" rel="noopener noreferrer">
             <WrapperIconActionArrowRight>
               Apply for an account <IconActionArrowRight />
             </WrapperIconActionArrowRight>
@@ -125,6 +134,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
 
   return (
     <Navigation withMobileSize>
+      <SkipLink href="#main">Skip to content</SkipLink>
       <NavigationContent>
         <NavigationSection>
           <NavigationItem hideOnDesktop hideOnTablet>
@@ -134,8 +144,8 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             <Link href="/" passHref>
               <NavigationLink>
                 <HeaderLogoWrapper>
-                  <HeaderLogoL onClick={onClickLogo} />
-                  <HeaderLogoXS onClick={onClickLogo} />
+                  <HeaderLogoL onClick={onClickLogo} aria-label="Documentation" />
+                  <HeaderLogoXS onClick={onClickLogo} aria-label="Documentation" />
                 </HeaderLogoWrapper>
               </NavigationLink>
             </Link>
@@ -154,7 +164,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                   withMobileSize
                   guides={guides}
                   mapTitle={(title, Icon) => (
-                    <NavigationLink target="_blank" underlineOnHover>
+                    <NavigationLink target="_blank" underlineOnHover rel="noopener noreferrer">
                       <Icon /> {title}
                     </NavigationLink>
                   )}
@@ -182,16 +192,16 @@ const Header: FC<WithMenuStateProps<Props>> = ({
               content={
                 <SignInLinks
                   headerTitle={
-                    <NavigationLink>
+                    <HeaderItem>
                       <IconTestAccount /> Test account
-                    </NavigationLink>
+                    </HeaderItem>
                   }
                   headerDescription="Monitor transactions, business performance and customer trends."
                   extraContent={<LoginWidgetTopWrapper>{loginWidget}</LoginWidgetTopWrapper>}
                   footerTitle={
-                    <NavigationLink>
+                    <HeaderItem>
                       <IconAccount /> {loginTitle}
-                    </NavigationLink>
+                    </HeaderItem>
                   }
                   footerExtraContent={
                     <LiginWidgetBottomWrapper>
@@ -199,14 +209,24 @@ const Header: FC<WithMenuStateProps<Props>> = ({
                         dividerText="or"
                         link={
                           <Link href={loginBottomUrl} passHref>
-                            <NavigationLink target="_blank" light underlineAlways>
+                            <NavigationLink
+                              target="_blank"
+                              light
+                              underlineAlways
+                              rel="noopener noreferrer"
+                            >
                               Log in
                             </NavigationLink>
                           </Link>
                         }
                         alternativeLink={
                           <Link href={testAccountUrl} passHref>
-                            <NavigationLink target="_blank" light underlineAlways>
+                            <NavigationLink
+                              target="_blank"
+                              light
+                              underlineAlways
+                              rel="noopener noreferrer"
+                            >
                               apply for a test account
                             </NavigationLink>
                           </Link>
@@ -227,7 +247,7 @@ const Header: FC<WithMenuStateProps<Props>> = ({
           {isABC && (
             <NavigationItem hideOnMobile hideOnTablet>
               <Link href={testAccountUrl} passHref>
-                <NavigationLink target="_blank" light underlineOnHover>
+                <NavigationLink target="_blank" light underlineOnHover rel="noopener noreferrer">
                   Get test account
                 </NavigationLink>
               </Link>

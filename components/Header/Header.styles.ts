@@ -244,6 +244,21 @@ export const NavigationLink = styled.a<{
   }
 `;
 
+export const HeaderItem = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: ${({ theme }) => theme.colors.base};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  outline: none;
+
+  svg {
+    color: ${({ theme }) => theme.colors.sectionIcon};
+  }
+`;
+
 export const HeaderLogoWrapper = styled.div`
   display: flex;
 
@@ -341,5 +356,18 @@ export const WrapperIconActionArrowRight = styled.span`
 export const WrapperWidgetGuides = styled.span`
   ${NavigationLink} {
     font-size: 18px;
+  }
+`;
+
+export const SkipLink = styled.a`
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+  height: 30px;
+  left: 5%;
+  padding: ${spacing.s20}px;
+  position: absolute;
+
+  :focus {
+    transform: translateY(0%);
   }
 `;

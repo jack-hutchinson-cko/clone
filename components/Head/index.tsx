@@ -1,1 +1,1 @@
-export { default, PureHead } from './Head';
+export { default } from './Head';

@@ -23,7 +23,7 @@ type ExternalProps = {
 };
 
 export const ExternalLink: FC<ExternalProps> = ({ children, withArrow, ...props }) => (
-  <StyledLink {...props} withArrow={withArrow}>
+  <StyledLink target="_blank" withArrow={withArrow} rel="noopener noreferrer" {...props}>
     {children?.props?.children || children}
     {withArrow && <IconActionArrowRight />}
   </StyledLink>
