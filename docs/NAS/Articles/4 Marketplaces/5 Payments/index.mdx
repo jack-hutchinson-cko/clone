@@ -17,7 +17,7 @@ On this page, we will walk through how you can request a payment on behalf of:
 
 ## Request a payment for a single sub-entity 
 
-When processing a payment on behalf of a single sub-entity, you just need to create a payment request for the total purchase amount. Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink> for all required and optional fields.
+When processing a payment on behalf of a single sub-entity, you just need to create a payment request for the total purchase amount. Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" >API reference</ExternalLink> for all required and optional fields.
 
 To associate this payment with the correct sub-entity, use the `marketplace` object and provide the ID in the `sub_entity_id` field.
 
@@ -65,7 +65,7 @@ When a customer uses your platform to buy items from multiple sub-entities, you 
 
 ### How to split a payment
 
-Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" target="_blank">API reference</ExternalLink> for all required and optional fields.
+Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" >API reference</ExternalLink> for all required and optional fields.
 
 In the `marketplace` object, include the `sub_entities` array. This is an array of objects, where each object specifies:
 * The ID of the sub-entity.
@@ -232,7 +232,7 @@ All Checkout fees for processing payments will be charged to you (the platform).
 </tab>
 <tab title="422 - Invalid data was sent">
 
-When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/) for a full overview." target="_blank">API reference</ExternalLink>.
+When you receive a `422`, please check the API request to make sure you've included all of the required values. You can see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/) for a full overview." >API reference</ExternalLink>.
 
 ```json withBorder=false
 {
@@ -448,5 +448,5 @@ When you make a payment, we will let you know what stage the payment is at throu
 
 To get a detailed view of all required and optional fields, see our API reference.
 
-<ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace" target="_blank">Learn more</ExternalLink>
+<ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace" >Learn more</ExternalLink>
 </ContentPanel>
