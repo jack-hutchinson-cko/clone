@@ -360,7 +360,7 @@ export const WrapperWidgetGuides = styled.span`
 `;
 
 export const SkipLink = styled.a`
-  transform: translateY(-100%);
+  transform: translateY(-1000%);
   transition: transform 0.3s;
   width: 154px;
   left: 47%;
