@@ -3,7 +3,7 @@
 import path from 'path';
 import { get } from 'lodash';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getDocArticlesSettings } from 'lib/fileParser';
+import { getDocArticlesSettings } from 'src/lib/fileParser';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   res.statusCode = 200;

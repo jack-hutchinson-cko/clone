@@ -2,8 +2,8 @@
 import systemPath from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
-import { forEachFileTree } from 'lib/fileParserCommon';
-import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
+import { forEachFileTree } from 'src/lib/fileParserCommon';
+import { CLIENT_SETTINGS_BY_TYPE } from 'src/constants/clientSettings';
 
 dotenv.config();
 

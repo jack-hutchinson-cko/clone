@@ -3,14 +3,14 @@ import algoliasearch from 'algoliasearch/lite';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next';
 import { InstantSearch, Configure } from 'react-instantsearch-dom';
-import { DocsHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'components/Search';
-import { ApplicationID, AdminAPIKey } from 'constants/algoliasearch';
-import { clientSettings } from 'constants/clientSettings';
-import { HitMode, QueryType } from 'types/search';
+import { DocsHits, HiddenSearchInput, SearchResultHeader, Pagination } from 'src/components/Search';
+import { ApplicationID, AdminAPIKey } from 'src/constants/algoliasearch';
+import { clientSettings } from 'src/constants/clientSettings';
+import { HitMode, QueryType } from 'src/types/search';
 import { PageContent } from 'styles/index.styles';
-import useFilterSettings from 'hooks/useFilterSettings';
-import { getDocsSidebarDocLinks } from 'lib/fileParser';
-import withMainLayout from 'hoc/withMainLayout';
+import useFilterSettings from 'src/hooks/useFilterSettings';
+import { getDocsSidebarDocLinks } from 'src/lib/fileParser';
+import withMainLayout from 'src/hoc/withMainLayout';
 
 const searchClient = algoliasearch(ApplicationID, AdminAPIKey);
 
@@ -37,7 +37,7 @@ const SearchPage: FC = () => {
         />
         <HiddenSearchInput />
         <DocsHits mode={HitMode.PAGE} />
-        <Pagination searchState={searchState} baseUrlRederection="/search" />
+        <Pagination searchState={searchState} baseUrlRedirection="/search" />
       </InstantSearch>
     </PageContent>
   );

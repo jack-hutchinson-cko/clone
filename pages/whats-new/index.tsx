@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { GetStaticProps } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import MDXProvider from 'components/MDXProvider';
+import MDXProvider from 'src/components/MDXProvider';
 import { PageContent } from 'styles/index.styles';
-import { WhatsNewHeader, WhatsNew } from 'components/WhatsNewComponents';
-import { getDocArticleData, getDocsSidebarDocLinks } from 'lib/fileParser';
-import { clientSettings } from 'constants/clientSettings';
-import withMainLayout from 'hoc/withMainLayout';
+import { WhatsNewHeader, WhatsNew } from 'src/components/WhatsNewComponents';
+import { getDocArticleData, getDocsSidebarDocLinks } from 'src/lib/fileParser';
+import { clientSettings } from 'src/constants/clientSettings';
+import withMainLayout from 'src/hoc/withMainLayout';
 
 type Props = {
   source: MDXRemoteSerializeResult;

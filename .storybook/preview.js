@@ -1,6 +1,6 @@
 import * as nextImage from 'next/image';
 
-import { ThemeProvider } from '../theme/ThemeProvider';
+import { ThemeProvider } from '../src/theme/ThemeProvider';
 
 Object.defineProperty(nextImage, 'default', {
   configurable: true,

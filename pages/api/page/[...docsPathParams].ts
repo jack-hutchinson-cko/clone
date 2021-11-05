@@ -1,6 +1,6 @@
 import path from 'path';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { findPageMetadata } from 'lib/apiFileParser';
+import { findPageMetadata } from 'src/lib/apiFileParser';
 
 const filePathByAccount = {
   ABC: 'docs/ABC/Articles',

@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
-import ErrorPageComponent from 'components/ErrorPage';
-import withMainLayout from 'hoc/withMainLayout';
-import { getDocsSidebarDocLinks } from 'lib/fileParser';
+import ErrorPageComponent from 'src/components/ErrorPage';
+import withMainLayout from 'src/hoc/withMainLayout';
+import { getDocsSidebarDocLinks } from 'src/lib/fileParser';
 
 const ErrorPage: NextPage = () => <ErrorPageComponent statusCode={404} />;
 

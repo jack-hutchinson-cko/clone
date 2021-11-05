@@ -6,9 +6,9 @@ import { renderToString } from 'react-dom/server';
 import striptags from 'striptags';
 import MDX from '@mdx-js/runtime';
 import algoliasearch from 'algoliasearch';
-import { CLIENT_SETTINGS_BY_TYPE } from 'constants/clientSettings';
-import { ThemeProvider } from 'theme/ThemeProvider';
-import { mdxComponents } from 'components/MDXProvider';
+import { CLIENT_SETTINGS_BY_TYPE } from 'src/constants/clientSettings';
+import { ThemeProvider } from 'src/theme/ThemeProvider';
+import { mdxComponents } from 'src/components/MDXProvider';
 import {
   forEachFileTree,
   getMdxFileData,
@@ -16,8 +16,8 @@ import {
   getFAQItemBody,
   getFAQHeaderProperty,
   ForEachTreeCallBackParamsType,
-} from 'lib/fileParserCommon';
-import { unescape } from 'lib/unescape';
+} from 'src/lib/fileParserCommon';
+import { unescape } from 'src/lib/unescape';
 
 dotenv.config();
 export const ApplicationID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;

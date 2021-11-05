@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Box } from '@cko/primitives';
-import { TextHeadingOne } from 'components/TextHeading';
-import { Text } from 'components/Text';
+import { TextHeadingOne } from 'src/components/TextHeading';
+import { Text } from 'src/components/Text';
 
-import { SIZE, Breakpoints, createBreakpointTo } from 'constants/screen';
-import { spacing } from 'constants/spacingSize';
+import { SIZE, Breakpoints, createBreakpointTo } from 'src/constants/screen';
+import { spacing } from 'src/constants/spacingSize';
 
 export const IntroWrapper = styled.div`
   display: flex;

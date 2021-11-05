@@ -1,19 +1,19 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
-import Head from 'components/Head';
-import MDXProvider from 'components/MDXProvider';
-import BreadCrumbsDefault from 'components/BreadCrumbs';
-import AnchorsProvider from 'components/AnchorsProvider';
-import AnchorNavigation from 'components/AnchorNavigation';
-import Card from 'components/Card';
-import CardWrapper from 'components/CardWrapper';
-import LastChange from 'components/LastChange';
-import TimeToComplete from 'components/TimeToComplete';
-import WarningMessage from 'components/WarningMessage';
-import { MdxTextHeadingOne } from 'components/TextHeading';
-import withBlockBottomMargin from 'hoc/withBlockBottomMargin';
-import { spacing } from 'constants/spacingSize';
-import withMainLayout from 'hoc/withMainLayout';
+import Head from 'src/components/Head';
+import MDXProvider from 'src/components/MDXProvider';
+import BreadCrumbsDefault from 'src/components/BreadCrumbs';
+import AnchorsProvider from 'src/components/AnchorsProvider';
+import AnchorNavigation from 'src/components/AnchorNavigation';
+import Card from 'src/components/Card';
+import CardWrapper from 'src/components/CardWrapper';
+import LastChange from 'src/components/LastChange';
+import TimeToComplete from 'src/components/TimeToComplete';
+import WarningMessage from 'src/components/WarningMessage';
+import { MdxTextHeadingOne } from 'src/components/TextHeading';
+import withBlockBottomMargin from 'src/hoc/withBlockBottomMargin';
+import { spacing } from 'src/constants/spacingSize';
+import withMainLayout from 'src/hoc/withMainLayout';
 
 import {
   getFileNameFromPath,
@@ -22,11 +22,11 @@ import {
   getBreadCrumbsItem,
   getChildrenArticle,
   getDocsSidebarDocLinks,
-} from 'lib/fileParser';
+} from 'src/lib/fileParser';
 
-import { DocPostProps } from 'types/docpage';
-import withErrorPage from 'hoc/withErrorPage';
-import withFeatureFlag from 'hoc/withFeatureFlag';
+import { DocPostProps } from 'src/types/docpage';
+import withErrorPage from 'src/hoc/withErrorPage';
+import withFeatureFlag from 'src/hoc/withFeatureFlag';
 import {
   PageContent,
   Navigation,
