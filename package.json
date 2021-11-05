@@ -7,6 +7,7 @@
     "create-site-map": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createSiteMap.tsx",
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "npm run git-unshallow",
     "start": "next start",
     "dev:abc": "NEXT_PUBLIC_HEAP_IO_ACCOUNT=ABC NEXT_PUBLIC_CLIENT_TYPE=ABC next dev",
     "dev:nas": "NEXT_PUBLIC_HEAP_IO_ACCOUNT=NAS NEXT_PUBLIC_CLIENT_TYPE=NAS next dev",
@@ -21,7 +22,7 @@
     "build-storybook": "build-storybook",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "git-unshallow": "git fetch --unshallow"
+    "git-unshallow": "git fetch --depth=1000"
   },
   "dependencies": {
     "@cko/icons": "^3.17.2",
