@@ -39,7 +39,6 @@ import {
   HeaderLogoWrapper,
   InlineFlexWrapper,
   NavigationDrawers,
-  SkipLink,
   HeaderItem,
 } from './Header.styles';
 
@@ -134,7 +133,6 @@ const Header: FC<WithMenuStateProps<Props>> = ({
 
   return (
     <Navigation withMobileSize>
-      <SkipLink href="#main">Skip to content</SkipLink>
       <NavigationContent>
         <NavigationSection>
           <NavigationItem hideOnDesktop hideOnTablet>

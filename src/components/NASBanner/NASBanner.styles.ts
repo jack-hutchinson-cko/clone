@@ -21,11 +21,13 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const BannerClose = styled.div`
+export const BannerClose = styled.button`
   cursor: pointer;
   position: absolute;
   top: 24px;
   right: 24px;
+  background: inherit;
+  border: none;
 
   svg {
     color: ${({ theme }) => theme.colors.nasBannerText};

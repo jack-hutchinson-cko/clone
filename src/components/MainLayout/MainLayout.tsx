@@ -19,6 +19,7 @@ import {
   ContentWrapper,
   SideBarWrapper,
   FooterWrapper,
+  SkipLink,
 } from './MainLayout.styles';
 
 export type Props = {
@@ -40,6 +41,7 @@ const MainLayout: FC<Props> = ({
 
   return (
     <>
+      <SkipLink href="#main">Skip to content</SkipLink>
       {clientSettings.NASBannerShown && <NASBanner />}
       <MenuStateProvider>
         <MainWrapper>

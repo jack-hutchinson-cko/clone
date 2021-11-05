@@ -42,3 +42,23 @@ export const Content = styled.main`
 export const FooterWrapper = styled.div`
   flex-grow: 0;
 `;
+
+export const SkipLink = styled.a`
+  transform: translateY(-1000%);
+  transition: transform 0.3s;
+  width: 154px;
+  left: 47%;
+  padding: 8px 24px;
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0px 1px 8px rgba(12, 17, 66, 0.12);
+  border-radius: 0px 0px 8px 8px;
+  z-index: 99;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+
+  :focus {
+    transform: translateY(0%);
+  }
+`;
