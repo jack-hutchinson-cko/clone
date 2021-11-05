@@ -37,11 +37,12 @@ const MainLayout: FC<Props> = ({
   isFAQSection,
 }) => {
   const { asPath } = useRouter();
+  const notWhatsNew = asPath !== '/whats-new';
   const activeLink = useMemo(() => cutOffHashValue(asPath), [asPath]);
 
   return (
     <>
-      <SkipLink href="#main">Skip to content</SkipLink>
+      {notWhatsNew && <SkipLink href="#main">Skip to content</SkipLink>}
       {clientSettings.NASBannerShown && <NASBanner />}
       <MenuStateProvider>
         <MainWrapper>
