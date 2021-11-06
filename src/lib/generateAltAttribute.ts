@@ -8,6 +8,7 @@ export const generateAltAttribute = (src: string): string => {
   const item = arr[arr.length - 1].split('.')[0];
   return item
     .toLowerCase()
+    .replace(/[%2B]/g, ' ')
     .replace(/[0-9+-_]/g, ' ')
     .trim();
 };
