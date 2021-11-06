@@ -24,22 +24,23 @@ const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
   );
 };
 
-datadogLogs.init({
-  clientToken: String(process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN),
-  site: 'datadoghq.com',
-  service: 'cko-docs',
-  forwardErrorsToLogs: true,
-  sampleRate: 100,
-});
-
-datadogRum.init({
-  applicationId: String(process.env.NEXT_PUBLIC_RUM_APPLICATION_ID),
-  clientToken: String(process.env.NEXT_PUBLIC_RUM_CLIENT_TOKEN),
-  site: 'datadoghq.com',
-  service: 'cko-docs',
-  version: String(process.env.NEXT_PUBLIC_APP_VERSION),
-  sampleRate: 100,
-  trackInteractions: false,
-});
+if (process.env.NODE_ENV !== 'test') {
+  datadogLogs.init({
+    clientToken: String(process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN),
+    site: 'datadoghq.com',
+    service: 'cko-docs',
+    forwardErrorsToLogs: true,
+    sampleRate: 100,
+  });
+  datadogRum.init({
+    applicationId: String(process.env.NEXT_PUBLIC_RUM_APPLICATION_ID),
+    clientToken: String(process.env.NEXT_PUBLIC_RUM_CLIENT_TOKEN),
+    site: 'datadoghq.com',
+    service: 'cko-docs',
+    version: String(process.env.NEXT_PUBLIC_APP_VERSION),
+    sampleRate: 100,
+    trackInteractions: false,
+  });
+}
 
 export default withLDProvider(withHandlerBackButton(MyApp));
