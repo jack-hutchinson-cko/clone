@@ -44,3 +44,14 @@ export const SubFooterListItem = styled.li`
   font-size: 11px;
   line-height: 16px;
 `;
+
+export const FooterButton = styled.button`
+  background: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

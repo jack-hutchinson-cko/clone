@@ -8,7 +8,7 @@ import {
   PolicyEntityType,
 } from 'src/types/footer';
 import FooterLink from '../../FooterLink';
-import { SubFooterList, SubFooterListItem } from './SubFooter.styles';
+import { SubFooterList, SubFooterListItem, FooterButton } from './SubFooter.styles';
 
 type Props = {
   policies: PoliciesList;
@@ -18,7 +18,11 @@ const SubFooterLinks: FC<Props> = ({ policies }) => {
   const mapContent = (entity: PolicyEntity<unknown>) => {
     if (entity.type === PolicyEntityType.BUTTON) {
       const { props } = entity as PolicyEntity<PolicyButton>;
-      return <span {...props}>{entity.name}</span>;
+      return (
+        <FooterButton type="button" {...props}>
+          {entity.name}
+        </FooterButton>
+      );
     }
     const { link } = entity as PolicyEntity<PolicyLink>;
     return (
