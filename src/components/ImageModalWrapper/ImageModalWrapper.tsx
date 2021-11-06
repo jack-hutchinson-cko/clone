@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { ImageLoader } from 'next/image';
 import Modal from 'src/components/ModalComponents';
 
+import { generateAltAttribute } from 'src/lib/generateAltAttribute';
 import { ContentWrapper, StyledIconFullScreen, StyledImage } from './ImageModalWrapper.styles';
 
 export type Props = {
@@ -25,7 +26,7 @@ const ImageModalWrapper: FC<Props> = ({ children, src, ...rest }) => {
         <StyledIconFullScreen />
       </ContentWrapper>
       <Modal isOpen={isOpen} onClose={onClickHandler}>
-        <StyledImage src={src} {...rest} />
+        <StyledImage src={src} alt={generateAltAttribute(src)} {...rest} />
       </Modal>
     </>
   );
