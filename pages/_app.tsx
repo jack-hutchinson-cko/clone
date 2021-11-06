@@ -25,7 +25,7 @@ const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
 };
 
 datadogLogs.init({
-  clientToken: String(process.env.NEXT_PUBLIC_RUM_CLIENT_TOKEN),
+  clientToken: String(process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN),
   site: 'datadoghq.com',
   service: 'cko-docs',
   forwardErrorsToLogs: true,
