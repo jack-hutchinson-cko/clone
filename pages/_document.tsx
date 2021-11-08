@@ -31,11 +31,13 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    const isNAS = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'NAS';
+
     return (
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="robots" content="noindex nofollow" />
+          {isNAS && <meta name="robots" content="noindex nofollow" />}
           <meta name="description" content="Checkout.com documentation" />
           <link
             rel="preload"
