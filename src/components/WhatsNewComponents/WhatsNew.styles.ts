@@ -57,7 +57,6 @@ export const CookieButton = styled.button`
   font-family: 'Graphik LCG';
   color: inherit;
   padding: 0;
-  margin-left: ${spacing.s10}px!important;
   margin: 0;
   text-decoration: underline;
   text-transform: lowercase;
