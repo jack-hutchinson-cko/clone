@@ -64,3 +64,11 @@ export const CookieButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const TipBoxWrapper = styled.div`
+  margin-bottom: 80px;
+
+  @media ${Breakpoints.MOBILE} {
+    margin-bottom: 0px;
+  }
+`;
