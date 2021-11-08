@@ -32,7 +32,7 @@ export const getSlugFromTitle = (title: string): string =>
     .replace(' - ', ' ')
     .replace(/[)(]/g, '')
     .replace(/[\s|.]/g, '-')
-    .replace('á', 'a');
+    .replace('á', 'a'); // Removing this character from URLs for mapping from old site
 
 export const isMdxSourceFolder = (filePath: string): boolean => {
   const fileName = last(filePath.split('/')) || '';
