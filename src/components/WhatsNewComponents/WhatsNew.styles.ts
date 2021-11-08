@@ -49,3 +49,20 @@ export const CounterWrapper = styled.div`
     display: none;
   }
 `;
+
+export const CookieButton = styled.button`
+  background: inherit;
+  border: none;
+  font-size: 16px;
+  font-family: 'Graphik LCG';
+  color: inherit;
+  padding: 0;
+  margin-left: ${spacing.s10}px!important;
+  margin: 0;
+  text-decoration: underline;
+  text-transform: lowercase;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
