@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ThemeType } from 'src/types/theme';
 import { spacing } from 'src/constants/spacingSize';
 import { TextHeadingThree } from 'src/components/TextHeading';
+import { Breakpoints } from 'src/constants/screen';
 import { TipBoxVariant } from './types';
 
 const getVariantColor = ({ theme, variant }: { theme: ThemeType; variant: TipBoxVariant }) => {
@@ -21,7 +22,12 @@ const getVariantColor = ({ theme, variant }: { theme: ThemeType; variant: TipBox
   }
 };
 
-export const TipBoxWrapper = styled.div<{ variant: TipBoxVariant }>`
+interface WrapperProps {
+  variant: TipBoxVariant;
+  small: boolean;
+}
+
+export const TipBoxWrapper = styled.div<WrapperProps>`
   position: relative;
   display: block;
   padding: ${spacing.s50}px;
@@ -29,6 +35,12 @@ export const TipBoxWrapper = styled.div<{ variant: TipBoxVariant }>`
   border-left: 48px solid ${getVariantColor};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.base};
+
+  width: ${(props) => props.small && '688px'};
+
+  @media ${Breakpoints.MOBILE} {
+    width: inherit;
+  }
 `;
 
 export const TipBoxIcon = styled.span<{ variant: TipBoxVariant }>`
@@ -44,6 +56,7 @@ export const TipBoxHeader = styled(TextHeadingThree)`
 
 export const TipBoxContent = styled.div`
   color: ${({ theme }) => theme.colors.base};
+  line-height: ${spacing.s50}px;
 
   li {
     margin-bottom: ${spacing.s20}px;

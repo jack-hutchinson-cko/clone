@@ -1,45 +1,42 @@
-import { useEffect, useState, FC } from 'react';
+import { useEffect, FC } from 'react';
 
 import { NOTICEABLE_WIDGET_ID } from 'src/constants/keys';
 import TipBox from '../TipBox';
-import { WhatsNewWidget } from './WhatsNew.styles';
+import { WhatsNewWidget, CookieButton } from './WhatsNew.styles';
 import { WindowWithNoticeableType } from './types';
 
-const WhatsNew: FC = () => {
-  const [hasWindow, setWindow] = useState<boolean>(false);
+interface Props {
+  hasWindow: boolean;
+}
 
+const WhatsNew: FC<Props> = ({ hasWindow }) => {
   useEffect(() => {
-    let intervalId: any;
     const windowWithNoticeable = window as WindowWithNoticeableType;
 
-    if (windowWithNoticeable.noticeable) {
-      setWindow(true);
-      windowWithNoticeable.noticeable.render('widget', NOTICEABLE_WIDGET_ID);
-    } else {
-      setWindow(false);
-      console.warn('Noticeable is missing, will retry in 100ms');
-      intervalId = setInterval(() => {
-        if (windowWithNoticeable.noticeable) {
-          setWindow(true);
-          windowWithNoticeable.noticeable.render('widget', NOTICEABLE_WIDGET_ID);
-          clearInterval(intervalId);
-        }
-      }, 100);
+    if (hasWindow) {
+      windowWithNoticeable.noticeable?.render('widget', NOTICEABLE_WIDGET_ID);
     }
 
     return () => {
-      clearInterval(intervalId);
       windowWithNoticeable.noticeable?.destroy('widget', NOTICEABLE_WIDGET_ID);
     };
-  }, []);
+  }, [hasWindow]);
 
   return hasWindow ? (
     <WhatsNewWidget id="noticeable-widget" />
   ) : (
-    <TipBox title="Short error message descriptor here" variant="note">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Accumsan orci interdum id lectus
-      cursus maecenas semper ante et. Nisi accumsan sed pharetra nunc urna. Id lobortis in duis ut
-      quis suspendisse massa. Congue nulla venenatis, tortor, tellus tempus, lacus. Find out more
+    <TipBox title="You need to enable cookies to view this content" variant="note" small>
+      <>
+        We post about new features, improvements, changes and fixes to our products and
+        documentation in this section.
+        <br />
+        <br />
+        This page requires functional cookies. Update your
+        <CookieButton type="button" id="ot-sdk-btn">
+          cookie settings
+        </CookieButton>{' '}
+        to display this page’s content.
+      </>
     </TipBox>
   );
 };

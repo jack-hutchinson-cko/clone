@@ -49,3 +49,19 @@ export const CounterWrapper = styled.div`
     display: none;
   }
 `;
+
+export const CookieButton = styled.button`
+  background: inherit;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  color: inherit;
+  padding: 0;
+  padding-left: ${spacing.s10}px;
+  margin: 0;
+  text-decoration: underline;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
