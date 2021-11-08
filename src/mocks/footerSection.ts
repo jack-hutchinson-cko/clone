@@ -18,10 +18,10 @@ export const policies: PoliciesList = [
   },
   {
     type: PolicyEntityType.BUTTON,
-    name: 'Cookie Settings',
+    name: 'Cookies Settings',
     props: {
       id: 'ot-sdk-btn',
-      className: 'ot-sdk-show-settings settings-button onetrust-button',
+      className: 'ot-sdk-show-settings onetrust-button',
     },
   },
   {

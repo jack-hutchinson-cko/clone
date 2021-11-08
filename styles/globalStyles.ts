@@ -28,7 +28,7 @@ const globalStyles = createGlobalStyle`
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  #ot-sdk-btn.ot-sdk-show-settings.settings-button {
+  #ot-sdk-btn.ot-sdk-show-settings.onetrust-button {
     border: none;
     height: initial;
     white-space: initial;
