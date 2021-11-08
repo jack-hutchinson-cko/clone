@@ -53,8 +53,8 @@ export const CounterWrapper = styled.div`
 export const CookieButton = styled.button`
   background: inherit;
   border: none;
-  font-weight: 500;
   font-size: 16px;
+  font-family: 'Graphik LCG';
   color: inherit;
   padding: 0;
   margin-left: ${spacing.s10}px!important;
