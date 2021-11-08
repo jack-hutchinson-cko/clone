@@ -9,7 +9,6 @@ type Props = {
   variant: 'primary' | 'secondary';
   size: 'large' | 'small';
   fullWidthOnTablet?: boolean;
-  isDisplayed: boolean;
 };
 
 const getButtonColorStyles = ({ theme, variant }: { theme: ThemeType } & Props) => {
@@ -68,7 +67,7 @@ const getButtonFontStyles = ({ size }: Props) => {
 
 const Button = styled.button<Props>`
   cursor: pointer;
-  display: ${(props) => (props.isDisplayed ? 'inline-flex' : 'none')};
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   min-height: 48px;

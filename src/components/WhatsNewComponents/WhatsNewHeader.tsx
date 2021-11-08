@@ -28,9 +28,11 @@ const WhatsNewHeader: FC<Props> = ({ title }) => {
   return (
     <HeaderContainer>
       <Header>{title}</Header>
-      <Button as="a" size="large" variant="primary" href="#subscribe" isDisplayed={hasWindow}>
-        Subscribe to updates
-      </Button>
+      {hasWindow && (
+        <Button as="a" size="large" variant="primary" href="#subscribe">
+          Subscribe to updates
+        </Button>
+      )}
     </HeaderContainer>
   );
 };
