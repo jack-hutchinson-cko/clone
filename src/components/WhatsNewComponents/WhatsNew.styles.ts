@@ -57,9 +57,10 @@ export const CookieButton = styled.button`
   font-size: 16px;
   color: inherit;
   padding: 0;
-  padding-left: ${spacing.s10}px;
+  margin-left: ${spacing.s10}px!important;
   margin: 0;
   text-decoration: underline;
+  text-transform: lowercase;
 
   :hover {
     cursor: pointer;

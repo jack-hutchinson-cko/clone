@@ -32,7 +32,7 @@ const WhatsNew: FC<Props> = ({ hasWindow }) => {
         <br />
         <br />
         This page requires functional cookies. Update your
-        <CookieButton type="button" id="ot-sdk-btn">
+        <CookieButton type="button" className="ot-sdk-show-settings settings-button">
           cookie settings
         </CookieButton>{' '}
         to display this page’s content.
