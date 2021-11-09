@@ -64,6 +64,7 @@ const Accordion: FC<AccordionProps> = ({
           isBoldTitle={isBoldTitle}
           hasTitle
           disabled={isButtonDisabled}
+          aria-controls={String(title)}
           isMdxMode={isMdxMode}
         >
           <AccordionTitleWrapper>
@@ -75,7 +76,11 @@ const Accordion: FC<AccordionProps> = ({
           <IconActionAccordion width={12} height={8} />
         </StyledAccordionHead>
         <AccordionBodyWrapper height={accordionHeight} overflow={accordionOverflow}>
-          <InnerContentWrapper ref={bodyElement} isMdxMode={isMdxMode}>
+          <InnerContentWrapper
+            ref={bodyElement}
+            isMdxMode={isMdxMode}
+            aria-labelledby={String(title)}
+          >
             {children}
           </InnerContentWrapper>
         </AccordionBodyWrapper>

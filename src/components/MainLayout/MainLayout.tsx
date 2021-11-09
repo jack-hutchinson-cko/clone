@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { NavTreeElement } from 'src/types/navTree';
 import { HeaderContent } from 'src/types/header';
@@ -12,6 +12,7 @@ import Footer from '../Footer';
 
 import AccordionMenu from './AccordionMenu';
 import ListMenu from './ListMenu';
+import { WindowWithOneTrustType } from './types';
 
 import {
   MainWrapper,
@@ -39,6 +40,11 @@ const MainLayout: FC<Props> = ({
   const { asPath } = useRouter();
   const notWhatsNew = asPath !== '/whats-new';
   const activeLink = useMemo(() => cutOffHashValue(asPath), [asPath]);
+
+  useEffect(() => {
+    const windowOneTrust = window as WindowWithOneTrustType;
+    windowOneTrust.OneTrust?.initializeCookiePolicyHtml();
+  }, []);
 
   return (
     <>

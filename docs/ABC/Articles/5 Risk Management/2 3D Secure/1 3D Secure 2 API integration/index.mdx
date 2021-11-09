@@ -91,7 +91,7 @@ If the customer's card is not enrolled for 3DS2, we will automatically attempt t
 
 The customer may then be prompted to verify their identity — generally with a password.
 
-<img src="/docs/Risk Management/3ds2_challenge.png" alt="3d secure 2 challenge" maxWidth={453}  />
+<img src="/docs/Risk management/3ds2_challenge.png" alt="3d secure 2 challenge" maxWidth={453}  />
 
 <TipBox variant="info" title="Redirection URLs">
 
@@ -196,13 +196,13 @@ The response includes an `actions` object, which only applies to 3D Secure payme
 
 ### Successful non-3DS authorization request flow
 
-<img src="/docs/Risk Management/Non-3DS-authorization.png" alt="Non-3DS authorization"  />
+<img src="/docs/Risk management/Non-3DS-authorization.png" alt="Non-3DS authorization"  />
 
 If you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer does not require 3DS authorization for the transaction, the payment will complete successfully.
 
 ### Non-3DS authorization request flow with soft decline
 
-<img src="/docs/Risk Management/Non-3DS-authorization-with-soft-decline.png" alt="Non-3DS authorization with soft decline"  />
+<img src="/docs/Risk management/Non-3DS-authorization-with-soft-decline.png" alt="Non-3DS authorization with soft decline"  />
 
 If, however, you make a payment request without the `3ds` object, or with `"3ds.enabled": false`, and the issuer **does** require 3DS2 authorization for the transaction, you will receive a soft decline response (response code 20154). You will then need to resubmit the payment as a 3DS2 payment.
 

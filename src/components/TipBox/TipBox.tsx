@@ -3,7 +3,13 @@ import { IconApprove, IconInfo, IconNote, IconWarning } from '../Icons';
 import { TipBoxWrapper, TipBoxIcon, TipBoxContent, TipBoxHeader } from './TipBox.styles';
 import { TipBoxProps, TipBoxVariant } from './types';
 
-const TipBox: FC<TipBoxProps> = ({ title = null, variant = 'tip', children, ...rest }) => {
+const TipBox: FC<TipBoxProps> = ({
+  title = null,
+  variant = 'tip',
+  children,
+  small = false,
+  ...rest
+}) => {
   const getTipBoxIcon = (variantName: TipBoxVariant) => {
     switch (variantName) {
       case 'info':
@@ -22,7 +28,7 @@ const TipBox: FC<TipBoxProps> = ({ title = null, variant = 'tip', children, ...r
   };
 
   return (
-    <TipBoxWrapper variant={variant} {...rest}>
+    <TipBoxWrapper variant={variant} small={small} {...rest}>
       <TipBoxIcon variant={variant}>{getTipBoxIcon(variant)}</TipBoxIcon>
       {title && <TipBoxHeader>{title}</TipBoxHeader>}
       <TipBoxContent>{children}</TipBoxContent>

@@ -16,19 +16,19 @@ Hosted sessions are suitable for authentications initiated from **browsers only*
 <List>
 <ListNumberItem number={1}>
 
-[Request a session](/risk-management/sessions/non-hosted-sessions#Non-hostedsessions-requestsession)
+[Request a session](#Step_1:_Request_a_session)
 
 </ListNumberItem>
 <ListNumberItem number={2}>
 
-[Redirect the customer](/four/risk-management/sessions/hosted-sessions#Hostedsessions-redirectcustomer)
+[Redirect the customer](/#Step_2:_Redirect_the_customer)
 
 </ListNumberItem>
 </List>
 
 ---
 
-## Step 1: Request a session 
+## Step 1: Request a session
 
 To begin, make a session request.
 
@@ -55,7 +55,7 @@ For the full API specification, see the <ExternalLink href="https://api-referenc
 
 <TipBox variant="success" title="Additional parameters">
 
-To increase the likelihood of frictionless authentication, [add additional data fields](/risk-management/sessions/hosted-sessions#Hostedsessions-additionalauthenticationdata) when requesting a session.
+To increase the likelihood of frictionless authentication, [add additional data fields](#Additional_authentication_data) when requesting a session.
 
 </TipBox>
 
@@ -196,9 +196,9 @@ Indicates the category of the authentication request.
 
 The status of the session. Should be `pending`.
 
-<InfoBox variant="note">
+<InfoBox>
 
-[See below for all possible statuses and their meanings](/risk-management/sessions/hosted-sessions#Hostedsessions-statuses).
+[See below for all possible statuses and their meanings](#Session_statuses).
 
 </InfoBox>
 
@@ -216,9 +216,9 @@ The status of the session. Should be `pending`.
 
 Specifies what action to take to complete the session. For example: `redirect_cardholder`.
 
-<InfoBox variant="note">
+<InfoBox>
 
-[See below for all possible actions and their meanings.](/risk-management/sessions/hosted-sessions#Hostedsessions-actions).
+[See below for all possible actions and their meanings](#Next_actions).
 
 </InfoBox>
 
@@ -326,7 +326,7 @@ The URL of the session.
 
 ---
 
-## Step 2: Redirect the customer 
+## Step 2: Redirect the customer
 
 Redirect the customer using the `_links.redirect` URL you received in the response.
 
@@ -340,7 +340,7 @@ If the authentication is approved or attempted, the customer will be redirected 
 
 ### Session properties
 
-### Session statuses 
+### Session statuses
 
 Below are the possible values of the `status` field, which tell you the current status of the session.
 
@@ -470,7 +470,7 @@ Authentication has been started but the channel data could not be collected, mea
 </TableBody>
 </Table>
 
-### Next actions 
+### Next actions
 
 Below are the possible values for the `next_actions` field. When present, they identify what action to take in order to complete the session.
 
@@ -526,7 +526,7 @@ Browser and app
 
 ---
 
-## Additional authentication data 
+## Additional authentication data
 
 When requesting a session, you can add additional data fields to increase the chances of a frictionless authentication. Below is a summary of the optional data you can add to your request.
 
