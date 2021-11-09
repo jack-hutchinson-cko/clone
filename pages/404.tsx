@@ -1,9 +1,16 @@
 import { GetStaticProps, NextPage } from 'next';
+import { useEffect } from 'react';
 import ErrorPageComponent from 'src/components/ErrorPage';
 import withMainLayout from 'src/hoc/withMainLayout';
 import { getDocsSidebarDocLinks } from 'src/lib/fileParser';
 
-const ErrorPage: NextPage = () => <ErrorPageComponent statusCode={404} />;
+const ErrorPage: NextPage = () => {
+  useEffect(() => {
+    console.log('Error - 404.js');
+  }, []);
+
+  return <ErrorPageComponent statusCode={404} />;
+};
 
 export default withMainLayout(ErrorPage);
 
