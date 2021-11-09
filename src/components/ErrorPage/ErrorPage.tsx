@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import ErrorPageLink from 'src/components/ErrorPageLink/ErrorPageLink';
 import { basePathAddition } from 'tools/basePathAddition';
 import { LinksContainer, Wrapper, StyledHeader, StyledSubHeader } from './ErrorPage.styles';
@@ -12,6 +12,10 @@ const ErrorPage: FC<Props> = ({ statusCode }) => {
   let headerCopy: string | null;
   const docsImgUrl = basePathAddition('/errorPage/docs.svg');
   const apiRefImgUrl = basePathAddition('/errorPage/api.svg');
+
+  useEffect(() => {
+    if (statusCode === 404) console.error('404: Not found', window.location);
+  }, [statusCode]);
 
   switch (statusCode) {
     case 404:
