@@ -111,7 +111,7 @@ The ID of the file representing the uploaded document.
 </TableBody>
 </Table>
 
-Use the dropdown below to see **additional required** fields, depending on the currency.
+Use the following table to review **additional required** fields, depending on the currency.
 
 Where are you sending the money to?
 
@@ -185,7 +185,7 @@ Internationally agreed standard for identifying bank account.
 
 ### Verify bank account details
 
-We need to verify any bank details you provide us. To verify bank details, include a document object with a file_id in your request. You receive a file_id when you upload a bank statement using our [Files API](/marketplaces/manage-accounts/upload-a-file).
+We need to verify any bank details you provide us. To verify bank details, include a document object with a `file_id` in your request. You receive a `file_id` when you upload a bank statement using our [Files API](/marketplaces/manage-accounts/upload-a-file).
 
 ### Create a payment instrument
 
@@ -259,7 +259,7 @@ If your request is accepted, we will attempt to create a payment instrument asyn
 </tab>
 </tabs>
 
-If successful, we will automatically make the association between this payment instrument and its sub-entity. You can see this association and alternatively retrieve the payment instrument ID by using `<RequestTag type="get" /> /marketplace/entities/{id}`.
+If successful, we will automatically make the association between this payment instrument and its sub-entity. You can see this association and alternatively retrieve the payment instrument ID by using <RequestTag type="get" />`/marketplace/entities/{id}`.
 
 ```json
 {

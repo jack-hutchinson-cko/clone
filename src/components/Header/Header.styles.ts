@@ -170,6 +170,7 @@ export const NavigationItem = styled.button<NavigationItemProps>`
   transition: border-bottom 100ms;
   color: ${({ theme }) => theme.colors.base};
   font-size: 16px;
+  font-family: 'Graphik LCG';
   line-height: 24px;
 
   ${({ withHover }) =>
