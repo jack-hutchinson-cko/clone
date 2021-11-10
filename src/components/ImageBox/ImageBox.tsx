@@ -39,6 +39,7 @@ const ImageBox: FC<Props> = ({
   defaultWidth,
   defaultHeight,
   loader = basePathLoader,
+  loading = 'lazy',
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
@@ -69,6 +70,7 @@ const ImageBox: FC<Props> = ({
           onLoad={onLoadHandler}
           loader={loader}
           alt={generateAltAttribute(src)}
+          loading={loading}
           {...props}
         />
       </ContainerImage>

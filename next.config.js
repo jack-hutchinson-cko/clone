@@ -17,6 +17,7 @@ const nextConfig = {
     return config;
   },
   webpack5: false,
+  compress: true,
   async redirects() {
     return [
       {
