@@ -4,7 +4,7 @@ import ImgModalWrapper from 'src/components/ImageModalWrapper';
 import { ThemeContext } from 'src/theme/themeContext';
 
 import { generateAltAttribute } from 'src/lib/generateAltAttribute';
-import { ImgWrapper, StyledImage, ImgPlaceholder, ContainerImage } from './ImageBoxStyles';
+import { ImgWrapper, StyledImage, ContainerImage } from './ImageBoxStyles';
 
 const isDarkTheme = 'dark';
 
