@@ -70,4 +70,8 @@ export const ImageWrapper = styled.div<{
       : css`
           min-width: ${imgWidth}px;
         `}
+
+  span {
+    position: relative !important;
+  }
 `;
