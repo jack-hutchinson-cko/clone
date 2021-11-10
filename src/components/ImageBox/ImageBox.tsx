@@ -57,20 +57,19 @@ const ImageBox: FC<Props> = ({
 
   const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
-      {defaultWidth && defaultHeight && (
+      <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
         <ImgPlaceholder
           isShown={placeholderVisibility}
           defaultWidth={defaultWidth}
           defaultHeight={defaultHeight}
         />
-      )}
-      <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
         <StyledImage
           src={newSrc}
           onLoad={onLoadHandler}
           loader={loader}
           alt={generateAltAttribute(src)}
           loading={loading}
+          onLoadingComplete={() => setPlaceholderVisibility(false)}
           {...props}
         />
       </ContainerImage>
