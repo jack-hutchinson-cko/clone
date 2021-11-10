@@ -23,7 +23,11 @@ export type DocHit = {
 
 export type HitType = { objectID: string; _highlightResult: never };
 
-export type QueryType = { query: string; page: string };
+export type QueryType = {
+  query?: string;
+  q?: string; // query param from legacy site
+  page: string;
+};
 
 export enum HitMode {
   HEADER = 'header',
