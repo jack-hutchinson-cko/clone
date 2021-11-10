@@ -9,14 +9,11 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     // this is where you add custom configuration for webpack
     if (!isServer) {
-      config.node = {
-        fs: 'empty'
-      }
+      config.resolve.fallback.fs = false;
     }
     
     return config;
   },
-  webpack5: false,
   compress: true,
   async redirects() {
     return [
