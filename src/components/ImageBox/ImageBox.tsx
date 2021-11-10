@@ -4,7 +4,7 @@ import ImgModalWrapper from 'src/components/ImageModalWrapper';
 import { ThemeContext } from 'src/theme/themeContext';
 
 import { generateAltAttribute } from 'src/lib/generateAltAttribute';
-import { ImgWrapper, StyledImage, ImgPlaceholder, ContainerImage } from './ImageBoxStyles';
+import { ImgWrapper, StyledImage, ContainerImage, ImgPlaceholder } from './ImageBoxStyles';
 
 const isDarkTheme = 'dark';
 
@@ -43,33 +43,20 @@ const ImageBox: FC<Props> = ({
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
-  const [placeholderVisibility, setPlaceholderVisibility] = useState(true);
+  const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/docs/four';
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
   const newSrc = encodeURIComponent(finalSrc);
-
-  const onLoadHandler = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    const target = event.target as HTMLImageElement;
-
-    if (target.complete && target.style.visibility !== 'hidden') {
-      setPlaceholderVisibility(false);
-    }
-  };
 
   const imageBox = (
     <ImgWrapper maxWidth={maxWidth}>
       <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
-        <ImgPlaceholder
-          isShown={placeholderVisibility}
-          defaultWidth={defaultWidth}
-          defaultHeight={defaultHeight}
-        />
         <StyledImage
           src={newSrc}
-          onLoad={onLoadHandler}
           loader={loader}
           alt={generateAltAttribute(src)}
           loading={loading}
-          onLoadingComplete={() => setPlaceholderVisibility(false)}
+          placeholder="blur"
+          blurDataURL={`${basePath}/_next/image?url=${basePath + src}&q=1`}
           {...props}
         />
       </ContainerImage>
