@@ -25,7 +25,7 @@ Our 3D Secure SDK supports 3DS2 (version 2.1.0 and, if your configuration suppor
 
 ## The 3DS2 customer experience
 
-3DS2 allows you and your payment provider to share more data (like the customer's device ID and payment history) with the customer's bank so they can better assess the risk of the transaction and select the appropriate response: either the "frictionless flow" or "challenge flow". 
+3DS2 allows you and your payment provider to share more data (like the customer's device ID and payment history) with the customer's bank so they can better assess the risk of the transaction and select the appropriate response: either the "frictionless flow" or "challenge flow".
 
 ---
 
@@ -76,7 +76,7 @@ Below are some code examples for each platform.
 <tabs>
 <tab title="iOS">
 
-<Accordion title="See example Swift code"> 
+<Accordion title="See example Swift code">
 
 ```swift
 // 1. Init with defaults
@@ -91,10 +91,10 @@ let checkout3DS = Checkout3DS2Service(
 )
 
 let authenticationParameters = AuthenticationParameters(
-    sessionID: sessionID, 
-    sessionSecret: sessionSecret, 
+    sessionID: sessionID,
+    sessionSecret: sessionSecret,
     scheme: scheme)
-  
+
 checkout3DS.authenticate(authenticationParameters: authenticationParameters) { error in
     if let error = error {
         // Handle error.
@@ -106,7 +106,7 @@ checkout3DS.authenticate(authenticationParameters: authenticationParameters) { e
 
 </Accordion>
 
-<Accordion title="See example Objective-C code"> 
+<Accordion title="See example Objective-C code">
 
 ```objc
 // 1. Init with defaults
@@ -137,7 +137,7 @@ CKOAuthenticationParameters *authenticationParameters = [[CKOAuthenticationParam
 </tab>
 <tab title="Android">
 
-<Accordion title="See example Kotlin code"> 
+<Accordion title="See example Kotlin code">
 
 ```kotlin
 // 1. Init with defaults
@@ -148,15 +148,15 @@ val checkout3DS = Checkout3DSService(
         context,
         Environment.PRODUCTION,
         Locale.UK,
-        uiCustomisation,
+        uiCustomization,
         Uri.parse("sampleAppScheme://sampleAppName/3ds_authentication")
 )
 
 val authenticationParameters = AuthenticationParameters(
-    sessionId, 
-    sessionSecret, 
+    sessionId,
+    sessionSecret,
     scheme)
-  
+
 checkout3DS.authenticate(authenticationParameters, context) { result: AuthenticationResult ->
     when (result.eventType) {
         Successful -> {
@@ -167,10 +167,10 @@ checkout3DS.authenticate(authenticationParameters, context) { result: Authentica
         }
         Error -> {
             // handle error (result as AuthenticationError)
-  
+
             // handle error based on error type category
             val errorType: AuthenticationErrorType = (result as AuthenticationError).errorType
-  
+
             // Handle error based on fine grained error code or simply log the error
             val errorCode: String = (result as AuthenticationError).errorCode
         }
@@ -180,7 +180,7 @@ checkout3DS.authenticate(authenticationParameters, context) { result: Authentica
 
 </Accordion>
 
-<Accordion title="See example Java code"> 
+<Accordion title="See example Java code">
 
 ```java
 // 1. Init with defaults
@@ -191,15 +191,15 @@ Checkout3DSService checkout3DS = new Checkout3DSService(
         context,
         Environment.PRODUCTION.INSTANCE,
         Locale.UK,
-        uiCustomisation,
+        uiCutomization,
         Uri.parse("sampleAppScheme://sampleAppName/3ds_authentication")
 );
 
 AuthenticationParameters authenticationParameters = AuthenticationParameters(
-    sessionId, 
-    sessionSecret, 
+    sessionId,
+    sessionSecret,
     scheme)
-  
+
 checkout3DS.authenticate(authenticationParameters, result -> {
     switch (result.getEventType()) {
         case Successful:
@@ -295,7 +295,7 @@ pod 'Checkout3DS', :git => 'git@github.com:checkout/checkout-3ds-sdk-ios.git', :
 
 ## Add the 3D Secure SDK to your app's payment flow
 
-### Step 1: Initialize the SDK 
+### Step 1: Initialize the SDK
 
 Initialize the SDK, setting the environment (production or sandbox), the locale, and your preferred [challenge user interface options](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-customization).
 
@@ -330,7 +330,7 @@ CKOCheckout3DSService *checkout3DS2 = [[CKOCheckout3DSService alloc] initWithEnv
 ```
 
 </tab>
-<tab title="Kotlin"> 
+<tab title="Kotlin">
 
 ```kotlin
 // 1a. Initialize with default arguments
@@ -341,7 +341,7 @@ val checkout3DS = Checkout3DSService(
         context,
         Environment.PRODUCTION,
         Locale.UK,
-        uiCustomisation,
+        uiCustomization,
         Uri.parse("https://sampleAppName.com/3ds_authentication")
 )
 ```
@@ -358,7 +358,7 @@ Checkout3DSService checkout3DS = new Checkout3DSService(
         context,
         Environment.PRODUCTION,
         Locale.UK,
-        uiCustomisation,
+        uiCustomization,
         Uri.parse("https://sampleAppName.com/3ds_authentication")
 );
 ```
@@ -366,7 +366,7 @@ Checkout3DSService checkout3DS = new Checkout3DSService(
 </tab>
 </tabs>
 
-<Accordion title="See more details"> 
+<Accordion title="See more details">
 
 ### Checkout3DS2Service
 
@@ -388,7 +388,7 @@ This is the main class of the SDK that performs payment authentication with the 
 </TableCell>
 <TableCell>
 
-`Environment`	
+`Environment`
 
 </TableCell>
 <TableCell>
@@ -462,7 +462,7 @@ The [customizations for the challenge user interface](/risk-management/sessions/
 </TableCell>
 <TableCell>
 
-The application URL used to open and move your application to the foreground. 
+The application URL used to open and move your application to the foreground.
 
 This field is optional, but we recommend including it to ensure a smoother out-of-band challenge experience for your user. This way, the user is automatically redirected back to your app after their banking app has authorized the transaction. This feature is available if the user’s card issuer also supports it.
 
@@ -496,7 +496,7 @@ The `appUrl` field value can have up to 211 characters. If it exceeds 211 charac
 </TableCell>
 <TableCell>
 
-`Environment`	
+`Environment`
 
 </TableCell>
 <TableCell>
@@ -589,7 +589,7 @@ The app context. Required for Android to access app resources.
 </TableCell>
 <TableCell>
 
-The application URL used to open and move your application to the foreground. 
+The application URL used to open and move your application to the foreground.
 
 This field is optional, but we recommend including it to ensure a smoother out-of-band challenge experience for your user. This way, the user is automatically redirected back to your app after their banking app has authorized the transaction. This feature is available if the user’s card issuer also supports it.
 
@@ -684,8 +684,8 @@ The SDK will then gather the device data, share the information with the custome
 
 ```json
 let authenticationParameters = AuthenticationParameters(
-    sessionID: sessionID, 
-    sessionSecret: sessionSecret, 
+    sessionID: sessionID,
+    sessionSecret: sessionSecret,
     scheme: scheme)
 ```
 
@@ -705,8 +705,8 @@ CKOAuthenticationParameters *authenticationParameters = [[CKOAuthenticationParam
 
 ```json
 val authenticationParameters = AuthenticationParameters(
-    sessionId, 
-    sessionSecret, 
+    sessionId,
+    sessionSecret,
     scheme)
 ```
 
@@ -723,7 +723,7 @@ AuthenticationParameters authenticationParameters = AuthenticationParameters(
 </tab>
 </tabs>
 
-<Accordion title="See more details"> 
+<Accordion title="See more details">
 
 <tabs>
 <tab title="iOS">
@@ -743,7 +743,7 @@ AuthenticationParameters authenticationParameters = AuthenticationParameters(
 </TableCell>
 <TableCell>
 
-`AuthenticationParameters`	
+`AuthenticationParameters`
 
 </TableCell>
 <TableCell>
@@ -850,7 +850,7 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 </TableCell>
 <TableCell>
 
-`AuthenticationParameters`	
+`AuthenticationParameters`
 
 </TableCell>
 <TableCell>
@@ -945,9 +945,9 @@ The name of the customer's card scheme: `Visa`, `Mastercard`, `Jcb`, `Amex`, or 
 
 ### Step 3: Request authentication and handle the result
 
-Once the authentication is completed, the SDK returns a result. 
+Once the authentication is completed, the SDK returns a result.
 
-- On Android, the result is either `Successful`, `Failed`, or `Error`. 
+- On Android, the result is either `Successful`, `Failed`, or `Error`.
 - On iOS, the SDK returns an optional `AuthenticationError`. If the attempt was unsuccessful, this indicates the failure reason, otherwise this value is `nil`.
 
 If successful, you can use our Payments API to complete the payment, or use another payment services provider to do so.
@@ -1029,7 +1029,7 @@ checkout3DSService.authenticate(authenticationParams, result -> {
 </tab>
 </tabs>
 
-<Accordion title="See more details"> 
+<Accordion title="See more details">
 
 <tabs>
 <tab title="iOS">
@@ -1065,7 +1065,7 @@ Represents the outcome of the authentication.
 </TableCell>
 <TableCell>
 
-`ResultType`	
+`ResultType`
 
 </TableCell>
 <TableCell>
@@ -1098,7 +1098,7 @@ Represents the details of the error that occurred during authentication. The err
 </TableCell>
 <TableCell>
 
-`ResultType`	
+`ResultType`
 
 </TableCell>
 <TableCell>
@@ -1228,7 +1228,7 @@ The SDK encountered an error related to the implementation of the SDK.
 
 ---
 
-## Customize the challenge user interface 
+## Customize the challenge user interface
 
 We’ve built a simple, clean default style for the native challenge user interfaces, so you can quickly get going without defining your own style. But if you want to tailor the challenge screens in your app, our SDKs let you control:
 
@@ -1238,7 +1238,7 @@ We’ve built a simple, clean default style for the native challenge user interf
 
 Our SDKs also handle different screen sizes and orientations, and allow you to address different user needs with dynamic text sizing, TalkBack and VoiceOver assistance, and support for 37 languages (though the body of the challenge screens is always presented in the language provided by the customer's bank).
 
-To apply your own style, simply include a UI Customization object when you [initialise the SDK](/risk-management/sessions/non-hosted-sessions/3d-secure-mobile-sdks#id-3DSecuremobileSDKs-initialize). We've included some code examples below to show you how you might build the object.
+To apply your own style, simply include a UI Customization object when you [initialize the SDK](#Step_1:_Initialize_the_SDK). We've included some code examples below to show you how you might build the object.
 
 <tabs>
 <tab title="iOS">
@@ -1301,7 +1301,7 @@ final class Customization1: UICustomization {
 </tab>
 <tab title="Android">
 
-<Accordion title="Simplified customization"> 
+<Accordion title="Simplified customization">
 
 ```json
 uiCustomization {
@@ -1315,7 +1315,7 @@ uiCustomization {
 
 </Accordion>
 
-<Accordion title="Full customization"> 
+<Accordion title="Full customization">
 
 ```json
 uiCustomization {
@@ -1425,7 +1425,7 @@ uiCustomization {
 }
 ```
 
-</Accordion> 
+</Accordion>
 </tab>
 
 </tabs>
