@@ -7,4 +7,13 @@ export const ListItem = styled.li`
   line-height: 24px;
   list-style-type: inherit;
   font-size: 16px;
+
+  ul,
+  ol {
+    margin: ${spacing.s20}px 0 0 0;
+  }
+
+  div {
+    margin-bottom: 0;
+  }
 `;
