@@ -16,6 +16,10 @@ export const ContainerImage = styled.div<{
             position: relative !important;
           }
         `}
+
+  span {
+    position: relative !important;
+  }
 `;
 
 // TODO implement response for img
