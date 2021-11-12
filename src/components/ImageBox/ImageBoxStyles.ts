@@ -28,7 +28,6 @@ export const StyledImage = styled(Image)`
   min-width: 100% !important;
   position: relative !important;
   height: unset !important;
-  z-index: 2;
 `;
 
 interface WrapperProps {
@@ -56,7 +55,6 @@ export const ImgPlaceholder = styled.div<ContainerProps>`
   border-radius: 8px;
   transition: opacity 1s ease-in-out;
   overflow: hidden;
-  z-index: 1;
 
   ::after {
     animation: loading 1.5s infinite;
@@ -67,7 +65,6 @@ export const ImgPlaceholder = styled.div<ContainerProps>`
     right: 0;
     top: 0;
     transform: translateX(-100%);
-    z-index: 1;
     background: linear-gradient(
       90deg,
       ${({ theme }) => {

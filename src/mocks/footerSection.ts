@@ -1,5 +1,10 @@
 import { NavigationList, PoliciesList, SocialList, PolicyEntityType } from 'src/types/footer';
 
+const apiReferenceLink =
+  process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC'
+    ? 'https://api-reference.checkout.com/'
+    : 'https://api-reference.checkout.com/preview/crusoe';
+
 export const policies: PoliciesList = [
   {
     type: PolicyEntityType.LINK,
@@ -171,7 +176,7 @@ export const navigation: NavigationList = [
           name: 'Documentation',
         },
         {
-          link: 'https://api-reference.checkout.com/',
+          link: apiReferenceLink,
           name: 'API Reference',
         },
         {
