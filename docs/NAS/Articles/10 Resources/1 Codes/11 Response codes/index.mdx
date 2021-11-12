@@ -88,6 +88,31 @@ The request was declined. Most hard declines require the issuer or cardholder to
 
 </TableCell>
 </TableRow>
+<TableRow>
+<TableCell>
+
+RISK RESPONSES
+
+</TableCell>
+<TableCell>
+
+40000
+
+</TableCell>
+<TableCell>
+
+`response_code`
+`response_summary`
+
+</TableCell>
+<TableCell>
+
+The request triggered a risk response. The status of the response (`response_code`
+and `status`) will depend on the action specified in your
+risk settings
+
+</TableCell>
+</TableRow>
 </TableBody>
 </Table>
 
@@ -2640,6 +2665,113 @@ the transaction. The cardholder must contact their issuing bank to resolve.
 
 </TableCell>
 </TableRow>
+</TableBody>
+</Table>
 
+### Risk responses (40\*)
+
+Risk responses are triggered by our risk engine and will appear in the `response_code` of a payment response.
+
+<TipBox variant="info" title="Configuring your risk settings">
+
+If you want to change your risk settings, please get in touch with our Risk team at <ExternalLink href="mailto:risk@checkout.com">risk@checkout.com</ExternalLink>.
+
+</TipBox>
+
+<Table>
+<TableHead headers={['Code', 'Text', 'Additional information']} />
+<TableBody>
+<TableRow>
+<TableCell>
+
+40101
+
+</TableCell>
+<TableCell>
+
+Risk blocked transaction
+
+</TableCell>
+<TableCell>
+
+The request was blocked by your risk settings.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+40201
+
+</TableCell>
+<TableCell>
+
+Gateway reject - card number blacklist
+
+</TableCell>
+<TableCell>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+40202
+
+</TableCell>
+<TableCell>
+
+Gateway reject - IP address blacklist
+
+</TableCell>
+<TableCell>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+40203
+
+</TableCell>
+<TableCell>
+
+Gateway reject - email blacklist
+
+</TableCell>
+<TableCell>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+40204
+
+</TableCell>
+<TableCell>
+
+Gateway reject - phone number blacklist
+
+</TableCell>
+<TableCell>
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+40205
+
+</TableCell>
+<TableCell>
+
+Gateway Reject - BIN number blacklist
+
+</TableCell>
+<TableCell>
+
+</TableCell>
+</TableRow>
 </TableBody>
 </Table>
