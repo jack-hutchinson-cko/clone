@@ -18,6 +18,7 @@ const SearchPage: FC = () => {
   const router = useRouter();
   const [searchState, setSearchState] = useState<QueryType>(router.query as QueryType);
   const { filterSettings } = useFilterSettings();
+  const query = searchState.query || searchState.q;
 
   useEffect(() => {
     setSearchState(router.query as QueryType);
@@ -32,7 +33,7 @@ const SearchPage: FC = () => {
       >
         <Configure filters={filterSettings} />
         <SearchResultHeader
-          searchResult={searchState.query || ''}
+          searchResult={query || ''}
           currentPage={Number(searchState.page) || 1}
         />
         <HiddenSearchInput />

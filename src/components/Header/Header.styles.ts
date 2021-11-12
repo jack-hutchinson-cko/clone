@@ -158,16 +158,19 @@ type NavigationItemProps = {
   hideOnDesktop?: boolean;
 };
 
-export const NavigationItem = styled.div<NavigationItemProps>`
+export const NavigationItem = styled.button<NavigationItemProps>`
   display: flex;
   height: 80px;
   align-items: center;
   padding-top: 4px;
+  border: none;
+  background: inherit;
   border-bottom: 4px solid
     ${({ isSelected, theme }) => (isSelected ? theme.colors.base : 'transparent')};
   transition: border-bottom 100ms;
   color: ${({ theme }) => theme.colors.base};
   font-size: 16px;
+  font-family: 'Graphik LCG';
   line-height: 24px;
 
   ${({ withHover }) =>
@@ -234,6 +237,10 @@ export const NavigationLink = styled.a<{
         text-decoration: underline;
       }
     `}
+
+  &:focus {
+    text-decoration: underline;
+  }
 
   svg {
     color: ${({ theme }) => theme.colors.sectionIcon};

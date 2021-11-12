@@ -3,6 +3,7 @@ import { ImageLoader } from 'next/image';
 import ImgModalWrapper from 'src/components/ImageModalWrapper';
 import { ThemeContext } from 'src/theme/themeContext';
 
+import { generateAltAttribute } from 'src/lib/generateAltAttribute';
 import { ImgWrapper, StyledImage, ImgPlaceholder, ContainerImage } from './ImageBoxStyles';
 
 const isDarkTheme = 'dark';
@@ -38,6 +39,7 @@ const ImageBox: FC<Props> = ({
   defaultWidth,
   defaultHeight,
   loader = basePathLoader,
+  loading = 'lazy',
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
@@ -63,7 +65,14 @@ const ImageBox: FC<Props> = ({
         />
       )}
       <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
-        <StyledImage src={newSrc} onLoad={onLoadHandler} loader={loader} {...props} />
+        <StyledImage
+          src={newSrc}
+          onLoad={onLoadHandler}
+          loader={loader}
+          alt={generateAltAttribute(src)}
+          loading={loading}
+          {...props}
+        />
       </ContainerImage>
     </ImgWrapper>
   );

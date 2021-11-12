@@ -49,3 +49,26 @@ export const CounterWrapper = styled.div`
     display: none;
   }
 `;
+
+export const CookieButton = styled.button`
+  background: inherit;
+  border: none;
+  font-size: 16px;
+  font-family: 'Graphik LCG';
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export const TipBoxWrapper = styled.div`
+  margin-bottom: 80px;
+
+  @media ${Breakpoints.MOBILE} {
+    margin-bottom: 0px;
+  }
+`;

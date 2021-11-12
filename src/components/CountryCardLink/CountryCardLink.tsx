@@ -19,7 +19,12 @@ const CountryCartLink: FC<Props> = ({ url, type }) => {
   return (
     <Link href={url} passHref>
       <Wrapper href={url}>
-        <Image src={imgSrcWithBasePath} width={flagImageWidth} height={flagImageHeight} />
+        <Image
+          src={imgSrcWithBasePath}
+          width={flagImageWidth}
+          height={flagImageHeight}
+          alt={`${type} flag`}
+        />
         <Title>{type}</Title>
       </Wrapper>
     </Link>

@@ -1,13 +1,16 @@
---- 
+---
 title: PrestaShop
 account: ABC
 ---
 
-From downloading the plugin to requesting your first test payment, learn how to get started with the Checkout.com for PrestaShop plugin.
+From downloading the plugin to requesting your first test payment, learn how to get started with the Checkout.com for PrestaShop plugin. This guide assumes that you have already installed PrestaShop.
 
-<TipBox variant="info">
+<TipBox variant="info" title="Minimum requirements">
 
-This guide assumes that you have already installed PrestaShop.
+In order to use this plugin, make sure you have the following versions as a minimum:
+
+* Prestashop: 1.7.6.
+* Checkout.com's plugin: 2.1.4.
 
 </TipBox>
 
@@ -16,7 +19,7 @@ This guide assumes that you have already installed PrestaShop.
 ## Supported features
 
 * Manual capture
-* Using [the Hub](/the-hub) for: 
+* Using [the Hub](/the-hub) for:
   * Refund, void and capture
   * Partial capture and partial refund
 * [Frames](/integrate/frames)
@@ -49,22 +52,17 @@ You also need to configure webhooks for PrestaShop. Correctly configuring them i
 
 <TipBox variant="info">
 
-Webhooks are notifications that we send when an event occurs on your account. For example, when a payment is captured. These are used by the PrestaShop plugin to update the status of an order. [Read more about webhooks](/reporting-and-insights/webhooks).
+Webhooks are notifications that we send when an event occurs on your account. For example, when a payment is captured. These are used by the PrestaShop plugin to update the status of an order. [Read more about webhooks](/reporting-and-insights/webhooks).
 
 </TipBox>
 
-1.  While in the _Settings > Channels_ section of your Hub account, scroll down to the _Webhooks_ section and select _New webhook_.
-2.  Enter the following endpoint URL, replacing example.com with the URL of your shop:  
+1.  While in the _Settings > Channels_ section of your Hub account, scroll down to the _Webhooks_ section and select _New webhook_.
+2.  Enter the following endpoint URL, replacing example.com with the URL of your shop:
     `example.com/index.php?fc=module&module=checkoutcom&controller=webhook`
-3.  Select _API - v2.0_.
-4.  Tick _Select all_, then select _Create webhook_.
+3.  Select _API - v2.0_.
+4.  Tick _Select all_, then select _Create webhook_.
 
-<img
-  maxWidth={300}
-  src="/docs/Integrate/PrestaShop/configure_webhook.png"
-  title="Configure webhook"
-  
-/>
+<img src="/docs/Integrate/PrestaShop/configure_webhook.png" />
 
 ---
 
@@ -83,18 +81,18 @@ If you use this method, please contact our Support team at <ExternalLink href="
 
 </TipBox>
 
-1.  Once you've received the `.zip` file from us, log in to your PrestaShop admin dashboard and go to _Modules > Module Manager_.
+1.  Once you've received the `.zip` file from us, log in to your PrestaShop admin dashboard and go to _Modules > Module Manager_.
 2.  Select _Upload a module_, and drop your `.zip` file into the window that pops up.
 3.  If successful, you'll get a `Module installed!` message.
 4.  Select _Configure_ to start setting up the plugin.
 
 ### Using composer
 
-1.  <ExternalLink href="https://github.com/checkout/checkout-prestashop1.7-plugin" >Download the plugin from GitHub</ExternalLink>.
+1.  <ExternalLink href="https://github.com/checkout/checkout-prestashop1.7-plugin">Download the plugin from GitHub</ExternalLink>.
 2.  Unzip the folder.
 3.  Upload the contents to your PrestaShop root directory, specifically `[root directory]/modules/checkoutcom`.
 4.  Run the command `composer install --no-dev` inside the `[root directory]/modules/checkoutcom folder`.
-5.  Log in to your PrestaShop admin dashboard and go to _Modules > Module Manager_.
+5.  Log in to your PrestaShop admin dashboard and go to _Modules > Module Manager_.
 6.  Search for `checkout` and the plugin should appear in the results. Select _Configure_ to start setting up the plugin.
 
 You're now ready to configure the PrestaShop plugin.
@@ -107,19 +105,14 @@ You're now ready to configure the PrestaShop plugin.
 2.  Select _Configure_.
 3.  Select the _Environment_ you want. Select _Sandbox_ if you want to start testing payments.
 
-<img
-  maxWidth={500}
-  src="/docs/Integrate/PrestaShop/configure_checkout_plugin.png"
-  title="Configure checkout plugin"
-  
-/>
+<img src="/docs/Integrate/PrestaShop/configure_checkout_plugin.png" />
 
-4. Select the _Payment Action_. 
-  * _Authorize and Capture_ means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time. 
-  * _Authorize_ will only authorize the charge; you have to manually capture the payment yourself. 
+4. Select the _Payment Action_.
+  * _Authorize and Capture_ means that the charge is authorized and captured (i.e., the money due from the customer's account is moved into your account) at the same time.
+  * _Authorize_ will only authorize the charge; you have to manually capture the payment yourself.
   * If you're unsure, _Authorize and Capture_ is likely the right choice.
 5. Then go to _Account Settings_.
-6. Enter your secret key and public key. If you're testing, make sure you use the API keys from your sandbox Hub account, then select _Set Webhooks_ to automatically register your webhooks in [Checkout.com](http://checkout.com/) Hub.
+6. Enter your secret key and public key. If you're testing, make sure you use the API keys from your sandbox Hub account, then select _Set Webhooks_ to automatically register your webhooks in <ExternalLink href="https://checkout.com">Checkout.com</ExternalLink> Hub.
 
 That's it! You're ready to start testing card payments.
 
@@ -174,4 +167,4 @@ Before you go live, remember to:
 
 ## Extend your configuration
 
-You can extend your configuration to [add more payment methods](/payments/payment-methods), use [3D Secure payments](/risk-management/3d-secure), and more.
+You can extend your configuration to [add more payment methods](/integrate/e-commerce-platforms/prestashop/go-further-with-prestashop#Add_more_payment_methods), use [3D Secure payments](/integrate/e-commerce-platforms/prestashop/go-further-with-prestashop#Enable_3D_Secure_payments), and more.
