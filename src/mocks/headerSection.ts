@@ -25,7 +25,7 @@ export const guidesListABC: HeaderLink[] = [
 
 export const guidesListNAS: HeaderLink[] = [
   {
-    url: 'https://api-reference.checkout.com/',
+    url: 'https://api-reference.checkout.com/preview/crusoe',
     title: 'API Reference',
     description: 'Our reference library for integrating with our API',
     Icon: IconSourceCode,
