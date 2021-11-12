@@ -43,6 +43,8 @@ const ImageBox: FC<Props> = ({
   priority,
   ...props
 }) => {
+  const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/docs/four';
+
   const { theme } = useContext(ThemeContext);
   const [placeholderVisibility, setPlaceholderVisibility] = useState(true);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
@@ -52,7 +54,6 @@ const ImageBox: FC<Props> = ({
     const target = event.target as HTMLImageElement;
 
     if (target.complete && target.style.visibility !== 'hidden') {
-      console.log('onLoadHandler ');
       setPlaceholderVisibility(false);
     }
   };
@@ -73,6 +74,8 @@ const ImageBox: FC<Props> = ({
           loader={loader}
           alt={generateAltAttribute(src)}
           loading={!priority ? loading : 'eager'}
+          placeholder="blur"
+          blurDataURL={`${basePath}/_next/image?url=${basePath + src}&q=1`}
           priority
           {...props}
         />
