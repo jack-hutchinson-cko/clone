@@ -8,12 +8,17 @@ interface ContainerProps {
 }
 
 export const ContainerImage = styled.div<ContainerProps>`
-  position: relative;
-
-  & > div,
-  span {
-    position: relative !important;
-  }
+  ${({ defaultWidth, defaultHeight }) =>
+    defaultWidth && defaultHeight
+      ? css`
+          position: relative;
+          padding-top: ${(defaultHeight / defaultWidth) * 100}% !important;
+        `
+      : css`
+          & > div {
+            position: relative !important;
+          }
+        `}
 `;
 
 // TODO implement response for img
@@ -23,6 +28,7 @@ export const StyledImage = styled(Image)`
   min-width: 100% !important;
   position: relative !important;
   height: unset !important;
+  z-index: 2;
 `;
 
 interface WrapperProps {
@@ -50,6 +56,7 @@ export const ImgPlaceholder = styled.div<ContainerProps>`
   border-radius: 8px;
   transition: opacity 1s ease-in-out;
   overflow: hidden;
+  z-index: 1;
 
   ::after {
     animation: loading 1.5s infinite;
@@ -69,7 +76,6 @@ export const ImgPlaceholder = styled.div<ContainerProps>`
       }}
     );
   }
-
   @keyframes loading {
     to {
       transform: translateX(100%);

@@ -61,8 +61,8 @@ const ImageBox: FC<Props> = ({
       <ContainerImage defaultWidth={defaultWidth} defaultHeight={defaultHeight}>
         <StyledImage
           src={newSrc}
-          onLoad={onLoadHandler}
           loader={loader}
+          onLoad={onLoadHandler}
           alt={generateAltAttribute(String(src))}
           loading={!priority ? loading : 'eager'}
           priority
