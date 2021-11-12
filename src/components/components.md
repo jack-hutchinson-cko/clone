@@ -217,7 +217,7 @@ Find out more about onboarding and verification for your sub-entities.
 Find out more about onboarding and verification for your sub-entities.
 
 </ContentPanel>
-</CardWrapper
+</CardWrapper>
 ```
 
 ---
@@ -259,7 +259,7 @@ Images that are long but not wide, can be wrapped in a `Box` and an `Iframe` com
 
 ## Videos
 
-When you need to show a video, simple use the `<Video/>` **self-closing** component. It accepts one prop `src` which is the path to the video. 
+When you need to show a video, simply use the `<Video/>` **self-closing** component. It accepts one prop `src` which is the path to the video. 
 
 ```
 <Video src="https://assets.checkout.com/docs/videos/create_merchant_id.mp4" /> 
