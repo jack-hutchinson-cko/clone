@@ -39,7 +39,8 @@ const ImageBox: FC<Props> = ({
   defaultWidth,
   defaultHeight,
   loader = basePathLoader,
-  loading = 'lazy',
+  loading,
+  priority,
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
@@ -51,6 +52,7 @@ const ImageBox: FC<Props> = ({
     const target = event.target as HTMLImageElement;
 
     if (target.complete && target.style.visibility !== 'hidden') {
+      console.log('onLoadHandler ');
       setPlaceholderVisibility(false);
     }
   };
@@ -70,7 +72,8 @@ const ImageBox: FC<Props> = ({
           onLoad={onLoadHandler}
           loader={loader}
           alt={generateAltAttribute(src)}
-          loading={loading}
+          loading={!priority ? loading : 'eager'}
+          priority
           {...props}
         />
       </ContainerImage>

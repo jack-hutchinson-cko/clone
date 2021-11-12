@@ -1,22 +1,16 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 
-export const ContainerImage = styled.div<{
+interface ContainerProps {
   defaultWidth?: number;
   defaultHeight?: number;
-}>`
-  ${({ defaultWidth, defaultHeight }) =>
-    defaultWidth && defaultHeight
-      ? css`
-          position: relative;
-          padding-top: ${(defaultHeight / defaultWidth) * 100}% !important;
-        `
-      : css`
-          & > div {
-            position: relative !important;
-          }
-        `}
+  isShown?: boolean;
+}
 
+export const ContainerImage = styled.div<ContainerProps>`
+  position: relative;
+
+  & > div,
   span {
     position: relative !important;
   }
@@ -31,18 +25,18 @@ export const StyledImage = styled(Image)`
   height: unset !important;
 `;
 
-export const ImgWrapper = styled.div<{ maxWidth?: number }>`
+interface WrapperProps {
+  maxWidth?: number;
+}
+
+export const ImgWrapper = styled.div<WrapperProps>`
   position: relative;
   ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}px; margin: auto;` : '')}
   width: 100%;
   overflow: hidden;
 `;
 
-export const ImgPlaceholder = styled.div<{
-  isShown: boolean;
-  defaultWidth?: number;
-  defaultHeight?: number;
-}>`
+export const ImgPlaceholder = styled.div<ContainerProps>`
   opacity: ${({ isShown }) => (isShown ? '1' : '0')};
   position: absolute;
   top: 0;

@@ -59,6 +59,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
         layout="fill"
         loader={basePathLoader}
         alt="Checkout.com hero image"
+        priority
       />
       <HeroParts
         style={isCursorEntered ? dynamicTransform : {}}
@@ -73,6 +74,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
             height="300"
             loader={basePathLoader}
             alt="Checkout.com hero body"
+            priority
           />
         </HeroPart01>
         <HeroPart02 width={width}>
@@ -91,6 +93,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
             height="145"
             loader={basePathLoader}
             alt="Checkout.com hero 3d secure label"
+            priority
           />
         </HeroPart03>
       </HeroParts>
