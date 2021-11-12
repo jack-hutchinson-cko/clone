@@ -256,12 +256,12 @@ A payout which has been returned by our banking partners. For example, due to in
 </TableCell>
 </TableRow>
 <TableRow>
-<TableCell rowSpan="7">
+<TableCell rowSpan="8">
 
 Adjustment
 
 </TableCell>
-<TableCell rowSpan="7">
+<TableCell rowSpan="8">
 
 Adjustment
 
@@ -346,6 +346,18 @@ Security deposit release
 <TableCell>
 
 The release of funds from your collateral balance to your available balance.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+Client revenue
+
+</TableCell>
+<TableCell>
+
+An adjustment made to a currency account to correct any errors to client settlement amounts.
 
 </TableCell>
 </TableRow>
@@ -749,12 +761,12 @@ A fixed fee incurred on actions (i.e., authentication, authorization, void, refu
 <TableHead headers={['Reporting fee category', 'Action type', 'Breakdown type', 'Breakdown type description']} sizes={['auto', '20%', 'auto', '40%']}/>
 <TableBody>
 <TableRow>
-<TableCell rowSpan={3}>
+<TableCell rowSpan={5}>
 
 Chargeback fees
 
 </TableCell>
-<TableCell rowSpan={5}>
+<TableCell rowSpan={7}>
 
 Chargeback
 
@@ -791,6 +803,30 @@ Scheme variable fee
 </TableRow>
 <TableRow>
 <TableCell>
+  
+Return fixed fee
+
+</TableCell>
+<TableCell>
+
+A fixed fee applied to returns for an alternative payment method.
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+  
+Disputed return fixed fee
+
+</TableCell>
+<TableCell>
+
+A fixed fee applied to returns that were deemed unauthorised for an alternative payment method.
+
+</TableCell>
+</TableRow> 
+<TableRow>
+<TableCell> 
 
 Representment fees
 
