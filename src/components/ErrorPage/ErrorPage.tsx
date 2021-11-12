@@ -12,6 +12,10 @@ const ErrorPage: FC<Props> = ({ statusCode }) => {
   let headerCopy: string | null;
   const docsImgUrl = basePathAddition('/errorPage/docs.svg');
   const apiRefImgUrl = basePathAddition('/errorPage/api.svg');
+  const apiReferenceLink =
+    process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC'
+      ? 'https://api-reference.checkout.com/'
+      : 'https://api-reference.checkout.com/preview/crusoe';
 
   switch (statusCode) {
     case 404:
@@ -44,7 +48,7 @@ const ErrorPage: FC<Props> = ({ statusCode }) => {
         <ErrorPageLink imageUrl={docsImgUrl} url="/">
           Go to Docs home
         </ErrorPageLink>
-        <ErrorPageLink imageUrl={apiRefImgUrl} url="https://api-reference.checkout.com">
+        <ErrorPageLink imageUrl={apiRefImgUrl} url={apiReferenceLink}>
           Go to API reference
         </ErrorPageLink>
       </LinksContainer>
