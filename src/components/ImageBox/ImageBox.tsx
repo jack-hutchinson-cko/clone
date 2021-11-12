@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from 'react';
-import { ImageLoader } from 'next/image';
+import { ImageLoader, ImageProps } from 'next/image';
 import ImgModalWrapper from 'src/components/ImageModalWrapper';
 import { ThemeContext } from 'src/theme/themeContext';
 
@@ -8,22 +8,15 @@ import { ImgWrapper, StyledImage, ImgPlaceholder, ContainerImage } from './Image
 
 const isDarkTheme = 'dark';
 
-export type Props = {
-  src: string;
+export interface Props extends ImageProps {
   darkThemeSrc?: string;
   alt?: string;
-  layout?: 'fill';
-  objectFit?: 'none' | 'contain' | 'cover' | 'fill' | 'scale-down';
-  quality?: 100;
   loader?: ImageLoader;
-  priority?: boolean;
-  loading?: 'lazy' | 'eager';
-  width?: '100%';
   maxWidth?: number;
   withFullscreenPreview?: boolean;
   defaultWidth?: number;
   defaultHeight?: number;
-};
+}
 
 // keep this in sync with Next default loader
 export const basePathLoader: ImageLoader = ({ src, width, quality }) => {
@@ -43,12 +36,10 @@ const ImageBox: FC<Props> = ({
   priority,
   ...props
 }) => {
-  const basePath = process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC' ? '/docs' : '/docs/four';
-
   const { theme } = useContext(ThemeContext);
   const [placeholderVisibility, setPlaceholderVisibility] = useState(true);
   const finalSrc = theme === isDarkTheme && darkThemeSrc ? darkThemeSrc : src;
-  const newSrc = encodeURIComponent(finalSrc);
+  const newSrc = encodeURIComponent(String(finalSrc));
 
   const onLoadHandler = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const target = event.target as HTMLImageElement;
@@ -72,10 +63,8 @@ const ImageBox: FC<Props> = ({
           src={newSrc}
           onLoad={onLoadHandler}
           loader={loader}
-          alt={generateAltAttribute(src)}
+          alt={generateAltAttribute(String(src))}
           loading={!priority ? loading : 'eager'}
-          placeholder="blur"
-          blurDataURL={`${basePath}/_next/image?url=${basePath + src}&q=1`}
           priority
           {...props}
         />
@@ -84,7 +73,7 @@ const ImageBox: FC<Props> = ({
   );
 
   return withFullscreenPreview ? (
-    <ImgModalWrapper src={newSrc} loader={loader} {...props}>
+    <ImgModalWrapper src={String(newSrc)} loader={loader} {...props}>
       {imageBox}
     </ImgModalWrapper>
   ) : (

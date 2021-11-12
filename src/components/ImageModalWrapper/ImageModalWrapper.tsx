@@ -1,16 +1,13 @@
 import React, { FC, useState } from 'react';
-import { ImageLoader } from 'next/image';
+import { ImageLoader, ImageProps } from 'next/image';
 import Modal from 'src/components/ModalComponents';
 
 import { generateAltAttribute } from 'src/lib/generateAltAttribute';
 import { ContentWrapper, StyledIconFullScreen, StyledImage } from './ImageModalWrapper.styles';
 
-export type Props = {
-  layout?: 'fill';
+export interface Props extends ImageProps {
   loader?: ImageLoader;
-  src: string;
-  width?: '100%';
-};
+}
 
 const ImageModalWrapper: FC<Props> = ({ children, src, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +23,7 @@ const ImageModalWrapper: FC<Props> = ({ children, src, ...rest }) => {
         <StyledIconFullScreen />
       </ContentWrapper>
       <Modal isOpen={isOpen} onClose={onClickHandler}>
-        <StyledImage src={src} alt={generateAltAttribute(src)} {...rest} />
+        <StyledImage src={src} alt={generateAltAttribute(String(src))} {...rest} />
       </Modal>
     </>
   );
