@@ -37,7 +37,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-          {isNAS && <meta name="robots" content="noindex nofollow" />}
+          <meta name="robots" content="noindex nofollow" />
           <meta name="description" content="Checkout.com documentation" />
           <link
             rel="preload"
