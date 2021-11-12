@@ -5,6 +5,12 @@ account: NAS
 
 ### Basic information
 
+<TipBox variant="info">
+
+If you want the recipient to be paid instantly, we recommend including `“preferred_network”: “instant”` in your request. If the recipient’s bank does not accept SEPA Instant, or the destination amount is above 100,000.00 EUR, we will automatically send the payout as EUR International Wire. Please note that if the preferred network is specified and the recipient bank does NOT support SEPA Instant, the payout will be rejected.
+
+</TipBox>
+
 <tabs withBorder={false}>
 <tab title="Local">
 
@@ -446,7 +452,3 @@ Coming soon.
 
 </tab>
 </tabs>
-
-
-
-

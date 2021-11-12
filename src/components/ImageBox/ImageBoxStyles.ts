@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 
-export const ContainerImage = styled.div<{
+interface ContainerProps {
   defaultWidth?: number;
   defaultHeight?: number;
-}>`
+  isShown?: boolean;
+}
+
+export const ContainerImage = styled.div<ContainerProps>`
   ${({ defaultWidth, defaultHeight }) =>
     defaultWidth && defaultHeight
       ? css`
@@ -25,20 +28,21 @@ export const StyledImage = styled(Image)`
   min-width: 100% !important;
   position: relative !important;
   height: unset !important;
+  z-index: 2;
 `;
 
-export const ImgWrapper = styled.div<{ maxWidth?: number }>`
+interface WrapperProps {
+  maxWidth?: number;
+}
+
+export const ImgWrapper = styled.div<WrapperProps>`
   position: relative;
   ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}px; margin: auto;` : '')}
   width: 100%;
   overflow: hidden;
 `;
 
-export const ImgPlaceholder = styled.div<{
-  isShown: boolean;
-  defaultWidth?: number;
-  defaultHeight?: number;
-}>`
+export const ImgPlaceholder = styled.div<ContainerProps>`
   opacity: ${({ isShown }) => (isShown ? '1' : '0')};
   position: absolute;
   top: 0;
@@ -52,6 +56,7 @@ export const ImgPlaceholder = styled.div<{
   border-radius: 8px;
   transition: opacity 1s ease-in-out;
   overflow: hidden;
+  z-index: 1;
 
   ::after {
     animation: loading 1.5s infinite;
@@ -71,7 +76,6 @@ export const ImgPlaceholder = styled.div<{
       }}
     );
   }
-
   @keyframes loading {
     to {
       transform: translateX(100%);

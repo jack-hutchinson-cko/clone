@@ -22,7 +22,7 @@ const HomePageItem: FC<Props> = ({ title, imgSrc, children, links }) => {
         defaultWidth={456}
         withFullscreenPreview={false}
         alt={title}
-        loading="eager"
+        priority
       />
       <Header>{title}</Header>
       <Body>{children}</Body>
