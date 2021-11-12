@@ -47,7 +47,7 @@ export const SkipLink = styled.a`
   transform: translateY(-1000%);
   transition: transform 0.3s;
   width: 154px;
-  left: 47%;
+  left: 50%;
   padding: 8px 24px;
   position: absolute;
   background: #ffffff;
