@@ -1,4 +1,4 @@
-# MDX components reference
+# MDX components reference 
 
 **NOTE**: Capitalisation of components is important.
 
