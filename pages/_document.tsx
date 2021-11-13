@@ -47,13 +47,13 @@ export default class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href={basePathAddition('/assets/fonts/Graphik-Regular-Web.woff2')}
+            href={basePathAddition('/assets/fonts/Graphik-Regular-Cy-Gr-Web.woff2')}
             as="font"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href={basePathAddition('/assets/fonts/Graphik-Medium-Web.woff2')}
+            href={basePathAddition('/assets/fonts/Graphik-Medium-Cy-Gr-Web.woff2')}
             as="font"
             crossOrigin="anonymous"
           />
