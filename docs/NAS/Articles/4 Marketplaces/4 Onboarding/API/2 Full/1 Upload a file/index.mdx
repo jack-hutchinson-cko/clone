@@ -1,5 +1,5 @@
---- 
-title: Upload a file 
+---
+title: Upload a file
 account: NAS
 ---
 
@@ -11,7 +11,7 @@ When you upload a file, the API returns an `id` that represents that file. You c
 
 ## Before you begin
 
-If you are uploading a bank statement to verify a set of bank details, subscribe to the following webhook events: 
+If you are uploading a bank statement to verify a set of bank details, subscribe to the following webhook events:
 
 * `payment_instrument_verification_passed`
 * `payment_instrument_verification_failed`
@@ -185,7 +185,7 @@ Notice that the sub-domain – files.checkout.com – is slightly different to C
 
 ### Request example
 
-Your request should include the **type** of document, the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" >API reference.</ExternalLink>
+Your request should include the **file path** and the **purpose** of the document. When uploading an identification document, set this to `identification`. For a full list of possible fields, see our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/#tag/Marketplace/" >API reference.</ExternalLink>
 
 
 <Table>
@@ -222,7 +222,6 @@ Content-Type
 
 ```json
 curl https://files.checkout.com \
-  -F "type=passport" \
   -F "cw_passport.jpg" \
   -F "purpose=identification"
 ```
