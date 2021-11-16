@@ -131,8 +131,10 @@ export default class MyDocument extends Document {
           <script
             async
             type="text/plain"
+            className="optanon-category-C0002"
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
           />
+
           {/* Google Tag Manager */}
           <script
             defer
