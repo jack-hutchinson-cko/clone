@@ -133,6 +133,8 @@ export default class MyDocument extends Document {
             type="text/plain"
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
           />
+          {/* Google Tag Manager */}
+          <script defer type="text/plain" className="optanon-category-C0002" src="/tags/gtm.js" />
           <script
             defer
             type="text/plain"
@@ -213,6 +215,18 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
+          {/* Google Tag Manager setup */}
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe
+							src="https://www.googletagmanager.com/ns.html?id=GTM-MG7959V"
+							height="0"
+							width="0"
+							style="display:none;visibility:hidden"
+						/>`,
+            }}
+          />
         </body>
       </Html>
     );
