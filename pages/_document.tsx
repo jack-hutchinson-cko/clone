@@ -133,6 +133,27 @@ export default class MyDocument extends Document {
             type="text/plain"
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
           />
+          {/* Google Tag Manager */}
+          <script
+            defer
+            type="text/plain"
+            className="optanon-category-C0002"
+            dangerouslySetInnerHTML={{
+              __html: `
+                "use strict";
+                (function (w, d, s, l, i) {
+                  w[l] = w[l] || [];
+                  w[l].push({ "gtm.start": new Date().getTime(), "event": "gtm.js" });
+                  var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                  j.async = true;
+                  j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, "script", "dataLayer", "GTM-MG7959V");
+                `,
+            }}
+          />
           <script
             defer
             type="text/plain"
@@ -213,6 +234,18 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
+          {/* Google Tag Manager setup */}
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe
+							src="https://www.googletagmanager.com/ns.html?id=GTM-MG7959V"
+							height="0"
+							width="0"
+							style="display:none;visibility:hidden"
+						/>`,
+            }}
+          />
         </body>
       </Html>
     );
