@@ -12,13 +12,16 @@ export const ContainerImage = styled.div<ContainerProps>`
     defaultWidth && defaultHeight
       ? css`
           position: relative;
-          padding-top: ${(defaultHeight / defaultWidth) * 100}% !important;
         `
       : css`
           & > div {
             position: relative !important;
           }
         `}
+
+  span {
+    position: relative !important;
+  }
 `;
 
 // TODO implement response for img

@@ -25,6 +25,7 @@ import {
   NavigationContent,
   NavigationSection,
   NavigationItem,
+  NavigationGuidesItem,
   NavigationLink,
   ToggleIcon,
   SearchFieldWrapper,
@@ -171,9 +172,9 @@ const Header: FC<WithMenuStateProps<Props>> = ({
             }
           >
             {(open) => (
-              <NavigationItem withHover isSelected={open}>
+              <NavigationGuidesItem withHover isSelected={open}>
                 Guides <ToggleIcon isOpen={open} />
-              </NavigationItem>
+              </NavigationGuidesItem>
             )}
           </NavigationItemHolder>
           {!isFAQSection && (
