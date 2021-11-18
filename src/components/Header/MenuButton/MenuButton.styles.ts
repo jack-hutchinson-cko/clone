@@ -6,8 +6,8 @@ export const Button = styled.span<{ isActive?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
-  width: 32px;
-  height: 22px;
+  width: 25px;
+  height: 15px;
   cursor: pointer;
 
   @media ${createBreakpointTo(SIZE.XS)} {
@@ -36,7 +36,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
     top: -10px;
 
     @media ${createBreakpointTo(SIZE.M)} {
-      top: -8.5px;
+      top: -7px;
     }
   }
   > span::after {
@@ -44,7 +44,7 @@ export const Button = styled.span<{ isActive?: boolean }>`
     top: 10px;
 
     @media ${createBreakpointTo(SIZE.M)} {
-      top: 8.5px;
+      top: 7px;
     }
   }
 
