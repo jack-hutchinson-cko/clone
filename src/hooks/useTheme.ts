@@ -25,7 +25,7 @@ const useTheme = (
   }, []);
 
   return {
-    theme,
+    theme: 'light',
     toggleTheme,
   };
 };
