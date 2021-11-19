@@ -162,7 +162,7 @@ export const NavigationItem = styled.button<NavigationItemProps>`
   display: flex;
   height: 80px;
   align-items: center;
-  padding-top: 4px;
+  padding: 4px 0 0;
   border: none;
   background: inherit;
   border-bottom: 4px solid
@@ -194,6 +194,12 @@ export const NavigationItem = styled.button<NavigationItemProps>`
 
   ${({ hideOnMobile, hideOnTablet, hideOnDesktop }) =>
     hideOnSize({ hideOnMobile, hideOnTablet, hideOnDesktop })}
+`;
+
+export const NavigationGuidesItem = styled(NavigationItem)`
+  @media ${Breakpoints.MOBILE} {
+    height: 44px;
+  }
 `;
 
 export const MiddleNavigationItem = styled(NavigationItem)`

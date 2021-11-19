@@ -4,7 +4,15 @@ account: ABC
 description: Learn how to perform Account Funding Transactions (AFTs).
 ---
 
-The Unified Payments API can be used to perform Account Funding Transactions (AFTs). AFTs are a type of pull payment used primarily to fund a wallet.
+The Unified Payments API can be used to perform Account Funding Transactions (AFTs).
+
+An AFT is a transaction where funds are pulled from a Visa/Mastercard account and are subsequently used to fund another account, examples include:
+
+* Loading or topping up prepaid card accounts
+* Moving funds into another financial accounts such as savings deposit account
+* Acting as a funding source for person-to-person (P2P) Money Transfers
+* Loading third-party digital wallets
+
 
 <TipBox variant="tip">
 
@@ -143,7 +151,11 @@ The Checkout.com token.
 
 The payment amount in your chosen currency. Omit the amount or provide a value of `0` to perform a [card verification](/risk-management/card-verification).
 
+<InfoBox>
+
 The format depends on the currency. For more information, see [calculating the value](/resources/calculating-the-value).
+
+</InfoBox>
 
 </TableCell>
 </TableRow>
@@ -197,7 +209,8 @@ Indicates whether the payment is an Account Funding Transaction (AFT).
 
 `recipient`
 
-<StatusTag type="optional" />
+<StatusTag type="required" /> for Mastercard
+<StatusTag type="optional" /> for Visa
 <TypeTag type="object" />
 
 </TableCell>
@@ -219,7 +232,7 @@ Details about the recipient.
 </TableCell>
 <TableCell>
 
-The first name of the recipient of the funds.
+The first name of the recipient of the funds. If the recipient is an organisation, must include the name of the organisation.
 
 </TableCell>
 </TableRow>
@@ -235,7 +248,7 @@ The first name of the recipient of the funds.
 </TableCell>
 <TableCell>
 
-The last name of the recipient of the funds.
+The last name of the recipient of the funds. If the recipient is an organisation, must include the name of the organisation.
 
 </TableCell>
 </TableRow>
@@ -251,7 +264,7 @@ The last name of the recipient of the funds.
 </TableCell>
 <TableCell>
 
-The primary account number (PAN) of the recipient's account.
+The primary account number (PAN) of the recipient's account when funding a card or the account number when funding an account.
 
 </TableCell>
 </TableRow>
@@ -260,14 +273,14 @@ The primary account number (PAN) of the recipient's account.
 
 `recipient.country`
 
-<StatusTag type="optional" />
+<StatusTag type="required" /> for Mastercard cross-border funding transactions
+<StatusTag type="optional" /> for Visa
 <TypeTag type="string" />
 
 </TableCell>
 <TableCell>
 
 The country ([two-letter ISO country code](/resources/codes/country-codes)) of the recipient's address.
-**Required for Mastercard** when the domestic funding transaction is used to fund a subsequent cross-border funds transfer.
 
 </TableCell>
 </TableRow>
