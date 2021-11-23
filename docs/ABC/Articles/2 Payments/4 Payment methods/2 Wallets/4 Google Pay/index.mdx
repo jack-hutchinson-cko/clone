@@ -56,13 +56,19 @@ When you submit a payment data request to the Google API, be sure to include the
   <tab title="Google Pay API request (web)" active>
 
 ```json withBorder={false}
-  'allowedPaymentMethods': ['CARD','TOKENIZED_CARD'],
-'paymentMethodTokenizationParameters': {
-   'tokenizationType': 'PAYMENT_GATEWAY',
-   'parameters': {
-     'gateway': 'checkoutltd'
-     'gatewayMerchantId': ''
-   }
+{
+  'type': 'CARD',
+  'parameters': {
+    'allowedAuthMethods': ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+    'allowedCardNetworks': ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']
+  },
+  'tokenizationSpecification': {
+    'type': 'PAYMENT_GATEWAY',
+    'parameters': {
+      'gateway': 'checkoutltd',
+      'gatewayMerchantId': '<YOUR_PUBLIC_KEY>'
+    }
+  }
 }
 ```
 
@@ -87,7 +93,7 @@ private PaymentDataRequest createPaymentDataRequest() {
               WalletConstants.CARD_NETWORK_VISA,
               WalletConstants.CARD_NETWORK_MASTERCARD))
           .build());
-  
+
   PaymentMethodTokenizationParameters params =
     PaymentMethodTokenizationParameters.newBuilder()
       .setPaymentMethodTokenizationType(
