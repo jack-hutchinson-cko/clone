@@ -1,4 +1,4 @@
---- 
+---
 title: Frames reference
 account: ABC
 ---
@@ -149,11 +149,11 @@ Allows you to customize the look and feel of Frames' controlled fields. Refer to
 </TableBody>
 </Table>
 
---- 
+---
 
 ## Hide the CVV field
 
-When paying out to a card, the [CVV field](/risk-management/cvv-check) is not mandatory, so you can initialize Frames with `CVV_HIDDEN` **or** `CVV_OPTIONAL`. 
+When paying out to a card, the [CVV field](/risk-management/cvv-check) is not mandatory, so you can initialize Frames with `CVV_HIDDEN` **or** `CVV_OPTIONAL`.
 
 <tabs>
 <tab title="CVV_HIDDEN">
@@ -290,13 +290,23 @@ Sets the language of the text used.
 
 The available options are:
 
-- EN-GB (English)
-- ES-ES (Spanish)
-- DE-DE (German)
-- KR-KR (Korean)
-- FR-FR (French)
-- IT-IT (Italian)
-- NL-NL (Dutch)
+- `EN-GB` (English)
+- `ES-ES` (Spanish)
+- `DE-DE` (German)
+- `KO-KR` (Korean)
+- `FR-FR` (French)
+- `IT-IT` (Italian)
+- `NL-NL` (Dutch)
+- `ZH,CH` (Chinese Simplified)
+- `ZH-HK` (Chinese Traditional (Hong Kong))
+- `ZH-TW` (Chinese Traditional (Taiwan))
+- `JA-JP` (Japanese)
+- `FIL-PH` (Filipino)
+- `ID-ID` (Indonesian)
+- `MS-MY` (Malay)
+- `TH-TH` (Thai)
+- `VI-VN` (Vietnamese)
+- `HI-IN` (Hindi)
 
 </TableCell>
 <TableCell>
@@ -464,7 +474,7 @@ Triggered when the card form has been submitted.
 
 Triggered after a card is tokenized. The event will contain data following this example:
 
-```json 
+```json
 {
   type: card,
   token: tok_ubfj2q76miwundwlk72vxt2i7q,
