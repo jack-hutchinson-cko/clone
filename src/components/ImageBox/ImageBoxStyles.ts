@@ -18,7 +18,6 @@ export const ContainerImage = styled.div<ContainerProps>`
             position: relative !important;
           }
         `}
-
   span {
     position: relative !important;
   }

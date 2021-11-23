@@ -43,7 +43,7 @@ Payment void declined
 </TableCell>
 <TableCell>
 
-Occurs when a void is declined.
+Occurs when a submitted void request has been rejected by the scheme. This webhook can only happen after a successful authorisation and before the capture.
 
 </TableCell>
 </TableRow>
@@ -62,7 +62,7 @@ Payment returned
 </TableCell>
 <TableCell>
 
-Occurs when a payment is returned.
+Only occurs when a payment is returned by a Pay to Bank (PTB) payment, or by some alternative payment methods (APMs) that support a failure after success scenarios (such as Automated Clearing House (ACH)). These returns are triggered outside of Checkout.
 
 </TableCell>
 </TableRow>
@@ -138,7 +138,7 @@ Payment pending
 </TableCell>
 <TableCell>
 
-Occurs when a payment request has successfully initiated.
+Occurs when an asynchronous payment request has successfully initiated (e.g. a payment that requires an additional action to complete it, such as a cardholder completing a redirect to an alternative payment method's checkout page).
 
 </TableCell>
 </TableRow>
@@ -157,7 +157,7 @@ Payment paid
 </TableCell>
 <TableCell>
 
-Occurs when a payment is paid.
+Only occurs for bank payout payments.
 
 </TableCell>
 </TableRow>
@@ -176,7 +176,7 @@ Payment expired
 </TableCell>
 <TableCell>
 
-Occurs when the payment has expired.
+Occurs when an APM payment has expired (not applicable to 3DS payment expiries).
 
 </TableCell>
 </TableRow>
@@ -195,7 +195,7 @@ Payment declined
 </TableCell>
 <TableCell>
 
-Occurs when a payment is declined.
+Occurs when a payment authorization request times out, or if there is a rejection during authorization (e.g. `insufficient_funds`, `do_not_honor`, `card_blocked_by_issuer`).
 
 </TableCell>
 </TableRow>
@@ -271,7 +271,7 @@ Payment canceled
 </TableCell>
 <TableCell>
 
-Occurs when the customer has canceled the payment or the payment has failed.
+Occurs when the customer has canceled the payment via a provider's platform. This webhook is triggered in some APM flows.
 
 </TableCell>
 </TableRow>
@@ -328,7 +328,7 @@ Payment approved
 </TableCell>
 <TableCell>
 
-Occurs when a payment is successfully approved.
+Occurs when an authorization for a payment is successfully approved. It can be followed by one of the following webhooks: `payment_captured`, `payment_voided`, `payment_authorization_incremented`, `payment_authorization_increment_declined`. 
 
 </TableCell>
 </TableRow>
