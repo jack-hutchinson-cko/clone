@@ -9,12 +9,26 @@ account: NAS
     {
     "id": "evt_6aznipgxbuaure3qen5qbzyswy",
     "type": "payment_captured",
+    "version": "1.0.1",
     "created_on": "2019-06-07T08:25:22Z",
     "data": {
         "action_id": "act_gse7gcrhleuedmzhq25n3mhweq",
         "response_code": "10000",
         "response_summary": "Approved",
         "amount": 10000,
+        "balances": {
+            "total_authorized": 10000,
+            "total_voided": 0,
+            "available_to_void": 0,
+            "total_captured": 10000,
+            "available_to_capture": 0,
+            "total_refunded": 0,
+            "available_to_refund": 10000
+            },
+        "metadata": {
+            "coupon_code": "NY2018",
+            "partner_id": 123989
+            },    
         "processing": {
             "acquirer_transaction_id": "8137549557",
             "acquirer_reference_number": "000220552364"
@@ -26,7 +40,7 @@ account: NAS
         },
     "_links": {
         "self": {
-            "href": "https://api.sandbox.checkout.com/events/evt_6aznipgxbuaure3qen5qbzyswy"
+            "href": "https://api.checkout.com/events/evt_6aznipgxbuaure3qen5qbzyswy"
             },
         "subject": {
             "href": "https://api.checkout.com/workflows/events/subject/pay_jlfj2ful7z3u5lbykhy5lzezvm"

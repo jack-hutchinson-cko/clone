@@ -9,6 +9,7 @@ account: NAS
     {
     "id": "evt_vha2gih6tl5u5ebrpajhm727fe",
     "type": "payment_approved",
+    "version": "1.0.1",
     "created_on": "2019-06-07T08:25:21Z",
     "data": {
         "action_id": "act_waji5li3mqtetnaor77xmow4bq",
@@ -20,7 +21,14 @@ account: NAS
         "source": {
             "id": "src_isu5yyegxg4e5l5yadnpu6y744",
             "type": "card",
-            "billing_address": {},
+            "billing_address": {
+                "line1": "Shepherdess Walk",
+                "line2": "Central",
+                "town_city": "Hoxton",
+                "state": "London",
+                "zip": "N1 7LH",
+                "country": "GB"
+                },
             "expiry_month": 12,
             "expiry_year": 2025,
             "scheme": "VISA",
@@ -37,14 +45,27 @@ account: NAS
             "cvv_check": ""
             },
         "customer": {
-            "id": "cus_gs47qn23bqmefhkmlpokm7vzxm"
-            },
+            "id": "cus_gs47qn23bqmefhkmlpokm7vzxm",
+            "email": "t***@g****.com"
+            },    
         "processing": {
             "acquirer_transaction_id": "8137549556",
             "retrieval_reference_number": "000007895269"
             },
         "amount": 10000,
-        "metadata": {},
+        "balances": {
+            "total_authorized": 10000,
+            "total_voided": 0,
+            "available_to_void": 10000,
+            "total_captured": 0,
+            "available_to_capture": 10000,
+            "total_refunded": 0,
+            "available_to_refund": 0
+            },
+        "metadata": {
+            "coupon_code": "NY2018",
+            "partner_id": 123989
+            },
         "risk": {
             "flagged": false
             },
@@ -55,7 +76,7 @@ account: NAS
         },
     "_links": {
         "self": {
-            "href": "https://api.sandbox.checkout.com/events/evt_vha2gih6tl5u5ebrpajhm727fe"
+            "href": "https://api.checkout.com/events/evt_vha2gih6tl5u5ebrpajhm727fe"
             },
         "subject": {
             "href": "https://api.checkout.com/workflows/events/subject/pay_jlfj2ful7z3u5lbykhy5lzezvm"
