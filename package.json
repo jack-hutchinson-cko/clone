@@ -22,7 +22,7 @@
     "build-storybook": "build-storybook",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "git-unshallow": "git fetch --depth=1000"
+    "git-unshallow": "git fetch --depth=1000000"
   },
   "dependencies": {
     "@cko/icons": "^3.17.2",
