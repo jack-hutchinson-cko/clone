@@ -3,7 +3,7 @@ title: Frames reference
 account: ABC
 ---
 
-Our Frames reference is here to help you find those hard-to-find bits of information all in one place.
+Our Frames reference outlines all possible configuration options so you can tailor your customers' experience.
 
 ---
 
@@ -20,11 +20,9 @@ If you discover any issues with the supported browsers, or would like to report 
 
 ---
 
-## Configuration options
+## Required configurations
 
 Here's a complete list of Frames configuration options.
-
-### Required
 
 <TipBox variant="info">
 
@@ -56,7 +54,9 @@ You can find it in the <ExternalLink href="https://hub.checkout.com/login" >Hub<
 </TableBody>
 </Table>
 
-### Optional
+---
+
+## Optional configurations
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -86,7 +86,7 @@ Set to `true` to view console messages.
 </TableCell>
 <TableCell>
 
-The .class or #id of the parent elements in the Frames payment form.
+The `.class` or `#id` of the parent elements in the Frames payment form.
 
 </TableCell>
 <TableCell>
@@ -153,7 +153,7 @@ Allows you to customize the look and feel of Frames' controlled fields. Refer to
 
 ## Hide the CVV field
 
-When paying out to a card, the [CVV field](/risk-management/cvv-check) is not mandatory, so you can initialize Frames with `CVV_HIDDEN` **or** `CVV_OPTIONAL`.
+When [paying out to a card](/card-payouts), the [CVV field](/risk-management/cvv-check) is not mandatory, so you can initialize Frames with `CVV_HIDDEN` **or** `CVV_OPTIONAL`.
 
 <tabs>
 <tab title="CVV_HIDDEN">
@@ -242,7 +242,7 @@ Transaction billing address:
 
 <InfoBox>
 
-The country field only accepts two-letter ISO country codes. You can find a full list of these [here](/resources/codes/currency-codes).
+The country field only accepts [two-letter ISO country codes](/resources/codes/currency-codes).
 
 </InfoBox>
 
@@ -272,6 +272,8 @@ none
 </TableRow>
 </TableBody>
 </Table>
+
+---
 
 ## Localization options
 
@@ -317,6 +319,8 @@ The available options are:
 </TableRow>
 </TableBody>
 </Table>
+
+---
 
 ## Events
 
@@ -528,7 +532,12 @@ Triggered if the card tokenization fails.
 </TableCell>
 <TableCell>
 
-Triggered when the user inputs or changes the first 8 digits of a card.
+Triggered when the user inputs or changes the first 8 digits of a card. The event will contain data similar to the following example:
+
+```
+  bin: 42424242,
+  scheme: VISA
+```
 
 </TableCell>
 </TableRow>
@@ -655,7 +664,7 @@ Example:
 
 Removes a previously added handler from an event by providing the event name and handler as arguments in the method.
 Example:
-e`vent: Events.CARD_TOKENIZED handler: function(event){}`
+`event: Events.CARD_TOKENIZED handler: function(event){}`
 
 </TableCell>
 <TableCell>
@@ -1004,6 +1013,7 @@ Use `window.CKOConfig` to change the namespace, or to load Frames asynchronously
 
 </body>
 ```
+
 ### Including billing details
 
 Use cardholder and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.

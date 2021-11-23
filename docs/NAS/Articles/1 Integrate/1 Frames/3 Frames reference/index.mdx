@@ -3,7 +3,7 @@ title: Frames reference
 account: NAS
 ---
 
-Our Frames reference is here to help you find those hard-to-find bits of information all in one place.
+Our Frames reference outlines all possible configuration options so you can tailor your customers' experience.
 
 ---
 
@@ -20,11 +20,9 @@ If you discover any issues with the supported browsers, or would like to report 
 
 ---
 
-## Configuration options
+## Required configurations
 
 Here's a complete list of Frames configuration options.
-
-### Required
 
 <TipBox variant="info">
 
@@ -50,7 +48,9 @@ Bearer public API key.
 </TableBody>
 </Table>
 
-### Optional
+---
+
+## Optional configurations
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -75,6 +75,40 @@ Set to `true` to view console messages.
 <TableRow>
 <TableCell>
 
+`frameSelector`
+
+</TableCell>
+<TableCell>
+
+The `.class` or `#id` of the parent elements in the Frames payment form.
+
+</TableCell>
+<TableCell>
+
+none
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
+`localization`
+
+</TableCell>
+<TableCell>
+
+Allows you to use one of the supported languages or a custom object. Refer to the [Frames customization guide](/integrate/frames/frames-customization-guide) for more information.
+
+</TableCell>
+<TableCell>
+
+`EN-GB`
+
+</TableCell>
+</TableRow>
+<TableRow>
+<TableCell>
+
 `namespace`
 
 </TableCell>
@@ -92,46 +126,12 @@ Customize the default Frames namespace.
 <TableRow>
 <TableCell>
 
-`frameSelector`
-
-</TableCell>
-<TableCell>
-
-The .class or #id of the parent elements in the Frames payment form.
-
-</TableCell>
-<TableCell>
-
-none
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
-`localization`
-
-</TableCell>
-<TableCell>
-
-Allows you to use one of the supported languages or a custom object. Refer to the [Frames customization guide](/payments/accept-payments/frames/frames-customization-guide) for more information.
-
-</TableCell>
-<TableCell>
-
-`EN-GB`
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
 `style`
 
 </TableCell>
 <TableCell>
 
-Allows you to customize the look and feel of Frames' controlled fields. Refer to the [Frames customization guide](/payments/accept-payments/frames/frames-customization-guide) for more information.
+Allows you to customize the look and feel of Frames' controlled fields. Refer to the [Frames customization guide](/integrate/frames/frames-customization-guide) for more information.
 
 </TableCell>
 <TableCell>
@@ -154,7 +154,7 @@ When paying out to a card, the [CVV field](/risk-management/card-verification) i
 
 ```javascript
 Frames.init({
-  publicKey: "pk_sbox_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  publicKey: "pk_sbox_XXXXXX",
   modes: [ Frames.modes.CVV_HIDDEN]
 });
 ```
@@ -164,7 +164,7 @@ Frames.init({
 
 ```javascript
 Frames.init({
-  publicKey: "pk_sbox_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  publicKey: "pk_sbox_XXXXXX",
   modes: [ Frames.modes.CVV_OPTIONAL]
 });
 ```
@@ -184,14 +184,14 @@ To prevent copy pasting of card details within the iframe, you can use `DISABLE_
 
 ```javascript
 Frames.init({
-  publicKey: "pk_sbox_8ac41c0d-fbcc-4ae3-a771-31ea533a2beb",
+  publicKey: "pk_sbox_XXXX",
   modes: [ Frames.modes.DISABLE_COPY_PASTE ]
 });
 ```
 
 ---
 
-### Customer details
+## Customer details
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -236,7 +236,7 @@ Transaction billing address:
 
 <InfoBox>
 
-The country field only accepts [two-letter ISO country codes](/resources/codes/currency-codes).
+The country field only accepts two-letter ISO country codes. You can find a full list of these [here](/resources/codes/currency-codes).
 
 </InfoBox>
 
@@ -267,7 +267,9 @@ none
 </TableBody>
 </Table>
 
-### Localization options
+---
+
+## Localization options
 
 <Table>
 <TableHead headers={['Javascript key', 'Description', 'Default']} />
@@ -524,14 +526,19 @@ Triggered if the card tokenization fails.
 </TableCell>
 <TableCell>
 
-Triggered when the user inputs or changes the first 8 digits of a card.
+Triggered when the user inputs or changes the first 8 digits of a card. The event will contain data similar to the following example:
+
+```
+  bin: 42424242,
+  scheme: VISA
+```
 
 </TableCell>
 </TableRow>
 </TableBody>
 </Table>
 
-### Adding an event handler
+## Adding an event handler
 
 There are two ways to add an event handler: using the standard approach or using configuration options.
 
@@ -547,7 +554,7 @@ Frames.addEventHandler(Frames.Events., handler);
 
 ```javascript
 Frames.init({
-  publicKey: 'pk_test_6ff46046-30af-41d9-bf58-929022d2cd14',
+  publicKey: 'pk_sbox_XXXXXX',
   : handler
 });
 ```
@@ -651,12 +658,12 @@ Example:
 
 Removes a previously added handler from an event by providing the event name and handler as arguments in the method.
 Example:
-`event: Events.CARD_TOKENIZED handler: function(event){}`
+e`vent: Events.CARD_TOKENIZED handler: function(event){}`
 
 </TableCell>
 <TableCell>
 
-boolean
+`boolean`
 
 </TableCell>
 </TableRow>
@@ -675,7 +682,7 @@ Example:
 </TableCell>
 <TableCell>
 
-boolean
+`boolean`
 
 </TableCell>
 </TableRow>
@@ -855,7 +862,7 @@ This example uses a JavaScript Promise to tokenize a customer's payment details.
     var payButton = document.getElementById("pay-button");
     var form = document.getElementById("payment-form");
 
-    Frames.init("pk_test_6ff46046-30af-41d9-bf58-929022d2cd14");
+    Frames.init("pk_sbox_6ff46046-30af-41d9-bf58-929022d2cd14");
 
     Frames.addEventHandler(
       Frames.Events.CARD_VALIDATION_CHANGED,
@@ -905,7 +912,7 @@ This example uses `cardTokenized` handler to gain a payment token for your custo
     var form = document.getElementById("payment-form");
 
     Frames.init({
-      publicKey: 'pk_test_6ff46046-30af-41d9-bf58-929022d2cd14',
+      publicKey: 'pk_sbox_6ff46046-30af-41d9-bf58-929022d2cd14',
       cardValidationChanged: function () {
         // if all fields contain valid information, the Pay now
         // button will be enabled and the form can be submitted
@@ -963,7 +970,7 @@ Use `window.CKOConfig` to change the namespace, or to load Frames asynchronously
     var form = document.getElementById("payment-form");
 
     window.CKOConfig = {
-      publicKey: "pk_test_6ff46046-30af-41d9-bf58-929022d2cd14",
+      publicKey: "pk_sbox_6ff46046-30af-41d9-bf58-929022d2cd14",
       namespace: "Checkout",
       ready: function () {
         // Frames is registered on the global namespace and safe to use
@@ -994,9 +1001,10 @@ Use `window.CKOConfig` to change the namespace, or to load Frames asynchronously
 
 </body>
 ```
+
 ### Including billing details
 
-Use `cardholder` and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.
+Use cardholder and `billingAddress` attributes to send the customer's details. In the example, we have added the customer's billing details to a Frames form.
 
 ```json
 <body>
@@ -1018,7 +1026,7 @@ Use `cardholder` and `billingAddress` attributes to send the customer's details.
     var payButton = document.getElementById("pay-button");
     var form = document.getElementById("payment-form");
 
-    Frames.init("pk_test_6ff46046-30af-41d9-bf58-929022d2cd14");
+    Frames.init("pk_sbox_6ff46046-30af-41d9-bf58-929022d2cd14");
 
     Frames.addEventHandler(
       Frames.Events.CARD_VALIDATION_CHANGED,

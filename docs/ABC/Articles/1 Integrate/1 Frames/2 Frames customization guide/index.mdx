@@ -1,7 +1,9 @@
---- 
+---
 title: Frames customization guide
 account: ABC
 ---
+
+This page explains the different ways you can customize our Frames product.
 
 ---
 
@@ -9,45 +11,15 @@ account: ABC
 
 Frames can be rendered either as a single iframe (displayed as one input field) or as multiple iframes (displayed as multiple input fields).
 
-### Single iframe
+---
 
-In the single iframe case, Frames' JavaScript library will dynamically apply an `--invalid` modifier to the container element class.
+## Single and multiple iframes
 
-<Box horizontal="sm" align="center">
-  <Iframe
-    src="https://assets.checkout.com/docs/examples/1liner-new/index.html"
-    height="250"
-    width="350"
-  />
-</Box>
-
-<Box horizontal="sm" align="center">
-  <ButtonLink href="https://assets.checkout.com/docs/examples/1liner-new/index.html">
-    Download sample files (.zip)
-  </ButtonLink>
-</Box>
-
-### Multiple iframes
-
-In the multiple iframes case, Frames' JavaScript library will dynamically apply an `--invalid` modifier to each container element class.
+In the single iframe case, the JavaScript library will dynamically apply an `--invalid` modifier to the **container** element class; in the multiple iframes case, the library will dynamically apply an `--invalid` modifier to **each container** element class.
 
 Your checkout page can contain CSS declarations for styling the containers, such as to change the border color. For example, you can use the invalid modifier to render a red border if an `invalid` card number is entered.
 
 The default approach is to hide the borders of input fields within the iframe input fields and style them within the checkout page as explained above, however, custom styling can be passed into Frames at initialization as shown below. This includes `base`, `invalid`, and `placeholder` styling options.
-
-<Box horizontal="sm" align="center">
-  <Iframe
-    src="https://assets.checkout.com/docs/examples/wireframe-new/index.html"
-    height="375"
-    width="350"
-  />
-</Box>
-
-<Box horizontal="sm" align="center">
-  <ButtonLink href="https://assets.checkout.com/docs/downloads/multi_iframes_new.zip">
-    Download sample files (.zip)
-  </ButtonLink>
-</Box>
 
 ---
 
