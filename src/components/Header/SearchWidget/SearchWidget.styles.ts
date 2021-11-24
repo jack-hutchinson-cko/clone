@@ -14,6 +14,7 @@ export const Results = styled.div<{ isShown: boolean }>`
   border-radius: 8px;
   box-shadow: 0 0 24px rgb(0 0 0 / 8%);
   color: ${({ theme }) => theme.colors.base};
+  text-align: left;
 
   @media ${Breakpoints.MOBILE} {
     position: initial;

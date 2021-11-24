@@ -24,7 +24,7 @@ const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
   );
 };
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'development') {
   datadogLogs.init({
     clientToken: String(process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN),
     site: 'datadoghq.com',
