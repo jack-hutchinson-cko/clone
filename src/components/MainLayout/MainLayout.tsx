@@ -49,7 +49,6 @@ const MainLayout: FC<Props> = ({
   return (
     <>
       {notWhatsNew && <SkipLink href="#main">Skip to content</SkipLink>}
-      {clientSettings.NASBannerShown && <NASBanner />}
       <MenuStateProvider>
         <MainWrapper>
           <HeaderWrapper>
