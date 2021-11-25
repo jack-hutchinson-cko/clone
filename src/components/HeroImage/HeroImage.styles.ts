@@ -13,12 +13,6 @@ export const HeroWrapper = styled.div<HeroPart>`
   background-repeat: no-repeat;
   background-position: center center;
   transform: translate3d(0px, 0px, 0px);
-
-  ${({ width }) =>
-    width &&
-    css`
-      height: ${(width - 50) * 0.95}px;
-    `}
 `;
 
 export const HeroParts = styled.div`
@@ -53,50 +47,31 @@ export const HeroParts = styled.div`
 export const HeroPart01 = styled.div<HeroPart>`
   position: absolute;
   z-index: 1;
-  top: 0;
+  top: -4px;
   left: 0;
   width: auto;
   transform-origin: center;
   transform: translate3d(0px, 0px, 0px);
-
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width * 0.85}px;
-    `}
 `;
 
 export const HeroPart02 = styled.div<HeroPart>`
   position: absolute;
   z-index: 2;
-  top: 19px;
-  right: -19px;
+  top: 42px;
+  right: -14px;
   width: auto;
   transform: translate3d(0px, 0px, 60px);
   transform-style: preserve-3d;
   transform-origin: center;
-
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width / 2.3}px;
-    `}
 `;
 
 export const HeroPart03 = styled.div<HeroPart>`
   position: absolute;
   z-index: 4;
-  top: 219px;
-  left: 45px;
+  top: 198px;
+  left: -40px;
   width: auto;
   transform: translate3d(0px, 0px, 55px);
   transform-style: preserve-3d;
   transform-origin: center;
-
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width / 2.28}px;
-      top: ${width / 2.12}px;
-    `}
 `;

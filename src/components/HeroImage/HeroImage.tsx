@@ -30,7 +30,7 @@ const calcRotation = (target: HTMLDivElement, x: number, y: number): TransformPr
   };
 };
 
-const HeroImage: FC<HeroImageProps> = ({ width }) => {
+const HeroImage: FC<HeroImageProps> = () => {
   const [isCursorEntered, setCursorStatus] = useState<boolean>(false);
   const [transform, setTransform] = useState<TransformProps>({ rotateX: 0, rotateY: 0 });
 
@@ -53,7 +53,7 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
   };
 
   return (
-    <HeroWrapper width={width}>
+    <HeroWrapper>
       <Image
         src="/assets/images/HeroImg/hero.home.bg.svg"
         layout="fill"
@@ -67,30 +67,30 @@ const HeroImage: FC<HeroImageProps> = ({ width }) => {
         onMouseMove={onMouseMoveHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
-        <HeroPart01 width={width}>
+        <HeroPart01>
           <Image
             src="/assets/images/HeroImg/hero.home.el.01.svg"
-            width="397"
-            height="300"
+            width="389"
+            height="328"
             loader={basePathLoader}
             alt="Checkout.com hero body"
             priority
           />
         </HeroPart01>
-        <HeroPart02 width={width}>
+        <HeroPart02>
           <Image
             src="/assets/images/HeroImg/hero.home.el.02.svg"
-            width="200"
-            height="356"
+            width="236"
+            height="347"
             loader={basePathLoader}
             alt="Checkout.com hero panel"
           />
         </HeroPart02>
-        <HeroPart03 width={width}>
+        <HeroPart03>
           <Image
             src="/assets/images/HeroImg/hero.home.el.03.svg"
-            width="204"
-            height="145"
+            width="289"
+            height="153"
             loader={basePathLoader}
             alt="Checkout.com hero 3d secure label"
             priority
