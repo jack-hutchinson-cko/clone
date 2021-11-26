@@ -13,6 +13,12 @@ export const HeroWrapper = styled.div<HeroPart>`
   background-repeat: no-repeat;
   background-position: center center;
   transform: translate3d(0px, 0px, 0px);
+  ${({ width }) =>
+    width &&
+    width < 440 &&
+    css`
+      height: ${width * 0.85}px;
+    `}
 `;
 
 export const HeroParts = styled.div`
@@ -25,18 +31,15 @@ export const HeroParts = styled.div`
   transform: translate3d(0px, 0px, 55px);
   animation: fadeInFromNone 1.5s ease-out;
   transition: all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s;
-
   @keyframes fadeInFromNone {
     0% {
       display: none;
       opacity: 0;
     }
-
     1% {
       display: block;
       opacity: 0;
     }
-
     100% {
       display: block;
       opacity: 1;
@@ -52,6 +55,12 @@ export const HeroPart01 = styled.div<HeroPart>`
   width: auto;
   transform-origin: center;
   transform: translate3d(0px, 0px, 0px);
+  ${({ width }) =>
+    width &&
+    width < 440 &&
+    css`
+      width: ${width * 0.85}px;
+    `}
 `;
 
 export const HeroPart02 = styled.div<HeroPart>`
@@ -63,6 +72,12 @@ export const HeroPart02 = styled.div<HeroPart>`
   transform: translate3d(0px, 0px, 60px);
   transform-style: preserve-3d;
   transform-origin: center;
+  ${({ width }) =>
+    width &&
+    width < 440 &&
+    css`
+      width: ${width / 2}px;
+    `}
 `;
 
 export const HeroPart03 = styled.div<HeroPart>`
@@ -74,4 +89,12 @@ export const HeroPart03 = styled.div<HeroPart>`
   transform: translate3d(0px, 0px, 55px);
   transform-style: preserve-3d;
   transform-origin: center;
+  ${({ width }) =>
+    width &&
+    width < 440 &&
+    css`
+      width: ${width / 2}px;
+      top: ${width / 2}px;
+      left: -20px;
+    `}
 `;

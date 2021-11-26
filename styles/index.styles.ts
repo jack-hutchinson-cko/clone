@@ -10,9 +10,11 @@ export const IntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: ${spacing.s00}px;
+  margin-bottom: 16px;
 
   @media ${Breakpoints.MOBILE} {
     flex-direction: column;
+    margin-bottom: 32px;
   }
 `;
 

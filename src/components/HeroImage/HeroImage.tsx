@@ -30,7 +30,7 @@ const calcRotation = (target: HTMLDivElement, x: number, y: number): TransformPr
   };
 };
 
-const HeroImage: FC<HeroImageProps> = () => {
+const HeroImage: FC<HeroImageProps> = ({ width }) => {
   const [isCursorEntered, setCursorStatus] = useState<boolean>(false);
   const [transform, setTransform] = useState<TransformProps>({ rotateX: 0, rotateY: 0 });
 
@@ -53,7 +53,7 @@ const HeroImage: FC<HeroImageProps> = () => {
   };
 
   return (
-    <HeroWrapper>
+    <HeroWrapper width={width}>
       <Image
         src="/assets/images/HeroImg/hero.home.bg.svg"
         layout="fill"
@@ -67,7 +67,7 @@ const HeroImage: FC<HeroImageProps> = () => {
         onMouseMove={onMouseMoveHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
-        <HeroPart01>
+        <HeroPart01 width={width}>
           <Image
             src="/assets/images/HeroImg/hero.home.el.01.svg"
             width="389"
@@ -77,7 +77,7 @@ const HeroImage: FC<HeroImageProps> = () => {
             priority
           />
         </HeroPart01>
-        <HeroPart02>
+        <HeroPart02 width={width}>
           <Image
             src="/assets/images/HeroImg/hero.home.el.02.svg"
             width="236"
@@ -86,7 +86,7 @@ const HeroImage: FC<HeroImageProps> = () => {
             alt="Checkout.com hero panel"
           />
         </HeroPart02>
-        <HeroPart03>
+        <HeroPart03 width={width}>
           <Image
             src="/assets/images/HeroImg/hero.home.el.03.svg"
             width="289"
