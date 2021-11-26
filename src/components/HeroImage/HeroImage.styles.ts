@@ -17,7 +17,7 @@ export const HeroWrapper = styled.div<HeroPart>`
     width &&
     width < 440 &&
     css`
-      height: ${width * 0.85}px;
+     height: ${(width - 50) * 0.95}px;
     `}
 `;
 
