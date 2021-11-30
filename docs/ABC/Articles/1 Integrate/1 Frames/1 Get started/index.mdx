@@ -10,7 +10,7 @@ This page explains what you need to get up and running with Frames.
 ## Before you begin
 
 - Make sure you have your `public_key`. You can find it in the <ExternalLink href="https://hub.checkout.com" target="_blank">Hub</ExternalLink>, under _Settings > Channels_. If you don't have an account with us yet, you can <ExternalLink href="https://www.checkout.com/get-test-account" target="_blank">create a free test account now</ExternalLink> to practise API calls, and use the sandbox version of the endpoint.
-- You can set up [webhooks](/reporting-and-insights/webhooks) to be notified when the payment has been approved, so you can continue the sales fulfilment flow.
+- You can set up [webhooks](/reporting-and-insights/webhooks), so that after you securely collect the card details with Frames, and proceed to make a payment request, you can be notified when the payment is captured (completed) and continue the sales fulfilment flow.
 
 <TipBox variant="warning">
 
@@ -115,7 +115,7 @@ Frames.init("pk_test_XXXX");
 
 Frames has a collection of events that are triggered when certain actions happen. This is how your application will know when a form has been submitted, or card details tokenized. They also help you tailor the experience you want to provide to your customers.
 
-We have listed all [required configuration options](/integrate/frames/frames-reference#Events).
+We have listed all [configuration options](/integrate/frames/frames-reference#Events).
 
 ---
 
