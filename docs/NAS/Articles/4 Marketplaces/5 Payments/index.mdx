@@ -3,29 +3,66 @@ title: Accept a payment on behalf of your sub-entities
 account: NAS
 ---
 
-Once your sub-entity's payment capabilities have been enabled, you can process payments on behalf of them through our [Unified Payments API](/payments/request-a-payment). 
+Once your sub-entity's payment capabilities have been enabled, you can process payments on behalf of them through our [Unified Payments API](/payments/request-a-payment).
 
-On this page, we will walk through how you can request a payment on behalf of: 
-* [a single sub-entity](#Request_a_payment_for_a_single_sub-entity); or
-* [multiple sub-entities](#Request_a_payment_for_multiple_sub-entities) <span style={{display: "inline-block"}}><StatusTag type="Marketplaces only" /></span>
+<TipBox variant="note">
 
+Only Visa and Mastercard payments are currently supported for Marketplaces and Payment Facilitators.
 
-## Payment Facilitators vs Marketplaces
+</TipBox>
 
-* If you are a Payment Facilitator, you process payments on behalf of a [single sub-entity](#Request_a_payment_for_a_single_sub-entity). 
-* If you are a Marketplace, you can process payments on behalf of your sub-entities using both options.
+On this page, we explain how to:
+* [Link a payment](#Link_a_payment_with_a_sub-entity) with a sub-entity.
+* Charge a [commission](#Charge_a_sub-entity_commission) on each payment.
+* Request a payment for a [single sub-entity](#Request_a_payment_for_a_single_sub-entity) or [multiple sub-entities](#Request_a_payment_for_multiple_sub-entities) (a split payment).
 
-## Request a payment for a single sub-entity 
+We also explain what happens when you [refund a split payment](#Refund_a_split_payment).
 
-When processing a payment on behalf of a single sub-entity, you just need to create a payment request for the total purchase amount. Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" >API reference</ExternalLink> for all required and optional fields.
+---
 
-To associate this payment with the correct sub-entity, use the `marketplace` object and provide the ID in the `sub_entity_id` field.
+## Link a payment with a sub-entity
+
+When processing a payment on behalf of a sub-entity, you use our Unified Payments API as normal. Create a payment request for the total purchase amount and include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" >API reference</ExternalLink> for all required and optional fields.
+
+However, so we know the payment is on behalf of your sub-entity, you also need to provide the sub-entity's ID.
+
+There are two methods for associating a payment with the correct sub-entity. You can only use **one** method at a time.
+
+In the `marketplace` object:
+* Using the `sub_entity_id` field. <span style={{display: "inline-block"}}><StatusTag type="PayFacs only" /></span>
+* Using the `id` field in the `sub_entities` array.
 
 <TipBox>
 
 The sub-entity ID is returned during the [onboarding process](/marketplaces/onboarding).
 
 </TipBox>
+
+---
+
+## Charge a sub-entity commission
+
+There are three ways to charge commission on your sub-entities' payments:
+* Fixed commission amount in [minor currency units](/resources/calculating-the-amount).
+* Variable commission (in percentage).
+* Compound commission (both a fixed and variable commission together).
+
+You can only charge commission if you use the `marketplace.sub_entities` array.
+
+---
+
+## Request a payment for a single sub-entity
+
+Use our <RequestTag type="POST"/>`/payments` endpoint to provide the payment details as normal.
+
+You can use either option to request a payment for a single sub-entity – the single `marketplace.sub_entity_id` string or `marketplace.sub_entities` array. However, if you would like to charge a commission, you must use the array.
+
+<tabs>
+<tab title="Without commission">
+<StatusTag type="PayFacs only" />
+<br/>
+
+To associate this payment with the correct sub-entity, use the `marketplace` object and provide the ID in the `sub_entity_id` field.
 
 ```json
 {
@@ -48,6 +85,51 @@ The sub-entity ID is returned during the [onboarding process](/marketplaces/onbo
 }
 
 ```
+</tab>
+<tab title="With commission">
+
+In the `marketplace` object, include the `sub_entities` array. You should provide **one** object that specifies:
+* The ID of the sub-entity.
+* The amount for that sub-entity.
+* The commission for your platform.
+* An optional reference.
+
+In the example below we are charging a fixed commission of £2.
+
+<TipBox variant="note" title="Payment Facilitators vs Marketplaces">
+
+`marketplace.sub_entities` is an array, but Payment Facilitators can only provide one object. Marketplaces can [provide multiple](#Request_a_payment_for_multiple_sub-entities).
+
+</TipBox>
+
+```json
+{
+  "source": {
+    "type": "token",
+    "token": "tok_4gzeau5o2uqubbk6fufs3m7p54"
+  },
+  "amount": 3000,
+  "currency": "GBP",
+  "reference": "ORD-5023-4E89",
+  "description": "Purchase basket",
+  "processing_channel_id": "pc_hpswyyx23geezflc2ocz3exn4y",
+  "marketplace": {
+    "sub_entities": [
+      //Fixed commission amount
+      {
+        "id": "ent_pj6fv2w2wchfedchjjyobb4bni",
+        "amount": 3000,
+        "reference": "SALE-7627-8389",
+        "commission": {
+          "amount": 200
+        }
+      },
+    ]
+  }
+}
+```
+</tab>
+</tabs>
 
 <TipBox variant="info">
 
@@ -55,17 +137,18 @@ The sub-entity ID is returned during the [onboarding process](/marketplaces/onbo
 
 </TipBox>
 
+---
+
 ## Request a payment for multiple sub-entities
 
 <StatusTag type="Marketplaces only"/>
+<br/>
 
-When a customer uses your platform to buy items from multiple sub-entities, you need to request one payment from the customer, and then split that amount appropriately across the different sub-entities. This is known as a **split payment**. You can also split or add a commission that could be both fixed and variable.
-
----
+When a customer uses your platform to buy items from multiple sub-entities, you need to request one payment from the customer, and then split that amount appropriately across the different sub-entities. You may also want to take a commission from each sub-entity for facilitating the transaction on your platform. This is known as a **split payment**.
 
 ### How to split a payment
 
-Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint. See our <ExternalLink href="https://api-reference.checkout.com/preview/crusoe/" >API reference</ExternalLink> for all required and optional fields.
+Include all relevant fields using our <RequestTag type="POST"/>`/payments` endpoint.
 
 In the `marketplace` object, include the `sub_entities` array. This is an array of objects, where each object specifies:
 * The ID of the sub-entity.
@@ -73,13 +156,7 @@ In the `marketplace` object, include the `sub_entities` array. This is an array 
 * An optional commission for your platform.
 * An optional reference to identify the split later.
 
-The sum of all split amounts must be equal to the payment amount. 
-
-<TipBox>
-
-The sub-entity ID is returned during the [onboarding process](/marketplaces/onboarding).
-
-</TipBox>
+The sum of all split amounts must be equal to the payment amount.
 
 ### Split payments example scenario
 
@@ -88,7 +165,7 @@ A customer makes a purchase of £100. The split payment contains three splits, w
 2. Sub-entity B: £50 for trainers
 3. Sub-entity C: £20 for socks
 
-On top of this, you also charge a commission to sub-entities using your platform. You can specify a fixed amount or a percentage. You can also specify a percentage in addition to a fixed amount, depending on your business model. The commission will be applied to each split, and cannot exceed the split amount. 
+If you charge a commission, it will be applied to each split, and cannot exceed the split amount.
 
 <TipBox>
 
@@ -99,15 +176,9 @@ Remember our APIs work in the [minor currency unit](/resources/calculating-the-a
 ### Request example
 
 In the example request below, we take the split shown above and demonstrate three ways you can split the payment and specify commission for your platform:
-* **Fixed commission amount**: Charge the sub-entity in this split a fixed commissiong amount of £2. This sub-entity would receive £28, and you would receive £2 in your currency account.
-* **Commission percentage**: Charge the sub-entity in this split a fee of 1.5%. This sub-entity would have 1.5% of £50 deducted, so would receive £49.25. You would receive 75p in your currency account.
-* **Fixed commission amount + commission percentage**: Charge the sub-entity in this split a fee of 1.5%, plus a fixed fee of £2. This sub-entity would have 1.5% of £20 deducted, plus another £2 deducted, so would receive £17.70. You would receive £2.30 in your currency account.
-
-<TipBox variant="info">
-
-You can also use this method on a single payment (not split) to collect commission. 
-
-</TipBox>
+* **Fixed commission amount**: Charge the sub-entity in this split a fixed commission amount of £2. This sub-entity would receive £28, and you would receive £2 in your currency account.
+* **Variable commission**: Charge the sub-entity in this split a fee of 1.5%. This sub-entity would have 1.5% of £50 deducted, so would receive £49.25. You would receive 75p in your currency account.
+* **Compound commission**: Charge the sub-entity in this split a fee of 1.5%, plus a fixed fee of £2. This sub-entity would have 1.5% of £20 deducted, plus another £2 deducted, so would receive £17.70. You would receive £2.30 in your currency account.
 
 ```json
 {
@@ -146,7 +217,7 @@ You can also use this method on a single payment (not split) to collect commissi
         "amount": 2000,
         "reference": "SALE-2127-9735",
         "commission": {
-          "amount": 200, 
+          "amount": 200,
           "percentage": 1.5,
         }
       }
@@ -156,7 +227,7 @@ You can also use this method on a single payment (not split) to collect commissi
 }
 ```
 
-## Response examples
+### Response examples
 
 If you receive a successful response, the payment will be automatically associated with the correct sub-entity. A sub-entity's funds will be held in their currency account (as per their default holding currency set up during [onboarding](/marketplaces/onboarding)). Your commissions will be held in your platform's currency account (set up during your own onboarding with our Marketplaces solution).
 
@@ -246,7 +317,7 @@ When you receive a `422`, please check the API request to make sure you've inclu
 
 <Accordion isBoldTitle={true} title='Possible error codes'>
 
-This is a list of error codes specifically related to **split payments**. 
+This is a list of error codes specifically related to **split payments**.
 
 <Table>
 <TableHead headers={['Name','Description']} sizes={['60%', 'auto']}></TableHead>
@@ -259,7 +330,7 @@ This is a list of error codes specifically related to **split payments**.
 </TableCell>
 <TableCell>
 
-Marketplace section is empty for business model.
+The processing channel used in this payment request has the business model of Payment Facilitator or Marketplace, but the Marketplace object has not been provided
 
 </TableCell>
 </TableRow>
@@ -290,18 +361,6 @@ Sub-entity ID is set, but business model is not is not a Payment Facilitator.
 <TableRow>
 <TableCell>
 
-`marketplace__business_model_invalid`
-
-</TableCell>
-<TableCell>
-
-Sub-entity ID is set, but business model is not is not a Marketplace.
-
-</TableCell>
-</TableRow>
-<TableRow>
-<TableCell>
-
 `sub_entity_not_found`
 
 </TableCell>
@@ -319,7 +378,7 @@ No sub-entity with such ID is found in sub-entities list.
 </TableCell>
 <TableCell>
 
-The format of the sub-entity ID in the sub-entity or sub-entity list is invalid.
+The format of the sub-entity ID in the sub-entity or sub-entities list is invalid.
 
 </TableCell>
 </TableRow>
@@ -343,7 +402,7 @@ Too many sub-entities in a list.
 </TableCell>
 <TableCell>
 
-Empty ID in sub-entities list.
+Empty `sub_entity_id` or `id` is empty in one or more items in the sub_entities list.
 
 </TableCell>
 </TableRow>
@@ -427,6 +486,16 @@ Multiple sub-entities with the same ID.
 </tabs>
 
 When you make a payment, we will let you know what stage the payment is at through [webhook notifications](/workflows).
+
+### Refund a split payment
+
+When you refund a payment that has been split, the refund amount will come from your currency account, not the sub-entity's.
+
+### Partial capture and incremental authorization
+
+Our Unified Payments API allows you to adapt the standard payments flow. However, two features will not produce the desired effects on payments that have been split.
+* [Incremental authorization](/payments/accept-payments/authorize-a-payment#Request_an_incremental_authorization) will have no effect. It's possible to extend a split payment's authorization validity period, but any extension to the amount will be ignored when the payment is captured.
+* [Partial capture](/payments/manage-payments/capture-a-payment) will treat the payment as if there has been no split and will not be associated to any sub-entity.
 
 ## Where to next?
 
