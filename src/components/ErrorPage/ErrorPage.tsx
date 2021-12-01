@@ -1,7 +1,5 @@
 import { FC } from 'react';
-import ErrorPageLink from 'src/components/ErrorPageLink/ErrorPageLink';
-import { basePathAddition } from 'tools/basePathAddition';
-import { LinksContainer, Wrapper, StyledHeader, StyledSubHeader } from './ErrorPage.styles';
+import Link from 'next/link';
 
 type Props = {
   statusCode?: number;
@@ -10,8 +8,8 @@ type Props = {
 const ErrorPage: FC<Props> = ({ statusCode }) => {
   let errorMessage: JSX.Element;
   let headerCopy: string | null;
-  const docsImgUrl = basePathAddition('/errorPage/docs.svg');
-  const apiRefImgUrl = basePathAddition('/errorPage/api.svg');
+  const docsImgUrl = '/errorPage/docs.svg';
+  const apiRefImgUrl = '/errorPage/api.svg';
   const apiReferenceLink =
     process.env.NEXT_PUBLIC_CLIENT_TYPE === 'ABC'
       ? 'https://api-reference.checkout.com/'
@@ -40,19 +38,19 @@ const ErrorPage: FC<Props> = ({ statusCode }) => {
   }
 
   return (
-    <Wrapper>
-      <StyledHeader>{statusCode}</StyledHeader>
-      <StyledSubHeader>{headerCopy}</StyledSubHeader>
+    <div>
+      <h1>{statusCode}</h1>
+      <h2>{headerCopy}</h2>
       <p className="error-message">{errorMessage}</p>
-      <LinksContainer>
-        <ErrorPageLink imageUrl={docsImgUrl} url="/">
+      <div>
+        <Link imageUrl={docsImgUrl} url="/">
           Go to Docs home
-        </ErrorPageLink>
-        <ErrorPageLink imageUrl={apiRefImgUrl} url={apiReferenceLink}>
+        </Link>
+        <Link imageUrl={apiRefImgUrl} url={apiReferenceLink}>
           Go to API reference
-        </ErrorPageLink>
-      </LinksContainer>
-    </Wrapper>
+        </Link>
+      </div>
+    </div>
   );
 };
 

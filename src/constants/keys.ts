@@ -1,2 +1,0 @@
-export const NOTICEABLE_WIDGET_ID = process.env.NEXT_PUBLIC_NOTICEABLE_WIDGET || '';
-export const NOTICEABLE_COUNTER_ID = process.env.NEXT_PUBLIC_NOTICEABLE_COUNTER || '';

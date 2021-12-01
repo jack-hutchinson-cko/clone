@@ -1,26 +1,10 @@
 import { NextPage } from 'next';
-import { AppProps } from 'next/app';
 import { datadogLogs } from '@datadog/browser-logs';
 import { datadogRum } from '@datadog/browser-rum';
-import withLDProvider from 'src/hoc/withLDProvider';
-import { ThemeProvider } from 'src/theme/ThemeProvider';
-import Head from 'src/components/Head';
-import withHandlerBackButton from 'src/hoc/withHandlerBackButton';
-import GlobalStyles from '../styles/globalStyles';
 
-type Props = {
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  Component?: any;
-  pageProps?: any;
-};
-
-const MyApp: NextPage<AppProps<Props>> = ({ Component, pageProps }) => {
+const MyApp: NextPage = () => {
   return (
-    <ThemeProvider>
-      <Head />
-      <GlobalStyles />
-      <Component {...pageProps} />
-    </ThemeProvider>
+      <div>hello</div>
   );
 };
 
@@ -43,4 +27,4 @@ if (process.env.NODE_ENV !== 'development') {
   });
 }
 
-export default withLDProvider(withHandlerBackButton(MyApp));
+export default MyApp;

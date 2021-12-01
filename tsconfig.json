@@ -19,7 +19,10 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "downlevelIteration": true,
-    "types": ["cypress"],
+    "types": [
+      "cypress"
+    ],
+    "incremental": true
   },
   "include": [
     "types/next-env.d.ts",
@@ -27,6 +30,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules", "docs"
+    "node_modules",
+    "docs"
   ]
 }
