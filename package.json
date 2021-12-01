@@ -6,7 +6,7 @@
     "create-index-for-algolia": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createIndexForAlgolia.tsx",
     "create-site-map": "ts-node -T -P tsconfig.create-algolia-index.json -r tsconfig-paths/register ./tools/createSiteMap.tsx",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prebuild; next build",
     "prebuild": "npm run git-unshallow",
     "start": "next start",
     "dev:abc": "NEXT_PUBLIC_HEAP_IO_ACCOUNT=ABC NEXT_PUBLIC_CLIENT_TYPE=ABC next dev",
